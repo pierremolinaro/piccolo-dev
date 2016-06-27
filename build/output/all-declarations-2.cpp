@@ -3,14 +3,14 @@
 #include "galgas2/C_galgas_CLI_Options.h"
 #include "utilities/C_PrologueEpilogue.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 #include "all-declarations-2.h"
 
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_ (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_pic_31__38_) COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 23)) ;
@@ -77,7 +77,7 @@ void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_importBootloaderSpecification (GALGAS_piccoloDeviceModel & outArgument_outPiccoloDeviceModel,
                                                                                                                                    GALGAS_string & outArgument_outDeviceName,
@@ -132,7 +132,7 @@ void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 130)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_pic_31__38_) COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 23)) ;
@@ -158,7 +158,7 @@ void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_pic_31__38_) COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 23)) ;
@@ -185,7 +185,7 @@ void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_midrange) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 32)) ;
@@ -287,7 +287,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (C_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_importBootloaderSpecification (GALGAS_piccoloDeviceModel & outArgument_outPiccoloDeviceModel,
                                                                                                            GALGAS_string & outArgument_outDeviceName,
@@ -382,7 +382,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_impo
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 157)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_midrange) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 32)) ;
@@ -448,7 +448,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_pars
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_midrange) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 32)) ;
@@ -513,7 +513,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_inde
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 81)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_ (GALGAS_midrange_5F_instructionList & outArgument_outInstructionList,
                                                                                               GALGAS_bool & ioArgument_ioNeedsComputedGoto_32_,
@@ -542,7 +542,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_instruction
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -562,7 +562,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_instruction
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -581,7 +581,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_instruction
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_ (GALGAS_midrange_5F_interruptDefinitionList & ioArgument_ioInterruptDefinitionList,
                                                                                                   GALGAS_bool & ioArgument_ioNeedsComputedGoto_32_,
@@ -603,7 +603,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_interrupt_5
   ioArgument_ioInterruptDefinitionList.addAssign_operation (var_interruptionLocation_5142, var_instructionList_5365, var_firstSaveRegister_5223, var_secondSaveRegister_5278, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 208))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 203)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_interrupt) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 189)) ;
@@ -617,7 +617,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_interrupt_5
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_interrupt) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 189)) ;
@@ -630,7 +630,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_interrupt_5
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 202)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_ (GALGAS_midrange_5F_routineDefinitionList & ioArgument_ioRoutineDefinitionList,
                                                                                                 GALGAS_bool & ioArgument_ioNeedsComputedGoto_32_,
@@ -736,7 +736,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
   ioArgument_ioRoutineDefinitionList.addAssign_operation (var_routineName_5937, var_page_5988, var_requiredBank_6117, var_returnedBank_6139, var_preservesBank_6161, var_noreturn_5807, var_instructionList_7398, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 293))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 285)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_midrange_5F_syntax_4 (inCompiler)) {
@@ -802,7 +802,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_midrange_5F_syntax_4 (inCompiler)) {
@@ -867,7 +867,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 284)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_ (GALGAS_midrange_5F_instruction & outArgument_outInstruction,
                                                                                                     GALGAS_bool & ioArgument_ioNeedsComputedGoto_32_,
@@ -1275,7 +1275,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_midrange_5F_syntax_9 (inCompiler)) {
@@ -1509,7 +1509,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_midrange_5F_syntax_9 (inCompiler)) {
@@ -1742,7 +1742,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_ (const GALGAS_lstring constinArgument_ifLabel,
                                                                                                           GALGAS_midrange_5F_instruction & outArgument_outInstruction,
@@ -1827,7 +1827,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
   outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_structured_5F_if::constructor_new (var_instructionLocation_16388, var_structured_5F_if_5F_condition_16461, var_thenInstructionList_16579, var_elseInstructionList_16698, var_endOfElsePartLocation_17912  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 649)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   nt_midrange_5F_condition_5F_expression_parse (inCompiler) ;
@@ -1867,7 +1867,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   nt_midrange_5F_condition_5F_expression_indexing (inCompiler) ;
@@ -1906,7 +1906,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_ (GALGAS_midrange_5F_instruction & outArgument_outInstruction,
                                                                                                 C_Lexique_piccolo_5F_lexique * inCompiler) {
@@ -2086,7 +2086,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_i
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_midrange_5F_syntax_28 (inCompiler)) {
@@ -2215,7 +2215,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_i
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_midrange_5F_syntax_28 (inCompiler)) {
@@ -2343,7 +2343,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_i
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_ (GALGAS_midrange_5F_conditionExpression & outArgument_outCondition,
                                                                                               C_Lexique_piccolo_5F_lexique * inCompiler) {
@@ -2354,7 +2354,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   outArgument_outCondition = GALGAS_midrange_5F_negateCondition::constructor_new (var_condition_22603  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 801)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 798)) ;
@@ -2362,14 +2362,14 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__21_) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 798)) ;
   nt_midrange_5F_condition_5F_factor_indexing (inCompiler) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_ (GALGAS_midrange_5F_conditionExpression & outArgument_outCondition,
                                                                                               C_Lexique_piccolo_5F_lexique * inCompiler) {
@@ -2377,20 +2377,20 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   nt_midrange_5F_condition_5F_expression_ (outArgument_outCondition, inCompiler) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   nt_midrange_5F_condition_5F_expression_parse (inCompiler) ;
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   nt_midrange_5F_condition_5F_expression_indexing (inCompiler) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_ (GALGAS_midrange_5F_conditionExpression & outArgument_outCondition,
                                                                                               C_Lexique_piccolo_5F_lexique * inCompiler) {
@@ -2457,7 +2457,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_midrange_5F_syntax_33 (inCompiler)) {
@@ -2496,7 +2496,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_midrange_5F_syntax_33 (inCompiler)) {
@@ -2534,7 +2534,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_ (GALGAS_midrange_5F_conditionExpression & outArgument_outCondition,
                                                                                                    C_Lexique_piccolo_5F_lexique * inCompiler) {
@@ -2560,7 +2560,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 904)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 893)) ;
@@ -2581,7 +2581,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__28_) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 893)) ;
@@ -2601,7 +2601,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 904)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_ (GALGAS_midrange_5F_conditionExpression & outArgument_outCondition,
                                                                                              C_Lexique_piccolo_5F_lexique * inCompiler) {
@@ -2623,7 +2623,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   nt_midrange_5F_condition_5F_factor_parse (inCompiler) ;
@@ -2642,7 +2642,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   nt_midrange_5F_condition_5F_factor_indexing (inCompiler) ;
@@ -2662,7 +2662,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_ (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_baseline) COMMA_SOURCE_FILE ("baseline_program.galgas", 16)) ;
@@ -2703,7 +2703,7 @@ void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_ (
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_importBootloaderSpecification (GALGAS_piccoloDeviceModel & outArgument_outPiccoloDeviceModel,
                                                                                                              GALGAS_string & outArgument_outDeviceName,
@@ -2744,7 +2744,7 @@ void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_im
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_end) COMMA_SOURCE_FILE ("baseline_program.galgas", 79)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_baseline) COMMA_SOURCE_FILE ("baseline_program.galgas", 16)) ;
@@ -2756,7 +2756,7 @@ void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_pa
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_baseline) COMMA_SOURCE_FILE ("baseline_program.galgas", 16)) ;
@@ -2769,7 +2769,7 @@ void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_in
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_ (GALGAS_lstring & outArgument_outBootloaderName,
                                                                                                                     GALGAS_lstring & outArgument_outDeviceName,
@@ -2899,7 +2899,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_pic_31__38_) COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 37)) ;
@@ -2959,7 +2959,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_pic_31__38_) COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 37)) ;
@@ -3018,7 +3018,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 91)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_start_5F_symbol_i1_ (C_Lexique_piccolo_5F_lexique * inCompiler) {
   GALGAS_lstring var_bootloaderName_3289 ;
@@ -3048,7 +3048,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_start_5F_symbol_i1_importBootloaderSpecification (GALGAS_piccoloDeviceModel & outArgument_outPiccoloDeviceModel,
                                                                                                                                              GALGAS_string & outArgument_outDeviceName,
@@ -3077,20 +3077,20 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   outArgument_outDeviceName = var_deviceName_4972.mAttribute_string ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_start_5F_symbol_i1_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   nt_parse_5F_bootloader_parse (inCompiler) ;
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_start_5F_symbol_i1_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   nt_parse_5F_bootloader_indexing (inCompiler) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_ (GALGAS_routineDeclarationList & ioArgument_ioRoutineDefinitionList,
                                                                                                                        C_Lexique_piccolo_5F_lexique * inCompiler) {
@@ -3175,7 +3175,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   ioArgument_ioRoutineDefinitionList.addAssign_operation (var_routineName_5584, var_requiredBank_5606, var_returnedBank_5628, var_preservesBank_5650, var_noreturn_5454  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 231)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_pic_31__38__5F_bootloader_5F_syntax_3 (inCompiler)) {
@@ -3227,7 +3227,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   inCompiler->resetTemplateString () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_pic_31__38__5F_bootloader_5F_syntax_3 (inCompiler)) {
@@ -3278,21 +3278,21 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 #include "utilities/MF_MemoryControl.h"
 #include "galgas2/C_galgas_CLI_Options.h"
 
 #include "files/C_FileManager.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                       N O N    T E R M I N A L    N A M E S                                          
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static const char * gNonTerminalNames_pic18_include_grammar [109] = {
   "<configuration_definition>",// Index 0
@@ -3406,11 +3406,11 @@ static const char * gNonTerminalNames_pic18_include_grammar [109] = {
   "<>"// Index 108
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                S L R    A N A L Y Z E R    A C T I O N    T A B L E                                  
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 // Action tables handle shift and reduce actions ;
 //  - a shift action is (terminal_symbol, SHIFT (n)) : if shifts to state n ;
@@ -21479,11 +21479,11 @@ static const uint32_t gActionTableIndex_pic18_include_grammar [592] = {
 , 33139  // S591
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                            SLR states successors table                                               
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 // Successor tables handle non terminal successors ;
 // an entry is (non_terminal_symbol, n) ; successor is state n.
@@ -22577,11 +22577,11 @@ gSuccessorTable_pic18_include_grammar_0, NULL, NULL, NULL,
   NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_587, 
   gSuccessorTable_pic18_include_grammar_588, NULL, gSuccessorTable_pic18_include_grammar_590, NULL} ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                          Production rules infos (left non terminal, size of right string)                            
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static const int16_t gProductionsTable_pic18_include_grammar [314 * 2] = {
   7, 1,
@@ -22900,11 +22900,11 @@ static const int16_t gProductionsTable_pic18_include_grammar [314 * 2] = {
   108, 1
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                               'configuration_definition' non terminal implementation                                 
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_configuration_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -22939,11 +22939,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_configuration_5F_definition_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                    'ram_definition' non terminal implementation                                      
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_ram_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -22978,11 +22978,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_ram_5F_definition_ (GALGAS_r
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                 'constant_definition' non terminal implementation                                    
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_constant_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23017,11 +23017,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_constant_5F_definition_ (GAL
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                 'immediate_expression' non terminal implementation                                   
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_expression_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23056,11 +23056,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_expression_ (GA
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'register_parsing' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_register_5F_parsing_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23095,11 +23095,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_register_5F_parsing_ (GALGAS
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'optional_w_as_dest' non terminal implementation                                    
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_optional_5F_w_5F_as_5F_dest_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23134,11 +23134,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_optional_5F_w_5F_as_5F_dest_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'bit_number_parsing' non terminal implementation                                    
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_bit_5F_number_5F_parsing_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23191,11 +23191,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_bit_5F_number_5F_parsing_ (G
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                         'body' non terminal implementation                                           
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_body_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23282,11 +23282,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlySyntaxAnalysis (C_Co
   macroDetachSharedObject (scanner) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                        Grammar start symbol implementation                                           
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceFileParsing_ (C_Compiler * inCompiler,
                                 GALGAS_lstring inFilePath,
@@ -23337,7 +23337,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceFileParsing_ (C_C
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceStringParsing_ (C_Compiler * inCompiler,
                                 GALGAS_string inSourceString,
@@ -23374,11 +23374,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceStringParsing_ (C
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                 'checkpic_definition' non terminal implementation                                    
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_checkpic_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23413,11 +23413,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_checkpic_5F_definition_ (GAL
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'data_definition' non terminal implementation                                      
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_data_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23452,11 +23452,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_data_5F_definition_ (GALGAS_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'instruction_list' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_instruction_5F_list_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23494,11 +23494,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_instruction_5F_list_ (GALGAS
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                 'interrupt_definition' non terminal implementation                                   
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_interrupt_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23535,11 +23535,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_interrupt_5F_definition_ (GA
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'routine_definition' non terminal implementation                                    
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_routine_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23576,11 +23576,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_routine_5F_definition_ (GALG
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'condition_factor' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_factor_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23633,11 +23633,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_factor_ (GALGAS
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                 'condition_expression' non terminal implementation                                   
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_expression_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23672,11 +23672,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_expression_ (GA
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                    'condition_term' non terminal implementation                                      
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_term_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23711,11 +23711,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_term_ (GALGAS_p
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'block_termination' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_block_5F_termination_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23768,11 +23768,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_block_5F_termination_ (GALGA
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                'structured_instruction' non terminal implementation                                  
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23810,11 +23810,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_instruction_ (
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                              'structured_if_instruction' non terminal implementation                                 
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_if_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23853,11 +23853,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_if_5F_instruct
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'simple_instruction' non terminal implementation                                    
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_simple_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23892,11 +23892,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_simple_5F_instruction_ (GALG
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'declaration_in_ram' non terminal implementation                                    
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_declaration_5F_in_5F_ram_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23931,11 +23931,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_declaration_5F_in_5F_ram_ (G
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                'immediate_bitwise_term' non terminal implementation                                  
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_term_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -23970,11 +23970,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_term
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                               'immediate_bitwise_factor' non terminal implementation                                 
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_factor_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -24009,11 +24009,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_fact
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                    'immediate_term' non terminal implementation                                      
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_term_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -24048,11 +24048,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_term_ (GALGAS_i
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'immediate_factor' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_factor_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -24087,11 +24087,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_factor_ (GALGAS
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'immediate_primary' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_primary_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -24126,907 +24126,907 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_primary_ (GALGA
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                            'select_pic_31__38__5F_syntax_0' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_0 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 32 33 34 35 36 37 38 39 40 41 42 43 44
   return inLexique->nextProductionIndex () - 31 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                            'select_pic_31__38__5F_syntax_1' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_1 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 45 46
   return inLexique->nextProductionIndex () - 44 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                            'select_pic_31__38__5F_syntax_2' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_2 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 47 48
   return inLexique->nextProductionIndex () - 46 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                            'select_pic_31__38__5F_syntax_3' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_3 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 49 50
   return inLexique->nextProductionIndex () - 48 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                            'select_pic_31__38__5F_syntax_4' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_4 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 51 52
   return inLexique->nextProductionIndex () - 50 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                            'select_pic_31__38__5F_syntax_5' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_5 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 53 54
   return inLexique->nextProductionIndex () - 52 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                            'select_pic_31__38__5F_syntax_6' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_6 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 55 56
   return inLexique->nextProductionIndex () - 54 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                            'select_pic_31__38__5F_syntax_7' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_7 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 57 58 59
   return inLexique->nextProductionIndex () - 56 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                            'select_pic_31__38__5F_syntax_8' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_8 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 60 61
   return inLexique->nextProductionIndex () - 59 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                            'select_pic_31__38__5F_syntax_9' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_9 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 62 63
   return inLexique->nextProductionIndex () - 61 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_10' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_10 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 64 65
   return inLexique->nextProductionIndex () - 63 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_11' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_11 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 66 67 68
   return inLexique->nextProductionIndex () - 65 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_12' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_12 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 69 70
   return inLexique->nextProductionIndex () - 68 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_13' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_13 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 71 72 73 74 75
   return inLexique->nextProductionIndex () - 70 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_14' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_14 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 76 77
   return inLexique->nextProductionIndex () - 75 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_15' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_15 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 78 79
   return inLexique->nextProductionIndex () - 77 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_16' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_16 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 80 81 82 83 84 85
   return inLexique->nextProductionIndex () - 79 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_17' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_17 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 86 87
   return inLexique->nextProductionIndex () - 85 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_18' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_18 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 88 89
   return inLexique->nextProductionIndex () - 87 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_19' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_19 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115
   return inLexique->nextProductionIndex () - 89 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_20' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_20 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 116 117
   return inLexique->nextProductionIndex () - 115 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_21' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_21 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 118 119
   return inLexique->nextProductionIndex () - 117 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_22' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_22 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 120 121
   return inLexique->nextProductionIndex () - 119 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_23' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_23 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 122 123
   return inLexique->nextProductionIndex () - 121 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_24' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_24 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 124 125
   return inLexique->nextProductionIndex () - 123 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_25' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_25 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 126 127
   return inLexique->nextProductionIndex () - 125 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_26' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_26 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 128 129
   return inLexique->nextProductionIndex () - 127 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_27' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_27 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 130 131
   return inLexique->nextProductionIndex () - 129 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_28' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_28 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 132 133
   return inLexique->nextProductionIndex () - 131 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_29' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_29 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 134 135
   return inLexique->nextProductionIndex () - 133 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_30' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_30 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 136 137
   return inLexique->nextProductionIndex () - 135 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_31' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_31 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 138 139
   return inLexique->nextProductionIndex () - 137 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_32' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_32 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 140 141
   return inLexique->nextProductionIndex () - 139 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_33' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_33 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 142 143 144 145
   return inLexique->nextProductionIndex () - 141 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_34' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_34 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 146 147
   return inLexique->nextProductionIndex () - 145 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_35' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_35 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 148 149
   return inLexique->nextProductionIndex () - 147 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_36' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_36 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 150 151
   return inLexique->nextProductionIndex () - 149 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_37' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_37 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 152 153
   return inLexique->nextProductionIndex () - 151 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_38' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_38 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 154 155
   return inLexique->nextProductionIndex () - 153 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_39' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_39 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 156 157
   return inLexique->nextProductionIndex () - 155 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_40' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_40 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 158 159 160 161
   return inLexique->nextProductionIndex () - 157 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_41' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_41 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 162 163
   return inLexique->nextProductionIndex () - 161 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_42' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_42 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 164 165
   return inLexique->nextProductionIndex () - 163 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_43' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_43 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 166 167
   return inLexique->nextProductionIndex () - 165 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_44' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_44 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 168 169
   return inLexique->nextProductionIndex () - 167 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_45' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_45 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 170 171
   return inLexique->nextProductionIndex () - 169 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_46' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_46 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 172 173
   return inLexique->nextProductionIndex () - 171 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_47' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_47 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 174 175
   return inLexique->nextProductionIndex () - 173 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_48' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_48 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 176 177
   return inLexique->nextProductionIndex () - 175 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_49' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_49 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 178 179
   return inLexique->nextProductionIndex () - 177 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_50' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_50 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 180 181 182 183 184 185 186 187
   return inLexique->nextProductionIndex () - 179 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_51' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_51 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 188 189
   return inLexique->nextProductionIndex () - 187 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_52' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_52 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 190 191 192
   return inLexique->nextProductionIndex () - 189 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_53' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_53 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 193 194
   return inLexique->nextProductionIndex () - 192 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_54' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_54 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 195 196
   return inLexique->nextProductionIndex () - 194 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_55' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_55 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215
   return inLexique->nextProductionIndex () - 196 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_56' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_56 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232
   return inLexique->nextProductionIndex () - 215 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_57' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_57 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 233 234 235 236 237
   return inLexique->nextProductionIndex () - 232 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_58' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_58 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 238 239 240
   return inLexique->nextProductionIndex () - 237 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_59' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_59 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 241 242 243 244 245 246 247
   return inLexique->nextProductionIndex () - 240 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_60' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_60 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 248 249 250 251
   return inLexique->nextProductionIndex () - 247 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                           'select_pic_31__38__5F_syntax_61' non terminal implementation                              
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_61 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 252 253 254 255
   return inLexique->nextProductionIndex () - 251 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'select_communs_0' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_0 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 256 257
   return inLexique->nextProductionIndex () - 255 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'select_communs_1' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_1 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 258 259
   return inLexique->nextProductionIndex () - 257 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'select_communs_2' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_2 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 260 261
   return inLexique->nextProductionIndex () - 259 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'select_communs_3' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_3 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 262 263
   return inLexique->nextProductionIndex () - 261 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'select_communs_4' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_4 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 264 265
   return inLexique->nextProductionIndex () - 263 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'select_communs_5' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_5 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 266 267 268
   return inLexique->nextProductionIndex () - 265 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'select_communs_6' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_6 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 269 270
   return inLexique->nextProductionIndex () - 268 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'select_communs_7' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_7 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 271 272
   return inLexique->nextProductionIndex () - 270 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'select_communs_8' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_8 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 273 274
   return inLexique->nextProductionIndex () - 272 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                   'select_communs_9' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_9 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 275 276 277
   return inLexique->nextProductionIndex () - 274 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'select_communs_10' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_10 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 278 279
   return inLexique->nextProductionIndex () - 277 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'select_communs_11' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_11 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 280 281 282 283 284 285 286
   return inLexique->nextProductionIndex () - 279 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'select_communs_12' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_12 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 287 288 289 290 291
   return inLexique->nextProductionIndex () - 286 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'select_communs_13' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_13 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 292 293 294 295
   return inLexique->nextProductionIndex () - 291 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'select_communs_14' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_14 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 296 297 298 299 300 301 302
   return inLexique->nextProductionIndex () - 295 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'select_communs_15' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_15 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 303 304
   return inLexique->nextProductionIndex () - 302 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'select_communs_16' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_16 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 305 306
   return inLexique->nextProductionIndex () - 304 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'select_communs_17' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_17 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 307 308
   return inLexique->nextProductionIndex () - 306 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'select_communs_18' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_18 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 309 310
   return inLexique->nextProductionIndex () - 308 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
 //                                  'select_communs_19' non terminal implementation                                     
 //                                                                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_19 (C_Lexique_piccolo_5F_lexique * inLexique) {
 // Productions numbers : 311 312
   return inLexique->nextProductionIndex () - 310 ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
