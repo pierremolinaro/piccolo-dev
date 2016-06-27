@@ -3,16 +3,16 @@
 #include "galgas2/C_galgas_CLI_Options.h"
 #include "utilities/C_PrologueEpilogue.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 #include "all-declarations-10.h"
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                          Extension Getter '@uint x4String'                                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_x_34_String (const GALGAS_uint & inObject,
                                            C_Compiler * inCompiler
@@ -39,33 +39,33 @@ GALGAS_string extensionGetter_x_34_String (const GALGAS_uint & inObject,
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Abstract extension method '@immediatExpression eval'                                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_immediatExpression_eval> gExtensionMethodTable_immediatExpression_eval ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_eval (const int32_t inClassIndex,
                                 extensionMethodSignature_immediatExpression_eval inMethod) {
   gExtensionMethodTable_immediatExpression_eval.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_immediatExpression_eval (void) {
   gExtensionMethodTable_immediatExpression_eval.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_immediatExpression_eval (NULL,
                                                     freeExtensionMethod_immediatExpression_eval) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_eval (const cPtr_immediatExpression * inObject,
                                const GALGAS_registerTable constin_inRegisterTable,
@@ -103,33 +103,33 @@ void callExtensionMethod_eval (const cPtr_immediatExpression * inObject,
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Abstract extension method '@bitNumberExpression getBitNumber'                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_bitNumberExpression_getBitNumber> gExtensionMethodTable_bitNumberExpression_getBitNumber ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_getBitNumber (const int32_t inClassIndex,
                                         extensionMethodSignature_bitNumberExpression_getBitNumber inMethod) {
   gExtensionMethodTable_bitNumberExpression_getBitNumber.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_bitNumberExpression_getBitNumber (void) {
   gExtensionMethodTable_bitNumberExpression_getBitNumber.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_bitNumberExpression_getBitNumber (NULL,
                                                              freeExtensionMethod_bitNumberExpression_getBitNumber) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_getBitNumber (const cPtr_bitNumberExpression * inObject,
                                        const GALGAS_registerTable constin_inRegisterTable,
@@ -168,11 +168,11 @@ void callExtensionMethod_getBitNumber (const cPtr_bitNumberExpression * inObject
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                           Extension Getter '@baseline_instruction_FD_base_code mnemonic'                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inObject,
                                         C_Compiler * /* inCompiler */
@@ -260,11 +260,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_instruction_5F_
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Extension Getter '@baseline_F_instruction_base_code mnemonic'                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inObject,
                                         C_Compiler * /* inCompiler */
@@ -292,11 +292,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_F_5F_instructio
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Extension Getter '@baseline_bit_oriented_op mnemonic'                                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_bit_5F_oriented_5F_op & inObject,
                                         C_Compiler * /* inCompiler */
@@ -324,11 +324,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_bit_5F_oriented
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Extension Getter '@baseline_literal_instruction_opcode mnemonic'                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inObject,
                                         C_Compiler * /* inCompiler */
@@ -371,11 +371,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_literal_5F_inst
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               Extension Getter '@baseline_IF_BitTest_opcode mnemonic'                               *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_IF_5F_BitTest_5F_opcode & inObject,
                                         C_Compiler * /* inCompiler */
@@ -403,11 +403,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_IF_5F_BitTest_5
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               Extension Getter '@baseline_WO_OPERAND_group mnemonic'                                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inObject,
                                         C_Compiler * /* inCompiler */
@@ -450,33 +450,33 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_baseline_5F_WO_5F_OPERAND_5
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Abstract extension method '@baseline_instruction addUsedRoutines'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_instruction_addUsedRoutines> gExtensionMethodTable_baseline_5F_instruction_addUsedRoutines ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_addUsedRoutines (const int32_t inClassIndex,
                                            extensionMethodSignature_baseline_5F_instruction_addUsedRoutines inMethod) {
   gExtensionMethodTable_baseline_5F_instruction_addUsedRoutines.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_instruction_addUsedRoutines (void) {
   gExtensionMethodTable_baseline_5F_instruction_addUsedRoutines.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_instruction_addUsedRoutines (NULL,
                                                                     freeExtensionMethod_baseline_5F_instruction_addUsedRoutines) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_addUsedRoutines (const cPtr_baseline_5F_instruction * inObject,
                                           GALGAS_stringset & io_ioUsedRoutines,
@@ -510,22 +510,22 @@ void callExtensionMethod_addUsedRoutines (const cPtr_baseline_5F_instruction * i
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Extension method '@baseline_instruction shouldTerminateWithMOVLW'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_instruction_shouldTerminateWithMOVLW> gExtensionMethodTable_baseline_5F_instruction_shouldTerminateWithMOVLW ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_shouldTerminateWithMOVLW (const int32_t inClassIndex,
                                                     extensionMethodSignature_baseline_5F_instruction_shouldTerminateWithMOVLW inMethod) {
   gExtensionMethodTable_baseline_5F_instruction_shouldTerminateWithMOVLW.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_shouldTerminateWithMOVLW (const cPtr_baseline_5F_instruction * inObject,
                                                    const GALGAS_string constin_inErrorMessage,
@@ -557,7 +557,7 @@ void callExtensionMethod_shouldTerminateWithMOVLW (const cPtr_baseline_5F_instru
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_instruction_shouldTerminateWithMOVLW (const cPtr_baseline_5F_instruction * inObject,
                                                                               const GALGAS_string constinArgument_inErrorMessage,
@@ -567,40 +567,40 @@ static void extensionMethod_baseline_5F_instruction_shouldTerminateWithMOVLW (co
   macroValidSharedObject (object, cPtr_baseline_5F_instruction) ;
   inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, constinArgument_inErrorMessage  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 18)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_instruction_shouldTerminateWithMOVLW (void) {
   enterExtensionMethod_shouldTerminateWithMOVLW (kTypeDescriptor_GALGAS_baseline_5F_instruction.mSlotID,
                                                  extensionMethod_baseline_5F_instruction_shouldTerminateWithMOVLW) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_instruction_shouldTerminateWithMOVLW (void) {
   gExtensionMethodTable_baseline_5F_instruction_shouldTerminateWithMOVLW.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_instruction_shouldTerminateWithMOVLW (defineExtensionMethod_baseline_5F_instruction_shouldTerminateWithMOVLW,
                                                                              freeExtensionMethod_baseline_5F_instruction_shouldTerminateWithMOVLW) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                        Extension method '@baseline_instruction shouldNotContinueInSequence'                         *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_instruction_shouldNotContinueInSequence> gExtensionMethodTable_baseline_5F_instruction_shouldNotContinueInSequence ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_shouldNotContinueInSequence (const int32_t inClassIndex,
                                                        extensionMethodSignature_baseline_5F_instruction_shouldNotContinueInSequence inMethod) {
   gExtensionMethodTable_baseline_5F_instruction_shouldNotContinueInSequence.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_shouldNotContinueInSequence (const cPtr_baseline_5F_instruction * inObject,
                                                       const GALGAS_string constin_inErrorMessage,
@@ -632,7 +632,7 @@ void callExtensionMethod_shouldNotContinueInSequence (const cPtr_baseline_5F_ins
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_instruction_shouldNotContinueInSequence (const cPtr_baseline_5F_instruction * inObject,
                                                                                  const GALGAS_string constinArgument_inErrorMessage,
@@ -642,37 +642,37 @@ static void extensionMethod_baseline_5F_instruction_shouldNotContinueInSequence 
   macroValidSharedObject (object, cPtr_baseline_5F_instruction) ;
   inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, constinArgument_inErrorMessage  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 65)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_instruction_shouldNotContinueInSequence (void) {
   enterExtensionMethod_shouldNotContinueInSequence (kTypeDescriptor_GALGAS_baseline_5F_instruction.mSlotID,
                                                     extensionMethod_baseline_5F_instruction_shouldNotContinueInSequence) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_instruction_shouldNotContinueInSequence (void) {
   gExtensionMethodTable_baseline_5F_instruction_shouldNotContinueInSequence.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_instruction_shouldNotContinueInSequence (defineExtensionMethod_baseline_5F_instruction_shouldNotContinueInSequence,
                                                                                 freeExtensionMethod_baseline_5F_instruction_shouldNotContinueInSequence) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_registerExpression::GALGAS_baseline_5F_intermediate_5F_registerExpression (void) :
 mAttribute_mAssemblyString (),
 mAttribute_mRegisterAddress () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_registerExpression::~ GALGAS_baseline_5F_intermediate_5F_registerExpression (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_registerExpression::GALGAS_baseline_5F_intermediate_5F_registerExpression (const GALGAS_string & inOperand0,
                                                                                                               const GALGAS_uint & inOperand1) :
@@ -680,14 +680,14 @@ mAttribute_mAssemblyString (inOperand0),
 mAttribute_mRegisterAddress (inOperand1) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_registerExpression::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_baseline_5F_intermediate_5F_registerExpression (GALGAS_string::constructor_default (HERE),
                                                                 GALGAS_uint::constructor_default (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_registerExpression::constructor_new (const GALGAS_string & inOperand0,
                                                                                                                               const GALGAS_uint & inOperand1 
@@ -699,7 +699,7 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_baseline_5F_intermediate_5F_registerExpression::objectCompare (const GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -712,20 +712,20 @@ typeComparisonResult GALGAS_baseline_5F_intermediate_5F_registerExpression::obje
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_baseline_5F_intermediate_5F_registerExpression::isValid (void) const {
   return mAttribute_mAssemblyString.isValid () && mAttribute_mRegisterAddress.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_intermediate_5F_registerExpression::drop (void) {
   mAttribute_mAssemblyString.drop () ;
   mAttribute_mRegisterAddress.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_intermediate_5F_registerExpression::description (C_String & ioString,
                                                                          const int32_t inIndentation) const {
@@ -740,13 +740,13 @@ void GALGAS_baseline_5F_intermediate_5F_registerExpression::description (C_Strin
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string GALGAS_baseline_5F_intermediate_5F_registerExpression::getter_mAssemblyString (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mAssemblyString ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint GALGAS_baseline_5F_intermediate_5F_registerExpression::getter_mRegisterAddress (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterAddress ;
@@ -754,23 +754,23 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_registerExpression::getter_mRegis
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                   @baseline_intermediate_registerExpression type                                    *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_registerExpression ("baseline_intermediate_registerExpression",
                                                                        NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_baseline_5F_intermediate_5F_registerExpression::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_registerExpression ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_registerExpression::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -780,7 +780,7 @@ AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_registerExpression::clonedOb
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_registerExpression::extractObject (const GALGAS_object & inObject,
                                                                                                                             C_Compiler * inCompiler
@@ -797,33 +797,33 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //            Abstract extension method '@baseline_instruction build_baseline_intermediate_instructionList'            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList> gExtensionMethodTable_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_build_5F_baseline_5F_intermediate_5F_instructionList (const int32_t inClassIndex,
                                                                                 extensionMethodSignature_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList inMethod) {
   gExtensionMethodTable_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList (void) {
   gExtensionMethodTable_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList (NULL,
                                                                                                          freeExtensionMethod_baseline_5F_instruction_build_5F_baseline_5F_intermediate_5F_instructionList) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_build_5F_baseline_5F_intermediate_5F_instructionList (const cPtr_baseline_5F_instruction * inObject,
                                                                                const GALGAS_uint constin_inCurrentPage,
@@ -867,33 +867,33 @@ void callExtensionMethod_build_5F_baseline_5F_intermediate_5F_instructionList (c
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //         Abstract extension method '@baseline_conditionExpression build_intermediate_condition_instructions'         *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_conditionExpression_build_5F_intermediate_5F_condition_5F_instructions> gExtensionMethodTable_baseline_5F_conditionExpression_build_5F_intermediate_5F_condition_5F_instructions ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_build_5F_intermediate_5F_condition_5F_instructions (const int32_t inClassIndex,
                                                                               extensionMethodSignature_baseline_5F_conditionExpression_build_5F_intermediate_5F_condition_5F_instructions inMethod) {
   gExtensionMethodTable_baseline_5F_conditionExpression_build_5F_intermediate_5F_condition_5F_instructions.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_conditionExpression_build_5F_intermediate_5F_condition_5F_instructions (void) {
   gExtensionMethodTable_baseline_5F_conditionExpression_build_5F_intermediate_5F_condition_5F_instructions.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_conditionExpression_build_5F_intermediate_5F_condition_5F_instructions (NULL,
                                                                                                                freeExtensionMethod_baseline_5F_conditionExpression_build_5F_intermediate_5F_condition_5F_instructions) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_build_5F_intermediate_5F_condition_5F_instructions (const cPtr_baseline_5F_conditionExpression * inObject,
                                                                              const GALGAS_uint constin_inCurrentPage,
@@ -935,33 +935,33 @@ void callExtensionMethod_build_5F_intermediate_5F_condition_5F_instructions (con
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                        Abstract extension method '@baseline_intermediate_instruction print'                         *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_instruction_print> gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_print ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_print (const int32_t inClassIndex,
                                  extensionMethodSignature_baseline_5F_intermediate_5F_instruction_print inMethod) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_print.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_intermediate_5F_instruction_print (void) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_print.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_instruction_print (NULL,
                                                                           freeExtensionMethod_baseline_5F_intermediate_5F_instruction_print) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_print (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                 GALGAS_string & io_ioListFileContents,
@@ -995,33 +995,33 @@ void callExtensionMethod_print (const cPtr_baseline_5F_intermediate_5F_instructi
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                        Abstract extension getter '@baseline_intermediate_instruction length'                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_baseline_5F_intermediate_5F_instruction_length> gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_length ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_length (const int32_t inClassIndex,
                                   enterExtensionGetter_baseline_5F_intermediate_5F_instruction_length inGetter) {
   gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_length.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_baseline_5F_intermediate_5F_instruction_length (void) {
   gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_length.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_baseline_5F_intermediate_5F_instruction_length (NULL,
                                                                            freeExtensionGetter_baseline_5F_intermediate_5F_instruction_length) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint callExtensionGetter_length (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                         C_Compiler * inCompiler
@@ -1055,22 +1055,22 @@ GALGAS_uint callExtensionGetter_length (const cPtr_baseline_5F_intermediate_5F_i
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                       Extension method '@baseline_intermediate_instruction setCurrentAddress'                       *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_instruction_setCurrentAddress> gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_setCurrentAddress ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_setCurrentAddress (const int32_t inClassIndex,
                                              extensionMethodSignature_baseline_5F_intermediate_5F_instruction_setCurrentAddress inMethod) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_setCurrentAddress.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_setCurrentAddress (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                             GALGAS_uint & io_ioCurrentWordAdress,
@@ -1102,7 +1102,7 @@ void callExtensionMethod_setCurrentAddress (const cPtr_baseline_5F_intermediate_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_intermediate_5F_instruction_setCurrentAddress (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                                                                        GALGAS_uint & ioArgument_ioCurrentWordAdress,
@@ -1113,40 +1113,40 @@ static void extensionMethod_baseline_5F_intermediate_5F_instruction_setCurrentAd
   const GALGAS_baseline_5F_intermediate_5F_instruction temp_0 = object ;
   ioArgument_ioCurrentWordAdress = ioArgument_ioCurrentWordAdress.add_operation (callExtensionGetter_length ((const cPtr_baseline_5F_intermediate_5F_instruction *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 20)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 20)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_intermediate_5F_instruction_setCurrentAddress (void) {
   enterExtensionMethod_setCurrentAddress (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction.mSlotID,
                                           extensionMethod_baseline_5F_intermediate_5F_instruction_setCurrentAddress) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_intermediate_5F_instruction_setCurrentAddress (void) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_setCurrentAddress.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_instruction_setCurrentAddress (defineExtensionMethod_baseline_5F_intermediate_5F_instruction_setCurrentAddress,
                                                                                       freeExtensionMethod_baseline_5F_intermediate_5F_instruction_setCurrentAddress) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Extension getter '@baseline_intermediate_instruction isLABEL'                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isLABEL> gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_isLABEL ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_isLABEL (const int32_t inClassIndex,
                                    enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isLABEL inGetter) {
   gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_isLABEL.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool callExtensionGetter_isLABEL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                          C_Compiler * inCompiler
@@ -1180,7 +1180,7 @@ GALGAS_bool callExtensionGetter_isLABEL (const cPtr_baseline_5F_intermediate_5F_
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static GALGAS_bool extensionGetter_baseline_5F_intermediate_5F_instruction_isLABEL (const cPtr_baseline_5F_intermediate_5F_instruction * /* inObject */,
                                                                                     C_Compiler * /* inCompiler */
@@ -1192,40 +1192,40 @@ static GALGAS_bool extensionGetter_baseline_5F_intermediate_5F_instruction_isLAB
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionGetter_baseline_5F_intermediate_5F_instruction_isLABEL (void) {
   enterExtensionGetter_isLABEL (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction.mSlotID,
                                 extensionGetter_baseline_5F_intermediate_5F_instruction_isLABEL) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_baseline_5F_intermediate_5F_instruction_isLABEL (void) {
   gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_isLABEL.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_baseline_5F_intermediate_5F_instruction_isLABEL (defineExtensionGetter_baseline_5F_intermediate_5F_instruction_isLABEL,
                                                                             freeExtensionGetter_baseline_5F_intermediate_5F_instruction_isLABEL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Extension getter '@baseline_intermediate_instruction isNULL'                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isNULL> gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_isNULL ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_isNULL (const int32_t inClassIndex,
                                   enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isNULL inGetter) {
   gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_isNULL.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool callExtensionGetter_isNULL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                         C_Compiler * inCompiler
@@ -1259,7 +1259,7 @@ GALGAS_bool callExtensionGetter_isNULL (const cPtr_baseline_5F_intermediate_5F_i
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static GALGAS_bool extensionGetter_baseline_5F_intermediate_5F_instruction_isNULL (const cPtr_baseline_5F_intermediate_5F_instruction * /* inObject */,
                                                                                    C_Compiler * /* inCompiler */
@@ -1271,40 +1271,40 @@ static GALGAS_bool extensionGetter_baseline_5F_intermediate_5F_instruction_isNUL
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionGetter_baseline_5F_intermediate_5F_instruction_isNULL (void) {
   enterExtensionGetter_isNULL (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction.mSlotID,
                                extensionGetter_baseline_5F_intermediate_5F_instruction_isNULL) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_baseline_5F_intermediate_5F_instruction_isNULL (void) {
   gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_isNULL.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_baseline_5F_intermediate_5F_instruction_isNULL (defineExtensionGetter_baseline_5F_intermediate_5F_instruction_isNULL,
                                                                            freeExtensionGetter_baseline_5F_intermediate_5F_instruction_isNULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                     Extension getter '@baseline_intermediate_instruction isSkippingInstruction'                     *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction> gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_isSkippingInstruction ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_isSkippingInstruction (const int32_t inClassIndex,
                                                  enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction inGetter) {
   gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_isSkippingInstruction.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool callExtensionGetter_isSkippingInstruction (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                                        C_Compiler * inCompiler
@@ -1338,7 +1338,7 @@ GALGAS_bool callExtensionGetter_isSkippingInstruction (const cPtr_baseline_5F_in
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static GALGAS_bool extensionGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction (const cPtr_baseline_5F_intermediate_5F_instruction * /* inObject */,
                                                                                                   C_Compiler * /* inCompiler */
@@ -1350,40 +1350,40 @@ static GALGAS_bool extensionGetter_baseline_5F_intermediate_5F_instruction_isSki
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction (void) {
   enterExtensionGetter_isSkippingInstruction (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction.mSlotID,
                                               extensionGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction (void) {
   gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_isSkippingInstruction.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction (defineExtensionGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction,
                                                                                           freeExtensionGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                  Extension getter '@baseline_intermediate_instruction nextInstructionIsReachable'                   *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable> gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_nextInstructionIsReachable (const int32_t inClassIndex,
                                                       enterExtensionGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable inGetter) {
   gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                                             C_Compiler * inCompiler
@@ -1417,7 +1417,7 @@ GALGAS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_baseline_
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static GALGAS_bool extensionGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable (const cPtr_baseline_5F_intermediate_5F_instruction * /* inObject */,
                                                                                                        C_Compiler * /* inCompiler */
@@ -1429,40 +1429,40 @@ static GALGAS_bool extensionGetter_baseline_5F_intermediate_5F_instruction_nextI
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable (void) {
   enterExtensionGetter_nextInstructionIsReachable (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction.mSlotID,
                                                    extensionGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable (void) {
   gExtensionGetterTable_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable (defineExtensionGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable,
                                                                                                freeExtensionGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                     Extension method '@baseline_intermediate_instruction enterReferencedLabel'                      *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_instruction_enterReferencedLabel> gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_enterReferencedLabel ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_enterReferencedLabel (const int32_t inClassIndex,
                                                 extensionMethodSignature_baseline_5F_intermediate_5F_instruction_enterReferencedLabel inMethod) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_enterReferencedLabel.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_enterReferencedLabel (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                                GALGAS_stringset & io_ioReferencedLabelSet,
@@ -1494,47 +1494,47 @@ void callExtensionMethod_enterReferencedLabel (const cPtr_baseline_5F_intermedia
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_intermediate_5F_instruction_enterReferencedLabel (const cPtr_baseline_5F_intermediate_5F_instruction * /* inObject */,
                                                                                           GALGAS_stringset & /* ioArgument_ioReferencedLabelSet */,
                                                                                           C_Compiler * /* inCompiler */
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_intermediate_5F_instruction_enterReferencedLabel (void) {
   enterExtensionMethod_enterReferencedLabel (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction.mSlotID,
                                              extensionMethod_baseline_5F_intermediate_5F_instruction_enterReferencedLabel) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_intermediate_5F_instruction_enterReferencedLabel (void) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_enterReferencedLabel.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_instruction_enterReferencedLabel (defineExtensionMethod_baseline_5F_intermediate_5F_instruction_enterReferencedLabel,
                                                                                          freeExtensionMethod_baseline_5F_intermediate_5F_instruction_enterReferencedLabel) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Extension method '@baseline_intermediate_instruction defineLabel'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_instruction_defineLabel> gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_defineLabel ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_defineLabel (const int32_t inClassIndex,
                                        extensionMethodSignature_baseline_5F_intermediate_5F_instruction_defineLabel inMethod) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_defineLabel.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_defineLabel (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                       GALGAS_baselineSymbolTableForOptimizations & io_ioRoutineSymbolTable,
@@ -1567,7 +1567,7 @@ void callExtensionMethod_defineLabel (const cPtr_baseline_5F_intermediate_5F_ins
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_intermediate_5F_instruction_defineLabel (const cPtr_baseline_5F_intermediate_5F_instruction * /* inObject */,
                                                                                  GALGAS_baselineSymbolTableForOptimizations & /* ioArgument_ioRoutineSymbolTable */,
@@ -1575,40 +1575,40 @@ static void extensionMethod_baseline_5F_intermediate_5F_instruction_defineLabel 
                                                                                  C_Compiler * /* inCompiler */
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_intermediate_5F_instruction_defineLabel (void) {
   enterExtensionMethod_defineLabel (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction.mSlotID,
                                     extensionMethod_baseline_5F_intermediate_5F_instruction_defineLabel) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_intermediate_5F_instruction_defineLabel (void) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_defineLabel.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_instruction_defineLabel (defineExtensionMethod_baseline_5F_intermediate_5F_instruction_defineLabel,
                                                                                 freeExtensionMethod_baseline_5F_intermediate_5F_instruction_defineLabel) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //               Extension method '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc> gExtensionMethodTable_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeTestDecInc (const int32_t inClassIndex,
                                               extensionMethodSignature_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc inMethod) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeTestDecInc (const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * inObject,
                                              const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
@@ -1644,7 +1644,7 @@ void callExtensionMethod_optimizeTestDecInc (const cPtr_baseline_5F_intermediate
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc (const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * inObject,
                                                                                                       const GALGAS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
@@ -1692,51 +1692,51 @@ static void extensionMethod_baseline_5F_intermediate_5F_incDecRegisterInConditio
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc (void) {
   enterExtensionMethod_optimizeTestDecInc (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition.mSlotID,
                                            extensionMethod_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc (void) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc (defineExtensionMethod_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc,
                                                                                                      freeExtensionMethod_baseline_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Abstract extension method '@baseline_assembly_instruction print'                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_assembly_5F_instruction_print> gExtensionMethodTable_baseline_5F_assembly_5F_instruction_print ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_print (const int32_t inClassIndex,
                                  extensionMethodSignature_baseline_5F_assembly_5F_instruction_print inMethod) {
   gExtensionMethodTable_baseline_5F_assembly_5F_instruction_print.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_assembly_5F_instruction_print (void) {
   gExtensionMethodTable_baseline_5F_assembly_5F_instruction_print.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_instruction_print (NULL,
                                                                       freeExtensionMethod_baseline_5F_assembly_5F_instruction_print) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_print (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
                                 GALGAS_string & io_ioListFileContents,
@@ -1770,33 +1770,33 @@ void callExtensionMethod_print (const cPtr_baseline_5F_assembly_5F_instruction *
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Abstract extension getter '@baseline_assembly_instruction length'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_baseline_5F_assembly_5F_instruction_length> gExtensionGetterTable_baseline_5F_assembly_5F_instruction_length ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_length (const int32_t inClassIndex,
                                   enterExtensionGetter_baseline_5F_assembly_5F_instruction_length inGetter) {
   gExtensionGetterTable_baseline_5F_assembly_5F_instruction_length.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_baseline_5F_assembly_5F_instruction_length (void) {
   gExtensionGetterTable_baseline_5F_assembly_5F_instruction_length.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_baseline_5F_assembly_5F_instruction_length (NULL,
                                                                        freeExtensionGetter_baseline_5F_assembly_5F_instruction_length) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint callExtensionGetter_length (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
                                         C_Compiler * inCompiler
@@ -1830,33 +1830,33 @@ GALGAS_uint callExtensionGetter_length (const cPtr_baseline_5F_assembly_5F_instr
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                 Abstract extension method '@baseline_intermediate_instruction generateAssemblyCode'                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_instruction_generateAssemblyCode> gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_generateAssemblyCode ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_generateAssemblyCode (const int32_t inClassIndex,
                                                 extensionMethodSignature_baseline_5F_intermediate_5F_instruction_generateAssemblyCode inMethod) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_generateAssemblyCode.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_intermediate_5F_instruction_generateAssemblyCode (void) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_instruction_generateAssemblyCode.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_instruction_generateAssemblyCode (NULL,
                                                                                          freeExtensionMethod_baseline_5F_intermediate_5F_instruction_generateAssemblyCode) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_generateAssemblyCode (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                                const GALGAS_baseline_5F_intermediate_5F_registerExpression constin_inSTATUSregister,
@@ -1892,22 +1892,22 @@ void callExtensionMethod_generateAssemblyCode (const cPtr_baseline_5F_intermedia
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                        Extension method '@baseline_assembly_instruction enterLabelAtAddress'                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_assembly_5F_instruction_enterLabelAtAddress> gExtensionMethodTable_baseline_5F_assembly_5F_instruction_enterLabelAtAddress ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_enterLabelAtAddress (const int32_t inClassIndex,
                                                extensionMethodSignature_baseline_5F_assembly_5F_instruction_enterLabelAtAddress inMethod) {
   gExtensionMethodTable_baseline_5F_assembly_5F_instruction_enterLabelAtAddress.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_enterLabelAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
                                               GALGAS_baseline_5F_symbolTable & io_ioRoutineSymbolTable,
@@ -1940,7 +1940,7 @@ void callExtensionMethod_enterLabelAtAddress (const cPtr_baseline_5F_assembly_5F
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_assembly_5F_instruction_enterLabelAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * /* inObject */,
                                                                                      GALGAS_baseline_5F_symbolTable & /* ioArgument_ioRoutineSymbolTable */,
@@ -1948,51 +1948,51 @@ static void extensionMethod_baseline_5F_assembly_5F_instruction_enterLabelAtAddr
                                                                                      C_Compiler * /* inCompiler */
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_assembly_5F_instruction_enterLabelAtAddress (void) {
   enterExtensionMethod_enterLabelAtAddress (kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction.mSlotID,
                                             extensionMethod_baseline_5F_assembly_5F_instruction_enterLabelAtAddress) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_assembly_5F_instruction_enterLabelAtAddress (void) {
   gExtensionMethodTable_baseline_5F_assembly_5F_instruction_enterLabelAtAddress.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_instruction_enterLabelAtAddress (defineExtensionMethod_baseline_5F_assembly_5F_instruction_enterLabelAtAddress,
                                                                                     freeExtensionMethod_baseline_5F_assembly_5F_instruction_enterLabelAtAddress) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //               Abstract extension method '@baseline_assembly_instruction generateBinaryCodeAtAddress'                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress> gExtensionMethodTable_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_generateBinaryCodeAtAddress (const int32_t inClassIndex,
                                                        extensionMethodSignature_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress inMethod) {
   gExtensionMethodTable_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress (void) {
   gExtensionMethodTable_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress (NULL,
                                                                                             freeExtensionMethod_baseline_5F_assembly_5F_instruction_generateBinaryCodeAtAddress) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_generateBinaryCodeAtAddress (const cPtr_baseline_5F_assembly_5F_instruction * inObject,
                                                       const GALGAS_baseline_5F_symbolTable constin_inRoutineSymbolTable,
@@ -2028,11 +2028,11 @@ void callExtensionMethod_generateBinaryCodeAtAddress (const cPtr_baseline_5F_ass
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                           Extension Getter '@midrange_instruction_FD_base_code mnemonic'                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code & inObject,
                                         C_Compiler * /* inCompiler */
@@ -2120,11 +2120,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_midrange_5F_instruction_5F_
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Extension Getter '@midrange_F_instruction_base_code mnemonic'                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code & inObject,
                                         C_Compiler * /* inCompiler */
@@ -2152,11 +2152,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_midrange_5F_F_5F_instructio
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Extension Getter '@midrange_bit_oriented_op mnemonic'                                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_midrange_5F_bit_5F_oriented_5F_op & inObject,
                                         C_Compiler * /* inCompiler */
@@ -2184,11 +2184,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_midrange_5F_bit_5F_oriented
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Extension Getter '@midrange_literal_instruction_opcode mnemonic'                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_midrange_5F_literal_5F_instruction_5F_opcode & inObject,
                                         C_Compiler * /* inCompiler */
@@ -2241,19 +2241,19 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_midrange_5F_literal_5F_inst
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_registerExpression::GALGAS_midrange_5F_intermediate_5F_registerExpression (void) :
 mAttribute_mAssemblyString (),
 mAttribute_mRegisterAddress () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_registerExpression::~ GALGAS_midrange_5F_intermediate_5F_registerExpression (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_registerExpression::GALGAS_midrange_5F_intermediate_5F_registerExpression (const GALGAS_string & inOperand0,
                                                                                                               const GALGAS_uint & inOperand1) :
@@ -2261,14 +2261,14 @@ mAttribute_mAssemblyString (inOperand0),
 mAttribute_mRegisterAddress (inOperand1) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_intermediate_5F_registerExpression::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_midrange_5F_intermediate_5F_registerExpression (GALGAS_string::constructor_default (HERE),
                                                                 GALGAS_uint::constructor_default (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_intermediate_5F_registerExpression::constructor_new (const GALGAS_string & inOperand0,
                                                                                                                               const GALGAS_uint & inOperand1 
@@ -2280,7 +2280,7 @@ GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_interme
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_midrange_5F_intermediate_5F_registerExpression::objectCompare (const GALGAS_midrange_5F_intermediate_5F_registerExpression & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -2293,20 +2293,20 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_registerExpression::obje
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_midrange_5F_intermediate_5F_registerExpression::isValid (void) const {
   return mAttribute_mAssemblyString.isValid () && mAttribute_mRegisterAddress.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_midrange_5F_intermediate_5F_registerExpression::drop (void) {
   mAttribute_mAssemblyString.drop () ;
   mAttribute_mRegisterAddress.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_midrange_5F_intermediate_5F_registerExpression::description (C_String & ioString,
                                                                          const int32_t inIndentation) const {
@@ -2321,13 +2321,13 @@ void GALGAS_midrange_5F_intermediate_5F_registerExpression::description (C_Strin
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string GALGAS_midrange_5F_intermediate_5F_registerExpression::getter_mAssemblyString (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mAssemblyString ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint GALGAS_midrange_5F_intermediate_5F_registerExpression::getter_mRegisterAddress (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterAddress ;
@@ -2335,23 +2335,23 @@ GALGAS_uint GALGAS_midrange_5F_intermediate_5F_registerExpression::getter_mRegis
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                   @midrange_intermediate_registerExpression type                                    *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_registerExpression ("midrange_intermediate_registerExpression",
                                                                        NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_registerExpression::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_registerExpression ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_registerExpression::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -2361,7 +2361,7 @@ AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_registerExpression::clonedOb
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_intermediate_5F_registerExpression::extractObject (const GALGAS_object & inObject,
                                                                                                                             C_Compiler * inCompiler
@@ -2378,33 +2378,33 @@ GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_interme
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Abstract extension method '@midrange_instruction addUsedRoutines'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_instruction_addUsedRoutines> gExtensionMethodTable_midrange_5F_instruction_addUsedRoutines ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_addUsedRoutines (const int32_t inClassIndex,
                                            extensionMethodSignature_midrange_5F_instruction_addUsedRoutines inMethod) {
   gExtensionMethodTable_midrange_5F_instruction_addUsedRoutines.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_instruction_addUsedRoutines (void) {
   gExtensionMethodTable_midrange_5F_instruction_addUsedRoutines.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_instruction_addUsedRoutines (NULL,
                                                                     freeExtensionMethod_midrange_5F_instruction_addUsedRoutines) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_addUsedRoutines (const cPtr_midrange_5F_instruction * inObject,
                                           GALGAS_stringset & io_ioUsedRoutines,
@@ -2438,33 +2438,33 @@ void callExtensionMethod_addUsedRoutines (const cPtr_midrange_5F_instruction * i
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                  Abstract extension getter '@midrange_intermediate_instruction instructionLength'                   *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_midrange_5F_intermediate_5F_instruction_instructionLength> gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_instructionLength ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_instructionLength (const int32_t inClassIndex,
                                              enterExtensionGetter_midrange_5F_intermediate_5F_instruction_instructionLength inGetter) {
   gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_instructionLength.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_midrange_5F_intermediate_5F_instruction_instructionLength (void) {
   gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_instructionLength.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_instructionLength (NULL,
                                                                                       freeExtensionGetter_midrange_5F_intermediate_5F_instruction_instructionLength) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint callExtensionGetter_instructionLength (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                    C_Compiler * inCompiler
@@ -2498,33 +2498,33 @@ GALGAS_uint callExtensionGetter_instructionLength (const cPtr_midrange_5F_interm
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                        Abstract extension method '@midrange_intermediate_instruction print'                         *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_instruction_print> gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_print ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_print (const int32_t inClassIndex,
                                  extensionMethodSignature_midrange_5F_intermediate_5F_instruction_print inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_print.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_instruction_print (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_print.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_print (NULL,
                                                                           freeExtensionMethod_midrange_5F_intermediate_5F_instruction_print) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_print (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                 GALGAS_string & io_ioListFileContents,
@@ -2558,22 +2558,22 @@ void callExtensionMethod_print (const cPtr_midrange_5F_intermediate_5F_instructi
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                       Extension method '@midrange_intermediate_instruction setCurrentAddress'                       *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_instruction_setCurrentAddress> gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_setCurrentAddress ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_setCurrentAddress (const int32_t inClassIndex,
                                              extensionMethodSignature_midrange_5F_intermediate_5F_instruction_setCurrentAddress inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_setCurrentAddress.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_setCurrentAddress (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                             GALGAS_uint & io_ioCurrentAddress,
@@ -2605,7 +2605,7 @@ void callExtensionMethod_setCurrentAddress (const cPtr_midrange_5F_intermediate_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_midrange_5F_intermediate_5F_instruction_setCurrentAddress (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                                                        GALGAS_uint & ioArgument_ioCurrentAddress,
@@ -2616,40 +2616,40 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_setCurrentAd
   const GALGAS_midrange_5F_intermediate_5F_instruction temp_0 = object ;
   ioArgument_ioCurrentAddress = ioArgument_ioCurrentAddress.add_operation (callExtensionGetter_instructionLength ((const cPtr_midrange_5F_intermediate_5F_instruction *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_intermediate_instruction_set_current_address.galgas", 6)), inCompiler COMMA_SOURCE_FILE ("midrange_intermediate_instruction_set_current_address.galgas", 6)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_midrange_5F_intermediate_5F_instruction_setCurrentAddress (void) {
   enterExtensionMethod_setCurrentAddress (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction.mSlotID,
                                           extensionMethod_midrange_5F_intermediate_5F_instruction_setCurrentAddress) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_instruction_setCurrentAddress (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_setCurrentAddress.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_setCurrentAddress (defineExtensionMethod_midrange_5F_intermediate_5F_instruction_setCurrentAddress,
                                                                                       freeExtensionMethod_midrange_5F_intermediate_5F_instruction_setCurrentAddress) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                         Extension method '@midrange_instruction instructionUsesGOTOorCALL'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_instruction_instructionUsesGOTOorCALL> gExtensionMethodTable_midrange_5F_instruction_instructionUsesGOTOorCALL ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_instructionUsesGOTOorCALL (const int32_t inClassIndex,
                                                      extensionMethodSignature_midrange_5F_instruction_instructionUsesGOTOorCALL inMethod) {
   gExtensionMethodTable_midrange_5F_instruction_instructionUsesGOTOorCALL.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_instructionUsesGOTOorCALL (const cPtr_midrange_5F_instruction * inObject,
                                                     GALGAS_bool & io_ioUsesGOTOorCALL,
@@ -2681,58 +2681,58 @@ void callExtensionMethod_instructionUsesGOTOorCALL (const cPtr_midrange_5F_instr
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_midrange_5F_instruction_instructionUsesGOTOorCALL (const cPtr_midrange_5F_instruction * /* inObject */,
                                                                                GALGAS_bool & /* ioArgument_ioUsesGOTOorCALL */,
                                                                                C_Compiler * /* inCompiler */
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_midrange_5F_instruction_instructionUsesGOTOorCALL (void) {
   enterExtensionMethod_instructionUsesGOTOorCALL (kTypeDescriptor_GALGAS_midrange_5F_instruction.mSlotID,
                                                   extensionMethod_midrange_5F_instruction_instructionUsesGOTOorCALL) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_instruction_instructionUsesGOTOorCALL (void) {
   gExtensionMethodTable_midrange_5F_instruction_instructionUsesGOTOorCALL.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_instruction_instructionUsesGOTOorCALL (defineExtensionMethod_midrange_5F_instruction_instructionUsesGOTOorCALL,
                                                                               freeExtensionMethod_midrange_5F_instruction_instructionUsesGOTOorCALL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                Abstract extension method '@midrange_instruction build_midrange_ipic_instructionList'                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList> gExtensionMethodTable_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (const int32_t inClassIndex,
                                                                         extensionMethodSignature_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList inMethod) {
   gExtensionMethodTable_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList (void) {
   gExtensionMethodTable_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList (NULL,
                                                                                                  freeExtensionMethod_midrange_5F_instruction_build_5F_midrange_5F_ipic_5F_instructionList) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (const cPtr_midrange_5F_instruction * inObject,
                                                                        const GALGAS_routineMap constin_inRoutineMap,
@@ -2777,33 +2777,33 @@ void callExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (const cPt
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //             Abstract extension method '@midrange_conditionExpression buildIPICinstructionForCondition'              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_conditionExpression_buildIPICinstructionForCondition> gExtensionMethodTable_midrange_5F_conditionExpression_buildIPICinstructionForCondition ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_buildIPICinstructionForCondition (const int32_t inClassIndex,
                                                             extensionMethodSignature_midrange_5F_conditionExpression_buildIPICinstructionForCondition inMethod) {
   gExtensionMethodTable_midrange_5F_conditionExpression_buildIPICinstructionForCondition.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_conditionExpression_buildIPICinstructionForCondition (void) {
   gExtensionMethodTable_midrange_5F_conditionExpression_buildIPICinstructionForCondition.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_conditionExpression_buildIPICinstructionForCondition (NULL,
                                                                                              freeExtensionMethod_midrange_5F_conditionExpression_buildIPICinstructionForCondition) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_buildIPICinstructionForCondition (const cPtr_midrange_5F_conditionExpression * inObject,
                                                            const GALGAS_uint constin_inTotalBankCount,
@@ -2847,33 +2847,33 @@ void callExtensionMethod_buildIPICinstructionForCondition (const cPtr_midrange_5
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //            Abstract extension method '@midrange_conditionExpression computeInstructionCountForCondition'            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_conditionExpression_computeInstructionCountForCondition> gExtensionMethodTable_midrange_5F_conditionExpression_computeInstructionCountForCondition ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_computeInstructionCountForCondition (const int32_t inClassIndex,
                                                                extensionMethodSignature_midrange_5F_conditionExpression_computeInstructionCountForCondition inMethod) {
   gExtensionMethodTable_midrange_5F_conditionExpression_computeInstructionCountForCondition.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_conditionExpression_computeInstructionCountForCondition (void) {
   gExtensionMethodTable_midrange_5F_conditionExpression_computeInstructionCountForCondition.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_conditionExpression_computeInstructionCountForCondition (NULL,
                                                                                                 freeExtensionMethod_midrange_5F_conditionExpression_computeInstructionCountForCondition) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_computeInstructionCountForCondition (const cPtr_midrange_5F_conditionExpression * inObject,
                                                               const GALGAS_bool constin_inComplementaryBranch,
@@ -2909,22 +2909,22 @@ void callExtensionMethod_computeInstructionCountForCondition (const cPtr_midrang
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                         Extension getter '@midrange_intermediate_instruction isLABELorORG'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG> gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_isLABELorORG ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_isLABELorORG (const int32_t inClassIndex,
                                         enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG inGetter) {
   gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_isLABELorORG.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool callExtensionGetter_isLABELorORG (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                               C_Compiler * inCompiler
@@ -2958,7 +2958,7 @@ GALGAS_bool callExtensionGetter_isLABELorORG (const cPtr_midrange_5F_intermediat
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                          C_Compiler * /* inCompiler */
@@ -2970,40 +2970,40 @@ static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_isLAB
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG (void) {
   enterExtensionGetter_isLABELorORG (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction.mSlotID,
                                      extensionGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG (void) {
   gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_isLABELorORG.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG (defineExtensionGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG,
                                                                                  freeExtensionGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Extension getter '@midrange_intermediate_instruction isNULL'                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isNULL> gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_isNULL ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_isNULL (const int32_t inClassIndex,
                                   enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isNULL inGetter) {
   gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_isNULL.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool callExtensionGetter_isNULL (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                         C_Compiler * inCompiler
@@ -3037,7 +3037,7 @@ GALGAS_bool callExtensionGetter_isNULL (const cPtr_midrange_5F_intermediate_5F_i
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_isNULL (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                    C_Compiler * /* inCompiler */
@@ -3049,40 +3049,40 @@ static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_isNUL
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionGetter_midrange_5F_intermediate_5F_instruction_isNULL (void) {
   enterExtensionGetter_isNULL (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction.mSlotID,
                                extensionGetter_midrange_5F_intermediate_5F_instruction_isNULL) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_midrange_5F_intermediate_5F_instruction_isNULL (void) {
   gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_isNULL.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_isNULL (defineExtensionGetter_midrange_5F_intermediate_5F_instruction_isNULL,
                                                                            freeExtensionGetter_midrange_5F_intermediate_5F_instruction_isNULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                     Extension method '@midrange_intermediate_instruction enterReferencedLabel'                      *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_instruction_enterReferencedLabel> gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_enterReferencedLabel ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_enterReferencedLabel (const int32_t inClassIndex,
                                                 extensionMethodSignature_midrange_5F_intermediate_5F_instruction_enterReferencedLabel inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_enterReferencedLabel.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_enterReferencedLabel (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                GALGAS_stringset & io_ioReferencedLabelSet,
@@ -3114,47 +3114,47 @@ void callExtensionMethod_enterReferencedLabel (const cPtr_midrange_5F_intermedia
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_midrange_5F_intermediate_5F_instruction_enterReferencedLabel (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                           GALGAS_stringset & /* ioArgument_ioReferencedLabelSet */,
                                                                                           C_Compiler * /* inCompiler */
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_midrange_5F_intermediate_5F_instruction_enterReferencedLabel (void) {
   enterExtensionMethod_enterReferencedLabel (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction.mSlotID,
                                              extensionMethod_midrange_5F_intermediate_5F_instruction_enterReferencedLabel) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_instruction_enterReferencedLabel (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_enterReferencedLabel.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_enterReferencedLabel (defineExtensionMethod_midrange_5F_intermediate_5F_instruction_enterReferencedLabel,
                                                                                          freeExtensionMethod_midrange_5F_intermediate_5F_instruction_enterReferencedLabel) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                     Extension getter '@midrange_intermediate_instruction isSkippingInstruction'                     *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction> gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_isSkippingInstruction ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_isSkippingInstruction (const int32_t inClassIndex,
                                                  enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction inGetter) {
   gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_isSkippingInstruction.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool callExtensionGetter_isSkippingInstruction (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                        C_Compiler * inCompiler
@@ -3188,7 +3188,7 @@ GALGAS_bool callExtensionGetter_isSkippingInstruction (const cPtr_midrange_5F_in
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                                   C_Compiler * /* inCompiler */
@@ -3200,40 +3200,40 @@ static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_isSki
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction (void) {
   enterExtensionGetter_isSkippingInstruction (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction.mSlotID,
                                               extensionGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction (void) {
   gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_isSkippingInstruction.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction (defineExtensionGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction,
                                                                                           freeExtensionGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                  Extension getter '@midrange_intermediate_instruction nextInstructionIsReachable'                   *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable> gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_nextInstructionIsReachable (const int32_t inClassIndex,
                                                       enterExtensionGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable inGetter) {
   gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                             C_Compiler * inCompiler
@@ -3267,7 +3267,7 @@ GALGAS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_midrange_
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                                        C_Compiler * /* inCompiler */
@@ -3279,40 +3279,40 @@ static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_nextI
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable (void) {
   enterExtensionGetter_nextInstructionIsReachable (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction.mSlotID,
                                                    extensionGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable (void) {
   gExtensionGetterTable_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable (defineExtensionGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable,
                                                                                                freeExtensionGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Extension method '@midrange_intermediate_instruction defineLabel'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabel> gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_defineLabel ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_defineLabel (const int32_t inClassIndex,
                                        extensionMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabel inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_defineLabel.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_defineLabel (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                       GALGAS_symbolTableForOptimizations & io_ioRoutineSymbolTable,
@@ -3345,7 +3345,7 @@ void callExtensionMethod_defineLabel (const cPtr_midrange_5F_intermediate_5F_ins
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_midrange_5F_intermediate_5F_instruction_defineLabel (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                  GALGAS_symbolTableForOptimizations & /* ioArgument_ioRoutineSymbolTable */,
@@ -3353,40 +3353,40 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_defineLabel 
                                                                                  C_Compiler * /* inCompiler */
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_midrange_5F_intermediate_5F_instruction_defineLabel (void) {
   enterExtensionMethod_defineLabel (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction.mSlotID,
                                     extensionMethod_midrange_5F_intermediate_5F_instruction_defineLabel) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_instruction_defineLabel (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_defineLabel.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_defineLabel (defineExtensionMethod_midrange_5F_intermediate_5F_instruction_defineLabel,
                                                                                 freeExtensionMethod_midrange_5F_intermediate_5F_instruction_defineLabel) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                Extension method '@midrange_intermediate_instruction_literalOperation optimizeMOVLW'                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW> gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeMOVLW (const int32_t inClassIndex,
                                          extensionMethodSignature_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeMOVLW (const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * inObject,
                                         const GALGAS_uint constin_inLineIndex,
@@ -3421,7 +3421,7 @@ void callExtensionMethod_optimizeMOVLW (const cPtr_midrange_5F_intermediate_5F_i
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW (const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * inObject,
                                                                                                        const GALGAS_uint constinArgument_inLineIndex,
@@ -3449,40 +3449,40 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_literalOp
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW (void) {
   enterExtensionMethod_optimizeMOVLW (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation.mSlotID,
                                       extensionMethod_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW (defineExtensionMethod_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW,
                                                                                                       freeExtensionMethod_midrange_5F_intermediate_5F_instruction_5F_literalOperation_optimizeMOVLW) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //               Extension method '@midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc'                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc> gExtensionMethodTable_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeTestDecInc (const int32_t inClassIndex,
                                               extensionMethodSignature_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeTestDecInc (const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * inObject,
                                              const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
@@ -3518,7 +3518,7 @@ void callExtensionMethod_optimizeTestDecInc (const cPtr_midrange_5F_intermediate
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc (const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * inObject,
                                                                                                       const GALGAS_symbolTableForOptimizations constinArgument_inSymbolTable,
@@ -3593,40 +3593,40 @@ static void extensionMethod_midrange_5F_intermediate_5F_incDecRegisterInConditio
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc (void) {
   enterExtensionMethod_optimizeTestDecInc (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition.mSlotID,
                                            extensionMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc (defineExtensionMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc,
                                                                                                      freeExtensionMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_optimizeTestDecInc) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                Extension method '@midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip'                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip> gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeBitTestSkip (const int32_t inClassIndex,
                                                extensionMethodSignature_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeBitTestSkip (const cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip * inObject,
                                               const GALGAS_uint constin_inLineIndex,
@@ -3661,7 +3661,7 @@ void callExtensionMethod_optimizeBitTestSkip (const cPtr_midrange_5F_intermediat
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip (const cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip * inObject,
                                                                                                         const GALGAS_uint constinArgument_inLineIndex,
@@ -3715,40 +3715,40 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSk
     ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" bit test skip, following by a JUMP skipping next instruction, is complemented\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 516)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip (void) {
   enterExtensionMethod_optimizeBitTestSkip (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip.mSlotID,
                                             extensionMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip (defineExtensionMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip,
                                                                                                        freeExtensionMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_optimizeBitTestSkip) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                     Extension method '@midrange_intermediate_instruction defineLabelAtAddress'                      *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress> gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_defineLabelAtAddress (const int32_t inClassIndex,
                                                 extensionMethodSignature_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_defineLabelAtAddress (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                GALGAS_midrange_5F_symbolTableForConvertingRelatives & io_ioRoutineSymbolTable,
@@ -3781,7 +3781,7 @@ void callExtensionMethod_defineLabelAtAddress (const cPtr_midrange_5F_intermedia
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                           GALGAS_midrange_5F_symbolTableForConvertingRelatives & /* ioArgument_ioRoutineSymbolTable */,
@@ -3789,51 +3789,51 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_defineLabelA
                                                                                           C_Compiler * /* inCompiler */
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress (void) {
   enterExtensionMethod_defineLabelAtAddress (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction.mSlotID,
                                              extensionMethod_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress (defineExtensionMethod_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress,
                                                                                          freeExtensionMethod_midrange_5F_intermediate_5F_instruction_defineLabelAtAddress) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                       Abstract extension method '@midrange_intermediate_instruction compute'                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_instruction_compute> gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_compute ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_compute (const int32_t inClassIndex,
                                    extensionMethodSignature_midrange_5F_intermediate_5F_instruction_compute inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_compute.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_instruction_compute (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_compute.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_compute (NULL,
                                                                             freeExtensionMethod_midrange_5F_intermediate_5F_instruction_compute) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_compute (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                   const GALGAS_midrange_5F_symbolTableForConvertingRelatives constin_inRoutineSymbolTable,
@@ -3872,33 +3872,33 @@ void callExtensionMethod_compute (const cPtr_midrange_5F_intermediate_5F_instruc
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                  Abstract extension method '@midrange_intermediate_instruction buildAssemblyCode'                   *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_instruction_buildAssemblyCode> gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_buildAssemblyCode ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_buildAssemblyCode (const int32_t inClassIndex,
                                              extensionMethodSignature_midrange_5F_intermediate_5F_instruction_buildAssemblyCode inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_buildAssemblyCode.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_instruction_buildAssemblyCode (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_buildAssemblyCode.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_buildAssemblyCode (NULL,
                                                                                       freeExtensionMethod_midrange_5F_intermediate_5F_instruction_buildAssemblyCode) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_buildAssemblyCode (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                             GALGAS_string & io_ioString,
@@ -3933,22 +3933,22 @@ void callExtensionMethod_buildAssemblyCode (const cPtr_midrange_5F_intermediate_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                      Extension method '@midrange_intermediate_instruction enterLabelAtAddress'                      *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress> gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_enterLabelAtAddress (const int32_t inClassIndex,
                                                extensionMethodSignature_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_enterLabelAtAddress (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                               GALGAS_midrange_5F_symbolTable & io_ioRoutineSymbolTable,
@@ -3981,7 +3981,7 @@ void callExtensionMethod_enterLabelAtAddress (const cPtr_midrange_5F_intermediat
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
                                                                                          GALGAS_midrange_5F_symbolTable & /* ioArgument_ioRoutineSymbolTable */,
@@ -3989,51 +3989,51 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_enterLabelAt
                                                                                          C_Compiler * /* inCompiler */
                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress (void) {
   enterExtensionMethod_enterLabelAtAddress (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction.mSlotID,
                                             extensionMethod_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress (defineExtensionMethod_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress,
                                                                                         freeExtensionMethod_midrange_5F_intermediate_5F_instruction_enterLabelAtAddress) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //             Abstract extension method '@midrange_intermediate_instruction generateBinaryCodeAtAddress'              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress> gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_generateBinaryCodeAtAddress (const int32_t inClassIndex,
                                                        extensionMethodSignature_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress (NULL,
                                                                                                 freeExtensionMethod_midrange_5F_intermediate_5F_instruction_generateBinaryCodeAtAddress) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_generateBinaryCodeAtAddress (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                       const GALGAS_registerTable constin_inRegisterTable,
@@ -4072,11 +4072,11 @@ void callExtensionMethod_generateBinaryCodeAtAddress (const cPtr_midrange_5F_int
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                           Extension Getter '@midrange_instruction_FD_base_code basecode'                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint extensionGetter_basecode (const GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code & inObject,
                                       C_Compiler * /* inCompiler */
@@ -4164,11 +4164,11 @@ GALGAS_uint extensionGetter_basecode (const GALGAS_midrange_5F_instruction_5F_FD
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Extension Getter '@midrange_F_instruction_base_code baseCode'                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint extensionGetter_baseCode (const GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code & inObject,
                                       C_Compiler * /* inCompiler */
@@ -4196,11 +4196,11 @@ GALGAS_uint extensionGetter_baseCode (const GALGAS_midrange_5F_F_5F_instruction_
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Extension Getter '@midrange_bit_oriented_op baseCode'                                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint extensionGetter_baseCode (const GALGAS_midrange_5F_bit_5F_oriented_5F_op & inObject,
                                       C_Compiler * /* inCompiler */
@@ -4228,11 +4228,11 @@ GALGAS_uint extensionGetter_baseCode (const GALGAS_midrange_5F_bit_5F_oriented_5
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          Extension Getter '@midrange_literal_instruction_opcode baseCode'                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint extensionGetter_baseCode (const GALGAS_midrange_5F_literal_5F_instruction_5F_opcode & inObject,
                                       C_Compiler * /* inCompiler */
@@ -4285,11 +4285,11 @@ GALGAS_uint extensionGetter_baseCode (const GALGAS_midrange_5F_literal_5F_instru
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Extension Getter '@pic18RegisterComparison mnemonic'                                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_pic_31__38_RegisterComparison & inObject,
                                         C_Compiler * /* inCompiler */
@@ -4337,11 +4337,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_pic_31__38_RegisterComparis
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                  Extension Getter '@conditional_branch condition'                                   *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_condition (const GALGAS_conditional_5F_branch & inObject,
                                          C_Compiler * /* inCompiler */
@@ -4399,11 +4399,11 @@ GALGAS_string extensionGetter_condition (const GALGAS_conditional_5F_branch & in
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                         Extension Getter '@pic18InstructionWithNoOperandKind assemblyCode'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_assemblyCode (const GALGAS_pic_31__38_InstructionWithNoOperandKind & inObject,
                                             C_Compiler * /* inCompiler */
@@ -4456,11 +4456,11 @@ GALGAS_string extensionGetter_assemblyCode (const GALGAS_pic_31__38_InstructionW
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Extension Getter '@FA_instruction_base_code mnemonic'                                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_FA_5F_instruction_5F_base_5F_code & inObject,
                                         C_Compiler * /* inCompiler */
@@ -4523,11 +4523,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_FA_5F_instruction_5F_base_5
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                    Extension Getter '@bit_oriented_op mnemonic'                                     *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_bit_5F_oriented_5F_op & inObject,
                                         C_Compiler * /* inCompiler */
@@ -4560,11 +4560,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_bit_5F_oriented_5F_op & inO
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                   Extension Getter '@conditional_branch mnemonic'                                   *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_conditional_5F_branch & inObject,
                                         C_Compiler * /* inCompiler */
@@ -4622,11 +4622,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_conditional_5F_branch & inO
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                               Extension Getter '@literal_instruction_opcode mnemonic'                               *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_literal_5F_instruction_5F_opcode & inObject,
                                         C_Compiler * /* inCompiler */
@@ -4679,11 +4679,11 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_literal_5F_instruction_5F_o
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                   Extension Getter '@tableAccessOption mnemonic'                                    *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_tableAccessOption & inObject,
                                         C_Compiler * /* inCompiler */
@@ -4721,7 +4721,7 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_tableAccessOption & inObjec
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (void) :
 mAttribute_mAssemblyString (),
@@ -4729,12 +4729,12 @@ mAttribute_mRegisterAddress (),
 mAttribute_mNeedsBSR () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::~ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (const GALGAS_string & inOperand0,
                                                                                                                       const GALGAS_uint & inOperand1,
@@ -4744,7 +4744,7 @@ mAttribute_mRegisterAddress (inOperand1),
 mAttribute_mNeedsBSR (inOperand2) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (GALGAS_string::constructor_default (HERE),
@@ -4752,7 +4752,7 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F
                                                                     GALGAS_bool::constructor_default (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::constructor_new (const GALGAS_string & inOperand0,
                                                                                                                                       const GALGAS_uint & inOperand1,
@@ -4765,7 +4765,7 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -4781,13 +4781,13 @@ typeComparisonResult GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::isValid (void) const {
   return mAttribute_mAssemblyString.isValid () && mAttribute_mRegisterAddress.isValid () && mAttribute_mNeedsBSR.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::drop (void) {
   mAttribute_mAssemblyString.drop () ;
@@ -4795,7 +4795,7 @@ void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::drop (void) {
   mAttribute_mNeedsBSR.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::description (C_String & ioString,
                                                                              const int32_t inIndentation) const {
@@ -4812,19 +4812,19 @@ void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::description (C_S
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::getter_mAssemblyString (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mAssemblyString ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::getter_mRegisterAddress (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterAddress ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::getter_mNeedsBSR (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mNeedsBSR ;
@@ -4832,23 +4832,23 @@ GALGAS_bool GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::getter_mN
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                    @ipic18_intermediate_registerExpression type                                     *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression ("ipic18_intermediate_registerExpression",
                                                                            NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -4858,7 +4858,7 @@ AC_GALGAS_root * GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::clon
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::extractObject (const GALGAS_object & inObject,
                                                                                                                                     C_Compiler * inCompiler
@@ -4875,11 +4875,11 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                    Extension Getter '@ipic18_intermediate_registerExpression isEqualToRegister'                     *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool extensionGetter_isEqualToRegister (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inObject,
                                                const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & constinArgument_inRegister,
@@ -4902,19 +4902,19 @@ GALGAS_bool extensionGetter_isEqualToRegister (const GALGAS_ipic_31__38__5F_inte
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (void) :
 mAttribute_mAssemblyString (),
 mAttribute_mRegisterAddress () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::~ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (const GALGAS_string & inOperand0,
                                                                                                                                                               const GALGAS_uint & inOperand1) :
@@ -4922,14 +4922,14 @@ mAttribute_mAssemblyString (inOperand0),
 mAttribute_mRegisterAddress (inOperand1) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (GALGAS_string::constructor_default (HERE),
                                                                                         GALGAS_uint::constructor_default (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::constructor_new (const GALGAS_string & inOperand0,
                                                                                                                                                                               const GALGAS_uint & inOperand1 
@@ -4941,7 +4941,7 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GA
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -4954,20 +4954,20 @@ typeComparisonResult GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWi
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::isValid (void) const {
   return mAttribute_mAssemblyString.isValid () && mAttribute_mRegisterAddress.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::drop (void) {
   mAttribute_mAssemblyString.drop () ;
   mAttribute_mRegisterAddress.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::description (C_String & ioString,
                                                                                                  const int32_t inIndentation) const {
@@ -4982,13 +4982,13 @@ void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndicati
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::getter_mAssemblyString (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mAssemblyString ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::getter_mRegisterAddress (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRegisterAddress ;
@@ -4996,23 +4996,23 @@ GALGAS_uint GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRI
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                          @ipic18_intermediate_registerExpressionWithoutBSRIndication type                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication ("ipic18_intermediate_registerExpressionWithoutBSRIndication",
                                                                                                NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -5022,7 +5022,7 @@ AC_GALGAS_root * GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithou
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::extractObject (const GALGAS_object & inObject,
                                                                                                                                                                             C_Compiler * inCompiler
@@ -5039,22 +5039,22 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GA
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                  Extension method '@ipic18SequentialInstruction instructionRelativeBranchOverflow'                  *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow> gExtensionMethodTable_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_instructionRelativeBranchOverflow (const int32_t inClassIndex,
                                                              extensionMethodSignature_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow inMethod) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_instructionRelativeBranchOverflow (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                             const GALGAS_uint constin_inAddress,
@@ -5089,7 +5089,7 @@ void callExtensionMethod_instructionRelativeBranchOverflow (const cPtr_ipic_31__
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow (const cPtr_ipic_31__38_SequentialInstruction * /* inObject */,
                                                                                                  const GALGAS_uint /* constinArgument_inAddress */,
@@ -5099,40 +5099,40 @@ static void extensionMethod_ipic_31__38_SequentialInstruction_instructionRelativ
                                                                                                  C_Compiler * /* inCompiler */
                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow (void) {
   enterExtensionMethod_instructionRelativeBranchOverflow (kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction.mSlotID,
                                                           extensionMethod_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow (void) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow (defineExtensionMethod_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow,
                                                                                                 freeExtensionMethod_ipic_31__38_SequentialInstruction_instructionRelativeBranchOverflow) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                 Extension method '@ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow'                  *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow> gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_terminatorRelativeBranchOverflow (const int32_t inClassIndex,
                                                             extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow inMethod) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_terminatorRelativeBranchOverflow (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                            const GALGAS_uint constin_inAddress,
@@ -5168,7 +5168,7 @@ void callExtensionMethod_terminatorRelativeBranchOverflow (const cPtr_ipic_31__3
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow (const cPtr_ipic_31__38_AbstractBlockTerminator * /* inObject */,
                                                                                                   const GALGAS_uint /* constinArgument_inAddress */,
@@ -5179,40 +5179,40 @@ static void extensionMethod_ipic_31__38_AbstractBlockTerminator_terminatorRelati
                                                                                                   C_Compiler * /* inCompiler */
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow (void) {
   enterExtensionMethod_terminatorRelativeBranchOverflow (kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator.mSlotID,
                                                          extensionMethod_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow (void) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow (defineExtensionMethod_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow,
                                                                                                  freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_terminatorRelativeBranchOverflow) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //             Extension method '@ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution'             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution> gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_performTerminatorRelativeBranchResolution (const int32_t inClassIndex,
                                                                      extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution inMethod) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_performTerminatorRelativeBranchResolution (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                     const GALGAS_uint constin_inAddress,
@@ -5251,7 +5251,7 @@ void callExtensionMethod_performTerminatorRelativeBranchResolution (const cPtr_i
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                                                            const GALGAS_uint /* constinArgument_inAddress */,
@@ -5268,51 +5268,51 @@ static void extensionMethod_ipic_31__38_AbstractBlockTerminator_performTerminato
   const GALGAS_ipic_31__38_AbstractBlockTerminator temp_0 = object ;
   outArgument_outModifiedTerminator = temp_0 ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution (void) {
   enterExtensionMethod_performTerminatorRelativeBranchResolution (kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator.mSlotID,
                                                                   extensionMethod_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution (void) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution (defineExtensionMethod_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution,
                                                                                                           freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_performTerminatorRelativeBranchResolution) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                        Abstract extension method '@ipic18SequentialInstruction generateCode'                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_SequentialInstruction_generateCode> gExtensionMethodTable_ipic_31__38_SequentialInstruction_generateCode ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_generateCode (const int32_t inClassIndex,
                                         extensionMethodSignature_ipic_31__38_SequentialInstruction_generateCode inMethod) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_generateCode.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_SequentialInstruction_generateCode (void) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_generateCode.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_generateCode (NULL,
                                                                            freeExtensionMethod_ipic_31__38_SequentialInstruction_generateCode) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_generateCode (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                        const GALGAS_uint constin_inAddress,
@@ -5350,33 +5350,33 @@ void callExtensionMethod_generateCode (const cPtr_ipic_31__38_SequentialInstruct
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                  Abstract extension method '@ipic18AbstractBlockTerminator generateTerminatorCode'                  *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_generateTerminatorCode> gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_generateTerminatorCode ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_generateTerminatorCode (const int32_t inClassIndex,
                                                   extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_generateTerminatorCode inMethod) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_generateTerminatorCode.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_generateTerminatorCode (void) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_generateTerminatorCode.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_generateTerminatorCode (NULL,
                                                                                        freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_generateTerminatorCode) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_generateTerminatorCode (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                  const GALGAS_uint constin_inAddress,
@@ -5414,33 +5414,33 @@ void callExtensionMethod_generateTerminatorCode (const cPtr_ipic_31__38_Abstract
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                   Abstract extension getter '@ipic18AbstractBlockTerminator isEqualToTerminator'                    *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator> gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_isEqualToTerminator (const int32_t inClassIndex,
                                                enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator inGetter) {
   gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator (void) {
   gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator (NULL,
                                                                                     freeExtensionGetter_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool callExtensionGetter_isEqualToTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                      const GALGAS_ipic_31__38_AbstractBlockTerminator & in_inTerminator,
@@ -5475,33 +5475,33 @@ GALGAS_bool callExtensionGetter_isEqualToTerminator (const cPtr_ipic_31__38_Abst
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                    Abstract extension getter '@ipic18AbstractBlockTerminator terminatorDisplay'                     *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_terminatorDisplay> gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_terminatorDisplay ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_terminatorDisplay (const int32_t inClassIndex,
                                              enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_terminatorDisplay inGetter) {
   gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_terminatorDisplay.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_ipic_31__38_AbstractBlockTerminator_terminatorDisplay (void) {
   gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_terminatorDisplay.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_ipic_31__38_AbstractBlockTerminator_terminatorDisplay (NULL,
                                                                                   freeExtensionGetter_ipic_31__38_AbstractBlockTerminator_terminatorDisplay) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string callExtensionGetter_terminatorDisplay (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                      const GALGAS_string & in_inNextBlockLabel,
@@ -5536,33 +5536,33 @@ GALGAS_string callExtensionGetter_terminatorDisplay (const cPtr_ipic_31__38_Abst
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                      Abstract extension getter '@ipic18AbstractBlockTerminator terminatorSize'                      *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_terminatorSize> gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_terminatorSize ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_terminatorSize (const int32_t inClassIndex,
                                           enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_terminatorSize inGetter) {
   gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_terminatorSize.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_ipic_31__38_AbstractBlockTerminator_terminatorSize (void) {
   gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_terminatorSize.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_ipic_31__38_AbstractBlockTerminator_terminatorSize (NULL,
                                                                                freeExtensionGetter_ipic_31__38_AbstractBlockTerminator_terminatorSize) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint callExtensionGetter_terminatorSize (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                 const GALGAS_string & in_inNextBlockLabel,
@@ -5597,22 +5597,22 @@ GALGAS_uint callExtensionGetter_terminatorSize (const cPtr_ipic_31__38_AbstractB
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                           Extension getter '@ipic18SequentialInstruction instructionSize'                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_ipic_31__38_SequentialInstruction_instructionSize> gExtensionGetterTable_ipic_31__38_SequentialInstruction_instructionSize ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_instructionSize (const int32_t inClassIndex,
                                            enterExtensionGetter_ipic_31__38_SequentialInstruction_instructionSize inGetter) {
   gExtensionGetterTable_ipic_31__38_SequentialInstruction_instructionSize.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint callExtensionGetter_instructionSize (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                  C_Compiler * inCompiler
@@ -5646,7 +5646,7 @@ GALGAS_uint callExtensionGetter_instructionSize (const cPtr_ipic_31__38_Sequenti
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static GALGAS_uint extensionGetter_ipic_31__38_SequentialInstruction_instructionSize (const cPtr_ipic_31__38_SequentialInstruction * /* inObject */,
                                                                                       C_Compiler * /* inCompiler */
@@ -5658,40 +5658,40 @@ static GALGAS_uint extensionGetter_ipic_31__38_SequentialInstruction_instruction
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionGetter_ipic_31__38_SequentialInstruction_instructionSize (void) {
   enterExtensionGetter_instructionSize (kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction.mSlotID,
                                         extensionGetter_ipic_31__38_SequentialInstruction_instructionSize) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_ipic_31__38_SequentialInstruction_instructionSize (void) {
   gExtensionGetterTable_ipic_31__38_SequentialInstruction_instructionSize.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_ipic_31__38_SequentialInstruction_instructionSize (defineExtensionGetter_ipic_31__38_SequentialInstruction_instructionSize,
                                                                               freeExtensionGetter_ipic_31__38_SequentialInstruction_instructionSize) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //             Extension method '@ipic18SequentialInstruction performInstructionRelativeBranchResolution'              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution> gExtensionMethodTable_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_performInstructionRelativeBranchResolution (const int32_t inClassIndex,
                                                                       extensionMethodSignature_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution inMethod) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_performInstructionRelativeBranchResolution (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                                      const GALGAS_uint constin_inAddress,
@@ -5729,7 +5729,7 @@ void callExtensionMethod_performInstructionRelativeBranchResolution (const cPtr_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                                                                           const GALGAS_uint /* constinArgument_inAddress */,
@@ -5745,51 +5745,51 @@ static void extensionMethod_ipic_31__38_SequentialInstruction_performInstruction
   const GALGAS_ipic_31__38_SequentialInstruction temp_0 = object ;
   outArgument_outModifiedInstruction = temp_0 ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution (void) {
   enterExtensionMethod_performInstructionRelativeBranchResolution (kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction.mSlotID,
                                                                    extensionMethod_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution (void) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution (defineExtensionMethod_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution,
                                                                                                          freeExtensionMethod_ipic_31__38_SequentialInstruction_performInstructionRelativeBranchResolution) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                     Abstract extension getter '@ipic18SequentialInstruction instructionDisplay'                     *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_ipic_31__38_SequentialInstruction_instructionDisplay> gExtensionGetterTable_ipic_31__38_SequentialInstruction_instructionDisplay ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_instructionDisplay (const int32_t inClassIndex,
                                               enterExtensionGetter_ipic_31__38_SequentialInstruction_instructionDisplay inGetter) {
   gExtensionGetterTable_ipic_31__38_SequentialInstruction_instructionDisplay.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_ipic_31__38_SequentialInstruction_instructionDisplay (void) {
   gExtensionGetterTable_ipic_31__38_SequentialInstruction_instructionDisplay.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_ipic_31__38_SequentialInstruction_instructionDisplay (NULL,
                                                                                  freeExtensionGetter_ipic_31__38_SequentialInstruction_instructionDisplay) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_stringlist callExtensionGetter_instructionDisplay (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                           C_Compiler * inCompiler
@@ -5823,11 +5823,11 @@ GALGAS_stringlist callExtensionGetter_instructionDisplay (const cPtr_ipic_31__38
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                           Extension Getter '@pic18InstructionWithNoOperandKind mnemonic'                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_mnemonic (const GALGAS_pic_31__38_InstructionWithNoOperandKind & inObject,
                                         C_Compiler * /* inCompiler */
@@ -5880,33 +5880,33 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_pic_31__38_InstructionWithN
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                        Abstract extension method '@pic18PiccoloInstruction addUsedRoutines'                         *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_pic_31__38_PiccoloInstruction_addUsedRoutines> gExtensionMethodTable_pic_31__38_PiccoloInstruction_addUsedRoutines ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_addUsedRoutines (const int32_t inClassIndex,
                                            extensionMethodSignature_pic_31__38_PiccoloInstruction_addUsedRoutines inMethod) {
   gExtensionMethodTable_pic_31__38_PiccoloInstruction_addUsedRoutines.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_pic_31__38_PiccoloInstruction_addUsedRoutines (void) {
   gExtensionMethodTable_pic_31__38_PiccoloInstruction_addUsedRoutines.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_pic_31__38_PiccoloInstruction_addUsedRoutines (NULL,
                                                                           freeExtensionMethod_pic_31__38_PiccoloInstruction_addUsedRoutines) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_addUsedRoutines (const cPtr_pic_31__38_PiccoloInstruction * inObject,
                                           const GALGAS_pic_31__38_MacroMap constin_inMacroMap,
@@ -5941,22 +5941,22 @@ void callExtensionMethod_addUsedRoutines (const cPtr_pic_31__38_PiccoloInstructi
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Extension method '@pic18PiccoloInstruction performInlining'                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_pic_31__38_PiccoloInstruction_performInlining> gExtensionMethodTable_pic_31__38_PiccoloInstruction_performInlining ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_performInlining (const int32_t inClassIndex,
                                            extensionMethodSignature_pic_31__38_PiccoloInstruction_performInlining inMethod) {
   gExtensionMethodTable_pic_31__38_PiccoloInstruction_performInlining.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_performInlining (const cPtr_pic_31__38_PiccoloInstruction * inObject,
                                           const GALGAS_stringset constin_inInlinedRoutineSet,
@@ -5991,7 +5991,7 @@ void callExtensionMethod_performInlining (const cPtr_pic_31__38_PiccoloInstructi
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_pic_31__38_PiccoloInstruction_performInlining (const cPtr_pic_31__38_PiccoloInstruction * inObject,
                                                                            const GALGAS_stringset /* constinArgument_inInlinedRoutineSet */,
@@ -6005,51 +6005,51 @@ static void extensionMethod_pic_31__38_PiccoloInstruction_performInlining (const
   const GALGAS_pic_31__38_PiccoloInstruction temp_0 = object ;
   ioArgument_ioInstructionList.addAssign_operation (temp_0  COMMA_SOURCE_FILE ("pic18_routine_inlining.galgas", 22)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_pic_31__38_PiccoloInstruction_performInlining (void) {
   enterExtensionMethod_performInlining (kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction.mSlotID,
                                         extensionMethod_pic_31__38_PiccoloInstruction_performInlining) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_pic_31__38_PiccoloInstruction_performInlining (void) {
   gExtensionMethodTable_pic_31__38_PiccoloInstruction_performInlining.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_pic_31__38_PiccoloInstruction_performInlining (defineExtensionMethod_pic_31__38_PiccoloInstruction_performInlining,
                                                                           freeExtensionMethod_pic_31__38_PiccoloInstruction_performInlining) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                 Abstract extension method '@pic18PiccoloSimpleInstruction analyzeSimpleInstruction'                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction> gExtensionMethodTable_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_analyzeSimpleInstruction (const int32_t inClassIndex,
                                                     extensionMethodSignature_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction inMethod) {
   gExtensionMethodTable_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction (void) {
   gExtensionMethodTable_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction (NULL,
                                                                                          freeExtensionMethod_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_analyzeSimpleInstruction (const cPtr_pic_31__38_PiccoloSimpleInstruction * inObject,
                                                    const GALGAS_uint constin_inAccessBankSplitOffset,
@@ -6092,33 +6092,33 @@ void callExtensionMethod_analyzeSimpleInstruction (const cPtr_pic_31__38_Piccolo
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                            Abstract extension method '@pic18PiccoloInstruction analyze'                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_pic_31__38_PiccoloInstruction_analyze> gExtensionMethodTable_pic_31__38_PiccoloInstruction_analyze ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_analyze (const int32_t inClassIndex,
                                    extensionMethodSignature_pic_31__38_PiccoloInstruction_analyze inMethod) {
   gExtensionMethodTable_pic_31__38_PiccoloInstruction_analyze.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_pic_31__38_PiccoloInstruction_analyze (void) {
   gExtensionMethodTable_pic_31__38_PiccoloInstruction_analyze.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_pic_31__38_PiccoloInstruction_analyze (NULL,
                                                                   freeExtensionMethod_pic_31__38_PiccoloInstruction_analyze) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_analyze (const cPtr_pic_31__38_PiccoloInstruction * inObject,
                                   const GALGAS_uint constin_inAccessBankSplitOffset,
@@ -6166,33 +6166,33 @@ void callExtensionMethod_analyze (const cPtr_pic_31__38_PiccoloInstruction * inO
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                         Abstract extension method '@pic18AbstractCaseItem analyzeCaseItem'                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_pic_31__38_AbstractCaseItem_analyzeCaseItem> gExtensionMethodTable_pic_31__38_AbstractCaseItem_analyzeCaseItem ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_analyzeCaseItem (const int32_t inClassIndex,
                                            extensionMethodSignature_pic_31__38_AbstractCaseItem_analyzeCaseItem inMethod) {
   gExtensionMethodTable_pic_31__38_AbstractCaseItem_analyzeCaseItem.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_pic_31__38_AbstractCaseItem_analyzeCaseItem (void) {
   gExtensionMethodTable_pic_31__38_AbstractCaseItem_analyzeCaseItem.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_pic_31__38_AbstractCaseItem_analyzeCaseItem (NULL,
                                                                         freeExtensionMethod_pic_31__38_AbstractCaseItem_analyzeCaseItem) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_analyzeCaseItem (const cPtr_pic_31__38_AbstractCaseItem * inObject,
                                           const GALGAS_registerTable constin_inRegisterTable,
@@ -6235,33 +6235,33 @@ void callExtensionMethod_analyzeCaseItem (const cPtr_pic_31__38_AbstractCaseItem
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //              Abstract extension method '@abstractBlockTerminationForBlockInstruction addVisitedBlocks'              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_abstractBlockTerminationForBlockInstruction_addVisitedBlocks> gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_addVisitedBlocks ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_addVisitedBlocks (const int32_t inClassIndex,
                                             extensionMethodSignature_abstractBlockTerminationForBlockInstruction_addVisitedBlocks inMethod) {
   gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_addVisitedBlocks.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_abstractBlockTerminationForBlockInstruction_addVisitedBlocks (void) {
   gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_addVisitedBlocks.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_abstractBlockTerminationForBlockInstruction_addVisitedBlocks (NULL,
                                                                                          freeExtensionMethod_abstractBlockTerminationForBlockInstruction_addVisitedBlocks) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_addVisitedBlocks (const cPtr_abstractBlockTerminationForBlockInstruction * inObject,
                                            GALGAS_stringset & io_ioVisitedBlockSet,
@@ -6301,33 +6301,33 @@ void callExtensionMethod_addVisitedBlocks (const cPtr_abstractBlockTerminationFo
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //               Abstract extension method '@abstractBlockTerminationForBlockInstruction generateBlock'                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_abstractBlockTerminationForBlockInstruction_generateBlock> gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_generateBlock ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_generateBlock (const int32_t inClassIndex,
                                          extensionMethodSignature_abstractBlockTerminationForBlockInstruction_generateBlock inMethod) {
   gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_generateBlock.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_abstractBlockTerminationForBlockInstruction_generateBlock (void) {
   gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_generateBlock.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_abstractBlockTerminationForBlockInstruction_generateBlock (NULL,
                                                                                       freeExtensionMethod_abstractBlockTerminationForBlockInstruction_generateBlock) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_generateBlock (const cPtr_abstractBlockTerminationForBlockInstruction * inObject,
                                         const GALGAS_uint constin_inAccessBankSplitOffset,
@@ -6370,33 +6370,33 @@ void callExtensionMethod_generateBlock (const cPtr_abstractBlockTerminationForBl
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                       Abstract extension method '@pic18ConditionExpression analyzeCondition'                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_pic_31__38_ConditionExpression_analyzeCondition> gExtensionMethodTable_pic_31__38_ConditionExpression_analyzeCondition ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_analyzeCondition (const int32_t inClassIndex,
                                             extensionMethodSignature_pic_31__38_ConditionExpression_analyzeCondition inMethod) {
   gExtensionMethodTable_pic_31__38_ConditionExpression_analyzeCondition.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_pic_31__38_ConditionExpression_analyzeCondition (void) {
   gExtensionMethodTable_pic_31__38_ConditionExpression_analyzeCondition.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_pic_31__38_ConditionExpression_analyzeCondition (NULL,
                                                                             freeExtensionMethod_pic_31__38_ConditionExpression_analyzeCondition) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_analyzeCondition (const cPtr_pic_31__38_ConditionExpression * inObject,
                                            const GALGAS_uint constin_inAccessBankSplitOffset,
@@ -6440,33 +6440,33 @@ void callExtensionMethod_analyzeCondition (const cPtr_pic_31__38_ConditionExpres
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                    Abstract extension method '@ipic18AbstractBlockTerminator optimizeTerminator'                    *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_optimizeTerminator> gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_optimizeTerminator ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeTerminator (const int32_t inClassIndex,
                                               extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_optimizeTerminator inMethod) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_optimizeTerminator.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_optimizeTerminator (void) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_optimizeTerminator.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_optimizeTerminator (NULL,
                                                                                    freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_optimizeTerminator) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                              const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
@@ -6507,22 +6507,22 @@ void callExtensionMethod_optimizeTerminator (const cPtr_ipic_31__38_AbstractBloc
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                    Extension method '@ipic18AbstractConditionTerminator getOptimizedTerminators'                    *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators> gExtensionMethodTable_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_getOptimizedTerminators (const int32_t inClassIndex,
                                                    extensionMethodSignature_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators inMethod) {
   gExtensionMethodTable_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_getOptimizedTerminators (const cPtr_ipic_31__38_AbstractConditionTerminator * inObject,
                                                   const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
@@ -6565,7 +6565,7 @@ void callExtensionMethod_getOptimizedTerminators (const cPtr_ipic_31__38_Abstrac
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators (const cPtr_ipic_31__38_AbstractConditionTerminator * inObject,
                                                                                              const GALGAS_symbolTableForBlockOptimization constinArgument_inSymbolTable,
@@ -6656,51 +6656,51 @@ static void extensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimized
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators (void) {
   enterExtensionMethod_getOptimizedTerminators (kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator.mSlotID,
                                                 extensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators (void) {
   gExtensionMethodTable_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators (defineExtensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators,
                                                                                             freeExtensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //             Abstract extension method '@ipic18AbstractBlockTerminator enterTerminatorReferencedLabels'              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_enterTerminatorReferencedLabels> gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_enterTerminatorReferencedLabels ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_enterTerminatorReferencedLabels (const int32_t inClassIndex,
                                                            extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_enterTerminatorReferencedLabels inMethod) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_enterTerminatorReferencedLabels.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_enterTerminatorReferencedLabels (void) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_enterTerminatorReferencedLabels.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_enterTerminatorReferencedLabels (NULL,
                                                                                                 freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_enterTerminatorReferencedLabels) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_enterTerminatorReferencedLabels (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                           const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
@@ -6736,22 +6736,22 @@ void callExtensionMethod_enterTerminatorReferencedLabels (const cPtr_ipic_31__38
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                  Extension method '@ipic18SequentialInstruction enterInstructionReferencedLabels'                   *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels> gExtensionMethodTable_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_enterInstructionReferencedLabels (const int32_t inClassIndex,
                                                             extensionMethodSignature_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels inMethod) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_enterInstructionReferencedLabels (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                            const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
@@ -6785,7 +6785,7 @@ void callExtensionMethod_enterInstructionReferencedLabels (const cPtr_ipic_31__3
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels (const cPtr_ipic_31__38_SequentialInstruction * /* inObject */,
                                                                                                 const GALGAS_symbolTableForBlockOptimization /* constinArgument_inSymbolTable */,
@@ -6794,40 +6794,40 @@ static void extensionMethod_ipic_31__38_SequentialInstruction_enterInstructionRe
                                                                                                 C_Compiler * /* inCompiler */
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels (void) {
   enterExtensionMethod_enterInstructionReferencedLabels (kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction.mSlotID,
                                                          extensionMethod_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels (void) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels (defineExtensionMethod_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels,
                                                                                                freeExtensionMethod_ipic_31__38_SequentialInstruction_enterInstructionReferencedLabels) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                         Extension method '@ipic18SequentialInstruction optimizeInstruction'                         *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_SequentialInstruction_optimizeInstruction> gExtensionMethodTable_ipic_31__38_SequentialInstruction_optimizeInstruction ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeInstruction (const int32_t inClassIndex,
                                                extensionMethodSignature_ipic_31__38_SequentialInstruction_optimizeInstruction inMethod) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_optimizeInstruction.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeInstruction (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                               const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
@@ -6869,7 +6869,7 @@ void callExtensionMethod_optimizeInstruction (const cPtr_ipic_31__38_SequentialI
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_ipic_31__38_SequentialInstruction_optimizeInstruction (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                                                    const GALGAS_symbolTableForBlockOptimization /* constinArgument_inSymbolTable */,
@@ -6889,29 +6889,29 @@ static void extensionMethod_ipic_31__38_SequentialInstruction_optimizeInstructio
   outArgument_outOptimizationDone = GALGAS_bool (false) ;
   outArgument_outNOPsubstitution = GALGAS_bool (false) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_ipic_31__38_SequentialInstruction_optimizeInstruction (void) {
   enterExtensionMethod_optimizeInstruction (kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction.mSlotID,
                                             extensionMethod_ipic_31__38_SequentialInstruction_optimizeInstruction) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_SequentialInstruction_optimizeInstruction (void) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_optimizeInstruction.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_optimizeInstruction (defineExtensionMethod_ipic_31__38_SequentialInstruction_optimizeInstruction,
                                                                                   freeExtensionMethod_ipic_31__38_SequentialInstruction_optimizeInstruction) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                Extension method '@ipic18SequentialInstructionList enterInstructionReferencedLabels'                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionMethod_enterInstructionReferencedLabels (const GALGAS_ipic_31__38_SequentialInstructionList inObject,
                                                        const GALGAS_symbolTableForBlockOptimization constinArgument_inSymbolTable,
@@ -6928,7 +6928,7 @@ void extensionMethod_enterInstructionReferencedLabels (const GALGAS_ipic_31__38_
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_optimizeFlagStruct::GALGAS_optimizeFlagStruct (void) :
 mAttribute_mRemoveEmptyRoutine (),
@@ -6940,12 +6940,12 @@ mAttribute_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction (),
 mAttribute_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_optimizeFlagStruct::~ GALGAS_optimizeFlagStruct (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_optimizeFlagStruct::GALGAS_optimizeFlagStruct (const GALGAS_bool & inOperand0,
                                                       const GALGAS_bool & inOperand1,
@@ -6963,7 +6963,7 @@ mAttribute_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction (inOp
 mAttribute_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank (inOperand6) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_optimizeFlagStruct GALGAS_optimizeFlagStruct::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_optimizeFlagStruct (GALGAS_bool::constructor_default (HERE),
@@ -6975,7 +6975,7 @@ GALGAS_optimizeFlagStruct GALGAS_optimizeFlagStruct::constructor_default (UNUSED
                                     GALGAS_bool::constructor_default (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_optimizeFlagStruct GALGAS_optimizeFlagStruct::constructor_new (const GALGAS_bool & inOperand0,
                                                                       const GALGAS_bool & inOperand1,
@@ -6992,7 +6992,7 @@ GALGAS_optimizeFlagStruct GALGAS_optimizeFlagStruct::constructor_new (const GALG
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_optimizeFlagStruct::objectCompare (const GALGAS_optimizeFlagStruct & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -7020,13 +7020,13 @@ typeComparisonResult GALGAS_optimizeFlagStruct::objectCompare (const GALGAS_opti
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_optimizeFlagStruct::isValid (void) const {
   return mAttribute_mRemoveEmptyRoutine.isValid () && mAttribute_mJSRtoRETLWreplacedByMOVLW.isValid () && mAttribute_mJSRfollowedByRETreplacedByJUMP.isValid () && mAttribute_mMOVLWfollowedByRETreplacedByRETLW.isValid () && mAttribute_mJSRtoOneInstructionRoutineReplacedByInstruction.isValid () && mAttribute_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction.isValid () && mAttribute_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_optimizeFlagStruct::drop (void) {
   mAttribute_mRemoveEmptyRoutine.drop () ;
@@ -7038,7 +7038,7 @@ void GALGAS_optimizeFlagStruct::drop (void) {
   mAttribute_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_optimizeFlagStruct::description (C_String & ioString,
                                              const int32_t inIndentation) const {
@@ -7063,43 +7063,43 @@ void GALGAS_optimizeFlagStruct::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_optimizeFlagStruct::getter_mRemoveEmptyRoutine (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRemoveEmptyRoutine ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_optimizeFlagStruct::getter_mJSRtoRETLWreplacedByMOVLW (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mJSRtoRETLWreplacedByMOVLW ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_optimizeFlagStruct::getter_mJSRfollowedByRETreplacedByJUMP (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mJSRfollowedByRETreplacedByJUMP ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_optimizeFlagStruct::getter_mMOVLWfollowedByRETreplacedByRETLW (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mMOVLWfollowedByRETreplacedByRETLW ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_optimizeFlagStruct::getter_mJSRtoOneInstructionRoutineReplacedByInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mJSRtoOneInstructionRoutineReplacedByInstruction ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_optimizeFlagStruct::getter_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_optimizeFlagStruct::getter_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank ;
@@ -7107,23 +7107,23 @@ GALGAS_bool GALGAS_optimizeFlagStruct::getter_mJSRtoEmptyRoutineInComputedRCALLr
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                              @optimizeFlagStruct type                                               *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_optimizeFlagStruct ("optimizeFlagStruct",
                                            NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_optimizeFlagStruct::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_optimizeFlagStruct ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_optimizeFlagStruct::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -7133,7 +7133,7 @@ AC_GALGAS_root * GALGAS_optimizeFlagStruct::clonedObject (void) const {
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_optimizeFlagStruct GALGAS_optimizeFlagStruct::extractObject (const GALGAS_object & inObject,
                                                                     C_Compiler * inCompiler
@@ -7150,11 +7150,11 @@ GALGAS_optimizeFlagStruct GALGAS_optimizeFlagStruct::extractObject (const GALGAS
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                         Extension Getter '@bool flagValue'                                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_flagValue (const GALGAS_bool & inObject,
                                          C_Compiler * /* inCompiler */
@@ -7176,22 +7176,22 @@ GALGAS_string extensionGetter_flagValue (const GALGAS_bool & inObject,
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                   Extension method '@ipic18SequentialInstruction buildInstructionInvocationGraph'                   *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph> gExtensionMethodTable_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_buildInstructionInvocationGraph (const int32_t inClassIndex,
                                                            extensionMethodSignature_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph inMethod) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_buildInstructionInvocationGraph (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                           const GALGAS_lstring constin_inBlockLabel,
@@ -7224,7 +7224,7 @@ void callExtensionMethod_buildInstructionInvocationGraph (const cPtr_ipic_31__38
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph (const cPtr_ipic_31__38_SequentialInstruction * /* inObject */,
                                                                                                const GALGAS_lstring /* constinArgument_inBlockLabel */,
@@ -7232,51 +7232,51 @@ static void extensionMethod_ipic_31__38_SequentialInstruction_buildInstructionIn
                                                                                                C_Compiler * /* inCompiler */
                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph (void) {
   enterExtensionMethod_buildInstructionInvocationGraph (kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction.mSlotID,
                                                         extensionMethod_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph (void) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph (defineExtensionMethod_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph,
                                                                                               freeExtensionMethod_ipic_31__38_SequentialInstruction_buildInstructionInvocationGraph) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //              Abstract extension method '@ipic18AbstractBlockTerminator buildTerminatorInvocationGraph'              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph> gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_buildTerminatorInvocationGraph (const int32_t inClassIndex,
                                                           extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph inMethod) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph (void) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph (NULL,
                                                                                                freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorInvocationGraph) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_buildTerminatorInvocationGraph (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                          const GALGAS_lstring constin_inBlockLabel,
@@ -7312,33 +7312,33 @@ void callExtensionMethod_buildTerminatorInvocationGraph (const cPtr_ipic_31__38_
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //               Abstract extension getter '@ipic18AbstractBlockTerminator needToInsertJumpInstruction'                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction> gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionGetter_needToInsertJumpInstruction (const int32_t inClassIndex,
                                                        enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction inGetter) {
   gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction.forceObjectAtIndex (inClassIndex, inGetter, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionGetter_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction (void) {
   gExtensionGetterTable_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gGetter_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction (NULL,
                                                                                             freeExtensionGetter_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool callExtensionGetter_needToInsertJumpInstruction (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                              const GALGAS_string & in_inNextBlockLabel,
@@ -7373,22 +7373,22 @@ GALGAS_bool callExtensionGetter_needToInsertJumpInstruction (const cPtr_ipic_31_
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                    Extension method '@ipic18AbstractBlockTerminator buildTerminatorOrderedGraph'                    *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph> gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_buildTerminatorOrderedGraph (const int32_t inClassIndex,
                                                        extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph inMethod) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_buildTerminatorOrderedGraph (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                       const GALGAS_lstring constin_inBlockLabel,
@@ -7421,7 +7421,7 @@ void callExtensionMethod_buildTerminatorOrderedGraph (const cPtr_ipic_31__38_Abs
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph (const cPtr_ipic_31__38_AbstractBlockTerminator * /* inObject */,
                                                                                              const GALGAS_lstring /* constinArgument_inBlockLabel */,
@@ -7429,29 +7429,29 @@ static void extensionMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorO
                                                                                              C_Compiler * /* inCompiler */
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph (void) {
   enterExtensionMethod_buildTerminatorOrderedGraph (kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator.mSlotID,
                                                     extensionMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph (void) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph (defineExtensionMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph,
                                                                                             freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorOrderedGraph) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                          Extension Getter '@uint x4string'                                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_x_34_string (const GALGAS_uint & inObject,
                                            C_Compiler * inCompiler
@@ -7472,11 +7472,11 @@ GALGAS_string extensionGetter_x_34_string (const GALGAS_uint & inObject,
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                          Extension Getter '@uint x6string'                                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string extensionGetter_x_36_string (const GALGAS_uint & inObject,
                                            C_Compiler * inCompiler
@@ -7499,33 +7499,33 @@ GALGAS_string extensionGetter_x_36_string (const GALGAS_uint & inObject,
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //       Abstract extension method '@ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations'        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations> gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_exploreAccessibleBlocksForStackComputations (const int32_t inClassIndex,
                                                                        extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations inMethod) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations (void) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations (NULL,
                                                                                                             freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_exploreAccessibleBlocksForStackComputations (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                                       GALGAS_stringset & io_ioBlockToExploreSet,
@@ -7562,22 +7562,22 @@ void callExtensionMethod_exploreAccessibleBlocksForStackComputations (const cPtr
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //              Extension method '@ipic18SequentialInstruction buildCalledRoutineSetForStackComputations'              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations> gExtensionMethodTable_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_buildCalledRoutineSetForStackComputations (const int32_t inClassIndex,
                                                                      extensionMethodSignature_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations inMethod) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_buildCalledRoutineSetForStackComputations (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                                     GALGAS_stringset & io_ioRoutineCalledSet,
@@ -7609,58 +7609,58 @@ void callExtensionMethod_buildCalledRoutineSetForStackComputations (const cPtr_i
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations (const cPtr_ipic_31__38_SequentialInstruction * /* inObject */,
                                                                                                          GALGAS_stringset & /* ioArgument_ioRoutineCalledSet */,
                                                                                                          C_Compiler * /* inCompiler */
                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations (void) {
   enterExtensionMethod_buildCalledRoutineSetForStackComputations (kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction.mSlotID,
                                                                   extensionMethod_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations (void) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations (defineExtensionMethod_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations,
                                                                                                         freeExtensionMethod_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                 Abstract extension method '@ipic18AbstractBlockTerminator terminatorMinMaxDuration'                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_terminatorMinMaxDuration> gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_terminatorMinMaxDuration ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_terminatorMinMaxDuration (const int32_t inClassIndex,
                                                     extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_terminatorMinMaxDuration inMethod) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_terminatorMinMaxDuration.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_terminatorMinMaxDuration (void) {
   gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_terminatorMinMaxDuration.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_terminatorMinMaxDuration (NULL,
                                                                                          freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_terminatorMinMaxDuration) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_terminatorMinMaxDuration (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
                                                    const GALGAS_blockDurationMap constin_inExploredBlockMap,
@@ -7699,33 +7699,33 @@ void callExtensionMethod_terminatorMinMaxDuration (const cPtr_ipic_31__38_Abstra
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                       Abstract extension method '@ipic18SingleInstructionTerminator duration'                       *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_SingleInstructionTerminator_duration> gExtensionMethodTable_ipic_31__38_SingleInstructionTerminator_duration ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_duration (const int32_t inClassIndex,
                                     extensionMethodSignature_ipic_31__38_SingleInstructionTerminator_duration inMethod) {
   gExtensionMethodTable_ipic_31__38_SingleInstructionTerminator_duration.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_SingleInstructionTerminator_duration (void) {
   gExtensionMethodTable_ipic_31__38_SingleInstructionTerminator_duration.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_SingleInstructionTerminator_duration (NULL,
                                                                              freeExtensionMethod_ipic_31__38_SingleInstructionTerminator_duration) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_duration (const cPtr_ipic_31__38_SingleInstructionTerminator * inObject,
                                    const GALGAS_blockDurationMap constin_inExploredBlockMap,
@@ -7764,22 +7764,22 @@ void callExtensionMethod_duration (const cPtr_ipic_31__38_SingleInstructionTermi
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                           Extension method '@ipic18SequentialInstruction minMaxDuration'                            *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_ipic_31__38_SequentialInstruction_minMaxDuration> gExtensionMethodTable_ipic_31__38_SequentialInstruction_minMaxDuration ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_minMaxDuration (const int32_t inClassIndex,
                                           extensionMethodSignature_ipic_31__38_SequentialInstruction_minMaxDuration inMethod) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_minMaxDuration.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_minMaxDuration (const cPtr_ipic_31__38_SequentialInstruction * inObject,
                                          GALGAS_blockDurationMap in_inExploredBlockMap,
@@ -7815,7 +7815,7 @@ void callExtensionMethod_minMaxDuration (const cPtr_ipic_31__38_SequentialInstru
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_ipic_31__38_SequentialInstruction_minMaxDuration (const cPtr_ipic_31__38_SequentialInstruction * /* inObject */,
                                                                               GALGAS_blockDurationMap /* inArgument_inExploredBlockMap */,
@@ -7826,51 +7826,51 @@ static void extensionMethod_ipic_31__38_SequentialInstruction_minMaxDuration (co
   outArgument_outMin = GALGAS_uint ((uint32_t) 1U) ;
   outArgument_outMax = GALGAS_uint ((uint32_t) 1U) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_ipic_31__38_SequentialInstruction_minMaxDuration (void) {
   enterExtensionMethod_minMaxDuration (kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction.mSlotID,
                                        extensionMethod_ipic_31__38_SequentialInstruction_minMaxDuration) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_ipic_31__38_SequentialInstruction_minMaxDuration (void) {
   gExtensionMethodTable_ipic_31__38_SequentialInstruction_minMaxDuration.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_ipic_31__38_SequentialInstruction_minMaxDuration (defineExtensionMethod_ipic_31__38_SequentialInstruction_minMaxDuration,
                                                                              freeExtensionMethod_ipic_31__38_SequentialInstruction_minMaxDuration) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                           Abstract extension method '@declarationInRam handleDeclaration'                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_declarationInRam_handleDeclaration> gExtensionMethodTable_declarationInRam_handleDeclaration ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_handleDeclaration (const int32_t inClassIndex,
                                              extensionMethodSignature_declarationInRam_handleDeclaration inMethod) {
   gExtensionMethodTable_declarationInRam_handleDeclaration.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_declarationInRam_handleDeclaration (void) {
   gExtensionMethodTable_declarationInRam_handleDeclaration.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_declarationInRam_handleDeclaration (NULL,
                                                                freeExtensionMethod_declarationInRam_handleDeclaration) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_handleDeclaration (const cPtr_declarationInRam * inObject,
                                             GALGAS_ramBankTable & io_ioRamBank,
@@ -7907,24 +7907,24 @@ void callExtensionMethod_handleDeclaration (const cPtr_declarationInRam * inObje
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_declarationInRamList_2D_element::GALGAS_declarationInRamList_2D_element (void) :
 mAttribute_mDeclarationInRAM () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_declarationInRamList_2D_element::~ GALGAS_declarationInRamList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_declarationInRamList_2D_element::GALGAS_declarationInRamList_2D_element (const GALGAS_declarationInRam & inOperand0) :
 mAttribute_mDeclarationInRAM (inOperand0) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_declarationInRamList_2D_element GALGAS_declarationInRamList_2D_element::constructor_new (const GALGAS_declarationInRam & inOperand0 
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
@@ -7935,7 +7935,7 @@ GALGAS_declarationInRamList_2D_element GALGAS_declarationInRamList_2D_element::c
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_declarationInRamList_2D_element::objectCompare (const GALGAS_declarationInRamList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -7945,19 +7945,19 @@ typeComparisonResult GALGAS_declarationInRamList_2D_element::objectCompare (cons
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_declarationInRamList_2D_element::isValid (void) const {
   return mAttribute_mDeclarationInRAM.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_declarationInRamList_2D_element::drop (void) {
   mAttribute_mDeclarationInRAM.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_declarationInRamList_2D_element::description (C_String & ioString,
                                                           const int32_t inIndentation) const {
@@ -7970,7 +7970,7 @@ void GALGAS_declarationInRamList_2D_element::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_declarationInRam GALGAS_declarationInRamList_2D_element::getter_mDeclarationInRAM (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mDeclarationInRAM ;
@@ -7978,23 +7978,23 @@ GALGAS_declarationInRam GALGAS_declarationInRamList_2D_element::getter_mDeclarat
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                         @declarationInRamList-element type                                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_declarationInRamList_2D_element ("declarationInRamList-element",
                                                         NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_declarationInRamList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_declarationInRamList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_declarationInRamList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -8004,7 +8004,7 @@ AC_GALGAS_root * GALGAS_declarationInRamList_2D_element::clonedObject (void) con
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_declarationInRamList_2D_element GALGAS_declarationInRamList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                               C_Compiler * inCompiler
@@ -8021,19 +8021,19 @@ GALGAS_declarationInRamList_2D_element GALGAS_declarationInRamList_2D_element::e
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_configDefinitionList_2D_element::GALGAS_configDefinitionList_2D_element (void) :
 mAttribute_mDefinitionLocation (),
 mAttribute_mSettingList () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_configDefinitionList_2D_element::~ GALGAS_configDefinitionList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_configDefinitionList_2D_element::GALGAS_configDefinitionList_2D_element (const GALGAS_location & inOperand0,
                                                                                 const GALGAS_configSettingList & inOperand1) :
@@ -8041,14 +8041,14 @@ mAttribute_mDefinitionLocation (inOperand0),
 mAttribute_mSettingList (inOperand1) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_configDefinitionList_2D_element GALGAS_configDefinitionList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_configDefinitionList_2D_element (GALGAS_location::constructor_nowhere (HERE),
                                                  GALGAS_configSettingList::constructor_emptyList (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_configDefinitionList_2D_element GALGAS_configDefinitionList_2D_element::constructor_new (const GALGAS_location & inOperand0,
                                                                                                 const GALGAS_configSettingList & inOperand1 
@@ -8060,7 +8060,7 @@ GALGAS_configDefinitionList_2D_element GALGAS_configDefinitionList_2D_element::c
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_configDefinitionList_2D_element::objectCompare (const GALGAS_configDefinitionList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -8073,20 +8073,20 @@ typeComparisonResult GALGAS_configDefinitionList_2D_element::objectCompare (cons
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_configDefinitionList_2D_element::isValid (void) const {
   return mAttribute_mDefinitionLocation.isValid () && mAttribute_mSettingList.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_configDefinitionList_2D_element::drop (void) {
   mAttribute_mDefinitionLocation.drop () ;
   mAttribute_mSettingList.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_configDefinitionList_2D_element::description (C_String & ioString,
                                                           const int32_t inIndentation) const {
@@ -8101,13 +8101,13 @@ void GALGAS_configDefinitionList_2D_element::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_location GALGAS_configDefinitionList_2D_element::getter_mDefinitionLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mDefinitionLocation ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_configSettingList GALGAS_configDefinitionList_2D_element::getter_mSettingList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mSettingList ;
@@ -8115,23 +8115,23 @@ GALGAS_configSettingList GALGAS_configDefinitionList_2D_element::getter_mSetting
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                         @configDefinitionList-element type                                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_configDefinitionList_2D_element ("configDefinitionList-element",
                                                         NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_configDefinitionList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_configDefinitionList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_configDefinitionList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -8141,7 +8141,7 @@ AC_GALGAS_root * GALGAS_configDefinitionList_2D_element::clonedObject (void) con
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_configDefinitionList_2D_element GALGAS_configDefinitionList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                               C_Compiler * inCompiler
@@ -8158,19 +8158,19 @@ GALGAS_configDefinitionList_2D_element GALGAS_configDefinitionList_2D_element::e
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_immediatExpressionList_2D_element::GALGAS_immediatExpressionList_2D_element (void) :
 mAttribute_mExpression (),
 mAttribute_mErrorLocation () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_immediatExpressionList_2D_element::~ GALGAS_immediatExpressionList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_immediatExpressionList_2D_element::GALGAS_immediatExpressionList_2D_element (const GALGAS_immediatExpression & inOperand0,
                                                                                     const GALGAS_location & inOperand1) :
@@ -8178,7 +8178,7 @@ mAttribute_mExpression (inOperand0),
 mAttribute_mErrorLocation (inOperand1) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_immediatExpressionList_2D_element GALGAS_immediatExpressionList_2D_element::constructor_new (const GALGAS_immediatExpression & inOperand0,
                                                                                                     const GALGAS_location & inOperand1 
@@ -8190,7 +8190,7 @@ GALGAS_immediatExpressionList_2D_element GALGAS_immediatExpressionList_2D_elemen
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_immediatExpressionList_2D_element::objectCompare (const GALGAS_immediatExpressionList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -8203,20 +8203,20 @@ typeComparisonResult GALGAS_immediatExpressionList_2D_element::objectCompare (co
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_immediatExpressionList_2D_element::isValid (void) const {
   return mAttribute_mExpression.isValid () && mAttribute_mErrorLocation.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_immediatExpressionList_2D_element::drop (void) {
   mAttribute_mExpression.drop () ;
   mAttribute_mErrorLocation.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_immediatExpressionList_2D_element::description (C_String & ioString,
                                                             const int32_t inIndentation) const {
@@ -8231,13 +8231,13 @@ void GALGAS_immediatExpressionList_2D_element::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_immediatExpression GALGAS_immediatExpressionList_2D_element::getter_mExpression (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mExpression ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_location GALGAS_immediatExpressionList_2D_element::getter_mErrorLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mErrorLocation ;
@@ -8245,23 +8245,23 @@ GALGAS_location GALGAS_immediatExpressionList_2D_element::getter_mErrorLocation 
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                        @immediatExpressionList-element type                                         *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_immediatExpressionList_2D_element ("immediatExpressionList-element",
                                                           NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_immediatExpressionList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_immediatExpressionList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_immediatExpressionList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -8271,7 +8271,7 @@ AC_GALGAS_root * GALGAS_immediatExpressionList_2D_element::clonedObject (void) c
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_immediatExpressionList_2D_element GALGAS_immediatExpressionList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                                   C_Compiler * inCompiler
@@ -8288,24 +8288,24 @@ GALGAS_immediatExpressionList_2D_element GALGAS_immediatExpressionList_2D_elemen
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_instructionList_2D_element::GALGAS_baseline_5F_instructionList_2D_element (void) :
 mAttribute_mInstruction () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_instructionList_2D_element::~ GALGAS_baseline_5F_instructionList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_instructionList_2D_element::GALGAS_baseline_5F_instructionList_2D_element (const GALGAS_baseline_5F_instruction & inOperand0) :
 mAttribute_mInstruction (inOperand0) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_instructionList_2D_element GALGAS_baseline_5F_instructionList_2D_element::constructor_new (const GALGAS_baseline_5F_instruction & inOperand0 
                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
@@ -8316,7 +8316,7 @@ GALGAS_baseline_5F_instructionList_2D_element GALGAS_baseline_5F_instructionList
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_baseline_5F_instructionList_2D_element::objectCompare (const GALGAS_baseline_5F_instructionList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -8326,19 +8326,19 @@ typeComparisonResult GALGAS_baseline_5F_instructionList_2D_element::objectCompar
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_baseline_5F_instructionList_2D_element::isValid (void) const {
   return mAttribute_mInstruction.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_instructionList_2D_element::drop (void) {
   mAttribute_mInstruction.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_instructionList_2D_element::description (C_String & ioString,
                                                                  const int32_t inIndentation) const {
@@ -8351,7 +8351,7 @@ void GALGAS_baseline_5F_instructionList_2D_element::description (C_String & ioSt
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_instruction GALGAS_baseline_5F_instructionList_2D_element::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
@@ -8359,23 +8359,23 @@ GALGAS_baseline_5F_instruction GALGAS_baseline_5F_instructionList_2D_element::ge
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                       @baseline_instructionList-element type                                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_baseline_5F_instructionList_2D_element ("baseline_instructionList-element",
                                                                NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_baseline_5F_instructionList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_baseline_5F_instructionList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_baseline_5F_instructionList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -8385,7 +8385,7 @@ AC_GALGAS_root * GALGAS_baseline_5F_instructionList_2D_element::clonedObject (vo
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_instructionList_2D_element GALGAS_baseline_5F_instructionList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                                             C_Compiler * inCompiler
@@ -8402,7 +8402,7 @@ GALGAS_baseline_5F_instructionList_2D_element GALGAS_baseline_5F_instructionList
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_partList_2D_element::GALGAS_baseline_5F_partList_2D_element (void) :
 mAttribute_mCondition (),
@@ -8410,12 +8410,12 @@ mAttribute_mInstructionList (),
 mAttribute_mEndOfPartLocation () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_partList_2D_element::~ GALGAS_baseline_5F_partList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_partList_2D_element::GALGAS_baseline_5F_partList_2D_element (const GALGAS_baseline_5F_conditionExpression & inOperand0,
                                                                                 const GALGAS_baseline_5F_instructionList & inOperand1,
@@ -8425,7 +8425,7 @@ mAttribute_mInstructionList (inOperand1),
 mAttribute_mEndOfPartLocation (inOperand2) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_partList_2D_element GALGAS_baseline_5F_partList_2D_element::constructor_new (const GALGAS_baseline_5F_conditionExpression & inOperand0,
                                                                                                 const GALGAS_baseline_5F_instructionList & inOperand1,
@@ -8438,7 +8438,7 @@ GALGAS_baseline_5F_partList_2D_element GALGAS_baseline_5F_partList_2D_element::c
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_baseline_5F_partList_2D_element::objectCompare (const GALGAS_baseline_5F_partList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -8454,13 +8454,13 @@ typeComparisonResult GALGAS_baseline_5F_partList_2D_element::objectCompare (cons
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_baseline_5F_partList_2D_element::isValid (void) const {
   return mAttribute_mCondition.isValid () && mAttribute_mInstructionList.isValid () && mAttribute_mEndOfPartLocation.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_partList_2D_element::drop (void) {
   mAttribute_mCondition.drop () ;
@@ -8468,7 +8468,7 @@ void GALGAS_baseline_5F_partList_2D_element::drop (void) {
   mAttribute_mEndOfPartLocation.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_partList_2D_element::description (C_String & ioString,
                                                           const int32_t inIndentation) const {
@@ -8485,19 +8485,19 @@ void GALGAS_baseline_5F_partList_2D_element::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_partList_2D_element::getter_mCondition (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mCondition ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_partList_2D_element::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstructionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_location GALGAS_baseline_5F_partList_2D_element::getter_mEndOfPartLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEndOfPartLocation ;
@@ -8505,23 +8505,23 @@ GALGAS_location GALGAS_baseline_5F_partList_2D_element::getter_mEndOfPartLocatio
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                           @baseline_partList-element type                                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_baseline_5F_partList_2D_element ("baseline_partList-element",
                                                         NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_baseline_5F_partList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_baseline_5F_partList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_baseline_5F_partList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -8531,7 +8531,7 @@ AC_GALGAS_root * GALGAS_baseline_5F_partList_2D_element::clonedObject (void) con
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_partList_2D_element GALGAS_baseline_5F_partList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                               C_Compiler * inCompiler
@@ -8548,24 +8548,24 @@ GALGAS_baseline_5F_partList_2D_element GALGAS_baseline_5F_partList_2D_element::e
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element (void) :
 mAttribute_mInstruction () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::~ GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element (const GALGAS_baseline_5F_intermediate_5F_instruction & inOperand0) :
 mAttribute_mInstruction (inOperand0) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::constructor_new (const GALGAS_baseline_5F_intermediate_5F_instruction & inOperand0 
                                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
@@ -8576,7 +8576,7 @@ GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element GALGAS_baseline_5F
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::objectCompare (const GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -8586,19 +8586,19 @@ typeComparisonResult GALGAS_baseline_5F_intermediate_5F_instructionList_2D_eleme
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::isValid (void) const {
   return mAttribute_mInstruction.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::drop (void) {
   mAttribute_mInstruction.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::description (C_String & ioString,
                                                                                  const int32_t inIndentation) const {
@@ -8611,7 +8611,7 @@ void GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::description 
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_instruction GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
@@ -8619,23 +8619,23 @@ GALGAS_baseline_5F_intermediate_5F_instruction GALGAS_baseline_5F_intermediate_5
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                 @baseline_intermediate_instructionList-element type                                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element ("baseline_intermediate_instructionList-element",
                                                                                NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -8645,7 +8645,7 @@ AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                                                                             C_Compiler * inCompiler
@@ -8662,24 +8662,24 @@ GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element GALGAS_baseline_5F
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::GALGAS_baseline_5F_assembly_5F_instructionList_2D_element (void) :
 mAttribute_mInstruction () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::~ GALGAS_baseline_5F_assembly_5F_instructionList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::GALGAS_baseline_5F_assembly_5F_instructionList_2D_element (const GALGAS_baseline_5F_assembly_5F_instruction & inOperand0) :
 mAttribute_mInstruction (inOperand0) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_assembly_5F_instructionList_2D_element GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::constructor_new (const GALGAS_baseline_5F_assembly_5F_instruction & inOperand0 
                                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
@@ -8690,7 +8690,7 @@ GALGAS_baseline_5F_assembly_5F_instructionList_2D_element GALGAS_baseline_5F_ass
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::objectCompare (const GALGAS_baseline_5F_assembly_5F_instructionList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -8700,19 +8700,19 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::isValid (void) const {
   return mAttribute_mInstruction.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::drop (void) {
   mAttribute_mInstruction.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::description (C_String & ioString,
                                                                              const int32_t inIndentation) const {
@@ -8725,7 +8725,7 @@ void GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::description (C_S
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_assembly_5F_instruction GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
@@ -8733,23 +8733,23 @@ GALGAS_baseline_5F_assembly_5F_instruction GALGAS_baseline_5F_assembly_5F_instru
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                   @baseline_assembly_instructionList-element type                                   *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList_2D_element ("baseline_assembly_instructionList-element",
                                                                            NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -8759,7 +8759,7 @@ AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::clon
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_assembly_5F_instructionList_2D_element GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                                                                     C_Compiler * inCompiler
@@ -8776,24 +8776,24 @@ GALGAS_baseline_5F_assembly_5F_instructionList_2D_element GALGAS_baseline_5F_ass
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_instructionList_2D_element::GALGAS_midrange_5F_instructionList_2D_element (void) :
 mAttribute_mInstruction () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_instructionList_2D_element::~ GALGAS_midrange_5F_instructionList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_instructionList_2D_element::GALGAS_midrange_5F_instructionList_2D_element (const GALGAS_midrange_5F_instruction & inOperand0) :
 mAttribute_mInstruction (inOperand0) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_instructionList_2D_element GALGAS_midrange_5F_instructionList_2D_element::constructor_new (const GALGAS_midrange_5F_instruction & inOperand0 
                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
@@ -8804,7 +8804,7 @@ GALGAS_midrange_5F_instructionList_2D_element GALGAS_midrange_5F_instructionList
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_midrange_5F_instructionList_2D_element::objectCompare (const GALGAS_midrange_5F_instructionList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -8814,19 +8814,19 @@ typeComparisonResult GALGAS_midrange_5F_instructionList_2D_element::objectCompar
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_midrange_5F_instructionList_2D_element::isValid (void) const {
   return mAttribute_mInstruction.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_midrange_5F_instructionList_2D_element::drop (void) {
   mAttribute_mInstruction.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_midrange_5F_instructionList_2D_element::description (C_String & ioString,
                                                                  const int32_t inIndentation) const {
@@ -8839,7 +8839,7 @@ void GALGAS_midrange_5F_instructionList_2D_element::description (C_String & ioSt
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_instruction GALGAS_midrange_5F_instructionList_2D_element::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
@@ -8847,23 +8847,23 @@ GALGAS_midrange_5F_instruction GALGAS_midrange_5F_instructionList_2D_element::ge
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                       @midrange_instructionList-element type                                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_instructionList_2D_element ("midrange_instructionList-element",
                                                                NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_midrange_5F_instructionList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_midrange_5F_instructionList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_midrange_5F_instructionList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -8873,7 +8873,7 @@ AC_GALGAS_root * GALGAS_midrange_5F_instructionList_2D_element::clonedObject (vo
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_instructionList_2D_element GALGAS_midrange_5F_instructionList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                                             C_Compiler * inCompiler
@@ -8890,7 +8890,7 @@ GALGAS_midrange_5F_instructionList_2D_element GALGAS_midrange_5F_instructionList
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_partList_2D_element::GALGAS_midrange_5F_partList_2D_element (void) :
 mAttribute_mCondition (),
@@ -8898,12 +8898,12 @@ mAttribute_mInstructionList (),
 mAttribute_mEndOfPartLocation () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_partList_2D_element::~ GALGAS_midrange_5F_partList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_partList_2D_element::GALGAS_midrange_5F_partList_2D_element (const GALGAS_midrange_5F_conditionExpression & inOperand0,
                                                                                 const GALGAS_midrange_5F_instructionList & inOperand1,
@@ -8913,7 +8913,7 @@ mAttribute_mInstructionList (inOperand1),
 mAttribute_mEndOfPartLocation (inOperand2) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_partList_2D_element GALGAS_midrange_5F_partList_2D_element::constructor_new (const GALGAS_midrange_5F_conditionExpression & inOperand0,
                                                                                                 const GALGAS_midrange_5F_instructionList & inOperand1,
@@ -8926,7 +8926,7 @@ GALGAS_midrange_5F_partList_2D_element GALGAS_midrange_5F_partList_2D_element::c
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_midrange_5F_partList_2D_element::objectCompare (const GALGAS_midrange_5F_partList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -8942,13 +8942,13 @@ typeComparisonResult GALGAS_midrange_5F_partList_2D_element::objectCompare (cons
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_midrange_5F_partList_2D_element::isValid (void) const {
   return mAttribute_mCondition.isValid () && mAttribute_mInstructionList.isValid () && mAttribute_mEndOfPartLocation.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_midrange_5F_partList_2D_element::drop (void) {
   mAttribute_mCondition.drop () ;
@@ -8956,7 +8956,7 @@ void GALGAS_midrange_5F_partList_2D_element::drop (void) {
   mAttribute_mEndOfPartLocation.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_midrange_5F_partList_2D_element::description (C_String & ioString,
                                                           const int32_t inIndentation) const {
@@ -8973,19 +8973,19 @@ void GALGAS_midrange_5F_partList_2D_element::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_partList_2D_element::getter_mCondition (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mCondition ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_partList_2D_element::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstructionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_location GALGAS_midrange_5F_partList_2D_element::getter_mEndOfPartLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEndOfPartLocation ;
@@ -8993,23 +8993,23 @@ GALGAS_location GALGAS_midrange_5F_partList_2D_element::getter_mEndOfPartLocatio
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                           @midrange_partList-element type                                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_partList_2D_element ("midrange_partList-element",
                                                         NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_midrange_5F_partList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_midrange_5F_partList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_midrange_5F_partList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -9019,7 +9019,7 @@ AC_GALGAS_root * GALGAS_midrange_5F_partList_2D_element::clonedObject (void) con
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_partList_2D_element GALGAS_midrange_5F_partList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                               C_Compiler * inCompiler
@@ -9036,24 +9036,24 @@ GALGAS_midrange_5F_partList_2D_element GALGAS_midrange_5F_partList_2D_element::e
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element (void) :
 mAttribute_mInstruction () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::~ GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element (const GALGAS_midrange_5F_intermediate_5F_instruction & inOperand0) :
 mAttribute_mInstruction (inOperand0) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::constructor_new (const GALGAS_midrange_5F_intermediate_5F_instruction & inOperand0 
                                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
@@ -9064,7 +9064,7 @@ GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element GALGAS_midrange_5F
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::objectCompare (const GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -9074,19 +9074,19 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instructionList_2D_eleme
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::isValid (void) const {
   return mAttribute_mInstruction.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::drop (void) {
   mAttribute_mInstruction.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::description (C_String & ioString,
                                                                                  const int32_t inIndentation) const {
@@ -9099,7 +9099,7 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::description 
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_instruction GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
@@ -9107,23 +9107,23 @@ GALGAS_midrange_5F_intermediate_5F_instruction GALGAS_midrange_5F_intermediate_5
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                 @midrange_intermediate_instructionList-element type                                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element ("midrange_intermediate_instructionList-element",
                                                                                NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -9133,7 +9133,7 @@ AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                                                                             C_Compiler * inCompiler
@@ -9150,24 +9150,24 @@ GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element GALGAS_midrange_5F
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_InstructionList_2D_element::GALGAS_pic_31__38_InstructionList_2D_element (void) :
 mAttribute_mInstruction () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_InstructionList_2D_element::~ GALGAS_pic_31__38_InstructionList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_InstructionList_2D_element::GALGAS_pic_31__38_InstructionList_2D_element (const GALGAS_pic_31__38_PiccoloInstruction & inOperand0) :
 mAttribute_mInstruction (inOperand0) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_InstructionList_2D_element GALGAS_pic_31__38_InstructionList_2D_element::constructor_new (const GALGAS_pic_31__38_PiccoloInstruction & inOperand0 
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
@@ -9178,7 +9178,7 @@ GALGAS_pic_31__38_InstructionList_2D_element GALGAS_pic_31__38_InstructionList_2
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_pic_31__38_InstructionList_2D_element::objectCompare (const GALGAS_pic_31__38_InstructionList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -9188,19 +9188,19 @@ typeComparisonResult GALGAS_pic_31__38_InstructionList_2D_element::objectCompare
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_pic_31__38_InstructionList_2D_element::isValid (void) const {
   return mAttribute_mInstruction.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_pic_31__38_InstructionList_2D_element::drop (void) {
   mAttribute_mInstruction.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_pic_31__38_InstructionList_2D_element::description (C_String & ioString,
                                                                 const int32_t inIndentation) const {
@@ -9213,7 +9213,7 @@ void GALGAS_pic_31__38_InstructionList_2D_element::description (C_String & ioStr
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_PiccoloInstruction GALGAS_pic_31__38_InstructionList_2D_element::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
@@ -9221,23 +9221,23 @@ GALGAS_pic_31__38_PiccoloInstruction GALGAS_pic_31__38_InstructionList_2D_elemen
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                         @pic18InstructionList-element type                                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_pic_31__38_InstructionList_2D_element ("pic18InstructionList-element",
                                                               NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_pic_31__38_InstructionList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_pic_31__38_InstructionList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_pic_31__38_InstructionList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -9247,7 +9247,7 @@ AC_GALGAS_root * GALGAS_pic_31__38_InstructionList_2D_element::clonedObject (voi
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_InstructionList_2D_element GALGAS_pic_31__38_InstructionList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                                           C_Compiler * inCompiler
@@ -9264,24 +9264,24 @@ GALGAS_pic_31__38_InstructionList_2D_element GALGAS_pic_31__38_InstructionList_2
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_CaseExpressionList_2D_element::GALGAS_pic_31__38_CaseExpressionList_2D_element (void) :
 mAttribute_mCaseItem () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_CaseExpressionList_2D_element::~ GALGAS_pic_31__38_CaseExpressionList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_CaseExpressionList_2D_element::GALGAS_pic_31__38_CaseExpressionList_2D_element (const GALGAS_pic_31__38_AbstractCaseItem & inOperand0) :
 mAttribute_mCaseItem (inOperand0) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_CaseExpressionList_2D_element GALGAS_pic_31__38_CaseExpressionList_2D_element::constructor_new (const GALGAS_pic_31__38_AbstractCaseItem & inOperand0 
                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
@@ -9292,7 +9292,7 @@ GALGAS_pic_31__38_CaseExpressionList_2D_element GALGAS_pic_31__38_CaseExpression
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_pic_31__38_CaseExpressionList_2D_element::objectCompare (const GALGAS_pic_31__38_CaseExpressionList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -9302,19 +9302,19 @@ typeComparisonResult GALGAS_pic_31__38_CaseExpressionList_2D_element::objectComp
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_pic_31__38_CaseExpressionList_2D_element::isValid (void) const {
   return mAttribute_mCaseItem.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_pic_31__38_CaseExpressionList_2D_element::drop (void) {
   mAttribute_mCaseItem.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_pic_31__38_CaseExpressionList_2D_element::description (C_String & ioString,
                                                                    const int32_t inIndentation) const {
@@ -9327,7 +9327,7 @@ void GALGAS_pic_31__38_CaseExpressionList_2D_element::description (C_String & io
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_AbstractCaseItem GALGAS_pic_31__38_CaseExpressionList_2D_element::getter_mCaseItem (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mCaseItem ;
@@ -9335,23 +9335,23 @@ GALGAS_pic_31__38_AbstractCaseItem GALGAS_pic_31__38_CaseExpressionList_2D_eleme
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                        @pic18CaseExpressionList-element type                                        *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList_2D_element ("pic18CaseExpressionList-element",
                                                                  NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_pic_31__38_CaseExpressionList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_pic_31__38_CaseExpressionList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -9361,7 +9361,7 @@ AC_GALGAS_root * GALGAS_pic_31__38_CaseExpressionList_2D_element::clonedObject (
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_CaseExpressionList_2D_element GALGAS_pic_31__38_CaseExpressionList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                                                 C_Compiler * inCompiler
@@ -9378,7 +9378,7 @@ GALGAS_pic_31__38_CaseExpressionList_2D_element GALGAS_pic_31__38_CaseExpression
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (void) :
 mAttribute_mStartOfCase (),
@@ -9386,12 +9386,12 @@ mAttribute_mCaseExpressionList (),
 mAttribute_mInstructionList () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::~ GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (const GALGAS_location & inOperand0,
                                                                                                                 const GALGAS_pic_31__38_CaseExpressionList & inOperand1,
@@ -9401,7 +9401,7 @@ mAttribute_mCaseExpressionList (inOperand1),
 mAttribute_mInstructionList (inOperand2) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (GALGAS_location::constructor_nowhere (HERE),
@@ -9409,7 +9409,7 @@ GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element GALGAS_pic_31__38_SwitchI
                                                                  GALGAS_pic_31__38_InstructionList::constructor_emptyList (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::constructor_new (const GALGAS_location & inOperand0,
                                                                                                                                 const GALGAS_pic_31__38_CaseExpressionList & inOperand1,
@@ -9422,7 +9422,7 @@ GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element GALGAS_pic_31__38_SwitchI
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::objectCompare (const GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -9438,13 +9438,13 @@ typeComparisonResult GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::obj
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::isValid (void) const {
   return mAttribute_mStartOfCase.isValid () && mAttribute_mCaseExpressionList.isValid () && mAttribute_mInstructionList.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::drop (void) {
   mAttribute_mStartOfCase.drop () ;
@@ -9452,7 +9452,7 @@ void GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::drop (void) {
   mAttribute_mInstructionList.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::description (C_String & ioString,
                                                                           const int32_t inIndentation) const {
@@ -9469,19 +9469,19 @@ void GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::description (C_Stri
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_location GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::getter_mStartOfCase (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mStartOfCase ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::getter_mCaseExpressionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mCaseExpressionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstructionList ;
@@ -9489,23 +9489,23 @@ GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_SwitchInstructionCaseList_2D
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                    @pic18SwitchInstructionCaseList-element type                                     *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element ("pic18SwitchInstructionCaseList-element",
                                                                         NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -9515,7 +9515,7 @@ AC_GALGAS_root * GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::clonedO
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                                                               C_Compiler * inCompiler
@@ -9532,7 +9532,7 @@ GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element GALGAS_pic_31__38_SwitchI
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_DoWhilePartList_2D_element::GALGAS_pic_31__38_DoWhilePartList_2D_element (void) :
 mAttribute_mCondition (),
@@ -9540,12 +9540,12 @@ mAttribute_mInstructionList (),
 mAttribute_mEndOfPartLocation () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_DoWhilePartList_2D_element::~ GALGAS_pic_31__38_DoWhilePartList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_DoWhilePartList_2D_element::GALGAS_pic_31__38_DoWhilePartList_2D_element (const GALGAS_pic_31__38_ConditionExpression & inOperand0,
                                                                                             const GALGAS_pic_31__38_InstructionList & inOperand1,
@@ -9555,7 +9555,7 @@ mAttribute_mInstructionList (inOperand1),
 mAttribute_mEndOfPartLocation (inOperand2) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_DoWhilePartList_2D_element GALGAS_pic_31__38_DoWhilePartList_2D_element::constructor_new (const GALGAS_pic_31__38_ConditionExpression & inOperand0,
                                                                                                             const GALGAS_pic_31__38_InstructionList & inOperand1,
@@ -9568,7 +9568,7 @@ GALGAS_pic_31__38_DoWhilePartList_2D_element GALGAS_pic_31__38_DoWhilePartList_2
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_pic_31__38_DoWhilePartList_2D_element::objectCompare (const GALGAS_pic_31__38_DoWhilePartList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -9584,13 +9584,13 @@ typeComparisonResult GALGAS_pic_31__38_DoWhilePartList_2D_element::objectCompare
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_pic_31__38_DoWhilePartList_2D_element::isValid (void) const {
   return mAttribute_mCondition.isValid () && mAttribute_mInstructionList.isValid () && mAttribute_mEndOfPartLocation.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_pic_31__38_DoWhilePartList_2D_element::drop (void) {
   mAttribute_mCondition.drop () ;
@@ -9598,7 +9598,7 @@ void GALGAS_pic_31__38_DoWhilePartList_2D_element::drop (void) {
   mAttribute_mEndOfPartLocation.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_pic_31__38_DoWhilePartList_2D_element::description (C_String & ioString,
                                                                 const int32_t inIndentation) const {
@@ -9615,19 +9615,19 @@ void GALGAS_pic_31__38_DoWhilePartList_2D_element::description (C_String & ioStr
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_ConditionExpression GALGAS_pic_31__38_DoWhilePartList_2D_element::getter_mCondition (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mCondition ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_DoWhilePartList_2D_element::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstructionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_location GALGAS_pic_31__38_DoWhilePartList_2D_element::getter_mEndOfPartLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEndOfPartLocation ;
@@ -9635,23 +9635,23 @@ GALGAS_location GALGAS_pic_31__38_DoWhilePartList_2D_element::getter_mEndOfPartL
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                         @pic18DoWhilePartList-element type                                          *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_pic_31__38_DoWhilePartList_2D_element ("pic18DoWhilePartList-element",
                                                               NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_pic_31__38_DoWhilePartList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_pic_31__38_DoWhilePartList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_pic_31__38_DoWhilePartList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -9661,7 +9661,7 @@ AC_GALGAS_root * GALGAS_pic_31__38_DoWhilePartList_2D_element::clonedObject (voi
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_DoWhilePartList_2D_element GALGAS_pic_31__38_DoWhilePartList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                                           C_Compiler * inCompiler
@@ -9678,19 +9678,19 @@ GALGAS_pic_31__38_DoWhilePartList_2D_element GALGAS_pic_31__38_DoWhilePartList_2
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_checkpicList_2D_element::GALGAS_checkpicList_2D_element (void) :
 mAttribute_mErrorLocation (),
 mAttribute_mValueList () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_checkpicList_2D_element::~ GALGAS_checkpicList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_checkpicList_2D_element::GALGAS_checkpicList_2D_element (const GALGAS_location & inOperand0,
                                                                 const GALGAS_lstringlist & inOperand1) :
@@ -9698,14 +9698,14 @@ mAttribute_mErrorLocation (inOperand0),
 mAttribute_mValueList (inOperand1) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_checkpicList_2D_element GALGAS_checkpicList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_checkpicList_2D_element (GALGAS_location::constructor_nowhere (HERE),
                                          GALGAS_lstringlist::constructor_emptyList (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_checkpicList_2D_element GALGAS_checkpicList_2D_element::constructor_new (const GALGAS_location & inOperand0,
                                                                                 const GALGAS_lstringlist & inOperand1 
@@ -9717,7 +9717,7 @@ GALGAS_checkpicList_2D_element GALGAS_checkpicList_2D_element::constructor_new (
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_checkpicList_2D_element::objectCompare (const GALGAS_checkpicList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -9730,20 +9730,20 @@ typeComparisonResult GALGAS_checkpicList_2D_element::objectCompare (const GALGAS
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_checkpicList_2D_element::isValid (void) const {
   return mAttribute_mErrorLocation.isValid () && mAttribute_mValueList.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_checkpicList_2D_element::drop (void) {
   mAttribute_mErrorLocation.drop () ;
   mAttribute_mValueList.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_checkpicList_2D_element::description (C_String & ioString,
                                                   const int32_t inIndentation) const {
@@ -9758,13 +9758,13 @@ void GALGAS_checkpicList_2D_element::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_location GALGAS_checkpicList_2D_element::getter_mErrorLocation (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mErrorLocation ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstringlist GALGAS_checkpicList_2D_element::getter_mValueList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mValueList ;
@@ -9772,23 +9772,23 @@ GALGAS_lstringlist GALGAS_checkpicList_2D_element::getter_mValueList (UNUSED_LOC
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                             @checkpicList-element type                                              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_checkpicList_2D_element ("checkpicList-element",
                                                 NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_checkpicList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_checkpicList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_checkpicList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -9798,7 +9798,7 @@ AC_GALGAS_root * GALGAS_checkpicList_2D_element::clonedObject (void) const {
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_checkpicList_2D_element GALGAS_checkpicList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                               C_Compiler * inCompiler
@@ -9815,7 +9815,7 @@ GALGAS_checkpicList_2D_element GALGAS_checkpicList_2D_element::extractObject (co
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_SequentialInstructionList_2D_element::GALGAS_ipic_31__38_SequentialInstructionList_2D_element (void) :
 mAttribute_mInstruction (),
@@ -9823,12 +9823,12 @@ mAttribute_mMin (),
 mAttribute_mMax () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_SequentialInstructionList_2D_element::~ GALGAS_ipic_31__38_SequentialInstructionList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_SequentialInstructionList_2D_element::GALGAS_ipic_31__38_SequentialInstructionList_2D_element (const GALGAS_ipic_31__38_SequentialInstruction & inOperand0,
                                                                                                                   const GALGAS_uint & inOperand1,
@@ -9838,7 +9838,7 @@ mAttribute_mMin (inOperand1),
 mAttribute_mMax (inOperand2) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_SequentialInstructionList_2D_element GALGAS_ipic_31__38_SequentialInstructionList_2D_element::constructor_new (const GALGAS_ipic_31__38_SequentialInstruction & inOperand0,
                                                                                                                                   const GALGAS_uint & inOperand1,
@@ -9851,7 +9851,7 @@ GALGAS_ipic_31__38_SequentialInstructionList_2D_element GALGAS_ipic_31__38_Seque
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_ipic_31__38_SequentialInstructionList_2D_element::objectCompare (const GALGAS_ipic_31__38_SequentialInstructionList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -9867,13 +9867,13 @@ typeComparisonResult GALGAS_ipic_31__38_SequentialInstructionList_2D_element::ob
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_ipic_31__38_SequentialInstructionList_2D_element::isValid (void) const {
   return mAttribute_mInstruction.isValid () && mAttribute_mMin.isValid () && mAttribute_mMax.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38_SequentialInstructionList_2D_element::drop (void) {
   mAttribute_mInstruction.drop () ;
@@ -9881,7 +9881,7 @@ void GALGAS_ipic_31__38_SequentialInstructionList_2D_element::drop (void) {
   mAttribute_mMax.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38_SequentialInstructionList_2D_element::description (C_String & ioString,
                                                                            const int32_t inIndentation) const {
@@ -9898,19 +9898,19 @@ void GALGAS_ipic_31__38_SequentialInstructionList_2D_element::description (C_Str
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_SequentialInstruction GALGAS_ipic_31__38_SequentialInstructionList_2D_element::getter_mInstruction (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstruction ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint GALGAS_ipic_31__38_SequentialInstructionList_2D_element::getter_mMin (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mMin ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint GALGAS_ipic_31__38_SequentialInstructionList_2D_element::getter_mMax (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mMax ;
@@ -9918,23 +9918,23 @@ GALGAS_uint GALGAS_ipic_31__38_SequentialInstructionList_2D_element::getter_mMax
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                    @ipic18SequentialInstructionList-element type                                    *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList_2D_element ("ipic18SequentialInstructionList-element",
                                                                          NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_ipic_31__38_SequentialInstructionList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_ipic_31__38_SequentialInstructionList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -9944,7 +9944,7 @@ AC_GALGAS_root * GALGAS_ipic_31__38_SequentialInstructionList_2D_element::cloned
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_SequentialInstructionList_2D_element GALGAS_ipic_31__38_SequentialInstructionList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                                                                 C_Compiler * inCompiler
@@ -9961,19 +9961,19 @@ GALGAS_ipic_31__38_SequentialInstructionList_2D_element GALGAS_ipic_31__38_Seque
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_branchOverflowMap_2D_element::GALGAS_branchOverflowMap_2D_element (void) :
 mAttribute_key (),
 mAttribute_mList () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_branchOverflowMap_2D_element::~ GALGAS_branchOverflowMap_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_branchOverflowMap_2D_element::GALGAS_branchOverflowMap_2D_element (const GALGAS_string & inOperand0,
                                                                           const GALGAS_stringlist & inOperand1) :
@@ -9981,14 +9981,14 @@ mAttribute_key (inOperand0),
 mAttribute_mList (inOperand1) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_branchOverflowMap_2D_element GALGAS_branchOverflowMap_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_branchOverflowMap_2D_element (GALGAS_string::constructor_default (HERE),
                                               GALGAS_stringlist::constructor_emptyList (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_branchOverflowMap_2D_element GALGAS_branchOverflowMap_2D_element::constructor_new (const GALGAS_string & inOperand0,
                                                                                           const GALGAS_stringlist & inOperand1 
@@ -10000,7 +10000,7 @@ GALGAS_branchOverflowMap_2D_element GALGAS_branchOverflowMap_2D_element::constru
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_branchOverflowMap_2D_element::objectCompare (const GALGAS_branchOverflowMap_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -10013,20 +10013,20 @@ typeComparisonResult GALGAS_branchOverflowMap_2D_element::objectCompare (const G
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_branchOverflowMap_2D_element::isValid (void) const {
   return mAttribute_key.isValid () && mAttribute_mList.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_branchOverflowMap_2D_element::drop (void) {
   mAttribute_key.drop () ;
   mAttribute_mList.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_branchOverflowMap_2D_element::description (C_String & ioString,
                                                        const int32_t inIndentation) const {
@@ -10041,13 +10041,13 @@ void GALGAS_branchOverflowMap_2D_element::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string GALGAS_branchOverflowMap_2D_element::getter_key (UNUSED_LOCATION_ARGS) const {
   return mAttribute_key ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_stringlist GALGAS_branchOverflowMap_2D_element::getter_mList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mList ;
@@ -10055,23 +10055,23 @@ GALGAS_stringlist GALGAS_branchOverflowMap_2D_element::getter_mList (UNUSED_LOCA
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                           @branchOverflowMap-element type                                           *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_branchOverflowMap_2D_element ("branchOverflowMap-element",
                                                      NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_branchOverflowMap_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_branchOverflowMap_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_branchOverflowMap_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -10081,7 +10081,7 @@ AC_GALGAS_root * GALGAS_branchOverflowMap_2D_element::clonedObject (void) const 
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_branchOverflowMap_2D_element GALGAS_branchOverflowMap_2D_element::extractObject (const GALGAS_object & inObject,
                                                                                         C_Compiler * inCompiler
@@ -10098,19 +10098,19 @@ GALGAS_branchOverflowMap_2D_element GALGAS_branchOverflowMap_2D_element::extract
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_codeList_2D_element::GALGAS_codeList_2D_element (void) :
 mAttribute_mAssemblyCode (),
 mAttribute_mBinaryCode () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_codeList_2D_element::~ GALGAS_codeList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_codeList_2D_element::GALGAS_codeList_2D_element (const GALGAS_string & inOperand0,
                                                         const GALGAS_uintlist & inOperand1) :
@@ -10118,14 +10118,14 @@ mAttribute_mAssemblyCode (inOperand0),
 mAttribute_mBinaryCode (inOperand1) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_codeList_2D_element GALGAS_codeList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_codeList_2D_element (GALGAS_string::constructor_default (HERE),
                                      GALGAS_uintlist::constructor_emptyList (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_codeList_2D_element GALGAS_codeList_2D_element::constructor_new (const GALGAS_string & inOperand0,
                                                                         const GALGAS_uintlist & inOperand1 
@@ -10137,7 +10137,7 @@ GALGAS_codeList_2D_element GALGAS_codeList_2D_element::constructor_new (const GA
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_codeList_2D_element::objectCompare (const GALGAS_codeList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -10150,20 +10150,20 @@ typeComparisonResult GALGAS_codeList_2D_element::objectCompare (const GALGAS_cod
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_codeList_2D_element::isValid (void) const {
   return mAttribute_mAssemblyCode.isValid () && mAttribute_mBinaryCode.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_codeList_2D_element::drop (void) {
   mAttribute_mAssemblyCode.drop () ;
   mAttribute_mBinaryCode.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_codeList_2D_element::description (C_String & ioString,
                                               const int32_t inIndentation) const {
@@ -10178,13 +10178,13 @@ void GALGAS_codeList_2D_element::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_string GALGAS_codeList_2D_element::getter_mAssemblyCode (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mAssemblyCode ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uintlist GALGAS_codeList_2D_element::getter_mBinaryCode (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBinaryCode ;
@@ -10192,23 +10192,23 @@ GALGAS_uintlist GALGAS_codeList_2D_element::getter_mBinaryCode (UNUSED_LOCATION_
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                               @codeList-element type                                                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_codeList_2D_element ("codeList-element",
                                             NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_codeList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_codeList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_codeList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -10218,7 +10218,7 @@ AC_GALGAS_root * GALGAS_codeList_2D_element::clonedObject (void) const {
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_codeList_2D_element GALGAS_codeList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                       C_Compiler * inCompiler
@@ -10235,30 +10235,30 @@ GALGAS_codeList_2D_element GALGAS_codeList_2D_element::extractObject (const GALG
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_clusterList_2D_element::GALGAS_clusterList_2D_element (void) :
 mAttribute_mBlockList () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_clusterList_2D_element::~ GALGAS_clusterList_2D_element (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_clusterList_2D_element::GALGAS_clusterList_2D_element (const GALGAS_ipic_31__38_BlockList & inOperand0) :
 mAttribute_mBlockList (inOperand0) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_clusterList_2D_element GALGAS_clusterList_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_clusterList_2D_element (GALGAS_ipic_31__38_BlockList::constructor_emptyList (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_clusterList_2D_element GALGAS_clusterList_2D_element::constructor_new (const GALGAS_ipic_31__38_BlockList & inOperand0 
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
@@ -10269,7 +10269,7 @@ GALGAS_clusterList_2D_element GALGAS_clusterList_2D_element::constructor_new (co
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_clusterList_2D_element::objectCompare (const GALGAS_clusterList_2D_element & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -10279,19 +10279,19 @@ typeComparisonResult GALGAS_clusterList_2D_element::objectCompare (const GALGAS_
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_clusterList_2D_element::isValid (void) const {
   return mAttribute_mBlockList.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_clusterList_2D_element::drop (void) {
   mAttribute_mBlockList.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_clusterList_2D_element::description (C_String & ioString,
                                                  const int32_t inIndentation) const {
@@ -10304,7 +10304,7 @@ void GALGAS_clusterList_2D_element::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_BlockList GALGAS_clusterList_2D_element::getter_mBlockList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mBlockList ;
@@ -10312,23 +10312,23 @@ GALGAS_ipic_31__38_BlockList GALGAS_clusterList_2D_element::getter_mBlockList (U
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                              @clusterList-element type                                              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_clusterList_2D_element ("clusterList-element",
                                                NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_clusterList_2D_element::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_clusterList_2D_element ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_clusterList_2D_element::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -10338,7 +10338,7 @@ AC_GALGAS_root * GALGAS_clusterList_2D_element::clonedObject (void) const {
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_clusterList_2D_element GALGAS_clusterList_2D_element::extractObject (const GALGAS_object & inObject,
                                                                             C_Compiler * inCompiler
@@ -10355,7 +10355,7 @@ GALGAS_clusterList_2D_element GALGAS_clusterList_2D_element::extractObject (cons
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_model::GALGAS_baseline_5F_model (void) :
 mAttribute_mProgramName (),
@@ -10369,12 +10369,12 @@ mAttribute_mUnusedRoutineList (),
 mAttribute_mEndOfProgram () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_model::~ GALGAS_baseline_5F_model (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_model::GALGAS_baseline_5F_model (const GALGAS_lstring & inOperand0,
                                                     const GALGAS_lstring & inOperand1,
@@ -10396,7 +10396,7 @@ mAttribute_mUnusedRoutineList (inOperand7),
 mAttribute_mEndOfProgram (inOperand8) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_model GALGAS_baseline_5F_model::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_baseline_5F_model (GALGAS_lstring::constructor_default (HERE),
@@ -10410,7 +10410,7 @@ GALGAS_baseline_5F_model GALGAS_baseline_5F_model::constructor_default (UNUSED_L
                                    GALGAS_location::constructor_nowhere (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_model GALGAS_baseline_5F_model::constructor_new (const GALGAS_lstring & inOperand0,
                                                                     const GALGAS_lstring & inOperand1,
@@ -10429,7 +10429,7 @@ GALGAS_baseline_5F_model GALGAS_baseline_5F_model::constructor_new (const GALGAS
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_baseline_5F_model::objectCompare (const GALGAS_baseline_5F_model & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -10463,13 +10463,13 @@ typeComparisonResult GALGAS_baseline_5F_model::objectCompare (const GALGAS_basel
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_baseline_5F_model::isValid (void) const {
   return mAttribute_mProgramName.isValid () && mAttribute_mDeviceName.isValid () && mAttribute_mConfigDefinitionList.isValid () && mAttribute_mRamDefinitionList.isValid () && mAttribute_mUnusedRegisterList.isValid () && mAttribute_mConstantDefinitionList.isValid () && mAttribute_mRoutineDefinitionList.isValid () && mAttribute_mUnusedRoutineList.isValid () && mAttribute_mEndOfProgram.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_model::drop (void) {
   mAttribute_mProgramName.drop () ;
@@ -10483,7 +10483,7 @@ void GALGAS_baseline_5F_model::drop (void) {
   mAttribute_mEndOfProgram.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_baseline_5F_model::description (C_String & ioString,
                                             const int32_t inIndentation) const {
@@ -10512,55 +10512,55 @@ void GALGAS_baseline_5F_model::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring GALGAS_baseline_5F_model::getter_mProgramName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mProgramName ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring GALGAS_baseline_5F_model::getter_mDeviceName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mDeviceName ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_configDefinitionList GALGAS_baseline_5F_model::getter_mConfigDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mConfigDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ramDefinitionList GALGAS_baseline_5F_model::getter_mRamDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRamDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstringlist GALGAS_baseline_5F_model::getter_mUnusedRegisterList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mUnusedRegisterList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_constantDefinitionList GALGAS_baseline_5F_model::getter_mConstantDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mConstantDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_model::getter_mRoutineDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRoutineDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstringlist GALGAS_baseline_5F_model::getter_mUnusedRoutineList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mUnusedRoutineList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_location GALGAS_baseline_5F_model::getter_mEndOfProgram (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEndOfProgram ;
@@ -10568,23 +10568,23 @@ GALGAS_location GALGAS_baseline_5F_model::getter_mEndOfProgram (UNUSED_LOCATION_
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                                @baseline_model type                                                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_baseline_5F_model ("baseline_model",
                                           NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_baseline_5F_model::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_baseline_5F_model ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_baseline_5F_model::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -10594,7 +10594,7 @@ AC_GALGAS_root * GALGAS_baseline_5F_model::clonedObject (void) const {
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_baseline_5F_model GALGAS_baseline_5F_model::extractObject (const GALGAS_object & inObject,
                                                                   C_Compiler * inCompiler
@@ -10611,22 +10611,22 @@ GALGAS_baseline_5F_model GALGAS_baseline_5F_model::extractObject (const GALGAS_o
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Extension method '@baseline_intermediate_GOTO optimizeGOTO'                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_GOTO_optimizeGOTO> gExtensionMethodTable_baseline_5F_intermediate_5F_GOTO_optimizeGOTO ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeGOTO (const int32_t inClassIndex,
                                         extensionMethodSignature_baseline_5F_intermediate_5F_GOTO_optimizeGOTO inMethod) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_GOTO_optimizeGOTO.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeGOTO (const cPtr_baseline_5F_intermediate_5F_GOTO * inObject,
                                        const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
@@ -10662,7 +10662,7 @@ void callExtensionMethod_optimizeGOTO (const cPtr_baseline_5F_intermediate_5F_GO
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (const cPtr_baseline_5F_intermediate_5F_GOTO * inObject,
                                                                            const GALGAS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
@@ -10717,40 +10717,40 @@ static void extensionMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (const
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (void) {
   enterExtensionMethod_optimizeGOTO (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO.mSlotID,
                                      extensionMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (void) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_GOTO_optimizeGOTO.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (defineExtensionMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO,
                                                                           freeExtensionMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Extension method '@baseline_intermediate_JUMP optimizeJUMP'                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_JUMP_optimizeJUMP> gExtensionMethodTable_baseline_5F_intermediate_5F_JUMP_optimizeJUMP ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeJUMP (const int32_t inClassIndex,
                                         extensionMethodSignature_baseline_5F_intermediate_5F_JUMP_optimizeJUMP inMethod) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_JUMP_optimizeJUMP.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeJUMP (const cPtr_baseline_5F_intermediate_5F_JUMP * inObject,
                                        const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
@@ -10786,7 +10786,7 @@ void callExtensionMethod_optimizeJUMP (const cPtr_baseline_5F_intermediate_5F_JU
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (const cPtr_baseline_5F_intermediate_5F_JUMP * inObject,
                                                                            const GALGAS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
@@ -10838,40 +10838,40 @@ static void extensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (const
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (void) {
   enterExtensionMethod_optimizeJUMP (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JUMP.mSlotID,
                                      extensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (void) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_JUMP_optimizeJUMP.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (defineExtensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP,
                                                                           freeExtensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Extension method '@baseline_intermediate_CALL optimizeCALL'                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_CALL_optimizeCALL> gExtensionMethodTable_baseline_5F_intermediate_5F_CALL_optimizeCALL ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeCALL (const int32_t inClassIndex,
                                         extensionMethodSignature_baseline_5F_intermediate_5F_CALL_optimizeCALL inMethod) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_CALL_optimizeCALL.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeCALL (const cPtr_baseline_5F_intermediate_5F_CALL * inObject,
                                        const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
@@ -10907,7 +10907,7 @@ void callExtensionMethod_optimizeCALL (const cPtr_baseline_5F_intermediate_5F_CA
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL (const cPtr_baseline_5F_intermediate_5F_CALL * inObject,
                                                                            const GALGAS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
@@ -10939,40 +10939,40 @@ static void extensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL (const
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL (void) {
   enterExtensionMethod_optimizeCALL (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_CALL.mSlotID,
                                      extensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL (void) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_CALL_optimizeCALL.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL (defineExtensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL,
                                                                           freeExtensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                              Extension method '@baseline_intermediate_JSR optimizeJSR'                              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_JSR_optimizeJSR> gExtensionMethodTable_baseline_5F_intermediate_5F_JSR_optimizeJSR ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeJSR (const int32_t inClassIndex,
                                        extensionMethodSignature_baseline_5F_intermediate_5F_JSR_optimizeJSR inMethod) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_JSR_optimizeJSR.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeJSR (const cPtr_baseline_5F_intermediate_5F_JSR * inObject,
                                       const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
@@ -11008,7 +11008,7 @@ void callExtensionMethod_optimizeJSR (const cPtr_baseline_5F_intermediate_5F_JSR
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_intermediate_5F_JSR_optimizeJSR (const cPtr_baseline_5F_intermediate_5F_JSR * inObject,
                                                                          const GALGAS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
@@ -11040,40 +11040,40 @@ static void extensionMethod_baseline_5F_intermediate_5F_JSR_optimizeJSR (const c
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_intermediate_5F_JSR_optimizeJSR (void) {
   enterExtensionMethod_optimizeJSR (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JSR.mSlotID,
                                     extensionMethod_baseline_5F_intermediate_5F_JSR_optimizeJSR) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_intermediate_5F_JSR_optimizeJSR (void) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_JSR_optimizeJSR.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_JSR_optimizeJSR (defineExtensionMethod_baseline_5F_intermediate_5F_JSR_optimizeJSR,
                                                                         freeExtensionMethod_baseline_5F_intermediate_5F_JSR_optimizeJSR) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                Extension method '@baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE'                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE> gExtensionMethodTable_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeBEGIN_5F_ROUTINE (const int32_t inClassIndex,
                                                     extensionMethodSignature_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE inMethod) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeBEGIN_5F_ROUTINE (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * inObject,
                                                    const GALGAS_uint constin_inLineIndex,
@@ -11108,7 +11108,7 @@ void callExtensionMethod_optimizeBEGIN_5F_ROUTINE (const cPtr_baseline_5F_interm
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE (const cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * /* inObject */,
                                                                                                              const GALGAS_uint constinArgument_inLineIndex,
@@ -11133,25 +11133,25 @@ static void extensionMethod_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTI
     ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 456)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 456)).add_operation (GALGAS_string (": dead code is deleted\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 456)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 456)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE (void) {
   enterExtensionMethod_optimizeBEGIN_5F_ROUTINE (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE.mSlotID,
                                                  extensionMethod_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE (void) {
   gExtensionMethodTable_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE (defineExtensionMethod_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE,
                                                                                                             freeExtensionMethod_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_optimizeBEGIN_5F_ROUTINE) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_model::GALGAS_midrange_5F_model (void) :
 mAttribute_mProgramName (),
@@ -11168,12 +11168,12 @@ mAttribute_mNeedsComputedGoto_34_ (),
 mAttribute_mEndOfProgram () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_model::~ GALGAS_midrange_5F_model (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_model::GALGAS_midrange_5F_model (const GALGAS_lstring & inOperand0,
                                                     const GALGAS_lstring & inOperand1,
@@ -11201,7 +11201,7 @@ mAttribute_mNeedsComputedGoto_34_ (inOperand10),
 mAttribute_mEndOfProgram (inOperand11) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_model GALGAS_midrange_5F_model::constructor_default (UNUSED_LOCATION_ARGS) {
   return GALGAS_midrange_5F_model (GALGAS_lstring::constructor_default (HERE),
@@ -11218,7 +11218,7 @@ GALGAS_midrange_5F_model GALGAS_midrange_5F_model::constructor_default (UNUSED_L
                                    GALGAS_location::constructor_nowhere (HERE)) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_model GALGAS_midrange_5F_model::constructor_new (const GALGAS_lstring & inOperand0,
                                                                     const GALGAS_lstring & inOperand1,
@@ -11240,7 +11240,7 @@ GALGAS_midrange_5F_model GALGAS_midrange_5F_model::constructor_new (const GALGAS
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_midrange_5F_model::objectCompare (const GALGAS_midrange_5F_model & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -11283,13 +11283,13 @@ typeComparisonResult GALGAS_midrange_5F_model::objectCompare (const GALGAS_midra
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_midrange_5F_model::isValid (void) const {
   return mAttribute_mProgramName.isValid () && mAttribute_mDeviceName.isValid () && mAttribute_mConfigDefinitionList.isValid () && mAttribute_mRamDefinitionList.isValid () && mAttribute_mUnusedRegisterList.isValid () && mAttribute_mInterruptDefinitionList.isValid () && mAttribute_mConstantDefinitionList.isValid () && mAttribute_mRoutineDefinitionList.isValid () && mAttribute_mUnusedRoutineList.isValid () && mAttribute_mNeedsComputedGoto_32_.isValid () && mAttribute_mNeedsComputedGoto_34_.isValid () && mAttribute_mEndOfProgram.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_midrange_5F_model::drop (void) {
   mAttribute_mProgramName.drop () ;
@@ -11306,7 +11306,7 @@ void GALGAS_midrange_5F_model::drop (void) {
   mAttribute_mEndOfProgram.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_midrange_5F_model::description (C_String & ioString,
                                             const int32_t inIndentation) const {
@@ -11341,73 +11341,73 @@ void GALGAS_midrange_5F_model::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring GALGAS_midrange_5F_model::getter_mProgramName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mProgramName ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring GALGAS_midrange_5F_model::getter_mDeviceName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mDeviceName ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_configDefinitionList GALGAS_midrange_5F_model::getter_mConfigDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mConfigDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ramDefinitionList GALGAS_midrange_5F_model::getter_mRamDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRamDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstringlist GALGAS_midrange_5F_model::getter_mUnusedRegisterList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mUnusedRegisterList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_model::getter_mInterruptDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInterruptDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_constantDefinitionList GALGAS_midrange_5F_model::getter_mConstantDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mConstantDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_model::getter_mRoutineDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRoutineDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstringlist GALGAS_midrange_5F_model::getter_mUnusedRoutineList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mUnusedRoutineList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_midrange_5F_model::getter_mNeedsComputedGoto_32_ (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mNeedsComputedGoto_32_ ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_midrange_5F_model::getter_mNeedsComputedGoto_34_ (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mNeedsComputedGoto_34_ ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_location GALGAS_midrange_5F_model::getter_mEndOfProgram (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEndOfProgram ;
@@ -11415,23 +11415,23 @@ GALGAS_location GALGAS_midrange_5F_model::getter_mEndOfProgram (UNUSED_LOCATION_
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                                @midrange_model type                                                 *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_model ("midrange_model",
                                           NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_midrange_5F_model::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_midrange_5F_model ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_midrange_5F_model::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -11441,7 +11441,7 @@ AC_GALGAS_root * GALGAS_midrange_5F_model::clonedObject (void) const {
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_model GALGAS_midrange_5F_model::extractObject (const GALGAS_object & inObject,
                                                                   C_Compiler * inCompiler
@@ -11458,22 +11458,22 @@ GALGAS_midrange_5F_model GALGAS_midrange_5F_model::extractObject (const GALGAS_o
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Extension method '@midrange_intermediate_JUMP optimizeJUMP'                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_JUMP_optimizeJUMP> gExtensionMethodTable_midrange_5F_intermediate_5F_JUMP_optimizeJUMP ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeJUMP (const int32_t inClassIndex,
                                         extensionMethodSignature_midrange_5F_intermediate_5F_JUMP_optimizeJUMP inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_JUMP_optimizeJUMP.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeJUMP (const cPtr_midrange_5F_intermediate_5F_JUMP * inObject,
                                        const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
@@ -11509,7 +11509,7 @@ void callExtensionMethod_optimizeJUMP (const cPtr_midrange_5F_intermediate_5F_JU
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (const cPtr_midrange_5F_intermediate_5F_JUMP * inObject,
                                                                            const GALGAS_symbolTableForOptimizations constinArgument_inSymbolTable,
@@ -11571,40 +11571,40 @@ static void extensionMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (const
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (void) {
   enterExtensionMethod_optimizeJUMP (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_JUMP.mSlotID,
                                      extensionMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_JUMP_optimizeJUMP.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP (defineExtensionMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP,
                                                                           freeExtensionMethod_midrange_5F_intermediate_5F_JUMP_optimizeJUMP) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Extension method '@midrange_intermediate_GOTO optimizeGOTO'                             *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static TC_UniqueArray <extensionMethodSignature_midrange_5F_intermediate_5F_GOTO_optimizeGOTO> gExtensionMethodTable_midrange_5F_intermediate_5F_GOTO_optimizeGOTO ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void enterExtensionMethod_optimizeGOTO (const int32_t inClassIndex,
                                         extensionMethodSignature_midrange_5F_intermediate_5F_GOTO_optimizeGOTO inMethod) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_GOTO_optimizeGOTO.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_optimizeGOTO (const cPtr_midrange_5F_intermediate_5F_GOTO * inObject,
                                        const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
@@ -11640,7 +11640,7 @@ void callExtensionMethod_optimizeGOTO (const cPtr_midrange_5F_intermediate_5F_GO
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void extensionMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (const cPtr_midrange_5F_intermediate_5F_GOTO * inObject,
                                                                            const GALGAS_symbolTableForOptimizations constinArgument_inSymbolTable,
@@ -11712,25 +11712,25 @@ static void extensionMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (const
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void defineExtensionMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (void) {
   enterExtensionMethod_optimizeGOTO (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_GOTO.mSlotID,
                                      extensionMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 static void freeExtensionMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (void) {
   gExtensionMethodTable_midrange_5F_intermediate_5F_GOTO_optimizeGOTO.free () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO (defineExtensionMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO,
                                                                           freeExtensionMethod_midrange_5F_intermediate_5F_GOTO_optimizeGOTO) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_AST::GALGAS_pic_31__38_AST (void) :
 mAttribute_mProgramName (),
@@ -11752,12 +11752,12 @@ mAttribute_mNeedsComputedGoto_34_ (),
 mAttribute_mEndOfProgram () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_AST::~ GALGAS_pic_31__38_AST (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_AST::GALGAS_pic_31__38_AST (const GALGAS_lstring & inOperand0,
                                               const GALGAS_programKind & inOperand1,
@@ -11795,7 +11795,7 @@ mAttribute_mNeedsComputedGoto_34_ (inOperand15),
 mAttribute_mEndOfProgram (inOperand16) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_AST GALGAS_pic_31__38_AST::constructor_new (const GALGAS_lstring & inOperand0,
                                                               const GALGAS_programKind & inOperand1,
@@ -11822,7 +11822,7 @@ GALGAS_pic_31__38_AST GALGAS_pic_31__38_AST::constructor_new (const GALGAS_lstri
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_pic_31__38_AST::objectCompare (const GALGAS_pic_31__38_AST & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -11880,13 +11880,13 @@ typeComparisonResult GALGAS_pic_31__38_AST::objectCompare (const GALGAS_pic_31__
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_pic_31__38_AST::isValid (void) const {
   return mAttribute_mProgramName.isValid () && mAttribute_mProgramKind.isValid () && mAttribute_mDeviceNameOrBootLoaderReference.isValid () && mAttribute_mConfigDefinitionList.isValid () && mAttribute_mRamDefinitionList.isValid () && mAttribute_mUnusedRegisterList.isValid () && mAttribute_mCheckpicList.isValid () && mAttribute_mDataList.isValid () && mAttribute_mInterruptDefinitionList.isValid () && mAttribute_mConstantDefinitionList.isValid () && mAttribute_mRoutineDefinitionList.isValid () && mAttribute_mMacroDefinitionList.isValid () && mAttribute_mUnusedRoutineList.isValid () && mAttribute_mInlinedRoutineList.isValid () && mAttribute_mNeedsComputedGoto_32_.isValid () && mAttribute_mNeedsComputedGoto_34_.isValid () && mAttribute_mEndOfProgram.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_pic_31__38_AST::drop (void) {
   mAttribute_mProgramName.drop () ;
@@ -11908,7 +11908,7 @@ void GALGAS_pic_31__38_AST::drop (void) {
   mAttribute_mEndOfProgram.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_pic_31__38_AST::description (C_String & ioString,
                                          const int32_t inIndentation) const {
@@ -11953,103 +11953,103 @@ void GALGAS_pic_31__38_AST::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring GALGAS_pic_31__38_AST::getter_mProgramName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mProgramName ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_programKind GALGAS_pic_31__38_AST::getter_mProgramKind (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mProgramKind ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring GALGAS_pic_31__38_AST::getter_mDeviceNameOrBootLoaderReference (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mDeviceNameOrBootLoaderReference ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_configDefinitionList GALGAS_pic_31__38_AST::getter_mConfigDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mConfigDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ramDefinitionList GALGAS_pic_31__38_AST::getter_mRamDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRamDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstringlist GALGAS_pic_31__38_AST::getter_mUnusedRegisterList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mUnusedRegisterList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_checkpicList GALGAS_pic_31__38_AST::getter_mCheckpicList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mCheckpicList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_dataList GALGAS_pic_31__38_AST::getter_mDataList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mDataList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_InterruptDefinitionList GALGAS_pic_31__38_AST::getter_mInterruptDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInterruptDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_constantDefinitionList GALGAS_pic_31__38_AST::getter_mConstantDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mConstantDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_RoutineDefinitionList GALGAS_pic_31__38_AST::getter_mRoutineDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mRoutineDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_MacroDefinitionList GALGAS_pic_31__38_AST::getter_mMacroDefinitionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mMacroDefinitionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstringlist GALGAS_pic_31__38_AST::getter_mUnusedRoutineList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mUnusedRoutineList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstringlist GALGAS_pic_31__38_AST::getter_mInlinedRoutineList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInlinedRoutineList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_pic_31__38_AST::getter_mNeedsComputedGoto_32_ (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mNeedsComputedGoto_32_ ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_bool GALGAS_pic_31__38_AST::getter_mNeedsComputedGoto_34_ (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mNeedsComputedGoto_34_ ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_location GALGAS_pic_31__38_AST::getter_mEndOfProgram (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mEndOfProgram ;
@@ -12057,23 +12057,23 @@ GALGAS_location GALGAS_pic_31__38_AST::getter_mEndOfProgram (UNUSED_LOCATION_ARG
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                                   @pic18AST type                                                    *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_pic_31__38_AST ("pic18AST",
                                        NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_pic_31__38_AST::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_pic_31__38_AST ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_pic_31__38_AST::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -12083,7 +12083,7 @@ AC_GALGAS_root * GALGAS_pic_31__38_AST::clonedObject (void) const {
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_AST GALGAS_pic_31__38_AST::extractObject (const GALGAS_object & inObject,
                                                             C_Compiler * inCompiler
@@ -12100,7 +12100,7 @@ GALGAS_pic_31__38_AST GALGAS_pic_31__38_AST::extractObject (const GALGAS_object 
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_Block::GALGAS_ipic_31__38_Block (void) :
 mAttribute_mAddress (),
@@ -12111,12 +12111,12 @@ mAttribute_mTerminatorMin (),
 mAttribute_mTerminatorMax () {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_Block::~ GALGAS_ipic_31__38_Block (void) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_Block::GALGAS_ipic_31__38_Block (const GALGAS_uint & inOperand0,
                                                     const GALGAS_lstring & inOperand1,
@@ -12132,7 +12132,7 @@ mAttribute_mTerminatorMin (inOperand4),
 mAttribute_mTerminatorMax (inOperand5) {
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_Block GALGAS_ipic_31__38_Block::constructor_new (const GALGAS_uint & inOperand0,
                                                                     const GALGAS_lstring & inOperand1,
@@ -12148,7 +12148,7 @@ GALGAS_ipic_31__38_Block GALGAS_ipic_31__38_Block::constructor_new (const GALGAS
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 typeComparisonResult GALGAS_ipic_31__38_Block::objectCompare (const GALGAS_ipic_31__38_Block & inOperand) const {
    typeComparisonResult result = kOperandEqual ;
@@ -12173,13 +12173,13 @@ typeComparisonResult GALGAS_ipic_31__38_Block::objectCompare (const GALGAS_ipic_
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_ipic_31__38_Block::isValid (void) const {
   return mAttribute_mAddress.isValid () && mAttribute_mLabel.isValid () && mAttribute_mInstructionList.isValid () && mAttribute_mTerminator.isValid () && mAttribute_mTerminatorMin.isValid () && mAttribute_mTerminatorMax.isValid () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38_Block::drop (void) {
   mAttribute_mAddress.drop () ;
@@ -12190,7 +12190,7 @@ void GALGAS_ipic_31__38_Block::drop (void) {
   mAttribute_mTerminatorMax.drop () ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void GALGAS_ipic_31__38_Block::description (C_String & ioString,
                                             const int32_t inIndentation) const {
@@ -12213,37 +12213,37 @@ void GALGAS_ipic_31__38_Block::description (C_String & ioString,
   ioString << ">" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint GALGAS_ipic_31__38_Block::getter_mAddress (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mAddress ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring GALGAS_ipic_31__38_Block::getter_mLabel (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mLabel ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_Block::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mInstructionList ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_AbstractBlockTerminator GALGAS_ipic_31__38_Block::getter_mTerminator (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTerminator ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint GALGAS_ipic_31__38_Block::getter_mTerminatorMin (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTerminatorMin ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_uint GALGAS_ipic_31__38_Block::getter_mTerminatorMax (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mTerminatorMax ;
@@ -12251,23 +12251,23 @@ GALGAS_uint GALGAS_ipic_31__38_Block::getter_mTerminatorMax (UNUSED_LOCATION_ARG
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                                  @ipic18Block type                                                  *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_ipic_31__38_Block ("ipic18Block",
                                           NULL) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor * GALGAS_ipic_31__38_Block::staticTypeDescriptor (void) const {
   return & kTypeDescriptor_GALGAS_ipic_31__38_Block ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 AC_GALGAS_root * GALGAS_ipic_31__38_Block::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
@@ -12277,7 +12277,7 @@ AC_GALGAS_root * GALGAS_ipic_31__38_Block::clonedObject (void) const {
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_ipic_31__38_Block GALGAS_ipic_31__38_Block::extractObject (const GALGAS_object & inObject,
                                                                   C_Compiler * inCompiler
@@ -12294,11 +12294,11 @@ GALGAS_ipic_31__38_Block GALGAS_ipic_31__38_Block::extractObject (const GALGAS_o
   return result ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                       Extension method '@ipic18Block display'                                       *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionMethod_display (const GALGAS_ipic_31__38_Block inObject,
                               const GALGAS_string constinArgument_inNextBlockLabel,
@@ -12328,11 +12328,11 @@ void extensionMethod_display (const GALGAS_ipic_31__38_Block inObject,
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                Extension method '@ipic18Block enterReferencedLabels'                                *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionMethod_enterReferencedLabels (const GALGAS_ipic_31__38_Block inObject,
                                             const GALGAS_symbolTableForBlockOptimization constinArgument_inSymbolTable,
@@ -12345,11 +12345,11 @@ void extensionMethod_enterReferencedLabels (const GALGAS_ipic_31__38_Block inObj
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                                      Extension method '@ipic18Block optimize'                                       *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionMethod_optimize (const GALGAS_ipic_31__38_Block inObject,
                                const GALGAS_symbolTableForBlockOptimization constinArgument_inSymbolTable,
@@ -12420,11 +12420,11 @@ void extensionMethod_optimize (const GALGAS_ipic_31__38_Block inObject,
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
 //                             Extension method '@ipic18Block performRelativesResolution'                              *
 //                                                                                                                     *
-//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------*
 
 void extensionMethod_performRelativesResolution (const GALGAS_ipic_31__38_Block inObject,
                                                  const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
