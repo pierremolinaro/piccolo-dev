@@ -2151,8 +2151,7 @@ static void extensionMethod_baseline_5F_intermediate_5F_instruction_5F_MNOP_gene
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, object->mAttribute_mOccurrenceFactor.getter_uint (SOURCE_FILE ("baseline_build_assembly_code.galgas", 151)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_location location_1 (object->mAttribute_mOccurrenceFactor.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticWarning (location_1, GALGAS_string ("No generated code")  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 152)) ;
+    inCompiler->emitSemanticWarning (object->mAttribute_mOccurrenceFactor.getter_location (SOURCE_FILE ("baseline_build_assembly_code.galgas", 152)), GALGAS_string ("No generated code")  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 152)) ;
   }
   GALGAS_uint var_idx_6804 = GALGAS_uint ((uint32_t) 0U) ;
   if (object->mAttribute_mOccurrenceFactor.getter_uint (SOURCE_FILE ("baseline_build_assembly_code.galgas", 155)).isValid ()) {
@@ -2568,12 +2567,11 @@ static void extensionMethod_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_gen
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE) ;
   const enumGalgasBool test_0 = object->mAttribute_mIsRegular.operator_and (GALGAS_bool (kIsNotEqual, ioArgument_ioWordAddress.operator_and (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 90)).objectCompare (GALGAS_uint ((uint32_t) 0U))) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 90)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_location location_1 (object->mAttribute_mRoutineName.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_1, GALGAS_string ("the 8th bit of the routine address is not 0; a regular routine should be begin in the first half of a page")  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 91)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mRoutineName.getter_location (SOURCE_FILE ("baseline_build_binary_code.galgas", 91)), GALGAS_string ("the 8th bit of the routine address is not 0; a regular routine should be begin in the first half of a page")  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 91)) ;
   }
   {
-  const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE temp_2 = object ;
-  routine_emitNoBaselineCodeAtWordAddress (ioArgument_ioWordAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 93)) ;
+  const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE temp_1 = object ;
+  routine_emitNoBaselineCodeAtWordAddress (ioArgument_ioWordAddress, temp_1, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 93)) ;
   }
 }
 
@@ -2604,12 +2602,11 @@ static void extensionMethod_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_gener
   macroValidSharedObject (object, cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, ioArgument_ioWordAddress.objectCompare (object->mAttribute_mPage.multiply_operation (GALGAS_uint ((uint32_t) 512U), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 102)).add_operation (GALGAS_uint ((uint32_t) 512U), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 102)))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_location location_1 (object->mAttribute_mRoutineName.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_1, GALGAS_string ("the routine is too large, it does not lie in page ").add_operation (object->mAttribute_mPage.getter_string (SOURCE_FILE ("baseline_build_binary_code.galgas", 103)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)).add_operation (ioArgument_ioWordAddress.substract_operation (object->mAttribute_mPage.multiply_operation (GALGAS_uint ((uint32_t) 512U), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)).add_operation (GALGAS_uint ((uint32_t) 512U), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)).getter_string (SOURCE_FILE ("baseline_build_binary_code.galgas", 103)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)).add_operation (GALGAS_string (" word(s) in excess)"), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103))  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mRoutineName.getter_location (SOURCE_FILE ("baseline_build_binary_code.galgas", 103)), GALGAS_string ("the routine is too large, it does not lie in page ").add_operation (object->mAttribute_mPage.getter_string (SOURCE_FILE ("baseline_build_binary_code.galgas", 103)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)).add_operation (ioArgument_ioWordAddress.substract_operation (object->mAttribute_mPage.multiply_operation (GALGAS_uint ((uint32_t) 512U), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)).add_operation (GALGAS_uint ((uint32_t) 512U), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)).getter_string (SOURCE_FILE ("baseline_build_binary_code.galgas", 103)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)).add_operation (GALGAS_string (" word(s) in excess)"), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103))  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 103)) ;
   }
   {
-  const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE temp_2 = object ;
-  routine_emitNoBaselineCodeAtWordAddress (ioArgument_ioWordAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 105)) ;
+  const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE temp_1 = object ;
+  routine_emitNoBaselineCodeAtWordAddress (ioArgument_ioWordAddress, temp_1, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 105)) ;
   }
 }
 
@@ -3217,12 +3214,11 @@ static void extensionMethod_baseline_5F_assembly_5F_pseudo_5F_LABEL_generateBina
   constinArgument_inRoutineSymbolTable.method_searchKey (object->mAttribute_mLabel, var_targetAddress_10955, inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 303)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_targetAddress_10955.objectCompare (ioArgument_ioWordAddress)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_location location_1 (object->mAttribute_mLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_1, GALGAS_string ("Internal second pass error: the '").add_operation (object->mAttribute_mLabel.getter_string (SOURCE_FILE ("baseline_build_binary_code.galgas", 305)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 305)).add_operation (GALGAS_string ("' label gets "), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 305)).add_operation (ioArgument_ioWordAddress.getter_hexString (SOURCE_FILE ("baseline_build_binary_code.galgas", 306)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 306)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 306)).add_operation (var_targetAddress_10955.getter_hexString (SOURCE_FILE ("baseline_build_binary_code.galgas", 307)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 306)).add_operation (GALGAS_string (" in first pass"), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 307))  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 305)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mLabel.getter_location (SOURCE_FILE ("baseline_build_binary_code.galgas", 305)), GALGAS_string ("Internal second pass error: the '").add_operation (object->mAttribute_mLabel.getter_string (SOURCE_FILE ("baseline_build_binary_code.galgas", 305)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 305)).add_operation (GALGAS_string ("' label gets "), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 305)).add_operation (ioArgument_ioWordAddress.getter_hexString (SOURCE_FILE ("baseline_build_binary_code.galgas", 306)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 306)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 306)).add_operation (var_targetAddress_10955.getter_hexString (SOURCE_FILE ("baseline_build_binary_code.galgas", 307)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 306)).add_operation (GALGAS_string (" in first pass"), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 307))  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 305)) ;
   }
   {
-  const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL temp_2 = object ;
-  routine_emitNoBaselineCodeAtWordAddress (ioArgument_ioWordAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 309)) ;
+  const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL temp_1 = object ;
+  routine_emitNoBaselineCodeAtWordAddress (ioArgument_ioWordAddress, temp_1, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 309)) ;
   }
 }
 
@@ -4979,17 +4975,15 @@ static void extensionMethod_midrange_5F_instruction_5F_banksel_build_5F_midrange
   if (kBoolTrue == test_2) {
     const enumGalgasBool test_3 = object->mAttribute_mWarningOnUselessBanksel.boolEnum () ;
     if (kBoolTrue == test_3) {
-      GALGAS_location location_4 (object->mAttribute_mBankIndex.getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticWarning (location_4, GALGAS_string ("useless instruction: the bank ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 261)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 261)).add_operation (GALGAS_string (" is already selected"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 261))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 261)) ;
+      inCompiler->emitSemanticWarning (object->mAttribute_mBankIndex.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 261)), GALGAS_string ("useless instruction: the bank ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 261)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 261)).add_operation (GALGAS_string (" is already selected"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 261))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 261)) ;
     }
   }else if (kBoolFalse == test_2) {
-    const enumGalgasBool test_5 = GALGAS_bool (kIsSupOrEqual, object->mAttribute_mBankIndex.getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 263)).objectCompare (constinArgument_inTotalBankCount)).boolEnum () ;
-    if (kBoolTrue == test_5) {
-      GALGAS_location location_6 (object->mAttribute_mBankIndex.getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_6, GALGAS_string ("the bank ").add_operation (object->mAttribute_mBankIndex.getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)).add_operation (GALGAS_string (" does not exist (the device has "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)).add_operation (constinArgument_inTotalBankCount.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)).add_operation (GALGAS_string (" bank(s))"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)) ;
-    }else if (kBoolFalse == test_5) {
-      const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, ioArgument_ioCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 265)))).boolEnum () ;
-      if (kBoolTrue == test_7) {
+    const enumGalgasBool test_4 = GALGAS_bool (kIsSupOrEqual, object->mAttribute_mBankIndex.getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 263)).objectCompare (constinArgument_inTotalBankCount)).boolEnum () ;
+    if (kBoolTrue == test_4) {
+      inCompiler->emitSemanticError (object->mAttribute_mBankIndex.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)), GALGAS_string ("the bank ").add_operation (object->mAttribute_mBankIndex.getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)).add_operation (GALGAS_string (" does not exist (the device has "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)).add_operation (constinArgument_inTotalBankCount.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)).add_operation (GALGAS_string (" bank(s))"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 264)) ;
+    }else if (kBoolFalse == test_4) {
+      const enumGalgasBool test_5 = GALGAS_bool (kIsEqual, ioArgument_ioCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 265)))).boolEnum () ;
+      if (kBoolTrue == test_5) {
         GALGAS_uint var_n_9287 = constinArgument_inTotalBankCount.substract_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 266)).getter_significantBitCount (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 266)) ;
         GALGAS_uint var_shiftedBank_9354 = object->mAttribute_mBankIndex.getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 267)) ;
         GALGAS_uint var_idx_9388 = GALGAS_uint ((uint32_t) 0U) ;
@@ -5008,10 +5002,10 @@ static void extensionMethod_midrange_5F_instruction_5F_banksel_build_5F_midrange
             if (loop_9401) {
               variant_9401 -- ;
               GALGAS_midrange_5F_bit_5F_oriented_5F_op var_op_9473 ;
-              const enumGalgasBool test_8 = GALGAS_bool (kIsEqual, var_shiftedBank_9354.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 271)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-              if (kBoolTrue == test_8) {
+              const enumGalgasBool test_6 = GALGAS_bool (kIsEqual, var_shiftedBank_9354.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 271)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+              if (kBoolTrue == test_6) {
                 var_op_9473 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BCF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 272)) ;
-              }else if (kBoolFalse == test_8) {
+              }else if (kBoolFalse == test_6) {
                 var_op_9473 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BSF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 274)) ;
               }
               ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB::constructor_new (object->mAttribute_mInstructionLocation, var_op_9473, var_STATUS_5F_IPICregisterDescription_8224, var_rpIndex_8563.add_operation (var_idx_9388, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 280))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 276))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 276)) ;
@@ -5021,7 +5015,7 @@ static void extensionMethod_midrange_5F_instruction_5F_banksel_build_5F_midrange
           }
         }
         ioArgument_ioCurrentBank = object->mAttribute_mBankIndex.getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 284)) ;
-      }else if (kBoolFalse == test_7) {
+      }else if (kBoolFalse == test_5) {
         GALGAS_bool var_optimize_9937 = GALGAS_bool (gOption_piccolo_5F_options_performOptimizations.getter_value ()) ;
         GALGAS_uint var_shiftedBank_10013 = object->mAttribute_mBankIndex.getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 287)) ;
         GALGAS_uint var_shiftedXorBank_10058 = object->mAttribute_mBankIndex.getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 288)).operator_xor (ioArgument_ioCurrentBank COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 288)) ;
@@ -5041,16 +5035,16 @@ static void extensionMethod_midrange_5F_instruction_5F_banksel_build_5F_midrange
             if (loop_10121) {
               variant_10121 -- ;
               GALGAS_midrange_5F_bit_5F_oriented_5F_op var_op_10193 ;
-              const enumGalgasBool test_9 = GALGAS_bool (kIsEqual, var_shiftedBank_10013.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 292)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-              if (kBoolTrue == test_9) {
+              const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, var_shiftedBank_10013.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 292)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+              if (kBoolTrue == test_7) {
                 var_op_10193 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BCF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 293)) ;
-              }else if (kBoolFalse == test_9) {
+              }else if (kBoolFalse == test_7) {
                 var_op_10193 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BSF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 295)) ;
               }
-              const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_shiftedXorBank_10058.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 297)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_or (var_optimize_9937.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 297)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 297)).boolEnum () ;
-              if (kBoolTrue == test_10) {
+              const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_shiftedXorBank_10058.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 297)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_or (var_optimize_9937.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 297)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 297)).boolEnum () ;
+              if (kBoolTrue == test_8) {
                 ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB::constructor_new (object->mAttribute_mInstructionLocation, var_op_10193, var_STATUS_5F_IPICregisterDescription_8224, var_rpIndex_8563.add_operation (var_idx_10108, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 302))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 298))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 298)) ;
-              }else if (kBoolFalse == test_10) {
+              }else if (kBoolFalse == test_8) {
                 ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 304)) ;
                 ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": useless '").add_operation (extensionGetter_mnemonic (var_op_10193, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305)).add_operation (GALGAS_string (" STATUS, "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 305)) ;
                 ioArgument_ioListFileContents.plusAssign_operation(var_rpIndex_8563.add_operation (var_idx_10108, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306)).add_operation (GALGAS_string ("' not generated\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 306)) ;
@@ -5140,17 +5134,15 @@ static void extensionMethod_midrange_5F_instruction_5F_banksel_5F_register_build
   if (kBoolTrue == test_4) {
     const enumGalgasBool test_5 = object->mAttribute_mWarningOnUselessBanksel.boolEnum () ;
     if (kBoolTrue == test_5) {
-      GALGAS_location location_6 (object->mAttribute_mRegister.getter_mRegisterName (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 374)).getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticWarning (location_6, GALGAS_string ("useless instruction: the bank ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 374)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 374)).add_operation (GALGAS_string (" is already selected"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 374))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 374)) ;
+      inCompiler->emitSemanticWarning (object->mAttribute_mRegister.getter_mRegisterName (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 374)).getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 374)), GALGAS_string ("useless instruction: the bank ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 374)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 374)).add_operation (GALGAS_string (" is already selected"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 374))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 374)) ;
     }
   }else if (kBoolFalse == test_4) {
-    const enumGalgasBool test_7 = GALGAS_bool (kIsSupOrEqual, var_newBank_12756.objectCompare (constinArgument_inTotalBankCount)).boolEnum () ;
-    if (kBoolTrue == test_7) {
-      GALGAS_location location_8 (object->mAttribute_mRegister.getter_mRegisterName (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)).getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_8, GALGAS_string ("the bank ").add_operation (var_newBank_12756.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)).add_operation (GALGAS_string (" does not exist (the device has "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)).add_operation (constinArgument_inTotalBankCount.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)).add_operation (GALGAS_string (" bank(s))"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)) ;
-    }else if (kBoolFalse == test_7) {
-      const enumGalgasBool test_9 = GALGAS_bool (kIsEqual, ioArgument_ioCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 378)))).boolEnum () ;
-      if (kBoolTrue == test_9) {
+    const enumGalgasBool test_6 = GALGAS_bool (kIsSupOrEqual, var_newBank_12756.objectCompare (constinArgument_inTotalBankCount)).boolEnum () ;
+    if (kBoolTrue == test_6) {
+      inCompiler->emitSemanticError (object->mAttribute_mRegister.getter_mRegisterName (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)).getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)), GALGAS_string ("the bank ").add_operation (var_newBank_12756.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)).add_operation (GALGAS_string (" does not exist (the device has "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)).add_operation (constinArgument_inTotalBankCount.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)).add_operation (GALGAS_string (" bank(s))"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 377)) ;
+    }else if (kBoolFalse == test_6) {
+      const enumGalgasBool test_7 = GALGAS_bool (kIsEqual, ioArgument_ioCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 378)))).boolEnum () ;
+      if (kBoolTrue == test_7) {
         GALGAS_uint var_n_13610 = constinArgument_inTotalBankCount.substract_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 379)).getter_significantBitCount (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 379)) ;
         GALGAS_uint var_shiftedBank_13677 = var_newBank_12756 ;
         GALGAS_uint var_idx_13701 = GALGAS_uint ((uint32_t) 0U) ;
@@ -5169,10 +5161,10 @@ static void extensionMethod_midrange_5F_instruction_5F_banksel_5F_register_build
             if (loop_13714) {
               variant_13714 -- ;
               GALGAS_midrange_5F_bit_5F_oriented_5F_op var_op_13786 ;
-              const enumGalgasBool test_10 = GALGAS_bool (kIsEqual, var_shiftedBank_13677.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 384)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-              if (kBoolTrue == test_10) {
+              const enumGalgasBool test_8 = GALGAS_bool (kIsEqual, var_shiftedBank_13677.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 384)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+              if (kBoolTrue == test_8) {
                 var_op_13786 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BCF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 385)) ;
-              }else if (kBoolFalse == test_10) {
+              }else if (kBoolFalse == test_8) {
                 var_op_13786 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BSF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 387)) ;
               }
               ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB::constructor_new (object->mAttribute_mInstructionLocation, var_op_13786, var_STATUS_5F_IPICregisterDescription_12142, var_rpIndex_12311.add_operation (var_idx_13701, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 393))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 389))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 389)) ;
@@ -5182,7 +5174,7 @@ static void extensionMethod_midrange_5F_instruction_5F_banksel_5F_register_build
           }
         }
         ioArgument_ioCurrentBank = var_newBank_12756 ;
-      }else if (kBoolFalse == test_9) {
+      }else if (kBoolFalse == test_7) {
         GALGAS_bool var_optimize_14240 = GALGAS_bool (gOption_piccolo_5F_options_performOptimizations.getter_value ()) ;
         GALGAS_uint var_shiftedBank_14316 = var_newBank_12756 ;
         GALGAS_uint var_shiftedXorBank_14351 = var_newBank_12756.operator_xor (ioArgument_ioCurrentBank COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 401)) ;
@@ -5202,16 +5194,16 @@ static void extensionMethod_midrange_5F_instruction_5F_banksel_5F_register_build
             if (loop_14404) {
               variant_14404 -- ;
               GALGAS_midrange_5F_bit_5F_oriented_5F_op var_op_14476 ;
-              const enumGalgasBool test_11 = GALGAS_bool (kIsEqual, var_shiftedBank_14316.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 405)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-              if (kBoolTrue == test_11) {
+              const enumGalgasBool test_9 = GALGAS_bool (kIsEqual, var_shiftedBank_14316.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 405)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+              if (kBoolTrue == test_9) {
                 var_op_14476 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BCF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 406)) ;
-              }else if (kBoolFalse == test_11) {
+              }else if (kBoolFalse == test_9) {
                 var_op_14476 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BSF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 408)) ;
               }
-              const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_shiftedXorBank_14351.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 410)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_or (var_optimize_14240.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 410)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 410)).boolEnum () ;
-              if (kBoolTrue == test_12) {
+              const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_shiftedXorBank_14351.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 410)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_or (var_optimize_14240.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 410)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 410)).boolEnum () ;
+              if (kBoolTrue == test_10) {
                 ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB::constructor_new (object->mAttribute_mInstructionLocation, var_op_14476, var_STATUS_5F_IPICregisterDescription_12142, var_rpIndex_12311.add_operation (var_idx_14391, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 415))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 411))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 411)) ;
-              }else if (kBoolFalse == test_12) {
+              }else if (kBoolFalse == test_10) {
                 ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 417)) ;
                 ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": useless '").add_operation (extensionGetter_mnemonic (var_op_14476, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418)).add_operation (GALGAS_string (" STATUS, "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 418)) ;
                 ioArgument_ioListFileContents.plusAssign_operation(var_rpIndex_12311.add_operation (var_idx_14391, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419)).add_operation (GALGAS_string ("' not generated\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 419)) ;
@@ -5399,16 +5391,14 @@ static void extensionMethod_midrange_5F_instruction_5F_JSR_build_5F_midrange_5F_
     }else if (kBoolFalse == test_1) {
       var_errorMessage_19539.plusAssign_operation(GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 563)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 563)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 563)) ;
     }
-    GALGAS_location location_2 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_2, var_errorMessage_19539  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 565)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mTargetLabel.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 565)), var_errorMessage_19539  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 565)) ;
   }
-  const enumGalgasBool test_3 = var_isNoReturn_19281.boolEnum () ;
+  const enumGalgasBool test_2 = var_isNoReturn_19281.boolEnum () ;
+  if (kBoolTrue == test_2) {
+    inCompiler->emitSemanticError (object->mAttribute_mTargetLabel.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 568)), GALGAS_string ("a \"noreturn\" routine should be called with a GOTO or JUMP instruction")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 568)) ;
+  }
+  const enumGalgasBool test_3 = var_preservesBank_19345.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 570)).boolEnum () ;
   if (kBoolTrue == test_3) {
-    GALGAS_location location_4 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_4, GALGAS_string ("a \"noreturn\" routine should be called with a GOTO or JUMP instruction")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 568)) ;
-  }
-  const enumGalgasBool test_5 = var_preservesBank_19345.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 570)).boolEnum () ;
-  if (kBoolTrue == test_5) {
     ioArgument_ioCurrentBank = var_returnedBank_19323 ;
   }
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_JSR::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel, GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 577)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 578))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 574))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 574)) ;
@@ -5555,16 +5545,14 @@ static void extensionMethod_midrange_5F_instruction_5F_CALL_build_5F_midrange_5F
     }else if (kBoolFalse == test_1) {
       var_errorMessage_23127.plusAssign_operation(GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 656)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 656)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 656)) ;
     }
-    GALGAS_location location_2 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_2, var_errorMessage_23127  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 658)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mTargetLabel.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 658)), var_errorMessage_23127  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 658)) ;
   }
-  const enumGalgasBool test_3 = var_isNoReturn_22869.boolEnum () ;
+  const enumGalgasBool test_2 = var_isNoReturn_22869.boolEnum () ;
+  if (kBoolTrue == test_2) {
+    inCompiler->emitSemanticError (object->mAttribute_mTargetLabel.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 661)), GALGAS_string ("a \"noreturn\" routine should be called with a GOTO or JUMP instruction")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 661)) ;
+  }
+  const enumGalgasBool test_3 = var_preservesBank_22933.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 663)).boolEnum () ;
   if (kBoolTrue == test_3) {
-    GALGAS_location location_4 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_4, GALGAS_string ("a \"noreturn\" routine should be called with a GOTO or JUMP instruction")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 661)) ;
-  }
-  const enumGalgasBool test_5 = var_preservesBank_22933.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 663)).boolEnum () ;
-  if (kBoolTrue == test_5) {
     ioArgument_ioCurrentBank = var_returnedBank_22911 ;
   }
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_CALL::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 667))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 667)) ;
@@ -5619,13 +5607,11 @@ static void extensionMethod_midrange_5F_instruction_5F_JUMP_build_5F_midrange_5F
     }else if (kBoolFalse == test_1) {
       var_errorMessage_24668.plusAssign_operation(GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 697)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 697)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 697)) ;
     }
-    GALGAS_location location_2 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_2, var_errorMessage_24668  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 699)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mTargetLabel.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 699)), var_errorMessage_24668  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 699)) ;
   }
-  const enumGalgasBool test_3 = var_isNoReturn_24476.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 701)).boolEnum () ;
-  if (kBoolTrue == test_3) {
-    GALGAS_location location_4 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_4, GALGAS_string ("a regular routine should be called with a CALL or JSR instruction")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 702)) ;
+  const enumGalgasBool test_2 = var_isNoReturn_24476.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 701)).boolEnum () ;
+  if (kBoolTrue == test_2) {
+    inCompiler->emitSemanticError (object->mAttribute_mTargetLabel.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 702)), GALGAS_string ("a regular routine should be called with a CALL or JSR instruction")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 702)) ;
   }
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_JUMP::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel, GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 709)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 710))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 706))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 706)) ;
@@ -5680,13 +5666,11 @@ static void extensionMethod_midrange_5F_instruction_5F_GOTO_build_5F_midrange_5F
     }else if (kBoolFalse == test_1) {
       var_errorMessage_26250.plusAssign_operation(GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 738)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 738)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 738)) ;
     }
-    GALGAS_location location_2 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_2, var_errorMessage_26250  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 740)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mTargetLabel.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 740)), var_errorMessage_26250  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 740)) ;
   }
-  const enumGalgasBool test_3 = var_isNoReturn_26058.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 742)).boolEnum () ;
-  if (kBoolTrue == test_3) {
-    GALGAS_location location_4 (object->mAttribute_mTargetLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_4, GALGAS_string ("a regular routine should be called with a CALL or JSR instruction")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 743)) ;
+  const enumGalgasBool test_2 = var_isNoReturn_26058.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 742)).boolEnum () ;
+  if (kBoolTrue == test_2) {
+    inCompiler->emitSemanticError (object->mAttribute_mTargetLabel.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 743)), GALGAS_string ("a regular routine should be called with a CALL or JSR instruction")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 743)) ;
   }
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_GOTO::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mTargetLabel  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 747))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 747)) ;
@@ -5919,8 +5903,7 @@ static void extensionMethod_midrange_5F_instruction_5F_MNOP_build_5F_midrange_5F
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_MNOP) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, object->mAttribute_mOccurrenceFactor.getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 871)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_location location_1 (object->mAttribute_mOccurrenceFactor.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticWarning (location_1, GALGAS_string ("occurrence argument is zero: no generated code")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 872)) ;
+    inCompiler->emitSemanticWarning (object->mAttribute_mOccurrenceFactor.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 872)), GALGAS_string ("occurrence argument is zero: no generated code")  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 872)) ;
   }
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP::constructor_new (object->mAttribute_mInstructionLocation, object->mAttribute_mOccurrenceFactor  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 875))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 875)) ;
 }
@@ -7393,8 +7376,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_compute 
   constinArgument_inRoutineSymbolTable.method_searchKey (object->mAttribute_mLabel, var_targetAddress_7667, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 204)) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_targetAddress_7667.objectCompare (ioArgument_ioAddress)).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_location location_1 (object->mAttribute_mLabel.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticError (location_1, GALGAS_string ("Internal second pass error: the '").add_operation (object->mAttribute_mLabel.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)).add_operation (GALGAS_string ("' label gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)).add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (var_targetAddress_7667.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 208)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (GALGAS_string (" in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 208))  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)) ;
+    inCompiler->emitSemanticError (object->mAttribute_mLabel.getter_location (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)), GALGAS_string ("Internal second pass error: the '").add_operation (object->mAttribute_mLabel.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)).add_operation (GALGAS_string ("' label gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)).add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (var_targetAddress_7667.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 208)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (GALGAS_string (" in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 208))  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)) ;
   }
 }
 
@@ -8073,8 +8055,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_MNOP_buil
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP) ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, object->mAttribute_mOccurrenceFactor.getter_uint (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 234)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    GALGAS_location location_1 (object->mAttribute_mOccurrenceFactor.getter_location (HERE)) ; // Implicit use of 'location' getter
-    inCompiler->emitSemanticWarning (location_1, GALGAS_string ("No generated code")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 235)) ;
+    inCompiler->emitSemanticWarning (object->mAttribute_mOccurrenceFactor.getter_location (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 235)), GALGAS_string ("No generated code")  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 235)) ;
   }
   GALGAS_uint var_idx_6825 = GALGAS_uint ((uint32_t) 0U) ;
   if (object->mAttribute_mOccurrenceFactor.getter_uint (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 238)).isValid ()) {
@@ -8108,4 +8089,33 @@ static void defineExtensionMethod_midrange_5F_intermediate_5F_instruction_5F_MNO
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_instruction_5F_MNOP_buildAssemblyCode (defineExtensionMethod_midrange_5F_intermediate_5F_instruction_5F_MNOP_buildAssemblyCode, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                Overriding extension method '@midrange_intermediate_pseudo_LABEL enterLabelAtAddress'                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_enterLabelAtAddress (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
+                                                                                             GALGAS_midrange_5F_symbolTable & ioArgument_ioRoutineSymbolTable,
+                                                                                             GALGAS_uint & ioArgument_ioAddress,
+                                                                                             C_Compiler * inCompiler
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
+  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
+  {
+  ioArgument_ioRoutineSymbolTable.setter_insertKey (object->mAttribute_mLabel, ioArgument_ioAddress, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 68)) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineExtensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_enterLabelAtAddress (void) {
+  enterExtensionMethod_enterLabelAtAddress (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL.mSlotID,
+                                            extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_enterLabelAtAddress) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_enterLabelAtAddress (defineExtensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_enterLabelAtAddress, NULL) ;
 
