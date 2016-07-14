@@ -12218,8 +12218,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }else if (kBoolFalse == test_2) {
         temp_1 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_3 (var_endDoLabel_3664.getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_3, GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 162))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 162)) ;
+      inCompiler->emitSemanticError (var_endDoLabel_3664.getter_location (SOURCE_FILE ("baseline_syntax.galgas", 162)), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 162))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 162)) ;
     }
   } break ;
   case 2: {
@@ -12269,17 +12268,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_foreverLabel_4449.mAttribute_string.objectCompare (var_endForeverLabel_4737.mAttribute_string)).boolEnum () ;
-    if (kBoolTrue == test_4) {
-      GALGAS_string temp_5 ;
-      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_foreverLabel_4449.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_6) {
-        temp_5 = var_foreverLabel_4449.mAttribute_string ;
-      }else if (kBoolFalse == test_6) {
-        temp_5 = GALGAS_string ("empty") ;
+    const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_foreverLabel_4449.mAttribute_string.objectCompare (var_endForeverLabel_4737.mAttribute_string)).boolEnum () ;
+    if (kBoolTrue == test_3) {
+      GALGAS_string temp_4 ;
+      const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, var_foreverLabel_4449.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      if (kBoolTrue == test_5) {
+        temp_4 = var_foreverLabel_4449.mAttribute_string ;
+      }else if (kBoolFalse == test_5) {
+        temp_4 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_7 (var_endForeverLabel_4737.getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_7, GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 198))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 198)) ;
+      inCompiler->emitSemanticError (var_endForeverLabel_4737.getter_location (SOURCE_FILE ("baseline_syntax.galgas", 198)), GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_4, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 198))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 198)) ;
     }
     outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FOREVER::constructor_new (var_instructionLocation_4615, var_instructionList_4685, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 204))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 201)) ;
   } break ;
@@ -12345,10 +12343,9 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_lstring var_conditionString_6361 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 250)) ;
     GALGAS_string var_condition_6383 = var_conditionString_6361.getter_string (SOURCE_FILE ("baseline_syntax.galgas", 251)).getter_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 251)) ;
-    const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_condition_6383.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
-    if (kBoolTrue == test_8) {
-      GALGAS_location location_9 (var_conditionString_6361.getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_9, GALGAS_string ("invalid '").add_operation (var_condition_6383, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253)) ;
+    const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_condition_6383.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
+    if (kBoolTrue == test_6) {
+      inCompiler->emitSemanticError (var_conditionString_6361.getter_location (SOURCE_FILE ("baseline_syntax.galgas", 253)), GALGAS_string ("invalid '").add_operation (var_condition_6383, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 253)) ;
     }
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 255)) ;
     GALGAS_baseline_5F_instruction var_instruction_6599 ;
@@ -12386,17 +12383,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_ifLabel_6854.mAttribute_string.objectCompare (var_endIfLabel_7090.mAttribute_string)).boolEnum () ;
-    if (kBoolTrue == test_10) {
-      GALGAS_string temp_11 ;
-      const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_ifLabel_6854.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_12) {
-        temp_11 = var_ifLabel_6854.mAttribute_string ;
-      }else if (kBoolFalse == test_12) {
-        temp_11 = GALGAS_string ("empty") ;
+    const enumGalgasBool test_7 = GALGAS_bool (kIsNotEqual, var_ifLabel_6854.mAttribute_string.objectCompare (var_endIfLabel_7090.mAttribute_string)).boolEnum () ;
+    if (kBoolTrue == test_7) {
+      GALGAS_string temp_8 ;
+      const enumGalgasBool test_9 = GALGAS_bool (kIsNotEqual, var_ifLabel_6854.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      if (kBoolTrue == test_9) {
+        temp_8 = var_ifLabel_6854.mAttribute_string ;
+      }else if (kBoolFalse == test_9) {
+        temp_8 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_13 (var_endIfLabel_7090.getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_13, GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 283))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 283)) ;
+      inCompiler->emitSemanticError (var_endIfLabel_7090.getter_location (SOURCE_FILE ("baseline_syntax.galgas", 283)), GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_8, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 283))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 283)) ;
     }
   } break ;
   case 8: {
@@ -12421,8 +12417,8 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     nt_baseline_5F_instruction_5F_list_ (var_repeatedInstructionList_7654, ioArgument_ioLabelMap, inCompiler) ;
     GALGAS_location var_endOfRepeatedInstructionList_7704 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 297)) ;
     GALGAS_baseline_5F_partList var_whilePartList_7743 = GALGAS_baseline_5F_partList::constructor_emptyList (SOURCE_FILE ("baseline_syntax.galgas", 298)) ;
-    bool repeatFlag_14 = true ;
-    while (repeatFlag_14) {
+    bool repeatFlag_10 = true ;
+    while (repeatFlag_10) {
       inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_while) COMMA_SOURCE_FILE ("baseline_syntax.galgas", 300)) ;
       GALGAS_lstring var_whileLabel_7827 ;
       switch (select_baseline_5F_syntax_18 (inCompiler)) {
@@ -12436,17 +12432,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       default:
         break ;
       }
-      const enumGalgasBool test_15 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (var_whileLabel_7827.mAttribute_string)).boolEnum () ;
-      if (kBoolTrue == test_15) {
-        GALGAS_string temp_16 ;
-        const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-        if (kBoolTrue == test_17) {
-          temp_16 = var_doLabel_7425.mAttribute_string ;
-        }else if (kBoolFalse == test_17) {
-          temp_16 = GALGAS_string ("empty") ;
+      const enumGalgasBool test_11 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (var_whileLabel_7827.mAttribute_string)).boolEnum () ;
+      if (kBoolTrue == test_11) {
+        GALGAS_string temp_12 ;
+        const enumGalgasBool test_13 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        if (kBoolTrue == test_13) {
+          temp_12 = var_doLabel_7425.mAttribute_string ;
+        }else if (kBoolFalse == test_13) {
+          temp_12 = GALGAS_string ("empty") ;
         }
-        GALGAS_location location_18 (var_whileLabel_7827.getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_18, GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308)) ;
+        inCompiler->emitSemanticError (var_whileLabel_7827.getter_location (SOURCE_FILE ("baseline_syntax.galgas", 308)), GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_12, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308)) ;
       }
       GALGAS_baseline_5F_conditionExpression var_whileCondition_8205 ;
       nt_baseline_5F_condition_5F_expression_ (var_whileCondition_8205, inCompiler) ;
@@ -12457,7 +12452,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       case 2: {
       } break ;
       default:
-        repeatFlag_14 = false ;
+        repeatFlag_10 = false ;
         break ;
       }
     }
@@ -12474,17 +12469,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_19 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (var_endDoLabel_8397.mAttribute_string)).boolEnum () ;
-    if (kBoolTrue == test_19) {
-      GALGAS_string temp_20 ;
-      const enumGalgasBool test_21 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_21) {
-        temp_20 = var_doLabel_7425.mAttribute_string ;
-      }else if (kBoolFalse == test_21) {
-        temp_20 = GALGAS_string ("empty") ;
+    const enumGalgasBool test_14 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (var_endDoLabel_8397.mAttribute_string)).boolEnum () ;
+    if (kBoolTrue == test_14) {
+      GALGAS_string temp_15 ;
+      const enumGalgasBool test_16 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      if (kBoolTrue == test_16) {
+        temp_15 = var_doLabel_7425.mAttribute_string ;
+      }else if (kBoolFalse == test_16) {
+        temp_15 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_22 (var_endDoLabel_8397.getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_22, GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 324))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 324)) ;
+      inCompiler->emitSemanticError (var_endDoLabel_8397.getter_location (SOURCE_FILE ("baseline_syntax.galgas", 324)), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_15, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 324))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 324)) ;
     }
     outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_do_5F_while::constructor_new (var_instructionLocation_7576, var_repeatedInstructionList_7654, var_endOfRepeatedInstructionList_7704, var_whilePartList_7743  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 327)) ;
   } break ;
@@ -12919,8 +12913,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }else if (kBoolFalse == test_2) {
         temp_1 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_3 (var_elsifIfLabel_9672.getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_3, GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 363))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 363)) ;
+      inCompiler->emitSemanticError (var_elsifIfLabel_9672.getter_location (SOURCE_FILE ("baseline_syntax.galgas", 363)), GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 363))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 363)) ;
     }
     GALGAS_baseline_5F_instruction var_elsifPartInstruction_10058 ;
     nt_baseline_5F_structured_5F_if_5F_instruction_ (constinArgument_ifLabel, var_elsifPartInstruction_10058, ioArgument_ioLabelMap, inCompiler) ;
@@ -12941,17 +12934,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mAttribute_string.objectCompare (var_elseLabel_10222.mAttribute_string)).boolEnum () ;
-    if (kBoolTrue == test_4) {
-      GALGAS_string temp_5 ;
-      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_6) {
-        temp_5 = constinArgument_ifLabel.mAttribute_string ;
-      }else if (kBoolFalse == test_6) {
-        temp_5 = GALGAS_string ("empty") ;
+    const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mAttribute_string.objectCompare (var_elseLabel_10222.mAttribute_string)).boolEnum () ;
+    if (kBoolTrue == test_3) {
+      GALGAS_string temp_4 ;
+      const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      if (kBoolTrue == test_5) {
+        temp_4 = constinArgument_ifLabel.mAttribute_string ;
+      }else if (kBoolFalse == test_5) {
+        temp_4 = GALGAS_string ("empty") ;
       }
-      GALGAS_location location_7 (var_elseLabel_10222.getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_7, GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 378))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 378)) ;
+      inCompiler->emitSemanticError (var_elseLabel_10222.getter_location (SOURCE_FILE ("baseline_syntax.galgas", 378)), GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_4, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 378))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 378)) ;
     }
     nt_baseline_5F_instruction_5F_list_ (var_elseInstructionList_9557, ioArgument_ioLabelMap, inCompiler) ;
   } break ;
@@ -13576,8 +13568,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
       if (kBoolTrue == test_1) {
         var_branchIfZero_16473 = GALGAS_bool (false) ;
       }else if (kBoolFalse == test_1) {
-        GALGAS_location location_2 (var_conditionString_16383.getter_location (HERE)) ; // Implicit use of 'location' getter
-        inCompiler->emitSemanticError (location_2, GALGAS_string ("invalid '").add_operation (var_conditionString_16383.getter_string (SOURCE_FILE ("baseline_syntax.galgas", 576)), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576)) ;
+        inCompiler->emitSemanticError (var_conditionString_16383.getter_location (SOURCE_FILE ("baseline_syntax.galgas", 576)), GALGAS_string ("invalid '").add_operation (var_conditionString_16383.getter_string (SOURCE_FILE ("baseline_syntax.galgas", 576)), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 576)) ;
         var_branchIfZero_16473.drop () ; // Release error dropped variable
       }
     }
@@ -13952,8 +13943,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
           case 1: {
             const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_sliceWidth_1137.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_1137.objectCompare (GALGAS_uint ((uint32_t) 1U))) COMMA_SOURCE_FILE ("communs.galgas", 61)).boolEnum () ;
             if (kBoolTrue == test_3) {
-              GALGAS_location location_4 (var_sliceName_1343.getter_location (HERE)) ; // Implicit use of 'location' getter
-              inCompiler->emitSemanticError (location_4, GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_1343.getter_string (SOURCE_FILE ("communs.galgas", 62)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 62)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 62))  COMMA_SOURCE_FILE ("communs.galgas", 62)) ;
+              inCompiler->emitSemanticError (var_sliceName_1343.getter_location (SOURCE_FILE ("communs.galgas", 62)), GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_1343.getter_string (SOURCE_FILE ("communs.galgas", 62)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 62)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 62))  COMMA_SOURCE_FILE ("communs.galgas", 62)) ;
             }
             var_sliceWidth_1137 = GALGAS_uint ((uint32_t) 1U) ;
             var_bitDefinitionString_981.plusAssign_operation(var_sliceName_1343.getter_string (SOURCE_FILE ("communs.galgas", 65)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
@@ -13962,10 +13952,9 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
             inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__5B_) COMMA_SOURCE_FILE ("communs.galgas", 67)) ;
             GALGAS_luint var_sliceSize_1676 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
             inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("communs.galgas", 68)) ;
-            const enumGalgasBool test_5 = GALGAS_bool (kIsNotEqual, var_sliceWidth_1137.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_1137.objectCompare (var_sliceSize_1676.getter_uint (SOURCE_FILE ("communs.galgas", 69)))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
-            if (kBoolTrue == test_5) {
-              GALGAS_location location_6 (var_sliceName_1343.getter_location (HERE)) ; // Implicit use of 'location' getter
-              inCompiler->emitSemanticError (location_6, GALGAS_string ("a slice of ").add_operation (var_sliceWidth_1137.getter_string (SOURCE_FILE ("communs.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (var_sliceName_1343.getter_string (SOURCE_FILE ("communs.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70))  COMMA_SOURCE_FILE ("communs.galgas", 70)) ;
+            const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_sliceWidth_1137.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_1137.objectCompare (var_sliceSize_1676.getter_uint (SOURCE_FILE ("communs.galgas", 69)))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
+            if (kBoolTrue == test_4) {
+              inCompiler->emitSemanticError (var_sliceName_1343.getter_location (SOURCE_FILE ("communs.galgas", 70)), GALGAS_string ("a slice of ").add_operation (var_sliceWidth_1137.getter_string (SOURCE_FILE ("communs.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (var_sliceName_1343.getter_string (SOURCE_FILE ("communs.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70))  COMMA_SOURCE_FILE ("communs.galgas", 70)) ;
             }
             var_sliceWidth_1137 = var_sliceSize_1676.getter_uint (SOURCE_FILE ("communs.galgas", 72)) ;
             var_sliceBase_1200 = var_sliceBase_1200.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 73)).substract_operation (var_sliceSize_1676.getter_uint (SOURCE_FILE ("communs.galgas", 73)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 73)) ;
@@ -13976,8 +13965,8 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
             break ;
           }
           GALGAS_uint var_base_2123 = GALGAS_uint ((uint32_t) 0U) ;
-          const enumGalgasBool test_7 = GALGAS_bool (kIsSupOrEqual, var_sliceIndex_1084.objectCompare (var_sliceWidth_1137.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)))).boolEnum () ;
-          if (kBoolTrue == test_7) {
+          const enumGalgasBool test_5 = GALGAS_bool (kIsSupOrEqual, var_sliceIndex_1084.objectCompare (var_sliceWidth_1137.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)))).boolEnum () ;
+          if (kBoolTrue == test_5) {
             var_base_2123 = var_sliceIndex_1084.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 79)).substract_operation (var_sliceWidth_1137, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 79)) ;
           }
           {
@@ -14003,8 +13992,8 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
       case 3: {
         GALGAS_luint var_bitCount_2556 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
         inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("communs.galgas", 92)) ;
-        const enumGalgasBool test_8 = GALGAS_bool (kIsEqual, var_bitCount_2556.mAttribute_uint.objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-        if (kBoolTrue == test_8) {
+        const enumGalgasBool test_6 = GALGAS_bool (kIsEqual, var_bitCount_2556.mAttribute_uint.objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+        if (kBoolTrue == test_6) {
           inCompiler->emitSemanticError (var_bitCount_2556.mAttribute_location, GALGAS_string ("the bit count should be > 0")  COMMA_SOURCE_FILE ("communs.galgas", 94)) ;
         }
         cEnumerator_range enumerator_2707 (GALGAS_range (GALGAS_uint ((uint32_t) 0U), var_bitCount_2556.mAttribute_uint.substract_operation (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 96))), kEnumeration_up) ;
@@ -14030,10 +14019,9 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
         break ;
       }
     }
-    const enumGalgasBool test_9 = GALGAS_bool (kIsNotEqual, var_sliceIndex_1084.objectCompare (GALGAS_sint ((int32_t) 0L))).boolEnum () ;
-    if (kBoolTrue == test_9) {
-      GALGAS_location location_10 (var_name_760.getter_location (HERE)) ; // Implicit use of 'location' getter
-      inCompiler->emitSemanticError (location_10, GALGAS_string ("Incorrect bit definition for register '").add_operation (var_name_760.getter_string (SOURCE_FILE ("communs.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_sint ((int32_t) 8L).substract_operation (var_sliceIndex_1084, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).getter_string (SOURCE_FILE ("communs.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107))  COMMA_SOURCE_FILE ("communs.galgas", 107)) ;
+    const enumGalgasBool test_7 = GALGAS_bool (kIsNotEqual, var_sliceIndex_1084.objectCompare (GALGAS_sint ((int32_t) 0L))).boolEnum () ;
+    if (kBoolTrue == test_7) {
+      inCompiler->emitSemanticError (var_name_760.getter_location (SOURCE_FILE ("communs.galgas", 107)), GALGAS_string ("Incorrect bit definition for register '").add_operation (var_name_760.getter_string (SOURCE_FILE ("communs.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_sint ((int32_t) 8L).substract_operation (var_sliceIndex_1084, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).getter_string (SOURCE_FILE ("communs.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107)).add_operation (GALGAS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 107))  COMMA_SOURCE_FILE ("communs.galgas", 107)) ;
     }
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__3E_) COMMA_SOURCE_FILE ("communs.galgas", 109)) ;
     var_bitDefinitionString_981.plusAssign_operation(GALGAS_string (">"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 110)) ;
@@ -15379,6 +15367,385 @@ GALGAS_baseline_5F_declaredRoutineMap GALGAS_baseline_5F_declaredRoutineMap::ext
       result = *p ;
     }else{
       inCompiler->castError ("baseline_declaredRoutineMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                      Class for element of '@baseline_5F_intermediate_5F_instructionList' list                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cCollectionElement_baseline_5F_intermediate_5F_instructionList : public cCollectionElement {
+  public : GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element mObject ;
+
+//--- Constructor
+  public : cCollectionElement_baseline_5F_intermediate_5F_instructionList (const GALGAS_baseline_5F_intermediate_5F_instruction & in_mInstruction
+                                                                           COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public : virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public : virtual cCollectionElement * copy (void) ;
+
+//--- Description
+  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cCollectionElement_baseline_5F_intermediate_5F_instructionList::cCollectionElement_baseline_5F_intermediate_5F_instructionList (const GALGAS_baseline_5F_intermediate_5F_instruction & in_mInstruction
+                                                                                                                                COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mInstruction) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+bool cCollectionElement_baseline_5F_intermediate_5F_instructionList::isValid (void) const {
+  return mObject.isValid () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cCollectionElement * cCollectionElement_baseline_5F_intermediate_5F_instructionList::copy (void) {
+  cCollectionElement * result = NULL ;
+  macroMyNew (result, cCollectionElement_baseline_5F_intermediate_5F_instructionList (mObject.mAttribute_mInstruction COMMA_HERE)) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cCollectionElement_baseline_5F_intermediate_5F_instructionList::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mInstruction" ":" ;
+  mObject.mAttribute_mInstruction.description (ioString, inIndentation) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult cCollectionElement_baseline_5F_intermediate_5F_instructionList::compare (const cCollectionElement * inOperand) const {
+  cCollectionElement_baseline_5F_intermediate_5F_instructionList * operand = (cCollectionElement_baseline_5F_intermediate_5F_instructionList *) inOperand ;
+  macroValidSharedObject (operand, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+  return mObject.objectCompare (operand->mObject) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instructionList::GALGAS_baseline_5F_intermediate_5F_instructionList (void) :
+AC_GALGAS_list () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instructionList::GALGAS_baseline_5F_intermediate_5F_instructionList (cSharedList * inSharedListPtr) :
+AC_GALGAS_list (inSharedListPtr) {
+  if (NULL == inSharedListPtr) {
+    createNewEmptyList (HERE) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instructionList GALGAS_baseline_5F_intermediate_5F_instructionList::constructor_emptyList (LOCATION_ARGS) {
+  GALGAS_baseline_5F_intermediate_5F_instructionList result ;
+  result.createNewEmptyList (THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instructionList GALGAS_baseline_5F_intermediate_5F_instructionList::constructor_listWithValue (const GALGAS_baseline_5F_intermediate_5F_instruction & inOperand0
+                                                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_intermediate_5F_instructionList result ;
+  if (inOperand0.isValid ()) {
+    result.createNewEmptyList (THERE) ;
+    capCollectionElement attributes ;
+    GALGAS_baseline_5F_intermediate_5F_instructionList::makeAttributesFromObjects (attributes, inOperand0 COMMA_THERE) ;
+    result.addObject (attributes) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                                                    const GALGAS_baseline_5F_intermediate_5F_instruction & in_mInstruction
+                                                                                    COMMA_LOCATION_ARGS) {
+  cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = NULL ;
+  macroMyNew (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList (in_mInstruction COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::addAssign_operation (const GALGAS_baseline_5F_intermediate_5F_instruction & inOperand0
+                                                                              COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand0.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    addObject (attributes) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::setter_insertAtIndex (const GALGAS_baseline_5F_intermediate_5F_instruction inOperand0,
+                                                                               const GALGAS_uint inInsertionIndex,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) {
+  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    addObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::setter_removeAtIndex (GALGAS_baseline_5F_intermediate_5F_instruction & outOperand0,
+                                                                               const GALGAS_uint inRemoveIndex,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) {
+  if (isValid () && inRemoveIndex.isValid ()) {
+    capCollectionElement attributes ;
+    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+    cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (cCollectionElement_baseline_5F_intermediate_5F_instructionList *) attributes.ptr () ;
+    if (NULL == p) {
+      outOperand0.drop () ;
+    }else{
+      macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+      outOperand0 = p->mObject.mAttribute_mInstruction ;
+    }
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::setter_popFirst (GALGAS_baseline_5F_intermediate_5F_instruction & outOperand0,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (cCollectionElement_baseline_5F_intermediate_5F_instructionList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+    outOperand0 = p->mObject.mAttribute_mInstruction ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::setter_popLast (GALGAS_baseline_5F_intermediate_5F_instruction & outOperand0,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (cCollectionElement_baseline_5F_intermediate_5F_instructionList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+    outOperand0 = p->mObject.mAttribute_mInstruction ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::method_first (GALGAS_baseline_5F_intermediate_5F_instruction & outOperand0,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (cCollectionElement_baseline_5F_intermediate_5F_instructionList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+    outOperand0 = p->mObject.mAttribute_mInstruction ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::method_last (GALGAS_baseline_5F_intermediate_5F_instruction & outOperand0,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (cCollectionElement_baseline_5F_intermediate_5F_instructionList *) attributes.ptr () ;
+  if (NULL == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+    outOperand0 = p->mObject.mAttribute_mInstruction ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instructionList GALGAS_baseline_5F_intermediate_5F_instructionList::add_operation (const GALGAS_baseline_5F_intermediate_5F_instructionList & inOperand,
+                                                                                                                      C_Compiler * /* inCompiler */
+                                                                                                                      COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_intermediate_5F_instructionList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instructionList GALGAS_baseline_5F_intermediate_5F_instructionList::getter_subListWithRange (const GALGAS_range & inRange,
+                                                                                                                                C_Compiler * inCompiler
+                                                                                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_intermediate_5F_instructionList result = GALGAS_baseline_5F_intermediate_5F_instructionList::constructor_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instructionList GALGAS_baseline_5F_intermediate_5F_instructionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
+                                                                                                                                C_Compiler * inCompiler
+                                                                                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_intermediate_5F_instructionList result = GALGAS_baseline_5F_intermediate_5F_instructionList::constructor_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instructionList GALGAS_baseline_5F_intermediate_5F_instructionList::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                                                                              C_Compiler * inCompiler
+                                                                                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_intermediate_5F_instructionList result = GALGAS_baseline_5F_intermediate_5F_instructionList::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::plusAssign_operation (const GALGAS_baseline_5F_intermediate_5F_instructionList inOperand,
+                                                                               C_Compiler * /* inCompiler */
+                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_instruction inOperand,
+                                                                                        GALGAS_uint inIndex,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) {
+  cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (cCollectionElement_baseline_5F_intermediate_5F_instructionList *) objectPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mAttribute_mInstruction = inOperand ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instruction GALGAS_baseline_5F_intermediate_5F_instructionList::getter_mInstructionAtIndex (const GALGAS_uint & inIndex,
+                                                                                                                               C_Compiler * inCompiler
+                                                                                                                               COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (cCollectionElement_baseline_5F_intermediate_5F_instructionList *) attributes.ptr () ;
+  GALGAS_baseline_5F_intermediate_5F_instruction result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+    result = p->mObject.mAttribute_mInstruction ;
+  }
+  return result ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+cEnumerator_baseline_5F_intermediate_5F_instructionList::cEnumerator_baseline_5F_intermediate_5F_instructionList (const GALGAS_baseline_5F_intermediate_5F_instructionList & inEnumeratedObject,
+                                                                                                                  const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator () {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray, inOrder) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element cEnumerator_baseline_5F_intermediate_5F_instructionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (const cCollectionElement_baseline_5F_intermediate_5F_instructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+  return p->mObject ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instruction cEnumerator_baseline_5F_intermediate_5F_instructionList::current_mInstruction (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (const cCollectionElement_baseline_5F_intermediate_5F_instructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+  return p->mObject.mAttribute_mInstruction ;
+}
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                     @baseline_intermediate_instructionList type                                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList ("baseline_intermediate_instructionList",
+                                                                    NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_baseline_5F_intermediate_5F_instructionList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_instructionList::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_baseline_5F_intermediate_5F_instructionList (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_intermediate_5F_instructionList GALGAS_baseline_5F_intermediate_5F_instructionList::extractObject (const GALGAS_object & inObject,
+                                                                                                                      C_Compiler * inCompiler
+                                                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_intermediate_5F_instructionList result ;
+  const GALGAS_baseline_5F_intermediate_5F_instructionList * p = (const GALGAS_baseline_5F_intermediate_5F_instructionList *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_instructionList *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_intermediate_instructionList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
