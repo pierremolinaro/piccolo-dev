@@ -6,3 +6,4 @@
     bank "gprnobnk" from 0x70 to 0x7F (16 bytes), mirror at 0xF0, 0x170, 0x1F0
   ROM size: 4096 instructions (2 pages)
   EEPROM size: 256 bytes (at 0x2100)
+No warning, no error.

@@ -6,7 +6,7 @@ rule <configuration_definition>
   ?!@configDefinitionList ioConfigDefinitionList
 {
   $configuration$
-  @location defLocation = @location.here
+  let defLocation = @location.here
   var settingList =@configSettingList.emptyList{}
   ${$
   repeat

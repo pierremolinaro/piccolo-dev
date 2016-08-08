@@ -460,7 +460,7 @@ abstract method @ipic18AbstractBlockTerminator generateTerminatorCode
 
 abstract getter @ipic18AbstractBlockTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
-  -> @bool outResult
+  -> @bool
 
 #----------------------------------------------------------------------------*
 

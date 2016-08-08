@@ -1,4 +1,4 @@
-project (3:1:1) -> "piccolo" {
+project (3:1:2) -> "piccolo" {
 #--- Targets
   %codeblocks-linux32
   %codeblocks-linux64
@@ -9,7 +9,7 @@ project (3:1:1) -> "piccolo" {
   %makefile-x86linux32-on-macosx
   %makefile-x86linux64-on-macosx
   %makefile-win32-on-macosx
-  %ElCapitanYosemite
+  %SierraElCapitan
 #  %SnowLeopard
   %applicationBundleBase : "fr.irccyn"
        

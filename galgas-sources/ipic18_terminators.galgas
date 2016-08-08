@@ -8,13 +8,13 @@
 
 abstract getter @ipic18AbstractBlockTerminator terminatorDisplay
   ?let @string inNextBlockLabel
-  ->@string outResult
+  ->@string
 
 #----------------------------------------------------------------------------*
 
 abstract getter @ipic18AbstractBlockTerminator terminatorSize
   ?let @string inNextBlockLabel
-  -> @uint outSize
+  -> @uint
 
 #----------------------------------------------------------------------------*
 

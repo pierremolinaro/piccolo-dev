@@ -140,7 +140,7 @@ before {
         + [[piccoloDeviceModel mEepromAddress] hexString] + ")\n"
       end
     else
-      error @location.here:"The " + deviceForMemoryDescription + " device is not supported or does not exist"
+      error .here:"The " + deviceForMemoryDescription + " device is not supported or does not exist"
     end
   end
 #------------------------------------------------ Print REGISTERS description
@@ -161,7 +161,7 @@ before {
         message s
       end
     else
-      error @location.here:"The " + deviceForRegistersDescription + " device is not supported or does not exist"
+      error .here:"The " + deviceForRegistersDescription + " device is not supported or does not exist"
     end
   end
 #------------------------------------------------ Print CONFIGURATION description
@@ -186,7 +186,7 @@ before {
         message s
       end
     else
-      error @location.here:"The " + deviceForConfigDescription + " device is not supported or does not exist"
+      error .here:"The " + deviceForConfigDescription + " device is not supported or does not exist"
     end
   end
 }

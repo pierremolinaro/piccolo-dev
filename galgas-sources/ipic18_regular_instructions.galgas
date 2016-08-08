@@ -56,7 +56,7 @@ override method @ipic18_condition_skip_instruction instructionRelativeBranchOver
 #----------------------------------------------------------------------------*
 
 abstract getter @ipic18SequentialInstruction instructionDisplay
-  ->@stringlist outResult
+  ->@stringlist
 
 #----------------------------------------------------------------------------*
 

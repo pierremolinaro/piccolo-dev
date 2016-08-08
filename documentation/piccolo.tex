@@ -1,3 +1,4 @@
+%!TEX TS-program = pdflatex
 %!TEX encoding = UTF-8 Unicode
 
 \documentclass[a4paper,11pt,obeyspaces,openany]{book}
@@ -588,7 +589,7 @@
   \immediate\closeout\tempfile
   \@esphack
   \endgroup
-  \immediate\write18{piccolo --mode=latex:Piccolo temp.piccolo}
+  \immediate\write18{piccolo -q --mode=latex:Piccolo temp.piccolo}
   {\singlespacing\begin{siderules}\ttfamily\input{temp.piccolo.tex}\end{siderules}}
 }
 \makeatother
@@ -641,7 +642,7 @@
       \immediate\openout\tempfile=temp.piccolo%
       \immediate\write\tempfile{##1}%
       \immediate\closeout\tempfile%
-      \immediate\write18{piccolo --mode=latex:Piccolo temp.piccolo}%
+      \immediate\write18{piccolo -q --mode=latex:Piccolo temp.piccolo}%
       \colorbox{gray!6}{\ttfamily\input{temp.piccolo.tex}\unskip}%
     }%
   }%

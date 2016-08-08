@@ -79,6 +79,13 @@
 
 - (void) actionInsertTextMacro: (NSMenuItem *) inSender ;
 
+//--- Fix it action
+- (void) replaceRange: (NSRange) inRange withString: (NSString *) inReplacement ;
+
+// - (void) insertBeforeSelectedRange: (NSString *) inString ;
+
+//- (void) insertAfterSelectedRange: (NSString *) inString ;
+
 @end
 
 //---------------------------------------------------------------------------------------------------------------------*

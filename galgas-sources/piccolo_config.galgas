@@ -53,12 +53,13 @@ proc actualBuildConfig
         registerValue = (registerValue & ~ settingMask) | settingValue
         [!?outActualConfigurationMap setMRegisterValueForKey !registerValue ![registerName string]]
       elsif [fieldSettingMap count] > 0 then
-        @string errorMessage = "the '" + mSettingValue + "' value is not defined for configuration setting '"
-        + mSettingName + "'; possible values are:"
+        let errorMessage = "the '" + mSettingValue + "' value is not defined for configuration setting '"
+        + mSettingName + "'"
+        @stringlist replacementSuggestions = {}
         for () in  fieldSettingMap do
-          errorMessage += "\n-  \"" + lkey + "\""
+          replacementSuggestions += !"\"" + lkey + "\""
         end
-        error mSettingValue: errorMessage
+        error mSettingValue: errorMessage fixit { replace replacementSuggestions }
       end
     end
   end
