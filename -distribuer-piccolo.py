@@ -146,6 +146,7 @@ runCommand (["eolc", "-unix", "-D" + DIR + "/piccolo", "-Eh", "-Ec", "-Ecpp", "-
 #-------------------- Copier changeLog
 runCommand (["mv", DIR + "/piccolo/changeLog.html", DIR + "/changeLog.html"])
 #-------------------- Recompiler le projet Xcode
+runCommand (["galgas", "--macosx=6", DIR + "/piccolo/+piccolo.galgasProject"])
 os.chdir (DIR + "/piccolo/xcode-project")
 runCommand (["xcodebuild", "-project", "piccolo.xcodeproj", "-target", "Cocoa piccolo", "-configuration", "Default"])
 os.chdir (DIR)
