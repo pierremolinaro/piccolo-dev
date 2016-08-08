@@ -98,7 +98,7 @@ for dirname, dirnames, filenames in os.walk (scriptDir) :
     fullPath = os.path.join (dirname, filename)
     basename, extension = os.path.splitext (fullPath)
     if extension == ".piccolo" :
-      runCommand ([scriptDir + "/../makefile-macosx/piccolo", "-v", "-S", "-O", "-L", "--Werror", fullPath])
+      runCommand ([scriptDir + "/../makefile-macosx/piccolo", "-S", "-O", "-L", "--Werror", fullPath])
       if os.path.exists (basename + ".asm") :
         runCommand ([GPUTILS_PATH, basename + ".asm", "-o", basename + "-2.hex"])
         runCommand (["hexcmp", basename + ".hex", basename + "-2.hex"])
