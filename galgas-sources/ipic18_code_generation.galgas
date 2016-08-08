@@ -95,7 +95,8 @@ method @ipic18Block generateCodeForBlock
   ?!@string ioAssemblyString
   ?!@generatedCodeMap ioGeneratedCodeMap
 {
-  ioListFileContents += "Addr.  Code       Duration    Assembly                                           Intermediate Representation\n"
+  ioListFileContents +=
+    "Addr.  Code       Duration    Assembly                                           Intermediate Representation\n"
   if mAddress == .max then # Relocatable
     generateLineWithCode (
       !inBlockAddress
@@ -269,7 +270,7 @@ proc ipic18GenerateCode
   end
 #--- Data
   dataAddress = firstDataAddress
-  for () in  inDataMap
+  for (dataName dataValueList *) in  inDataMap
   before
     setEmitAddress (!dataAddress )
     generateLineWithCode (
@@ -284,20 +285,20 @@ proc ipic18GenerateCode
   do
     generateLineWithCode (
       !dataAddress
-      !{!"_data_" + lkey + ":" !{}}
-      !{!"_data_" + lkey + ":"}
+      !{!"_data_" + dataName + ":" !{}}
+      !{!"_data_" + dataName + ":"}
       !@uint.max
       !0
       !?ioListFileContents
     )
-    assemblyString += "_data_" + lkey + ":\n"
-    for () in  mData do
-      assemblyString += "    DW " + [mValue hexString] + "\n"
-      emitCode ( !mValue )
+    assemblyString += "_data_" + dataName + ":\n"
+    for (data) in  dataValueList do
+      assemblyString += "    DW " + [data hexString] + "\n"
+      emitCode (!data)
       generateLineWithCode (
         !dataAddress
-        !{!"    DW " + [mValue hexString] !{!mValue}}
-        !{!"    DW " + [mValue hexString]}
+        !{!"    DW " + [data hexString] !{!data}}
+        !{!"    DW " + [data hexString]}
         !@uint.max
         !0
         !?ioListFileContents

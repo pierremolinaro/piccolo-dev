@@ -1110,7 +1110,7 @@ override method @pic18Instruction_LTBLPTR analyze
 
 #----------------------------------------------------*
 
-override method @pic18Instruction_LDATAPTR analyze
+override method @pic18Instruction_LDATA16PTR analyze
   ?let @uint inAccessBankSplitOffset
   ?!@ipic18BlockList unused ioGeneratedBlockList
   ?let @routineMap unused inRoutineMap
@@ -1125,8 +1125,12 @@ override method @pic18Instruction_LDATAPTR analyze
   ?!@uint ioCurrentBank
   ?let @bool unused inShouldPreserveBSR
   ?let @routineKind unused inRoutineKind
-  ?!@stringset ioUsedRegisters {
-  [inDataMap searchKey !mDataName ?let @uintlist data]
+  ?!@stringset ioUsedRegisters
+{
+  [inDataMap searchKey !mDataName ?let @uintlist data ?let isData8]
+  if isData8 then
+    error mDataName : "this data is a byte array; use ldata8ptr"
+  end
 #--- Check index
   if [mDataIndex uint] >= [data length] then
     error mDataIndex: "index should be < " + [data length]
@@ -1210,6 +1214,125 @@ override method @pic18Instruction_LDATAPTR analyze
     !mInstructionLocation
     !mDataName
     ![mDataIndex uint] * 2
+    !0
+  }
+  !@uint.max
+  !0
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+    !mInstructionLocation
+    !@FA_sequential_instruction_base_code. MOVWF
+    !outIPICregisterDescription
+  }  
+  !@uint.max
+  !0
+}
+
+#----------------------------------------------------*
+
+override method @pic18Instruction_LDATA8PTR analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList unused ioGeneratedBlockList
+  ?let @routineMap unused inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@uint unused ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring unused ioBlockLabel
+  ?!@string unused ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool unused inShouldPreserveBSR
+  ?let @routineKind unused inRoutineKind
+  ?!@stringset ioUsedRegisters
+{
+  [inDataMap searchKey !mDataName ?let @uintlist data ?let isData8]
+  if not isData8 then
+    error mDataName : "this data is a 16-bit word array; use ldata16ptr"
+  end
+#--- Check index
+  if [mDataIndex uint] >= ([data length] * 2) then
+    error mDataIndex: "index should be < " + ([data length] * 2)
+  end
+#--- Upper byte
+  let TBLPTRU = @registerExpression.new {
+    !@lstring. new { !"TBLPTRU" !mInstructionLocation}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
+  [TBLPTRU analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    !inConstantMap
+    ?var @ipic18_intermediate_registerExpression outIPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W. new {
+    !mInstructionLocation
+    !mDataName
+    ![mDataIndex uint]
+    !16
+  }
+  !@uint.max
+  !0
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+    !mInstructionLocation
+    !@FA_sequential_instruction_base_code. MOVWF
+    !outIPICregisterDescription
+  }  
+  !@uint.max
+  !0
+#--- High byte
+  let TBLPTRH = @registerExpression.new {
+    !@lstring.new {!"TBLPTRH" !mInstructionLocation}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
+  [TBLPTRH analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    !inConstantMap
+    ?outIPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W. new {
+    !mInstructionLocation
+    !mDataName
+    ![mDataIndex uint]
+    !8
+  }
+  !@uint.max
+  !0
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA. new {
+    !mInstructionLocation
+    !@FA_sequential_instruction_base_code. MOVWF
+    !outIPICregisterDescription
+  }  
+  !@uint.max
+  !0
+#--- Low byte
+  let TBLPTRL = @registerExpression.new {
+    !@lstring.new { !"TBLPTRL" !mInstructionLocation}
+    !@immediatInteger.new {!.new {!0 !.here}}
+    !.here
+  }
+  [TBLPTRL analyzeRegisterExpression
+    !inAccessBankSplitOffset
+    !ioCurrentBank
+    !inRegisterTable
+    !inConstantMap
+    ?outIPICregisterDescription
+    ?*
+    !?ioUsedRegisters
+  ]
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W. new {
+    !mInstructionLocation
+    !mDataName
+    ![mDataIndex uint]
     !0
   }
   !@uint.max
@@ -3202,28 +3325,52 @@ proc pic18_analyze_data_sections
   ?!@string ioListFileContents
   !@pic18_dataMap outDataMap
   ?!@constantMap ioConstantMap
-  ?!@stringset ioUsedRegisters {
-  outDataMap = @pic18_dataMap. emptyMap
-  for () in  inDataDefinitionList
+  ?!@stringset ioUsedRegisters
+{
+  outDataMap = {}
+  for (name valueList isData8) in  inDataDefinitionList
   before
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
     ioListFileContents += "*" + ["DATA DECLARATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   do
-    ioListFileContents += "Data '" + mDataName + "', " + [mValueList length] + " words (" + [mValueList length] * 2 + " bytes).\n" 
-    [!?ioConstantMap insertKey !@lstring. new { !mDataName.string + "_BYTE_COUNT" !mDataName.location} ![[mValueList length] * 2 sint64]]
-    var data =@uintlist.emptyList{}
-    for () in  mValueList do
-      [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 value !?ioUsedRegisters]
-      if value < 0LS then
-        error mErrorLocation: "data value is " + value + " (negative)"
-      elsif value > 65535LS then
-        error mErrorLocation: "data value is " + value + " (greater than 2**16-1)"
-      else
-        data += ![value uint]
+    @uintlist data = {}
+    if isData8 then
+      if ([valueList length] & 1) != 0 then
+        error name : "the data8 byte count should be even"
+      end
+      ioListFileContents += "Data8 '" + name + "', " + ([valueList length] / 2)
+        + " words (" + [valueList length] + " bytes).\n" 
+      [!?ioConstantMap insertKey !.new { !name.string + "_BYTE_COUNT" !name} ![[valueList length] sint64]]
+      @sint byte = 0S
+      for (expression errorLocation) in  valueList do (idx)
+        [expression eval !inRegisterTable !inConstantMap ?let @sint64 value !?ioUsedRegisters]
+        if value < 0LS then
+          error errorLocation: "data8 value is " + value + " (negative)"
+        elsif value > 255LS then
+          error errorLocation: "data8 value is " + value + " (greater than 255"
+        elsif (idx & 1) == 0 then
+          byte = value
+        else
+          data += ![(value << 8) | byte uint]
+        end
+      end
+    else
+      ioListFileContents += "Data16 '" + name + "', " + [valueList length]
+        + " words (" + [valueList length] * 2 + " bytes).\n" 
+      [!?ioConstantMap insertKey !.new { !name.string + "_BYTE_COUNT" !name} ![[valueList length] * 2 sint64]]
+      for () in  valueList do
+        [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 value !?ioUsedRegisters]
+        if value < 0LS then
+          error mErrorLocation: "data16 value is " + value + " (negative)"
+        elsif value > 65535LS then
+          error mErrorLocation: "data16 value is " + value + " (greater than 2**16-1)"
+        else
+          data += ![value uint]
+        end
       end
     end
-    [!?outDataMap insertKey !mDataName !data]
+    [!?outDataMap insertKey !name !data !isData8]
   end
 }
 

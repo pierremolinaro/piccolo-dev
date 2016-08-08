@@ -11,23 +11,25 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 cMapElement_pic_31__38__5F_dataMap::cMapElement_pic_31__38__5F_dataMap (const GALGAS_lstring & inKey,
-                                                                        const GALGAS_uintlist & in_mData
+                                                                        const GALGAS_uintlist & in_mData,
+                                                                        const GALGAS_bool & in_mIsData_38_
                                                                         COMMA_LOCATION_ARGS) :
 cMapElement (inKey COMMA_THERE),
-mAttribute_mData (in_mData) {
+mAttribute_mData (in_mData),
+mAttribute_mIsData_38_ (in_mIsData_38_) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool cMapElement_pic_31__38__5F_dataMap::isValid (void) const {
-  return mAttribute_lkey.isValid () && mAttribute_mData.isValid () ;
+  return mAttribute_lkey.isValid () && mAttribute_mData.isValid () && mAttribute_mIsData_38_.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 cMapElement * cMapElement_pic_31__38__5F_dataMap::copy (void) {
   cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_pic_31__38__5F_dataMap (mAttribute_lkey, mAttribute_mData COMMA_HERE)) ;
+  macroMyNew (result, cMapElement_pic_31__38__5F_dataMap (mAttribute_lkey, mAttribute_mData, mAttribute_mIsData_38_ COMMA_HERE)) ;
   return result ;
 }
 
@@ -38,6 +40,10 @@ void cMapElement_pic_31__38__5F_dataMap::description (C_String & ioString, const
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mData" ":" ;
   mAttribute_mData.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mIsData8" ":" ;
+  mAttribute_mIsData_38_.description (ioString, inIndentation) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -47,6 +53,9 @@ typeComparisonResult cMapElement_pic_31__38__5F_dataMap::compare (const cCollect
   typeComparisonResult result = mAttribute_lkey.objectCompare (operand->mAttribute_lkey) ;
   if (kOperandEqual == result) {
     result = mAttribute_mData.objectCompare (operand->mAttribute_mData) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mIsData_38_.objectCompare (operand->mAttribute_mIsData_38_) ;
   }
   return result ;
 }
@@ -100,10 +109,11 @@ GALGAS_pic_31__38__5F_dataMap GALGAS_pic_31__38__5F_dataMap::getter_overriddenMa
 
 void GALGAS_pic_31__38__5F_dataMap::addAssign_operation (const GALGAS_lstring & inKey,
                                                          const GALGAS_uintlist & inArgument0,
+                                                         const GALGAS_bool & inArgument1,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) {
   cMapElement_pic_31__38__5F_dataMap * p = NULL ;
-  macroMyNew (p, cMapElement_pic_31__38__5F_dataMap (inKey, inArgument0 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_pic_31__38__5F_dataMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -116,10 +126,11 @@ void GALGAS_pic_31__38__5F_dataMap::addAssign_operation (const GALGAS_lstring & 
 
 void GALGAS_pic_31__38__5F_dataMap::setter_insertKey (GALGAS_lstring inKey,
                                                       GALGAS_uintlist inArgument0,
+                                                      GALGAS_bool inArgument1,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) {
   cMapElement_pic_31__38__5F_dataMap * p = NULL ;
-  macroMyNew (p, cMapElement_pic_31__38__5F_dataMap (inKey, inArgument0 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_pic_31__38__5F_dataMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -136,6 +147,7 @@ const char * kSearchErrorMessage_pic_31__38__5F_dataMap_searchKey = "the '%K' da
 
 void GALGAS_pic_31__38__5F_dataMap::method_searchKey (GALGAS_lstring inKey,
                                                       GALGAS_uintlist & outArgument0,
+                                                      GALGAS_bool & outArgument1,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) const {
   const cMapElement_pic_31__38__5F_dataMap * p = (const cMapElement_pic_31__38__5F_dataMap *) performSearch (inKey,
@@ -144,9 +156,11 @@ void GALGAS_pic_31__38__5F_dataMap::method_searchKey (GALGAS_lstring inKey,
                                                                                                                COMMA_THERE) ;
   if (NULL == p) {
     outArgument0.drop () ;
+    outArgument1.drop () ;
   }else{
     macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
     outArgument0 = p->mAttribute_mData ;
+    outArgument1 = p->mAttribute_mIsData_38_ ;
   }
 }
 
@@ -167,6 +181,21 @@ GALGAS_uintlist GALGAS_pic_31__38__5F_dataMap::getter_mDataForKey (const GALGAS_
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_bool GALGAS_pic_31__38__5F_dataMap::getter_mIsData_38_ForKey (const GALGAS_string & inKey,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_pic_31__38__5F_dataMap * p = (const cMapElement_pic_31__38__5F_dataMap *) attributes ;
+  GALGAS_bool result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
+    result = p->mAttribute_mIsData_38_ ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 void GALGAS_pic_31__38__5F_dataMap::setter_setMDataForKey (GALGAS_uintlist inAttributeValue,
                                                            GALGAS_string inKey,
                                                            C_Compiler * inCompiler
@@ -176,6 +205,20 @@ void GALGAS_pic_31__38__5F_dataMap::setter_setMDataForKey (GALGAS_uintlist inAtt
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
     p->mAttribute_mData = inAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void GALGAS_pic_31__38__5F_dataMap::setter_setMIsData_38_ForKey (GALGAS_bool inAttributeValue,
+                                                                 GALGAS_string inKey,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_pic_31__38__5F_dataMap * p = (cMapElement_pic_31__38__5F_dataMap *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
+    p->mAttribute_mIsData_38_ = inAttributeValue ;
   }
 }
 
@@ -202,7 +245,7 @@ cGenericAbstractEnumerator () {
 GALGAS_pic_31__38__5F_dataMap_2D_element cEnumerator_pic_31__38__5F_dataMap::current (LOCATION_ARGS) const {
   const cMapElement_pic_31__38__5F_dataMap * p = (const cMapElement_pic_31__38__5F_dataMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
-  return GALGAS_pic_31__38__5F_dataMap_2D_element (p->mAttribute_lkey, p->mAttribute_mData) ;
+  return GALGAS_pic_31__38__5F_dataMap_2D_element (p->mAttribute_lkey, p->mAttribute_mData, p->mAttribute_mIsData_38_) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -219,6 +262,14 @@ GALGAS_uintlist cEnumerator_pic_31__38__5F_dataMap::current_mData (LOCATION_ARGS
   const cMapElement_pic_31__38__5F_dataMap * p = (const cMapElement_pic_31__38__5F_dataMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
   return p->mAttribute_mData ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_bool cEnumerator_pic_31__38__5F_dataMap::current_mIsData_38_ (LOCATION_ARGS) const {
+  const cMapElement_pic_31__38__5F_dataMap * p = (const cMapElement_pic_31__38__5F_dataMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
+  return p->mAttribute_mIsData_38_ ;
 }
 
 

@@ -166,7 +166,24 @@ rule <data_definition> ?!@dataList ioDataList {
     $,$
   end
   $}$
-  ioDataList += !dataName !valueList
+  ioDataList += !dataName !valueList !false
+}
+
+#----------------------------------------------------*
+
+rule <data_definition> ?!@dataList ioDataList {
+  $data8$
+  $identifier$ ?let @lstring dataName
+  ${$
+  @immediatExpressionList valueList = {}
+  repeat
+    <immediate_expression> ?let @immediatExpression expression
+    valueList += !expression !@location.here
+  while
+    $,$
+  end
+  $}$
+  ioDataList += !dataName !valueList !true
 }
     
 #----------------------------------------------------*
@@ -654,12 +671,20 @@ rule <structured_instruction>
     or
       $ldata16ptr$
     end
-    let @location instructionLocation = @location.here
+    let @location instructionLocation = .here
     $identifier$ ?var @lstring dataName
     $[$
     $integer$ ?var  @luint dataIndex
     $]$
-    outInstruction = @pic18Instruction_LDATAPTR. new { !instructionLocation !dataName !dataIndex}
+    outInstruction = @pic18Instruction_LDATA16PTR. new { !instructionLocation !dataName !dataIndex}
+  or
+    $ldata8ptr$
+    let @location instructionLocation = .here
+    $identifier$ ?var @lstring dataName
+    $[$
+    $integer$ ?var  @luint dataIndex
+    $]$
+    outInstruction = @pic18Instruction_LDATA8PTR. new { !instructionLocation !dataName !dataIndex}
   or
     $ltblptr$
     let @location instructionLocation = @location.here
