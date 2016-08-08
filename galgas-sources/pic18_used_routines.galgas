@@ -79,7 +79,15 @@ override method @pic18Instruction_checkbank addUsedRoutines
 
 #---------------------------------------------------------------------------*
 
-override method @pic18Instruction_LDATAPTR addUsedRoutines
+override method @pic18Instruction_LDATA16PTR addUsedRoutines
+  ?let @pic18MacroMap unused inMacroMap
+  ?!@stringset unused ioUsedRoutines
+{
+}
+
+#---------------------------------------------------------------------------*
+
+override method @pic18Instruction_LDATA8PTR addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
   ?!@stringset unused ioUsedRoutines
 {

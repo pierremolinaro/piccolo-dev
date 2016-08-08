@@ -50,12 +50,14 @@ class GALGAS_pic_31__38__5F_dataMap : public AC_GALGAS_map {
 //--------------------------------- += operator (with list of field expressions)
   public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
                                                       const class GALGAS_uintlist & inOperand1,
+                                                      const class GALGAS_bool & inOperand2,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Setters
   public : VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
                                                    class GALGAS_uintlist constinArgument1,
+                                                   class GALGAS_bool constinArgument2,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
@@ -64,10 +66,16 @@ class GALGAS_pic_31__38__5F_dataMap : public AC_GALGAS_map {
                                                         C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
+  public : VIRTUAL_IN_DEBUG void setter_setMIsData_38_ForKey (class GALGAS_bool constinArgument0,
+                                                              class GALGAS_string constinArgument1,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
   public : VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
                                                    class GALGAS_uintlist & outArgument1,
+                                                   class GALGAS_bool & outArgument2,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const ;
 
@@ -77,6 +85,10 @@ class GALGAS_pic_31__38__5F_dataMap : public AC_GALGAS_map {
   public : VIRTUAL_IN_DEBUG class GALGAS_uintlist getter_mDataForKey (const class GALGAS_string & constinOperand0,
                                                                       C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsData_38_ForKey (const class GALGAS_string & constinOperand0,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38__5F_dataMap getter_overriddenMap (C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const ;
@@ -105,6 +117,7 @@ class cEnumerator_pic_31__38__5F_dataMap : public cGenericAbstractEnumerator {
 //--- Current element access
   public : class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
   public : class GALGAS_uintlist current_mData (LOCATION_ARGS) const ;
+  public : class GALGAS_bool current_mIsData_38_ (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_pic_31__38__5F_dataMap_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -122,10 +135,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38__5F_data
 class cMapElement_pic_31__38__5F_dataMap : public cMapElement {
 //--- Map attributes
   public : GALGAS_uintlist mAttribute_mData ;
+  public : GALGAS_bool mAttribute_mIsData_38_ ;
 
 //--- Constructor
   public : cMapElement_pic_31__38__5F_dataMap (const GALGAS_lstring & inKey,
-                                               const GALGAS_uintlist & in_mData
+                                               const GALGAS_uintlist & in_mData,
+                                               const GALGAS_bool & in_mIsData_38_
                                                COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -151,6 +166,7 @@ class GALGAS_pic_31__38__5F_dataMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
   public : GALGAS_lstring mAttribute_lkey ;
   public : GALGAS_uintlist mAttribute_mData ;
+  public : GALGAS_bool mAttribute_mIsData_38_ ;
 
 
 //--------------------------------- Accessors
@@ -168,7 +184,8 @@ class GALGAS_pic_31__38__5F_dataMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Native constructor
   public : GALGAS_pic_31__38__5F_dataMap_2D_element (const GALGAS_lstring & in_lkey,
-                                                     const GALGAS_uintlist & in_mData) ;
+                                                     const GALGAS_uintlist & in_mData,
+                                                     const GALGAS_bool & in_mIsData_38_) ;
 
 //-- Start of generic part --*
 
@@ -182,7 +199,8 @@ class GALGAS_pic_31__38__5F_dataMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_pic_31__38__5F_dataMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                  const class GALGAS_uintlist & inOperand1
+                                                                                  const class GALGAS_uintlist & inOperand1,
+                                                                                  const class GALGAS_bool & inOperand2
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -200,6 +218,8 @@ class GALGAS_pic_31__38__5F_dataMap_2D_element : public AC_GALGAS_root {
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_uintlist getter_mData (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsData_38_ (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection

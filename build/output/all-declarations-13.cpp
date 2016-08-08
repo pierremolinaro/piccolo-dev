@@ -7190,27 +7190,51 @@ C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_checkbank_addUsedRoutines (
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                      Overriding extension method '@pic18Instruction_LDATAPTR addUsedRoutines'                       *
+//                     Overriding extension method '@pic18Instruction_LDATA16PTR addUsedRoutines'                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static void extensionMethod_pic_31__38_Instruction_5F_LDATAPTR_addUsedRoutines (const cPtr_pic_31__38_PiccoloInstruction * /* inObject */,
-                                                                                const GALGAS_pic_31__38_MacroMap /* constinArgument_inMacroMap */,
-                                                                                GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                                C_Compiler * /* inCompiler */
-                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+static void extensionMethod_pic_31__38_Instruction_5F_LDATA_31__36_PTR_addUsedRoutines (const cPtr_pic_31__38_PiccoloInstruction * /* inObject */,
+                                                                                        const GALGAS_pic_31__38_MacroMap /* constinArgument_inMacroMap */,
+                                                                                        GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
+                                                                                        C_Compiler * /* inCompiler */
+                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-static void defineExtensionMethod_pic_31__38_Instruction_5F_LDATAPTR_addUsedRoutines (void) {
-  enterExtensionMethod_addUsedRoutines (kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATAPTR.mSlotID,
-                                        extensionMethod_pic_31__38_Instruction_5F_LDATAPTR_addUsedRoutines) ;
+static void defineExtensionMethod_pic_31__38_Instruction_5F_LDATA_31__36_PTR_addUsedRoutines (void) {
+  enterExtensionMethod_addUsedRoutines (kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR.mSlotID,
+                                        extensionMethod_pic_31__38_Instruction_5F_LDATA_31__36_PTR_addUsedRoutines) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_LDATAPTR_addUsedRoutines (defineExtensionMethod_pic_31__38_Instruction_5F_LDATAPTR_addUsedRoutines, NULL) ;
+C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_LDATA_31__36_PTR_addUsedRoutines (defineExtensionMethod_pic_31__38_Instruction_5F_LDATA_31__36_PTR_addUsedRoutines, NULL) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                      Overriding extension method '@pic18Instruction_LDATA8PTR addUsedRoutines'                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void extensionMethod_pic_31__38_Instruction_5F_LDATA_38_PTR_addUsedRoutines (const cPtr_pic_31__38_PiccoloInstruction * /* inObject */,
+                                                                                    const GALGAS_pic_31__38_MacroMap /* constinArgument_inMacroMap */,
+                                                                                    GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
+                                                                                    C_Compiler * /* inCompiler */
+                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+static void defineExtensionMethod_pic_31__38_Instruction_5F_LDATA_38_PTR_addUsedRoutines (void) {
+  enterExtensionMethod_addUsedRoutines (kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR.mSlotID,
+                                        extensionMethod_pic_31__38_Instruction_5F_LDATA_38_PTR_addUsedRoutines) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+C_PrologueEpilogue gMethod_pic_31__38_Instruction_5F_LDATA_38_PTR_addUsedRoutines (defineExtensionMethod_pic_31__38_Instruction_5F_LDATA_38_PTR_addUsedRoutines, NULL) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -7369,10 +7393,10 @@ static void extensionMethod_pic_31__38_Instruction_5F_computed_5F_bra_addUsedRou
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_Instruction_5F_computed_5F_bra * object = (const cPtr_pic_31__38_Instruction_5F_computed_5F_bra *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_computed_5F_bra) ;
-  cEnumerator_lstringlist enumerator_4151 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-  while (enumerator_4151.hasCurrentObject ()) {
-    ioArgument_ioUsedRoutines.addAssign_operation (enumerator_4151.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 143)) ;
-    enumerator_4151.gotoNextObject () ;
+  cEnumerator_lstringlist enumerator_4374 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  while (enumerator_4374.hasCurrentObject ()) {
+    ioArgument_ioUsedRoutines.addAssign_operation (enumerator_4374.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 151)) ;
+    enumerator_4374.gotoNextObject () ;
   }
 }
 
@@ -7400,10 +7424,10 @@ static void extensionMethod_pic_31__38_Instruction_5F_computed_5F_goto_addUsedRo
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_Instruction_5F_computed_5F_goto * object = (const cPtr_pic_31__38_Instruction_5F_computed_5F_goto *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_computed_5F_goto) ;
-  cEnumerator_lstringlist enumerator_4442 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-  while (enumerator_4442.hasCurrentObject ()) {
-    ioArgument_ioUsedRoutines.addAssign_operation (enumerator_4442.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 154)) ;
-    enumerator_4442.gotoNextObject () ;
+  cEnumerator_lstringlist enumerator_4665 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  while (enumerator_4665.hasCurrentObject ()) {
+    ioArgument_ioUsedRoutines.addAssign_operation (enumerator_4665.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 162)) ;
+    enumerator_4665.gotoNextObject () ;
   }
 }
 
@@ -7431,10 +7455,10 @@ static void extensionMethod_pic_31__38_Instruction_5F_computed_5F_rcall_addUsedR
                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_Instruction_5F_computed_5F_rcall * object = (const cPtr_pic_31__38_Instruction_5F_computed_5F_rcall *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_computed_5F_rcall) ;
-  cEnumerator_lstringlist enumerator_4734 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
-  while (enumerator_4734.hasCurrentObject ()) {
-    ioArgument_ioUsedRoutines.addAssign_operation (enumerator_4734.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 165)) ;
-    enumerator_4734.gotoNextObject () ;
+  cEnumerator_lstringlist enumerator_4957 (object->mAttribute_mTargetLabels, kEnumeration_up) ;
+  while (enumerator_4957.hasCurrentObject ()) {
+    ioArgument_ioUsedRoutines.addAssign_operation (enumerator_4957.current_mValue (HERE).mAttribute_string  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 173)) ;
+    enumerator_4957.gotoNextObject () ;
   }
 }
 
@@ -7487,14 +7511,14 @@ static void extensionMethod_pic_31__38_Instruction_5F_do_5F_while_addUsedRoutine
   const cPtr_pic_31__38_Instruction_5F_do_5F_while * object = (const cPtr_pic_31__38_Instruction_5F_do_5F_while *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_do_5F_while) ;
   {
-  routine_addPic_31__38_UsedRoutinesFromInstructionList (object->mAttribute_mRepeatedInstructionList, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 183)) ;
+  routine_addPic_31__38_UsedRoutinesFromInstructionList (object->mAttribute_mRepeatedInstructionList, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 191)) ;
   }
-  cEnumerator_pic_31__38_DoWhilePartList enumerator_5340 (object->mAttribute_mWhilePartList, kEnumeration_up) ;
-  while (enumerator_5340.hasCurrentObject ()) {
+  cEnumerator_pic_31__38_DoWhilePartList enumerator_5563 (object->mAttribute_mWhilePartList, kEnumeration_up) ;
+  while (enumerator_5563.hasCurrentObject ()) {
     {
-    routine_addPic_31__38_UsedRoutinesFromInstructionList (enumerator_5340.current_mInstructionList (HERE), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 185)) ;
+    routine_addPic_31__38_UsedRoutinesFromInstructionList (enumerator_5563.current_mInstructionList (HERE), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 193)) ;
     }
-    enumerator_5340.gotoNextObject () ;
+    enumerator_5563.gotoNextObject () ;
   }
 }
 
@@ -7547,7 +7571,7 @@ static void extensionMethod_pic_31__38_Instruction_5F_savebank_addUsedRoutines (
   const cPtr_pic_31__38_Instruction_5F_savebank * object = (const cPtr_pic_31__38_Instruction_5F_savebank *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_savebank) ;
   {
-  routine_addPic_31__38_UsedRoutinesFromInstructionList (object->mAttribute_mInstructionList, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 203)) ;
+  routine_addPic_31__38_UsedRoutinesFromInstructionList (object->mAttribute_mInstructionList, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 211)) ;
   }
 }
 
@@ -7576,10 +7600,10 @@ static void extensionMethod_pic_31__38_Instruction_5F_structured_5F_if_addUsedRo
   const cPtr_pic_31__38_Instruction_5F_structured_5F_if * object = (const cPtr_pic_31__38_Instruction_5F_structured_5F_if *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_structured_5F_if) ;
   {
-  routine_addPic_31__38_UsedRoutinesFromInstructionList (object->mAttribute_mThenInstructionList, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 212)) ;
+  routine_addPic_31__38_UsedRoutinesFromInstructionList (object->mAttribute_mThenInstructionList, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 220)) ;
   }
   {
-  routine_addPic_31__38_UsedRoutinesFromInstructionList (object->mAttribute_mElseInstructionList, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 213)) ;
+  routine_addPic_31__38_UsedRoutinesFromInstructionList (object->mAttribute_mElseInstructionList, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 221)) ;
   }
 }
 
@@ -7607,15 +7631,15 @@ static void extensionMethod_pic_31__38_Instruction_5F_switch_addUsedRoutines (co
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_Instruction_5F_switch * object = (const cPtr_pic_31__38_Instruction_5F_switch *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_switch) ;
-  cEnumerator_pic_31__38_SwitchInstructionCaseList enumerator_6593 (object->mAttribute_mCaseList, kEnumeration_up) ;
-  while (enumerator_6593.hasCurrentObject ()) {
+  cEnumerator_pic_31__38_SwitchInstructionCaseList enumerator_6816 (object->mAttribute_mCaseList, kEnumeration_up) ;
+  while (enumerator_6816.hasCurrentObject ()) {
     {
-    routine_addPic_31__38_UsedRoutinesFromInstructionList (enumerator_6593.current_mInstructionList (HERE), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 223)) ;
+    routine_addPic_31__38_UsedRoutinesFromInstructionList (enumerator_6816.current_mInstructionList (HERE), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 231)) ;
     }
-    enumerator_6593.gotoNextObject () ;
+    enumerator_6816.gotoNextObject () ;
   }
   {
-  routine_addPic_31__38_UsedRoutinesFromInstructionList (object->mAttribute_mElseInstructionList, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 225)) ;
+  routine_addPic_31__38_UsedRoutinesFromInstructionList (object->mAttribute_mElseInstructionList, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 233)) ;
   }
 }
 
@@ -7643,11 +7667,11 @@ static void extensionMethod_pic_31__38_Instruction_5F_macro_addUsedRoutines (con
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_Instruction_5F_macro * object = (const cPtr_pic_31__38_Instruction_5F_macro *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_macro) ;
-  GALGAS_pic_31__38_InstructionList var_instructionList_7055 ;
-  GALGAS_lstringlist joker_7033 ; // Joker input parameter
-  constinArgument_inMacroMap.method_searchKey (object->mAttribute_mMacroName, joker_7033, var_instructionList_7055, inCompiler COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 234)) ;
+  GALGAS_pic_31__38_InstructionList var_instructionList_7278 ;
+  GALGAS_lstringlist joker_7256 ; // Joker input parameter
+  constinArgument_inMacroMap.method_searchKey (object->mAttribute_mMacroName, joker_7256, var_instructionList_7278, inCompiler COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 242)) ;
   {
-  routine_addPic_31__38_UsedRoutinesFromInstructionList (var_instructionList_7055, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 235)) ;
+  routine_addPic_31__38_UsedRoutinesFromInstructionList (var_instructionList_7278, constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 243)) ;
   }
 }
 
@@ -7747,7 +7771,7 @@ static void extensionMethod_pic_31__38_Instruction_5F_JSR_addUsedRoutines (const
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_Instruction_5F_JSR * object = (const cPtr_pic_31__38_Instruction_5F_JSR *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_JSR) ;
-  ioArgument_ioUsedRoutines.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 268)) ;
+  ioArgument_ioUsedRoutines.addAssign_operation (object->mAttribute_mTargetLabel.mAttribute_string  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 276)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -7942,12 +7966,12 @@ static void extensionMethod_pic_31__38_Instruction_5F_block_addUsedRoutines (con
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_Instruction_5F_block * object = (const cPtr_pic_31__38_Instruction_5F_block *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_block) ;
-  cEnumerator_pic_31__38_BlockInstructionBlockList enumerator_9802 (object->mAttribute_mBlockList, kEnumeration_up) ;
-  while (enumerator_9802.hasCurrentObject ()) {
+  cEnumerator_pic_31__38_BlockInstructionBlockList enumerator_10025 (object->mAttribute_mBlockList, kEnumeration_up) ;
+  while (enumerator_10025.hasCurrentObject ()) {
     {
-    routine_addPic_31__38_UsedRoutinesFromInstructionList (enumerator_9802.current_mInstructionList (HERE), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 334)) ;
+    routine_addPic_31__38_UsedRoutinesFromInstructionList (enumerator_10025.current_mInstructionList (HERE), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 342)) ;
     }
-    enumerator_9802.gotoNextObject () ;
+    enumerator_10025.gotoNextObject () ;
   }
 }
 

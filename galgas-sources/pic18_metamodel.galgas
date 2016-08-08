@@ -312,7 +312,14 @@ class @pic18Instruction_LTBLPTR : @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_LDATAPTR : @pic18PiccoloInstruction {
+class @pic18Instruction_LDATA8PTR : @pic18PiccoloInstruction {
+  @lstring mDataName
+  @luint mDataIndex
+}
+
+#----------------------------------------------------*
+
+class @pic18Instruction_LDATA16PTR : @pic18PiccoloInstruction {
   @lstring mDataName
   @luint mDataIndex
 }
@@ -568,6 +575,7 @@ enum @programKind {
 list @dataList {
   @lstring mDataName
   @immediatExpressionList mValueList
+  @bool mIsByteList # true: data8, false: data16
 }
 
 #----------------------------------------------------*

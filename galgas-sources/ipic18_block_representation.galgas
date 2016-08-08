@@ -4,6 +4,7 @@
 
 map @pic18_dataMap {
   @uintlist mData
+  @bool mIsData8 # true: data8, false: data16
   insert insertKey error message "the '%K' data is already declared"
   search searchKey error message "the '%K' data is not declared"
 }

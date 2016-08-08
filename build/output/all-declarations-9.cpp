@@ -7181,10 +7181,10 @@ GALGAS_pic_31__38_Instruction_5F_JUMPCC GALGAS_pic_31__38_Instruction_5F_JUMPCC:
 //   Object comparison                                                                                                 *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typeComparisonResult cPtr_pic_31__38_Instruction_5F_LDATAPTR::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+typeComparisonResult cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
-  const cPtr_pic_31__38_Instruction_5F_LDATAPTR * p = (const cPtr_pic_31__38_Instruction_5F_LDATAPTR *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATAPTR) ;
+  const cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR * p = (const cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR) ;
   if (kOperandEqual == result) {
     result = mAttribute_mInstructionLocation.objectCompare (p->mAttribute_mInstructionLocation) ;
   }
@@ -7200,7 +7200,7 @@ typeComparisonResult cPtr_pic_31__38_Instruction_5F_LDATAPTR::dynamicObjectCompa
 //---------------------------------------------------------------------------------------------------------------------*
 
 
-typeComparisonResult GALGAS_pic_31__38_Instruction_5F_LDATAPTR::objectCompare (const GALGAS_pic_31__38_Instruction_5F_LDATAPTR & inOperand) const {
+typeComparisonResult GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::objectCompare (const GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR & inOperand) const {
   typeComparisonResult result = kOperandNotValid ;
   if (isValid () && inOperand.isValid ()) {
     const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
@@ -7218,46 +7218,46 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_LDATAPTR::objectCompare (c
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_pic_31__38_Instruction_5F_LDATAPTR::GALGAS_pic_31__38_Instruction_5F_LDATAPTR (void) :
+GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR (void) :
 GALGAS_pic_31__38_PiccoloInstruction () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_pic_31__38_Instruction_5F_LDATAPTR GALGAS_pic_31__38_Instruction_5F_LDATAPTR::constructor_default (LOCATION_ARGS) {
-  return GALGAS_pic_31__38_Instruction_5F_LDATAPTR::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                     GALGAS_lstring::constructor_default (HERE),
-                                                                     GALGAS_luint::constructor_default (HERE)
-                                                                     COMMA_THERE) ;
+GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::constructor_default (LOCATION_ARGS) {
+  return GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::constructor_new (GALGAS_location::constructor_nowhere (HERE),
+                                                                             GALGAS_lstring::constructor_default (HERE),
+                                                                             GALGAS_luint::constructor_default (HERE)
+                                                                             COMMA_THERE) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_pic_31__38_Instruction_5F_LDATAPTR::GALGAS_pic_31__38_Instruction_5F_LDATAPTR (const cPtr_pic_31__38_Instruction_5F_LDATAPTR * inSourcePtr) :
+GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR (const cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR * inSourcePtr) :
 GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_LDATAPTR) ;
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_pic_31__38_Instruction_5F_LDATAPTR GALGAS_pic_31__38_Instruction_5F_LDATAPTR::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                      const GALGAS_lstring & inAttribute_mDataName,
-                                                                                                      const GALGAS_luint & inAttribute_mDataIndex
-                                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_LDATAPTR result ;
+GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                      const GALGAS_lstring & inAttribute_mDataName,
+                                                                                                                      const GALGAS_luint & inAttribute_mDataIndex
+                                                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mDataName.isValid () && inAttribute_mDataIndex.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_LDATAPTR (inAttribute_mInstructionLocation, inAttribute_mDataName, inAttribute_mDataIndex COMMA_THERE)) ;
+    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR (inAttribute_mInstructionLocation, inAttribute_mDataName, inAttribute_mDataIndex COMMA_THERE)) ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_LDATAPTR::getter_mDataName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::getter_mDataName (UNUSED_LOCATION_ARGS) const {
   GALGAS_lstring result ;
   if (NULL != mObjectPtr) {
-    const cPtr_pic_31__38_Instruction_5F_LDATAPTR * p = (const cPtr_pic_31__38_Instruction_5F_LDATAPTR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATAPTR) ;
+    const cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR * p = (const cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR) ;
     result = p->mAttribute_mDataName ;
   }
   return result ;
@@ -7265,17 +7265,17 @@ GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_LDATAPTR::getter_mDataName (UNUS
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_lstring cPtr_pic_31__38_Instruction_5F_LDATAPTR::getter_mDataName (UNUSED_LOCATION_ARGS) const {
+GALGAS_lstring cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR::getter_mDataName (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mDataName ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint GALGAS_pic_31__38_Instruction_5F_LDATAPTR::getter_mDataIndex (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::getter_mDataIndex (UNUSED_LOCATION_ARGS) const {
   GALGAS_luint result ;
   if (NULL != mObjectPtr) {
-    const cPtr_pic_31__38_Instruction_5F_LDATAPTR * p = (const cPtr_pic_31__38_Instruction_5F_LDATAPTR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATAPTR) ;
+    const cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR * p = (const cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR) ;
     result = p->mAttribute_mDataIndex ;
   }
   return result ;
@@ -7283,18 +7283,18 @@ GALGAS_luint GALGAS_pic_31__38_Instruction_5F_LDATAPTR::getter_mDataIndex (UNUSE
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint cPtr_pic_31__38_Instruction_5F_LDATAPTR::getter_mDataIndex (UNUSED_LOCATION_ARGS) const {
+GALGAS_luint cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR::getter_mDataIndex (UNUSED_LOCATION_ARGS) const {
   return mAttribute_mDataIndex ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-//                                 Pointer class for @pic18Instruction_LDATAPTR class                                  *
+//                                Pointer class for @pic18Instruction_LDATA16PTR class                                 *
 //---------------------------------------------------------------------------------------------------------------------*
 
-cPtr_pic_31__38_Instruction_5F_LDATAPTR::cPtr_pic_31__38_Instruction_5F_LDATAPTR (const GALGAS_location & in_mInstructionLocation,
-                                                                                  const GALGAS_lstring & in_mDataName,
-                                                                                  const GALGAS_luint & in_mDataIndex
-                                                                                  COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR::cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR (const GALGAS_location & in_mInstructionLocation,
+                                                                                                  const GALGAS_lstring & in_mDataName,
+                                                                                                  const GALGAS_luint & in_mDataIndex
+                                                                                                  COMMA_LOCATION_ARGS) :
 cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation COMMA_THERE),
 mAttribute_mDataName (in_mDataName),
 mAttribute_mDataIndex (in_mDataIndex) {
@@ -7302,13 +7302,13 @@ mAttribute_mDataIndex (in_mDataIndex) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_LDATAPTR::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATAPTR ;
+const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR ;
 }
 
-void cPtr_pic_31__38_Instruction_5F_LDATAPTR::description (C_String & ioString,
-                                                           const int32_t inIndentation) const {
-  ioString << "[@pic18Instruction_LDATAPTR:" ;
+void cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR::description (C_String & ioString,
+                                                                   const int32_t inIndentation) const {
+  ioString << "[@pic18Instruction_LDATA16PTR:" ;
   mAttribute_mInstructionLocation.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mAttribute_mDataName.description (ioString, inIndentation+1) ;
@@ -7319,51 +7319,243 @@ void cPtr_pic_31__38_Instruction_5F_LDATAPTR::description (C_String & ioString,
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-acPtr_class * cPtr_pic_31__38_Instruction_5F_LDATAPTR::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_LDATAPTR (mAttribute_mInstructionLocation, mAttribute_mDataName, mAttribute_mDataIndex COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR (mAttribute_mInstructionLocation, mAttribute_mDataName, mAttribute_mDataIndex COMMA_THERE)) ;
   return ptr ;
 }
 
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                           @pic18Instruction_LDATAPTR type                                           *
+//                                          @pic18Instruction_LDATA16PTR type                                          *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
 const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATAPTR ("pic18Instruction_LDATAPTR",
-                                                           & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
+kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR ("pic18Instruction_LDATA16PTR",
+                                                                   & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_LDATAPTR::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATAPTR ;
+const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_LDATAPTR::clonedObject (void) const {
+AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::clonedObject (void) const {
   AC_GALGAS_root * result = NULL ;
   if (isValid ()) {
-    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_LDATAPTR (*this)) ;
+    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR (*this)) ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_pic_31__38_Instruction_5F_LDATAPTR GALGAS_pic_31__38_Instruction_5F_LDATAPTR::extractObject (const GALGAS_object & inObject,
-                                                                                                    C_Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_LDATAPTR result ;
-  const GALGAS_pic_31__38_Instruction_5F_LDATAPTR * p = (const GALGAS_pic_31__38_Instruction_5F_LDATAPTR *) inObject.embeddedObject () ;
+GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::extractObject (const GALGAS_object & inObject,
+                                                                                                                    C_Compiler * inCompiler
+                                                                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR result ;
+  const GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR * p = (const GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR *) inObject.embeddedObject () ;
   if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_LDATAPTR *> (p)) {
+    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR *> (p)) {
       result = *p ;
     }else{
-      inCompiler->castError ("pic18Instruction_LDATAPTR", p->dynamicTypeDescriptor () COMMA_THERE) ;
+      inCompiler->castError ("pic18Instruction_LDATA16PTR", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Object comparison                                                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR * p = (const cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR) ;
+  if (kOperandEqual == result) {
+    result = mAttribute_mInstructionLocation.objectCompare (p->mAttribute_mInstructionLocation) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mDataName.objectCompare (p->mAttribute_mDataName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mAttribute_mDataIndex.objectCompare (p->mAttribute_mDataIndex) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+typeComparisonResult GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::objectCompare (const GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR (void) :
+GALGAS_pic_31__38_PiccoloInstruction () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::constructor_default (LOCATION_ARGS) {
+  return GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::constructor_new (GALGAS_location::constructor_nowhere (HERE),
+                                                                         GALGAS_lstring::constructor_default (HERE),
+                                                                         GALGAS_luint::constructor_default (HERE)
+                                                                         COMMA_THERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR (const cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR * inSourcePtr) :
+GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                              const GALGAS_lstring & inAttribute_mDataName,
+                                                                                                              const GALGAS_luint & inAttribute_mDataIndex
+                                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR result ;
+  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mDataName.isValid () && inAttribute_mDataIndex.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR (inAttribute_mInstructionLocation, inAttribute_mDataName, inAttribute_mDataIndex COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::getter_mDataName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR * p = (const cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR) ;
+    result = p->mAttribute_mDataName ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR::getter_mDataName (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDataName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_luint GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::getter_mDataIndex (UNUSED_LOCATION_ARGS) const {
+  GALGAS_luint result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR * p = (const cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR) ;
+    result = p->mAttribute_mDataIndex ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_luint cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR::getter_mDataIndex (UNUSED_LOCATION_ARGS) const {
+  return mAttribute_mDataIndex ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                 Pointer class for @pic18Instruction_LDATA8PTR class                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
+cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR::cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR (const GALGAS_location & in_mInstructionLocation,
+                                                                                          const GALGAS_lstring & in_mDataName,
+                                                                                          const GALGAS_luint & in_mDataIndex
+                                                                                          COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation COMMA_THERE),
+mAttribute_mDataName (in_mDataName),
+mAttribute_mDataIndex (in_mDataIndex) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR ;
+}
+
+void cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR::description (C_String & ioString,
+                                                               const int32_t inIndentation) const {
+  ioString << "[@pic18Instruction_LDATA8PTR:" ;
+  mAttribute_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mDataName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mAttribute_mDataIndex.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+acPtr_class * cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR (mAttribute_mInstructionLocation, mAttribute_mDataName, mAttribute_mDataIndex COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                          @pic18Instruction_LDATA8PTR type                                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR ("pic18Instruction_LDATA8PTR",
+                                                               & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::extractObject (const GALGAS_object & inObject,
+                                                                                                            C_Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR result ;
+  const GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR * p = (const GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_LDATA8PTR", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
