@@ -149,15 +149,18 @@ rule <checkpic_definition>
     
 #----------------------------------------------------*
 
-rule <data_definition>
-  ?!@dataList ioDataList {
-  $data$
+rule <data_definition> ?!@dataList ioDataList {
+  select
+    $data$
+    warning .here : "obsolete keyword" fixit { replace "data16" }
+  or
+    $data16$
+  end
   $identifier$ ?let @lstring dataName
   ${$
-  var valueList =@immediatExpressionList.emptyList{}
+  @immediatExpressionList valueList = {}
   repeat
-    @immediatExpression expression
-    <immediate_expression> ?expression
+    <immediate_expression> ?let @immediatExpression expression
     valueList += !expression !@location.here
   while
     $,$
@@ -645,7 +648,12 @@ rule <structured_instruction>
     $checknobank$
     outInstruction = @pic18Instruction_checknobank. new { !@location.here}
   or
-    $ldataptr$
+    select
+      $ldataptr$
+      warning .here : "obsolete keyword" fixit { replace "ldata16ptr" }
+    or
+      $ldata16ptr$
+    end
     let @location instructionLocation = @location.here
     $identifier$ ?var @lstring dataName
     $[$

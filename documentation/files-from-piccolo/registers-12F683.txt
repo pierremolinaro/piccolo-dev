@@ -37,3 +37,4 @@
   'VRCON' at 0x99 <VREN, -, VRR, -, VR[4]>
   'WDTCON' at 0x18 <-, -, -, WDTPS[4], SWDTEN>
   'WPU' at 0x95 <-, -, WPU5, WPU4, -, WPU2, WPU1, WPU0>
+No warning, no error.

@@ -2,7 +2,7 @@
 
 #----------------------------------------------------*
 
-abstract getter @midrange_intermediate_instruction instructionLength -> @uint outLength
+abstract getter @midrange_intermediate_instruction instructionLength -> @uint
 
 #----------------------------------------------------*
 

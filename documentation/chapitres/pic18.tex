@@ -959,7 +959,7 @@ Elles correspondent à une partie des instructions assembleur. Attention, pour c
 Piccolo définit les instructions composées suivantes :
 \begin{itemize}
   \item l'instruction \pic!mnop! (\refSectionPage{instructionMNOP}) ;
-  \item l'instruction \pic!ldataptr! (\refSubsectionPage{instructionLDATAPTR}) ;
+  \item l'instruction \pic!ldata16ptr! (\refSubsectionPage{instructionLDATA16PTR}) ;
   \item l'instruction \pic!ltblptr! (\refSubsectionPage{instructionLTBLPTR}) ;
   \item l'instruction conditionnelle simple (\refSectionPage{instructionConditionnelleSimple}) ;
   \item l'instruction conditionnelle structurée (\refSectionPage{instructionConditionnelleStructuree}) ;
@@ -1411,19 +1411,21 @@ Une section \pic!include! permet d'inclure un fichier contenant lui-même des se
 
 
 
-\sectionLabel{Section \texttt{data}}{sectionData}
+\sectionLabel{Section \texttt{data16}}{sectionData}
 
-La section \pic!data! permet de définir des tableaux de données qui seront placés en Flash. Son format est le suivant :
+{\bf Note.} Le mot réservé \pic=data16= est utilisé à partir de la version 3.1.2 ; auparavant, le mot réservé \pic=data= était utilisé.
+
+La section \pic!data16! permet de définir des tableaux de mots de 16 bits qui seront placés en Flash. Son format est le suivant :
 
 \begin{piccolo}
-  data nom {element0, element1, ... }
+  data16 nom {element0, element1, ... }
 \end{piccolo}
 
 \pic!nom! est le nom donné au tableau. \pic!element0!, \pic!element1!, …, sont des expressions statiques pouvant s'écrire sur 16 bits. L'octet de poids faible de chaque valeur apparaît à une adresse paire, celui de poids fort en adresse impaire.
 
 Pour accéder au tableau :
 \begin{itemize}
-  \item \pic!nom!  est utilisé en argument de l'instruction \pic!ldataptr! (\refSubsectionPage{instructionLDATAPTR}) pour charger les registres \assembleur{TBLPTRU}, \assembleur{TBLPTRH} et \assembleur{TBLPTRL} pour qu'ils désignent le début du tableau ;
+  \item \pic!nom! est utilisé en argument de l'instruction \pic!ldata16ptr! (\refSubsectionPage{instructionLDATA16PTR}) pour charger les registres \assembleur{TBLPTRU}, \assembleur{TBLPTRH} et \assembleur{TBLPTRL} pour qu'ils désignent le début du tableau ;
   \item la constante \pic!nom!\emph{\small{\_BYTE\_COUNT}} est définie à la valeur du nombre d'\emph{octets} du tableau : elle vaut donc le double du nombre d'éléments du tableau.
 \end{itemize}
 
@@ -1431,7 +1433,7 @@ Pour accéder au tableau :
 
 \textbf{Exemple.} Si on déclare :
 \begin{piccolo}
-  data monTableau {0x1234, 0x5678}
+  data16 monTableau {0x1234, 0x5678}
 \end{piccolo}
 
 Ceci engendre la séquence assembleur :
@@ -1490,39 +1492,18 @@ Engendre le code :
 \textbf{Exemple d'utilisation.} Associée à la constante \emph{ROM\_SIZE}, elle permet d'écrire une routine générique, valable pour tous les types de \emph{pic18}, qui renvoie dans \emph{WREG}, la somme des octets de la flash (\refSubsectionPage{exempleLTBLPTR-ROMSIZE}).
 
 
-\subsectionLabel{Instruction \texttt{ldataptr}}{instructionLDATAPTR}
+\subsectionLabel{Instruction \texttt{ldata16ptr}}{instructionLDATA16PTR}
 
 Cette instruction permet de charger les registres \assembleur{TBLPTRU}, \assembleur{TBLPTRH} et \assembleur{TBLPTRL} qui représente l'adresse d'un élément de tableau en flash, défini par une section \pic!data! (\refSectionPage{sectionData}).
 
-Elle peut prendre deux formes.
 
-\textbf{Première forme.}
-
-\begin{piccolo}
-  ldataptr nom_section_data
-\end{piccolo}
-
-Cette instruction charge les registres \assembleur{TBLPTRU}, \assembleur{TBLPTRH} et \assembleur{TBLPTRL} pour qu'ils désignent l'octet de poids faible premier élément du tableau défini par la section \pic!data nom_section_data!.
-
-Le code engendré est le suivant :
-\begin{lstlisting}[language=assembleur]
-  MOVLW (nom_section_data >> 16) & 0xFF
-  MOVWF TBLPTRU
-  MOVLW (nom_section_data >> 8) & 0xFF
-  MOVWF TBLPTRH
-  MOVLW nom_section_data & 0xFF
-  MOVWF TBLPTRL
-\end{lstlisting}
-
-Cette séquence n'est jamais optimisée, et \assembleur{WREG} est toujours modifié.
-
-\textbf{Seconde forme.}
+{\bf Note.} Le mot réservé \pic=ldata16ptr= est utilisé à partir de la version 3.1.2 ; auparavant, le mot réservé \pic=ldataptr= était utilisé.
 
 \begin{piccolo}
-  ldataptr nom_section_data [indice_element]
+  ldata16ptr nom_section_data [indice_element]
 \end{piccolo}
 
-Dans cette seconde forme, l'instruction charge les registres \assembleur{TBLPTRU}, \assembleur{TBLPTRH} et \assembleur{TBLPTRL} pour qu'ils désignent l'octet de poids faible de l'élément \pic!indice_element! du tableau défini par la section \pic!data nom_section_data!. Si \pic!indice_element! est nul, elle est équivalent à la première forme.
+L'instruction charge les registres \assembleur{TBLPTRU}, \assembleur{TBLPTRH} et \assembleur{TBLPTRL} pour qu'ils désignent l'octet de poids faible de l'élément \pic!indice_element! du tableau défini par la section \pic!data nom_section_data!.
 
 Le code engendré est le suivant :
 \begin{lstlisting}[language=assembleur]

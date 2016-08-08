@@ -565,7 +565,8 @@ static void extensionMethod_baseline_5F_instruction_shouldTerminateWithMOVLW (co
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_instruction * object = inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_instruction) ;
-  inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, constinArgument_inErrorMessage  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 18)) ;
+  TC_Array <C_FixItDescription> fixItArray0 ;
+  inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, constinArgument_inErrorMessage, fixItArray0  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 18)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -640,7 +641,8 @@ static void extensionMethod_baseline_5F_instruction_shouldNotContinueInSequence 
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_baseline_5F_instruction * object = inObject ;
   macroValidSharedObject (object, cPtr_baseline_5F_instruction) ;
-  inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, constinArgument_inErrorMessage  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 65)) ;
+  TC_Array <C_FixItDescription> fixItArray0 ;
+  inCompiler->emitSemanticError (object->mAttribute_mInstructionLocation, constinArgument_inErrorMessage, fixItArray0  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 64)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 

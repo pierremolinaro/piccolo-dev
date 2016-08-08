@@ -2,7 +2,7 @@
 
 #-------------------------------------------------------------------------------*
 
-abstract getter @baseline_intermediate_instruction length -> @uint outLength
+abstract getter @baseline_intermediate_instruction length -> @uint
 
 #-------------------------------------------------------------------------------*
 

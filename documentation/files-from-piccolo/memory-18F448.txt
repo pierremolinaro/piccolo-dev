@@ -6,3 +6,4 @@
     bank "gpr2" from 0x200 to 0x2FF (256 bytes)
   ROM size: 16384 bytes
   EEPROM size: 256 bytes (at 0xF00000)
+No warning, no error.

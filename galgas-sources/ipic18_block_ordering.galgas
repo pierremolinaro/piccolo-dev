@@ -185,7 +185,7 @@ override method @ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph
 
 abstract getter @ipic18AbstractBlockTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
-  ->@bool outResult
+  ->@bool
 
 #----------------------------------------------------------------------------*
 

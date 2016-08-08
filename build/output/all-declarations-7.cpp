@@ -27,7 +27,8 @@ void routine_parseDeviceDefinition (const GALGAS_lstring constinArgument_inDevic
     outArgument_outPiccoloDeviceModel.drop () ;
     cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (inCompiler, var_definitionString_493, var_deviceFullName_373, outArgument_outPiccoloDeviceModel  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 20)) ;
   }else if (kBoolFalse == test_0) {
-    inCompiler->emitSemanticError (constinArgument_inDeviceName.getter_location (SOURCE_FILE ("piccolo_embedded_devices.galgas", 22)), GALGAS_string ("The '").add_operation (constinArgument_inDeviceName.getter_string (SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)).add_operation (GALGAS_string ("' definition file is not defined"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24))  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 22)) ;
+    TC_Array <C_FixItDescription> fixItArray1 ;
+    inCompiler->emitSemanticError (constinArgument_inDeviceName.getter_location (SOURCE_FILE ("piccolo_embedded_devices.galgas", 22)), GALGAS_string ("The '").add_operation (constinArgument_inDeviceName.getter_string (SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)).add_operation (GALGAS_string ("' definition file is not defined"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)), fixItArray1  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 22)) ;
     outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
   }
 }

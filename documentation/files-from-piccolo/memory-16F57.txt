@@ -7,3 +7,4 @@
     bank "gprnobnk" from 0x8 to 0xF (8 bytes), mirror at 0x28, 0x48, 0x68
   ROM size: 2048 instructions
   No EEPROM
+No warning, no error.

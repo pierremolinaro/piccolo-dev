@@ -26,7 +26,7 @@ override method @byteDeclarationInRam handleDeclaration
   if [mSize uint] == 0 then
     error mSize: "zero size is not allowed"
   end
-  var addressList =@uintlist.listWithValue{ !firstFreeAddress}
+  @uintlist addressList = {!firstFreeAddress}
   for () in  mirrorOffsetList do
     addressList += !firstFreeAddress + mValue
   end

@@ -11,6 +11,56 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
+//       Abstract extension method '@ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations'        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef void (*extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                                          class GALGAS_stringset & ioArgument0,
+                                                                                                                          class GALGAS_stringset & ioArgument1,
+                                                                                                                          class GALGAS_uint & outArgument2,
+                                                                                                                          class C_Compiler * inCompiler
+                                                                                                                          COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterExtensionMethod_exploreAccessibleBlocksForStackComputations (const int32_t inClassIndex,
+                                                                       extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callExtensionMethod_exploreAccessibleBlocksForStackComputations (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                      GALGAS_stringset & io_ioBlockToExploreSet,
+                                                                      GALGAS_stringset & io_ioExploredBlockSet,
+                                                                      GALGAS_uint & out_outStackNeeds,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//              Extension method '@ipic18SequentialInstruction buildCalledRoutineSetForStackComputations'              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typedef void (*extensionMethodSignature_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                                      class GALGAS_stringset & ioArgument0,
+                                                                                                                      class C_Compiler * inCompiler
+                                                                                                                      COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void enterExtensionMethod_buildCalledRoutineSetForStackComputations (const int32_t inClassIndex,
+                                                                     extensionMethodSignature_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations inMethod) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void callExtensionMethod_buildCalledRoutineSetForStackComputations (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                    GALGAS_stringset & io_ioRoutineCalledSet,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
 //                                   Extension method '@ipic18Block computeDuration'                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
