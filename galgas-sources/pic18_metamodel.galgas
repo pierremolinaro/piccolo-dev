@@ -585,14 +585,6 @@ list @checkpicList {
   @lstringlist mValueList
 }
 
-#----------------------------------------------------------------------------*
-
-map @dataMap {
-  @uint mDataSize
-  insert insertKey error message "the '%K' data is already declared"
-  search searchKey error message "the '%K' data is not declared"
-}
-
 #----------------------------------------------------*
 
 struct @pic18AST {

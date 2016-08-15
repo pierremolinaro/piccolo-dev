@@ -27,7 +27,6 @@ project (3:1:2) -> "piccolo" {
   "galgas-sources/baseline_ast.galgas"
   "galgas-sources/baseline_program.galgas"
   "galgas-sources/baseline_syntax.galgas"
-  "galgas-sources/baseline_include_grammar.galgas"
   "galgas-sources/baseline_used_routines.galgas"
   "galgas-sources/baseline_compilation.galgas"
   "galgas-sources/baseline_intermediate_classes.galgas"
