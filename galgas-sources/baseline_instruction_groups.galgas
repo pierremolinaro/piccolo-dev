@@ -72,21 +72,6 @@ getter @baseline_literal_instruction_opcode mnemonic -> @string outResult {
 
 #----------------------------------------------------*
 
-enum @baseline_IF_BitTest_opcode {
-  case BTFSS  case BTFSC
-}
-
-#----------------------------------------------------*
-
-getter @baseline_IF_BitTest_opcode mnemonic -> @string outResult {
-  switch self
-  case BTFSS : outResult = "BTFSS"
-  case BTFSC : outResult = "BTFSC"
-  end
-} 
-
-#----------------------------------------------------*
-
 enum @baseline_WO_OPERAND_group {
   case CLRW  case NOP  case CLRWDT  case OPTION_  case SLEEP
 }

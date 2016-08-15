@@ -716,14 +716,14 @@ La comparaison du contenu d'un registre avec la valeur de \assembleur{WREG} est 
   \begin{tabular}{llll}
     \textbf{Condition} & \multicolumn{3}{l}{\bf Code engendré}\\
                        & \textbf{4 octets} & \textbf{6 octets} & \textbf{8 octets}\\
-    \pic!reg != W! &\assembleur{CPFSEQ reg}  & \assembleur{CPFSEQ reg}  &  \\
+    \pic+reg != W+ &\assembleur{CPFSEQ reg}  & \assembleur{CPFSEQ reg}  &  \\
                       &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
     \hdashline
     \pic!reg >= W! &\assembleur{CPFSLT reg}  & \assembleur{CPFSLT reg}  &  \\
                       &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
     \hdashline
     \pic!reg <= W! &\assembleur{CPFSGT reg}  & \assembleur{CPFSGT reg}  &  \\
-    \pic!reg <= W! &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
+                   &\assembleur{BRA label}        & \assembleur{GOTO label}  &  \\
     \hdashline
     \pic!reg == W! & &\assembleur{CPFSEQ reg}  & \assembleur{CPFSEQ reg}  \\
                       & &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
@@ -733,7 +733,7 @@ La comparaison du contenu d'un registre avec la valeur de \assembleur{WREG} est 
                       & &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
                       & &\assembleur{BRA label}        & \assembleur{GOTO label}  \\
     \hdashline
-    \pic!reg > W!  & &\assembleur{CPFSLT reg}  & \assembleur{CPFSLT reg}  \\
+    \pic!reg < W!  & &\assembleur{CPFSLT reg}  & \assembleur{CPFSLT reg}  \\
                       & &\assembleur{BRA \$ + 4}       & \assembleur{BRA \$ + 6}  \\
                       & &\assembleur{BRA label}        & \assembleur{GOTO label}  \\
   \end{tabular}

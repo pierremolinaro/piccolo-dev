@@ -86,21 +86,6 @@ getter @conditional_branch mnemonic  -> @string outResult {
 
 #----------------------------------------------------*
 
-proc getComplementaryBcc ?let @conditional_branch inConditionalBranch !@conditional_branch outComplementary {
-  switch inConditionalBranch
-  case bz   : outComplementary = @conditional_branch. bnz
-  case bnz  : outComplementary = @conditional_branch. bz
-  case bn   : outComplementary = @conditional_branch. bnn
-  case bnn  : outComplementary = @conditional_branch. bn
-  case bc   : outComplementary = @conditional_branch. bnc
-  case bnc  : outComplementary = @conditional_branch. bc
-  case bov  : outComplementary = @conditional_branch. bnov
-  case bnov : outComplementary = @conditional_branch. bov
-  end
-}
-
-#----------------------------------------------------*
-
 getter @literal_instruction_opcode mnemonic -> @string outResult {
   switch self
     case ADDLW : outResult = "ADDLW"

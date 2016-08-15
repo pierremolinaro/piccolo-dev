@@ -228,7 +228,7 @@ rule <start_symbol>
     end
   end
 #---
-  outPiccoloDeviceModel = @piccoloDeviceModel. new {
+  outPiccoloDeviceModel = @piccoloDeviceModel.new {
     !deviceName
     !processorType
     !romSize

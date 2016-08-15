@@ -11,1066 +11,2142 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//       Abstract extension method '@ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations'        *
+//                                  @baseline_5F_assembly_5F_actualInstruction class                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                                                                          class GALGAS_stringset & ioArgument0,
-                                                                                                                          class GALGAS_stringset & ioArgument1,
-                                                                                                                          class GALGAS_uint & outArgument2,
-                                                                                                                          class C_Compiler * inCompiler
-                                                                                                                          COMMA_LOCATION_ARGS) ;
+class GALGAS_baseline_5F_assembly_5F_actualInstruction : public GALGAS_baseline_5F_assembly_5F_instruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_actualInstruction (void) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_actualInstruction * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_actualInstruction *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_actualInstruction (const cPtr_baseline_5F_assembly_5F_actualInstruction * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_actualInstruction extractObject (const GALGAS_object & inObject,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_actualInstruction & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_location getter_mInstructionLocation (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_actualInstruction class
+
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterExtensionMethod_exploreAccessibleBlocksForStackComputations (const int32_t inClassIndex,
-                                                                       extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_exploreAccessibleBlocksForStackComputations inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callExtensionMethod_exploreAccessibleBlocksForStackComputations (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                      GALGAS_stringset & io_ioBlockToExploreSet,
-                                                                      GALGAS_stringset & io_ioExploredBlockSet,
-                                                                      GALGAS_uint & out_outStackNeeds,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//              Extension method '@ipic18SequentialInstruction buildCalledRoutineSetForStackComputations'              *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typedef void (*extensionMethodSignature_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                                                                      class GALGAS_stringset & ioArgument0,
-                                                                                                                      class C_Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterExtensionMethod_buildCalledRoutineSetForStackComputations (const int32_t inClassIndex,
-                                                                     extensionMethodSignature_ipic_31__38_SequentialInstruction_buildCalledRoutineSetForStackComputations inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callExtensionMethod_buildCalledRoutineSetForStackComputations (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                    GALGAS_stringset & io_ioRoutineCalledSet,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                   Extension method '@ipic18Block computeDuration'                                   *
+//                            Pointer class for @baseline_assembly_actualInstruction class                             *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void extensionMethod_computeDuration (const class GALGAS_ipic_31__38_Block inObject,
-                                      class GALGAS_blockDurationMap & io_ioExploredBlockMap,
-                                      class GALGAS_string in_inNextLabel,
-                                      class GALGAS_ipic_31__38_Block & out_outNewBlock,
-                                      class GALGAS_bool & io_ioContinue,
-                                      class C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+class cPtr_baseline_5F_assembly_5F_actualInstruction : public cPtr_baseline_5F_assembly_5F_instruction {
+//--- Attributes
+  public : GALGAS_location mAttribute_mInstructionLocation ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_actualInstruction (const GALGAS_location & in_mInstructionLocation
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_location getter_mInstructionLocation (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const = 0 ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
+
+} ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Abstract extension method '@declarationInRam handleDeclaration'                           *
+//                                         @baseline_5F_assembly_5F_CALL class                                         *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*extensionMethodSignature_declarationInRam_handleDeclaration) (const class cPtr_declarationInRam * inObject,
-                                                                             class GALGAS_ramBankTable & ioArgument0,
-                                                                             class GALGAS_registerTable & ioArgument1,
-                                                                             const class GALGAS_lstring constinArgument2,
-                                                                             class GALGAS_declaredByteMap & ioArgument3,
-                                                                             class C_Compiler * inCompiler
+class GALGAS_baseline_5F_assembly_5F_CALL : public GALGAS_baseline_5F_assembly_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_CALL (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_assembly_5F_CALL constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_CALL * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_CALL *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_CALL (const cPtr_baseline_5F_assembly_5F_CALL * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_CALL extractObject (const GALGAS_object & inObject,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_CALL constructor_new (const class GALGAS_location & inOperand0,
+                                                                             const class GALGAS_lstring & inOperand1
                                                                              COMMA_LOCATION_ARGS) ;
 
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_CALL & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mTargetLabel (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_CALL class
+
+
 //---------------------------------------------------------------------------------------------------------------------*
 
-void enterExtensionMethod_handleDeclaration (const int32_t inClassIndex,
-                                             extensionMethodSignature_declarationInRam_handleDeclaration inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callExtensionMethod_handleDeclaration (const class cPtr_declarationInRam * inObject,
-                                            GALGAS_ramBankTable & io_ioRamBank,
-                                            GALGAS_registerTable & io_ioRegisterTable,
-                                            const GALGAS_lstring constin_inCurrentRamBank,
-                                            GALGAS_declaredByteMap & io_ioDeclaredByteMap,
-                                            C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_CALL ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                            Filewrapper 'embeddedDevices'                                            *
+//                                   Pointer class for @baseline_assembly_CALL class                                   *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-extern const char * gWrapperFileContent_0_embeddedDevices ;
-extern const char * gWrapperFileContent_1_embeddedDevices ;
-extern const char * gWrapperFileContent_2_embeddedDevices ;
-extern const char * gWrapperFileContent_3_embeddedDevices ;
-extern const char * gWrapperFileContent_4_embeddedDevices ;
-extern const char * gWrapperFileContent_5_embeddedDevices ;
-extern const char * gWrapperFileContent_6_embeddedDevices ;
-extern const char * gWrapperFileContent_7_embeddedDevices ;
-extern const char * gWrapperFileContent_8_embeddedDevices ;
-extern const char * gWrapperFileContent_9_embeddedDevices ;
-extern const char * gWrapperFileContent_10_embeddedDevices ;
-extern const char * gWrapperFileContent_11_embeddedDevices ;
-extern const char * gWrapperFileContent_12_embeddedDevices ;
-extern const char * gWrapperFileContent_13_embeddedDevices ;
-extern const char * gWrapperFileContent_14_embeddedDevices ;
-extern const char * gWrapperFileContent_15_embeddedDevices ;
-extern const char * gWrapperFileContent_16_embeddedDevices ;
-extern const char * gWrapperFileContent_17_embeddedDevices ;
-extern const char * gWrapperFileContent_18_embeddedDevices ;
-extern const char * gWrapperFileContent_19_embeddedDevices ;
-extern const char * gWrapperFileContent_20_embeddedDevices ;
-extern const char * gWrapperFileContent_21_embeddedDevices ;
-extern const char * gWrapperFileContent_22_embeddedDevices ;
-extern const char * gWrapperFileContent_23_embeddedDevices ;
-extern const char * gWrapperFileContent_24_embeddedDevices ;
-extern const char * gWrapperFileContent_25_embeddedDevices ;
-extern const char * gWrapperFileContent_26_embeddedDevices ;
-extern const char * gWrapperFileContent_27_embeddedDevices ;
-extern const char * gWrapperFileContent_28_embeddedDevices ;
-extern const char * gWrapperFileContent_29_embeddedDevices ;
-extern const char * gWrapperFileContent_30_embeddedDevices ;
-extern const char * gWrapperFileContent_31_embeddedDevices ;
-extern const char * gWrapperFileContent_32_embeddedDevices ;
-extern const char * gWrapperFileContent_33_embeddedDevices ;
-extern const char * gWrapperFileContent_34_embeddedDevices ;
-extern const char * gWrapperFileContent_35_embeddedDevices ;
-extern const char * gWrapperFileContent_36_embeddedDevices ;
-extern const char * gWrapperFileContent_37_embeddedDevices ;
-extern const char * gWrapperFileContent_38_embeddedDevices ;
-extern const char * gWrapperFileContent_39_embeddedDevices ;
-extern const char * gWrapperFileContent_40_embeddedDevices ;
-extern const char * gWrapperFileContent_41_embeddedDevices ;
-extern const char * gWrapperFileContent_42_embeddedDevices ;
-extern const char * gWrapperFileContent_43_embeddedDevices ;
-extern const char * gWrapperFileContent_44_embeddedDevices ;
-extern const char * gWrapperFileContent_45_embeddedDevices ;
-extern const char * gWrapperFileContent_46_embeddedDevices ;
-extern const char * gWrapperFileContent_47_embeddedDevices ;
-extern const char * gWrapperFileContent_48_embeddedDevices ;
-extern const char * gWrapperFileContent_49_embeddedDevices ;
-extern const char * gWrapperFileContent_50_embeddedDevices ;
-extern const char * gWrapperFileContent_51_embeddedDevices ;
-extern const char * gWrapperFileContent_52_embeddedDevices ;
-extern const char * gWrapperFileContent_53_embeddedDevices ;
-extern const char * gWrapperFileContent_54_embeddedDevices ;
-extern const char * gWrapperFileContent_55_embeddedDevices ;
-extern const char * gWrapperFileContent_56_embeddedDevices ;
-extern const char * gWrapperFileContent_57_embeddedDevices ;
-extern const char * gWrapperFileContent_58_embeddedDevices ;
-extern const char * gWrapperFileContent_59_embeddedDevices ;
-extern const char * gWrapperFileContent_60_embeddedDevices ;
-extern const char * gWrapperFileContent_61_embeddedDevices ;
-extern const char * gWrapperFileContent_62_embeddedDevices ;
-extern const char * gWrapperFileContent_63_embeddedDevices ;
-extern const char * gWrapperFileContent_64_embeddedDevices ;
-extern const char * gWrapperFileContent_65_embeddedDevices ;
-extern const char * gWrapperFileContent_66_embeddedDevices ;
-extern const char * gWrapperFileContent_67_embeddedDevices ;
-extern const char * gWrapperFileContent_68_embeddedDevices ;
-extern const char * gWrapperFileContent_69_embeddedDevices ;
-extern const char * gWrapperFileContent_70_embeddedDevices ;
-extern const char * gWrapperFileContent_71_embeddedDevices ;
-extern const char * gWrapperFileContent_72_embeddedDevices ;
-extern const char * gWrapperFileContent_73_embeddedDevices ;
-extern const char * gWrapperFileContent_74_embeddedDevices ;
-extern const char * gWrapperFileContent_75_embeddedDevices ;
-extern const char * gWrapperFileContent_76_embeddedDevices ;
-extern const char * gWrapperFileContent_77_embeddedDevices ;
-extern const char * gWrapperFileContent_78_embeddedDevices ;
-extern const char * gWrapperFileContent_79_embeddedDevices ;
-extern const char * gWrapperFileContent_80_embeddedDevices ;
-extern const char * gWrapperFileContent_81_embeddedDevices ;
-extern const char * gWrapperFileContent_82_embeddedDevices ;
-extern const char * gWrapperFileContent_83_embeddedDevices ;
-extern const char * gWrapperFileContent_84_embeddedDevices ;
-extern const char * gWrapperFileContent_85_embeddedDevices ;
-extern const char * gWrapperFileContent_86_embeddedDevices ;
-extern const char * gWrapperFileContent_87_embeddedDevices ;
-extern const char * gWrapperFileContent_88_embeddedDevices ;
-extern const char * gWrapperFileContent_89_embeddedDevices ;
-extern const char * gWrapperFileContent_90_embeddedDevices ;
-extern const char * gWrapperFileContent_91_embeddedDevices ;
-extern const char * gWrapperFileContent_92_embeddedDevices ;
-extern const char * gWrapperFileContent_93_embeddedDevices ;
-extern const char * gWrapperFileContent_94_embeddedDevices ;
-extern const char * gWrapperFileContent_95_embeddedDevices ;
-extern const char * gWrapperFileContent_96_embeddedDevices ;
-extern const char * gWrapperFileContent_97_embeddedDevices ;
-extern const char * gWrapperFileContent_98_embeddedDevices ;
-extern const char * gWrapperFileContent_99_embeddedDevices ;
-extern const char * gWrapperFileContent_100_embeddedDevices ;
-extern const char * gWrapperFileContent_101_embeddedDevices ;
-extern const char * gWrapperFileContent_102_embeddedDevices ;
-extern const char * gWrapperFileContent_103_embeddedDevices ;
-extern const char * gWrapperFileContent_104_embeddedDevices ;
-extern const char * gWrapperFileContent_105_embeddedDevices ;
-extern const char * gWrapperFileContent_106_embeddedDevices ;
-extern const char * gWrapperFileContent_107_embeddedDevices ;
-extern const char * gWrapperFileContent_108_embeddedDevices ;
-extern const char * gWrapperFileContent_109_embeddedDevices ;
-extern const char * gWrapperFileContent_110_embeddedDevices ;
-extern const char * gWrapperFileContent_111_embeddedDevices ;
-extern const char * gWrapperFileContent_112_embeddedDevices ;
-extern const char * gWrapperFileContent_113_embeddedDevices ;
-extern const char * gWrapperFileContent_114_embeddedDevices ;
-extern const char * gWrapperFileContent_115_embeddedDevices ;
-extern const char * gWrapperFileContent_116_embeddedDevices ;
-extern const char * gWrapperFileContent_117_embeddedDevices ;
-extern const char * gWrapperFileContent_118_embeddedDevices ;
-extern const char * gWrapperFileContent_119_embeddedDevices ;
-extern const char * gWrapperFileContent_120_embeddedDevices ;
-extern const char * gWrapperFileContent_121_embeddedDevices ;
-extern const char * gWrapperFileContent_122_embeddedDevices ;
-extern const char * gWrapperFileContent_123_embeddedDevices ;
-extern const char * gWrapperFileContent_124_embeddedDevices ;
-extern const char * gWrapperFileContent_125_embeddedDevices ;
-extern const char * gWrapperFileContent_126_embeddedDevices ;
-extern const char * gWrapperFileContent_127_embeddedDevices ;
-extern const char * gWrapperFileContent_128_embeddedDevices ;
-extern const char * gWrapperFileContent_129_embeddedDevices ;
-extern const char * gWrapperFileContent_130_embeddedDevices ;
-extern const char * gWrapperFileContent_131_embeddedDevices ;
-extern const char * gWrapperFileContent_132_embeddedDevices ;
-extern const char * gWrapperFileContent_133_embeddedDevices ;
-extern const char * gWrapperFileContent_134_embeddedDevices ;
-extern const char * gWrapperFileContent_135_embeddedDevices ;
-extern const char * gWrapperFileContent_136_embeddedDevices ;
-extern const char * gWrapperFileContent_137_embeddedDevices ;
-extern const char * gWrapperFileContent_138_embeddedDevices ;
-extern const char * gWrapperFileContent_139_embeddedDevices ;
-extern const char * gWrapperFileContent_140_embeddedDevices ;
-extern const char * gWrapperFileContent_141_embeddedDevices ;
-extern const char * gWrapperFileContent_142_embeddedDevices ;
-extern const char * gWrapperFileContent_143_embeddedDevices ;
-extern const char * gWrapperFileContent_144_embeddedDevices ;
-extern const char * gWrapperFileContent_145_embeddedDevices ;
-extern const char * gWrapperFileContent_146_embeddedDevices ;
-extern const char * gWrapperFileContent_147_embeddedDevices ;
-extern const char * gWrapperFileContent_148_embeddedDevices ;
-extern const char * gWrapperFileContent_149_embeddedDevices ;
-extern const char * gWrapperFileContent_150_embeddedDevices ;
-extern const char * gWrapperFileContent_151_embeddedDevices ;
-extern const char * gWrapperFileContent_152_embeddedDevices ;
-extern const char * gWrapperFileContent_153_embeddedDevices ;
-extern const char * gWrapperFileContent_154_embeddedDevices ;
-extern const char * gWrapperFileContent_155_embeddedDevices ;
-extern const char * gWrapperFileContent_156_embeddedDevices ;
-extern const char * gWrapperFileContent_157_embeddedDevices ;
-extern const char * gWrapperFileContent_158_embeddedDevices ;
-extern const char * gWrapperFileContent_159_embeddedDevices ;
-extern const char * gWrapperFileContent_160_embeddedDevices ;
-extern const char * gWrapperFileContent_161_embeddedDevices ;
-extern const char * gWrapperFileContent_162_embeddedDevices ;
-extern const char * gWrapperFileContent_163_embeddedDevices ;
-extern const char * gWrapperFileContent_164_embeddedDevices ;
-extern const char * gWrapperFileContent_165_embeddedDevices ;
-extern const char * gWrapperFileContent_166_embeddedDevices ;
-extern const char * gWrapperFileContent_167_embeddedDevices ;
-extern const char * gWrapperFileContent_168_embeddedDevices ;
-extern const char * gWrapperFileContent_169_embeddedDevices ;
-extern const char * gWrapperFileContent_170_embeddedDevices ;
-extern const char * gWrapperFileContent_171_embeddedDevices ;
-extern const char * gWrapperFileContent_172_embeddedDevices ;
-extern const char * gWrapperFileContent_173_embeddedDevices ;
-extern const char * gWrapperFileContent_174_embeddedDevices ;
-extern const char * gWrapperFileContent_175_embeddedDevices ;
-extern const char * gWrapperFileContent_176_embeddedDevices ;
-extern const char * gWrapperFileContent_177_embeddedDevices ;
-extern const char * gWrapperFileContent_178_embeddedDevices ;
-extern const char * gWrapperFileContent_179_embeddedDevices ;
-extern const char * gWrapperFileContent_180_embeddedDevices ;
-extern const char * gWrapperFileContent_181_embeddedDevices ;
-extern const char * gWrapperFileContent_182_embeddedDevices ;
-extern const char * gWrapperFileContent_183_embeddedDevices ;
-extern const char * gWrapperFileContent_184_embeddedDevices ;
-extern const char * gWrapperFileContent_185_embeddedDevices ;
-extern const char * gWrapperFileContent_186_embeddedDevices ;
-extern const char * gWrapperFileContent_187_embeddedDevices ;
-extern const char * gWrapperFileContent_188_embeddedDevices ;
-extern const char * gWrapperFileContent_189_embeddedDevices ;
-extern const char * gWrapperFileContent_190_embeddedDevices ;
-extern const char * gWrapperFileContent_191_embeddedDevices ;
-extern const char * gWrapperFileContent_192_embeddedDevices ;
-extern const char * gWrapperFileContent_193_embeddedDevices ;
-extern const char * gWrapperFileContent_194_embeddedDevices ;
-extern const char * gWrapperFileContent_195_embeddedDevices ;
-extern const char * gWrapperFileContent_196_embeddedDevices ;
-extern const char * gWrapperFileContent_197_embeddedDevices ;
-extern const char * gWrapperFileContent_198_embeddedDevices ;
-extern const char * gWrapperFileContent_199_embeddedDevices ;
-extern const char * gWrapperFileContent_200_embeddedDevices ;
-extern const char * gWrapperFileContent_201_embeddedDevices ;
-extern const char * gWrapperFileContent_202_embeddedDevices ;
-extern const char * gWrapperFileContent_203_embeddedDevices ;
-extern const char * gWrapperFileContent_204_embeddedDevices ;
-extern const char * gWrapperFileContent_205_embeddedDevices ;
-extern const char * gWrapperFileContent_206_embeddedDevices ;
-extern const char * gWrapperFileContent_207_embeddedDevices ;
-extern const char * gWrapperFileContent_208_embeddedDevices ;
-extern const char * gWrapperFileContent_209_embeddedDevices ;
-extern const char * gWrapperFileContent_210_embeddedDevices ;
-extern const char * gWrapperFileContent_211_embeddedDevices ;
-extern const char * gWrapperFileContent_212_embeddedDevices ;
-extern const char * gWrapperFileContent_213_embeddedDevices ;
-extern const char * gWrapperFileContent_214_embeddedDevices ;
-extern const char * gWrapperFileContent_215_embeddedDevices ;
-extern const char * gWrapperFileContent_216_embeddedDevices ;
-extern const char * gWrapperFileContent_217_embeddedDevices ;
-extern const char * gWrapperFileContent_218_embeddedDevices ;
-extern const char * gWrapperFileContent_219_embeddedDevices ;
-extern const char * gWrapperFileContent_220_embeddedDevices ;
-extern const char * gWrapperFileContent_221_embeddedDevices ;
-extern const char * gWrapperFileContent_222_embeddedDevices ;
-extern const char * gWrapperFileContent_223_embeddedDevices ;
-extern const char * gWrapperFileContent_224_embeddedDevices ;
-extern const char * gWrapperFileContent_225_embeddedDevices ;
-extern const char * gWrapperFileContent_226_embeddedDevices ;
-extern const char * gWrapperFileContent_227_embeddedDevices ;
-extern const char * gWrapperFileContent_228_embeddedDevices ;
-extern const char * gWrapperFileContent_229_embeddedDevices ;
-extern const char * gWrapperFileContent_230_embeddedDevices ;
-extern const char * gWrapperFileContent_231_embeddedDevices ;
-extern const char * gWrapperFileContent_232_embeddedDevices ;
-extern const char * gWrapperFileContent_233_embeddedDevices ;
-extern const char * gWrapperFileContent_234_embeddedDevices ;
-extern const char * gWrapperFileContent_235_embeddedDevices ;
-extern const char * gWrapperFileContent_236_embeddedDevices ;
-extern const char * gWrapperFileContent_237_embeddedDevices ;
-extern const char * gWrapperFileContent_238_embeddedDevices ;
-extern const char * gWrapperFileContent_239_embeddedDevices ;
-extern const char * gWrapperFileContent_240_embeddedDevices ;
-extern const char * gWrapperFileContent_241_embeddedDevices ;
-extern const char * gWrapperFileContent_242_embeddedDevices ;
-extern const char * gWrapperFileContent_243_embeddedDevices ;
-extern const char * gWrapperFileContent_244_embeddedDevices ;
-extern const char * gWrapperFileContent_245_embeddedDevices ;
-extern const char * gWrapperFileContent_246_embeddedDevices ;
-extern const char * gWrapperFileContent_247_embeddedDevices ;
-extern const char * gWrapperFileContent_248_embeddedDevices ;
-extern const char * gWrapperFileContent_249_embeddedDevices ;
-extern const char * gWrapperFileContent_250_embeddedDevices ;
-extern const char * gWrapperFileContent_251_embeddedDevices ;
-extern const char * gWrapperFileContent_252_embeddedDevices ;
-extern const char * gWrapperFileContent_253_embeddedDevices ;
-extern const char * gWrapperFileContent_254_embeddedDevices ;
-extern const char * gWrapperFileContent_255_embeddedDevices ;
-extern const char * gWrapperFileContent_256_embeddedDevices ;
-extern const char * gWrapperFileContent_257_embeddedDevices ;
-extern const char * gWrapperFileContent_258_embeddedDevices ;
-extern const char * gWrapperFileContent_259_embeddedDevices ;
-extern const char * gWrapperFileContent_260_embeddedDevices ;
-extern const char * gWrapperFileContent_261_embeddedDevices ;
-extern const char * gWrapperFileContent_262_embeddedDevices ;
-extern const char * gWrapperFileContent_263_embeddedDevices ;
-extern const char * gWrapperFileContent_264_embeddedDevices ;
-extern const char * gWrapperFileContent_265_embeddedDevices ;
-extern const char * gWrapperFileContent_266_embeddedDevices ;
-extern const char * gWrapperFileContent_267_embeddedDevices ;
-extern const char * gWrapperFileContent_268_embeddedDevices ;
-extern const char * gWrapperFileContent_269_embeddedDevices ;
-extern const char * gWrapperFileContent_270_embeddedDevices ;
-extern const char * gWrapperFileContent_271_embeddedDevices ;
-extern const char * gWrapperFileContent_272_embeddedDevices ;
-extern const char * gWrapperFileContent_273_embeddedDevices ;
-extern const char * gWrapperFileContent_274_embeddedDevices ;
-extern const char * gWrapperFileContent_275_embeddedDevices ;
-extern const char * gWrapperFileContent_276_embeddedDevices ;
-extern const char * gWrapperFileContent_277_embeddedDevices ;
-extern const char * gWrapperFileContent_278_embeddedDevices ;
-extern const char * gWrapperFileContent_279_embeddedDevices ;
-extern const char * gWrapperFileContent_280_embeddedDevices ;
-extern const char * gWrapperFileContent_281_embeddedDevices ;
-extern const char * gWrapperFileContent_282_embeddedDevices ;
-extern const char * gWrapperFileContent_283_embeddedDevices ;
-extern const char * gWrapperFileContent_284_embeddedDevices ;
-extern const char * gWrapperFileContent_285_embeddedDevices ;
-extern const char * gWrapperFileContent_286_embeddedDevices ;
-extern const char * gWrapperFileContent_287_embeddedDevices ;
-extern const char * gWrapperFileContent_288_embeddedDevices ;
-extern const char * gWrapperFileContent_289_embeddedDevices ;
-extern const char * gWrapperFileContent_290_embeddedDevices ;
-extern const char * gWrapperFileContent_291_embeddedDevices ;
-extern const char * gWrapperFileContent_292_embeddedDevices ;
-extern const char * gWrapperFileContent_293_embeddedDevices ;
-extern const char * gWrapperFileContent_294_embeddedDevices ;
-extern const char * gWrapperFileContent_295_embeddedDevices ;
-extern const char * gWrapperFileContent_296_embeddedDevices ;
-extern const char * gWrapperFileContent_297_embeddedDevices ;
-extern const char * gWrapperFileContent_298_embeddedDevices ;
-extern const char * gWrapperFileContent_299_embeddedDevices ;
-extern const char * gWrapperFileContent_300_embeddedDevices ;
-extern const char * gWrapperFileContent_301_embeddedDevices ;
-extern const char * gWrapperFileContent_302_embeddedDevices ;
-extern const char * gWrapperFileContent_303_embeddedDevices ;
-extern const char * gWrapperFileContent_304_embeddedDevices ;
-extern const char * gWrapperFileContent_305_embeddedDevices ;
-extern const char * gWrapperFileContent_306_embeddedDevices ;
-extern const char * gWrapperFileContent_307_embeddedDevices ;
-extern const char * gWrapperFileContent_308_embeddedDevices ;
-extern const char * gWrapperFileContent_309_embeddedDevices ;
-extern const char * gWrapperFileContent_310_embeddedDevices ;
-extern const char * gWrapperFileContent_311_embeddedDevices ;
-extern const char * gWrapperFileContent_312_embeddedDevices ;
-extern const char * gWrapperFileContent_313_embeddedDevices ;
-extern const char * gWrapperFileContent_314_embeddedDevices ;
-extern const char * gWrapperFileContent_315_embeddedDevices ;
-extern const char * gWrapperFileContent_316_embeddedDevices ;
-extern const char * gWrapperFileContent_317_embeddedDevices ;
-extern const char * gWrapperFileContent_318_embeddedDevices ;
-extern const char * gWrapperFileContent_319_embeddedDevices ;
-extern const char * gWrapperFileContent_320_embeddedDevices ;
-extern const char * gWrapperFileContent_321_embeddedDevices ;
-extern const char * gWrapperFileContent_322_embeddedDevices ;
-extern const char * gWrapperFileContent_323_embeddedDevices ;
-extern const char * gWrapperFileContent_324_embeddedDevices ;
-extern const char * gWrapperFileContent_325_embeddedDevices ;
-extern const char * gWrapperFileContent_326_embeddedDevices ;
-extern const char * gWrapperFileContent_327_embeddedDevices ;
-extern const char * gWrapperFileContent_328_embeddedDevices ;
-extern const char * gWrapperFileContent_329_embeddedDevices ;
-extern const char * gWrapperFileContent_330_embeddedDevices ;
-extern const char * gWrapperFileContent_331_embeddedDevices ;
-extern const char * gWrapperFileContent_332_embeddedDevices ;
-extern const char * gWrapperFileContent_333_embeddedDevices ;
-extern const char * gWrapperFileContent_334_embeddedDevices ;
-extern const char * gWrapperFileContent_335_embeddedDevices ;
-extern const char * gWrapperFileContent_336_embeddedDevices ;
-extern const char * gWrapperFileContent_337_embeddedDevices ;
-extern const char * gWrapperFileContent_338_embeddedDevices ;
-extern const char * gWrapperFileContent_339_embeddedDevices ;
-extern const char * gWrapperFileContent_340_embeddedDevices ;
-extern const char * gWrapperFileContent_341_embeddedDevices ;
-extern const char * gWrapperFileContent_342_embeddedDevices ;
-extern const char * gWrapperFileContent_343_embeddedDevices ;
-extern const char * gWrapperFileContent_344_embeddedDevices ;
-extern const char * gWrapperFileContent_345_embeddedDevices ;
-extern const char * gWrapperFileContent_346_embeddedDevices ;
-extern const char * gWrapperFileContent_347_embeddedDevices ;
-extern const char * gWrapperFileContent_348_embeddedDevices ;
-extern const char * gWrapperFileContent_349_embeddedDevices ;
-extern const char * gWrapperFileContent_350_embeddedDevices ;
-extern const char * gWrapperFileContent_351_embeddedDevices ;
-extern const char * gWrapperFileContent_352_embeddedDevices ;
-extern const char * gWrapperFileContent_353_embeddedDevices ;
-extern const char * gWrapperFileContent_354_embeddedDevices ;
-extern const char * gWrapperFileContent_355_embeddedDevices ;
-extern const char * gWrapperFileContent_356_embeddedDevices ;
-extern const char * gWrapperFileContent_357_embeddedDevices ;
-extern const char * gWrapperFileContent_358_embeddedDevices ;
-extern const char * gWrapperFileContent_359_embeddedDevices ;
-extern const char * gWrapperFileContent_360_embeddedDevices ;
-extern const char * gWrapperFileContent_361_embeddedDevices ;
-extern const char * gWrapperFileContent_362_embeddedDevices ;
-extern const char * gWrapperFileContent_363_embeddedDevices ;
-extern const char * gWrapperFileContent_364_embeddedDevices ;
-extern const char * gWrapperFileContent_365_embeddedDevices ;
-extern const char * gWrapperFileContent_366_embeddedDevices ;
-extern const char * gWrapperFileContent_367_embeddedDevices ;
-extern const char * gWrapperFileContent_368_embeddedDevices ;
-extern const char * gWrapperFileContent_369_embeddedDevices ;
-extern const char * gWrapperFileContent_370_embeddedDevices ;
-extern const char * gWrapperFileContent_371_embeddedDevices ;
-extern const char * gWrapperFileContent_372_embeddedDevices ;
-extern const char * gWrapperFileContent_373_embeddedDevices ;
-extern const char * gWrapperFileContent_374_embeddedDevices ;
-extern const char * gWrapperFileContent_375_embeddedDevices ;
-extern const char * gWrapperFileContent_376_embeddedDevices ;
-extern const char * gWrapperFileContent_377_embeddedDevices ;
-extern const char * gWrapperFileContent_378_embeddedDevices ;
-extern const char * gWrapperFileContent_379_embeddedDevices ;
-extern const char * gWrapperFileContent_380_embeddedDevices ;
-extern const char * gWrapperFileContent_381_embeddedDevices ;
-extern const char * gWrapperFileContent_382_embeddedDevices ;
-extern const char * gWrapperFileContent_383_embeddedDevices ;
-extern const char * gWrapperFileContent_384_embeddedDevices ;
-extern const char * gWrapperFileContent_385_embeddedDevices ;
-extern const char * gWrapperFileContent_386_embeddedDevices ;
-extern const char * gWrapperFileContent_387_embeddedDevices ;
-extern const char * gWrapperFileContent_388_embeddedDevices ;
-extern const char * gWrapperFileContent_389_embeddedDevices ;
-extern const char * gWrapperFileContent_390_embeddedDevices ;
-extern const char * gWrapperFileContent_391_embeddedDevices ;
-extern const char * gWrapperFileContent_392_embeddedDevices ;
-extern const char * gWrapperFileContent_393_embeddedDevices ;
-extern const char * gWrapperFileContent_394_embeddedDevices ;
-extern const char * gWrapperFileContent_395_embeddedDevices ;
-extern const char * gWrapperFileContent_396_embeddedDevices ;
-extern const char * gWrapperFileContent_397_embeddedDevices ;
-extern const char * gWrapperFileContent_398_embeddedDevices ;
-extern const char * gWrapperFileContent_399_embeddedDevices ;
-extern const char * gWrapperFileContent_400_embeddedDevices ;
-extern const char * gWrapperFileContent_401_embeddedDevices ;
-extern const char * gWrapperFileContent_402_embeddedDevices ;
-extern const char * gWrapperFileContent_403_embeddedDevices ;
-extern const char * gWrapperFileContent_404_embeddedDevices ;
-extern const char * gWrapperFileContent_405_embeddedDevices ;
-extern const char * gWrapperFileContent_406_embeddedDevices ;
-extern const char * gWrapperFileContent_407_embeddedDevices ;
-extern const char * gWrapperFileContent_408_embeddedDevices ;
-extern const char * gWrapperFileContent_409_embeddedDevices ;
-extern const char * gWrapperFileContent_410_embeddedDevices ;
-extern const char * gWrapperFileContent_411_embeddedDevices ;
-extern const char * gWrapperFileContent_412_embeddedDevices ;
-extern const char * gWrapperFileContent_413_embeddedDevices ;
-extern const char * gWrapperFileContent_414_embeddedDevices ;
-extern const char * gWrapperFileContent_415_embeddedDevices ;
-extern const char * gWrapperFileContent_416_embeddedDevices ;
-extern const char * gWrapperFileContent_417_embeddedDevices ;
-extern const char * gWrapperFileContent_418_embeddedDevices ;
-extern const char * gWrapperFileContent_419_embeddedDevices ;
-extern const char * gWrapperFileContent_420_embeddedDevices ;
-extern const char * gWrapperFileContent_421_embeddedDevices ;
-extern const char * gWrapperFileContent_422_embeddedDevices ;
-extern const char * gWrapperFileContent_423_embeddedDevices ;
-extern const char * gWrapperFileContent_424_embeddedDevices ;
-extern const char * gWrapperFileContent_425_embeddedDevices ;
-extern const char * gWrapperFileContent_426_embeddedDevices ;
-extern const char * gWrapperFileContent_427_embeddedDevices ;
-extern const char * gWrapperFileContent_428_embeddedDevices ;
-extern const char * gWrapperFileContent_429_embeddedDevices ;
-extern const char * gWrapperFileContent_430_embeddedDevices ;
-extern const char * gWrapperFileContent_431_embeddedDevices ;
-extern const char * gWrapperFileContent_432_embeddedDevices ;
-extern const char * gWrapperFileContent_433_embeddedDevices ;
-extern const char * gWrapperFileContent_434_embeddedDevices ;
-extern const char * gWrapperFileContent_435_embeddedDevices ;
-extern const char * gWrapperFileContent_436_embeddedDevices ;
-extern const char * gWrapperFileContent_437_embeddedDevices ;
-extern const char * gWrapperFileContent_438_embeddedDevices ;
-extern const char * gWrapperFileContent_439_embeddedDevices ;
-extern const char * gWrapperFileContent_440_embeddedDevices ;
-extern const char * gWrapperFileContent_441_embeddedDevices ;
-extern const char * gWrapperFileContent_442_embeddedDevices ;
-extern const char * gWrapperFileContent_443_embeddedDevices ;
-extern const char * gWrapperFileContent_444_embeddedDevices ;
-extern const char * gWrapperFileContent_445_embeddedDevices ;
-extern const char * gWrapperFileContent_446_embeddedDevices ;
-extern const char * gWrapperFileContent_447_embeddedDevices ;
-extern const char * gWrapperFileContent_448_embeddedDevices ;
-extern const char * gWrapperFileContent_449_embeddedDevices ;
-extern const char * gWrapperFileContent_450_embeddedDevices ;
-extern const char * gWrapperFileContent_451_embeddedDevices ;
-extern const char * gWrapperFileContent_452_embeddedDevices ;
-extern const char * gWrapperFileContent_453_embeddedDevices ;
-extern const char * gWrapperFileContent_454_embeddedDevices ;
-extern const char * gWrapperFileContent_455_embeddedDevices ;
-extern const char * gWrapperFileContent_456_embeddedDevices ;
-extern const char * gWrapperFileContent_457_embeddedDevices ;
-extern const char * gWrapperFileContent_458_embeddedDevices ;
-extern const char * gWrapperFileContent_459_embeddedDevices ;
-extern const char * gWrapperFileContent_460_embeddedDevices ;
-extern const char * gWrapperFileContent_461_embeddedDevices ;
-extern const char * gWrapperFileContent_462_embeddedDevices ;
-extern const char * gWrapperFileContent_463_embeddedDevices ;
-extern const char * gWrapperFileContent_464_embeddedDevices ;
-extern const char * gWrapperFileContent_465_embeddedDevices ;
-extern const char * gWrapperFileContent_466_embeddedDevices ;
-extern const char * gWrapperFileContent_467_embeddedDevices ;
-extern const char * gWrapperFileContent_468_embeddedDevices ;
-extern const char * gWrapperFileContent_469_embeddedDevices ;
-extern const char * gWrapperFileContent_470_embeddedDevices ;
-extern const char * gWrapperFileContent_471_embeddedDevices ;
-extern const char * gWrapperFileContent_472_embeddedDevices ;
-extern const char * gWrapperFileContent_473_embeddedDevices ;
-extern const char * gWrapperFileContent_474_embeddedDevices ;
-extern const char * gWrapperFileContent_475_embeddedDevices ;
-extern const char * gWrapperFileContent_476_embeddedDevices ;
+class cPtr_baseline_5F_assembly_5F_CALL : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_lstring mAttribute_mTargetLabel ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_CALL (const GALGAS_location & in_mInstructionLocation,
+                                              const GALGAS_lstring & in_mTargetLabel
+                                              COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTargetLabel (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
 
 //---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                         @baseline_5F_assembly_5F_GOTO class                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_GOTO : public GALGAS_baseline_5F_assembly_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_GOTO (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_assembly_5F_GOTO constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_GOTO * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_GOTO *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_GOTO (const cPtr_baseline_5F_assembly_5F_GOTO * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_GOTO extractObject (const GALGAS_object & inObject,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_GOTO constructor_new (const class GALGAS_location & inOperand0,
+                                                                             const class GALGAS_lstring & inOperand1
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_GOTO & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mTargetLabel (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_GOTO class
 
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-extern const cRegularFileWrapper gWrapperFile_0_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_1_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_2_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_3_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_4_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_5_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_6_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_7_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_8_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_9_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_10_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_11_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_12_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_13_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_14_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_15_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_16_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_17_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_18_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_19_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_20_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_21_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_22_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_23_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_24_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_25_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_26_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_27_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_28_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_29_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_30_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_31_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_32_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_33_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_34_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_35_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_36_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_37_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_38_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_39_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_40_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_41_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_42_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_43_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_44_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_45_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_46_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_47_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_48_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_49_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_50_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_51_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_52_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_53_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_54_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_55_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_56_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_57_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_58_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_59_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_60_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_61_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_62_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_63_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_64_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_65_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_66_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_67_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_68_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_69_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_70_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_71_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_72_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_73_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_74_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_75_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_76_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_77_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_78_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_79_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_80_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_81_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_82_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_83_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_84_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_85_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_86_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_87_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_88_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_89_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_90_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_91_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_92_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_93_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_94_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_95_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_96_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_97_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_98_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_99_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_100_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_101_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_102_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_103_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_104_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_105_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_106_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_107_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_108_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_109_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_110_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_111_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_112_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_113_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_114_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_115_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_116_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_117_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_118_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_119_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_120_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_121_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_122_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_123_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_124_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_125_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_126_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_127_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_128_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_129_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_130_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_131_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_132_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_133_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_134_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_135_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_136_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_137_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_138_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_139_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_140_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_141_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_142_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_143_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_144_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_145_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_146_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_147_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_148_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_149_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_150_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_151_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_152_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_153_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_154_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_155_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_156_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_157_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_158_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_159_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_160_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_161_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_162_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_163_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_164_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_165_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_166_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_167_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_168_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_169_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_170_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_171_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_172_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_173_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_174_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_175_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_176_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_177_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_178_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_179_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_180_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_181_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_182_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_183_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_184_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_185_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_186_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_187_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_188_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_189_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_190_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_191_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_192_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_193_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_194_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_195_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_196_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_197_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_198_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_199_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_200_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_201_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_202_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_203_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_204_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_205_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_206_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_207_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_208_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_209_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_210_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_211_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_212_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_213_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_214_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_215_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_216_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_217_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_218_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_219_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_220_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_221_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_222_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_223_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_224_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_225_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_226_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_227_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_228_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_229_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_230_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_231_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_232_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_233_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_234_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_235_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_236_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_237_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_238_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_239_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_240_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_241_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_242_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_243_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_244_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_245_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_246_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_247_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_248_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_249_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_250_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_251_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_252_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_253_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_254_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_255_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_256_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_257_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_258_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_259_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_260_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_261_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_262_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_263_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_264_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_265_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_266_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_267_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_268_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_269_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_270_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_271_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_272_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_273_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_274_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_275_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_276_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_277_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_278_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_279_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_280_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_281_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_282_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_283_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_284_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_285_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_286_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_287_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_288_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_289_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_290_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_291_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_292_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_293_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_294_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_295_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_296_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_297_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_298_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_299_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_300_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_301_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_302_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_303_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_304_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_305_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_306_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_307_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_308_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_309_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_310_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_311_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_312_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_313_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_314_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_315_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_316_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_317_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_318_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_319_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_320_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_321_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_322_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_323_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_324_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_325_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_326_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_327_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_328_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_329_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_330_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_331_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_332_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_333_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_334_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_335_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_336_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_337_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_338_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_339_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_340_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_341_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_342_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_343_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_344_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_345_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_346_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_347_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_348_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_349_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_350_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_351_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_352_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_353_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_354_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_355_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_356_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_357_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_358_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_359_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_360_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_361_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_362_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_363_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_364_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_365_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_366_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_367_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_368_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_369_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_370_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_371_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_372_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_373_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_374_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_375_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_376_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_377_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_378_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_379_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_380_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_381_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_382_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_383_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_384_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_385_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_386_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_387_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_388_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_389_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_390_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_391_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_392_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_393_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_394_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_395_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_396_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_397_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_398_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_399_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_400_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_401_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_402_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_403_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_404_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_405_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_406_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_407_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_408_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_409_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_410_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_411_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_412_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_413_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_414_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_415_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_416_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_417_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_418_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_419_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_420_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_421_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_422_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_423_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_424_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_425_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_426_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_427_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_428_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_429_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_430_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_431_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_432_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_433_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_434_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_435_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_436_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_437_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_438_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_439_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_440_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_441_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_442_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_443_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_444_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_445_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_446_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_447_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_448_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_449_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_450_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_451_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_452_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_453_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_454_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_455_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_456_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_457_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_458_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_459_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_460_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_461_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_462_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_463_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_464_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_465_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_466_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_467_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_468_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_469_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_470_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_471_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_472_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_473_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_474_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_475_embeddedDevices ;
-extern const cRegularFileWrapper gWrapperFile_476_embeddedDevices ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_GOTO ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                   Pointer class for @baseline_assembly_GOTO class                                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_GOTO : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_lstring mAttribute_mTargetLabel ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_GOTO (const GALGAS_location & in_mInstructionLocation,
+                                              const GALGAS_lstring & in_mTargetLabel
+                                              COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTargetLabel (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                         @baseline_5F_assembly_5F_SKIP class                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_SKIP : public GALGAS_baseline_5F_assembly_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_SKIP (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_assembly_5F_SKIP constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_SKIP * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_SKIP *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_SKIP (const cPtr_baseline_5F_assembly_5F_SKIP * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_SKIP extractObject (const GALGAS_object & inObject,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_SKIP constructor_new (const class GALGAS_location & inOperand0
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_SKIP & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_SKIP class
+
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-extern const cDirectoryWrapper gWrapperDirectory_0_embeddedDevices ;
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_SKIP ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                   Pointer class for @baseline_assembly_SKIP class                                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_SKIP : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+//--- Attributes
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_SKIP (const GALGAS_location & in_mInstructionLocation
+                                              COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                         @baseline_5F_assembly_5F_TRIS class                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_TRIS : public GALGAS_baseline_5F_assembly_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_TRIS (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_assembly_5F_TRIS constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_TRIS * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_TRIS *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_TRIS (const cPtr_baseline_5F_assembly_5F_TRIS * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_TRIS extractObject (const GALGAS_object & inObject,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_TRIS constructor_new (const class GALGAS_location & inOperand0,
+                                                                             const class GALGAS_lstring & inOperand1,
+                                                                             const class GALGAS_uint & inOperand2
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_TRIS & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mOpcode (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOperand (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_TRIS class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_TRIS ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                   Pointer class for @baseline_assembly_TRIS class                                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_TRIS : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_lstring mAttribute_mOperand ;
+  public : GALGAS_uint mAttribute_mOpcode ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_TRIS (const GALGAS_location & in_mInstructionLocation,
+                                              const GALGAS_lstring & in_mOperand,
+                                              const GALGAS_uint & in_mOpcode
+                                              COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mOperand (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mOpcode (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                    @baseline_5F_assembly_5F_WO_5F_OPERAND class                                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND : public GALGAS_baseline_5F_assembly_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND (void) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND (const cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND extractObject (const GALGAS_object & inObject,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND constructor_new (const class GALGAS_location & inOperand0,
+                                                                                      const class GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inOperand1
+                                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_WO_5F_OPERAND_5F_group getter_mInstruction (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Pointer class for @baseline_assembly_WO_OPERAND class                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_baseline_5F_WO_5F_OPERAND_5F_group mAttribute_mInstruction ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND (const GALGAS_location & in_mInstructionLocation,
+                                                       const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_WO_5F_OPERAND_5F_group getter_mInstruction (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              @baseline_5F_assembly_5F_incDecRegisterInCondition class                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition : public GALGAS_baseline_5F_assembly_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition (const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition extractObject (const GALGAS_object & inObject,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                  const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand1,
+                                                                                                  const class GALGAS_bool & inOperand2,
+                                                                                                  const class GALGAS_bool & inOperand3
+                                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIncrement (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_m_5F_W_5F_isDestination (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                        Pointer class for @baseline_assembly_incDecRegisterInCondition class                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_baseline_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+  public : GALGAS_bool mAttribute_mIncrement ;
+  public : GALGAS_bool mAttribute_m_5F_W_5F_isDestination ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition (const GALGAS_location & in_mInstructionLocation,
+                                                                   const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                   const GALGAS_bool & in_mIncrement,
+                                                                   const GALGAS_bool & in_m_5F_W_5F_isDestination
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIncrement (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_m_5F_W_5F_isDestination (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              @baseline_5F_assembly_5F_instruction_5F_BitTestSkip class                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip : public GALGAS_baseline_5F_assembly_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip (const cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip extractObject (const GALGAS_object & inObject,
+                                                                                           C_Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                   const class GALGAS_bool & inOperand1,
+                                                                                                   const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                                   const class GALGAS_uint & inOperand3
+                                                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mBitNumber (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mSkipIfSet (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                         Pointer class for @baseline_assembly_instruction_BitTestSkip class                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_bool mAttribute_mSkipIfSet ;
+  public : GALGAS_baseline_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+  public : GALGAS_uint mAttribute_mBitNumber ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip (const GALGAS_location & in_mInstructionLocation,
+                                                                    const GALGAS_bool & in_mSkipIfSet,
+                                                                    const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                    const GALGAS_uint & in_mBitNumber
+                                                                    COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mSkipIfSet (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mBitNumber (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                   @baseline_5F_assembly_5F_instruction_5F_F class                                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_instruction_5F_F : public GALGAS_baseline_5F_assembly_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_instruction_5F_F (void) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_instruction_5F_F * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_instruction_5F_F *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_instruction_5F_F (const cPtr_baseline_5F_assembly_5F_instruction_5F_F * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_instruction_5F_F extractObject (const GALGAS_object & inObject,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_instruction_5F_F constructor_new (const class GALGAS_location & inOperand0,
+                                                                                         const class GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inOperand1,
+                                                                                         const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2
+                                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_5F_F & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code getter_mInstruction (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_instruction_5F_F class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_F ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              Pointer class for @baseline_assembly_instruction_F class                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_instruction_5F_F : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code mAttribute_mInstruction ;
+  public : GALGAS_baseline_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_instruction_5F_F (const GALGAS_location & in_mInstructionLocation,
+                                                          const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & in_mInstruction,
+                                                          const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription
+                                                          COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code getter_mInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                  @baseline_5F_assembly_5F_instruction_5F_FB class                                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_instruction_5F_FB : public GALGAS_baseline_5F_assembly_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_instruction_5F_FB (void) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_instruction_5F_FB * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_instruction_5F_FB (const cPtr_baseline_5F_assembly_5F_instruction_5F_FB * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_instruction_5F_FB extractObject (const GALGAS_object & inObject,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_instruction_5F_FB constructor_new (const class GALGAS_location & inOperand0,
+                                                                                          const class GALGAS_baseline_5F_bit_5F_oriented_5F_op & inOperand1,
+                                                                                          const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                          const class GALGAS_uint & inOperand3
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mBitNumber (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_bit_5F_oriented_5F_op getter_mInstruction (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_instruction_5F_FB class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FB ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              Pointer class for @baseline_assembly_instruction_FB class                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_instruction_5F_FB : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_baseline_5F_bit_5F_oriented_5F_op mAttribute_mInstruction ;
+  public : GALGAS_baseline_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+  public : GALGAS_uint mAttribute_mBitNumber ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_instruction_5F_FB (const GALGAS_location & in_mInstructionLocation,
+                                                           const GALGAS_baseline_5F_bit_5F_oriented_5F_op & in_mInstruction,
+                                                           const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                           const GALGAS_uint & in_mBitNumber
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_bit_5F_oriented_5F_op getter_mInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mBitNumber (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                  @baseline_5F_assembly_5F_instruction_5F_FD class                                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_instruction_5F_FD : public GALGAS_baseline_5F_assembly_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_instruction_5F_FD (void) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_instruction_5F_FD * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_instruction_5F_FD (const cPtr_baseline_5F_assembly_5F_instruction_5F_FD * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_instruction_5F_FD extractObject (const GALGAS_object & inObject,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_instruction_5F_FD constructor_new (const class GALGAS_location & inOperand0,
+                                                                                          const class GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inOperand1,
+                                                                                          const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                          const class GALGAS_bool & inOperand3
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code getter_mInstruction (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_m_5F_W_5F_isDestination (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_instruction_5F_FD class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FD ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              Pointer class for @baseline_assembly_instruction_FD class                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_instruction_5F_FD : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code mAttribute_mInstruction ;
+  public : GALGAS_baseline_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+  public : GALGAS_bool mAttribute_m_5F_W_5F_isDestination ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_instruction_5F_FD (const GALGAS_location & in_mInstructionLocation,
+                                                           const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction,
+                                                           const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                           const GALGAS_bool & in_m_5F_W_5F_isDestination
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code getter_mInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_m_5F_W_5F_isDestination (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                           @baseline_5F_assembly_5F_instruction_5F_literalOperation class                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation : public GALGAS_baseline_5F_assembly_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation (void) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation (const cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation extractObject (const GALGAS_object & inObject,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                        const class GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inOperand1,
+                                                                                                        const class GALGAS_uint & inOperand2
+                                                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_literal_5F_instruction_5F_opcode getter_mInstruction (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mLiteralValue (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                       Pointer class for @baseline_assembly_instruction_literalOperation class                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_baseline_5F_literal_5F_instruction_5F_opcode mAttribute_mInstruction ;
+  public : GALGAS_uint mAttribute_mLiteralValue ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation (const GALGAS_location & in_mInstructionLocation,
+                                                                         const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & in_mInstruction,
+                                                                         const GALGAS_uint & in_mLiteralValue
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_literal_5F_instruction_5F_opcode getter_mInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mLiteralValue (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               @baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE class                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE : public GALGAS_baseline_5F_assembly_5F_instruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE extractObject (const GALGAS_object & inObject,
+                                                                                         C_Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                                 const class GALGAS_bool & inOperand1
+                                                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsRegular (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mRoutineName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                          Pointer class for @baseline_assembly_pseudo_BEGINOFROUTINE class                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE : public cPtr_baseline_5F_assembly_5F_instruction {
+//--- Attributes
+  public : GALGAS_lstring mAttribute_mRoutineName ;
+  public : GALGAS_bool mAttribute_mIsRegular ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (const GALGAS_lstring & in_mRoutineName,
+                                                                  const GALGAS_bool & in_mIsRegular
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mRoutineName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIsRegular (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                @baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE class                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE : public GALGAS_baseline_5F_assembly_5F_instruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE extractObject (const GALGAS_object & inObject,
+                                                                                       C_Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                               const class GALGAS_uint & inOperand1
+                                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mPage (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mRoutineName (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                           Pointer class for @baseline_assembly_pseudo_ENDOFROUTINE class                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE : public cPtr_baseline_5F_assembly_5F_instruction {
+//--- Attributes
+  public : GALGAS_lstring mAttribute_mRoutineName ;
+  public : GALGAS_uint mAttribute_mPage ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (const GALGAS_lstring & in_mRoutineName,
+                                                                const GALGAS_uint & in_mPage
+                                                                COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mRoutineName (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mPage (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                   @baseline_5F_assembly_5F_pseudo_5F_LABEL class                                    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL : public GALGAS_baseline_5F_assembly_5F_instruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL (const cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL extractObject (const GALGAS_object & inObject,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL constructor_new (const class GALGAS_lstring & inOperand0
+                                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mLabel (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               Pointer class for @baseline_assembly_pseudo_LABEL class                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL : public cPtr_baseline_5F_assembly_5F_instruction {
+//--- Attributes
+  public : GALGAS_lstring mAttribute_mLabel ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL (const GALGAS_lstring & in_mLabel
+                                                         COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mLabel (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                    @baseline_5F_assembly_5F_pseudo_5F_ORG class                                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG : public GALGAS_baseline_5F_assembly_5F_instruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * ptr (void) const { return (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG extractObject (const GALGAS_object & inObject,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG constructor_new (const class GALGAS_uint & inOperand0
+                                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mOrigin (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Pointer class for @baseline_assembly_pseudo_ORG class                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG : public cPtr_baseline_5F_assembly_5F_instruction {
+//--- Attributes
+  public : GALGAS_uint mAttribute_mOrigin ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (const GALGAS_uint & in_mOrigin
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mOrigin (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       @baseline_5F_intermediate_5F_TRIS class                                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_intermediate_5F_TRIS : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_intermediate_5F_TRIS (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_intermediate_5F_TRIS constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_intermediate_5F_TRIS * ptr (void) const { return (const cPtr_baseline_5F_intermediate_5F_TRIS *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_intermediate_5F_TRIS (const cPtr_baseline_5F_intermediate_5F_TRIS * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_intermediate_5F_TRIS extractObject (const GALGAS_object & inObject,
+                                                                         C_Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_intermediate_5F_TRIS constructor_new (const class GALGAS_location & inOperand0,
+                                                                                 const class GALGAS_lstring & inOperand1,
+                                                                                 const class GALGAS_uint & inOperand2
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_TRIS & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mOpcode (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mOperand (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_intermediate_5F_TRIS class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_TRIS ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 Pointer class for @baseline_intermediate_TRIS class                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_intermediate_5F_TRIS : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_lstring mAttribute_mOperand ;
+  public : GALGAS_uint mAttribute_mOpcode ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_intermediate_5F_TRIS (const GALGAS_location & in_mInstructionLocation,
+                                                  const GALGAS_lstring & in_mOperand,
+                                                  const GALGAS_uint & in_mOpcode
+                                                  COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mOperand (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mOpcode (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                  @baseline_5F_intermediate_5F_WO_5F_OPERAND class                                   *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND (void) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND * ptr (void) const { return (const cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND (const cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND extractObject (const GALGAS_object & inObject,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND constructor_new (const class GALGAS_location & inOperand0,
+                                                                                          const class GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inOperand1
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_WO_5F_OPERAND_5F_group getter_mInstruction (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                              Pointer class for @baseline_intermediate_WO_OPERAND class                              *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_baseline_5F_WO_5F_OPERAND_5F_group mAttribute_mInstruction ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (const GALGAS_location & in_mInstructionLocation,
+                                                           const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_WO_5F_OPERAND_5F_group getter_mInstruction (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                            @baseline_5F_intermediate_5F_instruction_5F_BitTestSkip class                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * ptr (void) const { return (const cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (const cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip extractObject (const GALGAS_object & inObject,
+                                                                                               C_Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                       const class GALGAS_bool & inOperand1,
+                                                                                                       const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                                       const class GALGAS_uint & inOperand3
+                                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mBitNumber (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mSkipIfSet (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                       Pointer class for @baseline_intermediate_instruction_BitTestSkip class                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_bool mAttribute_mSkipIfSet ;
+  public : GALGAS_baseline_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+  public : GALGAS_uint mAttribute_mBitNumber ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (const GALGAS_location & in_mInstructionLocation,
+                                                                        const GALGAS_bool & in_mSkipIfSet,
+                                                                        const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                        const GALGAS_uint & in_mBitNumber
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mSkipIfSet (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mBitNumber (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                 @baseline_5F_intermediate_5F_instruction_5F_F class                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_intermediate_5F_instruction_5F_F : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_F (void) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_intermediate_5F_instruction_5F_F * ptr (void) const { return (const cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_F (const cPtr_baseline_5F_intermediate_5F_instruction_5F_F * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_F extractObject (const GALGAS_object & inObject,
+                                                                                     C_Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_F constructor_new (const class GALGAS_location & inOperand0,
+                                                                                             const class GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inOperand1,
+                                                                                             const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2
+                                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_F & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code getter_mInstruction (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_intermediate_5F_instruction_5F_F class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_F ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                            Pointer class for @baseline_intermediate_instruction_F class                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_intermediate_5F_instruction_5F_F : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code mAttribute_mInstruction ;
+  public : GALGAS_baseline_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_intermediate_5F_instruction_5F_F (const GALGAS_location & in_mInstructionLocation,
+                                                              const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & in_mInstruction,
+                                                              const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code getter_mInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                @baseline_5F_intermediate_5F_instruction_5F_FB class                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB (void) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * ptr (void) const { return (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB extractObject (const GALGAS_object & inObject,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB constructor_new (const class GALGAS_location & inOperand0,
+                                                                                              const class GALGAS_baseline_5F_bit_5F_oriented_5F_op & inOperand1,
+                                                                                              const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                              const class GALGAS_uint & inOperand3
+                                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mBitNumber (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_bit_5F_oriented_5F_op getter_mInstruction (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                            Pointer class for @baseline_intermediate_instruction_FB class                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_intermediate_5F_instruction_5F_FB : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_baseline_5F_bit_5F_oriented_5F_op mAttribute_mInstruction ;
+  public : GALGAS_baseline_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+  public : GALGAS_uint mAttribute_mBitNumber ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (const GALGAS_location & in_mInstructionLocation,
+                                                               const GALGAS_baseline_5F_bit_5F_oriented_5F_op & in_mInstruction,
+                                                               const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                               const GALGAS_uint & in_mBitNumber
+                                                               COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_bit_5F_oriented_5F_op getter_mInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mBitNumber (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                @baseline_5F_intermediate_5F_instruction_5F_FD class                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD (void) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * ptr (void) const { return (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD (const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD extractObject (const GALGAS_object & inObject,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD constructor_new (const class GALGAS_location & inOperand0,
+                                                                                              const class GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inOperand1,
+                                                                                              const class GALGAS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                              const class GALGAS_bool & inOperand3
+                                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code getter_mInstruction (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_m_5F_W_5F_isDestination (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                            Pointer class for @baseline_intermediate_instruction_FD class                            *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_intermediate_5F_instruction_5F_FD : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code mAttribute_mInstruction ;
+  public : GALGAS_baseline_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+  public : GALGAS_bool mAttribute_m_5F_W_5F_isDestination ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (const GALGAS_location & in_mInstructionLocation,
+                                                               const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction,
+                                                               const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                               const GALGAS_bool & in_m_5F_W_5F_isDestination
+                                                               COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code getter_mInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_bool getter_m_5F_W_5F_isDestination (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                               @baseline_5F_intermediate_5F_instruction_5F_MNOP class                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * ptr (void) const { return (const cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP (const cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP extractObject (const GALGAS_object & inObject,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                const class GALGAS_luint & inOperand1
+                                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_luint getter_mOccurrenceFactor (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                           Pointer class for @baseline_intermediate_instruction_MNOP class                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_luint mAttribute_mOccurrenceFactor ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (const GALGAS_location & in_mInstructionLocation,
+                                                                 const GALGAS_luint & in_mOccurrenceFactor
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_luint getter_mOccurrenceFactor (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                         @baseline_5F_intermediate_5F_instruction_5F_literalOperation class                          *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
+//--- Constructor
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation (void) ;
+
+//---
+  public : inline const class cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * ptr (void) const { return (const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation (const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation extractObject (const GALGAS_object & inObject,
+                                                                                                    C_Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                            const class GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inOperand1,
+                                                                                                            const class GALGAS_uint & inOperand2
+                                                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_literal_5F_instruction_5F_opcode getter_mInstruction (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mLiteralValue (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                     Pointer class for @baseline_intermediate_instruction_literalOperation class                     *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+//--- Attributes
+  public : GALGAS_baseline_5F_literal_5F_instruction_5F_opcode mAttribute_mInstruction ;
+  public : GALGAS_uint mAttribute_mLiteralValue ;
+
+//--- Constructor
+  public : cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (const GALGAS_location & in_mInstructionLocation,
+                                                                             const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & in_mInstruction,
+                                                                             const GALGAS_uint & in_mLiteralValue
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_literal_5F_instruction_5F_opcode getter_mInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mLiteralValue (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
 
 #endif
