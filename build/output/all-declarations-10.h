@@ -11,152 +11,232 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Extension method '@baseline_instruction_IF_BitTest getBaseCode'                           *
+//                                       Routine 'emitBaselineCodeAtWordAddress'                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*extensionMethodSignature_baseline_5F_instruction_5F_IF_5F_BitTest_getBaseCode) (const class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                                                                               class GALGAS_uint & outArgument0,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterExtensionMethod_getBaseCode (const int32_t inClassIndex,
-                                       extensionMethodSignature_baseline_5F_instruction_5F_IF_5F_BitTest_getBaseCode inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callExtensionMethod_getBaseCode (const class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                      GALGAS_uint & out_outBaseCode,
-                                      C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void routine_emitBaselineCodeAtWordAddress (const class GALGAS_uint constinArgument0,
+                                            class GALGAS_uint & ioArgument1,
+                                            const class GALGAS_baseline_5F_assembly_5F_instruction constinArgument2,
+                                            class GALGAS_string & ioArgument3,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Extension method '@baseline_instruction_IF_BitTest getMnemonic'                           *
+//                                      Routine 'emitNoBaselineCodeAtWordAddress'                                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*extensionMethodSignature_baseline_5F_instruction_5F_IF_5F_BitTest_getMnemonic) (const class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                                                                               class GALGAS_string & outArgument0,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterExtensionMethod_getMnemonic (const int32_t inClassIndex,
-                                       extensionMethodSignature_baseline_5F_instruction_5F_IF_5F_BitTest_getMnemonic inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callExtensionMethod_getMnemonic (const class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                      GALGAS_string & out_outMnemonic,
-                                      C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void routine_emitNoBaselineCodeAtWordAddress (const class GALGAS_uint constinArgument0,
+                                              const class GALGAS_baseline_5F_assembly_5F_instruction constinArgument1,
+                                              class GALGAS_string & ioArgument2,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Extension method '@midrange_instruction_IF_BitTest getBaseCode'                           *
+//                                Routine 'addMidRangeUsedRoutinesFromInstructionList'                                 *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*extensionMethodSignature_midrange_5F_instruction_5F_IF_5F_BitTest_getBaseCode) (const class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                                                                               class GALGAS_uint & outArgument0,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterExtensionMethod_getBaseCode (const int32_t inClassIndex,
-                                       extensionMethodSignature_midrange_5F_instruction_5F_IF_5F_BitTest_getBaseCode inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callExtensionMethod_getBaseCode (const class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                      GALGAS_uint & out_outBaseCode,
-                                      C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void routine_addMidRangeUsedRoutinesFromInstructionList (const class GALGAS_midrange_5F_instructionList constinArgument0,
+                                                         class GALGAS_stringset & ioArgument1,
+                                                         class C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                           Extension method '@midrange_instruction_IF_BitTest getMnemonic'                           *
+//                                       Function 'midrange_computeUsedRoutines'                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*extensionMethodSignature_midrange_5F_instruction_5F_IF_5F_BitTest_getMnemonic) (const class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                                                                               class GALGAS_string & outArgument0,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterExtensionMethod_getMnemonic (const int32_t inClassIndex,
-                                       extensionMethodSignature_midrange_5F_instruction_5F_IF_5F_BitTest_getMnemonic inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callExtensionMethod_getMnemonic (const class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                      GALGAS_string & out_outMnemonic,
-                                      C_Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+class GALGAS_stringset function_midrange_5F_computeUsedRoutines (const class GALGAS_midrange_5F_interruptDefinitionList & constinArgument0,
+                                                                 const class GALGAS_midrange_5F_routineDefinitionList & constinArgument1,
+                                                                 class C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                 Extension method '@registerExpression analyzeRegisterExpressionWithoutCheckingBank'                 *
+//                                       Routine 'handleMidrangeInstructionList'                                       *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*extensionMethodSignature_registerExpression_analyzeRegisterExpressionWithoutCheckingBank) (const class cPtr_registerExpression * inObject,
-                                                                                                          const class GALGAS_registerTable constinArgument0,
-                                                                                                          const class GALGAS_constantMap constinArgument1,
-                                                                                                          class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & outArgument2,
-                                                                                                          class GALGAS_stringset & ioArgument3,
-                                                                                                          class C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void enterExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (const int32_t inClassIndex,
-                                                                        extensionMethodSignature_registerExpression_analyzeRegisterExpressionWithoutCheckingBank inMethod) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (const class cPtr_registerExpression * inObject,
-                                                                       const GALGAS_registerTable constin_inRegisterTable,
-                                                                       const GALGAS_constantMap constin_inConstantMap,
-                                                                       GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & out_outIPICregisterDescription,
-                                                                       GALGAS_stringset & io_ioUsedRegisters,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
+void routine_handleMidrangeInstructionList (const class GALGAS_midrange_5F_instructionList constinArgument0,
+                                            const class GALGAS_routineMap constinArgument1,
+                                            const class GALGAS_registerTable constinArgument2,
+                                            const class GALGAS_constantMap constinArgument3,
+                                            class GALGAS_uint & ioArgument4,
+                                            class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument5,
+                                            class GALGAS_string & ioArgument6,
+                                            const class GALGAS_uint constinArgument7,
+                                            class GALGAS_uint & ioArgument8,
+                                            const class GALGAS_bool constinArgument9,
+                                            class GALGAS_bool & outArgument10,
+                                            const class GALGAS_routineKind constinArgument11,
+                                            class GALGAS_stringset & ioArgument12,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                              Extension method '@registerExpression getRegisterAddress'                              *
+//                                 Routine 'build_midrange_assembly_instruction_list'                                  *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef void (*extensionMethodSignature_registerExpression_getRegisterAddress) (const class cPtr_registerExpression * inObject,
-                                                                                const class GALGAS_registerTable constinArgument0,
-                                                                                const class GALGAS_constantMap constinArgument1,
-                                                                                class GALGAS_stringset & ioArgument2,
-                                                                                class GALGAS_uint & outArgument3,
-                                                                                class C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
+void routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (const class GALGAS_uint constinArgument0,
+                                                                   const class GALGAS_uint constinArgument1,
+                                                                   const class GALGAS_sint constinArgument2,
+                                                                   const class GALGAS_string constinArgument3,
+                                                                   const class GALGAS_registerTable constinArgument4,
+                                                                   const class GALGAS_midrange_5F_model constinArgument5,
+                                                                   const class GALGAS_bool constinArgument6,
+                                                                   class GALGAS_midrange_5F_intermediate_5F_instructionList & outArgument7,
+                                                                   class GALGAS_string & ioArgument8,
+                                                                   class GALGAS_stringset & ioArgument9,
+                                                                   class C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
-
-void enterExtensionMethod_getRegisterAddress (const int32_t inClassIndex,
-                                              extensionMethodSignature_registerExpression_getRegisterAddress inMethod) ;
-
+//                                                                                                                     *
+//                                          Routine 'handleInterruptRoutine'                                           *
+//                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-void callExtensionMethod_getRegisterAddress (const class cPtr_registerExpression * inObject,
-                                             const GALGAS_registerTable constin_inRegisterTable,
-                                             const GALGAS_constantMap constin_inConstantMap,
-                                             GALGAS_stringset & io_ioUsedRegisters,
-                                             GALGAS_uint & out_outRegisterAddress,
-                                             C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+void routine_handleInterruptRoutine (const class GALGAS_midrange_5F_model constinArgument0,
+                                     const class GALGAS_bool constinArgument1,
+                                     const class GALGAS_registerTable constinArgument2,
+                                     const class GALGAS_string constinArgument3,
+                                     const class GALGAS_routineMap constinArgument4,
+                                     const class GALGAS_uint constinArgument5,
+                                     const class GALGAS_constantMap constinArgument6,
+                                     const class GALGAS_uint constinArgument7,
+                                     class GALGAS_string & ioArgument8,
+                                     class GALGAS_uint & ioArgument9,
+                                     class GALGAS_string & ioArgument10,
+                                     class GALGAS_midrange_5F_intermediate_5F_instructionList & outArgument11,
+                                     class GALGAS_stringset & ioArgument12,
+                                     class C_Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                     Routine 'interruptRoutineShouldSavePCLATH'                                      *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_interruptRoutineShouldSavePCLATH (const class GALGAS_midrange_5F_model constinArgument0,
+                                               const class GALGAS_uint constinArgument1,
+                                               class GALGAS_string & ioArgument2,
+                                               class GALGAS_bool & outArgument3,
+                                               class C_Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                            Routine 'generateInterruptRoutineForControllerWithSharedRAM'                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateInterruptRoutineForControllerWithSharedRAM (const class GALGAS_uint constinArgument0,
+                                                                 const class GALGAS_registerTable constinArgument1,
+                                                                 const class GALGAS_lstring constinArgument2,
+                                                                 const class GALGAS_lstring constinArgument3,
+                                                                 const class GALGAS_bool constinArgument4,
+                                                                 const class GALGAS_midrange_5F_instructionList constinArgument5,
+                                                                 const class GALGAS_routineMap constinArgument6,
+                                                                 const class GALGAS_constantMap constinArgument7,
+                                                                 const class GALGAS_location constinArgument8,
+                                                                 class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument9,
+                                                                 class GALGAS_uint & ioArgument10,
+                                                                 class GALGAS_string & ioArgument11,
+                                                                 class GALGAS_stringset & ioArgument12,
+                                                                 class C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                           Routine 'generateInterruptRoutineForControllerWithoutSharedRAM'                           *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_generateInterruptRoutineForControllerWithoutSharedRAM (const class GALGAS_uint constinArgument0,
+                                                                    const class GALGAS_registerTable constinArgument1,
+                                                                    const class GALGAS_lstring constinArgument2,
+                                                                    const class GALGAS_lstring constinArgument3,
+                                                                    const class GALGAS_bool constinArgument4,
+                                                                    const class GALGAS_midrange_5F_instructionList constinArgument5,
+                                                                    const class GALGAS_routineMap constinArgument6,
+                                                                    const class GALGAS_constantMap constinArgument7,
+                                                                    const class GALGAS_location constinArgument8,
+                                                                    class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument9,
+                                                                    class GALGAS_uint & ioArgument10,
+                                                                    class GALGAS_string & ioArgument11,
+                                                                    class GALGAS_stringset & ioArgument12,
+                                                                    class C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      Routine 'perform_midrange_optimizations'                                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_perform_5F_midrange_5F_optimizations (class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument0,
+                                                   class GALGAS_string & ioArgument1,
+                                                   class C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                         Routine 'midrange_compute_JSR_JUMP'                                         *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_midrange_5F_compute_5F_JSR_5F_JUMP (class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument0,
+                                                 class GALGAS_string & ioArgument1,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       Routine 'midrange_build_assembly_code'                                        *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_midrange_5F_build_5F_assembly_5F_code (const class GALGAS_string constinArgument0,
+                                                    const class GALGAS_registerTable constinArgument1,
+                                                    const class GALGAS_registerTable constinArgument2,
+                                                    const class GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument3,
+                                                    const class GALGAS_actualConfigurationMap constinArgument4,
+                                                    class GALGAS_string & outArgument5,
+                                                    class C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       Routine 'emitMidrangeCodeAtWordAddress'                                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_emitMidrangeCodeAtWordAddress (const class GALGAS_uint constinArgument0,
+                                            class GALGAS_uint & ioArgument1,
+                                            const class GALGAS_midrange_5F_intermediate_5F_instruction constinArgument2,
+                                            class GALGAS_string & ioArgument3,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                    Routine 'emitMidrangeDirectCodeAtWordAddress'                                    *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_emitMidrangeDirectCodeAtWordAddress (const class GALGAS_uint constinArgument0,
+                                                  class GALGAS_uint & ioArgument1,
+                                                  const class GALGAS_string constinArgument2,
+                                                  class GALGAS_string & ioArgument3,
+                                                  class C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 #endif
