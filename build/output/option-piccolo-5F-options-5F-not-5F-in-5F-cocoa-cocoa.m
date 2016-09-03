@@ -4,7 +4,7 @@
 //--- END OF USER ZONE 1
 //---------------------------------------------------------------------------------------------------------------------*
 
-#import "option-piccolo_options_not_in_cocoa-cocoa.h"
+#import "option-piccolo-5F-options-5F-not-5F-in-5F-cocoa-cocoa.h"
 #import "OC_GGS_CommandLineOption.h"
 
 //---------------------------------------------------------------------------------------------------------------------*

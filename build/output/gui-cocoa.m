@@ -5,7 +5,7 @@
 
 #import "OC_Token.h"
 #import "F_CocoaWrapperForGalgas.h"
-#import "lexique-piccolo_lexique-cocoa.m"
+#import "lexique-piccolo-5F-lexique-cocoa.m"
 #import "PMPiccoloCocoa.h"
 #import "installCLITools.h"
 
@@ -42,7 +42,7 @@ NSArray * nibsAndClasses (void) {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#import "option-piccolo_options-cocoa.m"
+#import "option-piccolo-5F-options-cocoa.m"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
