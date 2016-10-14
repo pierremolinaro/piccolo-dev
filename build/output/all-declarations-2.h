@@ -20,9 +20,9 @@ class GALGAS_midrange_5F_routineDefinitionList : public AC_GALGAS_list {
   public : GALGAS_midrange_5F_routineDefinitionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_midrange_5F_routineDefinitionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_midrange_5F_routineDefinitionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mRoutineName,
                                                   const class GALGAS_luint & in_mPage,
@@ -238,14 +238,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_routine
 
 class GALGAS_midrange_5F_routineDefinitionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mRoutineName ;
-  public : GALGAS_luint mAttribute_mPage ;
-  public : GALGAS_luint mAttribute_mRequiredBank ;
-  public : GALGAS_luint mAttribute_mReturnedBank ;
-  public : GALGAS_bool mAttribute_mPreservesBank ;
-  public : GALGAS_bool mAttribute_mIsNoReturn ;
-  public : GALGAS_midrange_5F_instructionList mAttribute_mInstructionList ;
-  public : GALGAS_location mAttribute_mEndOfRoutineLocation ;
+  public : GALGAS_lstring mProperty_mRoutineName ;
+  public : GALGAS_luint mProperty_mPage ;
+  public : GALGAS_luint mProperty_mRequiredBank ;
+  public : GALGAS_luint mProperty_mReturnedBank ;
+  public : GALGAS_bool mProperty_mPreservesBank ;
+  public : GALGAS_bool mProperty_mIsNoReturn ;
+  public : GALGAS_midrange_5F_instructionList mProperty_mInstructionList ;
+  public : GALGAS_location mProperty_mEndOfRoutineLocation ;
 
 
 //--------------------------------- Accessors
@@ -339,8 +339,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_routine
 
 class GALGAS_midrange_5F_intermediate_5F_registerExpression : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_string mAttribute_mAssemblyString ;
-  public : GALGAS_uint mAttribute_mRegisterAddress ;
+  public : GALGAS_string mProperty_mAssemblyString ;
+  public : GALGAS_uint mProperty_mRegisterAddress ;
 
 
 //--------------------------------- Accessors
@@ -482,9 +482,9 @@ class GALGAS_midrange_5F_intermediate_5F_instructionList : public AC_GALGAS_list
   public : GALGAS_midrange_5F_intermediate_5F_instructionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_midrange_5F_intermediate_5F_instructionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_midrange_5F_intermediate_5F_instructionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_midrange_5F_intermediate_5F_instruction & in_mInstruction
                                                   COMMA_LOCATION_ARGS) ;
@@ -607,7 +607,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_midrange_5F_intermediate_5F_instruction mAttribute_mInstruction ;
+  public : GALGAS_midrange_5F_intermediate_5F_instruction mProperty_mInstruction ;
 
 
 //--------------------------------- Accessors
@@ -803,7 +803,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG : public cPtr_midrange_5F_intermediate_5F_instruction {
 //--- Attributes
-  public : GALGAS_uint mAttribute_mOrigin ;
+  public : GALGAS_uint mProperty_mOrigin ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG (const GALGAS_uint & in_mOrigin
@@ -880,7 +880,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_actualInstruction : public cPtr_midrange_5F_intermediate_5F_instruction {
 //--- Attributes
-  public : GALGAS_location mAttribute_mInstructionLocation ;
+  public : GALGAS_location mProperty_mInstructionLocation ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_actualInstruction (const GALGAS_location & in_mInstructionLocation
@@ -965,9 +965,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_instruction_5F_FD : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
 //--- Attributes
-  public : GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code mAttribute_mInstruction_5F_FD_5F_base_5F_code ;
-  public : GALGAS_midrange_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
-  public : GALGAS_bool mAttribute_m_5F_W_5F_isDestination ;
+  public : GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code mProperty_mInstruction_5F_FD_5F_base_5F_code ;
+  public : GALGAS_midrange_5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public : GALGAS_bool mProperty_m_5F_W_5F_isDestination ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_instruction_5F_FD (const GALGAS_location & in_mInstructionLocation,
@@ -1057,8 +1057,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_instruction_5F_F : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
 //--- Attributes
-  public : GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code mAttribute_mFinstruction ;
-  public : GALGAS_midrange_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+  public : GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code mProperty_mFinstruction ;
+  public : GALGAS_midrange_5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_instruction_5F_F (const GALGAS_location & in_mInstructionLocation,
@@ -1149,9 +1149,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_instruction_5F_FB : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
 //--- Attributes
-  public : GALGAS_midrange_5F_bit_5F_oriented_5F_op mAttribute_mBitOrientedOp ;
-  public : GALGAS_midrange_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
-  public : GALGAS_uint mAttribute_mBitNumber ;
+  public : GALGAS_midrange_5F_bit_5F_oriented_5F_op mProperty_mBitOrientedOp ;
+  public : GALGAS_midrange_5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public : GALGAS_uint mProperty_mBitNumber ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_instruction_5F_FB (const GALGAS_location & in_mInstructionLocation,
@@ -1247,9 +1247,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
 //--- Attributes
-  public : GALGAS_bool mAttribute_mSkipIfSet ;
-  public : GALGAS_midrange_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
-  public : GALGAS_uint mAttribute_mBitNumber ;
+  public : GALGAS_bool mProperty_mSkipIfSet ;
+  public : GALGAS_midrange_5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public : GALGAS_uint mProperty_mBitNumber ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip (const GALGAS_location & in_mInstructionLocation,
@@ -1891,8 +1891,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
 //--- Attributes
-  public : GALGAS_midrange_5F_literal_5F_instruction_5F_opcode mAttribute_mLiteralInstruction ;
-  public : GALGAS_uint mAttribute_mLiteralValue ;
+  public : GALGAS_midrange_5F_literal_5F_instruction_5F_opcode mProperty_mLiteralInstruction ;
+  public : GALGAS_uint mProperty_mLiteralValue ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation (const GALGAS_location & in_mInstructionLocation,
@@ -1980,7 +1980,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mOccurrenceFactor ;
+  public : GALGAS_luint mProperty_mOccurrenceFactor ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP (const GALGAS_location & in_mInstructionLocation,
@@ -2078,11 +2078,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
 //--- Attributes
-  public : GALGAS_midrange_5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
-  public : GALGAS_string mAttribute_mTargetLabel ;
-  public : GALGAS_bool mAttribute_mIncrement ;
-  public : GALGAS_bool mAttribute_m_5F_W_5F_isDestination ;
-  public : GALGAS_bool mAttribute_mBranchIfZero ;
+  public : GALGAS_midrange_5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public : GALGAS_string mProperty_mTargetLabel ;
+  public : GALGAS_bool mProperty_mIncrement ;
+  public : GALGAS_bool mProperty_m_5F_W_5F_isDestination ;
+  public : GALGAS_bool mProperty_mBranchIfZero ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition (const GALGAS_location & in_mInstructionLocation,
@@ -2606,7 +2606,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_GOTO : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mTargetLabel ;
+  public : GALGAS_lstring mProperty_mTargetLabel ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_GOTO (const GALGAS_location & in_mInstructionLocation,
@@ -2695,9 +2695,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_JUMP : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mTargetLabel ;
-  public : GALGAS_midrange_5F_call_5F_goto_5F_bit mAttribute_mBit_31__31_ ;
-  public : GALGAS_midrange_5F_call_5F_goto_5F_bit mAttribute_mBit_31__32_ ;
+  public : GALGAS_lstring mProperty_mTargetLabel ;
+  public : GALGAS_midrange_5F_call_5F_goto_5F_bit mProperty_mBit_31__31_ ;
+  public : GALGAS_midrange_5F_call_5F_goto_5F_bit mProperty_mBit_31__32_ ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_JUMP (const GALGAS_location & in_mInstructionLocation,
@@ -2877,7 +2877,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_symbolT
 
 class cMapElement_midrange_5F_symbolTableForConvertingRelatives : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uint mAttribute_mRoutineAddress ;
+  public : GALGAS_uint mProperty_mRoutineAddress ;
 
 //--- Constructor
   public : cMapElement_midrange_5F_symbolTableForConvertingRelatives (const GALGAS_lstring & inKey,
@@ -2905,8 +2905,8 @@ class cMapElement_midrange_5F_symbolTableForConvertingRelatives : public cMapEle
 
 class GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uint mAttribute_mRoutineAddress ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uint mProperty_mRoutineAddress ;
 
 
 //--------------------------------- Accessors
@@ -3163,7 +3163,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_symbolT
 
 class cMapElement_midrange_5F_symbolTable : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uint mAttribute_mRoutineAddress ;
+  public : GALGAS_uint mProperty_mRoutineAddress ;
 
 //--- Constructor
   public : cMapElement_midrange_5F_symbolTable (const GALGAS_lstring & inKey,
@@ -3191,8 +3191,8 @@ class cMapElement_midrange_5F_symbolTable : public cMapElement {
 
 class GALGAS_midrange_5F_symbolTable_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uint mAttribute_mRoutineAddress ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uint mProperty_mRoutineAddress ;
 
 
 //--------------------------------- Accessors
@@ -3477,7 +3477,7 @@ class cMapElement_midrange_5F_declaredRoutineMap : public cMapElement {
 
 class GALGAS_midrange_5F_declaredRoutineMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
+  public : GALGAS_lstring mProperty_lkey ;
 
 
 //--------------------------------- Accessors
@@ -3647,7 +3647,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bootloaderReservedR
 
 class cMapElement_bootloaderReservedRAMmap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_luint mAttribute_mReservedSize ;
+  public : GALGAS_luint mProperty_mReservedSize ;
 
 //--- Constructor
   public : cMapElement_bootloaderReservedRAMmap (const GALGAS_lstring & inKey,
@@ -3675,8 +3675,8 @@ class cMapElement_bootloaderReservedRAMmap : public cMapElement {
 
 class GALGAS_bootloaderReservedRAMmap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_luint mAttribute_mReservedSize ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_luint mProperty_mReservedSize ;
 
 
 //--------------------------------- Accessors
@@ -3794,7 +3794,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_PiccoloI
 
 class cPtr_pic_31__38_PiccoloInstruction : public acPtr_class {
 //--- Attributes
-  public : GALGAS_location mAttribute_mInstructionLocation ;
+  public : GALGAS_location mProperty_mInstructionLocation ;
 
 //--- Constructor
   public : cPtr_pic_31__38_PiccoloInstruction (const GALGAS_location & in_mInstructionLocation
@@ -3823,9 +3823,9 @@ class GALGAS_pic_31__38_InstructionList : public AC_GALGAS_list {
   public : GALGAS_pic_31__38_InstructionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_pic_31__38_InstructionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_pic_31__38_InstructionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_pic_31__38_PiccoloInstruction & in_mInstruction
                                                   COMMA_LOCATION_ARGS) ;
@@ -3943,7 +3943,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class GALGAS_pic_31__38_InstructionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_pic_31__38_PiccoloInstruction mAttribute_mInstruction ;
+  public : GALGAS_pic_31__38_PiccoloInstruction mProperty_mInstruction ;
 
 
 //--------------------------------- Accessors
@@ -4222,7 +4222,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_checkbank : public cPtr_pic_31__38_PiccoloInstruction {
 //--- Attributes
-  public : GALGAS_uint mAttribute_mBankIndex ;
+  public : GALGAS_uint mProperty_mBankIndex ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_checkbank (const GALGAS_location & in_mInstructionLocation,
@@ -4381,8 +4381,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_banksel : public cPtr_pic_31__38_PiccoloInstruction {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mBankIndex ;
-  public : GALGAS_bool mAttribute_mWarningOnUselessBanksel ;
+  public : GALGAS_luint mProperty_mBankIndex ;
+  public : GALGAS_bool mProperty_mWarningOnUselessBanksel ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_banksel (const GALGAS_location & in_mInstructionLocation,
@@ -4538,7 +4538,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_exitBlockTerminatio
 
 class cPtr_exitBlockTerminationForBlockInstruction : public cPtr_abstractBlockTerminationForBlockInstruction {
 //--- Attributes
-  public : GALGAS_location mAttribute_mLocation ;
+  public : GALGAS_location mProperty_mLocation ;
 
 //--- Constructor
   public : cPtr_exitBlockTerminationForBlockInstruction (const GALGAS_location & in_mLocation
@@ -4639,9 +4639,9 @@ class GALGAS_pic_31__38_BlockInstructionBlockList : public AC_GALGAS_list {
   public : GALGAS_pic_31__38_BlockInstructionBlockList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_pic_31__38_BlockInstructionBlockList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_pic_31__38_BlockInstructionBlockList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mBlockName,
                                                   const class GALGAS_pic_31__38_InstructionList & in_mInstructionList,
@@ -4801,10 +4801,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BlockIns
 
 class GALGAS_pic_31__38_BlockInstructionBlockList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mBlockName ;
-  public : GALGAS_pic_31__38_InstructionList mAttribute_mInstructionList ;
-  public : GALGAS_abstractBlockTerminationForBlockInstruction mAttribute_mBlockTerminaisonForBlockInstruction ;
-  public : GALGAS_location mAttribute_mEndOfBlock ;
+  public : GALGAS_lstring mProperty_mBlockName ;
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
+  public : GALGAS_abstractBlockTerminationForBlockInstruction mProperty_mBlockTerminaisonForBlockInstruction ;
+  public : GALGAS_location mProperty_mEndOfBlock ;
 
 
 //--------------------------------- Accessors
@@ -5003,8 +5003,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SimpleCo
 
 class cPtr_pic_31__38_SimpleConstantCaseItem : public cPtr_pic_31__38_AbstractCaseItem {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mCaseExpression ;
-  public : GALGAS_location mAttribute_mCaseExpressionLocation ;
+  public : GALGAS_immediatExpression mProperty_mCaseExpression ;
+  public : GALGAS_location mProperty_mCaseExpressionLocation ;
 
 //--- Constructor
   public : cPtr_pic_31__38_SimpleConstantCaseItem (const GALGAS_immediatExpression & in_mCaseExpression,
@@ -5093,9 +5093,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Interval
 
 class cPtr_pic_31__38_IntervalCaseItem : public cPtr_pic_31__38_AbstractCaseItem {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mMinExpression ;
-  public : GALGAS_immediatExpression mAttribute_mMaxExpression ;
-  public : GALGAS_location mAttribute_mCaseExpressionLocation ;
+  public : GALGAS_immediatExpression mProperty_mMinExpression ;
+  public : GALGAS_immediatExpression mProperty_mMaxExpression ;
+  public : GALGAS_location mProperty_mCaseExpressionLocation ;
 
 //--- Constructor
   public : cPtr_pic_31__38_IntervalCaseItem (const GALGAS_immediatExpression & in_mMinExpression,
@@ -5131,9 +5131,9 @@ class GALGAS_pic_31__38_CaseExpressionList : public AC_GALGAS_list {
   public : GALGAS_pic_31__38_CaseExpressionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_pic_31__38_CaseExpressionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_pic_31__38_CaseExpressionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_pic_31__38_AbstractCaseItem & in_mCaseItem
                                                   COMMA_LOCATION_ARGS) ;
@@ -5251,7 +5251,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_CaseExpr
 
 class GALGAS_pic_31__38_CaseExpressionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_pic_31__38_AbstractCaseItem mAttribute_mCaseItem ;
+  public : GALGAS_pic_31__38_AbstractCaseItem mProperty_mCaseItem ;
 
 
 //--------------------------------- Accessors
@@ -5317,9 +5317,9 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
   public : GALGAS_pic_31__38_SwitchInstructionCaseList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_pic_31__38_SwitchInstructionCaseList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_pic_31__38_SwitchInstructionCaseList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_location & in_mStartOfCase,
                                                   const class GALGAS_pic_31__38_CaseExpressionList & in_mCaseExpressionList,
@@ -5465,9 +5465,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SwitchIn
 
 class GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_location mAttribute_mStartOfCase ;
-  public : GALGAS_pic_31__38_CaseExpressionList mAttribute_mCaseExpressionList ;
-  public : GALGAS_pic_31__38_InstructionList mAttribute_mInstructionList ;
+  public : GALGAS_location mProperty_mStartOfCase ;
+  public : GALGAS_pic_31__38_CaseExpressionList mProperty_mCaseExpressionList ;
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
 
 //--------------------------------- Accessors
@@ -5603,9 +5603,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_switch : public cPtr_pic_31__38_PiccoloInstruction {
 //--- Attributes
-  public : GALGAS_pic_31__38_SwitchInstructionCaseList mAttribute_mCaseList ;
-  public : GALGAS_location mAttribute_mElseBranchStartLocation ;
-  public : GALGAS_pic_31__38_InstructionList mAttribute_mElseInstructionList ;
+  public : GALGAS_pic_31__38_SwitchInstructionCaseList mProperty_mCaseList ;
+  public : GALGAS_location mProperty_mElseBranchStartLocation ;
+  public : GALGAS_pic_31__38_InstructionList mProperty_mElseInstructionList ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_switch (const GALGAS_location & in_mInstructionLocation,
@@ -6269,7 +6269,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_withNoOperand : public cPtr_pic_31__38_PiccoloSimpleInstruction {
 //--- Attributes
-  public : GALGAS_pic_31__38_InstructionWithNoOperandKind mAttribute_mKind ;
+  public : GALGAS_pic_31__38_InstructionWithNoOperandKind mProperty_mKind ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_withNoOperand (const GALGAS_location & in_mInstructionLocation,
@@ -6447,8 +6447,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_literalOperation : public cPtr_pic_31__38_PiccoloSimpleInstruction {
 //--- Attributes
-  public : GALGAS_literal_5F_instruction_5F_opcode mAttribute_mLiteralInstruction ;
-  public : GALGAS_immediatExpression mAttribute_mImmediatExpression ;
+  public : GALGAS_literal_5F_instruction_5F_opcode mProperty_mLiteralInstruction ;
+  public : GALGAS_immediatExpression mProperty_mImmediatExpression ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_literalOperation (const GALGAS_location & in_mInstructionLocation,
@@ -6533,7 +6533,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_fnop : public cPtr_pic_31__38_PiccoloSimpleInstruction {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mImmediatExpression ;
+  public : GALGAS_immediatExpression mProperty_mImmediatExpression ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_fnop (const GALGAS_location & in_mInstructionLocation,
@@ -6619,8 +6619,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_LFSR : public cPtr_pic_31__38_PiccoloSimpleInstruction {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mFSRindex ;
-  public : GALGAS_immediatExpression mAttribute_mImmediatExpression ;
+  public : GALGAS_luint mProperty_mFSRindex ;
+  public : GALGAS_immediatExpression mProperty_mImmediatExpression ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_LFSR (const GALGAS_location & in_mInstructionLocation,
@@ -6705,7 +6705,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_LTBLPTR : public cPtr_pic_31__38_PiccoloInstruction {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mImmediatExpression ;
+  public : GALGAS_immediatExpression mProperty_mImmediatExpression ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_LTBLPTR (const GALGAS_location & in_mInstructionLocation,
@@ -6865,7 +6865,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_TBLRD : public cPtr_pic_31__38_PiccoloSimpleInstruction {
 //--- Attributes
-  public : GALGAS_tableAccessOption mAttribute_mOption ;
+  public : GALGAS_tableAccessOption mProperty_mOption ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_TBLRD (const GALGAS_location & in_mInstructionLocation,
@@ -6948,7 +6948,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_TBLWT : public cPtr_pic_31__38_PiccoloSimpleInstruction {
 //--- Attributes
-  public : GALGAS_tableAccessOption mAttribute_mOption ;
+  public : GALGAS_tableAccessOption mProperty_mOption ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_TBLWT (const GALGAS_location & in_mInstructionLocation,
@@ -7034,7 +7034,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_MNOP : public cPtr_pic_31__38_PiccoloInstruction {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mOccurrenceFactor ;
+  public : GALGAS_luint mProperty_mOccurrenceFactor ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_MNOP (const GALGAS_location & in_mInstructionLocation,
@@ -7120,7 +7120,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 
 class cPtr_pic_31__38_Instruction_5F_NOPBRA : public cPtr_pic_31__38_PiccoloInstruction {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mOccurrenceFactor ;
+  public : GALGAS_luint mProperty_mOccurrenceFactor ;
 
 //--- Constructor
   public : cPtr_pic_31__38_Instruction_5F_NOPBRA (const GALGAS_location & in_mInstructionLocation,

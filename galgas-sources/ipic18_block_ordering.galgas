@@ -547,7 +547,7 @@ proc buildInvocationGraph
 #----------------------------------------------------------------------------*
 
 func blockDiscontinuityCount
-  ?@ipic18BlockList inBlockList
+  ?let @ipic18BlockList inBlockList
   ->@uint outResult {
   outResult = 0
   for () in  inBlockList do(blockIndex)

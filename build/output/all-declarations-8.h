@@ -82,11 +82,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Conditi
 
 class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 //--- Attributes
-  public : GALGAS_conditional_5F_branch mAttribute_mConditionalBranch ;
-  public : GALGAS_lstring mAttribute_mTargetLabelWhenTrue ;
-  public : GALGAS_conditionalBranchMode mAttribute_mBranchModeOnTrueLabel ;
-  public : GALGAS_lstring mAttribute_mTargetLabelWhenFalse ;
-  public : GALGAS_conditionalBranchMode mAttribute_mBranchModeOnFalseLabel ;
+  public : GALGAS_conditional_5F_branch mProperty_mConditionalBranch ;
+  public : GALGAS_lstring mProperty_mTargetLabelWhenTrue ;
+  public : GALGAS_conditionalBranchMode mProperty_mBranchModeOnTrueLabel ;
+  public : GALGAS_lstring mProperty_mTargetLabelWhenFalse ;
+  public : GALGAS_conditionalBranchMode mProperty_mBranchModeOnFalseLabel ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_ConditionalJumpTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -182,8 +182,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Register
 
 class cPtr_pic_31__38_RegisterComparisonTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
 //--- Attributes
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
-  public : GALGAS_ipic_31__38_RegisterComparison mAttribute_mComparison ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public : GALGAS_ipic_31__38_RegisterComparison mProperty_mComparison ;
 
 //--- Constructor
   public : cPtr_pic_31__38_RegisterComparisonTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -273,8 +273,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_JSR : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mTargetLabel ;
-  public : GALGAS_jumpInstructionKind mAttribute_mKind ;
+  public : GALGAS_lstring mProperty_mTargetLabel ;
+  public : GALGAS_jumpInstructionKind mProperty_mKind ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_JSR (const GALGAS_location & in_mInstructionLocation,
@@ -368,9 +368,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mLabel ;
-  public : GALGAS_uint mAttribute_mOffset ;
-  public : GALGAS_uint mAttribute_mRightShift ;
+  public : GALGAS_lstring mProperty_mLabel ;
+  public : GALGAS_uint mProperty_mOffset ;
+  public : GALGAS_uint mProperty_mRightShift ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (const GALGAS_location & in_mInstructionLocation,

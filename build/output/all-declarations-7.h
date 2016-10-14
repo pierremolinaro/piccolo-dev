@@ -75,8 +75,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL : public cPtr_midrange_5F_intermediate_5F_instruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mLabel ;
-  public : GALGAS_bool mAttribute_mIsDeletable ;
+  public : GALGAS_lstring mProperty_mLabel ;
+  public : GALGAS_bool mProperty_mIsDeletable ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL (const GALGAS_lstring & in_mLabel,
@@ -163,7 +163,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_CALL : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mTargetLabel ;
+  public : GALGAS_lstring mProperty_mTargetLabel ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_CALL (const GALGAS_location & in_mInstructionLocation,
@@ -252,9 +252,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 
 class cPtr_midrange_5F_intermediate_5F_JSR : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mTargetLabel ;
-  public : GALGAS_midrange_5F_call_5F_goto_5F_bit mAttribute_mBit_31__31_ ;
-  public : GALGAS_midrange_5F_call_5F_goto_5F_bit mAttribute_mBit_31__32_ ;
+  public : GALGAS_lstring mProperty_mTargetLabel ;
+  public : GALGAS_midrange_5F_call_5F_goto_5F_bit mProperty_mBit_31__31_ ;
+  public : GALGAS_midrange_5F_call_5F_goto_5F_bit mProperty_mBit_31__32_ ;
 
 //--- Constructor
   public : cPtr_midrange_5F_intermediate_5F_JSR (const GALGAS_location & in_mInstructionLocation,

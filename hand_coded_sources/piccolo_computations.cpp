@@ -113,7 +113,7 @@ generate_C_ArrayImplementationFileFromSpareArray (const C_String & inSourceName,
   while (inSpareArray.findFirstEntryWithIndex (currentAddress)) {
     C_String currentStream ;
     uint32_t currentStreamEntryCount = 0 ;
-    startAddressArray.addObject (currentAddress) ;
+    startAddressArray.appendObject (currentAddress) ;
     while (! inSpareArray.isDefaultObjectAtIndex (currentAddress)) {
       if (currentStreamEntryCount > 0) {
         currentStream << "," ;
@@ -130,7 +130,7 @@ generate_C_ArrayImplementationFileFromSpareArray (const C_String & inSourceName,
                           "static unsigned char gArray_" << cStringWithSigned (blockLengthArray.count ()) << " [" << cStringWithUnsigned (currentStreamEntryCount) << "] = {"
                        << currentStream << "\n} ;\n\n" ;
     implementationCode.append_C_HyphenLineComment () ;
-    blockLengthArray.addObject (currentStreamEntryCount) ;
+    blockLengthArray.appendObject (currentStreamEntryCount) ;
   }
 //--- Start address array
   implementationCode << "\n"

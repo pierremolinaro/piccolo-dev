@@ -87,7 +87,7 @@ static void routine_before (C_Compiler * inCompiler
       GALGAS_stringlist var_pic_31__38__5F_devices_525 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("piccolo_program.galgas", 12)) ;
       GALGAS_stringlist var_midrange_5F_devices_575 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("piccolo_program.galgas", 13)) ;
       GALGAS_stringlist var_baseline_5F_devices_625 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("piccolo_program.galgas", 14)) ;
-      cEnumerator_stringlist enumerator_694 (var_allDevices_451, kEnumeration_up) ;
+      cEnumerator_stringlist enumerator_694 (var_allDevices_451, kENUMERATION_UP) ;
       while (enumerator_694.hasCurrentObject ()) {
         GALGAS_string var_name_720 = enumerator_694.current_mValue (HERE).getter_lastPathComponent (SOURCE_FILE ("piccolo_program.galgas", 17)).getter_stringByDeletingPathExtension (SOURCE_FILE ("piccolo_program.galgas", 17)) ;
         GALGAS_piccoloDeviceModel var_piccoloDeviceModel_895 ;
@@ -120,7 +120,7 @@ static void routine_before (C_Compiler * inCompiler
       if (kBoolTrue == test_1) {
         inCompiler->printMessage (var_baseline_5F_devices_625.getter_length (SOURCE_FILE ("piccolo_program.galgas", 36)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GALGAS_string (" baseline devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GALGAS_application::constructor_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 36)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)) ;
         GALGAS_uint var_idx_1787 = GALGAS_uint ((uint32_t) 0U) ;
-        cEnumerator_stringlist enumerator_1825 (var_baseline_5F_devices_625, kEnumeration_up) ;
+        cEnumerator_stringlist enumerator_1825 (var_baseline_5F_devices_625, kENUMERATION_UP) ;
         while (enumerator_1825.hasCurrentObject ()) {
           inCompiler->printMessage (enumerator_1825.current_mValue (HERE).getter_stringByRightPadding (GALGAS_uint ((uint32_t) 15U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 39))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 39)) ;
           var_idx_1787.increment_operation (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 40)) ;
@@ -140,7 +140,7 @@ static void routine_before (C_Compiler * inCompiler
       if (kBoolTrue == test_4) {
         inCompiler->printMessage (var_midrange_5F_devices_575.getter_length (SOURCE_FILE ("piccolo_program.galgas", 52)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GALGAS_string (" mid-range devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GALGAS_application::constructor_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 52)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)) ;
         GALGAS_uint var_idx_2381 = GALGAS_uint ((uint32_t) 0U) ;
-        cEnumerator_stringlist enumerator_2419 (var_midrange_5F_devices_575, kEnumeration_up) ;
+        cEnumerator_stringlist enumerator_2419 (var_midrange_5F_devices_575, kENUMERATION_UP) ;
         while (enumerator_2419.hasCurrentObject ()) {
           inCompiler->printMessage (enumerator_2419.current_mValue (HERE).getter_stringByRightPadding (GALGAS_uint ((uint32_t) 15U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 55))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 55)) ;
           var_idx_2381.increment_operation (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 56)) ;
@@ -160,7 +160,7 @@ static void routine_before (C_Compiler * inCompiler
       if (kBoolTrue == test_7) {
         inCompiler->printMessage (var_pic_31__38__5F_devices_525.getter_length (SOURCE_FILE ("piccolo_program.galgas", 68)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GALGAS_string (" pic18 devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GALGAS_application::constructor_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 68)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)) ;
         GALGAS_uint var_idx_2961 = GALGAS_uint ((uint32_t) 0U) ;
-        cEnumerator_stringlist enumerator_2996 (var_pic_31__38__5F_devices_525, kEnumeration_up) ;
+        cEnumerator_stringlist enumerator_2996 (var_pic_31__38__5F_devices_525, kENUMERATION_UP) ;
         while (enumerator_2996.hasCurrentObject ()) {
           inCompiler->printMessage (enumerator_2996.current_mValue (HERE).getter_stringByRightPadding (GALGAS_uint ((uint32_t) 15U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 71))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 71)) ;
           var_idx_2961.increment_operation (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 72)) ;
@@ -186,7 +186,7 @@ static void routine_before (C_Compiler * inCompiler
       }
       GALGAS_filewrapper var_fw_3570 = GALGAS_filewrapper (gWrapperDirectory_0_embeddedDevices) ;
       GALGAS_stringlist var_allDevices_3629 = GALGAS_filewrapper (gWrapperDirectory_0_embeddedDevices).getter_allTextFilePathes (SOURCE_FILE ("piccolo_program.galgas", 91)) ;
-      cEnumerator_stringlist enumerator_3707 (var_allDevices_3629, kEnumeration_up) ;
+      cEnumerator_stringlist enumerator_3707 (var_allDevices_3629, kENUMERATION_UP) ;
       while (enumerator_3707.hasCurrentObject ()) {
         GALGAS_string var_definitionString_3741 = var_fw_3570.getter_textFileContentsAtPath (enumerator_3707.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 93)) ;
         var_definitionString_3741.method_writeToFile (var_dir_3414.add_operation (enumerator_3707.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 94)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 94)) ;
@@ -205,17 +205,17 @@ static void routine_before (C_Compiler * inCompiler
         routine_parseDeviceDefinition (GALGAS_lstring::constructor_new (var_deviceForMemoryDescription_4043, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 104))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 104)), var_piccoloDeviceModel_4352, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 104)) ;
         }
         GALGAS_uint var_totalRam_4487 = GALGAS_uint ((uint32_t) 0U) ;
-        cEnumerator_ramBankTable enumerator_4543 (var_piccoloDeviceModel_4352.getter_mRamBankTable (SOURCE_FILE ("piccolo_program.galgas", 106)), kEnumeration_up) ;
+        cEnumerator_ramBankTable enumerator_4543 (var_piccoloDeviceModel_4352.getter_mRamBankTable (SOURCE_FILE ("piccolo_program.galgas", 106)), kENUMERATION_UP) ;
         while (enumerator_4543.hasCurrentObject ()) {
           var_totalRam_4487 = var_totalRam_4487.add_operation (enumerator_4543.current_mLastAddressPlusOne (HERE), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 107)).substract_operation (enumerator_4543.current_mFirstFreeAddress (HERE), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 107)) ;
           enumerator_4543.gotoNextObject () ;
         }
         inCompiler->printMessage (var_deviceForMemoryDescription_4043.add_operation (GALGAS_string (" device:\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 109))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 109)) ;
         inCompiler->printMessage (GALGAS_string ("  ").add_operation (var_piccoloDeviceModel_4352.getter_mRamBankTable (SOURCE_FILE ("piccolo_program.galgas", 110)).getter_count (SOURCE_FILE ("piccolo_program.galgas", 110)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 110)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 110)).add_operation (GALGAS_string (" RAM banks (total "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 110)).add_operation (var_totalRam_4487.getter_string (SOURCE_FILE ("piccolo_program.galgas", 110)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 110)).add_operation (GALGAS_string (" bytes):\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 110))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 110)) ;
-        cEnumerator_ramBankTable enumerator_4867 (var_piccoloDeviceModel_4352.getter_mRamBankTable (SOURCE_FILE ("piccolo_program.galgas", 111)), kEnumeration_up) ;
+        cEnumerator_ramBankTable enumerator_4867 (var_piccoloDeviceModel_4352.getter_mRamBankTable (SOURCE_FILE ("piccolo_program.galgas", 111)), kENUMERATION_UP) ;
         while (enumerator_4867.hasCurrentObject ()) {
           inCompiler->printMessage (GALGAS_string ("    bank \"").add_operation (enumerator_4867.current_lkey (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 112)).add_operation (GALGAS_string ("\" from "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 112)).add_operation (enumerator_4867.current_mFirstFreeAddress (HERE).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 112)).add_operation (GALGAS_string (" to "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 112)).add_operation (enumerator_4867.current_mLastAddressPlusOne (HERE).substract_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 113)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 113)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 113)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 113)).add_operation (enumerator_4867.current_mLastAddressPlusOne (HERE).substract_operation (enumerator_4867.current_mFirstFreeAddress (HERE), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 114)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 114)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 114)).add_operation (GALGAS_string (" bytes)"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 114))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 112)) ;
-          cEnumerator_uintlist enumerator_5118 (enumerator_4867.current_mMirrorOffsetList (HERE), kEnumeration_up) ;
+          cEnumerator_uintlist enumerator_5118 (enumerator_4867.current_mMirrorOffsetList (HERE), kENUMERATION_UP) ;
           const bool bool_14 = true ;
           if (enumerator_5118.hasCurrentObject () && bool_14) {
             inCompiler->printMessage (GALGAS_string (", mirror at ")  COMMA_SOURCE_FILE ("piccolo_program.galgas", 116)) ;
@@ -278,10 +278,10 @@ static void routine_before (C_Compiler * inCompiler
         routine_parseDeviceDefinition (GALGAS_lstring::constructor_new (var_deviceForRegistersDescription_6435, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 152))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 152)), var_piccoloDeviceModel_6752, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 152)) ;
         }
         inCompiler->printMessage (var_deviceForRegistersDescription_6435.add_operation (GALGAS_string (" has "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 153)).add_operation (var_piccoloDeviceModel_6752.getter_mRegisterTable (SOURCE_FILE ("piccolo_program.galgas", 153)).getter_count (SOURCE_FILE ("piccolo_program.galgas", 153)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 153)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 153)).add_operation (GALGAS_string (" special registers:\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 153))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 153)) ;
-        cEnumerator_registerTable enumerator_7058 (var_piccoloDeviceModel_6752.getter_mRegisterTable (SOURCE_FILE ("piccolo_program.galgas", 154)), kEnumeration_up) ;
+        cEnumerator_registerTable enumerator_7058 (var_piccoloDeviceModel_6752.getter_mRegisterTable (SOURCE_FILE ("piccolo_program.galgas", 154)), kENUMERATION_UP) ;
         while (enumerator_7058.hasCurrentObject ()) {
           GALGAS_string var_s_7079 = GALGAS_string ("  '").add_operation (enumerator_7058.current_lkey (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 155)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 155)).add_operation (GALGAS_string ("' at "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 155)) ;
-          cEnumerator_uintlist enumerator_7144 (enumerator_7058.current_mRegisterAddressList (HERE), kEnumeration_up) ;
+          cEnumerator_uintlist enumerator_7144 (enumerator_7058.current_mRegisterAddressList (HERE), kENUMERATION_UP) ;
           while (enumerator_7144.hasCurrentObject ()) {
             var_s_7079.plusAssign_operation(enumerator_7144.current_mValue (HERE).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 157)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 157)) ;
             if (enumerator_7144.hasNextObject ()) {
@@ -309,18 +309,18 @@ static void routine_before (C_Compiler * inCompiler
         routine_parseDeviceDefinition (GALGAS_lstring::constructor_new (var_deviceForConfigDescription_7532, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 173))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 173)), var_piccoloDeviceModel_7841, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 173)) ;
         }
         inCompiler->printMessage (var_deviceForConfigDescription_7532.add_operation (GALGAS_string (" has "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 174)).add_operation (var_piccoloDeviceModel_7841.getter_mConfigRegisterMap (SOURCE_FILE ("piccolo_program.galgas", 174)).getter_count (SOURCE_FILE ("piccolo_program.galgas", 174)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 174)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 174)).add_operation (GALGAS_string (" configuration registers:\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 174))  COMMA_SOURCE_FILE ("piccolo_program.galgas", 174)) ;
-        cEnumerator_configRegisterMap enumerator_8155 (var_piccoloDeviceModel_7841.getter_mConfigRegisterMap (SOURCE_FILE ("piccolo_program.galgas", 175)), kEnumeration_up) ;
+        cEnumerator_configRegisterMap enumerator_8155 (var_piccoloDeviceModel_7841.getter_mConfigRegisterMap (SOURCE_FILE ("piccolo_program.galgas", 175)), kENUMERATION_UP) ;
         while (enumerator_8155.hasCurrentObject ()) {
           GALGAS_string var_s_8176 = GALGAS_string ("REGISTER '").add_operation (enumerator_8155.current_lkey (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 176)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)).add_operation (GALGAS_string ("' at "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)).add_operation (enumerator_8155.current_mRegisterAddress (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 176)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 176)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)).add_operation (GALGAS_string (", width "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)).add_operation (enumerator_8155.current_mRegisterWidth (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 176)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 176)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 176)) ;
-          cEnumerator_illegalMaskList enumerator_8335 (enumerator_8155.current_mIllegalMaskList (HERE), kEnumeration_up) ;
+          cEnumerator_illegalMaskList enumerator_8335 (enumerator_8155.current_mIllegalMaskList (HERE), kENUMERATION_UP) ;
           while (enumerator_8335.hasCurrentObject ()) {
             var_s_8176.plusAssign_operation(GALGAS_string ("  illegal value ").add_operation (enumerator_8335.current_mIllegalValue (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 178)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GALGAS_string (" mask "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (enumerator_8335.current_mIllegalMask (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 178)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GALGAS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (enumerator_8335.current_mDescription (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GALGAS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)) ;
             enumerator_8335.gotoNextObject () ;
           }
-          cEnumerator_configRegisterMaskMap enumerator_8558 (enumerator_8155.current_mConfigRegisterMaskMap (HERE), kEnumeration_up) ;
+          cEnumerator_configRegisterMaskMap enumerator_8558 (enumerator_8155.current_mConfigRegisterMaskMap (HERE), kENUMERATION_UP) ;
           while (enumerator_8558.hasCurrentObject ()) {
             var_s_8176.plusAssign_operation(GALGAS_string ("  setting '").add_operation (enumerator_8558.current_lkey (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 181)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (GALGAS_string ("': mask "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (enumerator_8558.current_mMaskValue (HERE).getter_uint (SOURCE_FILE ("piccolo_program.galgas", 181)).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 181)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (GALGAS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (enumerator_8558.current_mDescription (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 181)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)).add_operation (GALGAS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 181)) ;
-            cEnumerator_fieldSettingMap enumerator_8760 (enumerator_8558.current_mFieldSettingMap (HERE), kEnumeration_up) ;
+            cEnumerator_fieldSettingMap enumerator_8760 (enumerator_8558.current_mFieldSettingMap (HERE), kENUMERATION_UP) ;
             while (enumerator_8760.hasCurrentObject ()) {
               var_s_8176.plusAssign_operation(GALGAS_string ("    value ").add_operation (enumerator_8760.current_mValue (HERE).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 183)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)).add_operation (GALGAS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)).add_operation (enumerator_8760.current_lkey (HERE).getter_string (SOURCE_FILE ("piccolo_program.galgas", 183)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)).add_operation (GALGAS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 183)) ;
               enumerator_8760.gotoNextObject () ;
@@ -388,7 +388,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
   }else{
   //--- Common lexique object
     C_Compiler * commonLexique = NULL ;
-    macroMyNew (commonLexique, C_Compiler (NULL, "", "" COMMA_HERE)) ;
+    macroMyNew (commonLexique, C_Compiler (NULL COMMA_HERE)) ;
     try{
       routine_before (commonLexique COMMA_HERE) ;
       cLexiqueIntrospection::handleGetKeywordListOption (commonLexique) ;

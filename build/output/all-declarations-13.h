@@ -27,7 +27,7 @@ void routine_buildOrderedGraph (class GALGAS_ipic_31__38_BlockList & ioArgument0
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class GALGAS_uint function_blockDiscontinuityCount (class GALGAS_ipic_31__38_BlockList inArgument0,
+class GALGAS_uint function_blockDiscontinuityCount (const class GALGAS_ipic_31__38_BlockList & constinArgument0,
                                                     class C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 

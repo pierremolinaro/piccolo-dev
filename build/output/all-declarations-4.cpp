@@ -411,12 +411,12 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_doLabel_2942.mAttribute_string.objectCompare (var_endDoLabel_3664.mAttribute_string)).boolEnum () ;
+    const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_doLabel_2942.mProperty_string.objectCompare (var_endDoLabel_3664.mProperty_string)).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_string temp_1 ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_doLabel_2942.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_doLabel_2942.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_2) {
-        temp_1 = var_doLabel_2942.mAttribute_string ;
+        temp_1 = var_doLabel_2942.mProperty_string ;
       }else if (kBoolFalse == test_2) {
         temp_1 = GALGAS_string ("empty") ;
       }
@@ -471,12 +471,12 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_foreverLabel_4449.mAttribute_string.objectCompare (var_endForeverLabel_4737.mAttribute_string)).boolEnum () ;
+    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_foreverLabel_4449.mProperty_string.objectCompare (var_endForeverLabel_4737.mProperty_string)).boolEnum () ;
     if (kBoolTrue == test_4) {
       GALGAS_string temp_5 ;
-      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_foreverLabel_4449.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_foreverLabel_4449.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_6) {
-        temp_5 = var_foreverLabel_4449.mAttribute_string ;
+        temp_5 = var_foreverLabel_4449.mProperty_string ;
       }else if (kBoolFalse == test_6) {
         temp_5 = GALGAS_string ("empty") ;
       }
@@ -588,12 +588,12 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_ifLabel_6854.mAttribute_string.objectCompare (var_endIfLabel_7090.mAttribute_string)).boolEnum () ;
+    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_ifLabel_6854.mProperty_string.objectCompare (var_endIfLabel_7090.mProperty_string)).boolEnum () ;
     if (kBoolTrue == test_10) {
       GALGAS_string temp_11 ;
-      const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_ifLabel_6854.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_ifLabel_6854.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_12) {
-        temp_11 = var_ifLabel_6854.mAttribute_string ;
+        temp_11 = var_ifLabel_6854.mProperty_string ;
       }else if (kBoolFalse == test_12) {
         temp_11 = GALGAS_string ("empty") ;
       }
@@ -638,12 +638,12 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       default:
         break ;
       }
-      const enumGalgasBool test_15 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (var_whileLabel_7827.mAttribute_string)).boolEnum () ;
+      const enumGalgasBool test_15 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mProperty_string.objectCompare (var_whileLabel_7827.mProperty_string)).boolEnum () ;
       if (kBoolTrue == test_15) {
         GALGAS_string temp_16 ;
-        const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_17) {
-          temp_16 = var_doLabel_7425.mAttribute_string ;
+          temp_16 = var_doLabel_7425.mProperty_string ;
         }else if (kBoolFalse == test_17) {
           temp_16 = GALGAS_string ("empty") ;
         }
@@ -676,12 +676,12 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_19 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (var_endDoLabel_8397.mAttribute_string)).boolEnum () ;
+    const enumGalgasBool test_19 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mProperty_string.objectCompare (var_endDoLabel_8397.mProperty_string)).boolEnum () ;
     if (kBoolTrue == test_19) {
       GALGAS_string temp_20 ;
-      const enumGalgasBool test_21 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_21 = GALGAS_bool (kIsNotEqual, var_doLabel_7425.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_21) {
-        temp_20 = var_doLabel_7425.mAttribute_string ;
+        temp_20 = var_doLabel_7425.mProperty_string ;
       }else if (kBoolFalse == test_21) {
         temp_20 = GALGAS_string ("empty") ;
       }
@@ -1112,12 +1112,12 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mAttribute_string.objectCompare (var_elsifIfLabel_9672.mAttribute_string)).boolEnum () ;
+    const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (var_elsifIfLabel_9672.mProperty_string)).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_string temp_1 ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_2) {
-        temp_1 = constinArgument_ifLabel.mAttribute_string ;
+        temp_1 = constinArgument_ifLabel.mProperty_string ;
       }else if (kBoolFalse == test_2) {
         temp_1 = GALGAS_string ("empty") ;
       }
@@ -1143,12 +1143,12 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mAttribute_string.objectCompare (var_elseLabel_10222.mAttribute_string)).boolEnum () ;
+    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (var_elseLabel_10222.mProperty_string)).boolEnum () ;
     if (kBoolTrue == test_4) {
       GALGAS_string temp_5 ;
-      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mAttribute_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_6) {
-        temp_5 = constinArgument_ifLabel.mAttribute_string ;
+        temp_5 = constinArgument_ifLabel.mProperty_string ;
       }else if (kBoolFalse == test_6) {
         temp_5 = GALGAS_string ("empty") ;
       }
@@ -2415,7 +2415,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   GALGAS_string var_listFileContents_4902 ;
   GALGAS_lstring var_deviceName_4972 ;
   nt_parse_5F_bootloader_ (var_bootloaderName_4830, var_deviceName_4972, outArgument_outBootloaderRoutineDeclarationList, outArgument_outBootloaderReservedRAMmap, outArgument_outBootloaderReservedROMsize, outArgument_outUserRoutineDeclarationList, var_sharedRamDefinitionList_4875, var_listFileContents_4902, outArgument_outPiccoloDeviceModel, outArgument_outAccessBankSplitOffset, outArgument_outRamBank, outArgument_outRegisterTable, inCompiler) ;
-  outArgument_outDeviceName = var_deviceName_4972.mAttribute_string ;
+  outArgument_outDeviceName = var_deviceName_4972.mProperty_string ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2826,12 +2826,12 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
       case 3: {
         GALGAS_luint var_bitCount_2550 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
         inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("communs.galgas", 92)) ;
-        const enumGalgasBool test_8 = GALGAS_bool (kIsEqual, var_bitCount_2550.mAttribute_uint.objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+        const enumGalgasBool test_8 = GALGAS_bool (kIsEqual, var_bitCount_2550.mProperty_uint.objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
         if (kBoolTrue == test_8) {
           TC_Array <C_FixItDescription> fixItArray9 ;
-          inCompiler->emitSemanticError (var_bitCount_2550.mAttribute_location, GALGAS_string ("the bit count should be > 0"), fixItArray9  COMMA_SOURCE_FILE ("communs.galgas", 94)) ;
+          inCompiler->emitSemanticError (var_bitCount_2550.mProperty_location, GALGAS_string ("the bit count should be > 0"), fixItArray9  COMMA_SOURCE_FILE ("communs.galgas", 94)) ;
         }
-        cEnumerator_range enumerator_2701 (GALGAS_range (GALGAS_uint ((uint32_t) 0U), var_bitCount_2550.mAttribute_uint.substract_operation (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 96))), kEnumeration_up) ;
+        cEnumerator_range enumerator_2701 (GALGAS_range (GALGAS_uint ((uint32_t) 0U), var_bitCount_2550.mProperty_uint.substract_operation (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 96))), kENUMERATION_UP) ;
         while (enumerator_2701.hasCurrentObject ()) {
           var_bitDefinitionString_975.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 97)) ;
           if (enumerator_2701.hasNextObject ()) {
@@ -2839,7 +2839,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
           }
           enumerator_2701.gotoNextObject () ;
         }
-        var_sliceIndex_1078 = var_sliceIndex_1078.substract_operation (var_bitCount_2550.mAttribute_uint.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 100)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 100)) ;
+        var_sliceIndex_1078 = var_sliceIndex_1078.substract_operation (var_bitCount_2550.mProperty_uint.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 100)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 100)) ;
       } break ;
       default:
         break ;
@@ -24710,9 +24710,9 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_body_ (GALGAS_pic_31__38_Int
 void cGrammar_pic_31__38__5F_include_5F_grammar::performIndexing (C_Compiler * inCompiler,
              const C_String & inSourceFilePath) {
   C_Lexique_piccolo_5F_lexique * scanner = NULL ;
-  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
+  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   scanner->enableIndexing () ;
-  if (scanner->sourceText () != NULL) {
+  if (scanner->sourceText ().isValid ()) {
     const bool ok = scanner->performBottomUpParsing (gActionTable_pic18_include_grammar, gNonTerminalNames_pic18_include_grammar,
                                                      gActionTableIndex_pic18_include_grammar, gSuccessorTable_pic18_include_grammar,
                                                      gProductionsTable_pic18_include_grammar) ;
@@ -24728,8 +24728,8 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::performIndexing (C_Compiler * i
 void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlyLexicalAnalysis (C_Compiler * inCompiler,
              const C_String & inSourceFilePath) {
   C_Lexique_piccolo_5F_lexique * scanner = NULL ;
-  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
-  if (scanner->sourceText () != NULL) {
+  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
+  if (scanner->sourceText ().isValid ()) {
     scanner->performLexicalAnalysis () ;
   }
   macroDetachSharedObject (scanner) ;
@@ -24738,8 +24738,8 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlyLexicalAnalysis (C_C
 void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlySyntaxAnalysis (C_Compiler * inCompiler,
              const C_String & inSourceFilePath) {
   C_Lexique_piccolo_5F_lexique * scanner = NULL ;
-  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, "", "", inSourceFilePath COMMA_HERE)) ;
-  if (scanner->sourceText () != NULL) {
+  macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
+  if (scanner->sourceText ().isValid ()) {
     scanner->performBottomUpParsing (gActionTable_pic18_include_grammar, gNonTerminalNames_pic18_include_grammar,
                                      gActionTableIndex_pic18_include_grammar, gSuccessorTable_pic18_include_grammar,
                                      gProductionsTable_pic18_include_grammar) ;
@@ -24777,8 +24777,8 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceFileParsing_ (C_C
     }
     if (C_FileManager::fileExistsAtPath (filePath)) {
       C_Lexique_piccolo_5F_lexique * scanner = NULL ;
-      macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, "", "", filePath COMMA_HERE)) ;
-      if (scanner->sourceText () != NULL) {
+      macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, filePath COMMA_HERE)) ;
+      if (scanner->sourceText ().isValid ()) {
         const bool ok = scanner->performBottomUpParsing (gActionTable_pic18_include_grammar, gNonTerminalNames_pic18_include_grammar,
                                                          gActionTableIndex_pic18_include_grammar, gSuccessorTable_pic18_include_grammar,
                                                          gProductionsTable_pic18_include_grammar) ;
@@ -24826,7 +24826,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceStringParsing_ (C
     const C_String nameString = inNameString.stringValue () ;
     C_Lexique_piccolo_5F_lexique * scanner = NULL ;
     macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, sourceString, nameString COMMA_HERE)) ;
-    if (scanner->sourceText () != NULL) {
+    if (scanner->sourceText ().isValid ()) {
       const bool ok = scanner->performBottomUpParsing (gActionTable_pic18_include_grammar, gNonTerminalNames_pic18_include_grammar,
                                                        gActionTableIndex_pic18_include_grammar, gSuccessorTable_pic18_include_grammar,
                                                        gProductionsTable_pic18_include_grammar) ;

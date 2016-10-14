@@ -134,8 +134,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38__5F_data
 
 class cMapElement_pic_31__38__5F_dataMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uintlist mAttribute_mData ;
-  public : GALGAS_bool mAttribute_mIsData_38_ ;
+  public : GALGAS_uintlist mProperty_mData ;
+  public : GALGAS_bool mProperty_mIsData_38_ ;
 
 //--- Constructor
   public : cMapElement_pic_31__38__5F_dataMap (const GALGAS_lstring & inKey,
@@ -164,9 +164,9 @@ class cMapElement_pic_31__38__5F_dataMap : public cMapElement {
 
 class GALGAS_pic_31__38__5F_dataMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uintlist mAttribute_mData ;
-  public : GALGAS_bool mAttribute_mIsData_38_ ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uintlist mProperty_mData ;
+  public : GALGAS_bool mProperty_mIsData_38_ ;
 
 
 //--------------------------------- Accessors
@@ -288,7 +288,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Sequent
 
 class cPtr_ipic_31__38_SequentialInstruction : public acPtr_class {
 //--- Attributes
-  public : GALGAS_location mAttribute_mInstructionLocation ;
+  public : GALGAS_location mProperty_mInstructionLocation ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_SequentialInstruction (const GALGAS_location & in_mInstructionLocation
@@ -317,9 +317,9 @@ class GALGAS_ipic_31__38_SequentialInstructionList : public AC_GALGAS_list {
   public : GALGAS_ipic_31__38_SequentialInstructionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_ipic_31__38_SequentialInstructionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_ipic_31__38_SequentialInstructionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
                                                   const class GALGAS_uint & in_mMin,
@@ -465,9 +465,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Sequent
 
 class GALGAS_ipic_31__38_SequentialInstructionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_ipic_31__38_SequentialInstruction mAttribute_mInstruction ;
-  public : GALGAS_uint mAttribute_mMin ;
-  public : GALGAS_uint mAttribute_mMax ;
+  public : GALGAS_ipic_31__38_SequentialInstruction mProperty_mInstruction ;
+  public : GALGAS_uint mProperty_mMin ;
+  public : GALGAS_uint mProperty_mMax ;
 
 
 //--------------------------------- Accessors
@@ -586,7 +586,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Abstrac
 
 class cPtr_ipic_31__38_AbstractBlockTerminator : public acPtr_class {
 //--- Attributes
-  public : GALGAS_location mAttribute_mInstructionLocation ;
+  public : GALGAS_location mProperty_mInstructionLocation ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_AbstractBlockTerminator (const GALGAS_location & in_mInstructionLocation
@@ -615,9 +615,9 @@ class GALGAS_ipic_31__38_BlockList : public AC_GALGAS_list {
   public : GALGAS_ipic_31__38_BlockList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_ipic_31__38_BlockList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_ipic_31__38_BlockList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_ipic_31__38_Block & in_mBlock
                                                   COMMA_LOCATION_ARGS) ;
@@ -735,12 +735,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_BlockLi
 
 class GALGAS_ipic_31__38_Block : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_uint mAttribute_mAddress ;
-  public : GALGAS_lstring mAttribute_mLabel ;
-  public : GALGAS_ipic_31__38_SequentialInstructionList mAttribute_mInstructionList ;
-  public : GALGAS_ipic_31__38_AbstractBlockTerminator mAttribute_mTerminator ;
-  public : GALGAS_uint mAttribute_mTerminatorMin ;
-  public : GALGAS_uint mAttribute_mTerminatorMax ;
+  public : GALGAS_uint mProperty_mAddress ;
+  public : GALGAS_lstring mProperty_mLabel ;
+  public : GALGAS_ipic_31__38_SequentialInstructionList mProperty_mInstructionList ;
+  public : GALGAS_ipic_31__38_AbstractBlockTerminator mProperty_mTerminator ;
+  public : GALGAS_uint mProperty_mTerminatorMin ;
+  public : GALGAS_uint mProperty_mTerminatorMax ;
 
 
 //--------------------------------- Accessors
@@ -823,7 +823,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Block ;
 
 class GALGAS_ipic_31__38_BlockList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_ipic_31__38_Block mAttribute_mBlock ;
+  public : GALGAS_ipic_31__38_Block mProperty_mBlock ;
 
 
 //--------------------------------- Accessors
@@ -1092,7 +1092,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetlwTe
 
 class cPtr_ipic_31__38_RetlwTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
 //--- Attributes
-  public : GALGAS_uint mAttribute_mLiteralValue ;
+  public : GALGAS_uint mProperty_mLiteralValue ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_RetlwTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -1178,7 +1178,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetfieT
 
 class cPtr_ipic_31__38_RetfieTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
 //--- Attributes
-  public : GALGAS_bool mAttribute_mFastReturn ;
+  public : GALGAS_bool mProperty_mFastReturn ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_RetfieTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -1267,8 +1267,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Compute
 
 class cPtr_ipic_31__38_ComputedGotoTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 //--- Attributes
-  public : GALGAS_lstringlist mAttribute_mTargetLabels ;
-  public : GALGAS_bool mAttribute_mUsesRCALL ;
+  public : GALGAS_lstringlist mProperty_mTargetLabels ;
+  public : GALGAS_bool mProperty_mUsesRCALL ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_ComputedGotoTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -1359,8 +1359,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Compute
 
 class cPtr_ipic_31__38_ComputedRETLWTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 //--- Attributes
-  public : GALGAS_uintlist mAttribute_mLiteralValues ;
-  public : GALGAS_bool mAttribute_mUsesRCALL ;
+  public : GALGAS_uintlist mProperty_mLiteralValues ;
+  public : GALGAS_bool mProperty_mUsesRCALL ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_ComputedRETLWTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -1523,8 +1523,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Compute
 
 class cPtr_ipic_31__38_ComputedBraTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 //--- Attributes
-  public : GALGAS_lstringlist mAttribute_mTargetLabels ;
-  public : GALGAS_bool mAttribute_mUsesRCALL ;
+  public : GALGAS_lstringlist mProperty_mTargetLabels ;
+  public : GALGAS_bool mProperty_mUsesRCALL ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_ComputedBraTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -1678,8 +1678,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Abstrac
 
 class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 //--- Attributes
-  public : GALGAS_ipic_31__38_SingleInstructionTerminator mAttribute_mSingleInstructionTerminatorIfConditionTrue ;
-  public : GALGAS_ipic_31__38_SingleInstructionTerminator mAttribute_mSingleInstructionTerminatorIfConditionFalse ;
+  public : GALGAS_ipic_31__38_SingleInstructionTerminator mProperty_mSingleInstructionTerminatorIfConditionTrue ;
+  public : GALGAS_ipic_31__38_SingleInstructionTerminator mProperty_mSingleInstructionTerminatorIfConditionFalse ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_AbstractConditionTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -1708,9 +1708,9 @@ class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_Abs
 
 class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_string mAttribute_mAssemblyString ;
-  public : GALGAS_uint mAttribute_mRegisterAddress ;
-  public : GALGAS_bool mAttribute_mNeedsBSR ;
+  public : GALGAS_string mProperty_mAssemblyString ;
+  public : GALGAS_uint mProperty_mRegisterAddress ;
+  public : GALGAS_bool mProperty_mNeedsBSR ;
 
 
 //--------------------------------- Accessors
@@ -1845,9 +1845,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_IncDecR
 
 class cPtr_ipic_31__38_IncDecRegisterTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
 //--- Attributes
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
-  public : GALGAS_bool mAttribute_mIncrement ;
-  public : GALGAS_bool mAttribute_m_5F_W_5F_isDestination ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public : GALGAS_bool mProperty_mIncrement ;
+  public : GALGAS_bool mProperty_m_5F_W_5F_isDestination ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_IncDecRegisterTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -1938,7 +1938,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_TestRegi
 
 class cPtr_pic_31__38_TestRegisterTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
 //--- Attributes
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
 
 //--- Constructor
   public : cPtr_pic_31__38_TestRegisterTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -2028,8 +2028,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestT
 
 class cPtr_pic_31__38_BitTestTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
 //--- Attributes
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
-  public : GALGAS_uint mAttribute_mBitNumber ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public : GALGAS_uint mProperty_mBitNumber ;
 
 //--- Constructor
   public : cPtr_pic_31__38_BitTestTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -2116,7 +2116,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Instruc
 
 class cPtr_ipic_31__38_InstructionWithNoOperand : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_pic_31__38_InstructionWithNoOperandKind mAttribute_mKind ;
+  public : GALGAS_pic_31__38_InstructionWithNoOperandKind mProperty_mKind ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_InstructionWithNoOperand (const GALGAS_location & in_mInstructionLocation,
@@ -2216,9 +2216,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST mAttribute_mInstruction_5F_FDA_5F_base_5F_code ;
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
-  public : GALGAS_bool mAttribute_m_5F_W_5F_isDestination ;
+  public : GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public : GALGAS_bool mProperty_m_5F_W_5F_isDestination ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA (const GALGAS_location & in_mInstructionLocation,
@@ -2390,8 +2390,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code mAttribute_mFAinstruction ;
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+  public : GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code mProperty_mFAinstruction ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA (const GALGAS_location & in_mInstructionLocation,
@@ -2423,8 +2423,8 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public cPtr_ipic_
 
 class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_string mAttribute_mAssemblyString ;
-  public : GALGAS_uint mAttribute_mRegisterAddress ;
+  public : GALGAS_string mProperty_mAssemblyString ;
+  public : GALGAS_uint mProperty_mRegisterAddress ;
 
 
 //--------------------------------- Accessors
@@ -2553,8 +2553,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication mAttribute_mSourceRegisterDescription ;
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication mAttribute_mDestinationRegisterDescription ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication mProperty_mSourceRegisterDescription ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication mProperty_mDestinationRegisterDescription ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF (const GALGAS_location & in_mInstructionLocation,
@@ -2642,8 +2642,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_literal_5F_instruction_5F_opcode mAttribute_mLiteralInstruction ;
-  public : GALGAS_uint mAttribute_mLiteralValue ;
+  public : GALGAS_literal_5F_instruction_5F_opcode mProperty_mLiteralInstruction ;
+  public : GALGAS_uint mProperty_mLiteralValue ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation (const GALGAS_location & in_mInstructionLocation,
@@ -2734,8 +2734,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mFSRindex ;
-  public : GALGAS_uint mAttribute_mValue ;
+  public : GALGAS_luint mProperty_mFSRindex ;
+  public : GALGAS_uint mProperty_mValue ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR (const GALGAS_location & in_mInstructionLocation,
@@ -2826,9 +2826,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_bit_5F_oriented_5F_op mAttribute_mBitOrientedOp ;
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
-  public : GALGAS_uint mAttribute_mBitNumber ;
+  public : GALGAS_bit_5F_oriented_5F_op mProperty_mBitOrientedOp ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public : GALGAS_uint mProperty_mBitNumber ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA (const GALGAS_location & in_mInstructionLocation,
@@ -2918,7 +2918,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mBankIndex ;
+  public : GALGAS_luint mProperty_mBankIndex ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB (const GALGAS_location & in_mInstructionLocation,
@@ -3004,7 +3004,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_uint mAttribute_mBlankValue ;
+  public : GALGAS_uint mProperty_mBlankValue ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP (const GALGAS_location & in_mInstructionLocation,
@@ -3090,7 +3090,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_uint mAttribute_mBlankValue ;
+  public : GALGAS_uint mProperty_mBlankValue ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK (const GALGAS_location & in_mInstructionLocation,
@@ -3173,7 +3173,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_tableAccessOption mAttribute_mOption ;
+  public : GALGAS_tableAccessOption mProperty_mOption ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD (const GALGAS_location & in_mInstructionLocation,
@@ -3256,7 +3256,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_tableAccessOption mAttribute_mOption ;
+  public : GALGAS_tableAccessOption mProperty_mOption ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT (const GALGAS_location & in_mInstructionLocation,
@@ -3342,7 +3342,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mOccurrenceFactor ;
+  public : GALGAS_luint mProperty_mOccurrenceFactor ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP (const GALGAS_location & in_mInstructionLocation,
@@ -3428,7 +3428,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mOccurrenceFactor ;
+  public : GALGAS_luint mProperty_mOccurrenceFactor ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA (const GALGAS_location & in_mInstructionLocation,
@@ -3517,8 +3517,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_ipic_31__38_SequentialInstructionList mAttribute_mTargetInstructions ;
-  public : GALGAS_bool mAttribute_mUsesRCALL ;
+  public : GALGAS_ipic_31__38_SequentialInstructionList mProperty_mTargetInstructions ;
+  public : GALGAS_bool mProperty_mUsesRCALL ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall (const GALGAS_location & in_mInstructionLocation,
@@ -3598,7 +3598,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_con
 
 class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_ipic_31__38_SequentialInstruction mAttribute_mEmbeddedInstruction ;
+  public : GALGAS_ipic_31__38_SequentialInstruction mProperty_mEmbeddedInstruction ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (const GALGAS_location & in_mInstructionLocation,
@@ -3685,9 +3685,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_ski
 
 class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
 //--- Attributes
-  public : GALGAS_bool mAttribute_mSkipIfSet ;
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
-  public : GALGAS_uint mAttribute_mBitNumber ;
+  public : GALGAS_bool mProperty_mSkipIfSet ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public : GALGAS_uint mProperty_mBitNumber ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (const GALGAS_location & in_mInstructionLocation,
@@ -3856,8 +3856,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_ski
 
 class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
 //--- Attributes
-  public : GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code mAttribute_mCompareInstruction ;
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
+  public : GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code mProperty_mCompareInstruction ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (const GALGAS_location & in_mInstructionLocation,
@@ -4027,9 +4027,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_ski
 
 class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
 //--- Attributes
-  public : GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code mAttribute_mInstruction_5F_FDA_5F_base_5F_code ;
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mAttribute_mRegisterDescription ;
-  public : GALGAS_bool mAttribute_m_5F_W_5F_isDestination ;
+  public : GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
+  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public : GALGAS_bool mProperty_m_5F_W_5F_isDestination ;
 
 //--- Constructor
   public : cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (const GALGAS_location & in_mInstructionLocation,
@@ -4168,7 +4168,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForBlock
 
 class cMapElement_symbolTableForBlockOptimization : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uint mAttribute_mDefinitionBlockIndex ;
+  public : GALGAS_uint mProperty_mDefinitionBlockIndex ;
 
 //--- Constructor
   public : cMapElement_symbolTableForBlockOptimization (const GALGAS_lstring & inKey,
@@ -4196,8 +4196,8 @@ class cMapElement_symbolTableForBlockOptimization : public cMapElement {
 
 class GALGAS_symbolTableForBlockOptimization_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uint mAttribute_mDefinitionBlockIndex ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uint mProperty_mDefinitionBlockIndex ;
 
 
 //--------------------------------- Accessors
@@ -4371,7 +4371,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForClust
 
 class cMapElement_symbolTableForClusterOrdering : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uint mAttribute_mCluster ;
+  public : GALGAS_uint mProperty_mCluster ;
 
 //--- Constructor
   public : cMapElement_symbolTableForClusterOrdering (const GALGAS_lstring & inKey,
@@ -4399,8 +4399,8 @@ class cMapElement_symbolTableForClusterOrdering : public cMapElement {
 
 class GALGAS_symbolTableForClusterOrdering_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uint mAttribute_mCluster ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uint mProperty_mCluster ;
 
 
 //--------------------------------- Accessors
@@ -4668,7 +4668,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForRelat
 
 class cMapElement_symbolTableForRelativesResolution : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uint mAttribute_mLabelAddress ;
+  public : GALGAS_uint mProperty_mLabelAddress ;
 
 //--- Constructor
   public : cMapElement_symbolTableForRelativesResolution (const GALGAS_lstring & inKey,
@@ -4762,8 +4762,8 @@ void callExtensionMethod_performTerminatorRelativeBranchResolution (const class 
 
 class GALGAS_symbolTableForRelativesResolution_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uint mAttribute_mLabelAddress ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uint mProperty_mLabelAddress ;
 
 
 //--------------------------------- Accessors
@@ -4836,9 +4836,9 @@ class GALGAS_codeList : public AC_GALGAS_list {
   public : GALGAS_codeList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_codeList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_codeList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_string & in_mAssemblyCode,
                                                   const class GALGAS_uintlist & in_mBinaryCode
@@ -4970,8 +4970,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_codeList ;
 
 class GALGAS_codeList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_string mAttribute_mAssemblyCode ;
-  public : GALGAS_uintlist mAttribute_mBinaryCode ;
+  public : GALGAS_string mProperty_mAssemblyCode ;
+  public : GALGAS_uintlist mProperty_mBinaryCode ;
 
 
 //--------------------------------- Accessors
@@ -5145,7 +5145,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38__5F_data
 
 class cMapElement_pic_31__38__5F_dataAddressMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uint mAttribute_mDataAddress ;
+  public : GALGAS_uint mProperty_mDataAddress ;
 
 //--- Constructor
   public : cMapElement_pic_31__38__5F_dataAddressMap (const GALGAS_lstring & inKey,
@@ -5173,8 +5173,8 @@ class cMapElement_pic_31__38__5F_dataAddressMap : public cMapElement {
 
 class GALGAS_pic_31__38__5F_dataAddressMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uint mAttribute_mDataAddress ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uint mProperty_mDataAddress ;
 
 
 //--------------------------------- Accessors
@@ -5301,7 +5301,7 @@ void callExtensionMethod_generateTerminatorCode (const class cPtr_ipic_31__38_Ab
 //---------------------------------------------------------------------------------------------------------------------*
 
 typedef class GALGAS_bool (*enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_isEqualToTerminator) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                                                           const class GALGAS_ipic_31__38_AbstractBlockTerminator & constinArgument0,
+                                                                                                           const class GALGAS_ipic_31__38_AbstractBlockTerminator constinArgument0,
                                                                                                            class C_Compiler * inCompiler
                                                                                                            COMMA_LOCATION_ARGS) ;
 
@@ -5313,7 +5313,7 @@ void enterExtensionGetter_isEqualToTerminator (const int32_t inClassIndex,
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_bool callExtensionGetter_isEqualToTerminator (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                           const GALGAS_ipic_31__38_AbstractBlockTerminator & constin_inTerminator,
+                                                           const GALGAS_ipic_31__38_AbstractBlockTerminator constin_inTerminator,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
@@ -5324,7 +5324,7 @@ class GALGAS_bool callExtensionGetter_isEqualToTerminator (const class cPtr_ipic
 //---------------------------------------------------------------------------------------------------------------------*
 
 typedef class GALGAS_string (*enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_terminatorDisplay) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                                                           const class GALGAS_string & constinArgument0,
+                                                                                                           const class GALGAS_string constinArgument0,
                                                                                                            class C_Compiler * inCompiler
                                                                                                            COMMA_LOCATION_ARGS) ;
 
@@ -5336,7 +5336,7 @@ void enterExtensionGetter_terminatorDisplay (const int32_t inClassIndex,
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_string callExtensionGetter_terminatorDisplay (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                           const GALGAS_string & constin_inNextBlockLabel,
+                                                           const GALGAS_string constin_inNextBlockLabel,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
@@ -5347,7 +5347,7 @@ class GALGAS_string callExtensionGetter_terminatorDisplay (const class cPtr_ipic
 //---------------------------------------------------------------------------------------------------------------------*
 
 typedef class GALGAS_uint (*enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_terminatorSize) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                                                      const class GALGAS_string & constinArgument0,
+                                                                                                      const class GALGAS_string constinArgument0,
                                                                                                       class C_Compiler * inCompiler
                                                                                                       COMMA_LOCATION_ARGS) ;
 
@@ -5359,7 +5359,7 @@ void enterExtensionGetter_terminatorSize (const int32_t inClassIndex,
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_uint callExtensionGetter_terminatorSize (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                      const GALGAS_string & constin_inNextBlockLabel,
+                                                      const GALGAS_string constin_inNextBlockLabel,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -5637,11 +5637,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declaredRoutineMap 
 
 class cMapElement_declaredRoutineMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_luint mAttribute_mRequiredBank ;
-  public : GALGAS_luint mAttribute_mReturnedBank ;
-  public : GALGAS_bool mAttribute_mPreservesBank ;
-  public : GALGAS_bool mAttribute_mIsNoReturn ;
-  public : GALGAS_pic_31__38_InstructionList mAttribute_mInstructionList ;
+  public : GALGAS_luint mProperty_mRequiredBank ;
+  public : GALGAS_luint mProperty_mReturnedBank ;
+  public : GALGAS_bool mProperty_mPreservesBank ;
+  public : GALGAS_bool mProperty_mIsNoReturn ;
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
 //--- Constructor
   public : cMapElement_declaredRoutineMap (const GALGAS_lstring & inKey,
@@ -5673,12 +5673,12 @@ class cMapElement_declaredRoutineMap : public cMapElement {
 
 class GALGAS_declaredRoutineMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_luint mAttribute_mRequiredBank ;
-  public : GALGAS_luint mAttribute_mReturnedBank ;
-  public : GALGAS_bool mAttribute_mPreservesBank ;
-  public : GALGAS_bool mAttribute_mIsNoReturn ;
-  public : GALGAS_pic_31__38_InstructionList mAttribute_mInstructionList ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_luint mProperty_mRequiredBank ;
+  public : GALGAS_luint mProperty_mReturnedBank ;
+  public : GALGAS_bool mProperty_mPreservesBank ;
+  public : GALGAS_bool mProperty_mIsNoReturn ;
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
 
 //--------------------------------- Accessors
@@ -5992,7 +5992,7 @@ class cMapElement_caseConstantMap : public cMapElement {
 
 class GALGAS_caseConstantMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
+  public : GALGAS_lstring mProperty_lkey ;
 
 
 //--------------------------------- Accessors
@@ -6229,9 +6229,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInstructionBlo
 
 class cMapElement_blockInstructionBlockMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_pic_31__38_InstructionList mAttribute_mInstructionList ;
-  public : GALGAS_abstractBlockTerminationForBlockInstruction mAttribute_mBlockTerminaisonForBlockInstruction ;
-  public : GALGAS_location mAttribute_mEndOfBlock ;
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
+  public : GALGAS_abstractBlockTerminationForBlockInstruction mProperty_mBlockTerminaisonForBlockInstruction ;
+  public : GALGAS_location mProperty_mEndOfBlock ;
 
 //--- Constructor
   public : cMapElement_blockInstructionBlockMap (const GALGAS_lstring & inKey,
@@ -6261,10 +6261,10 @@ class cMapElement_blockInstructionBlockMap : public cMapElement {
 
 class GALGAS_blockInstructionBlockMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_pic_31__38_InstructionList mAttribute_mInstructionList ;
-  public : GALGAS_abstractBlockTerminationForBlockInstruction mAttribute_mBlockTerminaisonForBlockInstruction ;
-  public : GALGAS_location mAttribute_mEndOfBlock ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
+  public : GALGAS_abstractBlockTerminationForBlockInstruction mProperty_mBlockTerminaisonForBlockInstruction ;
+  public : GALGAS_location mProperty_mEndOfBlock ;
 
 
 //--------------------------------- Accessors
@@ -6456,8 +6456,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInitialBankSel
 
 class cMapElement_blockInitialBankSelectionMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uint mAttribute_mInitialBankSelection ;
-  public : GALGAS_string mAttribute_mSourceBlock ;
+  public : GALGAS_uint mProperty_mInitialBankSelection ;
+  public : GALGAS_string mProperty_mSourceBlock ;
 
 //--- Constructor
   public : cMapElement_blockInitialBankSelectionMap (const GALGAS_lstring & inKey,
@@ -6486,9 +6486,9 @@ class cMapElement_blockInitialBankSelectionMap : public cMapElement {
 
 class GALGAS_blockInitialBankSelectionMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uint mAttribute_mInitialBankSelection ;
-  public : GALGAS_string mAttribute_mSourceBlock ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uint mProperty_mInitialBankSelection ;
+  public : GALGAS_string mProperty_mSourceBlock ;
 
 
 //--------------------------------- Accessors
@@ -6712,13 +6712,13 @@ void callExtensionMethod_optimizeTerminator (const class cPtr_ipic_31__38_Abstra
 
 class GALGAS_optimizeFlagStruct : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_bool mAttribute_mRemoveEmptyRoutine ;
-  public : GALGAS_bool mAttribute_mJSRtoRETLWreplacedByMOVLW ;
-  public : GALGAS_bool mAttribute_mJSRfollowedByRETreplacedByJUMP ;
-  public : GALGAS_bool mAttribute_mMOVLWfollowedByRETreplacedByRETLW ;
-  public : GALGAS_bool mAttribute_mJSRtoOneInstructionRoutineReplacedByInstruction ;
-  public : GALGAS_bool mAttribute_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction ;
-  public : GALGAS_bool mAttribute_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank ;
+  public : GALGAS_bool mProperty_mRemoveEmptyRoutine ;
+  public : GALGAS_bool mProperty_mJSRtoRETLWreplacedByMOVLW ;
+  public : GALGAS_bool mProperty_mJSRfollowedByRETreplacedByJUMP ;
+  public : GALGAS_bool mProperty_mMOVLWfollowedByRETreplacedByRETLW ;
+  public : GALGAS_bool mProperty_mJSRtoOneInstructionRoutineReplacedByInstruction ;
+  public : GALGAS_bool mProperty_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction ;
+  public : GALGAS_bool mProperty_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank ;
 
 
 //--------------------------------- Accessors
@@ -6903,8 +6903,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_JumpTer
 
 class cPtr_ipic_31__38_JumpTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mLabel ;
-  public : GALGAS_jumpInstructionKind mAttribute_mKind ;
+  public : GALGAS_lstring mProperty_mLabel ;
+  public : GALGAS_jumpInstructionKind mProperty_mKind ;
 
 //--- Constructor
   public : cPtr_ipic_31__38_JumpTerminator (const GALGAS_location & in_mInstructionLocation,
@@ -7185,7 +7185,7 @@ void callExtensionMethod_buildTerminatorInvocationGraph (const class cPtr_ipic_3
 //---------------------------------------------------------------------------------------------------------------------*
 
 typedef class GALGAS_bool (*enterExtensionGetter_ipic_31__38_AbstractBlockTerminator_needToInsertJumpInstruction) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                                                                   const class GALGAS_string & constinArgument0,
+                                                                                                                   const class GALGAS_string constinArgument0,
                                                                                                                    class C_Compiler * inCompiler
                                                                                                                    COMMA_LOCATION_ARGS) ;
 
@@ -7197,7 +7197,7 @@ void enterExtensionGetter_needToInsertJumpInstruction (const int32_t inClassInde
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_bool callExtensionGetter_needToInsertJumpInstruction (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                   const GALGAS_string & constin_inNextBlockLabel,
+                                                                   const GALGAS_string constin_inNextBlockLabel,
                                                                    C_Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
@@ -7237,9 +7237,9 @@ class GALGAS_clusterList : public AC_GALGAS_list {
   public : GALGAS_clusterList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_clusterList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_clusterList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_ipic_31__38_BlockList & in_mBlockList
                                                   COMMA_LOCATION_ARGS) ;
@@ -7357,7 +7357,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_clusterList ;
 
 class GALGAS_clusterList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_ipic_31__38_BlockList mAttribute_mBlockList ;
+  public : GALGAS_ipic_31__38_BlockList mProperty_mBlockList ;
 
 
 //--------------------------------- Accessors
