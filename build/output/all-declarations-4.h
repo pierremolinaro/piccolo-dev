@@ -364,8 +364,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_bitTest
 
 class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public cPtr_baseline_5F_conditionExpression {
 //--- Attributes
-  public : GALGAS_registerExpression mAttribute_mRegisterExpression ;
-  public : GALGAS_bitNumberExpression mAttribute_mBitNumber ;
+  public : GALGAS_registerExpression mProperty_mRegisterExpression ;
+  public : GALGAS_bitNumberExpression mProperty_mBitNumber ;
 
 //--- Constructor
   public : cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (const GALGAS_registerExpression & in_mRegisterExpression,
@@ -457,10 +457,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_incDecR
 
 class cPtr_baseline_5F_incDecRegisterInCondition : public cPtr_baseline_5F_conditionExpression {
 //--- Attributes
-  public : GALGAS_registerExpression mAttribute_mRegisterExpression ;
-  public : GALGAS_bool mAttribute_mIncrement ;
-  public : GALGAS_bool mAttribute_m_5F_W_5F_isDestination ;
-  public : GALGAS_bool mAttribute_mBranchIfZero ;
+  public : GALGAS_registerExpression mProperty_mRegisterExpression ;
+  public : GALGAS_bool mProperty_mIncrement ;
+  public : GALGAS_bool mProperty_m_5F_W_5F_isDestination ;
+  public : GALGAS_bool mProperty_mBranchIfZero ;
 
 //--- Constructor
   public : cPtr_baseline_5F_incDecRegisterInCondition (const GALGAS_registerExpression & in_mRegisterExpression,
@@ -551,7 +551,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_CALL : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mTargetLabel ;
+  public : GALGAS_lstring mProperty_mTargetLabel ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_CALL (const GALGAS_location & in_mInstructionLocation,
@@ -637,8 +637,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_F : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code mAttribute_mFAinstruction ;
-  public : GALGAS_registerExpression mAttribute_mRegisterExpression ;
+  public : GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code mProperty_mFAinstruction ;
+  public : GALGAS_registerExpression mProperty_mRegisterExpression ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_F (const GALGAS_location & in_mInstructionLocation,
@@ -729,9 +729,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_FB : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_baseline_5F_bit_5F_oriented_5F_op mAttribute_mBitOrientedOp ;
-  public : GALGAS_registerExpression mAttribute_mRegisterExpression ;
-  public : GALGAS_bitNumberExpression mAttribute_mBitNumber ;
+  public : GALGAS_baseline_5F_bit_5F_oriented_5F_op mProperty_mBitOrientedOp ;
+  public : GALGAS_registerExpression mProperty_mRegisterExpression ;
+  public : GALGAS_bitNumberExpression mProperty_mBitNumber ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_FB (const GALGAS_location & in_mInstructionLocation,
@@ -824,9 +824,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_FD : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code mAttribute_mInstruction_5F_FD_5F_base_5F_code ;
-  public : GALGAS_registerExpression mAttribute_mRegisterExpression ;
-  public : GALGAS_bool mAttribute_m_5F_W_5F_isDestination ;
+  public : GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code mProperty_mInstruction_5F_FD_5F_base_5F_code ;
+  public : GALGAS_registerExpression mProperty_mRegisterExpression ;
+  public : GALGAS_bool mProperty_m_5F_W_5F_isDestination ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_FD (const GALGAS_location & in_mInstructionLocation,
@@ -916,7 +916,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_GOTO : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mTargetLabel ;
+  public : GALGAS_lstring mProperty_mTargetLabel ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_GOTO (const GALGAS_location & in_mInstructionLocation,
@@ -1006,9 +1006,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest : public cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON {
 //--- Attributes
-  public : GALGAS_bool mAttribute_mSkipIfSet ;
-  public : GALGAS_registerExpression mAttribute_mRegisterExpression ;
-  public : GALGAS_bitNumberExpression mAttribute_mBitNumber ;
+  public : GALGAS_bool mProperty_mSkipIfSet ;
+  public : GALGAS_registerExpression mProperty_mRegisterExpression ;
+  public : GALGAS_bitNumberExpression mProperty_mBitNumber ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_IF_5F_BitTest (const GALGAS_location & in_mInstructionLocation,
@@ -1103,9 +1103,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_IF_5F_IncDec : public cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON {
 //--- Attributes
-  public : GALGAS_bool mAttribute_mIncrement ;
-  public : GALGAS_registerExpression mAttribute_mRegisterExpression ;
-  public : GALGAS_bool mAttribute_m_5F_W_5F_isDestination ;
+  public : GALGAS_bool mProperty_mIncrement ;
+  public : GALGAS_registerExpression mProperty_mRegisterExpression ;
+  public : GALGAS_bool mProperty_m_5F_W_5F_isDestination ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_IF_5F_IncDec (const GALGAS_location & in_mInstructionLocation,
@@ -1196,7 +1196,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_JSR : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mTargetLabel ;
+  public : GALGAS_lstring mProperty_mTargetLabel ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_JSR (const GALGAS_location & in_mInstructionLocation,
@@ -1282,7 +1282,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_JUMP : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mTargetLabel ;
+  public : GALGAS_lstring mProperty_mTargetLabel ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_JUMP (const GALGAS_location & in_mInstructionLocation,
@@ -1377,11 +1377,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mConstantName ;
-  public : GALGAS_immediatExpression mAttribute_mLowerBoundExpression ;
-  public : GALGAS_immediatExpression mAttribute_mUpperBoundExpression ;
-  public : GALGAS_baseline_5F_instructionList mAttribute_mInstructionList ;
-  public : GALGAS_location mAttribute_mEndOfInstruction ;
+  public : GALGAS_lstring mProperty_mConstantName ;
+  public : GALGAS_immediatExpression mProperty_mLowerBoundExpression ;
+  public : GALGAS_immediatExpression mProperty_mUpperBoundExpression ;
+  public : GALGAS_baseline_5F_instructionList mProperty_mInstructionList ;
+  public : GALGAS_location mProperty_mEndOfInstruction ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT (const GALGAS_location & in_mInstructionLocation,
@@ -1475,7 +1475,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_TRIS : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mOperand ;
+  public : GALGAS_lstring mProperty_mOperand ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_TRIS (const GALGAS_location & in_mInstructionLocation,
@@ -1581,15 +1581,15 @@ void routine_baseline_5F_analysis (const class GALGAS_baseline_5F_model constinA
 
 class GALGAS_baseline_5F_model : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mProgramName ;
-  public : GALGAS_lstring mAttribute_mDeviceName ;
-  public : GALGAS_configDefinitionList mAttribute_mConfigDefinitionList ;
-  public : GALGAS_ramDefinitionList mAttribute_mRamDefinitionList ;
-  public : GALGAS_lstringlist mAttribute_mUnusedRegisterList ;
-  public : GALGAS_constantDefinitionList mAttribute_mConstantDefinitionList ;
-  public : GALGAS_baseline_5F_routineDefinitionList mAttribute_mRoutineDefinitionList ;
-  public : GALGAS_lstringlist mAttribute_mUnusedRoutineList ;
-  public : GALGAS_location mAttribute_mEndOfProgram ;
+  public : GALGAS_lstring mProperty_mProgramName ;
+  public : GALGAS_lstring mProperty_mDeviceName ;
+  public : GALGAS_configDefinitionList mProperty_mConfigDefinitionList ;
+  public : GALGAS_ramDefinitionList mProperty_mRamDefinitionList ;
+  public : GALGAS_lstringlist mProperty_mUnusedRegisterList ;
+  public : GALGAS_constantDefinitionList mProperty_mConstantDefinitionList ;
+  public : GALGAS_baseline_5F_routineDefinitionList mProperty_mRoutineDefinitionList ;
+  public : GALGAS_lstringlist mProperty_mUnusedRoutineList ;
+  public : GALGAS_location mProperty_mEndOfProgram ;
 
 
 //--------------------------------- Accessors
@@ -1934,8 +1934,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberLabelValue
 
 class cPtr_bitNumberLabelValue : public cPtr_bitNumberExpression {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mBitNumberLabelValue ;
-  public : GALGAS_luint mAttribute_mBitNumberIndexValue ;
+  public : GALGAS_lstring mProperty_mBitNumberLabelValue ;
+  public : GALGAS_luint mProperty_mBitNumberIndexValue ;
 
 //--- Constructor
   public : cPtr_bitNumberLabelValue (const GALGAS_lstring & in_mBitNumberLabelValue,
@@ -2030,10 +2030,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_byteDeclarationInRa
 
 class cPtr_byteDeclarationInRam : public cPtr_declarationInRam {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mName ;
-  public : GALGAS_luint mAttribute_mSize ;
-  public : GALGAS_bitSliceTable mAttribute_mBitSliceTable ;
-  public : GALGAS_string mAttribute_mBitDefinitionString ;
+  public : GALGAS_lstring mProperty_mName ;
+  public : GALGAS_luint mProperty_mSize ;
+  public : GALGAS_bitSliceTable mProperty_mBitSliceTable ;
+  public : GALGAS_string mProperty_mBitDefinitionString ;
 
 //--- Constructor
   public : cPtr_byteDeclarationInRam (const GALGAS_lstring & in_mName,
@@ -2120,7 +2120,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatRegister ;
 
 class cPtr_immediatRegister : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_registerExpression mAttribute_mRegister ;
+  public : GALGAS_registerExpression mProperty_mRegister ;
 
 //--- Constructor
   public : cPtr_immediatRegister (const GALGAS_registerExpression & in_mRegister
@@ -2207,8 +2207,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatSlice ;
 
 class cPtr_immediatSlice : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_lstring mAttribute_mRegisterName ;
-  public : GALGAS_immediatSliceExpressionList mAttribute_mSliceExpressionList ;
+  public : GALGAS_lstring mProperty_mRegisterName ;
+  public : GALGAS_immediatSliceExpressionList mProperty_mSliceExpressionList ;
 
 //--- Constructor
   public : cPtr_immediatSlice (const GALGAS_lstring & in_mRegisterName,

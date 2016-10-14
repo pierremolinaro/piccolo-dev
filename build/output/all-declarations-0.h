@@ -44,8 +44,6 @@ class cTokenFor_piccolo_5F_lexique : public cToken {
 class C_Lexique_piccolo_5F_lexique : public C_Lexique {
 //--- Constructors
   public : C_Lexique_piccolo_5F_lexique (C_Compiler * inCallerCompiler,
-                       const C_String & inDependencyFileExtension,
-                       const C_String & inDependencyFilePath,
                        const C_String & inSourceFileName
                        COMMA_LOCATION_ARGS) ;
 
@@ -407,8 +405,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitSliceTable ;
 
 class cMapElement_bitSliceTable : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uint mAttribute_mSliceIndex ;
-  public : GALGAS_uint mAttribute_mSliceSize ;
+  public : GALGAS_uint mProperty_mSliceIndex ;
+  public : GALGAS_uint mProperty_mSliceSize ;
 
 //--- Constructor
   public : cMapElement_bitSliceTable (const GALGAS_lstring & inKey,
@@ -437,9 +435,9 @@ class cMapElement_bitSliceTable : public cMapElement {
 
 class GALGAS_bitSliceTable_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uint mAttribute_mSliceIndex ;
-  public : GALGAS_uint mAttribute_mSliceSize ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uint mProperty_mSliceIndex ;
+  public : GALGAS_uint mProperty_mSliceSize ;
 
 
 //--------------------------------- Accessors
@@ -654,9 +652,9 @@ class GALGAS_declarationInRamList : public AC_GALGAS_list {
   public : GALGAS_declarationInRamList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_declarationInRamList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_declarationInRamList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_declarationInRam & in_mDeclarationInRAM
                                                   COMMA_LOCATION_ARGS) ;
@@ -774,7 +772,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationInRamLis
 
 class GALGAS_declarationInRamList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_declarationInRam mAttribute_mDeclarationInRAM ;
+  public : GALGAS_declarationInRam mProperty_mDeclarationInRAM ;
 
 
 //--------------------------------- Accessors
@@ -840,9 +838,9 @@ class GALGAS_ramDefinitionList : public AC_GALGAS_list {
   public : GALGAS_ramDefinitionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_ramDefinitionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_ramDefinitionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mBankName,
                                                   const class GALGAS_declarationInRamList & in_mDeclaration
@@ -974,8 +972,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ramDefinitionList ;
 
 class GALGAS_ramDefinitionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mBankName ;
-  public : GALGAS_declarationInRamList mAttribute_mDeclaration ;
+  public : GALGAS_lstring mProperty_mBankName ;
+  public : GALGAS_declarationInRamList mProperty_mDeclaration ;
 
 
 //--------------------------------- Accessors
@@ -1048,9 +1046,9 @@ class GALGAS_configSettingList : public AC_GALGAS_list {
   public : GALGAS_configSettingList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_configSettingList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_configSettingList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mSettingName,
                                                   const class GALGAS_lstring & in_mSettingValue
@@ -1182,8 +1180,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configSettingList ;
 
 class GALGAS_configSettingList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mSettingName ;
-  public : GALGAS_lstring mAttribute_mSettingValue ;
+  public : GALGAS_lstring mProperty_mSettingName ;
+  public : GALGAS_lstring mProperty_mSettingValue ;
 
 
 //--------------------------------- Accessors
@@ -1256,9 +1254,9 @@ class GALGAS_configDefinitionList : public AC_GALGAS_list {
   public : GALGAS_configDefinitionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_configDefinitionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_configDefinitionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_location & in_mDefinitionLocation,
                                                   const class GALGAS_configSettingList & in_mSettingList
@@ -1390,8 +1388,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configDefinitionLis
 
 class GALGAS_configDefinitionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_location mAttribute_mDefinitionLocation ;
-  public : GALGAS_configSettingList mAttribute_mSettingList ;
+  public : GALGAS_location mProperty_mDefinitionLocation ;
+  public : GALGAS_configSettingList mProperty_mSettingList ;
 
 
 //--------------------------------- Accessors
@@ -1464,9 +1462,9 @@ class GALGAS_immediatExpressionList : public AC_GALGAS_list {
   public : GALGAS_immediatExpressionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_immediatExpressionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_immediatExpressionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_immediatExpression & in_mExpression,
                                                   const class GALGAS_location & in_mErrorLocation
@@ -1598,8 +1596,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatExpressionL
 
 class GALGAS_immediatExpressionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_immediatExpression mAttribute_mExpression ;
-  public : GALGAS_location mAttribute_mErrorLocation ;
+  public : GALGAS_immediatExpression mProperty_mExpression ;
+  public : GALGAS_location mProperty_mErrorLocation ;
 
 
 //--------------------------------- Accessors
@@ -1721,7 +1719,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatInteger ;
 
 class cPtr_immediatInteger : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mValue ;
+  public : GALGAS_luint mProperty_mValue ;
 
 //--- Constructor
   public : cPtr_immediatInteger (const GALGAS_luint & in_mValue
@@ -1805,8 +1803,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatAdd ;
 
 class cPtr_immediatAdd : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatAdd (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -1892,8 +1890,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatSub ;
 
 class cPtr_immediatSub : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatSub (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -1979,8 +1977,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatMul ;
 
 class cPtr_immediatMul : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatMul (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -2066,8 +2064,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatDiv ;
 
 class cPtr_immediatDiv : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatDiv (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -2153,8 +2151,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatMod ;
 
 class cPtr_immediatMod : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatMod (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -2240,8 +2238,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatOr ;
 
 class cPtr_immediatOr : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatOr (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -2327,8 +2325,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatAnd ;
 
 class cPtr_immediatAnd : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatAnd (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -2414,8 +2412,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatXor ;
 
 class cPtr_immediatXor : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatXor (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -2501,8 +2499,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatLeftShift ;
 
 class cPtr_immediatLeftShift : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatLeftShift (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -2588,8 +2586,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatRightShift 
 
 class cPtr_immediatRightShift : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatRightShift (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -2675,8 +2673,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatEqualTest ;
 
 class cPtr_immediatEqualTest : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatEqualTest (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -2762,8 +2760,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatNotEqualTes
 
 class cPtr_immediatNotEqualTest : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatNotEqualTest (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -2849,8 +2847,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatGreaterTest
 
 class cPtr_immediatGreaterTest : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatGreaterTest (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -2936,8 +2934,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatGreaterOrEq
 
 class cPtr_immediatGreaterOrEqualTest : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatGreaterOrEqualTest (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -3023,8 +3021,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatLowerTest ;
 
 class cPtr_immediatLowerTest : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatLowerTest (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -3110,8 +3108,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatLowerOrEqua
 
 class cPtr_immediatLowerOrEqualTest : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mLeftExpression ;
-  public : GALGAS_immediatExpression mAttribute_mRightExpression ;
+  public : GALGAS_immediatExpression mProperty_mLeftExpression ;
+  public : GALGAS_immediatExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_immediatLowerOrEqualTest (const GALGAS_immediatExpression & in_mLeftExpression,
@@ -3194,7 +3192,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatNegate ;
 
 class cPtr_immediatNegate : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mExpression ;
+  public : GALGAS_immediatExpression mProperty_mExpression ;
 
 //--- Constructor
   public : cPtr_immediatNegate (const GALGAS_immediatExpression & in_mExpression
@@ -3275,7 +3273,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatComplement 
 
 class cPtr_immediatComplement : public cPtr_immediatExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mExpression ;
+  public : GALGAS_immediatExpression mProperty_mExpression ;
 
 //--- Constructor
   public : cPtr_immediatComplement (const GALGAS_immediatExpression & in_mExpression
@@ -3307,9 +3305,9 @@ class GALGAS_immediatSliceExpressionList : public AC_GALGAS_list {
   public : GALGAS_immediatSliceExpressionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_immediatSliceExpressionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_immediatSliceExpressionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mSliceName,
                                                   const class GALGAS_immediatExpression & in_mExpression
@@ -3441,8 +3439,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatSliceExpres
 
 class GALGAS_immediatSliceExpressionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mSliceName ;
-  public : GALGAS_immediatExpression mAttribute_mExpression ;
+  public : GALGAS_lstring mProperty_mSliceName ;
+  public : GALGAS_immediatExpression mProperty_mExpression ;
 
 
 //--------------------------------- Accessors
@@ -3512,9 +3510,9 @@ class GALGAS_constantDefinitionList : public AC_GALGAS_list {
   public : GALGAS_constantDefinitionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_constantDefinitionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_constantDefinitionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_lstring & in_mConstantName,
                                                   const class GALGAS_immediatExpression & in_mExpression
@@ -3646,8 +3644,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_constantDefinitionL
 
 class GALGAS_constantDefinitionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_mConstantName ;
-  public : GALGAS_immediatExpression mAttribute_mExpression ;
+  public : GALGAS_lstring mProperty_mConstantName ;
+  public : GALGAS_immediatExpression mProperty_mExpression ;
 
 
 //--------------------------------- Accessors
@@ -3831,8 +3829,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actualConfiguration
 
 class cMapElement_actualConfigurationMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uint mAttribute_mRegisterAddress ;
-  public : GALGAS_uint mAttribute_mRegisterValue ;
+  public : GALGAS_uint mProperty_mRegisterAddress ;
+  public : GALGAS_uint mProperty_mRegisterValue ;
 
 //--- Constructor
   public : cMapElement_actualConfigurationMap (const GALGAS_lstring & inKey,
@@ -3861,9 +3859,9 @@ class cMapElement_actualConfigurationMap : public cMapElement {
 
 class GALGAS_actualConfigurationMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uint mAttribute_mRegisterAddress ;
-  public : GALGAS_uint mAttribute_mRegisterValue ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uint mProperty_mRegisterAddress ;
+  public : GALGAS_uint mProperty_mRegisterValue ;
 
 
 //--------------------------------- Accessors
@@ -4061,8 +4059,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberLiteralExp
 
 class cPtr_bitNumberLiteralExpression : public cPtr_bitNumberExpression {
 //--- Attributes
-  public : GALGAS_immediatExpression mAttribute_mBitNumberLiteralExpression ;
-  public : GALGAS_location mAttribute_mEndOfExpression ;
+  public : GALGAS_immediatExpression mProperty_mBitNumberLiteralExpression ;
+  public : GALGAS_location mProperty_mEndOfExpression ;
 
 //--- Constructor
   public : cPtr_bitNumberLiteralExpression (const GALGAS_immediatExpression & in_mBitNumberLiteralExpression,
@@ -4148,7 +4146,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberLiteralVal
 
 class cPtr_bitNumberLiteralValue : public cPtr_bitNumberExpression {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mBitNumberLiteralValue ;
+  public : GALGAS_luint mProperty_mBitNumberLiteralValue ;
 
 //--- Constructor
   public : cPtr_bitNumberLiteralValue (const GALGAS_luint & in_mBitNumberLiteralValue
@@ -4286,7 +4284,7 @@ class cMapElement_labelMap : public cMapElement {
 
 class GALGAS_labelMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
+  public : GALGAS_lstring mProperty_lkey ;
 
 
 //--------------------------------- Accessors
@@ -4466,7 +4464,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_constantMap ;
 
 class cMapElement_constantMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_sint_36__34_ mAttribute_mValue ;
+  public : GALGAS_sint_36__34_ mProperty_mValue ;
 
 //--- Constructor
   public : cMapElement_constantMap (const GALGAS_lstring & inKey,
@@ -4494,8 +4492,8 @@ class cMapElement_constantMap : public cMapElement {
 
 class GALGAS_constantMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_sint_36__34_ mAttribute_mValue ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_sint_36__34_ mProperty_mValue ;
 
 
 //--------------------------------- Accessors
@@ -4708,10 +4706,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineMap ;
 
 class cMapElement_routineMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_bool mAttribute_mIsNoReturn ;
-  public : GALGAS_uint mAttribute_mRequiredBank ;
-  public : GALGAS_uint mAttribute_mReturnedBank ;
-  public : GALGAS_bool mAttribute_mPreservesBank ;
+  public : GALGAS_bool mProperty_mIsNoReturn ;
+  public : GALGAS_uint mProperty_mRequiredBank ;
+  public : GALGAS_uint mProperty_mReturnedBank ;
+  public : GALGAS_bool mProperty_mPreservesBank ;
 
 //--- Constructor
   public : cMapElement_routineMap (const GALGAS_lstring & inKey,
@@ -4742,11 +4740,11 @@ class cMapElement_routineMap : public cMapElement {
 
 class GALGAS_routineMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_bool mAttribute_mIsNoReturn ;
-  public : GALGAS_uint mAttribute_mRequiredBank ;
-  public : GALGAS_uint mAttribute_mReturnedBank ;
-  public : GALGAS_bool mAttribute_mPreservesBank ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_bool mProperty_mIsNoReturn ;
+  public : GALGAS_uint mProperty_mRequiredBank ;
+  public : GALGAS_uint mProperty_mReturnedBank ;
+  public : GALGAS_bool mProperty_mPreservesBank ;
 
 
 //--------------------------------- Accessors
@@ -5072,10 +5070,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_registerTable ;
 
 class cMapElement_registerTable : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uintlist mAttribute_mRegisterAddressList ;
-  public : GALGAS_uint mAttribute_mSize ;
-  public : GALGAS_bitSliceTable mAttribute_mBitSliceTable ;
-  public : GALGAS_string mAttribute_mBitDefinitionString ;
+  public : GALGAS_uintlist mProperty_mRegisterAddressList ;
+  public : GALGAS_uint mProperty_mSize ;
+  public : GALGAS_bitSliceTable mProperty_mBitSliceTable ;
+  public : GALGAS_string mProperty_mBitDefinitionString ;
 
 //--- Constructor
   public : cMapElement_registerTable (const GALGAS_lstring & inKey,
@@ -5260,8 +5258,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForOptim
 
 class cMapElement_symbolTableForOptimizations : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uint mAttribute_mDefinitionLineIndex ;
-  public : GALGAS_bool mAttribute_mIsDeletable ;
+  public : GALGAS_uint mProperty_mDefinitionLineIndex ;
+  public : GALGAS_bool mProperty_mIsDeletable ;
 
 //--- Constructor
   public : cMapElement_symbolTableForOptimizations (const GALGAS_lstring & inKey,
@@ -5290,9 +5288,9 @@ class cMapElement_symbolTableForOptimizations : public cMapElement {
 
 class GALGAS_symbolTableForOptimizations_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uint mAttribute_mDefinitionLineIndex ;
-  public : GALGAS_bool mAttribute_mIsDeletable ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uint mProperty_mDefinitionLineIndex ;
+  public : GALGAS_bool mProperty_mIsDeletable ;
 
 
 //--------------------------------- Accessors
@@ -5626,10 +5624,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fieldSettingMap ;
 
 class cMapElement_configFieldMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_lstring mAttribute_mRegisterName ;
-  public : GALGAS_luint mAttribute_mMaskValue ;
-  public : GALGAS_lstring mAttribute_mDescription ;
-  public : GALGAS_fieldSettingMap mAttribute_mFieldSettingMap ;
+  public : GALGAS_lstring mProperty_mRegisterName ;
+  public : GALGAS_luint mProperty_mMaskValue ;
+  public : GALGAS_lstring mProperty_mDescription ;
+  public : GALGAS_fieldSettingMap mProperty_mFieldSettingMap ;
 
 //--- Constructor
   public : cMapElement_configFieldMap (const GALGAS_lstring & inKey,
@@ -5660,11 +5658,11 @@ class cMapElement_configFieldMap : public cMapElement {
 
 class GALGAS_configFieldMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_lstring mAttribute_mRegisterName ;
-  public : GALGAS_luint mAttribute_mMaskValue ;
-  public : GALGAS_lstring mAttribute_mDescription ;
-  public : GALGAS_fieldSettingMap mAttribute_mFieldSettingMap ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_lstring mProperty_mRegisterName ;
+  public : GALGAS_luint mProperty_mMaskValue ;
+  public : GALGAS_lstring mProperty_mDescription ;
+  public : GALGAS_fieldSettingMap mProperty_mFieldSettingMap ;
 
 
 //--------------------------------- Accessors
@@ -5746,8 +5744,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configFieldMap_2D_e
 
 class cMapElement_fieldSettingMap : public cMapElement {
 //--- Map attributes
-  public : GALGAS_uint mAttribute_mValue ;
-  public : GALGAS_uint mAttribute_mMask ;
+  public : GALGAS_uint mProperty_mValue ;
+  public : GALGAS_uint mProperty_mMask ;
 
 //--- Constructor
   public : cMapElement_fieldSettingMap (const GALGAS_lstring & inKey,
@@ -5776,9 +5774,9 @@ class cMapElement_fieldSettingMap : public cMapElement {
 
 class GALGAS_fieldSettingMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_lstring mAttribute_lkey ;
-  public : GALGAS_uint mAttribute_mValue ;
-  public : GALGAS_uint mAttribute_mMask ;
+  public : GALGAS_lstring mProperty_lkey ;
+  public : GALGAS_uint mProperty_mValue ;
+  public : GALGAS_uint mProperty_mMask ;
 
 
 //--------------------------------- Accessors
@@ -6375,7 +6373,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction : public acPtr_class {
 //--- Attributes
-  public : GALGAS_location mAttribute_mInstructionLocation ;
+  public : GALGAS_location mProperty_mInstructionLocation ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction (const GALGAS_location & in_mInstructionLocation
@@ -6404,9 +6402,9 @@ class GALGAS_baseline_5F_instructionList : public AC_GALGAS_list {
   public : GALGAS_baseline_5F_instructionList (void) ;
 
 //--------------------------------- List constructor used by listmap
-  public : GALGAS_baseline_5F_instructionList (cSharedList * inSharedListPtr) ;
+  public : GALGAS_baseline_5F_instructionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor used by listmap
+//--------------------------------- Element constructor
   public : static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                   const class GALGAS_baseline_5F_instruction & in_mInstruction
                                                   COMMA_LOCATION_ARGS) ;
@@ -6524,7 +6522,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class GALGAS_baseline_5F_instructionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Public data members
-  public : GALGAS_baseline_5F_instruction mAttribute_mInstruction ;
+  public : GALGAS_baseline_5F_instruction mProperty_mInstruction ;
 
 
 //--------------------------------- Accessors
@@ -6640,7 +6638,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_baseline_5F_WO_5F_OPERAND_5F_group mAttribute_mInstruction ;
+  public : GALGAS_baseline_5F_WO_5F_OPERAND_5F_group mProperty_mInstruction ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (const GALGAS_location & in_mInstructionLocation,
@@ -6726,8 +6724,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_literalOperation : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_baseline_5F_literal_5F_instruction_5F_opcode mAttribute_mLiteralInstruction ;
-  public : GALGAS_immediatExpression mAttribute_mImmediatExpression ;
+  public : GALGAS_baseline_5F_literal_5F_instruction_5F_opcode mProperty_mLiteralInstruction ;
+  public : GALGAS_immediatExpression mProperty_mImmediatExpression ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_literalOperation (const GALGAS_location & in_mInstructionLocation,
@@ -6815,7 +6813,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_MNOP : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_luint mAttribute_mOccurrenceFactor ;
+  public : GALGAS_luint mProperty_mOccurrenceFactor ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_MNOP (const GALGAS_location & in_mInstructionLocation,
@@ -6904,8 +6902,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_FOREVER : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_baseline_5F_instructionList mAttribute_mInstructionList ;
-  public : GALGAS_location mAttribute_mEndOfInstructionList ;
+  public : GALGAS_baseline_5F_instructionList mProperty_mInstructionList ;
+  public : GALGAS_location mProperty_mEndOfInstructionList ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_FOREVER (const GALGAS_location & in_mInstructionLocation,
@@ -6985,7 +6983,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 
 class cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_baseline_5F_instruction {
 //--- Attributes
-  public : GALGAS_baseline_5F_instruction mAttribute_mInstruction ;
+  public : GALGAS_baseline_5F_instruction mProperty_mInstruction ;
 
 //--- Constructor
   public : cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON (const GALGAS_location & in_mInstructionLocation,
@@ -7133,7 +7131,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_negateC
 
 class cPtr_baseline_5F_negateCondition : public cPtr_baseline_5F_conditionExpression {
 //--- Attributes
-  public : GALGAS_baseline_5F_conditionExpression mAttribute_mCondition ;
+  public : GALGAS_baseline_5F_conditionExpression mProperty_mCondition ;
 
 //--- Constructor
   public : cPtr_baseline_5F_negateCondition (const GALGAS_baseline_5F_conditionExpression & in_mCondition
@@ -7217,8 +7215,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_andCond
 
 class cPtr_baseline_5F_andCondition : public cPtr_baseline_5F_conditionExpression {
 //--- Attributes
-  public : GALGAS_baseline_5F_conditionExpression mAttribute_mLeftExpression ;
-  public : GALGAS_baseline_5F_conditionExpression mAttribute_mRightExpression ;
+  public : GALGAS_baseline_5F_conditionExpression mProperty_mLeftExpression ;
+  public : GALGAS_baseline_5F_conditionExpression mProperty_mRightExpression ;
 
 //--- Constructor
   public : cPtr_baseline_5F_andCondition (const GALGAS_baseline_5F_conditionExpression & in_mLeftExpression,
