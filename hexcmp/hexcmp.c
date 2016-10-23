@@ -78,8 +78,8 @@ int main(int argc, char **argv)
 	}
 	
 	/* compare files */
-	memdiff = bytecmp(file1.mem, file2.mem, 65536);
-	flagdiff = bytecmp(file1.flag, file2.flag, 65536);
+	memdiff = bytecmp ((const char *) file1.mem, (const char *) file2.mem, 65536);
+	flagdiff = bytecmp ((const char *) file1.flag, (const char *) file2.flag, 65536);
 
 	if ((flagdiff == -1) && (memdiff == -1)) {
 		printf("%s and %s are identical.\n", argv[1], argv[2]);
