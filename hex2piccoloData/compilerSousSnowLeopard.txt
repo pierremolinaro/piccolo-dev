@@ -1,0 +1,1 @@
+Le projet Xcode est réglé pour être compilé sous SnowLeopard.
