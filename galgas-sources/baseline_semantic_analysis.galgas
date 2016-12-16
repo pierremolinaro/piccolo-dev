@@ -28,11 +28,13 @@ method @registerExpression resolveBaselineAccess
 #--- Find register
   [inRegisterTable searchKey
     !mRegisterName
-    ?var @uintlist registerAddressList
-    ?var @uint size
+    ?let @uintlist registerAddressList
+    ?*
     ?outBitSliceTable
     ?*
+    ?let protection
   ]
+  [inRegisterTable checkPrivateAccess !mRegisterName !write:true !protection]
 #--- Accept if one address is <= 0x1F
   @uint registerAddress = 0
   if [registerAddressList length] > 0 then
@@ -163,8 +165,9 @@ override method @baseline_instruction_TRIS build_baseline_intermediate_instructi
     error mInstructionLocation : "invalid TRIS operand; accepted operand are: " + s
   end
 #---
-  [inRegisterTable searchKey !mOperand ?var @uintlist registerAddressList ?3*]
-  [registerAddressList first ?var @uint opcode]
+  [inRegisterTable searchKey !mOperand ?let @uintlist registerAddressList ?3* ?let protection]
+  [inRegisterTable checkPrivateAccess !mOperand !write:true !protection]
+  [registerAddressList first ?let @uint opcode]
 #---
   ioGeneratedInstructionList += !@baseline_intermediate_TRIS. new { !mInstructionLocation !mOperand !opcode}
 }

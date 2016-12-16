@@ -87,7 +87,7 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const C_cocoa_lexique_table_entry ktable_for_piccolo_5F_lexique_controlKeyWordList [46] = {
+static const C_cocoa_lexique_table_entry ktable_for_piccolo_5F_lexique_controlKeyWordList [48] = {
   {"w", piccolo_lexique_1_w},
   {"do", piccolo_lexique_1_do},
   {"if", piccolo_lexique_1_if},
@@ -118,6 +118,7 @@ static const C_cocoa_lexique_table_entry ktable_for_piccolo_5F_lexique_controlKe
   {"ensures", piccolo_lexique_1_ensures},
   {"forever", piccolo_lexique_1_forever},
   {"include", piccolo_lexique_1_include},
+  {"private", piccolo_lexique_1_private},
   {"routine", piccolo_lexique_1_routine},
   {"banksave", piccolo_lexique_1_banksave},
   {"baseline", piccolo_lexique_1_baseline},
@@ -129,6 +130,7 @@ static const C_cocoa_lexique_table_entry ktable_for_piccolo_5F_lexique_controlKe
   {"checkbank", piccolo_lexique_1_checkbank},
   {"interrupt", piccolo_lexique_1_interrupt},
   {"preserved", piccolo_lexique_1_preserved},
+  {"protected", piccolo_lexique_1_protected},
   {"bootloader", piccolo_lexique_1_bootloader},
   {"implements", piccolo_lexique_1_implements},
   {"checknobank", piccolo_lexique_1_checknobank},
@@ -137,7 +139,7 @@ static const C_cocoa_lexique_table_entry ktable_for_piccolo_5F_lexique_controlKe
 } ;
 
 static NSInteger search_into_piccolo_5F_lexique_controlKeyWordList (NSString * inSearchedString) {
-  return searchStringInTable (inSearchedString, ktable_for_piccolo_5F_lexique_controlKeyWordList, 46) ;
+  return searchStringInTable (inSearchedString, ktable_for_piccolo_5F_lexique_controlKeyWordList, 48) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -241,11 +243,11 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
     [mLexicalAttribute_tokenString setString:@""] ;
     mLexicalAttribute_uint32value = 0 ;
     mTokenStartLocation = mCurrentLocation ;
-    if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90])) {
+    if (scanningOk && ([self testForCharWithFunction:isUnicodeLetter])) {
       do {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_identifierString, scanner_cocoa_function_toLower (mPreviousChar)) ;
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
-        if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90] || [self testForInputChar:95] || [self testForInputFromChar:48 toChar:57])) {
+        if (scanningOk && ([self testForCharWithFunction:isUnicodeLetter] || [self testForInputChar:95] || [self testForInputFromChar:48 toChar:57])) {
         }else{
           mLoop = NO ;
         }
@@ -507,7 +509,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) terminalVocabularyCount {
-  return 157 ;
+  return 159 ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -537,7 +539,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (NSUInteger) styleIndexForTerminal: (NSInteger) inTerminal {
-  static const NSUInteger kTerminalSymbolStyles [158] = {0,
+  static const NSUInteger kTerminalSymbolStyles [160] = {0,
     0 /* piccolo_lexique_1_identifier */,
     8 /* piccolo_lexique_1_label */,
     4 /* piccolo_lexique_1_integer */,
@@ -582,6 +584,8 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
     1 /* piccolo_lexique_1_page */,
     1 /* piccolo_lexique_1_pic_31__38_ */,
     1 /* piccolo_lexique_1_preserved */,
+    1 /* piccolo_lexique_1_protected */,
+    1 /* piccolo_lexique_1_private */,
     1 /* piccolo_lexique_1_ram */,
     1 /* piccolo_lexique_1_requires */,
     1 /* piccolo_lexique_1_rom */,
@@ -706,7 +710,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 //---------------------------------------------------------------------------------------------------------------------*
 
 - (BOOL) atomicSelectionForToken: (NSUInteger) inTokenIndex {
-  static const BOOL kTerminalAtomicSelection [158] = {NO,
+  static const BOOL kTerminalAtomicSelection [160] = {NO,
     YES /* piccolo_lexique_1_identifier */,
     YES /* piccolo_lexique_1_label */,
     YES /* piccolo_lexique_1_integer */,
@@ -751,6 +755,8 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
     YES /* piccolo_lexique_1_page */,
     YES /* piccolo_lexique_1_pic_31__38_ */,
     YES /* piccolo_lexique_1_preserved */,
+    YES /* piccolo_lexique_1_protected */,
+    YES /* piccolo_lexique_1_private */,
     YES /* piccolo_lexique_1_ram */,
     YES /* piccolo_lexique_1_requires */,
     YES /* piccolo_lexique_1_rom */,

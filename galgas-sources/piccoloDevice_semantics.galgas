@@ -14,8 +14,35 @@ map @registerTable {
   @uint mSize
   @bitSliceTable mBitSliceTable
   @string mBitDefinitionString
+  @registerProtection mProtection
   insert insertKey error message "the '%K' register is already declared in %L"
   search searchKey error message "the '%K' register is not declared"
+}
+
+#----------------------------------------------------*
+
+method @registerTable checkPrivateAccess
+  ?let @lstring inKey
+  ?write:let @bool inWriteAccess
+  ?let @registerProtection inRegisterProtection
+ {
+  switch inRegisterProtection
+  case publicRegister :
+  case protectedRegister :
+    if inWriteAccess && [self hasKey !inKey] then
+      let declarationLocation = [self locationForKey !inKey]
+      if [declarationLocation file] != [inKey.location file] then
+        error inKey : "register is protected, write is reserved to instructions in declaration file"
+      end
+    end
+  case privateRegister :
+    if [self hasKey !inKey] then
+      let declarationLocation = [self locationForKey !inKey]
+      if [declarationLocation file] != [inKey.location file] then
+        error inKey : "register is private to declaration file"
+      end
+    end
+  end
 }
 
 #----------------------------------------------------*

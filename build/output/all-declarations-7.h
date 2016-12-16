@@ -1318,6 +1318,8 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public : virtual int32_t select_communs_18 (C_Lexique_piccolo_5F_lexique *) ;
 
   public : virtual int32_t select_communs_19 (C_Lexique_piccolo_5F_lexique *) ;
+
+  public : virtual int32_t select_communs_20 (C_Lexique_piccolo_5F_lexique *) ;
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*

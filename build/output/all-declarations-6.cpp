@@ -3552,26 +3552,28 @@ cMapElement_registerTable::cMapElement_registerTable (const GALGAS_lstring & inK
                                                       const GALGAS_uintlist & in_mRegisterAddressList,
                                                       const GALGAS_uint & in_mSize,
                                                       const GALGAS_bitSliceTable & in_mBitSliceTable,
-                                                      const GALGAS_string & in_mBitDefinitionString
+                                                      const GALGAS_string & in_mBitDefinitionString,
+                                                      const GALGAS_registerProtection & in_mProtection
                                                       COMMA_LOCATION_ARGS) :
 cMapElement (inKey COMMA_THERE),
 mProperty_mRegisterAddressList (in_mRegisterAddressList),
 mProperty_mSize (in_mSize),
 mProperty_mBitSliceTable (in_mBitSliceTable),
-mProperty_mBitDefinitionString (in_mBitDefinitionString) {
+mProperty_mBitDefinitionString (in_mBitDefinitionString),
+mProperty_mProtection (in_mProtection) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool cMapElement_registerTable::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mRegisterAddressList.isValid () && mProperty_mSize.isValid () && mProperty_mBitSliceTable.isValid () && mProperty_mBitDefinitionString.isValid () ;
+  return mProperty_lkey.isValid () && mProperty_mRegisterAddressList.isValid () && mProperty_mSize.isValid () && mProperty_mBitSliceTable.isValid () && mProperty_mBitDefinitionString.isValid () && mProperty_mProtection.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 cMapElement * cMapElement_registerTable::copy (void) {
   cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_registerTable (mProperty_lkey, mProperty_mRegisterAddressList, mProperty_mSize, mProperty_mBitSliceTable, mProperty_mBitDefinitionString COMMA_HERE)) ;
+  macroMyNew (result, cMapElement_registerTable (mProperty_lkey, mProperty_mRegisterAddressList, mProperty_mSize, mProperty_mBitSliceTable, mProperty_mBitDefinitionString, mProperty_mProtection COMMA_HERE)) ;
   return result ;
 }
 
@@ -3594,6 +3596,10 @@ void cMapElement_registerTable::description (C_String & ioString, const int32_t 
   ioString.writeStringMultiple ("| ", inIndentation) ;
   ioString << "mBitDefinitionString" ":" ;
   mProperty_mBitDefinitionString.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mProtection" ":" ;
+  mProperty_mProtection.description (ioString, inIndentation) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3612,6 +3618,9 @@ typeComparisonResult cMapElement_registerTable::compare (const cCollectionElemen
   }
   if (kOperandEqual == result) {
     result = mProperty_mBitDefinitionString.objectCompare (operand->mProperty_mBitDefinitionString) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mProtection.objectCompare (operand->mProperty_mProtection) ;
   }
   return result ;
 }
@@ -3668,10 +3677,11 @@ void GALGAS_registerTable::addAssign_operation (const GALGAS_lstring & inKey,
                                                 const GALGAS_uint & inArgument1,
                                                 const GALGAS_bitSliceTable & inArgument2,
                                                 const GALGAS_string & inArgument3,
+                                                const GALGAS_registerProtection & inArgument4,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) {
   cMapElement_registerTable * p = NULL ;
-  macroMyNew (p, cMapElement_registerTable (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_registerTable (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -3687,10 +3697,11 @@ void GALGAS_registerTable::setter_insertKey (GALGAS_lstring inKey,
                                              GALGAS_uint inArgument1,
                                              GALGAS_bitSliceTable inArgument2,
                                              GALGAS_string inArgument3,
+                                             GALGAS_registerProtection inArgument4,
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) {
   cMapElement_registerTable * p = NULL ;
-  macroMyNew (p, cMapElement_registerTable (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  macroMyNew (p, cMapElement_registerTable (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -3710,6 +3721,7 @@ void GALGAS_registerTable::method_searchKey (GALGAS_lstring inKey,
                                              GALGAS_uint & outArgument1,
                                              GALGAS_bitSliceTable & outArgument2,
                                              GALGAS_string & outArgument3,
+                                             GALGAS_registerProtection & outArgument4,
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const {
   const cMapElement_registerTable * p = (const cMapElement_registerTable *) performSearch (inKey,
@@ -3721,12 +3733,14 @@ void GALGAS_registerTable::method_searchKey (GALGAS_lstring inKey,
     outArgument1.drop () ;
     outArgument2.drop () ;
     outArgument3.drop () ;
+    outArgument4.drop () ;
   }else{
     macroValidSharedObject (p, cMapElement_registerTable) ;
     outArgument0 = p->mProperty_mRegisterAddressList ;
     outArgument1 = p->mProperty_mSize ;
     outArgument2 = p->mProperty_mBitSliceTable ;
     outArgument3 = p->mProperty_mBitDefinitionString ;
+    outArgument4 = p->mProperty_mProtection ;
   }
 }
 
@@ -3792,6 +3806,21 @@ GALGAS_string GALGAS_registerTable::getter_mBitDefinitionStringForKey (const GAL
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+GALGAS_registerProtection GALGAS_registerTable::getter_mProtectionForKey (const GALGAS_string & inKey,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_registerTable * p = (const cMapElement_registerTable *) attributes ;
+  GALGAS_registerProtection result ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_registerTable) ;
+    result = p->mProperty_mProtection ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 void GALGAS_registerTable::setter_setMRegisterAddressListForKey (GALGAS_uintlist inAttributeValue,
                                                                  GALGAS_string inKey,
                                                                  C_Compiler * inCompiler
@@ -3848,6 +3877,20 @@ void GALGAS_registerTable::setter_setMBitDefinitionStringForKey (GALGAS_string i
 
 //---------------------------------------------------------------------------------------------------------------------*
 
+void GALGAS_registerTable::setter_setMProtectionForKey (GALGAS_registerProtection inAttributeValue,
+                                                        GALGAS_string inKey,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_registerTable * p = (cMapElement_registerTable *) attributes ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cMapElement_registerTable) ;
+    p->mProperty_mProtection = inAttributeValue ;
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
 cMapElement_registerTable * GALGAS_registerTable::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                      const GALGAS_string & inKey
                                                                                      COMMA_LOCATION_ARGS) {
@@ -3869,7 +3912,7 @@ cGenericAbstractEnumerator (inOrder) {
 GALGAS_registerTable_2D_element cEnumerator_registerTable::current (LOCATION_ARGS) const {
   const cMapElement_registerTable * p = (const cMapElement_registerTable *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_registerTable) ;
-  return GALGAS_registerTable_2D_element (p->mProperty_lkey, p->mProperty_mRegisterAddressList, p->mProperty_mSize, p->mProperty_mBitSliceTable, p->mProperty_mBitDefinitionString) ;
+  return GALGAS_registerTable_2D_element (p->mProperty_lkey, p->mProperty_mRegisterAddressList, p->mProperty_mSize, p->mProperty_mBitSliceTable, p->mProperty_mBitDefinitionString, p->mProperty_mProtection) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3910,6 +3953,14 @@ GALGAS_string cEnumerator_registerTable::current_mBitDefinitionString (LOCATION_
   const cMapElement_registerTable * p = (const cMapElement_registerTable *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_registerTable) ;
   return p->mProperty_mBitDefinitionString ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_registerProtection cEnumerator_registerTable::current_mProtection (LOCATION_ARGS) const {
+  const cMapElement_registerTable * p = (const cMapElement_registerTable *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_registerTable) ;
+  return p->mProperty_mProtection ;
 }
 
 
@@ -3956,6 +4007,63 @@ GALGAS_registerTable GALGAS_registerTable::extractObject (const GALGAS_object & 
   }
   return result ;
 }
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Extension method '@registerTable checkPrivateAccess'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void extensionMethod_checkPrivateAccess (const GALGAS_registerTable inObject,
+                                         const GALGAS_lstring constinArgument_inKey,
+                                         const GALGAS_bool constinArgument_inWriteAccess,
+                                         const GALGAS_registerProtection constinArgument_inRegisterProtection,
+                                         C_Compiler * inCompiler
+                                         COMMA_UNUSED_LOCATION_ARGS) {
+  switch (constinArgument_inRegisterProtection.enumValue ()) {
+  case GALGAS_registerProtection::kNotBuilt:
+    break ;
+  case GALGAS_registerProtection::kEnum_publicRegister:
+    {
+    }
+    break ;
+  case GALGAS_registerProtection::kEnum_protectedRegister:
+    {
+      GALGAS_bool test_0 = constinArgument_inWriteAccess ;
+      if (kBoolTrue == test_0.boolEnum ()) {
+        const GALGAS_registerTable temp_1 = inObject ;
+        test_0 = temp_1.getter_hasKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 32)) COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 32)) ;
+      }
+      const enumGalgasBool test_2 = test_0.boolEnum () ;
+      if (kBoolTrue == test_2) {
+        const GALGAS_registerTable temp_3 = inObject ;
+        GALGAS_location var_declarationLocation_982 = temp_3.getter_locationForKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 33)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 33)) ;
+        const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_declarationLocation_982.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 34)).objectCompare (constinArgument_inKey.mProperty_location.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 34)))).boolEnum () ;
+        if (kBoolTrue == test_4) {
+          TC_Array <C_FixItDescription> fixItArray5 ;
+          inCompiler->emitSemanticError (constinArgument_inKey.getter_location (SOURCE_FILE ("piccoloDevice_semantics.galgas", 35)), GALGAS_string ("register is protected, write is reserved to instructions in declaration file"), fixItArray5  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 35)) ;
+        }
+      }
+    }
+    break ;
+  case GALGAS_registerProtection::kEnum_privateRegister:
+    {
+      const GALGAS_registerTable temp_6 = inObject ;
+      const enumGalgasBool test_7 = temp_6.getter_hasKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 39)) COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 39)).boolEnum () ;
+      if (kBoolTrue == test_7) {
+        const GALGAS_registerTable temp_8 = inObject ;
+        GALGAS_location var_declarationLocation_1286 = temp_8.getter_locationForKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 40)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 40)) ;
+        const enumGalgasBool test_9 = GALGAS_bool (kIsNotEqual, var_declarationLocation_1286.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 41)).objectCompare (constinArgument_inKey.mProperty_location.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 41)))).boolEnum () ;
+        if (kBoolTrue == test_9) {
+          TC_Array <C_FixItDescription> fixItArray10 ;
+          inCompiler->emitSemanticError (constinArgument_inKey.getter_location (SOURCE_FILE ("piccoloDevice_semantics.galgas", 42)), GALGAS_string ("register is private to declaration file"), fixItArray10  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 42)) ;
+        }
+      }
+    }
+    break ;
+  }
+}
+
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -5743,120 +5851,120 @@ GALGAS_configRegisterMap GALGAS_configRegisterMap::extractObject (const GALGAS_o
 void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_ (GALGAS_piccoloDeviceModel & outArgument_outPiccoloDeviceModel,
                                                                                         C_Lexique_piccoloDevice_5F_lexique * inCompiler) {
   outArgument_outPiccoloDeviceModel.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_controller) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 12)) ;
-  GALGAS_lstring var_deviceName_348 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 13)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 14)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_processor) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 15)) ;
-  GALGAS_processorType var_processorType_399 ;
-  GALGAS_lstring var_processorName_439 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 17)) ;
-  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, var_processorName_439.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 18)).objectCompare (GALGAS_string ("pic18_60"))).boolEnum () ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_controller) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 11)) ;
+  GALGAS_lstring var_deviceName_346 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 12)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 13)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_processor) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 14)) ;
+  GALGAS_processorType var_processorType_397 ;
+  GALGAS_lstring var_processorName_437 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 16)) ;
+  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 17)).objectCompare (GALGAS_string ("pic18_60"))).boolEnum () ;
   if (kBoolTrue == test_0) {
-    var_processorType_399 = GALGAS_processorType::constructor_pic_31__38__5F__36__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 19)) ;
+    var_processorType_397 = GALGAS_processorType::constructor_pic_31__38__5F__36__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 18)) ;
   }else if (kBoolFalse == test_0) {
-    const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_processorName_439.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 20)).objectCompare (GALGAS_string ("pic18_80"))).boolEnum () ;
+    const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 19)).objectCompare (GALGAS_string ("pic18_80"))).boolEnum () ;
     if (kBoolTrue == test_1) {
-      var_processorType_399 = GALGAS_processorType::constructor_pic_31__38__5F__38__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 21)) ;
+      var_processorType_397 = GALGAS_processorType::constructor_pic_31__38__5F__38__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 20)) ;
     }else if (kBoolFalse == test_1) {
-      const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, var_processorName_439.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 22)).objectCompare (GALGAS_string ("mid-range"))).boolEnum () ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 21)).objectCompare (GALGAS_string ("mid-range"))).boolEnum () ;
       if (kBoolTrue == test_2) {
-        var_processorType_399 = GALGAS_processorType::constructor_midrange (SOURCE_FILE ("piccoloDevice_syntax.galgas", 23)) ;
+        var_processorType_397 = GALGAS_processorType::constructor_midrange (SOURCE_FILE ("piccoloDevice_syntax.galgas", 22)) ;
       }else if (kBoolFalse == test_2) {
-        const enumGalgasBool test_3 = GALGAS_bool (kIsEqual, var_processorName_439.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 24)).objectCompare (GALGAS_string ("baseline"))).boolEnum () ;
+        const enumGalgasBool test_3 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 23)).objectCompare (GALGAS_string ("baseline"))).boolEnum () ;
         if (kBoolTrue == test_3) {
-          var_processorType_399 = GALGAS_processorType::constructor_baseline (SOURCE_FILE ("piccoloDevice_syntax.galgas", 25)) ;
+          var_processorType_397 = GALGAS_processorType::constructor_baseline (SOURCE_FILE ("piccoloDevice_syntax.galgas", 24)) ;
         }else if (kBoolFalse == test_3) {
           TC_Array <C_FixItDescription> fixItArray4 ;
-          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 27)), GALGAS_string ("The '").add_operation (var_processorName_439.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 27)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 27)).add_operation (GALGAS_string ("' processor is not handled"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 27)), fixItArray4  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 27)) ;
-          var_processorType_399.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)), GALGAS_string ("The '").add_operation (var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)).add_operation (GALGAS_string ("' processor is not handled"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)), fixItArray4  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)) ;
+          var_processorType_397.drop () ; // Release error dropped variable
         }
       }
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 29)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_romsize) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 30)) ;
-  GALGAS_luint var_romSize_979 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 31)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 32)) ;
-  GALGAS_uint var_eepromSize_1004 ;
-  GALGAS_uint var_eepromAddress_1026 ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 28)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_romsize) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 29)) ;
+  GALGAS_luint var_romSize_977 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 30)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 31)) ;
+  GALGAS_uint var_eepromSize_1002 ;
+  GALGAS_uint var_eepromAddress_1024 ;
   switch (select_piccoloDevice_5F_syntax_0 (inCompiler)) {
   case 1: {
-    var_eepromSize_1004 = GALGAS_uint ((uint32_t) 0U) ;
-    var_eepromAddress_1026 = GALGAS_uint ((uint32_t) 0U) ;
+    var_eepromSize_1002 = GALGAS_uint ((uint32_t) 0U) ;
+    var_eepromAddress_1024 = GALGAS_uint ((uint32_t) 0U) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_eepromsize) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 39)) ;
-    GALGAS_luint var_l_5F_eepromSize_1138 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 40)) ;
-    var_eepromSize_1004 = var_l_5F_eepromSize_1138.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 41)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 42)) ;
-    GALGAS_luint var_l_5F_eepromAddress_1227 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 43)) ;
-    var_eepromAddress_1026 = var_l_5F_eepromAddress_1227.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 44)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 45)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_eepromsize) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 38)) ;
+    GALGAS_luint var_l_5F_eepromSize_1136 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 39)) ;
+    var_eepromSize_1002 = var_l_5F_eepromSize_1136.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 40)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 41)) ;
+    GALGAS_luint var_l_5F_eepromAddress_1225 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 42)) ;
+    var_eepromAddress_1024 = var_l_5F_eepromAddress_1225.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 43)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 44)) ;
   } break ;
   default:
     break ;
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_bank) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 47)) ;
-  GALGAS_luint var_bankCount_1328 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 48)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 49)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_bank) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 46)) ;
+  GALGAS_luint var_bankCount_1326 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 47)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 48)) ;
   bool repeatFlag_5 = true ;
   while (repeatFlag_5) {
     switch (select_piccoloDevice_5F_syntax_1 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_unusedregister) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 52)) ;
-      GALGAS_luint var_unusedRegisterStart_1419 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 53)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_unusedregister) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 51)) ;
+      GALGAS_luint var_unusedRegisterStart_1417 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 52)) ;
       switch (select_piccoloDevice_5F_syntax_2 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 56)) ;
-        GALGAS_luint var_unusedRegisterEnd_1493 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 57)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 55)) ;
+        GALGAS_luint var_unusedRegisterEnd_1491 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 56)) ;
       } break ;
       default:
         break ;
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 59)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 58)) ;
     } break ;
     default:
       repeatFlag_5 = false ;
       break ;
     }
   }
-  GALGAS_ramBankTable var_ramBankTable_1534 = GALGAS_ramBankTable::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 61)) ;
+  GALGAS_ramBankTable var_ramBankTable_1532 = GALGAS_ramBankTable::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 60)) ;
   bool repeatFlag_6 = true ;
   while (repeatFlag_6) {
     switch (select_piccoloDevice_5F_syntax_3 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_ram) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 64)) ;
-      GALGAS_lstring var_ramName_1627 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 65)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 66)) ;
-      GALGAS_luint var_ramStart_1671 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 67)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 68)) ;
-      GALGAS_luint var_ramEnd_1714 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 69)) ;
-      GALGAS_uintlist var_mirrorOffsetList_1739 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 70)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_ram) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 63)) ;
+      GALGAS_lstring var_ramName_1625 = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 64)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 65)) ;
+      GALGAS_luint var_ramStart_1669 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 66)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 67)) ;
+      GALGAS_luint var_ramEnd_1712 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 68)) ;
+      GALGAS_uintlist var_mirrorOffsetList_1737 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 69)) ;
       switch (select_piccoloDevice_5F_syntax_4 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mirrorat) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 73)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mirrorat) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 72)) ;
         bool repeatFlag_7 = true ;
         while (repeatFlag_7) {
-          GALGAS_luint var_mirrorStartAddress_1860 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75)) ;
-          var_mirrorOffsetList_1739.addAssign_operation (var_mirrorStartAddress_1860.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 76)).substract_operation (var_ramStart_1671.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 76)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 76))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 76)) ;
+          GALGAS_luint var_mirrorStartAddress_1858 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 74)) ;
+          var_mirrorOffsetList_1737.addAssign_operation (var_mirrorStartAddress_1858.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 75)).substract_operation (var_ramStart_1669.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 75)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75)) ;
           switch (select_piccoloDevice_5F_syntax_5 (inCompiler)) {
           case 2: {
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 78)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 77)) ;
           } break ;
           default:
             repeatFlag_7 = false ;
@@ -5867,9 +5975,9 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       default:
         break ;
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 81)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 80)) ;
       {
-      var_ramBankTable_1534.setter_insertKey (var_ramName_1627, var_ramStart_1671.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 84)), var_ramStart_1671.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 85)), var_ramEnd_1714.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 86)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 86)), var_mirrorOffsetList_1739, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 82)) ;
+      var_ramBankTable_1532.setter_insertKey (var_ramName_1625, var_ramStart_1669.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 83)), var_ramStart_1669.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 84)), var_ramEnd_1712.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 85)).add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 85)), var_mirrorOffsetList_1737, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 81)) ;
       }
     } break ;
     default:
@@ -5877,191 +5985,191 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       break ;
     }
   }
-  GALGAS_registerTable var_registerTable_2194 = GALGAS_registerTable::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 90)) ;
+  GALGAS_registerTable var_registerTable_2192 = GALGAS_registerTable::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 89)) ;
   bool repeatFlag_8 = true ;
   while (repeatFlag_8) {
     switch (select_piccoloDevice_5F_syntax_6 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_register) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 93)) ;
-      GALGAS_lstring var_registerName_2298 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 94)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 95)) ;
-      GALGAS_uintlist var_registerAddressList_2335 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 96)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_register) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 92)) ;
+      GALGAS_lstring var_registerName_2296 = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 93)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 94)) ;
+      GALGAS_uintlist var_registerAddressList_2333 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 95)) ;
       bool repeatFlag_9 = true ;
       while (repeatFlag_9) {
-        GALGAS_luint var_registerAddress_2414 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 98)) ;
-        var_registerAddressList_2335.addAssign_operation (var_registerAddress_2414.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 99))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 99)) ;
+        GALGAS_luint var_registerAddress_2412 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 97)) ;
+        var_registerAddressList_2333.addAssign_operation (var_registerAddress_2412.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 98))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 98)) ;
         switch (select_piccoloDevice_5F_syntax_7 (inCompiler)) {
         case 2: {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 101)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 100)) ;
         } break ;
         default:
           repeatFlag_9 = false ;
           break ;
         }
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 103)) ;
-      GALGAS_uint var_sliceIndex_2524 = GALGAS_uint ((uint32_t) 8U) ;
-      GALGAS_bitSliceTable var_bitSliceTable_2550 = GALGAS_bitSliceTable::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 105)) ;
-      GALGAS_string var_bitDefinitionString_2609 = GALGAS_string (" <") ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 102)) ;
+      GALGAS_uint var_sliceIndex_2522 = GALGAS_uint ((uint32_t) 8U) ;
+      GALGAS_bitSliceTable var_bitSliceTable_2548 = GALGAS_bitSliceTable::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 104)) ;
+      GALGAS_string var_bitDefinitionString_2607 = GALGAS_string (" <") ;
       bool repeatFlag_10 = true ;
       while (repeatFlag_10) {
         switch (select_piccoloDevice_5F_syntax_9 (inCompiler)) {
         case 1: {
-          GALGAS_uint var_sliceWidth_2665 = GALGAS_uint ((uint32_t) 0U) ;
+          GALGAS_uint var_sliceWidth_2663 = GALGAS_uint ((uint32_t) 0U) ;
           bool repeatFlag_11 = true ;
           while (repeatFlag_11) {
-            GALGAS_uint var_sliceBase_2728 = var_sliceIndex_2524 ;
-            GALGAS_lstring var_sliceName_2789 = inCompiler->synthetizedAttribute_tokenString () ;
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 112)) ;
+            GALGAS_uint var_sliceBase_2726 = var_sliceIndex_2522 ;
+            GALGAS_lstring var_sliceName_2787 = inCompiler->synthetizedAttribute_tokenString () ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 111)) ;
             switch (select_piccoloDevice_5F_syntax_11 (inCompiler)) {
             case 1: {
-              const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_sliceWidth_2665.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_2665.objectCompare (GALGAS_uint ((uint32_t) 1U))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)).boolEnum () ;
+              const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (GALGAS_uint ((uint32_t) 1U))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 113)).boolEnum () ;
               if (kBoolTrue == test_12) {
                 TC_Array <C_FixItDescription> fixItArray13 ;
-                inCompiler->emitSemanticError (var_sliceName_2789.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 115)), GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_2789.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 115)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 115)), fixItArray13  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 115)) ;
+                inCompiler->emitSemanticError (var_sliceName_2787.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)), GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_2787.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)), fixItArray13  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)) ;
               }
-              var_sliceWidth_2665 = GALGAS_uint ((uint32_t) 1U) ;
-              var_bitDefinitionString_2609.plusAssign_operation(var_sliceName_2789.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 118)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 118)) ;
+              var_sliceWidth_2663 = GALGAS_uint ((uint32_t) 1U) ;
+              var_bitDefinitionString_2607.plusAssign_operation(var_sliceName_2787.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 117)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 117)) ;
             } break ;
             case 2: {
-              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
-              GALGAS_luint var_sliceSize_3122 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 121)) ;
-              const enumGalgasBool test_14 = GALGAS_bool (kIsNotEqual, var_sliceWidth_2665.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_2665.objectCompare (var_sliceSize_3122.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).boolEnum () ;
+              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 119)) ;
+              GALGAS_luint var_sliceSize_3120 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
+              const enumGalgasBool test_14 = GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (var_sliceSize_3120.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 121)))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 121)).boolEnum () ;
               if (kBoolTrue == test_14) {
                 TC_Array <C_FixItDescription> fixItArray15 ;
-                inCompiler->emitSemanticError (var_sliceName_2789.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 123)), GALGAS_string ("a slice of ").add_operation (var_sliceWidth_2665.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 123)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 123)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 123)).add_operation (var_sliceName_2789.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 123)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 123)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 123)), fixItArray15  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 123)) ;
+                inCompiler->emitSemanticError (var_sliceName_2787.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), GALGAS_string ("a slice of ").add_operation (var_sliceWidth_2663.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (var_sliceName_2787.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), fixItArray15  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)) ;
               }
-              var_sliceWidth_2665 = var_sliceSize_3122.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)) ;
-              var_sliceBase_2728 = var_sliceBase_2728.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)).substract_operation (var_sliceSize_3122.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)) ;
-              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)) ;
-              var_bitDefinitionString_2609.plusAssign_operation(var_sliceName_2789.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 128)).add_operation (GALGAS_string ("["), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 128)).add_operation (var_sliceSize_3122.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 128)).getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 128)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 128)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 128)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 128)) ;
+              var_sliceWidth_2663 = var_sliceSize_3120.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 124)) ;
+              var_sliceBase_2726 = var_sliceBase_2726.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)).substract_operation (var_sliceSize_3120.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)) ;
+              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)) ;
+              var_bitDefinitionString_2607.plusAssign_operation(var_sliceName_2787.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (GALGAS_string ("["), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (var_sliceSize_3120.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)) ;
             } break ;
             default:
               break ;
             }
             {
-            var_bitSliceTable_2550.setter_insertKey (var_sliceName_2789, var_sliceIndex_2524.substract_operation (var_sliceWidth_2665, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 130)), var_sliceWidth_2665, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 130)) ;
+            var_bitSliceTable_2548.setter_insertKey (var_sliceName_2787, var_sliceIndex_2522.substract_operation (var_sliceWidth_2663, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 129)), var_sliceWidth_2663, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 129)) ;
             }
             switch (select_piccoloDevice_5F_syntax_10 (inCompiler)) {
             case 2: {
-              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2F_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 132)) ;
-              var_bitDefinitionString_2609.plusAssign_operation(GALGAS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 133)) ;
+              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2F_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 131)) ;
+              var_bitDefinitionString_2607.plusAssign_operation(GALGAS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 132)) ;
             } break ;
             default:
               repeatFlag_11 = false ;
               break ;
             }
           }
-          var_sliceIndex_2524 = var_sliceIndex_2524.substract_operation (var_sliceWidth_2665, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 135)) ;
+          var_sliceIndex_2522 = var_sliceIndex_2522.substract_operation (var_sliceWidth_2663, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 134)) ;
         } break ;
         case 2: {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 137)) ;
-          var_bitDefinitionString_2609.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 138)) ;
-          var_sliceIndex_2524.decrement_operation (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 139)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 136)) ;
+          var_bitDefinitionString_2607.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 137)) ;
+          var_sliceIndex_2522.decrement_operation (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 138)) ;
         } break ;
         default:
           break ;
         }
         switch (select_piccoloDevice_5F_syntax_8 (inCompiler)) {
         case 2: {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 142)) ;
-          var_bitDefinitionString_2609.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 143)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 141)) ;
+          var_bitDefinitionString_2607.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 142)) ;
         } break ;
         default:
           repeatFlag_10 = false ;
           break ;
         }
       }
-      const enumGalgasBool test_16 = GALGAS_bool (kIsNotEqual, var_sliceIndex_2524.objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      const enumGalgasBool test_16 = GALGAS_bool (kIsNotEqual, var_sliceIndex_2522.objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_16) {
         TC_Array <C_FixItDescription> fixItArray17 ;
-        inCompiler->emitSemanticError (var_registerName_2298.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 146)), GALGAS_string ("Incorrect bit definition for register '").add_operation (var_registerName_2298.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 146)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 146)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 146)), fixItArray17  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 146)) ;
+        inCompiler->emitSemanticError (var_registerName_2296.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), GALGAS_string ("Incorrect bit definition for register '").add_operation (var_registerName_2296.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), fixItArray17  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)) ;
       }
-      var_bitDefinitionString_2609.plusAssign_operation(GALGAS_string (">"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3E_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)) ;
+      var_bitDefinitionString_2607.plusAssign_operation(GALGAS_string (">"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 147)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3E_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
       {
-      var_registerTable_2194.setter_insertKey (var_registerName_2298, var_registerAddressList_2335, GALGAS_uint ((uint32_t) 1U), var_bitSliceTable_2550, var_bitDefinitionString_2609, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
+      var_registerTable_2192.setter_insertKey (var_registerName_2296, var_registerAddressList_2333, GALGAS_uint ((uint32_t) 1U), var_bitSliceTable_2548, var_bitDefinitionString_2607, GALGAS_registerProtection::constructor_publicRegister (SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)) ;
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 151)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
     } break ;
     default:
       repeatFlag_8 = false ;
       break ;
     }
   }
-  GALGAS_configRegisterMap var_configRegisterMap_4212 = GALGAS_configRegisterMap::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 153)) ;
+  GALGAS_configRegisterMap var_configRegisterMap_4227 = GALGAS_configRegisterMap::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 152)) ;
   bool repeatFlag_18 = true ;
   while (repeatFlag_18) {
     switch (select_piccoloDevice_5F_syntax_12 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_configuration) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 156)) ;
-      GALGAS_lstring var_configRegisterName_4331 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 157)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 158)) ;
-      GALGAS_luint var_configRegisterAddress_4389 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 159)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_width) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 160)) ;
-      GALGAS_luint var_configRegisterWidth_4448 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 161)) ;
-      GALGAS_illegalMaskList var_illegalMaskList_4472 = GALGAS_illegalMaskList::constructor_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 162)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_configuration) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 155)) ;
+      GALGAS_lstring var_configRegisterName_4346 = inCompiler->synthetizedAttribute_tokenString () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 156)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 157)) ;
+      GALGAS_luint var_configRegisterAddress_4404 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 158)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_width) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 159)) ;
+      GALGAS_luint var_configRegisterWidth_4463 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 160)) ;
+      GALGAS_illegalMaskList var_illegalMaskList_4487 = GALGAS_illegalMaskList::constructor_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 161)) ;
       bool repeatFlag_19 = true ;
       while (repeatFlag_19) {
         switch (select_piccoloDevice_5F_syntax_13 (inCompiler)) {
         case 2: {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_illegal) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 165)) ;
-          GALGAS_luint var_illegalValue_4581 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 166)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 167)) ;
-          GALGAS_luint var_illegalMask_4635 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_message) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
-          GALGAS_lstring var_illegalDescriptionString_4706 = inCompiler->synthetizedAttribute_tokenString () ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 170)) ;
-          var_illegalMaskList_4472.addAssign_operation (var_illegalValue_4581, var_illegalMask_4635, var_illegalDescriptionString_4706  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 171)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_illegal) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 164)) ;
+          GALGAS_luint var_illegalValue_4596 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 165)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 166)) ;
+          GALGAS_luint var_illegalMask_4650 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 167)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_message) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
+          GALGAS_lstring var_illegalDescriptionString_4721 = inCompiler->synthetizedAttribute_tokenString () ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
+          var_illegalMaskList_4487.addAssign_operation (var_illegalValue_4596, var_illegalMask_4650, var_illegalDescriptionString_4721  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 170)) ;
         } break ;
         default:
           repeatFlag_19 = false ;
           break ;
         }
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 173)) ;
-      GALGAS_configRegisterMaskMap var_configRegisterMaskMap_4830 = GALGAS_configRegisterMaskMap::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 174)) ;
-      GALGAS_stringset var_settingNameSet_4888 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("piccoloDevice_syntax.galgas", 175)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 172)) ;
+      GALGAS_configRegisterMaskMap var_configRegisterMaskMap_4845 = GALGAS_configRegisterMaskMap::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 173)) ;
+      GALGAS_stringset var_settingNameSet_4903 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("piccoloDevice_syntax.galgas", 174)) ;
       bool repeatFlag_20 = true ;
       while (repeatFlag_20) {
         switch (select_piccoloDevice_5F_syntax_14 (inCompiler)) {
         case 2: {
-          GALGAS_lstring var_maskName_4975 = inCompiler->synthetizedAttribute_tokenString () ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 178)) ;
-          const enumGalgasBool test_21 = var_settingNameSet_4888.getter_hasKey (var_maskName_4975.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)).boolEnum () ;
+          GALGAS_lstring var_maskName_4990 = inCompiler->synthetizedAttribute_tokenString () ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 177)) ;
+          const enumGalgasBool test_21 = var_settingNameSet_4903.getter_hasKey (var_maskName_4990.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 178)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 178)).boolEnum () ;
           if (kBoolTrue == test_21) {
             TC_Array <C_FixItDescription> fixItArray22 ;
-            inCompiler->emitSemanticError (var_maskName_4975.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 180)), GALGAS_string ("The '").add_operation (var_maskName_4975.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 180)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 180)).add_operation (GALGAS_string ("' setting is already defined"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 180)), fixItArray22  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 180)) ;
+            inCompiler->emitSemanticError (var_maskName_4990.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), GALGAS_string ("The '").add_operation (var_maskName_4990.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)).add_operation (GALGAS_string ("' setting is already defined"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), fixItArray22  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)) ;
           }
-          var_settingNameSet_4888.addAssign_operation (var_maskName_4975.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 182))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
-          GALGAS_luint var_maskValue_5212 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 184)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_description) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 185)) ;
-          GALGAS_lstring var_maskDescriptionString_5284 = inCompiler->synthetizedAttribute_tokenString () ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 186)) ;
-          GALGAS_fieldSettingMap var_fieldSettingMap_5310 = GALGAS_fieldSettingMap::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 187)) ;
+          var_settingNameSet_4903.addAssign_operation (var_maskName_4990.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 181))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 181)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
+          GALGAS_luint var_maskValue_5227 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_description) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 184)) ;
+          GALGAS_lstring var_maskDescriptionString_5299 = inCompiler->synthetizedAttribute_tokenString () ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 185)) ;
+          GALGAS_fieldSettingMap var_fieldSettingMap_5325 = GALGAS_fieldSettingMap::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 186)) ;
           bool repeatFlag_23 = true ;
           while (repeatFlag_23) {
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_setting) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 189)) ;
-            GALGAS_luint var_value_5407 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 190)) ;
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 191)) ;
-            GALGAS_luint var_mask_5458 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 192)) ;
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_description) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 193)) ;
-            GALGAS_lstring var_descriptionString_5530 = inCompiler->synthetizedAttribute_tokenString () ;
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 194)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_setting) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 188)) ;
+            GALGAS_luint var_value_5422 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 189)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 190)) ;
+            GALGAS_luint var_mask_5473 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 191)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_description) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 192)) ;
+            GALGAS_lstring var_descriptionString_5545 = inCompiler->synthetizedAttribute_tokenString () ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 193)) ;
             {
-            var_fieldSettingMap_5310.setter_insertKey (var_descriptionString_5530, var_value_5407.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 195)), var_mask_5458.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 195)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 195)) ;
+            var_fieldSettingMap_5325.setter_insertKey (var_descriptionString_5545, var_value_5422.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 194)), var_mask_5473.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 194)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 194)) ;
             }
             switch (select_piccoloDevice_5F_syntax_15 (inCompiler)) {
             case 2: {
@@ -6072,7 +6180,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
             }
           }
           {
-          var_configRegisterMaskMap_4830.setter_insertKey (var_maskName_4975, var_maskValue_5212, var_maskDescriptionString_5284, var_fieldSettingMap_5310, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 198)) ;
+          var_configRegisterMaskMap_4845.setter_insertKey (var_maskName_4990, var_maskValue_5227, var_maskDescriptionString_5299, var_fieldSettingMap_5325, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 197)) ;
           }
         } break ;
         default:
@@ -6080,9 +6188,9 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           break ;
         }
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 200)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 199)) ;
       {
-      var_configRegisterMap_4212.setter_insertKey (var_configRegisterName_4331, var_configRegisterAddress_4389, var_configRegisterWidth_4448, var_configRegisterMaskMap_4830, var_illegalMaskList_4472, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 201)) ;
+      var_configRegisterMap_4227.setter_insertKey (var_configRegisterName_4346, var_configRegisterAddress_4404, var_configRegisterWidth_4463, var_configRegisterMaskMap_4845, var_illegalMaskList_4487, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 200)) ;
       }
     } break ;
     default:
@@ -6090,102 +6198,106 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 209)) ;
-  const enumGalgasBool test_24 = GALGAS_bool (kIsEqual, var_processorName_439.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)).objectCompare (GALGAS_string ("pic18_60"))).operator_or (GALGAS_bool (kIsEqual, var_processorName_439.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)).objectCompare (GALGAS_string ("pic18_80"))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)).boolEnum () ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 208)) ;
+  const enumGalgasBool test_24 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).objectCompare (GALGAS_string ("pic18_60"))).operator_or (GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).objectCompare (GALGAS_string ("pic18_80"))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).boolEnum () ;
   if (kBoolTrue == test_24) {
-    GALGAS_uintlist joker_6149_4 ; // Joker input parameter
-    GALGAS_uint joker_6149_3 ; // Joker input parameter
-    GALGAS_bitSliceTable joker_6149_2 ; // Joker input parameter
-    GALGAS_string joker_6149_1 ; // Joker input parameter
-    var_registerTable_2194.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("BSR"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), joker_6149_4, joker_6149_3, joker_6149_2, joker_6149_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)) ;
-    GALGAS_uintlist joker_6225_4 ; // Joker input parameter
-    GALGAS_uint joker_6225_3 ; // Joker input parameter
-    GALGAS_bitSliceTable joker_6225_2 ; // Joker input parameter
-    GALGAS_string joker_6225_1 ; // Joker input parameter
-    var_registerTable_2194.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSL"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), joker_6225_4, joker_6225_3, joker_6225_2, joker_6225_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)) ;
-    GALGAS_uintlist joker_6301_4 ; // Joker input parameter
-    GALGAS_uint joker_6301_3 ; // Joker input parameter
-    GALGAS_bitSliceTable joker_6301_2 ; // Joker input parameter
-    GALGAS_string joker_6301_1 ; // Joker input parameter
-    var_registerTable_2194.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), joker_6301_4, joker_6301_3, joker_6301_2, joker_6301_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)) ;
-    GALGAS_uintlist joker_6377_4 ; // Joker input parameter
-    GALGAS_uint joker_6377_3 ; // Joker input parameter
-    GALGAS_bitSliceTable joker_6377_2 ; // Joker input parameter
-    GALGAS_string joker_6377_1 ; // Joker input parameter
-    var_registerTable_2194.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSU"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 215))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 215)), joker_6377_4, joker_6377_3, joker_6377_2, joker_6377_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 215)) ;
+    GALGAS_uintlist joker_6164_5 ; // Joker input parameter
+    GALGAS_uint joker_6164_4 ; // Joker input parameter
+    GALGAS_bitSliceTable joker_6164_3 ; // Joker input parameter
+    GALGAS_string joker_6164_2 ; // Joker input parameter
+    GALGAS_registerProtection joker_6164_1 ; // Joker input parameter
+    var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("BSR"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)), joker_6164_5, joker_6164_4, joker_6164_3, joker_6164_2, joker_6164_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)) ;
+    GALGAS_uintlist joker_6240_5 ; // Joker input parameter
+    GALGAS_uint joker_6240_4 ; // Joker input parameter
+    GALGAS_bitSliceTable joker_6240_3 ; // Joker input parameter
+    GALGAS_string joker_6240_2 ; // Joker input parameter
+    GALGAS_registerProtection joker_6240_1 ; // Joker input parameter
+    var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSL"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), joker_6240_5, joker_6240_4, joker_6240_3, joker_6240_2, joker_6240_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)) ;
+    GALGAS_uintlist joker_6316_5 ; // Joker input parameter
+    GALGAS_uint joker_6316_4 ; // Joker input parameter
+    GALGAS_bitSliceTable joker_6316_3 ; // Joker input parameter
+    GALGAS_string joker_6316_2 ; // Joker input parameter
+    GALGAS_registerProtection joker_6316_1 ; // Joker input parameter
+    var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), joker_6316_5, joker_6316_4, joker_6316_3, joker_6316_2, joker_6316_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)) ;
+    GALGAS_uintlist joker_6392_5 ; // Joker input parameter
+    GALGAS_uint joker_6392_4 ; // Joker input parameter
+    GALGAS_bitSliceTable joker_6392_3 ; // Joker input parameter
+    GALGAS_string joker_6392_2 ; // Joker input parameter
+    GALGAS_registerProtection joker_6392_1 ; // Joker input parameter
+    var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSU"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), joker_6392_5, joker_6392_4, joker_6392_3, joker_6392_2, joker_6392_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)) ;
   }
-  GALGAS_string var_sharedBankName_6454 = GALGAS_string::makeEmptyString () ;
-  const enumGalgasBool test_25 = GALGAS_bool (kIsEqual, var_processorName_439.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 219)).objectCompare (GALGAS_string ("mid-range"))).boolEnum () ;
+  GALGAS_string var_sharedBankName_6469 = GALGAS_string::makeEmptyString () ;
+  const enumGalgasBool test_25 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 218)).objectCompare (GALGAS_string ("mid-range"))).boolEnum () ;
   if (kBoolTrue == test_25) {
-    cEnumerator_ramBankTable enumerator_6563 (var_ramBankTable_1534, kENUMERATION_UP) ;
-    bool bool_26 = GALGAS_bool (kIsEqual, var_sharedBankName_6454.objectCompare (GALGAS_string::makeEmptyString ())).isValidAndTrue () ;
-    if (enumerator_6563.hasCurrentObject () && bool_26) {
-      while (enumerator_6563.hasCurrentObject () && bool_26) {
-        GALGAS_uint var_bankAccessibility_6624 = GALGAS_uint ((uint32_t) 1U).left_shift_operation (enumerator_6563.current_mFirstFreeAddress (HERE).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 221)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 221)) ;
-        cEnumerator_uintlist enumerator_6691 (enumerator_6563.current_mMirrorOffsetList (HERE), kENUMERATION_UP) ;
-        while (enumerator_6691.hasCurrentObject ()) {
-          var_bankAccessibility_6624 = var_bankAccessibility_6624.operator_or (GALGAS_uint ((uint32_t) 1U).left_shift_operation (enumerator_6563.current_mFirstFreeAddress (HERE).add_operation (enumerator_6691.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 223)).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 223)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 223)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 223)) ;
-          enumerator_6691.gotoNextObject () ;
+    cEnumerator_ramBankTable enumerator_6578 (var_ramBankTable_1532, kENUMERATION_UP) ;
+    bool bool_26 = GALGAS_bool (kIsEqual, var_sharedBankName_6469.objectCompare (GALGAS_string::makeEmptyString ())).isValidAndTrue () ;
+    if (enumerator_6578.hasCurrentObject () && bool_26) {
+      while (enumerator_6578.hasCurrentObject () && bool_26) {
+        GALGAS_uint var_bankAccessibility_6639 = GALGAS_uint ((uint32_t) 1U).left_shift_operation (enumerator_6578.current_mFirstFreeAddress (HERE).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)) ;
+        cEnumerator_uintlist enumerator_6706 (enumerator_6578.current_mMirrorOffsetList (HERE), kENUMERATION_UP) ;
+        while (enumerator_6706.hasCurrentObject ()) {
+          var_bankAccessibility_6639 = var_bankAccessibility_6639.operator_or (GALGAS_uint ((uint32_t) 1U).left_shift_operation (enumerator_6578.current_mFirstFreeAddress (HERE).add_operation (enumerator_6706.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) ;
+          enumerator_6706.gotoNextObject () ;
         }
-        const enumGalgasBool test_27 = GALGAS_bool (kIsEqual, GALGAS_uint ((uint32_t) 1U).left_shift_operation (var_bankCount_1328.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 225)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 225)).objectCompare (var_bankAccessibility_6624.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 225)))).boolEnum () ;
+        const enumGalgasBool test_27 = GALGAS_bool (kIsEqual, GALGAS_uint ((uint32_t) 1U).left_shift_operation (var_bankCount_1326.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).objectCompare (var_bankAccessibility_6639.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)))).boolEnum () ;
         if (kBoolTrue == test_27) {
-          var_sharedBankName_6454 = enumerator_6563.current_lkey (HERE).getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 226)) ;
+          var_sharedBankName_6469 = enumerator_6578.current_lkey (HERE).getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 225)) ;
         }
-        enumerator_6563.gotoNextObject () ;
-        if (enumerator_6563.hasCurrentObject ()) {
-          bool_26 = GALGAS_bool (kIsEqual, var_sharedBankName_6454.objectCompare (GALGAS_string::makeEmptyString ())).isValidAndTrue () ;
+        enumerator_6578.gotoNextObject () ;
+        if (enumerator_6578.hasCurrentObject ()) {
+          bool_26 = GALGAS_bool (kIsEqual, var_sharedBankName_6469.objectCompare (GALGAS_string::makeEmptyString ())).isValidAndTrue () ;
         }
       }
     }
   }
-  outArgument_outPiccoloDeviceModel = GALGAS_piccoloDeviceModel::constructor_new (var_deviceName_348, var_processorType_399, var_romSize_979, var_bankCount_1328, var_registerTable_2194, var_ramBankTable_1534, var_eepromSize_1004, var_eepromAddress_1026, var_configRegisterMap_4212, var_sharedBankName_6454  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 231)) ;
+  outArgument_outPiccoloDeviceModel = GALGAS_piccoloDeviceModel::constructor_new (var_deviceName_346, var_processorType_397, var_romSize_977, var_bankCount_1326, var_registerTable_2192, var_ramBankTable_1532, var_eepromSize_1002, var_eepromAddress_1024, var_configRegisterMap_4227, var_sharedBankName_6469  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 230)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_parse (C_Lexique_piccoloDevice_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_controller) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 12)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 13)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 14)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_processor) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 15)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 17)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 29)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_romsize) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 30)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 31)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 32)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_controller) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 11)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 12)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 13)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_processor) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 14)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 16)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 28)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_romsize) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 29)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 30)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 31)) ;
   switch (select_piccoloDevice_5F_syntax_0 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_eepromsize) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 39)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 40)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 42)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 43)) ;
-    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 45)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_eepromsize) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 38)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 39)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 41)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 42)) ;
+    inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 44)) ;
   } break ;
   default:
     break ;
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_bank) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 47)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 48)) ;
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 49)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_bank) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 46)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 47)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 48)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_piccoloDevice_5F_syntax_1 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_unusedregister) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 52)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 53)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_unusedregister) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 51)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 52)) ;
       switch (select_piccoloDevice_5F_syntax_2 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 56)) ;
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 57)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 55)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 56)) ;
       } break ;
       default:
         break ;
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 59)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 58)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -6196,23 +6308,23 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   while (repeatFlag_1) {
     switch (select_piccoloDevice_5F_syntax_3 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_ram) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 64)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 65)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 66)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 67)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 68)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 69)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_ram) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 63)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 64)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3A_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 65)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 66)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_to) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 67)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 68)) ;
       switch (select_piccoloDevice_5F_syntax_4 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mirrorat) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 73)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mirrorat) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 72)) ;
         bool repeatFlag_2 = true ;
         while (repeatFlag_2) {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 74)) ;
           switch (select_piccoloDevice_5F_syntax_5 (inCompiler)) {
           case 2: {
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 78)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 77)) ;
           } break ;
           default:
             repeatFlag_2 = false ;
@@ -6223,7 +6335,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       default:
         break ;
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 81)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 80)) ;
     } break ;
     default:
       repeatFlag_1 = false ;
@@ -6234,43 +6346,43 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   while (repeatFlag_3) {
     switch (select_piccoloDevice_5F_syntax_6 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_register) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 93)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 94)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 95)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_register) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 92)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 93)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 94)) ;
       bool repeatFlag_4 = true ;
       while (repeatFlag_4) {
-        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 98)) ;
+        inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 97)) ;
         switch (select_piccoloDevice_5F_syntax_7 (inCompiler)) {
         case 2: {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 101)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 100)) ;
         } break ;
         default:
           repeatFlag_4 = false ;
           break ;
         }
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 103)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 102)) ;
       bool repeatFlag_5 = true ;
       while (repeatFlag_5) {
         switch (select_piccoloDevice_5F_syntax_9 (inCompiler)) {
         case 1: {
           bool repeatFlag_6 = true ;
           while (repeatFlag_6) {
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 112)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 111)) ;
             switch (select_piccoloDevice_5F_syntax_11 (inCompiler)) {
             case 1: {
             } break ;
             case 2: {
-              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
-              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 121)) ;
-              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)) ;
+              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 119)) ;
+              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
+              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)) ;
             } break ;
             default:
               break ;
             }
             switch (select_piccoloDevice_5F_syntax_10 (inCompiler)) {
             case 2: {
-              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2F_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 132)) ;
+              inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2F_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 131)) ;
             } break ;
             default:
               repeatFlag_6 = false ;
@@ -6279,22 +6391,22 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           }
         } break ;
         case 2: {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 137)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 136)) ;
         } break ;
         default:
           break ;
         }
         switch (select_piccoloDevice_5F_syntax_8 (inCompiler)) {
         case 2: {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 142)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 141)) ;
         } break ;
         default:
           repeatFlag_5 = false ;
           break ;
         }
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3E_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 151)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3E_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
     } break ;
     default:
       repeatFlag_3 = false ;
@@ -6305,46 +6417,46 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   while (repeatFlag_7) {
     switch (select_piccoloDevice_5F_syntax_12 (inCompiler)) {
     case 2: {
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_configuration) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 156)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 157)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 158)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 159)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_width) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 160)) ;
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 161)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_configuration) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 155)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 156)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 157)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 158)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_width) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 159)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 160)) ;
       bool repeatFlag_8 = true ;
       while (repeatFlag_8) {
         switch (select_piccoloDevice_5F_syntax_13 (inCompiler)) {
         case 2: {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_illegal) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 165)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 166)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 167)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_message) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 170)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_illegal) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 164)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 165)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 166)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 167)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_message) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
         } break ;
         default:
           repeatFlag_8 = false ;
           break ;
         }
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 173)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 172)) ;
       bool repeatFlag_9 = true ;
       while (repeatFlag_9) {
         switch (select_piccoloDevice_5F_syntax_14 (inCompiler)) {
         case 2: {
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 178)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 184)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_description) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 185)) ;
-          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 186)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 177)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_description) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 184)) ;
+          inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 185)) ;
           bool repeatFlag_10 = true ;
           while (repeatFlag_10) {
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_setting) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 189)) ;
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 190)) ;
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 191)) ;
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 192)) ;
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_description) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 193)) ;
-            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 194)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_setting) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 188)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 189)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 190)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 191)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_description) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 192)) ;
+            inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 193)) ;
             switch (select_piccoloDevice_5F_syntax_15 (inCompiler)) {
             case 2: {
             } break ;
@@ -6359,14 +6471,14 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           break ;
         }
       }
-      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 200)) ;
+      inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 199)) ;
     } break ;
     default:
       repeatFlag_7 = false ;
       break ;
     }
   }
-  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 209)) ;
+  inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 208)) ;
   inCompiler->resetTemplateString () ;
 }
 
@@ -8838,6 +8950,9 @@ typeComparisonResult cPtr_byteDeclarationInRam::dynamicObjectCompare (const acPt
   if (kOperandEqual == result) {
     result = mProperty_mBitDefinitionString.objectCompare (p->mProperty_mBitDefinitionString) ;
   }
+  if (kOperandEqual == result) {
+    result = mProperty_mProtection.objectCompare (p->mProperty_mProtection) ;
+  }
   return result ;
 }
 
@@ -8868,16 +8983,6 @@ GALGAS_declarationInRam () {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_byteDeclarationInRam GALGAS_byteDeclarationInRam::constructor_default (LOCATION_ARGS) {
-  return GALGAS_byteDeclarationInRam::constructor_new (GALGAS_lstring::constructor_default (HERE),
-                                                       GALGAS_luint::constructor_default (HERE),
-                                                       GALGAS_bitSliceTable::constructor_emptyMap (HERE),
-                                                       GALGAS_string::constructor_default (HERE)
-                                                       COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
 GALGAS_byteDeclarationInRam::GALGAS_byteDeclarationInRam (const cPtr_byteDeclarationInRam * inSourcePtr) :
 GALGAS_declarationInRam (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_byteDeclarationInRam) ;
@@ -8888,11 +8993,12 @@ GALGAS_declarationInRam (inSourcePtr) {
 GALGAS_byteDeclarationInRam GALGAS_byteDeclarationInRam::constructor_new (const GALGAS_lstring & inAttribute_mName,
                                                                           const GALGAS_luint & inAttribute_mSize,
                                                                           const GALGAS_bitSliceTable & inAttribute_mBitSliceTable,
-                                                                          const GALGAS_string & inAttribute_mBitDefinitionString
+                                                                          const GALGAS_string & inAttribute_mBitDefinitionString,
+                                                                          const GALGAS_registerProtection & inAttribute_mProtection
                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_byteDeclarationInRam result ;
-  if (inAttribute_mName.isValid () && inAttribute_mSize.isValid () && inAttribute_mBitSliceTable.isValid () && inAttribute_mBitDefinitionString.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_byteDeclarationInRam (inAttribute_mName, inAttribute_mSize, inAttribute_mBitSliceTable, inAttribute_mBitDefinitionString COMMA_THERE)) ;
+  if (inAttribute_mName.isValid () && inAttribute_mSize.isValid () && inAttribute_mBitSliceTable.isValid () && inAttribute_mBitDefinitionString.isValid () && inAttribute_mProtection.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_byteDeclarationInRam (inAttribute_mName, inAttribute_mSize, inAttribute_mBitSliceTable, inAttribute_mBitDefinitionString, inAttribute_mProtection COMMA_THERE)) ;
   }
   return result ;
 }
@@ -8970,19 +9076,39 @@ GALGAS_string cPtr_byteDeclarationInRam::getter_mBitDefinitionString (UNUSED_LOC
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_registerProtection GALGAS_byteDeclarationInRam::getter_mProtection (UNUSED_LOCATION_ARGS) const {
+  GALGAS_registerProtection result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_byteDeclarationInRam * p = (const cPtr_byteDeclarationInRam *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
+    result = p->mProperty_mProtection ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_registerProtection cPtr_byteDeclarationInRam::getter_mProtection (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mProtection ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
 //                                    Pointer class for @byteDeclarationInRam class                                    *
 //---------------------------------------------------------------------------------------------------------------------*
 
 cPtr_byteDeclarationInRam::cPtr_byteDeclarationInRam (const GALGAS_lstring & in_mName,
                                                       const GALGAS_luint & in_mSize,
                                                       const GALGAS_bitSliceTable & in_mBitSliceTable,
-                                                      const GALGAS_string & in_mBitDefinitionString
+                                                      const GALGAS_string & in_mBitDefinitionString,
+                                                      const GALGAS_registerProtection & in_mProtection
                                                       COMMA_LOCATION_ARGS) :
 cPtr_declarationInRam (THERE),
 mProperty_mName (in_mName),
 mProperty_mSize (in_mSize),
 mProperty_mBitSliceTable (in_mBitSliceTable),
-mProperty_mBitDefinitionString (in_mBitDefinitionString) {
+mProperty_mBitDefinitionString (in_mBitDefinitionString),
+mProperty_mProtection (in_mProtection) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9001,6 +9127,8 @@ void cPtr_byteDeclarationInRam::description (C_String & ioString,
   mProperty_mBitSliceTable.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mBitDefinitionString.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mProtection.description (ioString, inIndentation+1) ;
   ioString << "]" ;
 }
 
@@ -9008,7 +9136,7 @@ void cPtr_byteDeclarationInRam::description (C_String & ioString,
 
 acPtr_class * cPtr_byteDeclarationInRam::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_byteDeclarationInRam (mProperty_mName, mProperty_mSize, mProperty_mBitSliceTable, mProperty_mBitDefinitionString COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_byteDeclarationInRam (mProperty_mName, mProperty_mSize, mProperty_mBitSliceTable, mProperty_mBitDefinitionString, mProperty_mProtection COMMA_THERE)) ;
   return ptr ;
 }
 

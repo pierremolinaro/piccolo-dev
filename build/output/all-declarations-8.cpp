@@ -2045,33 +2045,33 @@ static const int16_t gProductions_piccoloDevice_grammar [] = {
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) // $}$
 , END_PRODUCTION
 //---- Added productions from 'select' and 'repeat' instructions
-// At index 19 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 35
+// At index 19 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 34
 , END_PRODUCTION
-// At index 20 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 35
+// At index 20 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 34
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_eepromsize) // $eepromsize$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
 , END_PRODUCTION
-// At index 26 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 50
+// At index 26 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 49
 , END_PRODUCTION
-// At index 27 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 50
+// At index 27 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 49
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_unusedregister) // $unusedregister$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , NONTERMINAL (3) // <select_piccoloDevice_5F_syntax_2>
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
 , NONTERMINAL (2) // <select_piccoloDevice_5F_syntax_1>
 , END_PRODUCTION
-// At index 33 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 54
+// At index 33 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 53
 , END_PRODUCTION
-// At index 34 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 54
+// At index 34 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 53
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_to) // $to$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , END_PRODUCTION
-// At index 37 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 62
+// At index 37 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 61
 , END_PRODUCTION
-// At index 38 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 62
+// At index 38 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 61
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_ram) // $ram$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3A_) // $:$
@@ -2082,23 +2082,23 @@ static const int16_t gProductions_piccoloDevice_grammar [] = {
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
 , NONTERMINAL (4) // <select_piccoloDevice_5F_syntax_3>
 , END_PRODUCTION
-// At index 48 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 71
+// At index 48 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 70
 , END_PRODUCTION
-// At index 49 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 71
+// At index 49 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 70
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mirrorat) // $mirrorat$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , NONTERMINAL (6) // <select_piccoloDevice_5F_syntax_5>
 , END_PRODUCTION
-// At index 53 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 74
+// At index 53 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 73
 , END_PRODUCTION
-// At index 54 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 74
+// At index 54 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 73
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , NONTERMINAL (6) // <select_piccoloDevice_5F_syntax_5>
 , END_PRODUCTION
-// At index 58 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 91
+// At index 58 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 90
 , END_PRODUCTION
-// At index 59 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 91
+// At index 59 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 90
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_register) // $register$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
@@ -2111,46 +2111,46 @@ static const int16_t gProductions_piccoloDevice_grammar [] = {
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
 , NONTERMINAL (7) // <select_piccoloDevice_5F_syntax_6>
 , END_PRODUCTION
-// At index 71 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 97
+// At index 71 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 96
 , END_PRODUCTION
-// At index 72 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 97
+// At index 72 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 96
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , NONTERMINAL (8) // <select_piccoloDevice_5F_syntax_7>
 , END_PRODUCTION
-// At index 76 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 107
+// At index 76 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 106
 , END_PRODUCTION
-// At index 77 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 107
+// At index 77 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 106
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
 , NONTERMINAL (10) // <select_piccoloDevice_5F_syntax_9>
 , NONTERMINAL (9) // <select_piccoloDevice_5F_syntax_8>
 , END_PRODUCTION
-// At index 81 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 108
+// At index 81 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 107
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , NONTERMINAL (12) // <select_piccoloDevice_5F_syntax_11>
 , NONTERMINAL (11) // <select_piccoloDevice_5F_syntax_10>
 , END_PRODUCTION
-// At index 85 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 108
+// At index 85 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 107
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2D_) // $-$
 , END_PRODUCTION
-// At index 87 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 110
+// At index 87 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 109
 , END_PRODUCTION
-// At index 88 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 110
+// At index 88 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 109
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2F_) // $/$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , NONTERMINAL (12) // <select_piccoloDevice_5F_syntax_11>
 , NONTERMINAL (11) // <select_piccoloDevice_5F_syntax_10>
 , END_PRODUCTION
-// At index 93 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 113
+// At index 93 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 112
 , END_PRODUCTION
-// At index 94 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 113
+// At index 94 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 112
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5B_) // $[$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5D_) // $]$
 , END_PRODUCTION
-// At index 98 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 154
+// At index 98 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 153
 , END_PRODUCTION
-// At index 99 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 154
+// At index 99 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 153
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_configuration) // $configuration$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
@@ -2163,9 +2163,9 @@ static const int16_t gProductions_piccoloDevice_grammar [] = {
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) // $}$
 , NONTERMINAL (13) // <select_piccoloDevice_5F_syntax_12>
 , END_PRODUCTION
-// At index 111 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 163
+// At index 111 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 162
 , END_PRODUCTION
-// At index 112 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 163
+// At index 112 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 162
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_illegal) // $illegal$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
@@ -2174,9 +2174,9 @@ static const int16_t gProductions_piccoloDevice_grammar [] = {
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
 , NONTERMINAL (14) // <select_piccoloDevice_5F_syntax_13>
 , END_PRODUCTION
-// At index 120 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 176
+// At index 120 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 175
 , END_PRODUCTION
-// At index 121 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 176
+// At index 121 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 175
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
@@ -2191,9 +2191,9 @@ static const int16_t gProductions_piccoloDevice_grammar [] = {
 , NONTERMINAL (16) // <select_piccoloDevice_5F_syntax_15>
 , NONTERMINAL (15) // <select_piccoloDevice_5F_syntax_14>
 , END_PRODUCTION
-// At index 135 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 188
+// At index 135 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 187
 , END_PRODUCTION
-// At index 136 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 188
+// At index 136 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 187
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_setting) // $setting$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
@@ -2258,38 +2258,38 @@ static const cProductionNameDescriptor gProductionNames_piccoloDevice_grammar [3
 
 static const int16_t gProductionIndexes_piccoloDevice_grammar [34] = {
 0, // index 0 : <start_symbol>, in file 'piccoloDevice_syntax.ggs', line 10
-19, // index 1 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 35
-20, // index 2 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 35
-26, // index 3 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 50
-27, // index 4 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 50
-33, // index 5 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 54
-34, // index 6 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 54
-37, // index 7 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 62
-38, // index 8 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 62
-48, // index 9 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 71
-49, // index 10 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 71
-53, // index 11 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 74
-54, // index 12 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 74
-58, // index 13 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 91
-59, // index 14 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 91
-71, // index 15 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 97
-72, // index 16 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 97
-76, // index 17 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 107
-77, // index 18 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 107
-81, // index 19 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 108
-85, // index 20 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 108
-87, // index 21 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 110
-88, // index 22 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 110
-93, // index 23 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 113
-94, // index 24 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 113
-98, // index 25 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 154
-99, // index 26 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 154
-111, // index 27 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 163
-112, // index 28 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 163
-120, // index 29 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 176
-121, // index 30 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 176
-135, // index 31 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 188
-136, // index 32 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 188
+19, // index 1 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 34
+20, // index 2 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 34
+26, // index 3 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 49
+27, // index 4 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 49
+33, // index 5 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 53
+34, // index 6 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 53
+37, // index 7 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 61
+38, // index 8 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 61
+48, // index 9 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 70
+49, // index 10 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 70
+53, // index 11 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 73
+54, // index 12 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 73
+58, // index 13 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 90
+59, // index 14 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 90
+71, // index 15 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 96
+72, // index 16 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 96
+76, // index 17 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 106
+77, // index 18 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 106
+81, // index 19 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 107
+85, // index 20 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 107
+87, // index 21 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 109
+88, // index 22 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 109
+93, // index 23 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 112
+94, // index 24 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 112
+98, // index 25 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 153
+99, // index 26 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 153
+111, // index 27 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 162
+112, // index 28 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 162
+120, // index 29 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 175
+121, // index 30 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 175
+135, // index 31 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 187
+136, // index 32 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 187
 144 // index 33 : <>, in file '.ggs', line 0
 } ;
 
@@ -9661,7 +9661,8 @@ mProperty_lkey (),
 mProperty_mRegisterAddressList (),
 mProperty_mSize (),
 mProperty_mBitSliceTable (),
-mProperty_mBitDefinitionString () {
+mProperty_mBitDefinitionString (),
+mProperty_mProtection () {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9675,22 +9676,14 @@ GALGAS_registerTable_2D_element::GALGAS_registerTable_2D_element (const GALGAS_l
                                                                   const GALGAS_uintlist & inOperand1,
                                                                   const GALGAS_uint & inOperand2,
                                                                   const GALGAS_bitSliceTable & inOperand3,
-                                                                  const GALGAS_string & inOperand4) :
+                                                                  const GALGAS_string & inOperand4,
+                                                                  const GALGAS_registerProtection & inOperand5) :
 mProperty_lkey (inOperand0),
 mProperty_mRegisterAddressList (inOperand1),
 mProperty_mSize (inOperand2),
 mProperty_mBitSliceTable (inOperand3),
-mProperty_mBitDefinitionString (inOperand4) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_registerTable_2D_element GALGAS_registerTable_2D_element::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_registerTable_2D_element (GALGAS_lstring::constructor_default (HERE),
-                                          GALGAS_uintlist::constructor_emptyList (HERE),
-                                          GALGAS_uint::constructor_default (HERE),
-                                          GALGAS_bitSliceTable::constructor_emptyMap (HERE),
-                                          GALGAS_string::constructor_default (HERE)) ;
+mProperty_mBitDefinitionString (inOperand4),
+mProperty_mProtection (inOperand5) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9699,11 +9692,12 @@ GALGAS_registerTable_2D_element GALGAS_registerTable_2D_element::constructor_new
                                                                                   const GALGAS_uintlist & inOperand1,
                                                                                   const GALGAS_uint & inOperand2,
                                                                                   const GALGAS_bitSliceTable & inOperand3,
-                                                                                  const GALGAS_string & inOperand4 
+                                                                                  const GALGAS_string & inOperand4,
+                                                                                  const GALGAS_registerProtection & inOperand5 
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_registerTable_2D_element result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_registerTable_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
+    result = GALGAS_registerTable_2D_element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5) ;
   }
   return result ;
 }
@@ -9727,13 +9721,16 @@ typeComparisonResult GALGAS_registerTable_2D_element::objectCompare (const GALGA
   if (result == kOperandEqual) {
     result = mProperty_mBitDefinitionString.objectCompare (inOperand.mProperty_mBitDefinitionString) ;
   }
+  if (result == kOperandEqual) {
+    result = mProperty_mProtection.objectCompare (inOperand.mProperty_mProtection) ;
+  }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 bool GALGAS_registerTable_2D_element::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mRegisterAddressList.isValid () && mProperty_mSize.isValid () && mProperty_mBitSliceTable.isValid () && mProperty_mBitDefinitionString.isValid () ;
+  return mProperty_lkey.isValid () && mProperty_mRegisterAddressList.isValid () && mProperty_mSize.isValid () && mProperty_mBitSliceTable.isValid () && mProperty_mBitDefinitionString.isValid () && mProperty_mProtection.isValid () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9744,6 +9741,7 @@ void GALGAS_registerTable_2D_element::drop (void) {
   mProperty_mSize.drop () ;
   mProperty_mBitSliceTable.drop () ;
   mProperty_mBitDefinitionString.drop () ;
+  mProperty_mProtection.drop () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9763,6 +9761,8 @@ void GALGAS_registerTable_2D_element::description (C_String & ioString,
     mProperty_mBitSliceTable.description (ioString, inIndentation+1) ;
     ioString << ", " ;
     mProperty_mBitDefinitionString.description (ioString, inIndentation+1) ;
+    ioString << ", " ;
+    mProperty_mProtection.description (ioString, inIndentation+1) ;
   }
   ioString << ">" ;
 }
@@ -9795,6 +9795,12 @@ GALGAS_bitSliceTable GALGAS_registerTable_2D_element::getter_mBitSliceTable (UNU
 
 GALGAS_string GALGAS_registerTable_2D_element::getter_mBitDefinitionString (UNUSED_LOCATION_ARGS) const {
   return mProperty_mBitDefinitionString ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_registerProtection GALGAS_registerTable_2D_element::getter_mProtection (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mProtection ;
 }
 
 
@@ -12722,32 +12728,34 @@ static void extensionMethod_registerExpression_resolveBaselineAccess (const cPtr
     var_assemblyString_797.plusAssign_operation(GALGAS_string (" + ").add_operation (var_offset_683.getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)).getter_hexString (SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 26)) ;
   }
   GALGAS_uintlist var_registerAddressList_1013 ;
-  GALGAS_uint var_size_1033 ;
-  GALGAS_string joker_1061 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (object->mProperty_mRegisterName, var_registerAddressList_1013, var_size_1033, outArgument_outBitSliceTable, joker_1061, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 29)) ;
-  GALGAS_uint var_registerAddress_1128 = GALGAS_uint ((uint32_t) 0U) ;
-  const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, var_registerAddressList_1013.getter_length (SOURCE_FILE ("baseline_semantic_analysis.galgas", 38)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+  GALGAS_registerProtection var_protection_1069 ;
+  GALGAS_uint joker_1019 ; // Joker input parameter
+  GALGAS_string joker_1048 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (object->mProperty_mRegisterName, var_registerAddressList_1013, joker_1019, outArgument_outBitSliceTable, joker_1048, var_protection_1069, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 29)) ;
+  extensionMethod_checkPrivateAccess (constinArgument_inRegisterTable, object->mProperty_mRegisterName, GALGAS_bool (true), var_protection_1069, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 37)) ;
+  GALGAS_uint var_registerAddress_1213 = GALGAS_uint ((uint32_t) 0U) ;
+  const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, var_registerAddressList_1013.getter_length (SOURCE_FILE ("baseline_semantic_analysis.galgas", 40)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
   if (kBoolTrue == test_1) {
-    GALGAS_bool var_found_1191 = GALGAS_bool (false) ;
-    cEnumerator_uintlist enumerator_1234 (var_registerAddressList_1013, kENUMERATION_UP) ;
-    bool bool_2 = var_found_1191.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 40)).isValidAndTrue () ;
-    if (enumerator_1234.hasCurrentObject () && bool_2) {
-      while (enumerator_1234.hasCurrentObject () && bool_2) {
-        var_registerAddress_1128 = enumerator_1234.current_mValue (HERE) ;
-        var_found_1191 = GALGAS_bool (kIsInfOrEqual, enumerator_1234.current_mValue (HERE).objectCompare (GALGAS_uint ((uint32_t) 31U))) ;
-        enumerator_1234.gotoNextObject () ;
-        if (enumerator_1234.hasCurrentObject ()) {
-          bool_2 = var_found_1191.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 40)).isValidAndTrue () ;
+    GALGAS_bool var_found_1276 = GALGAS_bool (false) ;
+    cEnumerator_uintlist enumerator_1319 (var_registerAddressList_1013, kENUMERATION_UP) ;
+    bool bool_2 = var_found_1276.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 42)).isValidAndTrue () ;
+    if (enumerator_1319.hasCurrentObject () && bool_2) {
+      while (enumerator_1319.hasCurrentObject () && bool_2) {
+        var_registerAddress_1213 = enumerator_1319.current_mValue (HERE) ;
+        var_found_1276 = GALGAS_bool (kIsInfOrEqual, enumerator_1319.current_mValue (HERE).objectCompare (GALGAS_uint ((uint32_t) 31U))) ;
+        enumerator_1319.gotoNextObject () ;
+        if (enumerator_1319.hasCurrentObject ()) {
+          bool_2 = var_found_1276.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 42)).isValidAndTrue () ;
         }
       }
     }
-    const enumGalgasBool test_3 = var_found_1191.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 44)).boolEnum () ;
+    const enumGalgasBool test_3 = var_found_1276.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 46)).boolEnum () ;
     if (kBoolTrue == test_3) {
       TC_Array <C_FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (object->mProperty_mRegisterName.getter_location (SOURCE_FILE ("baseline_semantic_analysis.galgas", 45)), GALGAS_string ("the register cannot be accessed directly; use indirect addressing throught FSR register"), fixItArray4  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 45)) ;
+      inCompiler->emitSemanticError (object->mProperty_mRegisterName.getter_location (SOURCE_FILE ("baseline_semantic_analysis.galgas", 47)), GALGAS_string ("the register cannot be accessed directly; use indirect addressing throught FSR register"), fixItArray4  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 47)) ;
     }
   }
-  outArgument_outIntermediateRegisterDescription = GALGAS_baseline_5F_intermediate_5F_registerExpression::constructor_new (var_assemblyString_797, var_registerAddress_1128.add_operation (var_offset_683.getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 51)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 51))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 49)) ;
+  outArgument_outIntermediateRegisterDescription = GALGAS_baseline_5F_intermediate_5F_registerExpression::constructor_new (var_assemblyString_797, var_registerAddress_1213.add_operation (var_offset_683.getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 53)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 53))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 51)) ;
 }
 //---------------------------------------------------------------------------------------------------------------------*
 

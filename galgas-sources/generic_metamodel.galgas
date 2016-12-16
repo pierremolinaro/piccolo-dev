@@ -24,11 +24,20 @@ abstract class @declarationInRam {
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+enum @registerProtection {
+  case publicRegister
+  case protectedRegister
+  case privateRegister
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
 class @byteDeclarationInRam : @declarationInRam {
   @lstring mName
   @luint mSize
   @bitSliceTable mBitSliceTable
   @string mBitDefinitionString
+  @registerProtection mProtection
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

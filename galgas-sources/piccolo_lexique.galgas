@@ -65,6 +65,8 @@ list controlKeyWordList style keywordStyle error message "the '%K' keyword"{
   "page",
   "pic18",
   "preserved",
+  "protected",
+  "private",
   "ram",
   "requires",
   "rom",
@@ -150,11 +152,11 @@ list instructionKeyWordList style instructionStyle error message "the '%K' instr
 }
 
 
-rule 'a'->'z' |  'A'->'Z' {
+rule isUnicodeLetter {
   repeat
     enterCharacterIntoString (!?identifierString !toLower (!*) )
     enterCharacterIntoString (!?tokenString !* )
-  while 'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
+  while isUnicodeLetter | '_' | '0'->'9' :
   end
   send
     search identifierString in instructionKeyWordList

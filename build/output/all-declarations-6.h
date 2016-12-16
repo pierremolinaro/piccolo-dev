@@ -1789,14 +1789,12 @@ class GALGAS_registerTable_2D_element : public AC_GALGAS_root {
   public : GALGAS_uint mProperty_mSize ;
   public : GALGAS_bitSliceTable mProperty_mBitSliceTable ;
   public : GALGAS_string mProperty_mBitDefinitionString ;
+  public : GALGAS_registerProtection mProperty_mProtection ;
 
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
   public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_registerTable_2D_element constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Default constructor
   public : GALGAS_registerTable_2D_element (void) ;
@@ -1809,7 +1807,8 @@ class GALGAS_registerTable_2D_element : public AC_GALGAS_root {
                                             const GALGAS_uintlist & in_mRegisterAddressList,
                                             const GALGAS_uint & in_mSize,
                                             const GALGAS_bitSliceTable & in_mBitSliceTable,
-                                            const GALGAS_string & in_mBitDefinitionString) ;
+                                            const GALGAS_string & in_mBitDefinitionString,
+                                            const GALGAS_registerProtection & in_mProtection) ;
 
 //-- Start of generic part --*
 
@@ -1826,7 +1825,8 @@ class GALGAS_registerTable_2D_element : public AC_GALGAS_root {
                                                                          const class GALGAS_uintlist & inOperand1,
                                                                          const class GALGAS_uint & inOperand2,
                                                                          const class GALGAS_bitSliceTable & inOperand3,
-                                                                         const class GALGAS_string & inOperand4
+                                                                         const class GALGAS_string & inOperand4,
+                                                                         const class GALGAS_registerProtection & inOperand5
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -1847,6 +1847,8 @@ class GALGAS_registerTable_2D_element : public AC_GALGAS_root {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_bitSliceTable getter_mBitSliceTable (LOCATION_ARGS) const ;
 
+  public : VIRTUAL_IN_DEBUG class GALGAS_registerProtection getter_mProtection (LOCATION_ARGS) const ;
+
   public : VIRTUAL_IN_DEBUG class GALGAS_uintlist getter_mRegisterAddressList (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mSize (LOCATION_ARGS) const ;
@@ -1861,6 +1863,19 @@ class GALGAS_registerTable_2D_element : public AC_GALGAS_root {
 //---------------------------------------------------------------------------------------------------------------------*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_registerTable_2D_element ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                Extension method '@registerTable checkPrivateAccess'                                 *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void extensionMethod_checkPrivateAccess (const class GALGAS_registerTable inObject,
+                                         const class GALGAS_lstring constin_inKey,
+                                         const class GALGAS_bool constin_inWriteAccess,
+                                         const class GALGAS_registerProtection constin_inRegisterProtection,
+                                         class C_Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

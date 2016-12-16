@@ -121,6 +121,32 @@ byte var [n]
 \pic!n! doit être une constante littérale. Évidemment, \pic!n! doit être strictement positif. Si \pic!n! vaut 1, la déclaration est sémantiquement équivalente à la première forme.
 
 
+À partir de la version 3.1.3, des contrôles d'accès peuvent être mis en place :
+\begin{itemize}
+  \item \pic!protected!, \refSubsectionPage{variableProtected} ;
+  \item \pic!private!, \refSubsectionPage{variablePrivate}.
+\end{itemize}
+
+
+\subsectionLabel{\texttt{protected}}{variableProtected}
+\begin{piccolo}
+protected byte var
+\end{piccolo}
+
+L'accès à une variable \emph{protégée} est autorisé :
+\begin{itemize}
+\item en lecture ou en écriture dans le fichier où elle est déclarée ;
+\item en lecture uniquement dans les autres fichiers.
+\end{itemize}
+
+
+
+\subsectionLabel{\texttt{private}}{variablePrivate}
+\begin{piccolo}
+private byte var
+\end{piccolo}
+
+L'accès à une variable \emph{privée} est autorisé en lecture ou en écriture dans le fichier où elle est déclarée. La variable est inaccessible dans les autres fichiers.
 
 
 

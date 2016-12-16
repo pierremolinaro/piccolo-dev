@@ -1968,9 +1968,6 @@ class GALGAS_byteDeclarationInRam : public GALGAS_declarationInRam {
 //--- Constructor
   public : GALGAS_byteDeclarationInRam (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_byteDeclarationInRam constructor_default (LOCATION_ARGS) ;
-
 //---
   public : inline const class cPtr_byteDeclarationInRam * ptr (void) const { return (const cPtr_byteDeclarationInRam *) mObjectPtr ; }
 
@@ -1991,7 +1988,8 @@ class GALGAS_byteDeclarationInRam : public GALGAS_declarationInRam {
   public : static class GALGAS_byteDeclarationInRam constructor_new (const class GALGAS_lstring & inOperand0,
                                                                      const class GALGAS_luint & inOperand1,
                                                                      const class GALGAS_bitSliceTable & inOperand2,
-                                                                     const class GALGAS_string & inOperand3
+                                                                     const class GALGAS_string & inOperand3,
+                                                                     const class GALGAS_registerProtection & inOperand4
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2008,6 +2006,8 @@ class GALGAS_byteDeclarationInRam : public GALGAS_declarationInRam {
   public : VIRTUAL_IN_DEBUG class GALGAS_bitSliceTable getter_mBitSliceTable (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mName (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_registerProtection getter_mProtection (LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_luint getter_mSize (LOCATION_ARGS) const ;
 
@@ -2034,12 +2034,14 @@ class cPtr_byteDeclarationInRam : public cPtr_declarationInRam {
   public : GALGAS_luint mProperty_mSize ;
   public : GALGAS_bitSliceTable mProperty_mBitSliceTable ;
   public : GALGAS_string mProperty_mBitDefinitionString ;
+  public : GALGAS_registerProtection mProperty_mProtection ;
 
 //--- Constructor
   public : cPtr_byteDeclarationInRam (const GALGAS_lstring & in_mName,
                                       const GALGAS_luint & in_mSize,
                                       const GALGAS_bitSliceTable & in_mBitSliceTable,
-                                      const GALGAS_string & in_mBitDefinitionString
+                                      const GALGAS_string & in_mBitDefinitionString,
+                                      const GALGAS_registerProtection & in_mProtection
                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
@@ -2050,6 +2052,7 @@ class cPtr_byteDeclarationInRam : public cPtr_declarationInRam {
   public : VIRTUAL_IN_DEBUG GALGAS_luint getter_mSize (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bitSliceTable getter_mBitSliceTable (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mBitDefinitionString (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_registerProtection getter_mProtection (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

@@ -18,7 +18,8 @@ override method @byteDeclarationInRam handleDeclaration
   ?!@ramBankTable ioRamBank
   ?!@registerTable ioRegisterTable
   ?let @lstring inCurrentRamBank
-  ?!@declaredByteMap ioDeclaredByteMap {
+  ?!@declaredByteMap ioDeclaredByteMap
+{
   @uint lastAddressPlusOne
   @uint firstFreeAddress
   @uintlist mirrorOffsetList
@@ -33,7 +34,7 @@ override method @byteDeclarationInRam handleDeclaration
   if not [ioDeclaredByteMap hasKey !mName.string] then
     [!?ioDeclaredByteMap insertKey !mName]
   end
-  [!?ioRegisterTable insertKey !mName !addressList ![mSize uint] !mBitSliceTable !mBitDefinitionString]
+  [!?ioRegisterTable insertKey !mName !addressList ![mSize uint] !mBitSliceTable !mBitDefinitionString !mProtection]
   firstFreeAddress = firstFreeAddress + [mSize uint]
   [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress ![inCurrentRamBank string]]
   if firstFreeAddress > lastAddressPlusOne then

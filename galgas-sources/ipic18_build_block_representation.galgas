@@ -11,6 +11,7 @@ method @registerExpression analyzeRegisterExpression
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
+  ?writeAccess:let @bool inWriteAccess
   !@ipic18_intermediate_registerExpression outIPICregisterDescription
   !@bitSliceTable outBitSliceTable
   ?!@stringset ioUsedRegisters
@@ -30,7 +31,9 @@ method @registerExpression analyzeRegisterExpression
     ?@uint size
     ?outBitSliceTable
     ?*
+    ?let protection
   ]
+  [inRegisterTable checkPrivateAccess !mRegisterName !write:inWriteAccess !protection]
 #---
   if offset < 0LS then
     error mEndOfOffsetExpression: "offset (" + offset + ") should be >= 0"
@@ -71,6 +74,7 @@ method @registerExpression analyzeRegisterExpression
 method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
+  ?writeAccess:let @bool inWriteAccess
   !@ipic18_intermediate_registerExpressionWithoutBSRIndication outIPICregisterDescription
   ?!@stringset ioUsedRegisters
 {
@@ -82,7 +86,8 @@ method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
     assemblyString += " + " + [[offset uint] hexString]
   end
 #--- 
-  [inRegisterTable searchKey !mRegisterName ?var @uintlist registerAddressList ?var @uint size ?* ?*]
+  [inRegisterTable searchKey !mRegisterName ?var @uintlist registerAddressList ?var @uint size ?2* ?let protection]
+  [inRegisterTable checkPrivateAccess !mRegisterName !write:inWriteAccess !protection]
   [registerAddressList first ?var @uint registerAddress]
 #---
   if [offset uint] >= size then
@@ -100,10 +105,12 @@ method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
 method @registerExpression getRegisterAddress
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
+  ?writeAccess:let @bool inWriteAccess
   ?!@stringset ioUsedRegisters
   !@uint outRegisterAddress
 {
-  [inRegisterTable searchKey !mRegisterName ?var @uintlist registerAddressList ?var @uint size ?* ?*]
+  [inRegisterTable searchKey !mRegisterName ?var @uintlist registerAddressList ?var @uint size ?2* ?let protection]
+  [inRegisterTable checkPrivateAccess !mRegisterName !write:inWriteAccess !protection]
 #---
   [mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   if offset < 0LS then
@@ -167,6 +174,7 @@ override method @pic18Instruction_FDA analyzeSimpleInstruction
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:not m_W_isDestination
     ?var @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -196,6 +204,7 @@ override method @pic18Instruction_FA analyzeSimpleInstruction
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?var @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -231,12 +240,14 @@ override method @pic18Instruction_MOVFF analyzeSimpleInstruction
   [mSourceRegisterName analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:false
     ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication sourceIPICregisterDescription
     !?ioUsedRegisters
   ]
   [mDestinationRegisterName analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication destinationIPICregisterDescription
     !?ioUsedRegisters
   ]
@@ -263,6 +274,7 @@ override method @pic18Instruction_FBA analyzeSimpleInstruction
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?var @ipic18_intermediate_registerExpression IPICregisterDescription
     ?var @bitSliceTable bitSliceTable
     !?ioUsedRegisters
@@ -637,6 +649,7 @@ override method @pic18Instruction_savebank analyze
   [BSRregister analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication BSR_IPICregisterDescription
     !?ioUsedRegisters
   ]
@@ -644,6 +657,7 @@ override method @pic18Instruction_savebank analyze
   [mRegister analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication save_IPICregisterDescription
     !?ioUsedRegisters
   ]
@@ -824,7 +838,13 @@ override method @pic18Instruction_banksel_register analyze
   if inShouldPreserveBSR then
     error mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)"
   end
-  [mRegisterExpression getRegisterAddress !inRegisterTable !inConstantMap !?ioUsedRegisters ?let registerAddress]
+  [mRegisterExpression getRegisterAddress
+    !inRegisterTable
+    !inConstantMap
+    !writeAccess:false
+    !?ioUsedRegisters
+    ?let registerAddress
+  ]
 #  let @uint registerAddress = [mRegisterExpression getRegisterAddress !inRegisterTable]
   let @uint newBank = registerAddress >> 8
   if ioCurrentBank != newBank then
@@ -973,6 +993,7 @@ override method @pic18Instruction_LTBLPTR analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?var @ipic18_intermediate_registerExpression outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1021,6 +1042,7 @@ override method @pic18Instruction_LTBLPTR analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1069,6 +1091,7 @@ override method @pic18Instruction_LTBLPTR analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1146,6 +1169,7 @@ override method @pic18Instruction_LDATA16PTR analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?var @ipic18_intermediate_registerExpression outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1176,6 +1200,7 @@ override method @pic18Instruction_LDATA16PTR analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1206,6 +1231,7 @@ override method @pic18Instruction_LDATA16PTR analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1265,6 +1291,7 @@ override method @pic18Instruction_LDATA8PTR analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?var @ipic18_intermediate_registerExpression outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1295,6 +1322,7 @@ override method @pic18Instruction_LDATA8PTR analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1325,6 +1353,7 @@ override method @pic18Instruction_LDATA8PTR analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?outIPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1785,6 +1814,7 @@ override method @pic18Instruction_IF_BitTest analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:false
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?let @bitSliceTable bitSliceTable
     !?ioUsedRegisters
@@ -1855,6 +1885,7 @@ override method @pic18Instruction_IF_FA_SEMI_COLON analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:false
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -1922,6 +1953,7 @@ override method @pic18Instruction_IF_IncDec analyze
     !ioCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -3016,6 +3048,7 @@ override method @pic18RegisterComparisonCondition analyzeCondition
     !inCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:false
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -3080,6 +3113,7 @@ override method @pic18IncDecRegisterInCondition analyzeCondition
     !inCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:true
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -3123,6 +3157,7 @@ override method @pic18RegisterTestCondition analyzeCondition
     !inCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:false
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
@@ -3162,6 +3197,7 @@ override method @pic18BitTestInStructuredCondition analyzeCondition
     !inCurrentBank
     !inRegisterTable
     !inConstantMap
+    !writeAccess:false
     ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?let @bitSliceTable bitSliceTable
     !?ioUsedRegisters
@@ -3713,7 +3749,7 @@ proc build_ipic18_block_representation_list
 #-------------------------------- Add computed goto, rcall, ... utility routines
 #  They wil be removed by optimizer if there are useless
 #--- Description of register WREG
-  let WREGregister =@registerExpression.new {
+  let WREGregister = @registerExpression.new {
     !@lstring. new {!"WREG" !.here}
     !@immediatInteger.new {!.new {!0 !.here}}
     !.here
@@ -3723,6 +3759,7 @@ proc build_ipic18_block_representation_list
     !0 # Current bank
     !inRegisterTable
     !constantMap
+    !writeAccess:false
     ?let @ipic18_intermediate_registerExpression WREG_IPICregisterDescription
     ?*
     !?usedRegisters
@@ -3738,6 +3775,7 @@ proc build_ipic18_block_representation_list
     !0 # Current bank
     !inRegisterTable
     !constantMap
+    !writeAccess:true
     ?let @ipic18_intermediate_registerExpression TOSL_IPICregisterDescription
     ?*
     !?usedRegisters
@@ -3753,6 +3791,7 @@ proc build_ipic18_block_representation_list
     !0 # Current bank
     !inRegisterTable
     !constantMap
+    !writeAccess:true
     ?let @ipic18_intermediate_registerExpression TOSH_IPICregisterDescription
     ?*
     !?usedRegisters
@@ -3768,6 +3807,7 @@ proc build_ipic18_block_representation_list
     !0 # Current bank
     !inRegisterTable
     !constantMap
+    !writeAccess:true
     ?let @ipic18_intermediate_registerExpression TOSU_IPICregisterDescription
     ?*
     !?usedRegisters
@@ -3810,7 +3850,10 @@ proc build_ipic18_block_representation_list
     !@location.here
     !@pic18Instruction_FDA_base_code_AST. ADDWFC
     !TOSU_IPICregisterDescription
-    !false}!@uint.max !0 # ADDWFC TOSU, F
+    !false
+    }
+    !@uint.max
+    !0 # ADDWFC TOSU, F
 #--- computed_goto2
   let goto2Block = @ipic18Block.new {
     !@uint. max # Relocatable
