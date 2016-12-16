@@ -356,9 +356,10 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
     ![mRegister mRegisterName]
     ?let @uintlist registerAddressList
     ?let @uint size
-    ?*
-    ?*
+    ?2*
+    ?let protection
   ]
+  [inRegisterTable checkPrivateAccess ![mRegister mRegisterName] !write:false !protection]
   [registerAddressList first ?let @uint address]
   let @uint newBank = address >> 7
 #---
@@ -1912,7 +1913,8 @@ proc generateInterruptRoutineForControllerWithSharedRAM
   ?!@string ioGenerationOptimizationMessages
   ?!@stringset ioUsedRegisters {
 #--- Check firstSaveRegister register is defined in RAM, is accessible from any bank, and has a size of 1
-  [inRegisterTable searchKey !inFirstSaveRegister ?var @uintlist registerAddressList ?var @uint size ?* ?*]
+  [inRegisterTable searchKey !inFirstSaveRegister ?@uintlist registerAddressList ?@uint size ?2* ?let firstProtection]
+  [inRegisterTable checkPrivateAccess !inFirstSaveRegister !write:true !firstProtection]
   @uint bankAccessibility = 0
   for () in  registerAddressList do
     bankAccessibility = bankAccessibility | (1 << (mValue >> 7))
@@ -1924,7 +1926,8 @@ proc generateInterruptRoutineForControllerWithSharedRAM
     error inFirstSaveRegister: "the '" + inFirstSaveRegister + "' variable size is " + [size string] + " (it should be 1)"
   end
 #--- Check secondSaveRegister register is defined in RAM, is accessible from any bank, and has a size of 1
-  [inRegisterTable searchKey ! inSecondSaveRegister ?registerAddressList ?size ?* ?*]
+  [inRegisterTable searchKey ! inSecondSaveRegister ?registerAddressList ?size ?2* ?let secondProtection]
+  [inRegisterTable checkPrivateAccess !inSecondSaveRegister !write:true !secondProtection]
   bankAccessibility = 0
   for () in  registerAddressList do
     bankAccessibility = bankAccessibility | (1 << (mValue >> 7))
@@ -2105,10 +2108,12 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
   ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@uint ioLocalLabelIndex
   ?!@string ioGenerationOptimizationMessages
-  ?!@stringset ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
 #--- Check firstSaveRegister register is defined in RAM, is accessible from bank 0, and has a size of 1
   ioUsedRegisters += !inFirstSaveRegister.string
-  [inRegisterTable searchKey !inFirstSaveRegister ?var @uintlist registerAddressList ?var @uint size ?* ?*]
+  [inRegisterTable searchKey !inFirstSaveRegister ?var registerAddressList ?@uint size ?2* ?let firstProtection]
+  [inRegisterTable checkPrivateAccess !inFirstSaveRegister !write:true !firstProtection]
   @bool accessibleFromBank0 = false
   @uint offset = 0 # Any value
   for () in  registerAddressList while not accessibleFromBank0 do
@@ -2126,7 +2131,8 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
 #--- Check secondSaveRegister register is defined in RAM, is accessible from bank 1, and has a size of 1
   @uintlist saveStatusRegisterAddressList = registerAddressList
   ioUsedRegisters += !inSecondSaveRegister.string
-  [inRegisterTable searchKey !inSecondSaveRegister ?registerAddressList ?size ?* ?*]
+  [inRegisterTable searchKey !inSecondSaveRegister ?registerAddressList ?size ?2* ?let secondProtection]
+  [inRegisterTable checkPrivateAccess !inSecondSaveRegister !write:true !secondProtection]
   saveStatusRegisterAddressList = saveStatusRegisterAddressList + registerAddressList
   if size != 1 then
     error inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable size is " + [size string] + " (it should be 1)"

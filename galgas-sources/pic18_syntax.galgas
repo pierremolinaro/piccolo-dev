@@ -1199,66 +1199,67 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
     @pic18Instruction_FDA_base_code_AST baseCode
     select
       $addwf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. ADDWF
+      baseCode = @pic18Instruction_FDA_base_code_AST.ADDWF
     or
       $addwfc$
-      baseCode = @pic18Instruction_FDA_base_code_AST. ADDWFC
+      baseCode = @pic18Instruction_FDA_base_code_AST.ADDWFC
     or
       $andwf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. ANDWF
+      baseCode = @pic18Instruction_FDA_base_code_AST.ANDWF
     or
       $comf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. COMF
+      baseCode = @pic18Instruction_FDA_base_code_AST.COMF
     or
       $decf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. DECF
+      baseCode = @pic18Instruction_FDA_base_code_AST.DECF
     or
       $incf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. INCF
+      baseCode = @pic18Instruction_FDA_base_code_AST.INCF
     or
       $iorwf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. IORWF
+      baseCode = @pic18Instruction_FDA_base_code_AST.IORWF
     or
       $movf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. MOVF
+      baseCode = @pic18Instruction_FDA_base_code_AST.MOVF
     or
       $rlcf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. RLCF
+      baseCode = @pic18Instruction_FDA_base_code_AST.RLCF
     or
       $rlncf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. RLNCF
+      baseCode = @pic18Instruction_FDA_base_code_AST.RLNCF
     or
       $rrcf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. RRCF
+      baseCode = @pic18Instruction_FDA_base_code_AST.RRCF
     or
       $rrncf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. RRNCF
+      baseCode = @pic18Instruction_FDA_base_code_AST.RRNCF
     or
       $subfwb$
-      baseCode = @pic18Instruction_FDA_base_code_AST. SUBFWB
+      baseCode = @pic18Instruction_FDA_base_code_AST.SUBFWB
     or
       $subwf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. SUBWF
+      baseCode = @pic18Instruction_FDA_base_code_AST.SUBWF
     or
       $subwfb$
-      baseCode = @pic18Instruction_FDA_base_code_AST. SUBWFB
+      baseCode = @pic18Instruction_FDA_base_code_AST.SUBWFB
     or
       $swapf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. SWAPF
+      baseCode = @pic18Instruction_FDA_base_code_AST.SWAPF
     or
       $xorwf$
-      baseCode = @pic18Instruction_FDA_base_code_AST. XORWF
+      baseCode = @pic18Instruction_FDA_base_code_AST.XORWF
     end
     let @location instructionLocation = @location.here
     @registerExpression registerName
     <register_parsing> ?registerName
     @bool W_isDestination
     <optional_w_as_dest> ?W_isDestination
-    outInstruction = @pic18Instruction_FDA. new {
+    outInstruction = @pic18Instruction_FDA.new {
       !instructionLocation
       !baseCode
       !registerName
-      !W_isDestination}
+      !W_isDestination
+    }
   or
     @FA_instruction_base_code FAinstruction
     select

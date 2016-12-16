@@ -55,9 +55,10 @@ typedef void (*extensionMethodSignature_registerExpression_analyzeRegisterExpres
                                                                                        const class GALGAS_uint constinArgument1,
                                                                                        const class GALGAS_registerTable constinArgument2,
                                                                                        const class GALGAS_constantMap constinArgument3,
-                                                                                       class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & outArgument4,
-                                                                                       class GALGAS_bitSliceTable & outArgument5,
-                                                                                       class GALGAS_stringset & ioArgument6,
+                                                                                       const class GALGAS_bool constinArgument4,
+                                                                                       class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & outArgument5,
+                                                                                       class GALGAS_bitSliceTable & outArgument6,
+                                                                                       class GALGAS_stringset & ioArgument7,
                                                                                        class C_Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
@@ -73,6 +74,7 @@ void callExtensionMethod_analyzeRegisterExpression (const class cPtr_registerExp
                                                     const GALGAS_uint constin_inCurrentBank,
                                                     const GALGAS_registerTable constin_inRegisterTable,
                                                     const GALGAS_constantMap constin_inConstantMap,
+                                                    const GALGAS_bool constin_inWriteAccess,
                                                     GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
                                                     GALGAS_bitSliceTable & out_outBitSliceTable,
                                                     GALGAS_stringset & io_ioUsedRegisters,
@@ -88,8 +90,9 @@ void callExtensionMethod_analyzeRegisterExpression (const class cPtr_registerExp
 typedef void (*extensionMethodSignature_registerExpression_analyzeRegisterExpressionWithoutCheckingBank) (const class cPtr_registerExpression * inObject,
                                                                                                           const class GALGAS_registerTable constinArgument0,
                                                                                                           const class GALGAS_constantMap constinArgument1,
-                                                                                                          class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & outArgument2,
-                                                                                                          class GALGAS_stringset & ioArgument3,
+                                                                                                          const class GALGAS_bool constinArgument2,
+                                                                                                          class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & outArgument3,
+                                                                                                          class GALGAS_stringset & ioArgument4,
                                                                                                           class C_Compiler * inCompiler
                                                                                                           COMMA_LOCATION_ARGS) ;
 
@@ -103,6 +106,7 @@ void enterExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (const in
 void callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (const class cPtr_registerExpression * inObject,
                                                                        const GALGAS_registerTable constin_inRegisterTable,
                                                                        const GALGAS_constantMap constin_inConstantMap,
+                                                                       const GALGAS_bool constin_inWriteAccess,
                                                                        GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & out_outIPICregisterDescription,
                                                                        GALGAS_stringset & io_ioUsedRegisters,
                                                                        C_Compiler * inCompiler
@@ -117,8 +121,9 @@ void callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (const cla
 typedef void (*extensionMethodSignature_registerExpression_getRegisterAddress) (const class cPtr_registerExpression * inObject,
                                                                                 const class GALGAS_registerTable constinArgument0,
                                                                                 const class GALGAS_constantMap constinArgument1,
-                                                                                class GALGAS_stringset & ioArgument2,
-                                                                                class GALGAS_uint & outArgument3,
+                                                                                const class GALGAS_bool constinArgument2,
+                                                                                class GALGAS_stringset & ioArgument3,
+                                                                                class GALGAS_uint & outArgument4,
                                                                                 class C_Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) ;
 
@@ -132,6 +137,7 @@ void enterExtensionMethod_getRegisterAddress (const int32_t inClassIndex,
 void callExtensionMethod_getRegisterAddress (const class cPtr_registerExpression * inObject,
                                              const GALGAS_registerTable constin_inRegisterTable,
                                              const GALGAS_constantMap constin_inConstantMap,
+                                             const GALGAS_bool constin_inWriteAccess,
                                              GALGAS_stringset & io_ioUsedRegisters,
                                              GALGAS_uint & out_outRegisterAddress,
                                              C_Compiler * inCompiler

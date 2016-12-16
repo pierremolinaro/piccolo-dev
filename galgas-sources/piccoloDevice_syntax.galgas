@@ -7,8 +7,7 @@ rule <start_symbol>
 
 #----------------------------------------------------*
 
-rule <start_symbol>
-  !@piccoloDeviceModel outPiccoloDeviceModel {
+rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   $controller$
   $identifier$ ?var  @lstring deviceName
   ${$
@@ -147,7 +146,7 @@ rule <start_symbol>
     end
     bitDefinitionString += ">"
     $>$
-    [!?registerTable insertKey !registerName !registerAddressList !1 !bitSliceTable !bitDefinitionString]
+    [!?registerTable insertKey !registerName !registerAddressList !1 !bitSliceTable !bitDefinitionString !.publicRegister]
     $;$
   end
   var configRegisterMap =@configRegisterMap.emptyMap{}
@@ -209,10 +208,10 @@ rule <start_symbol>
   $}$
 #--- Check some registers are actual defined
   if ([processorName string] == "pic18_60") | ([processorName string] == "pic18_80") then
-    [registerTable searchKey !@lstring. new { !"BSR" !@location.here} ?4*]
-    [registerTable searchKey !@lstring. new { !"TOSL" !@location.here} ?4*]
-    [registerTable searchKey !@lstring. new { !"TOSH" !@location.here} ?4*]
-    [registerTable searchKey !@lstring. new { !"TOSU" !@location.here} ?4*]
+    [registerTable searchKey !@lstring. new { !"BSR" !@location.here} ?5*]
+    [registerTable searchKey !@lstring. new { !"TOSL" !@location.here} ?5*]
+    [registerTable searchKey !@lstring. new { !"TOSH" !@location.here} ?5*]
+    [registerTable searchKey !@lstring. new { !"TOSU" !@location.here} ?5*]
   end
 #--- Check if controller has a shared bank
   @string sharedBankName = "" # No shared bank by default

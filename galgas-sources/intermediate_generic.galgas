@@ -106,8 +106,9 @@ override method @immediatRegister eval
 {
   if [inRegisterTable hasKey ![[mRegister mRegisterName] string]] then
     ioUsedRegisters += ![mRegister mRegisterName].string
-    [inRegisterTable searchKey ![mRegister mRegisterName] ?let @uintlist registerAddressList ?let @uint size ?* ?*]
-    @uint registerAddress [registerAddressList first ?registerAddress]
+    [inRegisterTable searchKey ![mRegister mRegisterName] ?let registerAddressList ?let size ?2* ?let protection]
+    [inRegisterTable checkPrivateAccess ![mRegister mRegisterName] !write:false !protection]
+    [registerAddressList first ?@uint registerAddress]
     [[mRegister mOffset] eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
     if offset < 0LS then
       error [mRegister mEndOfOffsetExpression]
@@ -373,11 +374,13 @@ override method @immediatSlice eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
   @bitSliceTable bitSliceTable
   outResult = 0LS
   ioUsedRegisters += !mRegisterName.string
-  [inRegisterTable searchKey !mRegisterName ?* ?* ? bitSliceTable ?*]
+  [inRegisterTable searchKey !mRegisterName ?* ?* ? bitSliceTable ?* ?let protection]
+  [inRegisterTable checkPrivateAccess !mRegisterName !write:false !protection]
   var sliceNameSet =@stringset.emptySet{}
   for () in  mSliceExpressionList do
     if [sliceNameSet hasKey ![mSliceName string]] then

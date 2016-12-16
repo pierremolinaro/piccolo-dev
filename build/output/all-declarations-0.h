@@ -110,6 +110,8 @@ class C_Lexique_piccolo_5F_lexique : public C_Lexique {
    kToken_page,
    kToken_pic_31__38_,
    kToken_preserved,
+   kToken_protected,
+   kToken_private,
    kToken_ram,
    kToken_requires,
    kToken_rom,
@@ -267,7 +269,7 @@ class C_Lexique_piccolo_5F_lexique : public C_Lexique {
   protected : virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const ;
 
 //--- Get terminal count
-  public : virtual int16_t terminalVocabularyCount (void) const { return 157 ; }
+  public : virtual int16_t terminalVocabularyCount (void) const { return 159 ; }
 
 //--- Get Token String
   public : virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const ;
@@ -640,6 +642,78 @@ class cPtr_declarationInRam : public acPtr_class {
   public : virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
 
 } ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                              @registerProtection enum                                               *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_registerProtection : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public : GALGAS_registerProtection (void) ;
+
+//--------------------------------- Enumeration
+  public : typedef enum {
+    kNotBuilt,
+    kEnum_publicRegister,
+    kEnum_protectedRegister,
+    kEnum_privateRegister
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private : enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public : VIRTUAL_IN_DEBUG inline bool isValid (void) const { return kNotBuilt != mEnum ; }
+  public : VIRTUAL_IN_DEBUG inline void drop (void) { mEnum = kNotBuilt ; }
+  public : inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_registerProtection extractObject (const GALGAS_object & inObject,
+                                                           C_Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_registerProtection constructor_privateRegister (LOCATION_ARGS) ;
+
+  public : static class GALGAS_registerProtection constructor_protectedRegister (LOCATION_ARGS) ;
+
+  public : static class GALGAS_registerProtection constructor_publicRegister (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const ;
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_registerProtection & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPrivateRegister (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isProtectedRegister (LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPublicRegister (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_registerProtection class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_registerProtection ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -4963,6 +5037,7 @@ class GALGAS_registerTable : public AC_GALGAS_map {
                                                       const class GALGAS_uint & inOperand2,
                                                       const class GALGAS_bitSliceTable & inOperand3,
                                                       const class GALGAS_string & inOperand4,
+                                                      const class GALGAS_registerProtection & inOperand5,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -4972,6 +5047,7 @@ class GALGAS_registerTable : public AC_GALGAS_map {
                                                    class GALGAS_uint constinArgument2,
                                                    class GALGAS_bitSliceTable constinArgument3,
                                                    class GALGAS_string constinArgument4,
+                                                   class GALGAS_registerProtection constinArgument5,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
@@ -4984,6 +5060,11 @@ class GALGAS_registerTable : public AC_GALGAS_map {
                                                                  class GALGAS_string constinArgument1,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMProtectionForKey (class GALGAS_registerProtection constinArgument0,
+                                                              class GALGAS_string constinArgument1,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
 
   public : VIRTUAL_IN_DEBUG void setter_setMRegisterAddressListForKey (class GALGAS_uintlist constinArgument0,
                                                                        class GALGAS_string constinArgument1,
@@ -5002,6 +5083,7 @@ class GALGAS_registerTable : public AC_GALGAS_map {
                                                    class GALGAS_uint & outArgument2,
                                                    class GALGAS_bitSliceTable & outArgument3,
                                                    class GALGAS_string & outArgument4,
+                                                   class GALGAS_registerProtection & outArgument5,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const ;
 
@@ -5015,6 +5097,10 @@ class GALGAS_registerTable : public AC_GALGAS_map {
   public : VIRTUAL_IN_DEBUG class GALGAS_bitSliceTable getter_mBitSliceTableForKey (const class GALGAS_string & constinOperand0,
                                                                                     C_Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public : VIRTUAL_IN_DEBUG class GALGAS_registerProtection getter_mProtectionForKey (const class GALGAS_string & constinOperand0,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const ;
 
   public : VIRTUAL_IN_DEBUG class GALGAS_uintlist getter_mRegisterAddressListForKey (const class GALGAS_string & constinOperand0,
                                                                                      C_Compiler * inCompiler
@@ -5054,6 +5140,7 @@ class cEnumerator_registerTable : public cGenericAbstractEnumerator {
   public : class GALGAS_uint current_mSize (LOCATION_ARGS) const ;
   public : class GALGAS_bitSliceTable current_mBitSliceTable (LOCATION_ARGS) const ;
   public : class GALGAS_string current_mBitDefinitionString (LOCATION_ARGS) const ;
+  public : class GALGAS_registerProtection current_mProtection (LOCATION_ARGS) const ;
 //--- Current element access
   public : class GALGAS_registerTable_2D_element current (LOCATION_ARGS) const ;
 } ;
@@ -5074,13 +5161,15 @@ class cMapElement_registerTable : public cMapElement {
   public : GALGAS_uint mProperty_mSize ;
   public : GALGAS_bitSliceTable mProperty_mBitSliceTable ;
   public : GALGAS_string mProperty_mBitDefinitionString ;
+  public : GALGAS_registerProtection mProperty_mProtection ;
 
 //--- Constructor
   public : cMapElement_registerTable (const GALGAS_lstring & inKey,
                                       const GALGAS_uintlist & in_mRegisterAddressList,
                                       const GALGAS_uint & in_mSize,
                                       const GALGAS_bitSliceTable & in_mBitSliceTable,
-                                      const GALGAS_string & in_mBitDefinitionString
+                                      const GALGAS_string & in_mBitDefinitionString,
+                                      const GALGAS_registerProtection & in_mProtection
                                       COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
@@ -7142,93 +7231,6 @@ class cPtr_baseline_5F_negateCondition : public cPtr_baseline_5F_conditionExpres
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_conditionExpression getter_mCondition (LOCATION_ARGS) const ;
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                           @baseline_5F_andCondition class                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class GALGAS_baseline_5F_andCondition : public GALGAS_baseline_5F_conditionExpression {
-//--- Constructor
-  public : GALGAS_baseline_5F_andCondition (void) ;
-
-//---
-  public : inline const class cPtr_baseline_5F_andCondition * ptr (void) const { return (const cPtr_baseline_5F_andCondition *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_baseline_5F_andCondition (const cPtr_baseline_5F_andCondition * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_baseline_5F_andCondition extractObject (const GALGAS_object & inObject,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_baseline_5F_andCondition constructor_new (const class GALGAS_baseline_5F_conditionExpression & inOperand0,
-                                                                         const class GALGAS_baseline_5F_conditionExpression & inOperand1
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_andCondition & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_conditionExpression getter_mLeftExpression (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_conditionExpression getter_mRightExpression (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_baseline_5F_andCondition class
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_andCondition ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                   Pointer class for @baseline_andCondition class                                    *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-class cPtr_baseline_5F_andCondition : public cPtr_baseline_5F_conditionExpression {
-//--- Attributes
-  public : GALGAS_baseline_5F_conditionExpression mProperty_mLeftExpression ;
-  public : GALGAS_baseline_5F_conditionExpression mProperty_mRightExpression ;
-
-//--- Constructor
-  public : cPtr_baseline_5F_andCondition (const GALGAS_baseline_5F_conditionExpression & in_mLeftExpression,
-                                          const GALGAS_baseline_5F_conditionExpression & in_mRightExpression
-                                          COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_conditionExpression getter_mLeftExpression (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_conditionExpression getter_mRightExpression (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

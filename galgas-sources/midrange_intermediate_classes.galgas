@@ -32,7 +32,9 @@ method @registerExpression resolveMidrangeAccess
     ?var @uint size
     ?outBitSliceTable
     ?*
+    ?let protection
   ]
+  [inRegisterTable checkPrivateAccess !mRegisterName !write:true !protection]
 #---
   if [offset uint] >= size then
     error mEndOfOffsetExpression: "maximum index value is " + (size - 1)

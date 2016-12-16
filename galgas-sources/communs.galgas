@@ -27,9 +27,17 @@ rule <configuration_definition>
 
 #----------------------------------------------------*
 
-rule <declaration_in_ram>
-  !@declarationInRam outDeclaration
-{
+rule <declaration_in_ram> !@declarationInRam outDeclaration {
+  @registerProtection protection
+  select
+    protection = .publicRegister
+  or
+    $protected$
+    protection = .protectedRegister
+  or
+    $private$
+    protection = .privateRegister
+  end
   $byte$
   $identifier$ ?var  @lstring name indexing variableDeclaration
   @luint size
@@ -109,7 +117,7 @@ rule <declaration_in_ram>
     $>$
     bitDefinitionString += ">"
   end
-  outDeclaration = @byteDeclarationInRam. new { !name !size !bitSliceTable !bitDefinitionString}
+  outDeclaration = @byteDeclarationInRam.new {!name !size !bitSliceTable !bitDefinitionString !protection}
 }
 
 #----------------------------------------------------*
