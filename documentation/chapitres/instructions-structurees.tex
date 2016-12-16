@@ -577,9 +577,9 @@ Les instructions conditionnelles structurées (\refSectionPage{instructionCondit
 \textbf{La négation }\pic+!+\textbf{.} C'est un opérateur unaire préfixé : si \pic!cc! est une condition, \pic+!cc+ exprime la condition complémentaire. % Noter que la négation est résolue lors de la compilation, ainsi par exemple les conditions (registre z) et (! registre nz) engendrent exactement le même code.
 
 
-\textbf{Le \emph{et logique} \pic!&!.} C'est un opérateur infixe : si \pic!cc1! et \pic!cc2! sont deux conditions, \pic!cc1 & cc2! exprime le \emph{et logique} de ces deux conditions. Son fonctionnement est du type court-circuit : \pic!cc1! est toujours évaluée la première et, si elle est évaluée fausse, \pic!cc2! n'est pas évaluée. Ce point est important si l'évaluation de la seconde condition a un effet de bord (c'est le cas des conditions nommant \pic!decf! ou \pic!incf!).
+\textbf{Le \emph{et logique} « \texttt{\&} ».} C'est un opérateur infixe : si \pic!cc1! et \pic!cc2! sont deux conditions, \pic!cc1 & cc2! exprime le \emph{et logique} de ces deux conditions. Son fonctionnement est du type court-circuit : \pic!cc1! est toujours évaluée la première et, si elle est évaluée fausse, \pic!cc2! n'est pas évaluée. Ce point est important si l'évaluation de la seconde condition a un effet de bord (c'est le cas des conditions nommant \pic!decf! ou \pic!incf!).
 
-\textbf{Le \emph{ou logique} \pic!|!.} De même, c'est un opérateur infixe : \pic!cc1 | cc2! exprime le \emph{ou logique} de ces deux conditions. Son fonctionnement est aussi du type court-circuit : \pic!cc1! est toujours évaluée la première et, si elle est évaluée vraie, \pic!cc2! n'est pas évaluée.
+\textbf{Le \emph{ou logique} « \texttt{|} ».} De même, c'est un opérateur infixe : \pic!cc1 | cc2! exprime le \emph{ou logique} de ces deux conditions. Son fonctionnement est aussi du type court-circuit : \pic!cc1! est toujours évaluée la première et, si elle est évaluée vraie, \pic!cc2! n'est pas évaluée.
 
 \textbf{Priorité des opérateurs.} La négation \pic+!+ est l'opérateur le plus prioritaire, le \emph{ou logique} \pic!|! le moins prioritaire. Par exemple, \pic+!cc1&cc2+ est équivalent à \pic+(!cc1)&cc2+ et \pic!cc1|cc2&cc3! est équivalent à \pic!cc1|(cc2&cc3)!.
 
@@ -964,7 +964,7 @@ _computed_goto_2:
 
 \sectionLabel{Instruction \texttt{block}}{instructionBloc}
 
-\textbf{À partir de Piccolo 3.0.4.} \textcolor{red}{\bf L'instruction \pic!block! n'est définie que pour les \emph{pic18}.}
+\textbf{À partir de Piccolo 3.0.4.} \textcolor{red}{\bf L'instruction \texttt{block} n'est définie que pour les \emph{pic18}.}
 
 En Piccolo, un \emph{bloc} est une séquence d'instructions terminée par une instruction de débranchement. L'instruction \pic!block! permet de définir un ensemble de blocs s'appelant les uns les autres. Ceci permet d'exprimer des graphes d'exécution non structurées, qu'il serait très difficile d'exprimer avec les instructions structurées classiques. 
 

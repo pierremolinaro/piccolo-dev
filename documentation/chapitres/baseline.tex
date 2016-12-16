@@ -165,13 +165,12 @@ noreturn routine maRoutine ... {
 \textbf{Appel d’une routine sans retour.} Utiliser \pic!goto! ou l'instruction \pic!jump! (\refSectionPage{gestionPagesBaseline}).
 
 
-\textbf{Déclaration de la routine \pic!main!.} Dans un programme, il doit exister une et une seule routine \pic!main!, qui doit être déclarée comme suit :
+\textbf{Déclaration de la routine \texttt{main}.} Dans un programme, il doit exister une et une seule routine \pic!main!, qui doit être déclarée comme suit :
 
 \begin{piccolo}
 noreturn routine main {
    liste_instructions
 }
-
 \end{piccolo}
 
 Le compilateur Piccolo place cette routine au début de la ROM, de façon qu'elle soit exécutée au démarrage du micro-contrôleur.
@@ -613,7 +612,7 @@ En Piccolo, l'instruction \pic!tris! a un opérande qui peut être: \pic!GPIO!, 
   \small
 %  \rowcolors{2}{\fondTableau}{}
   \begin{tabular}{ll}
-    \textbf{Composant} & \textbf{Instructions \pic!tris! en Piccolo}\\
+    \textbf{Composant} & \textbf{Instructions \texttt{tris} en Piccolo}\\
     10F200, 10F202  & \pic!tris GPIO!\\
     \hdashline
     10F204, 10F206  & \pic!tris GPIO!\\

@@ -69,7 +69,7 @@ Que se passe-t'il si on compile un programme contenant cette routine ? En Piccol
 \item si non, l'analyseur sémantique regarde si le registre peut être accédé grâce au registre \assembleur{BSR}.
 \end{itemize}
 
-Or ici, aucune indication n'est fournie sur la valeur de \assembleur{BSR} : deux erreurs apparaissent pour les 2\up{e} et 3\up{e} instructions.
+Or ici, aucune indication n'est fournie sur la valeur de \assembleur{BSR} : deux erreurs apparaissent pour les 2$^e$ et 3$^e$ instructions.
 
 On corrige ces erreurs au moyen de l’instruction « \assembleur{banksel} » (comme \assembleur{MOVLB}, elle affecte une valeur à \assembleur{BSR}, mais comme sa sémantique est différente, j’ai préféré utiliser un autre nom). La routine corrigée est :
 \begin{piccolo}
