@@ -34,9 +34,13 @@ Piccolo définit les délimiteurs listés dans le \refTableau{delimiteursLangage
 Tout caractère dont le code ASCII est compris entre \texttt{0x01} et \texttt{0x20} est considéré comme un séparateur (ceci inclut donc la tabulation horizontale \texttt{HT} (\texttt{0x09}), le passage à la ligne \texttt{LF} (\texttt{0x0A}), le retour-chariot \texttt{CR} (\texttt{0x0D}), et l’espace (\texttt{0x20}).
 
 \section{Identificateurs}
-Un identificateur commence par une lettre (minuscule ou majuscule), qui est suivie par zéro, un ou plusieurs lettres (minuscules ou majuscules), chiffres décimaux, caractères \texttt{\_}.
+Un identificateur commence par une lettre (minuscule ou majuscule), qui est suivie par zéro, un ou plusieurs lettres (minuscules ou majuscules), chiffres décimaux, caractères « \texttt{\_} ».
 
 La casse est significative pour les identificateurs.
+
+À partir de la version 3.1.3, les lettres accentuées sont autorisées, ainsi que les lettres d'un autre alphabet (par exemple grec, cyrillique) ; d'une manière générale, toute lettre Unicode est autorisée.
+
+Par exemple : \pic!AdresseÉcriture!, \pic!requête!, \pic!α!, \pic!π!.
 
 \section{Mots réservés}
 \index{Mots réservés}

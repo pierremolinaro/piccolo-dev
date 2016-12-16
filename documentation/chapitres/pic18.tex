@@ -443,7 +443,7 @@ noreturn routine maRoutine ... {
 \textbf{Appel d’une routine sans retour.} Utiliser \pic!bra!, \pic!goto!, Bcc ou \pic!jump!.
 
 
-\textbf{Déclaration de la routine \pic!main!.} Dans un programme, il doit exister une et une seule routine \pic!main!, qui doit être déclarée comme suit :
+\textbf{Déclaration de la routine \texttt{main}.} Dans un programme, il doit exister une et une seule routine \pic!main!, qui doit être déclarée comme suit :
 
 \begin{piccolo}
 noreturn routine main bank:requires 0 {
@@ -719,7 +719,7 @@ Si les deux routines d’interruption \pic!low! et \pic!high! sont déclarées, 
 
 \subsection{Routine d'interruption et \texttt{BSR}}
 
-\textbf{Routine déclarée avec \pic!fast!.} Le contenu initial de \assembleur{BSR}, au début de la routine d’interruption est inconnu. Il faut donc fixer sa valeur par une instruction \pic!banksel! si besoin est. Comme le retour d’interruption restituera le contenu initial de \assembleur{BSR}, il est inutile de le préserver par une construction \pic!banksave!.
+\textbf{Routine déclarée avec \texttt{fast}.} Le contenu initial de \assembleur{BSR}, au début de la routine d’interruption est inconnu. Il faut donc fixer sa valeur par une instruction \pic!banksel! si besoin est. Comme le retour d’interruption restituera le contenu initial de \assembleur{BSR}, il est inutile de le préserver par une construction \pic!banksave!.
 
 \begin{piccolo}
 interrupt nom fast {
@@ -728,7 +728,7 @@ interrupt nom fast {
 }
 \end{piccolo}
 
-\textbf{Routine déclarée sans \pic!fast!.} Le contenu initial de \assembleur{BSR}, au début de la routine d’interruption est inconnu. Si il doit être utilisé, et comme le retour d’interruption ne restituera pas son contenu initial, il est indispensable de le préserver par une construction \pic!banksave!, nommant une variable \pic!sauve_bsr! déclarée dans le banc \pic!accessram! (de façon que son accès puisse être effectué quelque soit la valeur de \assembleur{BSR}). Il faut ensuite fixer sa valeur par une instruction \pic!banksel!. 
+\textbf{Routine déclarée sans \texttt{fast}.} Le contenu initial de \assembleur{BSR}, au début de la routine d’interruption est inconnu. Si il doit être utilisé, et comme le retour d’interruption ne restituera pas son contenu initial, il est indispensable de le préserver par une construction \pic!banksave!, nommant une variable \pic!sauve_bsr! déclarée dans le banc \pic!accessram! (de façon que son accès puisse être effectué quelque soit la valeur de \assembleur{BSR}). Il faut ensuite fixer sa valeur par une instruction \pic!banksel!. 
 
 \begin{piccolo}
 interrupt nom {
