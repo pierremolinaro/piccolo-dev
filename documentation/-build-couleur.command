@@ -5,10 +5,10 @@ cd $DIR/../makefile-macosx && python build.py &&
 PATH=$DIR/../makefile-macosx:$PATH &&
 cd $DIR &&
 rm -f piccolo-couleur.pdf &&
-PDF_LATEX=`which pdflatex` &&
+LATEX=`which xelatex` &&
 MAKE_INDEX=`which makeindex` &&
 #--- First pass
-$PDF_LATEX --file-line-error --shell-escape '\newcommand\afficherDetailSchema{false}\input{piccolo.tex}' &&
+$LATEX --file-line-error --shell-escape '\newcommand\afficherDetailSchema{false}\input{piccolo.tex}' &&
 touch ref.idx &&
 #touch ref.lof &&
 #touch ref.lot &&
@@ -27,7 +27,7 @@ do
 #  cp piccolo.prgm-spice ref.prgm-spice &&
   cp piccolo.toc ref.toc &&
   $MAKE_INDEX -s $DIR/fichiers-inclus/style-indexes.ist piccolo.idx &&
-  $PDF_LATEX --file-line-error --shell-escape '\newcommand\afficherDetailSchema{false}\input{piccolo.tex}' &&
+  $LATEX --file-line-error --shell-escape '\newcommand\afficherDetailSchema{false}\input{piccolo.tex}' &&
   iteration=$((iteration+=1))
 done &&
 cp piccolo.pdf piccolo-couleur.pdf &&
