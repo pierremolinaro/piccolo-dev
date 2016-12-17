@@ -1,4 +1,4 @@
-289 pic18 devices supported by Piccolo 3.1.2:
+289 pic18 devices supported by Piccolo 3.1.3:
 18C242         18C252         18C442         18C452         18C601         
 18C658         18C801         18C858         18F1220        18F1230        
 18F1320        18F1330        18F13K20       18F13K22       18F13K50       

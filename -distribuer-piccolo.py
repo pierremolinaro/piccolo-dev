@@ -152,13 +152,10 @@ runCommand (["xcodebuild", "-project", "piccolo.xcodeproj", "-target", "Cocoa pi
 runCommand (["mkdir", DIR + "/COCOA-PICCOLO-GC"])
 runCommand (["cp", DIR + "/piccolo/AUTHORS", DIR + "/COCOA-PICCOLO-GC"])
 runCommand (["cp", DIR + "/piccolo/COPYING", DIR + "/COCOA-PICCOLO-GC"])
-# runCommand (["mv",
-#              DIR + "/piccolo/xcode-project/build/Default/CocoaPiccolo.app",
-#              DIR + "/piccolo/xcode-project/build/Default/CocoaPiccolo-gc.app"
-#            ])
 runCommand (["cp", "-r", DIR + "/piccolo/xcode-project/build/Default/CocoaPiccolo.app", DIR + "/COCOA-PICCOLO-GC"])
 runCommand (["hdiutil", "create", "-srcfolder", DIR + "/COCOA-PICCOLO-GC", DIR + "/cocoa-piccolo-gc.dmg"])
 runCommand (["rm", "-fr", DIR + "/COCOA-PICCOLO-GC"])
+runCommand (["mv", DIR + "/piccolo/xcode-project/build/Default/CocoaPiccolo.app", DIR + "/piccolo/xcode-project/build/Default/CocoaPiccolo-gc.app"])
 #-------------------- Recompiler le projet Xcode (Lion)
 runCommand (["galgas", "--macosx=7", DIR + "/piccolo/+piccolo.galgasProject"])
 os.chdir (DIR + "/piccolo/xcode-project")
@@ -166,10 +163,6 @@ runCommand (["xcodebuild", "-project", "piccolo.xcodeproj", "-target", "Cocoa pi
 runCommand (["mkdir", DIR + "/COCOA-PICCOLO-ARC"])
 runCommand (["cp", DIR + "/piccolo/AUTHORS", DIR + "/COCOA-PICCOLO-ARC"])
 runCommand (["cp", DIR + "/piccolo/COPYING", DIR + "/COCOA-PICCOLO-ARC"])
-# runCommand (["mv",
-#              DIR + "/piccolo/xcode-project/build/Default/CocoaPiccolo.app",
-#              DIR + "/piccolo/xcode-project/build/Default/CocoaPiccolo-arc.app"
-#            ])
 runCommand (["cp", "-r", DIR + "/piccolo/xcode-project/build/Default/CocoaPiccolo.app", DIR + "/COCOA-PICCOLO-ARC"])
 runCommand (["hdiutil", "create", "-srcfolder", DIR + "/COCOA-PICCOLO-ARC", DIR + "/cocoa-piccolo-arc.dmg"])
 runCommand (["rm", "-fr", DIR + "/COCOA-PICCOLO-ARC"])
@@ -239,11 +232,6 @@ runCommand (["mv", DIR + "/piccolo/makefile-x86linux64-on-macosx/piccolo.zip", "
 #runCommand (["mv", DIR + "/piccolo/makefile-x86linux64-on-macosx/piccolo-debug.zip", "piccolo-debug-x86_64-linux.zip"])
 runCommand (["rm", "-fr", "piccolo/makefile-x86linux64-on-macosx"])
 runCommand (["rm", "-fr", "piccolo/build/cli-objects"])
-#-------------------- Creer l'archive BZ2 de cocoa piccolo
-# runCommand (["cp", "-r", DIR + "/piccolo/xcode-project/build/Default/CocoaPiccolo-gc.app", DIR])
-# runCommand (["tar", "-cf", "CocoaPiccolo-gc.app.tar", "CocoaPiccolo-gc.app"])
-# runCommand (["bzip2", "-9", "CocoaPiccolo.app.tar"])
-# runCommand (["rm", "-fr", DIR + "/CocoaPiccolo.app"])
 #-------------------- Creer l'archive de l'outil ligne de commande pour mac
 runCommand (["mkdir", DIR + "/COCOA-TOOL"])
 runCommand (["cp", DIR + "/piccolo/AUTHORS", DIR + "/COCOA-TOOL"])
