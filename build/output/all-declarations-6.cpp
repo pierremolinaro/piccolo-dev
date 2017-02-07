@@ -171,7 +171,7 @@ void GALGAS_neededConversionForClusterOrder::setter_setMConversionsForKey (GALGA
                                                                            GALGAS_string inKey,
                                                                            C_Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_neededConversionForClusterOrder * p = (cMapElement_neededConversionForClusterOrder *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_neededConversionForClusterOrder) ;
@@ -184,7 +184,7 @@ void GALGAS_neededConversionForClusterOrder::setter_setMConversionsForKey (GALGA
 cMapElement_neededConversionForClusterOrder * GALGAS_neededConversionForClusterOrder::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                                          const GALGAS_string & inKey
                                                                                                                          COMMA_LOCATION_ARGS) {
-  cMapElement_neededConversionForClusterOrder * result = (cMapElement_neededConversionForClusterOrder *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_neededConversionForClusterOrder * result = (cMapElement_neededConversionForClusterOrder *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_neededConversionForClusterOrder) ;
   return result ;
 }
@@ -458,7 +458,7 @@ void GALGAS_generatedCodeMap::setter_setMCodeForKey (GALGAS_codeList inAttribute
                                                      GALGAS_string inKey,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_generatedCodeMap * p = (cMapElement_generatedCodeMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_generatedCodeMap) ;
@@ -472,7 +472,7 @@ void GALGAS_generatedCodeMap::setter_setMInstructionForKey (GALGAS_ipic_31__38_S
                                                             GALGAS_string inKey,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_generatedCodeMap * p = (cMapElement_generatedCodeMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_generatedCodeMap) ;
@@ -485,7 +485,7 @@ void GALGAS_generatedCodeMap::setter_setMInstructionForKey (GALGAS_ipic_31__38_S
 cMapElement_generatedCodeMap * GALGAS_generatedCodeMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                            const GALGAS_string & inKey
                                                                                            COMMA_LOCATION_ARGS) {
-  cMapElement_generatedCodeMap * result = (cMapElement_generatedCodeMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_generatedCodeMap * result = (cMapElement_generatedCodeMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_generatedCodeMap) ;
   return result ;
 }
@@ -790,7 +790,7 @@ void GALGAS_blockMapForStackComputation::setter_setMBlockForKey (GALGAS_ipic_31_
                                                                  GALGAS_string inKey,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_blockMapForStackComputation * p = (cMapElement_blockMapForStackComputation *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_blockMapForStackComputation) ;
@@ -803,7 +803,7 @@ void GALGAS_blockMapForStackComputation::setter_setMBlockForKey (GALGAS_ipic_31_
 cMapElement_blockMapForStackComputation * GALGAS_blockMapForStackComputation::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                                  const GALGAS_string & inKey
                                                                                                                  COMMA_LOCATION_ARGS) {
-  cMapElement_blockMapForStackComputation * result = (cMapElement_blockMapForStackComputation *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_blockMapForStackComputation * result = (cMapElement_blockMapForStackComputation *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_blockMapForStackComputation) ;
   return result ;
 }
@@ -1052,7 +1052,7 @@ void GALGAS_routineCallMap::setter_setMCalledRoutineSetForKey (GALGAS_stringset 
                                                                GALGAS_string inKey,
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_routineCallMap * p = (cMapElement_routineCallMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_routineCallMap) ;
@@ -1066,7 +1066,7 @@ void GALGAS_routineCallMap::setter_setMTerminatorStackNeedsForKey (GALGAS_uint i
                                                                    GALGAS_string inKey,
                                                                    C_Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_routineCallMap * p = (cMapElement_routineCallMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_routineCallMap) ;
@@ -1079,7 +1079,7 @@ void GALGAS_routineCallMap::setter_setMTerminatorStackNeedsForKey (GALGAS_uint i
 cMapElement_routineCallMap * GALGAS_routineCallMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                        const GALGAS_string & inKey
                                                                                        COMMA_LOCATION_ARGS) {
-  cMapElement_routineCallMap * result = (cMapElement_routineCallMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_routineCallMap * result = (cMapElement_routineCallMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_routineCallMap) ;
   return result ;
 }
@@ -1332,7 +1332,7 @@ void GALGAS_routineStackRequirementMap::setter_setMLevelsForKey (GALGAS_uint inA
                                                                  GALGAS_string inKey,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_routineStackRequirementMap * p = (cMapElement_routineStackRequirementMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_routineStackRequirementMap) ;
@@ -1345,7 +1345,7 @@ void GALGAS_routineStackRequirementMap::setter_setMLevelsForKey (GALGAS_uint inA
 cMapElement_routineStackRequirementMap * GALGAS_routineStackRequirementMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                                const GALGAS_string & inKey
                                                                                                                COMMA_LOCATION_ARGS) {
-  cMapElement_routineStackRequirementMap * result = (cMapElement_routineStackRequirementMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_routineStackRequirementMap * result = (cMapElement_routineStackRequirementMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_routineStackRequirementMap) ;
   return result ;
 }
@@ -1754,7 +1754,7 @@ void GALGAS_blockDurationMap::setter_setMMinDurationForKey (GALGAS_uint inAttrib
                                                             GALGAS_string inKey,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_blockDurationMap * p = (cMapElement_blockDurationMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_blockDurationMap) ;
@@ -1768,7 +1768,7 @@ void GALGAS_blockDurationMap::setter_setMMaxDurationForKey (GALGAS_uint inAttrib
                                                             GALGAS_string inKey,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_blockDurationMap * p = (cMapElement_blockDurationMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_blockDurationMap) ;
@@ -1781,7 +1781,7 @@ void GALGAS_blockDurationMap::setter_setMMaxDurationForKey (GALGAS_uint inAttrib
 cMapElement_blockDurationMap * GALGAS_blockDurationMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                            const GALGAS_string & inKey
                                                                                            COMMA_LOCATION_ARGS) {
-  cMapElement_blockDurationMap * result = (cMapElement_blockDurationMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_blockDurationMap * result = (cMapElement_blockDurationMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_blockDurationMap) ;
   return result ;
 }
@@ -2910,7 +2910,10 @@ C_String C_Lexique_piccoloDevice_5F_lexique::getCurrentTokenString (const cToken
 //---------------------------------------------------------------------------------------------------------------------*
 
 
-
+//---------------------------------------------------------------------------------------------------------------------*
+//            Unicode test functions                                                                                   *
+//---------------------------------------------------------------------------------------------------------------------*
+ 
 //---------------------------------------------------------------------------------------------------------------------*
 //               P A R S E    L E X I C A L    T O K E N                                                               *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3472,7 +3475,7 @@ void GALGAS_declaredByteMap::method_searchKey (GALGAS_lstring inKey,
 cMapElement_declaredByteMap * GALGAS_declaredByteMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                          const GALGAS_string & inKey
                                                                                          COMMA_LOCATION_ARGS) {
-  cMapElement_declaredByteMap * result = (cMapElement_declaredByteMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_declaredByteMap * result = (cMapElement_declaredByteMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_declaredByteMap) ;
   return result ;
 }
@@ -3825,7 +3828,7 @@ void GALGAS_registerTable::setter_setMRegisterAddressListForKey (GALGAS_uintlist
                                                                  GALGAS_string inKey,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_registerTable * p = (cMapElement_registerTable *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_registerTable) ;
@@ -3839,7 +3842,7 @@ void GALGAS_registerTable::setter_setMSizeForKey (GALGAS_uint inAttributeValue,
                                                   GALGAS_string inKey,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_registerTable * p = (cMapElement_registerTable *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_registerTable) ;
@@ -3853,7 +3856,7 @@ void GALGAS_registerTable::setter_setMBitSliceTableForKey (GALGAS_bitSliceTable 
                                                            GALGAS_string inKey,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_registerTable * p = (cMapElement_registerTable *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_registerTable) ;
@@ -3867,7 +3870,7 @@ void GALGAS_registerTable::setter_setMBitDefinitionStringForKey (GALGAS_string i
                                                                  GALGAS_string inKey,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_registerTable * p = (cMapElement_registerTable *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_registerTable) ;
@@ -3881,7 +3884,7 @@ void GALGAS_registerTable::setter_setMProtectionForKey (GALGAS_registerProtectio
                                                         GALGAS_string inKey,
                                                         C_Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_registerTable * p = (cMapElement_registerTable *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_registerTable) ;
@@ -3894,7 +3897,7 @@ void GALGAS_registerTable::setter_setMProtectionForKey (GALGAS_registerProtectio
 cMapElement_registerTable * GALGAS_registerTable::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                      const GALGAS_string & inKey
                                                                                      COMMA_LOCATION_ARGS) {
-  cMapElement_registerTable * result = (cMapElement_registerTable *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_registerTable * result = (cMapElement_registerTable *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_registerTable) ;
   return result ;
 }
@@ -4038,7 +4041,7 @@ void extensionMethod_checkPrivateAccess (const GALGAS_registerTable inObject,
       if (kBoolTrue == test_2) {
         const GALGAS_registerTable temp_3 = inObject ;
         GALGAS_location var_declarationLocation_982 = temp_3.getter_locationForKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 33)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 33)) ;
-        const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_declarationLocation_982.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 34)).objectCompare (constinArgument_inKey.mProperty_location.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 34)))).boolEnum () ;
+        const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_declarationLocation_982.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 34)).objectCompare (constinArgument_inKey.getter_location (HERE).getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 34)))).boolEnum () ;
         if (kBoolTrue == test_4) {
           TC_Array <C_FixItDescription> fixItArray5 ;
           inCompiler->emitSemanticError (constinArgument_inKey.getter_location (SOURCE_FILE ("piccoloDevice_semantics.galgas", 35)), GALGAS_string ("register is protected, write is reserved to instructions in declaration file"), fixItArray5  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 35)) ;
@@ -4053,7 +4056,7 @@ void extensionMethod_checkPrivateAccess (const GALGAS_registerTable inObject,
       if (kBoolTrue == test_7) {
         const GALGAS_registerTable temp_8 = inObject ;
         GALGAS_location var_declarationLocation_1286 = temp_8.getter_locationForKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 40)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 40)) ;
-        const enumGalgasBool test_9 = GALGAS_bool (kIsNotEqual, var_declarationLocation_1286.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 41)).objectCompare (constinArgument_inKey.mProperty_location.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 41)))).boolEnum () ;
+        const enumGalgasBool test_9 = GALGAS_bool (kIsNotEqual, var_declarationLocation_1286.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 41)).objectCompare (constinArgument_inKey.getter_location (HERE).getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 41)))).boolEnum () ;
         if (kBoolTrue == test_9) {
           TC_Array <C_FixItDescription> fixItArray10 ;
           inCompiler->emitSemanticError (constinArgument_inKey.getter_location (SOURCE_FILE ("piccoloDevice_semantics.galgas", 42)), GALGAS_string ("register is private to declaration file"), fixItArray10  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 42)) ;
@@ -4315,7 +4318,7 @@ void GALGAS_ramBankTable::setter_setMFirstAddressForKey (GALGAS_uint inAttribute
                                                          GALGAS_string inKey,
                                                          C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_ramBankTable * p = (cMapElement_ramBankTable *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_ramBankTable) ;
@@ -4329,7 +4332,7 @@ void GALGAS_ramBankTable::setter_setMFirstFreeAddressForKey (GALGAS_uint inAttri
                                                              GALGAS_string inKey,
                                                              C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_ramBankTable * p = (cMapElement_ramBankTable *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_ramBankTable) ;
@@ -4343,7 +4346,7 @@ void GALGAS_ramBankTable::setter_setMLastAddressPlusOneForKey (GALGAS_uint inAtt
                                                                GALGAS_string inKey,
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_ramBankTable * p = (cMapElement_ramBankTable *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_ramBankTable) ;
@@ -4357,7 +4360,7 @@ void GALGAS_ramBankTable::setter_setMMirrorOffsetListForKey (GALGAS_uintlist inA
                                                              GALGAS_string inKey,
                                                              C_Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_ramBankTable * p = (cMapElement_ramBankTable *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_ramBankTable) ;
@@ -4370,7 +4373,7 @@ void GALGAS_ramBankTable::setter_setMMirrorOffsetListForKey (GALGAS_uintlist inA
 cMapElement_ramBankTable * GALGAS_ramBankTable::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                    const GALGAS_string & inKey
                                                                                    COMMA_LOCATION_ARGS) {
-  cMapElement_ramBankTable * result = (cMapElement_ramBankTable *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_ramBankTable * result = (cMapElement_ramBankTable *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_ramBankTable) ;
   return result ;
 }
@@ -5294,7 +5297,7 @@ void GALGAS_configRegisterMaskMap::setter_setMMaskValueForKey (GALGAS_luint inAt
                                                                GALGAS_string inKey,
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMaskMap * p = (cMapElement_configRegisterMaskMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_configRegisterMaskMap) ;
@@ -5308,7 +5311,7 @@ void GALGAS_configRegisterMaskMap::setter_setMDescriptionForKey (GALGAS_lstring 
                                                                  GALGAS_string inKey,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMaskMap * p = (cMapElement_configRegisterMaskMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_configRegisterMaskMap) ;
@@ -5322,7 +5325,7 @@ void GALGAS_configRegisterMaskMap::setter_setMFieldSettingMapForKey (GALGAS_fiel
                                                                      GALGAS_string inKey,
                                                                      C_Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMaskMap * p = (cMapElement_configRegisterMaskMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_configRegisterMaskMap) ;
@@ -5335,7 +5338,7 @@ void GALGAS_configRegisterMaskMap::setter_setMFieldSettingMapForKey (GALGAS_fiel
 cMapElement_configRegisterMaskMap * GALGAS_configRegisterMaskMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                      const GALGAS_string & inKey
                                                                                                      COMMA_LOCATION_ARGS) {
-  cMapElement_configRegisterMaskMap * result = (cMapElement_configRegisterMaskMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_configRegisterMaskMap * result = (cMapElement_configRegisterMaskMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_configRegisterMaskMap) ;
   return result ;
 }
@@ -5683,7 +5686,7 @@ void GALGAS_configRegisterMap::setter_setMRegisterAddressForKey (GALGAS_luint in
                                                                  GALGAS_string inKey,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMap * p = (cMapElement_configRegisterMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_configRegisterMap) ;
@@ -5697,7 +5700,7 @@ void GALGAS_configRegisterMap::setter_setMRegisterWidthForKey (GALGAS_luint inAt
                                                                GALGAS_string inKey,
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMap * p = (cMapElement_configRegisterMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_configRegisterMap) ;
@@ -5711,7 +5714,7 @@ void GALGAS_configRegisterMap::setter_setMConfigRegisterMaskMapForKey (GALGAS_co
                                                                        GALGAS_string inKey,
                                                                        C_Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMap * p = (cMapElement_configRegisterMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_configRegisterMap) ;
@@ -5725,7 +5728,7 @@ void GALGAS_configRegisterMap::setter_setMIllegalMaskListForKey (GALGAS_illegalM
                                                                  GALGAS_string inKey,
                                                                  C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_configRegisterMap * p = (cMapElement_configRegisterMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_configRegisterMap) ;
@@ -5738,7 +5741,7 @@ void GALGAS_configRegisterMap::setter_setMIllegalMaskListForKey (GALGAS_illegalM
 cMapElement_configRegisterMap * GALGAS_configRegisterMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                              const GALGAS_string & inKey
                                                                                              COMMA_LOCATION_ARGS) {
-  cMapElement_configRegisterMap * result = (cMapElement_configRegisterMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_configRegisterMap * result = (cMapElement_configRegisterMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_configRegisterMap) ;
   return result ;
 }
@@ -13961,267 +13964,6 @@ GALGAS_baseline_5F_assembly_5F_TRIS GALGAS_baseline_5F_assembly_5F_TRIS::extract
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_TRIS", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   Object comparison                                                                                                 *
-//---------------------------------------------------------------------------------------------------------------------*
-
-typeComparisonResult cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mInstructionLocation.objectCompare (p->mProperty_mInstructionLocation) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mConstantName.objectCompare (p->mProperty_mConstantName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mLowerBoundExpression.objectCompare (p->mProperty_mLowerBoundExpression) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mUpperBoundExpression.objectCompare (p->mProperty_mUpperBoundExpression) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mInstructionList.objectCompare (p->mProperty_mInstructionList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mEndOfInstruction.objectCompare (p->mProperty_mEndOfInstruction) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-typeComparisonResult GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::objectCompare (const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT (void) :
-GALGAS_midrange_5F_instruction () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * inSourcePtr) :
-GALGAS_midrange_5F_instruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                        const GALGAS_lstring & inAttribute_mConstantName,
-                                                                                                                        const GALGAS_immediatExpression & inAttribute_mLowerBoundExpression,
-                                                                                                                        const GALGAS_immediatExpression & inAttribute_mUpperBoundExpression,
-                                                                                                                        const GALGAS_midrange_5F_instructionList & inAttribute_mInstructionList,
-                                                                                                                        const GALGAS_location & inAttribute_mEndOfInstruction
-                                                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mConstantName.isValid () && inAttribute_mLowerBoundExpression.isValid () && inAttribute_mUpperBoundExpression.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mEndOfInstruction.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT (inAttribute_mInstructionLocation, inAttribute_mConstantName, inAttribute_mLowerBoundExpression, inAttribute_mUpperBoundExpression, inAttribute_mInstructionList, inAttribute_mEndOfInstruction COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mConstantName (UNUSED_LOCATION_ARGS) const {
-  GALGAS_lstring result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
-    result = p->mProperty_mConstantName ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_lstring cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mConstantName (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mConstantName ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_immediatExpression GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
-  GALGAS_immediatExpression result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
-    result = p->mProperty_mLowerBoundExpression ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_immediatExpression cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mLowerBoundExpression ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_immediatExpression GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
-  GALGAS_immediatExpression result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
-    result = p->mProperty_mUpperBoundExpression ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_immediatExpression cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mUpperBoundExpression ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_instructionList result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
-    result = p->mProperty_mInstructionList ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_midrange_5F_instructionList cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mInstructionList ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_location GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mEndOfInstruction (UNUSED_LOCATION_ARGS) const {
-  GALGAS_location result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
-    result = p->mProperty_mEndOfInstruction ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_location cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mEndOfInstruction (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mEndOfInstruction ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                             Pointer class for @midrange_instruction_STATIC_REPEAT class                             *
-//---------------------------------------------------------------------------------------------------------------------*
-
-cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT (const GALGAS_location & in_mInstructionLocation,
-                                                                                                    const GALGAS_lstring & in_mConstantName,
-                                                                                                    const GALGAS_immediatExpression & in_mLowerBoundExpression,
-                                                                                                    const GALGAS_immediatExpression & in_mUpperBoundExpression,
-                                                                                                    const GALGAS_midrange_5F_instructionList & in_mInstructionList,
-                                                                                                    const GALGAS_location & in_mEndOfInstruction
-                                                                                                    COMMA_LOCATION_ARGS) :
-cPtr_midrange_5F_instruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mConstantName (in_mConstantName),
-mProperty_mLowerBoundExpression (in_mLowerBoundExpression),
-mProperty_mUpperBoundExpression (in_mUpperBoundExpression),
-mProperty_mInstructionList (in_mInstructionList),
-mProperty_mEndOfInstruction (in_mEndOfInstruction) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT ;
-}
-
-void cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::description (C_String & ioString,
-                                                                    const int32_t inIndentation) const {
-  ioString << "[@midrange_instruction_STATIC_REPEAT:" ;
-  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mConstantName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mLowerBoundExpression.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mUpperBoundExpression.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mEndOfInstruction.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-acPtr_class * cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT (mProperty_mInstructionLocation, mProperty_mConstantName, mProperty_mLowerBoundExpression, mProperty_mUpperBoundExpression, mProperty_mInstructionList, mProperty_mEndOfInstruction COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                      @midrange_instruction_STATIC_REPEAT type                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT ("midrange_instruction_STATIC_REPEAT",
-                                                                    & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::extractObject (const GALGAS_object & inObject,
-                                                                                                                      C_Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT result ;
-  const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("midrange_instruction_STATIC_REPEAT", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

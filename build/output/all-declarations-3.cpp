@@ -5321,7 +5321,7 @@ void GALGAS_pic_31__38_MacroMap::setter_setMConstantNameListForKey (GALGAS_lstri
                                                                     GALGAS_string inKey,
                                                                     C_Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_pic_31__38_MacroMap * p = (cMapElement_pic_31__38_MacroMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_pic_31__38_MacroMap) ;
@@ -5335,7 +5335,7 @@ void GALGAS_pic_31__38_MacroMap::setter_setMInstructionListForKey (GALGAS_pic_31
                                                                    GALGAS_string inKey,
                                                                    C_Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_pic_31__38_MacroMap * p = (cMapElement_pic_31__38_MacroMap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_pic_31__38_MacroMap) ;
@@ -5348,7 +5348,7 @@ void GALGAS_pic_31__38_MacroMap::setter_setMInstructionListForKey (GALGAS_pic_31
 cMapElement_pic_31__38_MacroMap * GALGAS_pic_31__38_MacroMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                  const GALGAS_string & inKey
                                                                                                  COMMA_LOCATION_ARGS) {
-  cMapElement_pic_31__38_MacroMap * result = (cMapElement_pic_31__38_MacroMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_pic_31__38_MacroMap * result = (cMapElement_pic_31__38_MacroMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_pic_31__38_MacroMap) ;
   return result ;
 }
@@ -8563,7 +8563,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_condition_5F_fact
         }
       }
     }
-    outArgument_outCondition = GALGAS_pic_31__38_BccInStructuredCondition::constructor_new (var_conditionString_10544.mProperty_location, var_conditional_5F_branch_10497  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 431)) ;
+    outArgument_outCondition = GALGAS_pic_31__38_BccInStructuredCondition::constructor_new (var_conditionString_10544.getter_location (HERE), var_conditional_5F_branch_10497  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 431)) ;
   } break ;
   default:
     break ;
@@ -8976,12 +8976,12 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
       default:
         break ;
       }
-      const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.mProperty_string.objectCompare (var_caseLabel_14065.mProperty_string)).boolEnum () ;
+      const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.getter_string (HERE).objectCompare (var_caseLabel_14065.getter_string (HERE))).boolEnum () ;
       if (kBoolTrue == test_1) {
         GALGAS_string temp_2 ;
-        const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_3 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_3) {
-          temp_2 = var_switchLabel_13778.mProperty_string ;
+          temp_2 = var_switchLabel_13778.getter_string (HERE) ;
         }else if (kBoolFalse == test_3) {
           temp_2 = GALGAS_string ("empty") ;
         }
@@ -9053,12 +9053,12 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
       default:
         break ;
       }
-      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.mProperty_string.objectCompare (var_elseLabel_15551.mProperty_string)).boolEnum () ;
+      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.getter_string (HERE).objectCompare (var_elseLabel_15551.getter_string (HERE))).boolEnum () ;
       if (kBoolTrue == test_6) {
         GALGAS_string temp_7 ;
-        const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_8 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_8) {
-          temp_7 = var_switchLabel_13778.mProperty_string ;
+          temp_7 = var_switchLabel_13778.getter_string (HERE) ;
         }else if (kBoolFalse == test_8) {
           temp_7 = GALGAS_string ("empty") ;
         }
@@ -9085,12 +9085,12 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
     default:
       break ;
     }
-    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.mProperty_string.objectCompare (var_endSwitchLabel_16245.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.getter_string (HERE).objectCompare (var_endSwitchLabel_16245.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_10) {
       GALGAS_string temp_11 ;
-      const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_switchLabel_13778.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_12) {
-        temp_11 = var_switchLabel_13778.mProperty_string ;
+        temp_11 = var_switchLabel_13778.getter_string (HERE) ;
       }else if (kBoolFalse == test_12) {
         temp_11 = GALGAS_string ("empty") ;
       }
@@ -9172,12 +9172,12 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
     default:
       break ;
     }
-    const enumGalgasBool test_15 = GALGAS_bool (kIsNotEqual, var_doLabel_17422.mProperty_string.objectCompare (var_endDoLabel_18201.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_15 = GALGAS_bool (kIsNotEqual, var_doLabel_17422.getter_string (HERE).objectCompare (var_endDoLabel_18201.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_15) {
       GALGAS_string temp_16 ;
-      const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, var_doLabel_17422.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, var_doLabel_17422.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_17) {
-        temp_16 = var_doLabel_17422.mProperty_string ;
+        temp_16 = var_doLabel_17422.getter_string (HERE) ;
       }else if (kBoolFalse == test_17) {
         temp_16 = GALGAS_string ("empty") ;
       }
@@ -9189,7 +9189,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_checkbank) COMMA_SOURCE_FILE ("pic18_syntax.galgas", 661)) ;
     GALGAS_luint var_bankIndex_18559 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("pic18_syntax.galgas", 662)) ;
-    outArgument_outInstruction = GALGAS_pic_31__38_Instruction_5F_checkbank::constructor_new (var_bankIndex_18559.mProperty_location, var_bankIndex_18559.mProperty_uint  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 663)) ;
+    outArgument_outInstruction = GALGAS_pic_31__38_Instruction_5F_checkbank::constructor_new (var_bankIndex_18559.getter_location (HERE), var_bankIndex_18559.getter_uint (HERE)  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 663)) ;
   } break ;
   case 5: {
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_checknobank) COMMA_SOURCE_FILE ("pic18_syntax.galgas", 665)) ;
@@ -9418,12 +9418,12 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
     default:
       break ;
     }
-    const enumGalgasBool test_24 = GALGAS_bool (kIsNotEqual, var_foreverLabel_22833.mProperty_string.objectCompare (var_endForeverLabel_23182.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_24 = GALGAS_bool (kIsNotEqual, var_foreverLabel_22833.getter_string (HERE).objectCompare (var_endForeverLabel_23182.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_24) {
       GALGAS_string temp_25 ;
-      const enumGalgasBool test_26 = GALGAS_bool (kIsNotEqual, var_foreverLabel_22833.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_26 = GALGAS_bool (kIsNotEqual, var_foreverLabel_22833.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_26) {
-        temp_25 = var_foreverLabel_22833.mProperty_string ;
+        temp_25 = var_foreverLabel_22833.getter_string (HERE) ;
       }else if (kBoolFalse == test_26) {
         temp_25 = GALGAS_string ("empty") ;
       }
@@ -9585,12 +9585,12 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
     default:
       break ;
     }
-    const enumGalgasBool test_33 = GALGAS_bool (kIsNotEqual, var_ifLabel_26209.mProperty_string.objectCompare (var_endIfLabel_26512.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_33 = GALGAS_bool (kIsNotEqual, var_ifLabel_26209.getter_string (HERE).objectCompare (var_endIfLabel_26512.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_33) {
       GALGAS_string temp_34 ;
-      const enumGalgasBool test_35 = GALGAS_bool (kIsNotEqual, var_ifLabel_26209.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_35 = GALGAS_bool (kIsNotEqual, var_ifLabel_26209.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_35) {
-        temp_34 = var_ifLabel_26209.mProperty_string ;
+        temp_34 = var_ifLabel_26209.getter_string (HERE) ;
       }else if (kBoolFalse == test_35) {
         temp_34 = GALGAS_string ("empty") ;
       }
@@ -9635,12 +9635,12 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
       default:
         break ;
       }
-      const enumGalgasBool test_38 = GALGAS_bool (kIsNotEqual, var_doLabel_26847.mProperty_string.objectCompare (var_whileLabel_27368.mProperty_string)).boolEnum () ;
+      const enumGalgasBool test_38 = GALGAS_bool (kIsNotEqual, var_doLabel_26847.getter_string (HERE).objectCompare (var_whileLabel_27368.getter_string (HERE))).boolEnum () ;
       if (kBoolTrue == test_38) {
         GALGAS_string temp_39 ;
-        const enumGalgasBool test_40 = GALGAS_bool (kIsNotEqual, var_doLabel_26847.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_40 = GALGAS_bool (kIsNotEqual, var_doLabel_26847.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_40) {
-          temp_39 = var_doLabel_26847.mProperty_string ;
+          temp_39 = var_doLabel_26847.getter_string (HERE) ;
         }else if (kBoolFalse == test_40) {
           temp_39 = GALGAS_string ("empty") ;
         }
@@ -9673,12 +9673,12 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
     default:
       break ;
     }
-    const enumGalgasBool test_42 = GALGAS_bool (kIsNotEqual, var_doLabel_26847.mProperty_string.objectCompare (var_endDoLabel_28081.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_42 = GALGAS_bool (kIsNotEqual, var_doLabel_26847.getter_string (HERE).objectCompare (var_endDoLabel_28081.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_42) {
       GALGAS_string temp_43 ;
-      const enumGalgasBool test_44 = GALGAS_bool (kIsNotEqual, var_doLabel_26847.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_44 = GALGAS_bool (kIsNotEqual, var_doLabel_26847.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_44) {
-        temp_43 = var_doLabel_26847.mProperty_string ;
+        temp_43 = var_doLabel_26847.getter_string (HERE) ;
       }else if (kBoolFalse == test_44) {
         temp_43 = GALGAS_string ("empty") ;
       }
@@ -9845,7 +9845,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
       }
     }
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken__29_) COMMA_SOURCE_FILE ("pic18_syntax.galgas", 1117)) ;
-    outArgument_outInstruction = GALGAS_pic_31__38_Instruction_5F_macro::constructor_new (var_macroName_31897.mProperty_location, var_macroName_31897, var_immediatExpressionList_31956  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 1118)) ;
+    outArgument_outInstruction = GALGAS_pic_31__38_Instruction_5F_macro::constructor_new (var_macroName_31897.getter_location (HERE), var_macroName_31897, var_immediatExpressionList_31956  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 1118)) ;
   } break ;
   default:
     break ;
@@ -10956,12 +10956,12 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_if_
     default:
       break ;
     }
-    const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (var_elsifIfLabel_32991.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.getter_string (HERE).objectCompare (var_elsifIfLabel_32991.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_string temp_1 ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_2) {
-        temp_1 = constinArgument_ifLabel.mProperty_string ;
+        temp_1 = constinArgument_ifLabel.getter_string (HERE) ;
       }else if (kBoolFalse == test_2) {
         temp_1 = GALGAS_string ("empty") ;
       }
@@ -10987,12 +10987,12 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_if_
     default:
       break ;
     }
-    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (var_elsifLabel_33651.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.getter_string (HERE).objectCompare (var_elsifLabel_33651.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_4) {
       GALGAS_string temp_5 ;
-      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_6) {
-        temp_5 = constinArgument_ifLabel.mProperty_string ;
+        temp_5 = constinArgument_ifLabel.getter_string (HERE) ;
       }else if (kBoolFalse == test_6) {
         temp_5 = GALGAS_string ("empty") ;
       }
@@ -12774,12 +12774,12 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_doLabel_7906.mProperty_string.objectCompare (var_endDoLabel_8692.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, var_doLabel_7906.getter_string (HERE).objectCompare (var_endDoLabel_8692.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_string temp_1 ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_doLabel_7906.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_doLabel_7906.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_2) {
-        temp_1 = var_doLabel_7906.mProperty_string ;
+        temp_1 = var_doLabel_7906.getter_string (HERE) ;
       }else if (kBoolFalse == test_2) {
         temp_1 = GALGAS_string ("empty") ;
       }
@@ -12791,7 +12791,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_checkbank) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 345)) ;
     GALGAS_luint var_bankIndex_9050 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_integer) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 346)) ;
-    outArgument_outInstruction = GALGAS_midrangeInstruction_5F_checkbank::constructor_new (var_bankIndex_9050.mProperty_location, var_bankIndex_9050.mProperty_uint  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 347)) ;
+    outArgument_outInstruction = GALGAS_midrangeInstruction_5F_checkbank::constructor_new (var_bankIndex_9050.getter_location (HERE), var_bankIndex_9050.getter_uint (HERE)  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 347)) ;
   } break ;
   case 3: {
     inCompiler->acceptTerminal (ACCEPT_TERMINAL (C_Lexique_piccolo_5F_lexique::kToken_checknobank) COMMA_SOURCE_FILE ("midrange_syntax.galgas", 349)) ;
@@ -12884,12 +12884,12 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_foreverLabel_10625.mProperty_string.objectCompare (var_endForeverLabel_10989.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_foreverLabel_10625.getter_string (HERE).objectCompare (var_endForeverLabel_10989.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_4) {
       GALGAS_string temp_5 ;
-      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_foreverLabel_10625.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_foreverLabel_10625.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_6) {
-        temp_5 = var_foreverLabel_10625.mProperty_string ;
+        temp_5 = var_foreverLabel_10625.getter_string (HERE) ;
       }else if (kBoolFalse == test_6) {
         temp_5 = GALGAS_string ("empty") ;
       }
@@ -13001,12 +13001,12 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_ifLabel_13101.mProperty_string.objectCompare (var_endIfLabel_13413.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_10 = GALGAS_bool (kIsNotEqual, var_ifLabel_13101.getter_string (HERE).objectCompare (var_endIfLabel_13413.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_10) {
       GALGAS_string temp_11 ;
-      const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_ifLabel_13101.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_ifLabel_13101.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_12) {
-        temp_11 = var_ifLabel_13101.mProperty_string ;
+        temp_11 = var_ifLabel_13101.getter_string (HERE) ;
       }else if (kBoolFalse == test_12) {
         temp_11 = GALGAS_string ("empty") ;
       }
@@ -13051,12 +13051,12 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
       default:
         break ;
       }
-      const enumGalgasBool test_15 = GALGAS_bool (kIsNotEqual, var_doLabel_13748.mProperty_string.objectCompare (var_whileLabel_14281.mProperty_string)).boolEnum () ;
+      const enumGalgasBool test_15 = GALGAS_bool (kIsNotEqual, var_doLabel_13748.getter_string (HERE).objectCompare (var_whileLabel_14281.getter_string (HERE))).boolEnum () ;
       if (kBoolTrue == test_15) {
         GALGAS_string temp_16 ;
-        const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, var_doLabel_13748.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, var_doLabel_13748.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_17) {
-          temp_16 = var_doLabel_13748.mProperty_string ;
+          temp_16 = var_doLabel_13748.getter_string (HERE) ;
         }else if (kBoolFalse == test_17) {
           temp_16 = GALGAS_string ("empty") ;
         }
@@ -13089,12 +13089,12 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_19 = GALGAS_bool (kIsNotEqual, var_doLabel_13748.mProperty_string.objectCompare (var_endDoLabel_14974.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_19 = GALGAS_bool (kIsNotEqual, var_doLabel_13748.getter_string (HERE).objectCompare (var_endDoLabel_14974.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_19) {
       GALGAS_string temp_20 ;
-      const enumGalgasBool test_21 = GALGAS_bool (kIsNotEqual, var_doLabel_13748.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_21 = GALGAS_bool (kIsNotEqual, var_doLabel_13748.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_21) {
-        temp_20 = var_doLabel_13748.mProperty_string ;
+        temp_20 = var_doLabel_13748.getter_string (HERE) ;
       }else if (kBoolFalse == test_21) {
         temp_20 = GALGAS_string ("empty") ;
       }
@@ -13629,12 +13629,12 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (var_elsifIfLabel_16813.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_0 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.getter_string (HERE).objectCompare (var_elsifIfLabel_16813.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_string temp_1 ;
-      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_2) {
-        temp_1 = constinArgument_ifLabel.mProperty_string ;
+        temp_1 = constinArgument_ifLabel.getter_string (HERE) ;
       }else if (kBoolFalse == test_2) {
         temp_1 = GALGAS_string ("empty") ;
       }
@@ -13660,12 +13660,12 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     default:
       break ;
     }
-    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (var_elseLabel_17439.mProperty_string)).boolEnum () ;
+    const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.getter_string (HERE).objectCompare (var_elseLabel_17439.getter_string (HERE))).boolEnum () ;
     if (kBoolTrue == test_4) {
       GALGAS_string temp_5 ;
-      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.mProperty_string.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_6) {
-        temp_5 = constinArgument_ifLabel.mProperty_string ;
+        temp_5 = constinArgument_ifLabel.getter_string (HERE) ;
       }else if (kBoolFalse == test_6) {
         temp_5 = GALGAS_string ("empty") ;
       }

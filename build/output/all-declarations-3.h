@@ -1572,11 +1572,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_DoWhileP
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38_DoWhilePartList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_pic_31__38_ConditionExpression mProperty_mCondition ;
-  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
-  public : GALGAS_location mProperty_mEndOfPartLocation ;
 
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
+
+  public : GALGAS_location mProperty_mEndOfPartLocation ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1908,12 +1909,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Interrup
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38_InterruptDefinitionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mInterruptName ;
-  public : GALGAS_bool mProperty_mFastReturn ;
-  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
-  public : GALGAS_location mProperty_mEndOfInterruptLocation ;
 
+  public : GALGAS_bool mProperty_mFastReturn ;
+
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
+
+  public : GALGAS_location mProperty_mEndOfInterruptLocation ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2196,15 +2199,20 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RoutineD
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38_RoutineDefinitionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mRoutineName ;
-  public : GALGAS_luint mProperty_mRequiredBank ;
-  public : GALGAS_luint mProperty_mReturnedBank ;
-  public : GALGAS_bool mProperty_mPreservesBank ;
-  public : GALGAS_bool mProperty_mIsNoReturn ;
-  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
-  public : GALGAS_location mProperty_mEndOfRoutineLocation ;
 
+  public : GALGAS_luint mProperty_mRequiredBank ;
+
+  public : GALGAS_luint mProperty_mReturnedBank ;
+
+  public : GALGAS_bool mProperty_mPreservesBank ;
+
+  public : GALGAS_bool mProperty_mIsNoReturn ;
+
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
+
+  public : GALGAS_location mProperty_mEndOfRoutineLocation ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2443,11 +2451,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroDef
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38_MacroDefinitionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mMacroName ;
-  public : GALGAS_lstringlist mProperty_mConstantNameList ;
-  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
+  public : GALGAS_lstringlist mProperty_mConstantNameList ;
+
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2666,11 +2675,12 @@ class cMapElement_pic_31__38_MacroMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38_MacroMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_lstringlist mProperty_mConstantNameList ;
-  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
+  public : GALGAS_lstringlist mProperty_mConstantNameList ;
+
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2921,13 +2931,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineDeclarationL
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_routineDeclarationList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mRoutineName ;
-  public : GALGAS_luint mProperty_mRequiredBank ;
-  public : GALGAS_luint mProperty_mReturnedBank ;
-  public : GALGAS_bool mProperty_mPreservesBank ;
-  public : GALGAS_bool mProperty_mIsNoReturn ;
 
+  public : GALGAS_luint mProperty_mRequiredBank ;
+
+  public : GALGAS_luint mProperty_mReturnedBank ;
+
+  public : GALGAS_bool mProperty_mPreservesBank ;
+
+  public : GALGAS_bool mProperty_mIsNoReturn ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3230,11 +3243,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_dataList ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_dataList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mDataName ;
-  public : GALGAS_immediatExpressionList mProperty_mValueList ;
-  public : GALGAS_bool mProperty_mIsByteList ;
 
+  public : GALGAS_immediatExpressionList mProperty_mValueList ;
+
+  public : GALGAS_bool mProperty_mIsByteList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3443,10 +3457,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_checkpicList ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_checkpicList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_location mProperty_mErrorLocation ;
-  public : GALGAS_lstringlist mProperty_mValueList ;
 
+  public : GALGAS_lstringlist mProperty_mValueList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -7353,25 +7367,40 @@ void routine_pic_31__38__5F_analyze (const class GALGAS_pic_31__38_AST constinAr
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mProgramName ;
-  public : GALGAS_programKind mProperty_mProgramKind ;
-  public : GALGAS_lstring mProperty_mDeviceNameOrBootLoaderReference ;
-  public : GALGAS_configDefinitionList mProperty_mConfigDefinitionList ;
-  public : GALGAS_ramDefinitionList mProperty_mRamDefinitionList ;
-  public : GALGAS_lstringlist mProperty_mUnusedRegisterList ;
-  public : GALGAS_checkpicList mProperty_mCheckpicList ;
-  public : GALGAS_dataList mProperty_mDataList ;
-  public : GALGAS_pic_31__38_InterruptDefinitionList mProperty_mInterruptDefinitionList ;
-  public : GALGAS_constantDefinitionList mProperty_mConstantDefinitionList ;
-  public : GALGAS_pic_31__38_RoutineDefinitionList mProperty_mRoutineDefinitionList ;
-  public : GALGAS_pic_31__38_MacroDefinitionList mProperty_mMacroDefinitionList ;
-  public : GALGAS_lstringlist mProperty_mUnusedRoutineList ;
-  public : GALGAS_lstringlist mProperty_mInlinedRoutineList ;
-  public : GALGAS_bool mProperty_mNeedsComputedGoto_32_ ;
-  public : GALGAS_bool mProperty_mNeedsComputedGoto_34_ ;
-  public : GALGAS_location mProperty_mEndOfProgram ;
 
+  public : GALGAS_programKind mProperty_mProgramKind ;
+
+  public : GALGAS_lstring mProperty_mDeviceNameOrBootLoaderReference ;
+
+  public : GALGAS_configDefinitionList mProperty_mConfigDefinitionList ;
+
+  public : GALGAS_ramDefinitionList mProperty_mRamDefinitionList ;
+
+  public : GALGAS_lstringlist mProperty_mUnusedRegisterList ;
+
+  public : GALGAS_checkpicList mProperty_mCheckpicList ;
+
+  public : GALGAS_dataList mProperty_mDataList ;
+
+  public : GALGAS_pic_31__38_InterruptDefinitionList mProperty_mInterruptDefinitionList ;
+
+  public : GALGAS_constantDefinitionList mProperty_mConstantDefinitionList ;
+
+  public : GALGAS_pic_31__38_RoutineDefinitionList mProperty_mRoutineDefinitionList ;
+
+  public : GALGAS_pic_31__38_MacroDefinitionList mProperty_mMacroDefinitionList ;
+
+  public : GALGAS_lstringlist mProperty_mUnusedRoutineList ;
+
+  public : GALGAS_lstringlist mProperty_mInlinedRoutineList ;
+
+  public : GALGAS_bool mProperty_mNeedsComputedGoto_32_ ;
+
+  public : GALGAS_bool mProperty_mNeedsComputedGoto_34_ ;
+
+  public : GALGAS_location mProperty_mEndOfProgram ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -7716,18 +7745,26 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configRegisterMap ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_piccoloDeviceModel : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mDeviceName ;
-  public : GALGAS_processorType mProperty_mProcessorType ;
-  public : GALGAS_luint mProperty_mRomSize ;
-  public : GALGAS_luint mProperty_mBankCount ;
-  public : GALGAS_registerTable mProperty_mRegisterTable ;
-  public : GALGAS_ramBankTable mProperty_mRamBankTable ;
-  public : GALGAS_uint mProperty_mEepromSize ;
-  public : GALGAS_uint mProperty_mEepromAddress ;
-  public : GALGAS_configRegisterMap mProperty_mConfigRegisterMap ;
-  public : GALGAS_string mProperty_mSharedBankName ;
 
+  public : GALGAS_processorType mProperty_mProcessorType ;
+
+  public : GALGAS_luint mProperty_mRomSize ;
+
+  public : GALGAS_luint mProperty_mBankCount ;
+
+  public : GALGAS_registerTable mProperty_mRegisterTable ;
+
+  public : GALGAS_ramBankTable mProperty_mRamBankTable ;
+
+  public : GALGAS_uint mProperty_mEepromSize ;
+
+  public : GALGAS_uint mProperty_mEepromAddress ;
+
+  public : GALGAS_configRegisterMap mProperty_mConfigRegisterMap ;
+
+  public : GALGAS_string mProperty_mSharedBankName ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -9482,20 +9519,30 @@ void routine_midrange_5F_analyze (const class GALGAS_midrange_5F_model constinAr
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_midrange_5F_model : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mProgramName ;
-  public : GALGAS_lstring mProperty_mDeviceName ;
-  public : GALGAS_configDefinitionList mProperty_mConfigDefinitionList ;
-  public : GALGAS_ramDefinitionList mProperty_mRamDefinitionList ;
-  public : GALGAS_lstringlist mProperty_mUnusedRegisterList ;
-  public : GALGAS_midrange_5F_interruptDefinitionList mProperty_mInterruptDefinitionList ;
-  public : GALGAS_constantDefinitionList mProperty_mConstantDefinitionList ;
-  public : GALGAS_midrange_5F_routineDefinitionList mProperty_mRoutineDefinitionList ;
-  public : GALGAS_lstringlist mProperty_mUnusedRoutineList ;
-  public : GALGAS_bool mProperty_mNeedsComputedGoto_32_ ;
-  public : GALGAS_bool mProperty_mNeedsComputedGoto_34_ ;
-  public : GALGAS_location mProperty_mEndOfProgram ;
 
+  public : GALGAS_lstring mProperty_mDeviceName ;
+
+  public : GALGAS_configDefinitionList mProperty_mConfigDefinitionList ;
+
+  public : GALGAS_ramDefinitionList mProperty_mRamDefinitionList ;
+
+  public : GALGAS_lstringlist mProperty_mUnusedRegisterList ;
+
+  public : GALGAS_midrange_5F_interruptDefinitionList mProperty_mInterruptDefinitionList ;
+
+  public : GALGAS_constantDefinitionList mProperty_mConstantDefinitionList ;
+
+  public : GALGAS_midrange_5F_routineDefinitionList mProperty_mRoutineDefinitionList ;
+
+  public : GALGAS_lstringlist mProperty_mUnusedRoutineList ;
+
+  public : GALGAS_bool mProperty_mNeedsComputedGoto_32_ ;
+
+  public : GALGAS_bool mProperty_mNeedsComputedGoto_34_ ;
+
+  public : GALGAS_location mProperty_mEndOfProgram ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;

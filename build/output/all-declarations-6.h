@@ -148,10 +148,10 @@ class cMapElement_neededConversionForClusterOrder : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_neededConversionForClusterOrder_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mConversions ;
 
+  public : GALGAS_uint mProperty_mConversions ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -366,11 +366,12 @@ class cMapElement_generatedCodeMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_generatedCodeMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_codeList mProperty_mCode ;
-  public : GALGAS_ipic_31__38_SequentialInstruction mProperty_mInstruction ;
 
+  public : GALGAS_codeList mProperty_mCode ;
+
+  public : GALGAS_ipic_31__38_SequentialInstruction mProperty_mInstruction ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -591,10 +592,10 @@ class cMapElement_blockMapForStackComputation : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_blockMapForStackComputation_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_ipic_31__38_Block mProperty_mBlock ;
 
+  public : GALGAS_ipic_31__38_Block mProperty_mBlock ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -796,11 +797,12 @@ class cMapElement_routineCallMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_routineCallMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_stringset mProperty_mCalledRoutineSet ;
-  public : GALGAS_uint mProperty_mTerminatorStackNeeds ;
 
+  public : GALGAS_stringset mProperty_mCalledRoutineSet ;
+
+  public : GALGAS_uint mProperty_mTerminatorStackNeeds ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1004,10 +1006,10 @@ class cMapElement_routineStackRequirementMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_routineStackRequirementMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mLevels ;
 
+  public : GALGAS_uint mProperty_mLevels ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1272,11 +1274,12 @@ class cMapElement_blockDurationMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_blockDurationMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mMinDuration ;
-  public : GALGAS_uint mProperty_mMaxDuration ;
 
+  public : GALGAS_uint mProperty_mMinDuration ;
+
+  public : GALGAS_uint mProperty_mMaxDuration ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1687,6 +1690,8 @@ class C_Lexique_piccoloDevice_5F_lexique : public C_Lexique {
 
 //--- Indexing keys
 
+//--- Unicode test functions
+
 //--- Indexing directory
   protected : virtual C_String indexingDirectory (void) const ;
 
@@ -1717,9 +1722,8 @@ class C_Lexique_piccoloDevice_5F_lexique : public C_Lexique {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_declaredByteMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1783,14 +1787,18 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declaredByteMap_2D_
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_registerTable_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uintlist mProperty_mRegisterAddressList ;
-  public : GALGAS_uint mProperty_mSize ;
-  public : GALGAS_bitSliceTable mProperty_mBitSliceTable ;
-  public : GALGAS_string mProperty_mBitDefinitionString ;
-  public : GALGAS_registerProtection mProperty_mProtection ;
 
+  public : GALGAS_uintlist mProperty_mRegisterAddressList ;
+
+  public : GALGAS_uint mProperty_mSize ;
+
+  public : GALGAS_bitSliceTable mProperty_mBitSliceTable ;
+
+  public : GALGAS_string mProperty_mBitDefinitionString ;
+
+  public : GALGAS_registerProtection mProperty_mProtection ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1884,13 +1892,16 @@ void extensionMethod_checkPrivateAccess (const class GALGAS_registerTable inObje
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_ramBankTable_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mFirstAddress ;
-  public : GALGAS_uint mProperty_mFirstFreeAddress ;
-  public : GALGAS_uint mProperty_mLastAddressPlusOne ;
-  public : GALGAS_uintlist mProperty_mMirrorOffsetList ;
 
+  public : GALGAS_uint mProperty_mFirstAddress ;
+
+  public : GALGAS_uint mProperty_mFirstFreeAddress ;
+
+  public : GALGAS_uint mProperty_mLastAddressPlusOne ;
+
+  public : GALGAS_uintlist mProperty_mMirrorOffsetList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2121,11 +2132,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_illegalMaskList ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_illegalMaskList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_luint mProperty_mIllegalValue ;
-  public : GALGAS_luint mProperty_mIllegalMask ;
-  public : GALGAS_lstring mProperty_mDescription ;
 
+  public : GALGAS_luint mProperty_mIllegalMask ;
+
+  public : GALGAS_lstring mProperty_mDescription ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2359,12 +2371,14 @@ class cMapElement_configRegisterMaskMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_configRegisterMaskMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_luint mProperty_mMaskValue ;
-  public : GALGAS_lstring mProperty_mDescription ;
-  public : GALGAS_fieldSettingMap mProperty_mFieldSettingMap ;
 
+  public : GALGAS_luint mProperty_mMaskValue ;
+
+  public : GALGAS_lstring mProperty_mDescription ;
+
+  public : GALGAS_fieldSettingMap mProperty_mFieldSettingMap ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2474,13 +2488,16 @@ class cMapElement_configRegisterMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_configRegisterMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_luint mProperty_mRegisterAddress ;
-  public : GALGAS_luint mProperty_mRegisterWidth ;
-  public : GALGAS_configRegisterMaskMap mProperty_mConfigRegisterMaskMap ;
-  public : GALGAS_illegalMaskList mProperty_mIllegalMaskList ;
 
+  public : GALGAS_luint mProperty_mRegisterAddress ;
+
+  public : GALGAS_luint mProperty_mRegisterWidth ;
+
+  public : GALGAS_configRegisterMaskMap mProperty_mConfigRegisterMaskMap ;
+
+  public : GALGAS_illegalMaskList mProperty_mIllegalMaskList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2621,10 +2638,10 @@ class cParser_piccoloDevice_5F_syntax {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_branchOverflowMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_key ;
-  public : GALGAS_stringlist mProperty_mList ;
 
+  public : GALGAS_stringlist mProperty_mList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;

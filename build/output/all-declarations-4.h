@@ -1580,17 +1580,24 @@ void routine_baseline_5F_analysis (const class GALGAS_baseline_5F_model constinA
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_baseline_5F_model : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mProgramName ;
-  public : GALGAS_lstring mProperty_mDeviceName ;
-  public : GALGAS_configDefinitionList mProperty_mConfigDefinitionList ;
-  public : GALGAS_ramDefinitionList mProperty_mRamDefinitionList ;
-  public : GALGAS_lstringlist mProperty_mUnusedRegisterList ;
-  public : GALGAS_constantDefinitionList mProperty_mConstantDefinitionList ;
-  public : GALGAS_baseline_5F_routineDefinitionList mProperty_mRoutineDefinitionList ;
-  public : GALGAS_lstringlist mProperty_mUnusedRoutineList ;
-  public : GALGAS_location mProperty_mEndOfProgram ;
 
+  public : GALGAS_lstring mProperty_mDeviceName ;
+
+  public : GALGAS_configDefinitionList mProperty_mConfigDefinitionList ;
+
+  public : GALGAS_ramDefinitionList mProperty_mRamDefinitionList ;
+
+  public : GALGAS_lstringlist mProperty_mUnusedRegisterList ;
+
+  public : GALGAS_constantDefinitionList mProperty_mConstantDefinitionList ;
+
+  public : GALGAS_baseline_5F_routineDefinitionList mProperty_mRoutineDefinitionList ;
+
+  public : GALGAS_lstringlist mProperty_mUnusedRoutineList ;
+
+  public : GALGAS_location mProperty_mEndOfProgram ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
