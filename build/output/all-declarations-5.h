@@ -163,11 +163,12 @@ class cMapElement_pic_31__38__5F_dataMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38__5F_dataMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uintlist mProperty_mData ;
-  public : GALGAS_bool mProperty_mIsData_38_ ;
 
+  public : GALGAS_uintlist mProperty_mData ;
+
+  public : GALGAS_bool mProperty_mIsData_38_ ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -464,11 +465,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Sequent
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_ipic_31__38_SequentialInstructionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_ipic_31__38_SequentialInstruction mProperty_mInstruction ;
-  public : GALGAS_uint mProperty_mMin ;
-  public : GALGAS_uint mProperty_mMax ;
 
+  public : GALGAS_uint mProperty_mMin ;
+
+  public : GALGAS_uint mProperty_mMax ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -734,14 +736,18 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_BlockLi
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_ipic_31__38_Block : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_uint mProperty_mAddress ;
-  public : GALGAS_lstring mProperty_mLabel ;
-  public : GALGAS_ipic_31__38_SequentialInstructionList mProperty_mInstructionList ;
-  public : GALGAS_ipic_31__38_AbstractBlockTerminator mProperty_mTerminator ;
-  public : GALGAS_uint mProperty_mTerminatorMin ;
-  public : GALGAS_uint mProperty_mTerminatorMax ;
 
+  public : GALGAS_lstring mProperty_mLabel ;
+
+  public : GALGAS_ipic_31__38_SequentialInstructionList mProperty_mInstructionList ;
+
+  public : GALGAS_ipic_31__38_AbstractBlockTerminator mProperty_mTerminator ;
+
+  public : GALGAS_uint mProperty_mTerminatorMin ;
+
+  public : GALGAS_uint mProperty_mTerminatorMax ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -822,9 +828,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Block ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_ipic_31__38_BlockList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_ipic_31__38_Block mProperty_mBlock ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1707,11 +1712,12 @@ class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_Abs
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mAssemblyString ;
-  public : GALGAS_uint mProperty_mRegisterAddress ;
-  public : GALGAS_bool mProperty_mNeedsBSR ;
 
+  public : GALGAS_uint mProperty_mRegisterAddress ;
+
+  public : GALGAS_bool mProperty_mNeedsBSR ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2422,10 +2428,10 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public cPtr_ipic_
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mAssemblyString ;
-  public : GALGAS_uint mProperty_mRegisterAddress ;
 
+  public : GALGAS_uint mProperty_mRegisterAddress ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4195,10 +4201,10 @@ class cMapElement_symbolTableForBlockOptimization : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_symbolTableForBlockOptimization_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mDefinitionBlockIndex ;
 
+  public : GALGAS_uint mProperty_mDefinitionBlockIndex ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4398,10 +4404,10 @@ class cMapElement_symbolTableForClusterOrdering : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_symbolTableForClusterOrdering_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mCluster ;
 
+  public : GALGAS_uint mProperty_mCluster ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4761,10 +4767,10 @@ void callExtensionMethod_performTerminatorRelativeBranchResolution (const class 
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_symbolTableForRelativesResolution_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mLabelAddress ;
 
+  public : GALGAS_uint mProperty_mLabelAddress ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4969,10 +4975,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_codeList ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_codeList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mAssemblyCode ;
-  public : GALGAS_uintlist mProperty_mBinaryCode ;
 
+  public : GALGAS_uintlist mProperty_mBinaryCode ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5172,10 +5178,10 @@ class cMapElement_pic_31__38__5F_dataAddressMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38__5F_dataAddressMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mDataAddress ;
 
+  public : GALGAS_uint mProperty_mDataAddress ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5672,14 +5678,18 @@ class cMapElement_declaredRoutineMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_declaredRoutineMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_luint mProperty_mRequiredBank ;
-  public : GALGAS_luint mProperty_mReturnedBank ;
-  public : GALGAS_bool mProperty_mPreservesBank ;
-  public : GALGAS_bool mProperty_mIsNoReturn ;
-  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
+  public : GALGAS_luint mProperty_mRequiredBank ;
+
+  public : GALGAS_luint mProperty_mReturnedBank ;
+
+  public : GALGAS_bool mProperty_mPreservesBank ;
+
+  public : GALGAS_bool mProperty_mIsNoReturn ;
+
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5991,9 +6001,8 @@ class cMapElement_caseConstantMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_caseConstantMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6260,12 +6269,14 @@ class cMapElement_blockInstructionBlockMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_blockInstructionBlockMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
-  public : GALGAS_abstractBlockTerminationForBlockInstruction mProperty_mBlockTerminaisonForBlockInstruction ;
-  public : GALGAS_location mProperty_mEndOfBlock ;
 
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
+
+  public : GALGAS_abstractBlockTerminationForBlockInstruction mProperty_mBlockTerminaisonForBlockInstruction ;
+
+  public : GALGAS_location mProperty_mEndOfBlock ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6485,11 +6496,12 @@ class cMapElement_blockInitialBankSelectionMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_blockInitialBankSelectionMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mInitialBankSelection ;
-  public : GALGAS_string mProperty_mSourceBlock ;
 
+  public : GALGAS_uint mProperty_mInitialBankSelection ;
+
+  public : GALGAS_string mProperty_mSourceBlock ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6711,15 +6723,20 @@ void callExtensionMethod_optimizeTerminator (const class cPtr_ipic_31__38_Abstra
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_optimizeFlagStruct : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_bool mProperty_mRemoveEmptyRoutine ;
-  public : GALGAS_bool mProperty_mJSRtoRETLWreplacedByMOVLW ;
-  public : GALGAS_bool mProperty_mJSRfollowedByRETreplacedByJUMP ;
-  public : GALGAS_bool mProperty_mMOVLWfollowedByRETreplacedByRETLW ;
-  public : GALGAS_bool mProperty_mJSRtoOneInstructionRoutineReplacedByInstruction ;
-  public : GALGAS_bool mProperty_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction ;
-  public : GALGAS_bool mProperty_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank ;
 
+  public : GALGAS_bool mProperty_mJSRtoRETLWreplacedByMOVLW ;
+
+  public : GALGAS_bool mProperty_mJSRfollowedByRETreplacedByJUMP ;
+
+  public : GALGAS_bool mProperty_mMOVLWfollowedByRETreplacedByRETLW ;
+
+  public : GALGAS_bool mProperty_mJSRtoOneInstructionRoutineReplacedByInstruction ;
+
+  public : GALGAS_bool mProperty_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction ;
+
+  public : GALGAS_bool mProperty_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -7356,9 +7373,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_clusterList ;
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_clusterList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_ipic_31__38_BlockList mProperty_mBlockList ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;

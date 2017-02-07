@@ -1522,7 +1522,7 @@ static void extensionMethod_midrange_5F_instruction_5F_JUMP_addUsedRoutines (con
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_instruction_5F_JUMP * object = (const cPtr_midrange_5F_instruction_5F_JUMP *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_JUMP) ;
-  ioArgument_ioUsedRoutines.addAssign_operation (object->mProperty_mTargetLabel.mProperty_string  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 33)) ;
+  ioArgument_ioUsedRoutines.addAssign_operation (object->mProperty_mTargetLabel.getter_string (HERE)  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 33)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1548,7 +1548,7 @@ static void extensionMethod_midrange_5F_instruction_5F_GOTO_addUsedRoutines (con
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_instruction_5F_GOTO * object = (const cPtr_midrange_5F_instruction_5F_GOTO *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_GOTO) ;
-  ioArgument_ioUsedRoutines.addAssign_operation (object->mProperty_mTargetLabel.mProperty_string  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 40)) ;
+  ioArgument_ioUsedRoutines.addAssign_operation (object->mProperty_mTargetLabel.getter_string (HERE)  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 40)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1574,7 +1574,7 @@ static void extensionMethod_midrange_5F_instruction_5F_CALL_addUsedRoutines (con
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_instruction_5F_CALL * object = (const cPtr_midrange_5F_instruction_5F_CALL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_CALL) ;
-  ioArgument_ioUsedRoutines.addAssign_operation (object->mProperty_mTargetLabel.mProperty_string  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 47)) ;
+  ioArgument_ioUsedRoutines.addAssign_operation (object->mProperty_mTargetLabel.getter_string (HERE)  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 47)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2049,7 +2049,7 @@ static void extensionMethod_midrange_5F_instruction_5F_JSR_addUsedRoutines (cons
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_instruction_5F_JSR * object = (const cPtr_midrange_5F_instruction_5F_JSR *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_JSR) ;
-  ioArgument_ioUsedRoutines.addAssign_operation (object->mProperty_mTargetLabel.mProperty_string  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 171)) ;
+  ioArgument_ioUsedRoutines.addAssign_operation (object->mProperty_mTargetLabel.getter_string (HERE)  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 171)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -2141,7 +2141,7 @@ GALGAS_stringset function_midrange_5F_computeUsedRoutines (const GALGAS_midrange
         var_s_6727 = result_outUsedRoutineSet ;
         cEnumerator_midrange_5F_routineDefinitionList enumerator_6891 (constinArgument_inRoutineDefinitionList, kENUMERATION_UP) ;
         while (enumerator_6891.hasCurrentObject ()) {
-          const enumGalgasBool test_0 = result_outUsedRoutineSet.getter_hasKey (enumerator_6891.current_mRoutineName (HERE).mProperty_string COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 211)).boolEnum () ;
+          const enumGalgasBool test_0 = result_outUsedRoutineSet.getter_hasKey (enumerator_6891.current_mRoutineName (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 211)).boolEnum () ;
           if (kBoolTrue == test_0) {
             {
             routine_addMidRangeUsedRoutinesFromInstructionList (enumerator_6891.current_mInstructionList (HERE), result_outUsedRoutineSet, inCompiler  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 212)) ;
@@ -2500,7 +2500,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_print (c
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
-  ioArgument_ioListFileContents.plusAssign_operation(object->mProperty_mLabel.mProperty_string.add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(object->mProperty_mLabel.getter_string (HERE).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -5470,7 +5470,7 @@ void routine_generateInterruptRoutineForControllerWithoutSharedRAM (const GALGAS
                                                                     GALGAS_stringset & ioArgument_ioUsedRegisters,
                                                                     C_Compiler * inCompiler
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioUsedRegisters.addAssign_operation (constinArgument_inFirstSaveRegister.mProperty_string  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2114)) ;
+  ioArgument_ioUsedRegisters.addAssign_operation (constinArgument_inFirstSaveRegister.getter_string (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2114)) ;
   GALGAS_uintlist var_registerAddressList_76985 ;
   GALGAS_uint var_size_76997 ;
   GALGAS_registerProtection var_firstProtection_77022 ;
@@ -5509,7 +5509,7 @@ void routine_generateInterruptRoutineForControllerWithoutSharedRAM (const GALGAS
     }
   }
   GALGAS_uintlist var_saveStatusRegisterAddressList_77969 = var_registerAddressList_76985 ;
-  ioArgument_ioUsedRegisters.addAssign_operation (constinArgument_inSecondSaveRegister.mProperty_string  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2133)) ;
+  ioArgument_ioUsedRegisters.addAssign_operation (constinArgument_inSecondSaveRegister.getter_string (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2133)) ;
   GALGAS_registerProtection var_secondProtection_78145 ;
   GALGAS_bitSliceTable joker_78121_2 ; // Joker input parameter
   GALGAS_string joker_78121_1 ; // Joker input parameter

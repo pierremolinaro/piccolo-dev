@@ -1429,13 +1429,13 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction::objectCompa
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_instruction::GALGAS_midrange_5F_intermediate_5F_instruction (void) :
-AC_GALGAS_class () {
+AC_GALGAS_class (false) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_midrange_5F_intermediate_5F_instruction::GALGAS_midrange_5F_intermediate_5F_instruction (const cPtr_midrange_5F_intermediate_5F_instruction * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr) {
+AC_GALGAS_class (inSourcePtr, false) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_intermediate_5F_instruction) ;
 }
 
@@ -6165,7 +6165,7 @@ void GALGAS_midrange_5F_symbolTableForConvertingRelatives::setter_setMRoutineAdd
                                                                                             GALGAS_string inKey,
                                                                                             C_Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_midrange_5F_symbolTableForConvertingRelatives * p = (cMapElement_midrange_5F_symbolTableForConvertingRelatives *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_midrange_5F_symbolTableForConvertingRelatives) ;
@@ -6178,7 +6178,7 @@ void GALGAS_midrange_5F_symbolTableForConvertingRelatives::setter_setMRoutineAdd
 cMapElement_midrange_5F_symbolTableForConvertingRelatives * GALGAS_midrange_5F_symbolTableForConvertingRelatives::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                                                                      const GALGAS_string & inKey
                                                                                                                                                      COMMA_LOCATION_ARGS) {
-  cMapElement_midrange_5F_symbolTableForConvertingRelatives * result = (cMapElement_midrange_5F_symbolTableForConvertingRelatives *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_midrange_5F_symbolTableForConvertingRelatives * result = (cMapElement_midrange_5F_symbolTableForConvertingRelatives *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_midrange_5F_symbolTableForConvertingRelatives) ;
   return result ;
 }
@@ -6623,7 +6623,7 @@ void GALGAS_midrange_5F_symbolTable::setter_setMRoutineAddressForKey (GALGAS_uin
                                                                       GALGAS_string inKey,
                                                                       C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_midrange_5F_symbolTable * p = (cMapElement_midrange_5F_symbolTable *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_midrange_5F_symbolTable) ;
@@ -6636,7 +6636,7 @@ void GALGAS_midrange_5F_symbolTable::setter_setMRoutineAddressForKey (GALGAS_uin
 cMapElement_midrange_5F_symbolTable * GALGAS_midrange_5F_symbolTable::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                          const GALGAS_string & inKey
                                                                                                          COMMA_LOCATION_ARGS) {
-  cMapElement_midrange_5F_symbolTable * result = (cMapElement_midrange_5F_symbolTable *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_midrange_5F_symbolTable * result = (cMapElement_midrange_5F_symbolTable *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_midrange_5F_symbolTable) ;
   return result ;
 }
@@ -7203,7 +7203,7 @@ void GALGAS_midrange_5F_declaredRoutineMap::method_searchKey (GALGAS_lstring inK
 cMapElement_midrange_5F_declaredRoutineMap * GALGAS_midrange_5F_declaredRoutineMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                                        const GALGAS_string & inKey
                                                                                                                        COMMA_LOCATION_ARGS) {
-  cMapElement_midrange_5F_declaredRoutineMap * result = (cMapElement_midrange_5F_declaredRoutineMap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_midrange_5F_declaredRoutineMap * result = (cMapElement_midrange_5F_declaredRoutineMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_midrange_5F_declaredRoutineMap) ;
   return result ;
 }
@@ -7440,7 +7440,7 @@ void GALGAS_bootloaderReservedRAMmap::setter_setMReservedSizeForKey (GALGAS_luin
                                                                      GALGAS_string inKey,
                                                                      C_Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_bootloaderReservedRAMmap * p = (cMapElement_bootloaderReservedRAMmap *) attributes ;
   if (NULL != p) {
     macroValidSharedObject (p, cMapElement_bootloaderReservedRAMmap) ;
@@ -7453,7 +7453,7 @@ void GALGAS_bootloaderReservedRAMmap::setter_setMReservedSizeForKey (GALGAS_luin
 cMapElement_bootloaderReservedRAMmap * GALGAS_bootloaderReservedRAMmap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                            const GALGAS_string & inKey
                                                                                                            COMMA_LOCATION_ARGS) {
-  cMapElement_bootloaderReservedRAMmap * result = (cMapElement_bootloaderReservedRAMmap *) searchForReadWriteAttribute (inKey, inCompiler COMMA_THERE) ;
+  cMapElement_bootloaderReservedRAMmap * result = (cMapElement_bootloaderReservedRAMmap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
   macroNullOrValidSharedObject (result, cMapElement_bootloaderReservedRAMmap) ;
   return result ;
 }
@@ -7560,13 +7560,13 @@ typeComparisonResult GALGAS_pic_31__38_PiccoloInstruction::objectCompare (const 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_PiccoloInstruction::GALGAS_pic_31__38_PiccoloInstruction (void) :
-AC_GALGAS_class () {
+AC_GALGAS_class (false) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_PiccoloInstruction::GALGAS_pic_31__38_PiccoloInstruction (const cPtr_pic_31__38_PiccoloInstruction * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr) {
+AC_GALGAS_class (inSourcePtr, false) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_PiccoloInstruction) ;
 }
 
@@ -8748,13 +8748,13 @@ typeComparisonResult GALGAS_abstractBlockTerminationForBlockInstruction::objectC
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_abstractBlockTerminationForBlockInstruction::GALGAS_abstractBlockTerminationForBlockInstruction (void) :
-AC_GALGAS_class () {
+AC_GALGAS_class (false) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_abstractBlockTerminationForBlockInstruction::GALGAS_abstractBlockTerminationForBlockInstruction (const cPtr_abstractBlockTerminationForBlockInstruction * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr) {
+AC_GALGAS_class (inSourcePtr, false) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_abstractBlockTerminationForBlockInstruction) ;
 }
 
@@ -8992,13 +8992,13 @@ typeComparisonResult GALGAS_pic_31__38_ConditionExpression::objectCompare (const
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_ConditionExpression::GALGAS_pic_31__38_ConditionExpression (void) :
-AC_GALGAS_class () {
+AC_GALGAS_class (false) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_ConditionExpression::GALGAS_pic_31__38_ConditionExpression (const cPtr_pic_31__38_ConditionExpression * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr) {
+AC_GALGAS_class (inSourcePtr, false) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_ConditionExpression) ;
 }
 
@@ -9586,13 +9586,13 @@ typeComparisonResult GALGAS_pic_31__38_AbstractCaseItem::objectCompare (const GA
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_AbstractCaseItem::GALGAS_pic_31__38_AbstractCaseItem (void) :
-AC_GALGAS_class () {
+AC_GALGAS_class (false) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_pic_31__38_AbstractCaseItem::GALGAS_pic_31__38_AbstractCaseItem (const cPtr_pic_31__38_AbstractCaseItem * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr) {
+AC_GALGAS_class (inSourcePtr, false) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_AbstractCaseItem) ;
 }
 

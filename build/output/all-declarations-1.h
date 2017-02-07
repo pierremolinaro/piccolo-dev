@@ -355,11 +355,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_partLis
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_baseline_5F_partList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_baseline_5F_conditionExpression mProperty_mCondition ;
-  public : GALGAS_baseline_5F_instructionList mProperty_mInstructionList ;
-  public : GALGAS_location mProperty_mEndOfPartLocation ;
 
+  public : GALGAS_baseline_5F_instructionList mProperty_mInstructionList ;
+
+  public : GALGAS_location mProperty_mEndOfPartLocation ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -705,13 +706,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_routine
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_baseline_5F_routineDefinitionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mRoutineName ;
-  public : GALGAS_luint mProperty_mPage ;
-  public : GALGAS_bool mProperty_mIsNoReturn ;
-  public : GALGAS_baseline_5F_instructionList mProperty_mInstructionList ;
-  public : GALGAS_location mProperty_mEndOfRoutineLocation ;
 
+  public : GALGAS_luint mProperty_mPage ;
+
+  public : GALGAS_bool mProperty_mIsNoReturn ;
+
+  public : GALGAS_baseline_5F_instructionList mProperty_mInstructionList ;
+
+  public : GALGAS_location mProperty_mEndOfRoutineLocation ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -931,9 +935,8 @@ class cMapElement_baseline_5F_declaredRoutineMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_baseline_5F_declaredRoutineMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1043,10 +1046,10 @@ void callExtensionMethod_shouldNotContinueInSequence (const class cPtr_baseline_
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_baseline_5F_intermediate_5F_registerExpression : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mAssemblyString ;
-  public : GALGAS_uint mProperty_mRegisterAddress ;
 
+  public : GALGAS_uint mProperty_mRegisterAddress ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -1311,9 +1314,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_baseline_5F_intermediate_5F_instruction mProperty_mInstruction ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2571,11 +2573,12 @@ class cMapElement_baselineRoutineMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_baselineRoutineMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_bool mProperty_mIsNoReturn ;
-  public : GALGAS_luint mProperty_mPage ;
 
+  public : GALGAS_bool mProperty_mIsNoReturn ;
+
+  public : GALGAS_luint mProperty_mPage ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -2910,10 +2913,10 @@ class cMapElement_baselineSymbolTableForOptimizations : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_baselineSymbolTableForOptimizations_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mDefinitionLineIndex ;
 
+  public : GALGAS_uint mProperty_mDefinitionLineIndex ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3462,9 +3465,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembl
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_baseline_5F_assembly_5F_instructionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_baseline_5F_assembly_5F_instruction mProperty_mInstruction ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4613,10 +4615,10 @@ class cMapElement_baseline_5F_symbolTable : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_baseline_5F_symbolTable_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mRoutineAddress ;
 
+  public : GALGAS_uint mProperty_mRoutineAddress ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4933,9 +4935,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_midrange_5F_instructionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_midrange_5F_instruction mProperty_mInstruction ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6878,11 +6879,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_partLis
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_midrange_5F_partList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_midrange_5F_conditionExpression mProperty_mCondition ;
-  public : GALGAS_midrange_5F_instructionList mProperty_mInstructionList ;
-  public : GALGAS_location mProperty_mEndOfPartLocation ;
 
+  public : GALGAS_midrange_5F_instructionList mProperty_mInstructionList ;
+
+  public : GALGAS_location mProperty_mEndOfPartLocation ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;

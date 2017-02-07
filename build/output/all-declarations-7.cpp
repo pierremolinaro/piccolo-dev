@@ -12,6 +12,267 @@
 //   Object comparison                                                                                                 *
 //---------------------------------------------------------------------------------------------------------------------*
 
+typeComparisonResult cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mInstructionLocation.objectCompare (p->mProperty_mInstructionLocation) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mConstantName.objectCompare (p->mProperty_mConstantName) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mLowerBoundExpression.objectCompare (p->mProperty_mLowerBoundExpression) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mUpperBoundExpression.objectCompare (p->mProperty_mUpperBoundExpression) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mInstructionList.objectCompare (p->mProperty_mInstructionList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mEndOfInstruction.objectCompare (p->mProperty_mEndOfInstruction) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+typeComparisonResult GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::objectCompare (const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT (void) :
+GALGAS_midrange_5F_instruction () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * inSourcePtr) :
+GALGAS_midrange_5F_instruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                        const GALGAS_lstring & inAttribute_mConstantName,
+                                                                                                                        const GALGAS_immediatExpression & inAttribute_mLowerBoundExpression,
+                                                                                                                        const GALGAS_immediatExpression & inAttribute_mUpperBoundExpression,
+                                                                                                                        const GALGAS_midrange_5F_instructionList & inAttribute_mInstructionList,
+                                                                                                                        const GALGAS_location & inAttribute_mEndOfInstruction
+                                                                                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT result ;
+  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mConstantName.isValid () && inAttribute_mLowerBoundExpression.isValid () && inAttribute_mUpperBoundExpression.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mEndOfInstruction.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT (inAttribute_mInstructionLocation, inAttribute_mConstantName, inAttribute_mLowerBoundExpression, inAttribute_mUpperBoundExpression, inAttribute_mInstructionList, inAttribute_mEndOfInstruction COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mConstantName (UNUSED_LOCATION_ARGS) const {
+  GALGAS_lstring result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
+    result = p->mProperty_mConstantName ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_lstring cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mConstantName (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mConstantName ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_immediatExpression result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
+    result = p->mProperty_mLowerBoundExpression ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mLowerBoundExpression (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mLowerBoundExpression ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_immediatExpression result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
+    result = p->mProperty_mUpperBoundExpression ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatExpression cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mUpperBoundExpression (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mUpperBoundExpression ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_midrange_5F_instructionList result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
+    result = p->mProperty_mInstructionList ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_midrange_5F_instructionList cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mInstructionList (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mInstructionList ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_location GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mEndOfInstruction (UNUSED_LOCATION_ARGS) const {
+  GALGAS_location result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
+    result = p->mProperty_mEndOfInstruction ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_location cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::getter_mEndOfInstruction (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mEndOfInstruction ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                             Pointer class for @midrange_instruction_STATIC_REPEAT class                             *
+//---------------------------------------------------------------------------------------------------------------------*
+
+cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT (const GALGAS_location & in_mInstructionLocation,
+                                                                                                    const GALGAS_lstring & in_mConstantName,
+                                                                                                    const GALGAS_immediatExpression & in_mLowerBoundExpression,
+                                                                                                    const GALGAS_immediatExpression & in_mUpperBoundExpression,
+                                                                                                    const GALGAS_midrange_5F_instructionList & in_mInstructionList,
+                                                                                                    const GALGAS_location & in_mEndOfInstruction
+                                                                                                    COMMA_LOCATION_ARGS) :
+cPtr_midrange_5F_instruction (in_mInstructionLocation COMMA_THERE),
+mProperty_mConstantName (in_mConstantName),
+mProperty_mLowerBoundExpression (in_mLowerBoundExpression),
+mProperty_mUpperBoundExpression (in_mUpperBoundExpression),
+mProperty_mInstructionList (in_mInstructionList),
+mProperty_mEndOfInstruction (in_mEndOfInstruction) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT ;
+}
+
+void cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::description (C_String & ioString,
+                                                                    const int32_t inIndentation) const {
+  ioString << "[@midrange_instruction_STATIC_REPEAT:" ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mConstantName.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mLowerBoundExpression.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mUpperBoundExpression.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mEndOfInstruction.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+acPtr_class * cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT (mProperty_mInstructionLocation, mProperty_mConstantName, mProperty_mLowerBoundExpression, mProperty_mUpperBoundExpression, mProperty_mInstructionList, mProperty_mEndOfInstruction COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      @midrange_instruction_STATIC_REPEAT type                                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT ("midrange_instruction_STATIC_REPEAT",
+                                                                    & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::extractObject (const GALGAS_object & inObject,
+                                                                                                                      C_Compiler * inCompiler
+                                                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT result ;
+  const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("midrange_instruction_STATIC_REPEAT", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Object comparison                                                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
 typeComparisonResult cPtr_midrange_5F_instruction_5F_CALL::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_instruction_5F_CALL * p = (const cPtr_midrange_5F_instruction_5F_CALL *) inOperandPtr ;

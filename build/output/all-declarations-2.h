@@ -195,13 +195,16 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interru
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_midrange_5F_interruptDefinitionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_location mProperty_mInterruptLocation ;
-  public : GALGAS_midrange_5F_instructionList mProperty_mInstructionList ;
-  public : GALGAS_lstring mProperty_mFirstSaveRegister ;
-  public : GALGAS_lstring mProperty_mSecondSaveRegister ;
-  public : GALGAS_location mProperty_mEndOfInterruptLocation ;
 
+  public : GALGAS_midrange_5F_instructionList mProperty_mInstructionList ;
+
+  public : GALGAS_lstring mProperty_mFirstSaveRegister ;
+
+  public : GALGAS_lstring mProperty_mSecondSaveRegister ;
+
+  public : GALGAS_location mProperty_mEndOfInterruptLocation ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -502,16 +505,22 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_routine
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_midrange_5F_routineDefinitionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mRoutineName ;
-  public : GALGAS_luint mProperty_mPage ;
-  public : GALGAS_luint mProperty_mRequiredBank ;
-  public : GALGAS_luint mProperty_mReturnedBank ;
-  public : GALGAS_bool mProperty_mPreservesBank ;
-  public : GALGAS_bool mProperty_mIsNoReturn ;
-  public : GALGAS_midrange_5F_instructionList mProperty_mInstructionList ;
-  public : GALGAS_location mProperty_mEndOfRoutineLocation ;
 
+  public : GALGAS_luint mProperty_mPage ;
+
+  public : GALGAS_luint mProperty_mRequiredBank ;
+
+  public : GALGAS_luint mProperty_mReturnedBank ;
+
+  public : GALGAS_bool mProperty_mPreservesBank ;
+
+  public : GALGAS_bool mProperty_mIsNoReturn ;
+
+  public : GALGAS_midrange_5F_instructionList mProperty_mInstructionList ;
+
+  public : GALGAS_location mProperty_mEndOfRoutineLocation ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -603,10 +612,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_routine
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_midrange_5F_intermediate_5F_registerExpression : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_string mProperty_mAssemblyString ;
-  public : GALGAS_uint mProperty_mRegisterAddress ;
 
+  public : GALGAS_uint mProperty_mRegisterAddress ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -871,9 +880,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_midrange_5F_intermediate_5F_instruction mProperty_mInstruction ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3169,10 +3177,10 @@ class cMapElement_midrange_5F_symbolTableForConvertingRelatives : public cMapEle
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mRoutineAddress ;
 
+  public : GALGAS_uint mProperty_mRoutineAddress ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3455,10 +3463,10 @@ class cMapElement_midrange_5F_symbolTable : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_midrange_5F_symbolTable_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_uint mProperty_mRoutineAddress ;
 
+  public : GALGAS_uint mProperty_mRoutineAddress ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3741,9 +3749,8 @@ class cMapElement_midrange_5F_declaredRoutineMap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_midrange_5F_declaredRoutineMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3939,10 +3946,10 @@ class cMapElement_bootloaderReservedRAMmap : public cMapElement {
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_bootloaderReservedRAMmap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_lkey ;
-  public : GALGAS_luint mProperty_mReservedSize ;
 
+  public : GALGAS_luint mProperty_mReservedSize ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4207,9 +4214,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38_InstructionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_pic_31__38_PiccoloInstruction mProperty_mInstruction ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5065,12 +5071,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BlockIns
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38_BlockInstructionBlockList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_lstring mProperty_mBlockName ;
-  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
-  public : GALGAS_abstractBlockTerminationForBlockInstruction mProperty_mBlockTerminaisonForBlockInstruction ;
-  public : GALGAS_location mProperty_mEndOfBlock ;
 
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
+
+  public : GALGAS_abstractBlockTerminationForBlockInstruction mProperty_mBlockTerminaisonForBlockInstruction ;
+
+  public : GALGAS_location mProperty_mEndOfBlock ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5515,9 +5523,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_CaseExpr
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38_CaseExpressionList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_pic_31__38_AbstractCaseItem mProperty_mCaseItem ;
-
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5729,11 +5736,12 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SwitchIn
 //---------------------------------------------------------------------------------------------------------------------*
 
 class GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element : public AC_GALGAS_root {
-//--------------------------------- Public data members
+//--------------------------------- Properties
   public : GALGAS_location mProperty_mStartOfCase ;
-  public : GALGAS_pic_31__38_CaseExpressionList mProperty_mCaseExpressionList ;
-  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
+  public : GALGAS_pic_31__38_CaseExpressionList mProperty_mCaseExpressionList ;
+
+  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
 //--------------------------------- Accessors
   public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
