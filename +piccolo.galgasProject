@@ -9,7 +9,8 @@ project (3:1:3) -> "piccolo" {
   %makefile-x86linux32-on-macosx
   %makefile-x86linux64-on-macosx
   %makefile-win32-on-macosx
-  %SierraElCapitan
+  %Lion
+#  %SierraElCapitan
 #  %macCodeSign : "MacDeveloper:YW8QY74J2A"
   %macCodeSign : "Certificate:Pierre Canari Molinaro"
   %applicationBundleBase : "fr.irccyn"
