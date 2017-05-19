@@ -6881,10 +6881,10 @@
       GCC_WARN_UNUSED_VALUE = YES ;
       GCC_WARN_UNUSED_VARIABLE = YES ;
       HEADER_SEARCH_PATHS = ("../build/output", "../build/libpm", "../build/user-headers", "../hand_coded_sources/**") ;
-      SDKROOT = macosx10.12 ;
+      SDKROOT = macosx10.7 ;
       COPY_PHASE_STRIP = NO ;
       CLANG_ENABLE_OBJC_ARC = YES ;
-      MACOSX_DEPLOYMENT_TARGET = "10.11" ;
+      MACOSX_DEPLOYMENT_TARGET = "10.7" ;
     };
     name = Default;
   };
