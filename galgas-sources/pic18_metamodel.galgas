@@ -174,7 +174,8 @@ class @pic18Instruction_switch : @pic18PiccoloInstruction {
 
 enum @pic18Instruction_FDA_base_code_AST {
   case ADDWF  case ADDWFC  case ANDWF  case COMF  case DECF  case INCF 
-  case IORWF  case MOVF  case RLCF  case RLNCF  case RRCF  case RRNCF  case SUBFWB  case SUBWF  case SUBWFB  case SWAPF  case XORWF
+  case IORWF  case MOVF  case RLCF  case RLNCF  case RRCF  case RRNCF
+  case SUBFWB  case SUBWF  case SUBWFB  case SWAPF  case XORWF
 }
 
 #----------------------------------------------------*

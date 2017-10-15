@@ -30,9 +30,10 @@ Dans l’en-tête :
 
 Le corps du programme est constitué d’une liste non ordonnée de sections. Les sections disponibles sont listées dans le \refTableau{sectionsMidrange}.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
-%  \rowcolors{2}{\fondTableau}{}
+  \small
+  \fondTableau
   \begin{tabular}{p{5cm}lll}
     \textbf{Type de section} & \textbf{Mot-clés introductifs} & \textbf{Référence}\\
     Configuration & \pic!configuration! & \refChapterPage{configuration}\\
@@ -236,10 +237,10 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
 Le \refTableau{instructionsAssembleurMidRange} donnent la liste des instructions machine \emph{mid-range} et les liens vers les sections précisant leur prise en charge en Piccolo.
 
  
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Instruction} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \assembleur{ADDLW k} & Add Literal and W & \refSubsectionPage{opMidRangeImmediate}\\
@@ -366,10 +367,10 @@ Ce sont les instructions listées dans le \refTableau{operationsMidRangeNommantU
 
 
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \assembleur{CLRF f} & Clear f & \pic!clrf f! \\
@@ -388,7 +389,7 @@ Ce sont les instructions listées dans le \refTableau{operationsMidRangeNommantU
 
 
 
-\subsectionLabel{Instructions nommant un registre, et optionnellement \texttt{W}}{instructionsMidRangeNommantRegistreEtW}
+\subsectionLabel{Instructions nommant un registre, et optionellement \texttt{W}}{instructionsMidRangeNommantRegistreEtW}
 
 Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \refTableau{instructionsMidRangeRegistreEtW}. En assembleur, elles nomment deux opérandes :
 \begin{itemize}
@@ -397,10 +398,10 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 \end{itemize}
 
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{3}{}{\fondTableau}
+  \fondTableau
   \begin{tabular}{llll}
      &  & \multicolumn{2}{l}{\textbf{En Piccolo, destination :}} \\
     \textbf{Assembleur} & \textbf{Description} & \textbf{f} & \textbf{W}\\
@@ -416,7 +417,7 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
     \hdashline
     \assembleur{IORWF f, d} & Inclusive OR W with f & \pic!iorwf f! & \pic!iorwf f, W!\\
     \hdashline
-    \assembleur{MOVF f, d} & Move f & \pic!movf f! & \pic!movf f, W!\\
+    \assembleur{MOVF f, d} & Move f & \pic!movf f! ou \pic!movf *, f! & \pic!movf f, W!\\
     \hdashline
     \assembleur{RLF f, d} & Rotate Left f through Carry & \pic!rlf f! & \pic!rlf f, W!\\
     \hdashline
@@ -428,20 +429,21 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
     \hdashline
     \assembleur{XORWF f, d} & Exclusive OR W with f & \pic!xorwf f! & \pic!xorwf f, W!\\
   \end{tabular}
-  \caption{Instructions \emph{mid-range} nommant un registre, et optionnellement \texttt{W}}
+  \caption{Instructions \emph{mid-range} nommant un registre, et optionellement \texttt{W}}
   \labelTableau{instructionsMidRangeRegistreEtW}
   \ligne
 \end{table}
 
+À partir de la version 3.1.4, l'instruction \pic!movf f! émet une alerte. En effet, cette instruction n'effectue aucun transfert de données, elle charge simplement les indicateurs booléens. Souvent, c'est une confusion de l'utilisateur qui a oublié l'argument \pic!W!. Pour supprimer l'alerte, écrire l'instruction sous la forme \pic!movf *, f!. Elle n'émet pas l'alerte, et engendre le même code que \pic!movf f!.
 
 \subsectionLabel{Opérations d'affectation de bit}{opMidRangeAffectationBit}
 
 Ces instructions Piccolo correspondent aux instructions machine \assembleur{BCF} et \assembleur{BSF} (\refTableau{operationsMidRangeAffectationBit}).
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \assembleur{BCF f, b} & Bit Clear f & \pic!bcf f.b! \\
@@ -504,10 +506,10 @@ Pour être valide dans les opérations statiques avec \pic!W!, le résultat devr
 Par exemple : \pic!movlw -14! engendre l’instruction assembleur : \assembleur{MOVLW 0xf2}.
 
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \assembleur{ADDLW k} & Add Literal and W & \pic!addlw k!\\
@@ -532,10 +534,10 @@ Par exemple : \pic!movlw -14! engendre l’instruction assembleur : \assembleur{
 
 Ces instructions sont listées dans le \refTableau{operationsMidRangeIdentiquesAssembleur}.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \assembleur{CLRWDT} & Clear Watchdog Timer & \pic!clrwdt!\\
@@ -632,10 +634,10 @@ Une section \pic!include! permet d'inclure un fichier contenant lui-même des se
 
 La mémoire programme d'un \emph{mid-range} est constituée d'une ou plusieurs pages de 2048 instructions chacune. Le \refTableau{nombrePagesMidRange} cite quelques micro-contrôleurs \emph{mid-range} et le nombre de pages de leur mémoire programme.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Composant} & \textbf{Mémoire programme} & \textbf{Nombre de pages}\\
     16F631  & 1024 instructions & 1\\
@@ -657,10 +659,10 @@ La mémoire programme d'un \emph{mid-range} est constituée d'une ou plusieurs p
 
 Les deux instructions machine de branchement que le jeu d'instructions des \emph{mid-range} définit sont \assembleur{CALL} et \assembleur{GOTO} (\refTableau{callGotoMidRange}). En résumé, ces instructions ne permettent pas d'effectuer par elles mêmes un branchement à tout position de la mémoire programme, mais uniquement un branchement à toute position de la page courante.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{3}{}{\fondTableau}
+  \fondTableau
   \begin{tabular}{llcccc}
     \textbf{Instruction} & \textbf{Description} & \multicolumn{4}{l}{\bf Code binaire}\\
                          &                      & 13 & 12 & 11 & 10 à 0\\
@@ -1124,10 +1126,10 @@ Cette section indique les différentes optimisations d'un code \emph{mid-range}.
 
 Pour optimiser, Piccolo applique les remplacements indiqués par le \refTableau{optimisationsMidRange}, et élimine le code mort. Le code est balayé de manière répétitive, tant que des optimisations sont effectuées.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{ll}
     \textbf{Situation} & \textbf{Optimisation} \\
     \assembleur{CALL} vers \assembleur{RETLW k}  & Remplacement par \assembleur{MOVLW k}\\

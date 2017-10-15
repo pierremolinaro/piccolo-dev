@@ -98,10 +98,10 @@ Pour le test individuel d'un bit, la notation \pic!registre.bit! est utilisée :
 
 Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de toutes les instructions conditionnelles simples pour les \emph{baseline} et \emph{mid-range}, et le \refTableau{instructionsConditionnellesSimplesPic18} pour celles des \emph{pic18}.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lp{4cm}lll}
     \textbf{Instruction} & \textbf{Code engendré} & \\
     \pic!if reg.bit : instruction! & \assembleur{BTFSC reg, bit} & \assembleur{instruction} \\
@@ -121,10 +121,10 @@ Le \refTableau{instructionsConditionnellesSimplesBaseline} donne la liste de tou
   \ligne
 \end{table}
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lp{4cm}lll}
     \textbf{Instruction} & \textbf{Code engendré} & \\
     \pic+if reg != W : instruction+ & \assembleur{CPFSEQ reg} & \assembleur{instruction} \\
@@ -596,10 +596,10 @@ Les conditions élémentaires exploitent les quatre instructions conditionnelles
 
 
 Les conditions basées sur le test d'un bit d'un registre sont listées dans le \refTableau{conditionsElementairesBaselineTestRegistre}.
-
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Condition} & \textbf{Signification} & \textbf{Code engendré}\\
                            \pic!reg.bit!  & reg.bit $\ne$ 0 ? &\assembleur{BTFSS reg,bit}\\
@@ -616,9 +616,10 @@ Les conditions basées sur le test d'un bit d'un registre sont listées dans le 
 
 Le \refTableau{conditionsElementairesBaseLineIncDecRegistre} liste les conditions basées sur les instructions \assembleur{DECFSZ} et \assembleur{INCFSZ}. La non symétrie du jeu d'instructions provoquent des codes engendrés de tailles différentes selon les conditions exprimées. 
 
-\begin{table}[t]
+\begin{table}[htbp]
   \centering
   \small
+  \fondTableau
   \begin{tabular}{lllll}
     \textbf{Condition} & \textbf{Signification} & \textbf{Code engendré}\\
     \pic!decf reg z!   & reg := reg - 1 ; reg = 0 ?  & \assembleur{DECFSZ reg}  \\
@@ -671,10 +672,10 @@ Les conditions élémentaires exploitent les différentes instructions condition
 
 Les instructions de saut conditionnel permettent d'exploiter directement la valeur des bits du registre \assembleur{STATUS}. Les conditions correspondantes sont listées dans le \refTableau{conditionsElementairesPic18SautConditionnel}. Leur compilation engendre un code de 2, 4 ou 6 octets, selon l'amplitude du branchement. Piccolo engendre toujours le code le plus petit possible.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lp{3.5cm}lp{2.2cm}p{2.5cm}}
     \textbf{Condition} & \textbf{Signification} & \multicolumn{3}{l}{\bf Code engendré}\\
                        &                        & \textbf{2 octets} & \textbf{4 octets} & \textbf{6 octets}\\
@@ -710,9 +711,10 @@ Les instructions de saut conditionnel permettent d'exploiter directement la vale
 
 La comparaison du contenu d'un registre avec la valeur de \assembleur{WREG} est effectuée par les instructions assembleur \assembleur{CPFSEQ}, \assembleur{CPFSLT} et \assembleur{CPFSGT}. En Piccolo, les 6 comparaisons sont possibles, et la non symétrie des instructions assembleur provoque la génération d'un code pouvant atteindre 8 octets. Piccolo engendre toujours le code le plus petit possible. Le \refTableau{conditionsElementairesPic18ComparaisonsW} liste ces conditions.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
+  \fondTableau
   \begin{tabular}{llll}
     \textbf{Condition} & \multicolumn{3}{l}{\bf Code engendré}\\
                        & \textbf{4 octets} & \textbf{6 octets} & \textbf{8 octets}\\
@@ -744,9 +746,10 @@ La comparaison du contenu d'un registre avec la valeur de \assembleur{WREG} est 
 
 Les conditions basées sur le test d'un registre sont listées dans le \refTableau{conditionsElementairesPic18TestRegistre}. Remarquer que les conditions listées ne sont pas toutes élémentaires. Ainsi, la condition \pic+!registre nz+ est équivalente à \pic!registre z!, et \pic+!registre z+ équivalente à \pic!registre nz!. Remarquer aussi que l'absence d'instruction complémentaire à \assembleur{TSTFSZ} entraîne un code plus long pour la condition \pic!registre z!.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
+  \fondTableau
   \begin{tabular}{lllll}
     \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
                        &                        & \textbf{Court} & \textbf{Long}\\
@@ -771,9 +774,10 @@ Les conditions basées sur le test d'un registre sont listées dans le \refTable
 
 Enfin, le \refTableau{conditionsElementairesPic18IncDecRegistre} liste les conditions basées sur les instructions \assembleur{DECFSZ}, \assembleur{DECFSZ}, \assembleur{INCFSZ} et \assembleur{INFSNZ}. Là encore, elles ne sont pas toutes élementaires : par exemple, \pic!decf registre nz! est équivalente à \pic+! decf registre z+. 
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
+  \fondTableau
   \begin{tabular}{lllll}
     \textbf{Condition} & \textbf{Signification} & \multicolumn{2}{l}{\bf Code engendré}\\
                        &                        & \textbf{Court} & \textbf{Long}\\
@@ -990,9 +994,10 @@ nom_du_block { liste_instructions_structurees } branchement
 
 Le \pic!nom_du_block! est le nom donné au bloc ; ce nom est interne à l'instruction \pic!block! qui le contient. \pic!liste_instructions_structurees! est une liste d'instructions structurées quelconques, qui peut être vide. \pic!branchement! est une expression particulière, qui définit où l'exécution se poursuit à l'issue de l'exécution des instructions structurées ; cette expression peut prendre plusieurs formes, indiquées dans le \refTableau{terminaisonBloc}.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
+  \fondTableau
   \begin{tabular}{lp{9cm}}
     \textbf{Syntaxe} & \textbf{Signification} \\
       \pic!-! & L'exécution de l'instruction \pic!block! est terminée : l'exécution se poursuit par celle qui suit le \pic!end! de l'instruction\pic!block!. \\
@@ -1255,9 +1260,10 @@ Le comportement des routines vis à vis de la sélection courante de banc doit �
 
 
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
-%  \rowcolors{2}{\fondTableau}{}
+  \small
+  \fondTableau
   \begin{tabular}{ll}
     \textbf{Qualificatif} & \textbf{Sélection de banc lors de l'appel} \\
     \emph{aucun} & ?\\ 
@@ -1268,9 +1274,10 @@ Le comportement des routines vis à vis de la sélection courante de banc doit �
   \ligne
 \end{table}
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
-%  \rowcolors{2}{\fondTableau}{}
+  \small
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Qualificatif} & \multicolumn{2}{l}{\bf Sélection de banc} \\
                           & \textbf{Lors de l'appel}  & \textbf{Lors du retour} \\

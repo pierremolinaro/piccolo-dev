@@ -168,7 +168,8 @@ override method @pic18Instruction_FDA analyzeSimpleInstruction
   ?!@uint ioCurrentBank
   ?let @bool unused inShouldPreserveBSR
   ?!@stringset ioUsedRegisters
-  !@ipic18SequentialInstruction outInstruction {
+  !@ipic18SequentialInstruction outInstruction
+{
   [mRegisterExpression analyzeRegisterExpression
     !inAccessBankSplitOffset
     !ioCurrentBank
