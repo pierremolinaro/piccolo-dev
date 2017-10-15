@@ -44,12 +44,29 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     !?listFileContents
     ?actualConfigurationMap
   )
+#-------------------------------- Build constant map
+  @constantMap constantMap = {}
+  @stringset usedRegisters = {}
+  @registerTable registerTable = [piccoloDeviceModel mRegisterTable]
+#--- Add "ROM_SIZE" constant
+  var romSizeString = @lstring.new {!"ROM_SIZE" !.here}
+  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel.mRomSize sint64]]
+#--- Add declared constants
+  for () in  [inPiccoloModel mConstantDefinitionList] do
+    [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
+    if [registerTable hasKey ![mConstantName string]] then
+      error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
+    else
+      [!?constantMap insertKey !mConstantName !result]
+    end
+  end
 #-------------------------------- Ram definition
   @ramBankTable ramBank = [piccoloDeviceModel mRamBankTable]
-  @registerTable registerTable = [piccoloDeviceModel mRegisterTable]
   analyze_ram_sections (
     !"DECLARED VARIABLES"
     ![inPiccoloModel mRamDefinitionList]
+    !constantMap
+    !?usedRegisters
     !?ramBank
     ![piccoloDeviceModel mRegisterTable]
     !?listFileContents
@@ -57,11 +74,11 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     ?let @declaredByteMap declaredByteMap
   )
 #-------------------------------- Build IPIC Assembly Instruction List
-  var usedRegisters =@stringset.emptySet{}
   build_midrange_assembly_instruction_list (
-    !([[piccoloDeviceModel mRomSize] uint] + 2047) / 2048
+    !([piccoloDeviceModel.mRomSize uint] + 2047) / 2048
     ![[piccoloDeviceModel mBankCount] uint]
-    ![[[piccoloDeviceModel mRomSize] uint] sint]
+    !constantMap
+#    ![[piccoloDeviceModel.mRomSize uint] sint]
     !piccoloDeviceModel.mSharedBankName
     !registerTable
     !inPiccoloModel
@@ -131,7 +148,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
       !{}
       ![[piccoloDeviceModel mBankCount] uint]
       !generatedInstructionList
-      ![[piccoloDeviceModel mRomSize] uint]
+      ![piccoloDeviceModel.mRomSize uint]
       !actualConfigurationMap
       !?listFileContents
       ?usedROMsize
@@ -151,9 +168,9 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     end
   #--- Write infos (if verbose mode)
     if @application.verboseOutput then
-      @string verboseMessage = "  ROM size: " + [[[piccoloDeviceModel mRomSize] uint] string] + " words;"
+      @string verboseMessage = "  ROM size: " + [[piccoloDeviceModel.mRomSize uint] string] + " words;"
       verboseMessage += " used: " + [usedROMsize string] + " words ("
-      verboseMessage += [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] + "%).\n"
+      verboseMessage += [(usedROMsize * 100) / [piccoloDeviceModel.mRomSize uint] string] + "%).\n"
       for () in  ramBank do
         @uint bankSize = mLastAddressPlusOne - mFirstAddress
         @uint usedSize = mFirstFreeAddress - mFirstAddress

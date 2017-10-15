@@ -7,6 +7,8 @@
 #----------------------------------------------------------------------------*
 
 abstract method @declarationInRam handleDeclaration
+  ?let @constantMap inConstantMap
+  ?!@stringset ioUsedRegisters
   ?!@ramBankTable ioRamBank
   ?!@registerTable ioRegisterTable
   ?let @lstring inCurrentRamBank
@@ -15,6 +17,8 @@ abstract method @declarationInRam handleDeclaration
 #----------------------------------------------------------------------------*
 
 override method @byteDeclarationInRam handleDeclaration
+  ?let @constantMap inConstantMap
+  ?!@stringset ioUsedRegisters
   ?!@ramBankTable ioRamBank
   ?!@registerTable ioRegisterTable
   ?let @lstring inCurrentRamBank
@@ -24,21 +28,25 @@ override method @byteDeclarationInRam handleDeclaration
   @uint firstFreeAddress
   @uintlist mirrorOffsetList
   [ioRamBank searchKey !inCurrentRamBank ?* ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList]
-  if [mSize uint] == 0 then
-    error mSize: "zero size is not allowed"
-  end
-  @uintlist addressList = {!firstFreeAddress}
-  for () in  mirrorOffsetList do
-    addressList += !firstFreeAddress + mValue
-  end
-  if not [ioDeclaredByteMap hasKey !mName.string] then
-    [!?ioDeclaredByteMap insertKey !mName]
-  end
-  [!?ioRegisterTable insertKey !mName !addressList ![mSize uint] !mBitSliceTable !mBitDefinitionString !mProtection]
-  firstFreeAddress = firstFreeAddress + [mSize uint]
-  [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress ![inCurrentRamBank string]]
-  if firstFreeAddress > lastAddressPlusOne then
-    error mName: "overflow in '" + inCurrentRamBank + "' ram bank for '" + mName + "' declaration"
+  [mSizeExpression eval !ioRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
+  if size <= 0S then
+    error mName: "size expression should be > 0"
+  elsif size > 4096S then
+    error mName: "size expression should be < 4096"
+  else
+    @uintlist addressList = {!firstFreeAddress}
+    for () in  mirrorOffsetList do
+      addressList += !firstFreeAddress + mValue
+    end
+    if not [ioDeclaredByteMap hasKey !mName.string] then
+      [!?ioDeclaredByteMap insertKey !mName]
+    end
+    [!?ioRegisterTable insertKey !mName !addressList ![size uint] !mBitSliceTable !mBitDefinitionString !mProtection]
+    firstFreeAddress = firstFreeAddress + [size uint]
+    [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress ![inCurrentRamBank string]]
+    if firstFreeAddress > lastAddressPlusOne then
+      error mName: "overflow in '" + inCurrentRamBank + "' ram bank for '" + mName + "' declaration"
+    end
   end
 }
 
@@ -51,15 +59,25 @@ override method @byteDeclarationInRam handleDeclaration
 proc analyze_ram_sections
   ?let @string inListingTitle
   ?let @ramDefinitionList inRamDefinitionList
+  ?let @constantMap inConstantMap
+  ?!@stringset ioUsedRegisters
   ?!@ramBankTable ioRamBankTable
   ?let @registerTable inSpecialRegisterTable
   ?!@string ioListFileContents
   ?!@registerTable ioAllRegisters
-  !@declaredByteMap outDeclaredByteMap {
-  outDeclaredByteMap = @declaredByteMap. emptyMap
+  !@declaredByteMap outDeclaredByteMap
+{
+  outDeclaredByteMap = {}
   for () in  inRamDefinitionList do
     for () in  mDeclaration do
-      [mDeclarationInRAM handleDeclaration !?ioRamBankTable !?ioAllRegisters !mBankName !?outDeclaredByteMap]
+      [mDeclarationInRAM handleDeclaration
+        !inConstantMap
+        !?ioUsedRegisters
+        !?ioRamBankTable
+        !?ioAllRegisters
+        !mBankName
+        !?outDeclaredByteMap
+      ]
     end
   end
   if [option piccolo_options.ouputListingFile value] then

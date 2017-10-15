@@ -11,19 +11,6 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                       Routine 'emitMidrangeCodeAtWordAddress'                                       *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_emitMidrangeCodeAtWordAddress (const class GALGAS_uint constinArgument0,
-                                            class GALGAS_uint & ioArgument1,
-                                            const class GALGAS_midrange_5F_intermediate_5F_instruction constinArgument2,
-                                            class GALGAS_string & ioArgument3,
-                                            class C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                    Routine 'emitMidrangeDirectCodeAtWordAddress'                                    *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -140,19 +127,19 @@ class GALGAS_stringset function_pic_31__38__5F_computeUsedRoutines (const class 
 
 void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list (const class GALGAS_string constinArgument0,
                                                                        const class GALGAS_sint_36__34_ constinArgument1,
-                                                                       const class GALGAS_sint_36__34_ constinArgument2,
-                                                                       const class GALGAS_pic_31__38_MacroMap constinArgument3,
+                                                                       const class GALGAS_pic_31__38_MacroMap constinArgument2,
+                                                                       const class GALGAS_routineDeclarationList constinArgument3,
                                                                        const class GALGAS_routineDeclarationList constinArgument4,
-                                                                       const class GALGAS_routineDeclarationList constinArgument5,
-                                                                       const class GALGAS_luint constinArgument6,
+                                                                       const class GALGAS_luint constinArgument5,
+                                                                       const class GALGAS_routineDeclarationList constinArgument6,
                                                                        const class GALGAS_routineDeclarationList constinArgument7,
-                                                                       const class GALGAS_routineDeclarationList constinArgument8,
-                                                                       const class GALGAS_uint constinArgument9,
-                                                                       const class GALGAS_registerTable constinArgument10,
-                                                                       const class GALGAS_declaredByteMap constinArgument11,
-                                                                       const class GALGAS_pic_31__38_RoutineDefinitionList constinArgument12,
-                                                                       const class GALGAS_programKind constinArgument13,
-                                                                       const class GALGAS_constantDefinitionList constinArgument14,
+                                                                       const class GALGAS_uint constinArgument8,
+                                                                       const class GALGAS_registerTable constinArgument9,
+                                                                       const class GALGAS_declaredByteMap constinArgument10,
+                                                                       const class GALGAS_pic_31__38_RoutineDefinitionList constinArgument11,
+                                                                       const class GALGAS_programKind constinArgument12,
+                                                                       const class GALGAS_constantMap constinArgument13,
+                                                                       const class GALGAS_stringset constinArgument14,
                                                                        const class GALGAS_dataList constinArgument15,
                                                                        const class GALGAS_pic_31__38_InterruptDefinitionList constinArgument16,
                                                                        const class GALGAS_lstringlist constinArgument17,

@@ -1436,10 +1436,12 @@ void callExtensionMethod_minMaxDuration (const class cPtr_ipic_31__38_Sequential
 //---------------------------------------------------------------------------------------------------------------------*
 
 typedef void (*extensionMethodSignature_declarationInRam_handleDeclaration) (const class cPtr_declarationInRam * inObject,
-                                                                             class GALGAS_ramBankTable & ioArgument0,
-                                                                             class GALGAS_registerTable & ioArgument1,
-                                                                             const class GALGAS_lstring constinArgument2,
-                                                                             class GALGAS_declaredByteMap & ioArgument3,
+                                                                             const class GALGAS_constantMap constinArgument0,
+                                                                             class GALGAS_stringset & ioArgument1,
+                                                                             class GALGAS_ramBankTable & ioArgument2,
+                                                                             class GALGAS_registerTable & ioArgument3,
+                                                                             const class GALGAS_lstring constinArgument4,
+                                                                             class GALGAS_declaredByteMap & ioArgument5,
                                                                              class C_Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
@@ -1451,6 +1453,8 @@ void enterExtensionMethod_handleDeclaration (const int32_t inClassIndex,
 //---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_handleDeclaration (const class cPtr_declarationInRam * inObject,
+                                            const GALGAS_constantMap constin_inConstantMap,
+                                            GALGAS_stringset & io_ioUsedRegisters,
                                             GALGAS_ramBankTable & io_ioRamBank,
                                             GALGAS_registerTable & io_ioRegisterTable,
                                             const GALGAS_lstring constin_inCurrentRamBank,

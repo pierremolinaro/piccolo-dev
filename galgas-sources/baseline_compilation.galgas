@@ -113,12 +113,29 @@ proc baseline_analysis
     !?listFileContents
     ?actualConfigurationMap
   )
-#-------------------------------- Ram definition
+#-------------------------------- Build constant map
+  @constantMap constantMap = {}
   @registerTable registerTable = [piccoloDeviceModel mRegisterTable]
+#--- Add "ROM_SIZE" constant
+#  @lstring romSizeString [new !"ROM_SIZE" !here] ;
+#  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
+#--- Add declared constants
+  @stringset usedRegisters = {}
+  for () in  [inPiccoloModel mConstantDefinitionList] do
+    [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
+    if [registerTable hasKey ![mConstantName string]] then
+      error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
+    else
+      [!?constantMap insertKey !mConstantName !result]
+    end
+  end
+#-------------------------------- Ram definition
   @ramBankTable ramBank = [piccoloDeviceModel mRamBankTable]
   analyze_ram_sections (
     !"DECLARED VARIABLES"
     !inPiccoloModel.mRamDefinitionList
+    !constantMap
+    !?usedRegisters
     !?ramBank
     ![piccoloDeviceModel mRegisterTable]
     !?listFileContents
@@ -129,21 +146,6 @@ proc baseline_analysis
   var routineMap =@baselineRoutineMap.emptyMap{}
   for () in  inPiccoloModel.mRoutineDefinitionList do
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mPage]
-  end
-#-------------------------------- Build constant map
-  var constantMap =@constantMap.emptyMap{}
-#--- Add "ROM_SIZE" constant
-#  @lstring romSizeString [new !"ROM_SIZE" !here] ;
-#  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
-#--- Add declared constants
-  var usedRegisters =@stringset.emptySet{}
-  for () in  [inPiccoloModel mConstantDefinitionList] do
-    [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
-    if [registerTable hasKey ![mConstantName string]] then
-      error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
-    else
-      [!?constantMap insertKey !mConstantName !result]
-    end
   end
 #-------------------------------- Print constant map
   if [option piccolo_options.ouputListingFile value] then

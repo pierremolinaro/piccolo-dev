@@ -6761,163 +6761,6 @@ GALGAS_immediatExpressionList GALGAS_immediatExpressionList::extractObject (cons
 //   Object comparison                                                                                                 *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typeComparisonResult cPtr_immediatInteger::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_immediatInteger * p = (const cPtr_immediatInteger *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatInteger) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mValue.objectCompare (p->mProperty_mValue) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-
-typeComparisonResult GALGAS_immediatInteger::objectCompare (const GALGAS_immediatInteger & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
-    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
-    if (mySlot < operandSlot) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (mySlot > operandSlot) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_immediatInteger::GALGAS_immediatInteger (void) :
-GALGAS_immediatExpression () {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_immediatInteger GALGAS_immediatInteger::constructor_default (LOCATION_ARGS) {
-  return GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_default (HERE)
-                                                  COMMA_THERE) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_immediatInteger::GALGAS_immediatInteger (const cPtr_immediatInteger * inSourcePtr) :
-GALGAS_immediatExpression (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_immediatInteger) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_immediatInteger GALGAS_immediatInteger::constructor_new (const GALGAS_luint & inAttribute_mValue
-                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_immediatInteger result ;
-  if (inAttribute_mValue.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatInteger (inAttribute_mValue COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_luint GALGAS_immediatInteger::getter_mValue (UNUSED_LOCATION_ARGS) const {
-  GALGAS_luint result ;
-  if (NULL != mObjectPtr) {
-    const cPtr_immediatInteger * p = (const cPtr_immediatInteger *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatInteger) ;
-    result = p->mProperty_mValue ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_luint cPtr_immediatInteger::getter_mValue (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mValue ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                      Pointer class for @immediatInteger class                                       *
-//---------------------------------------------------------------------------------------------------------------------*
-
-cPtr_immediatInteger::cPtr_immediatInteger (const GALGAS_luint & in_mValue
-                                            COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
-mProperty_mValue (in_mValue) {
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * cPtr_immediatInteger::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_immediatInteger ;
-}
-
-void cPtr_immediatInteger::description (C_String & ioString,
-                                        const int32_t inIndentation) const {
-  ioString << "[@immediatInteger:" ;
-  mProperty_mValue.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-acPtr_class * cPtr_immediatInteger::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_immediatInteger (mProperty_mValue COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                                @immediatInteger type                                                *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_immediatInteger ("immediatInteger",
-                                        & kTypeDescriptor_GALGAS_immediatExpression) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-const C_galgas_type_descriptor * GALGAS_immediatInteger::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_immediatInteger ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-AC_GALGAS_root * GALGAS_immediatInteger::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_immediatInteger (*this)) ;
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-GALGAS_immediatInteger GALGAS_immediatInteger::extractObject (const GALGAS_object & inObject,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_immediatInteger result ;
-  const GALGAS_immediatInteger * p = (const GALGAS_immediatInteger *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_immediatInteger *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("immediatInteger", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-//   Object comparison                                                                                                 *
-//---------------------------------------------------------------------------------------------------------------------*
-
 typeComparisonResult cPtr_immediatAdd::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatAdd * p = (const cPtr_immediatAdd *) inOperandPtr ;
@@ -16337,6 +16180,182 @@ GALGAS_baseline_5F_negateCondition GALGAS_baseline_5F_negateCondition::extractOb
       result = *p ;
     }else{
       inCompiler->castError ("baseline_negateCondition", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Object comparison                                                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult cPtr_baseline_5F_andCondition::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_baseline_5F_andCondition * p = (const cPtr_baseline_5F_andCondition *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+typeComparisonResult GALGAS_baseline_5F_andCondition::objectCompare (const GALGAS_baseline_5F_andCondition & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_andCondition::GALGAS_baseline_5F_andCondition (void) :
+GALGAS_baseline_5F_conditionExpression () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_andCondition::GALGAS_baseline_5F_andCondition (const cPtr_baseline_5F_andCondition * inSourcePtr) :
+GALGAS_baseline_5F_conditionExpression (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_andCondition) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_andCondition GALGAS_baseline_5F_andCondition::constructor_new (const GALGAS_baseline_5F_conditionExpression & inAttribute_mLeftExpression,
+                                                                                  const GALGAS_baseline_5F_conditionExpression & inAttribute_mRightExpression
+                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_andCondition result ;
+  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_andCondition (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_conditionExpression result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_baseline_5F_andCondition * p = (const cPtr_baseline_5F_andCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
+    result = p->mProperty_mLeftExpression ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_andCondition::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mLeftExpression ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_conditionExpression result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_baseline_5F_andCondition * p = (const cPtr_baseline_5F_andCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
+    result = p->mProperty_mRightExpression ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_andCondition::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mRightExpression ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                   Pointer class for @baseline_andCondition class                                    *
+//---------------------------------------------------------------------------------------------------------------------*
+
+cPtr_baseline_5F_andCondition::cPtr_baseline_5F_andCondition (const GALGAS_baseline_5F_conditionExpression & in_mLeftExpression,
+                                                              const GALGAS_baseline_5F_conditionExpression & in_mRightExpression
+                                                              COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_conditionExpression (THERE),
+mProperty_mLeftExpression (in_mLeftExpression),
+mProperty_mRightExpression (in_mRightExpression) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * cPtr_baseline_5F_andCondition::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_andCondition ;
+}
+
+void cPtr_baseline_5F_andCondition::description (C_String & ioString,
+                                                 const int32_t inIndentation) const {
+  ioString << "[@baseline_andCondition:" ;
+  mProperty_mLeftExpression.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mRightExpression.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+acPtr_class * cPtr_baseline_5F_andCondition::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_baseline_5F_andCondition (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                             @baseline_andCondition type                                             *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_baseline_5F_andCondition ("baseline_andCondition",
+                                                 & kTypeDescriptor_GALGAS_baseline_5F_conditionExpression) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_baseline_5F_andCondition::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_andCondition ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_baseline_5F_andCondition::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_baseline_5F_andCondition (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_baseline_5F_andCondition GALGAS_baseline_5F_andCondition::extractObject (const GALGAS_object & inObject,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_andCondition result ;
+  const GALGAS_baseline_5F_andCondition * p = (const GALGAS_baseline_5F_andCondition *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_baseline_5F_andCondition *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_andCondition", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

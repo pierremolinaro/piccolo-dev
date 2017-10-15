@@ -86,7 +86,7 @@ void routine_handleMidrangeInstructionList (const class GALGAS_midrange_5F_instr
 
 void routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (const class GALGAS_uint constinArgument0,
                                                                    const class GALGAS_uint constinArgument1,
-                                                                   const class GALGAS_sint constinArgument2,
+                                                                   const class GALGAS_constantMap constinArgument2,
                                                                    const class GALGAS_string constinArgument3,
                                                                    const class GALGAS_registerTable constinArgument4,
                                                                    const class GALGAS_midrange_5F_model constinArgument5,
@@ -212,5 +212,18 @@ void routine_midrange_5F_build_5F_assembly_5F_code (const class GALGAS_string co
                                                     class GALGAS_string & outArgument5,
                                                     class C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                       Routine 'emitMidrangeCodeAtWordAddress'                                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+void routine_emitMidrangeCodeAtWordAddress (const class GALGAS_uint constinArgument0,
+                                            class GALGAS_uint & ioArgument1,
+                                            const class GALGAS_midrange_5F_intermediate_5F_instruction constinArgument2,
+                                            class GALGAS_string & ioArgument3,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
 #endif

@@ -92,7 +92,8 @@ override method @immediatInteger eval
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   !@sint64 outResult
-  ?!@stringset unused ioUsedRegisters {
+  ?!@stringset unused ioUsedRegisters
+{
   outResult = [[mValue uint] sint64]
 }
 

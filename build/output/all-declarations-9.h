@@ -333,11 +333,13 @@ class GALGAS_stringset function_baseline_5F_computeUsedRoutines (const class GAL
 
 void routine_analyze_5F_ram_5F_sections (const class GALGAS_string constinArgument0,
                                          const class GALGAS_ramDefinitionList constinArgument1,
-                                         class GALGAS_ramBankTable & ioArgument2,
-                                         const class GALGAS_registerTable constinArgument3,
-                                         class GALGAS_string & ioArgument4,
-                                         class GALGAS_registerTable & ioArgument5,
-                                         class GALGAS_declaredByteMap & outArgument6,
+                                         const class GALGAS_constantMap constinArgument2,
+                                         class GALGAS_stringset & ioArgument3,
+                                         class GALGAS_ramBankTable & ioArgument4,
+                                         const class GALGAS_registerTable constinArgument5,
+                                         class GALGAS_string & ioArgument6,
+                                         class GALGAS_registerTable & ioArgument7,
+                                         class GALGAS_declaredByteMap & outArgument8,
                                          class C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
 

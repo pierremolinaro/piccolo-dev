@@ -1639,7 +1639,8 @@ override method @midrange_instruction_IF_IncDec build_midrange_ipic_instructionL
 proc build_midrange_assembly_instruction_list
   ?let @uint inTotalPageCount
   ?let @uint inTotalBankCount
-  ?let @sint inROMSize
+  ?let @constantMap inConstantMap
+#  ?let @sint inROMSize
   ?let @string inSharedRAMBankName
   ?let @registerTable inRegisterTable
   ?let @midrange_model inPiccoloModel
@@ -1660,23 +1661,23 @@ proc build_midrange_assembly_instruction_list
     [!?routineMap insertKey !mRoutineName !mIsNoReturn ![mRequiredBank uint] ![mReturnedBank uint] !mPreservesBank]
   end
 #-------------------------------- Build constant map
-  var constantMap =@constantMap.emptyMap{}
-#--- Add "ROM_SIZE" constant
-  var romSizeString =@lstring.new{ !"ROM_SIZE" !@location.here}
-  [!?constantMap insertKey !romSizeString ![inROMSize sint64]]
-#--- Add declared constants
-  for () in  [inPiccoloModel mConstantDefinitionList] do
-    [mExpression eval !inRegisterTable !constantMap ?let @sint64 result !?ioUsedRegisters]
-    if [inRegisterTable hasKey ![mConstantName string]] then
-      error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
-    else
-      [!?constantMap insertKey !mConstantName !result]
-    end
-  end
+#  var constantMap =@constantMap.emptyMap{}
+##--- Add "ROM_SIZE" constant
+#  var romSizeString =@lstring.new{ !"ROM_SIZE" !@location.here}
+#  [!?constantMap insertKey !romSizeString ![inROMSize sint64]]
+##--- Add declared constants
+#  for () in  [inPiccoloModel mConstantDefinitionList] do
+#    [mExpression eval !inRegisterTable !constantMap ?let @sint64 result !?ioUsedRegisters]
+#    if [inRegisterTable hasKey ![mConstantName string]] then
+#      error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
+#    else
+#      [!?constantMap insertKey !mConstantName !result]
+#    end
+#  end
 #-------------------------------- Print constant map
   if [option piccolo_options.ouputListingFile value] then
     print_constant_definition (
-      !constantMap
+      !inConstantMap
       !?ioListFileContents
     )
   end
@@ -1702,7 +1703,7 @@ proc build_midrange_assembly_instruction_list
     !inSharedRAMBankName
     !routineMap
     !inTotalBankCount
-    !constantMap
+    !inConstantMap
     !inTotalPageCount
     !?generationOptimizationMessages
     !?localLabelIndex
@@ -1733,7 +1734,7 @@ proc build_midrange_assembly_instruction_list
           !mInstructionList
           !routineMap
           !inRegisterTable
-          !constantMap
+          !inConstantMap
           !?localLabelIndex
           !?outGeneratedInstructionList
           !?generationOptimizationMessages
