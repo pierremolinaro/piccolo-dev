@@ -2110,6 +2110,8 @@ C_PrologueEpilogue gMethod_declarationInRam_handleDeclaration (NULL,
 //---------------------------------------------------------------------------------------------------------------------*
 
 void callExtensionMethod_handleDeclaration (const cPtr_declarationInRam * inObject,
+                                            const GALGAS_constantMap constin_inConstantMap,
+                                            GALGAS_stringset & io_ioUsedRegisters,
                                             GALGAS_ramBankTable & io_ioRamBank,
                                             GALGAS_registerTable & io_ioRegisterTable,
                                             const GALGAS_lstring constin_inCurrentRamBank,
@@ -2139,7 +2141,7 @@ void callExtensionMethod_handleDeclaration (const cPtr_declarationInRam * inObje
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, io_ioRamBank, io_ioRegisterTable, constin_inCurrentRamBank, io_ioDeclaredByteMap, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inConstantMap, io_ioUsedRegisters, io_ioRamBank, io_ioRegisterTable, constin_inCurrentRamBank, io_ioDeclaredByteMap, inCompiler COMMA_THERE) ;
     }
   }
 }
@@ -8945,7 +8947,7 @@ typeComparisonResult cPtr_byteDeclarationInRam::dynamicObjectCompare (const acPt
     result = mProperty_mName.objectCompare (p->mProperty_mName) ;
   }
   if (kOperandEqual == result) {
-    result = mProperty_mSize.objectCompare (p->mProperty_mSize) ;
+    result = mProperty_mSizeExpression.objectCompare (p->mProperty_mSizeExpression) ;
   }
   if (kOperandEqual == result) {
     result = mProperty_mBitSliceTable.objectCompare (p->mProperty_mBitSliceTable) ;
@@ -8994,14 +8996,14 @@ GALGAS_declarationInRam (inSourcePtr) {
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_byteDeclarationInRam GALGAS_byteDeclarationInRam::constructor_new (const GALGAS_lstring & inAttribute_mName,
-                                                                          const GALGAS_luint & inAttribute_mSize,
+                                                                          const GALGAS_immediatExpression & inAttribute_mSizeExpression,
                                                                           const GALGAS_bitSliceTable & inAttribute_mBitSliceTable,
                                                                           const GALGAS_string & inAttribute_mBitDefinitionString,
                                                                           const GALGAS_registerProtection & inAttribute_mProtection
                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_byteDeclarationInRam result ;
-  if (inAttribute_mName.isValid () && inAttribute_mSize.isValid () && inAttribute_mBitSliceTable.isValid () && inAttribute_mBitDefinitionString.isValid () && inAttribute_mProtection.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_byteDeclarationInRam (inAttribute_mName, inAttribute_mSize, inAttribute_mBitSliceTable, inAttribute_mBitDefinitionString, inAttribute_mProtection COMMA_THERE)) ;
+  if (inAttribute_mName.isValid () && inAttribute_mSizeExpression.isValid () && inAttribute_mBitSliceTable.isValid () && inAttribute_mBitDefinitionString.isValid () && inAttribute_mProtection.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_byteDeclarationInRam (inAttribute_mName, inAttribute_mSizeExpression, inAttribute_mBitSliceTable, inAttribute_mBitDefinitionString, inAttribute_mProtection COMMA_THERE)) ;
   }
   return result ;
 }
@@ -9026,20 +9028,20 @@ GALGAS_lstring cPtr_byteDeclarationInRam::getter_mName (UNUSED_LOCATION_ARGS) co
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint GALGAS_byteDeclarationInRam::getter_mSize (UNUSED_LOCATION_ARGS) const {
-  GALGAS_luint result ;
+GALGAS_immediatExpression GALGAS_byteDeclarationInRam::getter_mSizeExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_immediatExpression result ;
   if (NULL != mObjectPtr) {
     const cPtr_byteDeclarationInRam * p = (const cPtr_byteDeclarationInRam *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
-    result = p->mProperty_mSize ;
+    result = p->mProperty_mSizeExpression ;
   }
   return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-GALGAS_luint cPtr_byteDeclarationInRam::getter_mSize (UNUSED_LOCATION_ARGS) const {
-  return mProperty_mSize ;
+GALGAS_immediatExpression cPtr_byteDeclarationInRam::getter_mSizeExpression (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mSizeExpression ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9101,14 +9103,14 @@ GALGAS_registerProtection cPtr_byteDeclarationInRam::getter_mProtection (UNUSED_
 //---------------------------------------------------------------------------------------------------------------------*
 
 cPtr_byteDeclarationInRam::cPtr_byteDeclarationInRam (const GALGAS_lstring & in_mName,
-                                                      const GALGAS_luint & in_mSize,
+                                                      const GALGAS_immediatExpression & in_mSizeExpression,
                                                       const GALGAS_bitSliceTable & in_mBitSliceTable,
                                                       const GALGAS_string & in_mBitDefinitionString,
                                                       const GALGAS_registerProtection & in_mProtection
                                                       COMMA_LOCATION_ARGS) :
 cPtr_declarationInRam (THERE),
 mProperty_mName (in_mName),
-mProperty_mSize (in_mSize),
+mProperty_mSizeExpression (in_mSizeExpression),
 mProperty_mBitSliceTable (in_mBitSliceTable),
 mProperty_mBitDefinitionString (in_mBitDefinitionString),
 mProperty_mProtection (in_mProtection) {
@@ -9125,7 +9127,7 @@ void cPtr_byteDeclarationInRam::description (C_String & ioString,
   ioString << "[@byteDeclarationInRam:" ;
   mProperty_mName.description (ioString, inIndentation+1) ;
   ioString << ", " ;
-  mProperty_mSize.description (ioString, inIndentation+1) ;
+  mProperty_mSizeExpression.description (ioString, inIndentation+1) ;
   ioString << ", " ;
   mProperty_mBitSliceTable.description (ioString, inIndentation+1) ;
   ioString << ", " ;
@@ -9139,7 +9141,7 @@ void cPtr_byteDeclarationInRam::description (C_String & ioString,
 
 acPtr_class * cPtr_byteDeclarationInRam::duplicate (LOCATION_ARGS) const {
   acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_byteDeclarationInRam (mProperty_mName, mProperty_mSize, mProperty_mBitSliceTable, mProperty_mBitDefinitionString, mProperty_mProtection COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_byteDeclarationInRam (mProperty_mName, mProperty_mSizeExpression, mProperty_mBitSliceTable, mProperty_mBitDefinitionString, mProperty_mProtection COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -9182,6 +9184,163 @@ GALGAS_byteDeclarationInRam GALGAS_byteDeclarationInRam::extractObject (const GA
       result = *p ;
     }else{
       inCompiler->castError ("byteDeclarationInRam", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//   Object comparison                                                                                                 *
+//---------------------------------------------------------------------------------------------------------------------*
+
+typeComparisonResult cPtr_immediatInteger::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_immediatInteger * p = (const cPtr_immediatInteger *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_immediatInteger) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mValue.objectCompare (p->mProperty_mValue) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+
+typeComparisonResult GALGAS_immediatInteger::objectCompare (const GALGAS_immediatInteger & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatInteger::GALGAS_immediatInteger (void) :
+GALGAS_immediatExpression () {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatInteger GALGAS_immediatInteger::constructor_default (LOCATION_ARGS) {
+  return GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_default (HERE)
+                                                  COMMA_THERE) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatInteger::GALGAS_immediatInteger (const cPtr_immediatInteger * inSourcePtr) :
+GALGAS_immediatExpression (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_immediatInteger) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatInteger GALGAS_immediatInteger::constructor_new (const GALGAS_luint & inAttribute_mValue
+                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_immediatInteger result ;
+  if (inAttribute_mValue.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_immediatInteger (inAttribute_mValue COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_luint GALGAS_immediatInteger::getter_mValue (UNUSED_LOCATION_ARGS) const {
+  GALGAS_luint result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_immediatInteger * p = (const cPtr_immediatInteger *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatInteger) ;
+    result = p->mProperty_mValue ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_luint cPtr_immediatInteger::getter_mValue (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mValue ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                      Pointer class for @immediatInteger class                                       *
+//---------------------------------------------------------------------------------------------------------------------*
+
+cPtr_immediatInteger::cPtr_immediatInteger (const GALGAS_luint & in_mValue
+                                            COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (THERE),
+mProperty_mValue (in_mValue) {
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * cPtr_immediatInteger::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_immediatInteger ;
+}
+
+void cPtr_immediatInteger::description (C_String & ioString,
+                                        const int32_t inIndentation) const {
+  ioString << "[@immediatInteger:" ;
+  mProperty_mValue.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+acPtr_class * cPtr_immediatInteger::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_immediatInteger (mProperty_mValue COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                                @immediatInteger type                                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_immediatInteger ("immediatInteger",
+                                        & kTypeDescriptor_GALGAS_immediatExpression) ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+const C_galgas_type_descriptor * GALGAS_immediatInteger::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_immediatInteger ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+AC_GALGAS_root * GALGAS_immediatInteger::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_immediatInteger (*this)) ;
+  }
+  return result ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+GALGAS_immediatInteger GALGAS_immediatInteger::extractObject (const GALGAS_object & inObject,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_immediatInteger result ;
+  const GALGAS_immediatInteger * p = (const GALGAS_immediatInteger *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_immediatInteger *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("immediatInteger", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

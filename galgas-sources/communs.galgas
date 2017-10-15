@@ -40,15 +40,15 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
   end
   $byte$
   $identifier$ ?var  @lstring name indexing variableDeclaration
-  @luint size
+  @immediatExpression sizeExpression
   select
-    size = @luint. new { !1 !@location.here}
+    sizeExpression = @immediatInteger. new {!.new {!1 !.here}}
   or
     $[$
-    $integer$ ?size
+    <immediate_expression> ?sizeExpression
     $]$
   end
-  var bitSliceTable =@bitSliceTable.emptyMap{}
+  var bitSliceTable = @bitSliceTable.emptyMap{}
   @string bitDefinitionString
   select
     bitDefinitionString = ""
@@ -117,7 +117,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
     $>$
     bitDefinitionString += ">"
   end
-  outDeclaration = @byteDeclarationInRam.new {!name !size !bitSliceTable !bitDefinitionString !protection}
+  outDeclaration = @byteDeclarationInRam.new {!name !sizeExpression !bitSliceTable !bitDefinitionString !protection}
 }
 
 #----------------------------------------------------*
@@ -300,14 +300,6 @@ rule <immediate_primary> !@immediatExpression outExpression {
       endOfOffsetExpression = .here
       $]$
     end
-#    @luint offset
-#    select
-#      offset = @luint. new { !0 !@location.here}
-#    or
-#      $[$
-#      $integer$ ? offset
-#      $]$
-#    end
     var registerExpression =@registerExpression.new{
       !registerName
       !offset

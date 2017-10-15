@@ -112,13 +112,29 @@ Comme vous l'avez sûrement deviné à partir des exemples de la section précé
 byte var 
 \end{piccolo}
 
-déclare une variable \pic!var! occupant un octet. Vous pouvez aussi déclarer une variable occupant \pic!n! octets consécutifs en indiquant la dimension entre crochets :
+déclare une variable \pic!var! occupant un octet. Vous pouvez aussi déclarer une variable occupant plusieurs octets consécutifs en indiquant la dimension entre crochets :
 
 \begin{piccolo}
 byte var [n]
 \end{piccolo}
 
 \pic!n! doit être une constante littérale. Évidemment, \pic!n! doit être strictement positif. Si \pic!n! vaut 1, la déclaration est sémantiquement équivalente à la première forme.
+
+À partir de la version 3.1.4, une \emph{expression constante} est autorisée :
+
+\begin{piccolo}
+byte var [expression_constante]
+\end{piccolo}
+
+\pic!expression_constante! doit être calculable à la compilation, et sa valeur doit être strictement positive. Si \pic!expression_constante! vaut 1, la déclaration est sémantiquement équivalente à la première forme.
+
+Ceci permet d'écrire :
+\begin{piccolo}
+const MA_TAILLE = 8
+ram accessram {
+  byte monTableau [MA_TAILLE]
+}
+\end{piccolo}
 
 
 À partir de la version 3.1.3, des contrôles d'accès peuvent être mis en place :

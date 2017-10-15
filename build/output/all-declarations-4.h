@@ -1993,7 +1993,7 @@ class GALGAS_byteDeclarationInRam : public GALGAS_declarationInRam {
 
 //--------------------------------- GALGAS constructors
   public : static class GALGAS_byteDeclarationInRam constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                     const class GALGAS_luint & inOperand1,
+                                                                     const class GALGAS_immediatExpression & inOperand1,
                                                                      const class GALGAS_bitSliceTable & inOperand2,
                                                                      const class GALGAS_string & inOperand3,
                                                                      const class GALGAS_registerProtection & inOperand4
@@ -2016,7 +2016,7 @@ class GALGAS_byteDeclarationInRam : public GALGAS_declarationInRam {
 
   public : VIRTUAL_IN_DEBUG class GALGAS_registerProtection getter_mProtection (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_luint getter_mSize (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG class GALGAS_immediatExpression getter_mSizeExpression (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -2038,14 +2038,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_byteDeclarationInRa
 class cPtr_byteDeclarationInRam : public cPtr_declarationInRam {
 //--- Attributes
   public : GALGAS_lstring mProperty_mName ;
-  public : GALGAS_luint mProperty_mSize ;
+  public : GALGAS_immediatExpression mProperty_mSizeExpression ;
   public : GALGAS_bitSliceTable mProperty_mBitSliceTable ;
   public : GALGAS_string mProperty_mBitDefinitionString ;
   public : GALGAS_registerProtection mProperty_mProtection ;
 
 //--- Constructor
   public : cPtr_byteDeclarationInRam (const GALGAS_lstring & in_mName,
-                                      const GALGAS_luint & in_mSize,
+                                      const GALGAS_immediatExpression & in_mSizeExpression,
                                       const GALGAS_bitSliceTable & in_mBitSliceTable,
                                       const GALGAS_string & in_mBitDefinitionString,
                                       const GALGAS_registerProtection & in_mProtection
@@ -2056,10 +2056,94 @@ class cPtr_byteDeclarationInRam : public cPtr_declarationInRam {
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mName (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_luint getter_mSize (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG GALGAS_immediatExpression getter_mSizeExpression (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_bitSliceTable getter_mBitSliceTable (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_string getter_mBitDefinitionString (LOCATION_ARGS) const ;
   public : VIRTUAL_IN_DEBUG GALGAS_registerProtection getter_mProtection (LOCATION_ARGS) const ;
+//--- Description
+  public : virtual void description (C_String & ioString,
+                                     const int32_t inIndentation) const ;
+
+  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+
+  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+
+} ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                               @immediatInteger class                                                *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class GALGAS_immediatInteger : public GALGAS_immediatExpression {
+//--- Constructor
+  public : GALGAS_immediatInteger (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public : static GALGAS_immediatInteger constructor_default (LOCATION_ARGS) ;
+
+//---
+  public : inline const class cPtr_immediatInteger * ptr (void) const { return (const cPtr_immediatInteger *) mObjectPtr ; }
+
+//--------------------------------- Constructor from pointer
+  public : GALGAS_immediatInteger (const cPtr_immediatInteger * inSourcePtr) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public : static GALGAS_immediatInteger extractObject (const GALGAS_object & inObject,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public : static class GALGAS_immediatInteger constructor_new (const class GALGAS_luint & inOperand0
+                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public : typeComparisonResult objectCompare (const GALGAS_immediatInteger & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public : VIRTUAL_IN_DEBUG class GALGAS_luint getter_mValue (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Introspection
+  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_immediatInteger class
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatInteger ;
+
+//---------------------------------------------------------------------------------------------------------------------*
+//                                                                                                                     *
+//                                      Pointer class for @immediatInteger class                                       *
+//                                                                                                                     *
+//---------------------------------------------------------------------------------------------------------------------*
+
+class cPtr_immediatInteger : public cPtr_immediatExpression {
+//--- Attributes
+  public : GALGAS_luint mProperty_mValue ;
+
+//--- Constructor
+  public : cPtr_immediatInteger (const GALGAS_luint & in_mValue
+                                 COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+
+//--- Attribute accessors
+  public : VIRTUAL_IN_DEBUG GALGAS_luint getter_mValue (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

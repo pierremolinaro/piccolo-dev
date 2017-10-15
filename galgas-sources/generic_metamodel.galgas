@@ -34,7 +34,7 @@ enum @registerProtection {
 
 class @byteDeclarationInRam : @declarationInRam {
   @lstring mName
-  @luint mSize
+  @immediatExpression mSizeExpression
   @bitSliceTable mBitSliceTable
   @string mBitDefinitionString
   @registerProtection mProtection
