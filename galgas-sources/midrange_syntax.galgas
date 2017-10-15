@@ -661,51 +661,67 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
     @midrange_instruction_FD_base_code baseCode
     select
       $addwf$
-      baseCode = @midrange_instruction_FD_base_code. ADDWF
+      baseCode = .ADDWF
     or
       $andwf$
-      baseCode = @midrange_instruction_FD_base_code. ANDWF
+      baseCode = .ANDWF
     or
       $comf$
-      baseCode = @midrange_instruction_FD_base_code. COMF
+      baseCode = .COMF
     or
       $decf$
-      baseCode = @midrange_instruction_FD_base_code. DECF
+      baseCode = .DECF
     or
       $incf$
-      baseCode = @midrange_instruction_FD_base_code. INCF
+      baseCode = .INCF
     or
       $iorwf$
-      baseCode = @midrange_instruction_FD_base_code. IORWF
+      baseCode = .IORWF
     or
       $movf$
-      baseCode = @midrange_instruction_FD_base_code. MOVF
+      baseCode = .MOVF
     or
       $rlf$
-      baseCode = @midrange_instruction_FD_base_code. RLF
+      baseCode = .RLF
     or
       $rrf$
-      baseCode = @midrange_instruction_FD_base_code. RRF
+      baseCode = .RRF
     or
       $subwf$
-      baseCode = @midrange_instruction_FD_base_code. SUBWF
+      baseCode = .SUBWF
     or
       $swapf$
-      baseCode = @midrange_instruction_FD_base_code. SWAPF
+      baseCode = .SWAPF
     or
       $xorwf$
-      baseCode = @midrange_instruction_FD_base_code. XORWF
+      baseCode = .XORWF
     end
-    @location instructionLocation = @location.here
-    @registerExpression registerExpression
-    <register_parsing> ? registerExpression
-    @bool W_isDestination
-    <optional_w_as_dest> ?W_isDestination
+    let instructionLocation = @location.here
+    <register_parsing> ?let registerExpression
+    <optional_w_as_dest> ?let W_isDestination
     outInstruction = @midrange_instruction_FD. new {
       !instructionLocation
       !baseCode
       !registerExpression
-      !W_isDestination}
+      !W_isDestination
+    }
+  #--- Emit a warning if instruction is "movf" and W is not destination
+    if (baseCode == .MOVF) && not W_isDestination then
+      warning instructionLocation :  "This instruction does not move data, it only sets flags. "
+        "Use 'movf *, reg' instead of 'movf reg' to suppress this warning" 
+    end
+  or
+    $movf$
+    let @location instructionLocation = .here
+    $*$
+    $,$
+    <register_parsing> ?let registerName
+    outInstruction = @midrange_instruction_FD.new {
+      !instructionLocation
+      !.MOVF
+      !registerName
+      !false # W is not destination
+    }
   or
     @midrange_F_instruction_base_code FAinstruction
     select

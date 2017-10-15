@@ -16,10 +16,11 @@ Un commentaire commence par un caractère dièse \pic+#+, et s’étend jusqu’
 
 Piccolo définit les délimiteurs listés dans le \refTableau{delimiteursLangage}.
 
-\begin{table}[!ht]
+\begin{table}[htbp]
   \centering
+  \small
+  \fondTableau
   \begin{tabular}{ccccccccccccccccc}
-    \hline
     \pic!*!  & \pic!*+! & \pic!,!  & \pic+!=+ & \pic!<=! & \pic!>=! & \pic!*-! & \pic!+*! & \pic!;! & \pic!:! & \pic!==! & \pic!<! & \pic!>! & \pic![! & \pic!]! \\
     \pic!.! & \pic+!+ & \pic!&! & \pic!|!  & \pic!}! & \pic!}! & \pic!(!  & \pic!)!  & \pic!/!  & \pic!-! & \pic!+! & \pic!^! & \pic!<<! & \pic!>>! & \pic!~!\\
     \pic!%! & \pic!=! & \pic!?! & \pic!...!\\
@@ -56,8 +57,10 @@ Certains identificateurs sont réservés. La casse n’est pas significative pou
 Les mots réservés correspondant aux éléments du langage sont listés dans le \refTableau{motReservesLangage}. Dans tout ce document, ces mots réservés sont écrits en minuscule, gras et en bleu.
 
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
+  \small
+  \fondTableau
   \begin{tabular}{llllll}
     \input{files-from-piccolo/mots-reserves-langage.tex}
   \end{tabular}
@@ -78,8 +81,10 @@ Les mots réservés correspondant à des instructions exécutables sont listés 
 
 
 
-\begin{table}[t]
+\begin{table}[htbp]
   \centering
+  \small
+  \fondTableau
   \begin{tabular}{lllllll}
     \input{files-from-piccolo/mots-reserves-instructions.tex}
 \end{tabular}

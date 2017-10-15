@@ -693,7 +693,7 @@ rule <structured_instruction>
   or
     $banksel$
     let @location instructionLocation = @location.here
-    $integer$ ?var  @luint bank
+    $integer$ ?let @luint bank
     @bool warningOnUselessBanksel
     select
       warningOnUselessBanksel = true
@@ -1199,66 +1199,81 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
     @pic18Instruction_FDA_base_code_AST baseCode
     select
       $addwf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.ADDWF
+      baseCode = .ADDWF
     or
       $addwfc$
-      baseCode = @pic18Instruction_FDA_base_code_AST.ADDWFC
+      baseCode = .ADDWFC
     or
       $andwf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.ANDWF
+      baseCode = .ANDWF
     or
       $comf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.COMF
+      baseCode = .COMF
     or
       $decf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.DECF
+      baseCode = .DECF
     or
       $incf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.INCF
+      baseCode = .INCF
     or
       $iorwf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.IORWF
+      baseCode = .IORWF
     or
       $movf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.MOVF
+      baseCode = .MOVF
     or
       $rlcf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.RLCF
+      baseCode = .RLCF
     or
       $rlncf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.RLNCF
+      baseCode = .RLNCF
     or
       $rrcf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.RRCF
+      baseCode = .RRCF
     or
       $rrncf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.RRNCF
+      baseCode = .RRNCF
     or
       $subfwb$
-      baseCode = @pic18Instruction_FDA_base_code_AST.SUBFWB
+      baseCode = .SUBFWB
     or
       $subwf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.SUBWF
+      baseCode = .SUBWF
     or
       $subwfb$
-      baseCode = @pic18Instruction_FDA_base_code_AST.SUBWFB
+      baseCode = .SUBWFB
     or
       $swapf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.SWAPF
+      baseCode = .SWAPF
     or
       $xorwf$
-      baseCode = @pic18Instruction_FDA_base_code_AST.XORWF
+      baseCode = .XORWF
     end
-    let @location instructionLocation = @location.here
-    @registerExpression registerName
-    <register_parsing> ?registerName
-    @bool W_isDestination
-    <optional_w_as_dest> ?W_isDestination
+    let @location instructionLocation = .here
+    <register_parsing> ?let registerName
+    <optional_w_as_dest> ?let W_isDestination
     outInstruction = @pic18Instruction_FDA.new {
       !instructionLocation
       !baseCode
       !registerName
       !W_isDestination
+    }
+  #--- Emit a warning if instruction is "movf" and W is not destination
+    if (baseCode == .MOVF) && not W_isDestination then
+      warning instructionLocation :  "This instruction does not move data, it only sets flags. "
+        "Use 'movf *, reg' instead of 'movf reg' to suppress this warning" 
+    end
+  or
+    $movf$
+    let @location instructionLocation = .here
+    $*$
+    $,$
+    <register_parsing> ?let registerName
+    outInstruction = @pic18Instruction_FDA.new {
+      !instructionLocation
+      !.MOVF
+      !registerName
+      !false # W is not destination
     }
   or
     @FA_instruction_base_code FAinstruction

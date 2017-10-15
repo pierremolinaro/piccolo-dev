@@ -360,9 +360,11 @@ Dans l’en-tête :
 
 
 Le corps du programme est constitué d’une liste non ordonnée de sections. Les sections disponibles sont listées dans le \refTableau{sectionsPic18}.
-\begin{table}[!t]
+
+\begin{table}[htbp]
   \centering
-%  \rowcolors{2}{\fondTableau}{}
+  \small
+  \fondTableau
   \begin{tabular}{p{5cm}lll}
     \textbf{Type de section} & \textbf{Mot-clés introductifs} & \textbf{Référence}\\
     Vérification du type du micro-contrôleur & \pic!checkpic! & \refChapterPage{checkpic}\\
@@ -756,10 +758,10 @@ Elles sont de deux types (la distinction est importante pour l’instruction \em
 
 Elles correspondent à une partie des instructions assembleur. Attention, pour certaines, la syntaxe n'est pas exactement la même que celle de l'instruction assembleur correspondante. \textcolor{red}{\bf Dans sa version actuelle, Piccolo ne prend pas en charge le jeu d'instruction étendu.} Les \refTableau{instructionsPic18Assembleur1},  \refTableau{instructionsPic18Assembleur2} et \refTableau{instructionsPic18Assembleur3} donnent la liste des instructions assembleur \emph{pic18} et les liens vers les sections précisant leur prise en charge en Piccolo. Le \refTableau{pic18InstructionsPropresPiccolo} liste les instructions complémentaires disponibles en Piccolo.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \assembleur{ADDLW k} & Add Literal and WREG & \refSubsectionPage{opPic18Immediate}\\
@@ -819,9 +821,10 @@ Elles correspondent à une partie des instructions assembleur. Attention, pour c
   \ligne
 \end{table}\nopagebreak
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \assembleur{DAW} & Decimal Adjust WREG & \refSubsectionPage{OperationsPic18IdentiquesAssembleur}\\
@@ -871,9 +874,10 @@ Elles correspondent à une partie des instructions assembleur. Attention, pour c
   \ligne
 \end{table}\nopagebreak
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Référence en Piccolo}\\
     \assembleur{RCALL n} & Relative Call & \refSubsectionPage{appelRoutineRegulierePic18} \\
@@ -938,9 +942,10 @@ Elles correspondent à une partie des instructions assembleur. Attention, pour c
 
 
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Piccolo} & \textbf{Description} & \textbf{Référence}\\
     \pic!fnop! & Instruction NOP & \refSubsectionPage{instructionFNOP} \\
@@ -1008,10 +1013,10 @@ Ce sont les instructions listées dans le \refTableau{operationsPic18NommantUnRe
 
 
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \assembleur{CLRF f, a} & Clear f & \pic!clrf f! \\
@@ -1034,9 +1039,9 @@ Ce sont les instructions listées dans le \refTableau{operationsPic18NommantUnRe
 
 
 
-\subsectionLabel{Instructions nommant un registre, et optionnellement \texttt{W}}{instructionsNommantRegistreEtW}
+\subsectionLabel{Instructions nommant un registre, et optionellement \texttt{W}}{instructionsNommantRegistreEtW}
 
-Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \refTableau{instructionsPic18RegistreEtW}. En assembleur, elles nomment trois opérandes :
+Ces instructions, ainsi que leur traduction en Piccolo, sont listées dans le \refTableau{instructionsPic18RegistreEtW}. En assembleur, elles nomment trois opérandes :
 \begin{itemize}
   \item \assembleur{f} : désigne le registre, il en est de même en Piccolo ;
   \item \assembleur{d} : optionnel en Piccolo ; si absent, le registre \assembleur{f} est destination de l'opération, si égal à \assembleur{W}, c'est le registre \assembleur{WREG} qui est destinaire ;
@@ -1044,10 +1049,10 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
 \end{itemize}
 
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{llll}
      &  & \multicolumn{2}{l}{\textbf{En Piccolo, destination :}} \\
     \textbf{Assembleur} & \textbf{Description} & \textbf{f} & \textbf{WREG}\\
@@ -1065,7 +1070,7 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
     \hdashline
     \assembleur{IORWF f, d, a} & Inclusive OR WREG with f & \pic!iorwf f! & \pic!iorwf f, W!\\
     \hdashline
-    \assembleur{MOVF f, d, a} & Move f & \pic!movf f! & \pic!movf f, W!\\
+    \assembleur{MOVF f, d, a} & Move f & \pic!movf f!, \pic!movf *, f! & \pic!movf f, W!\\
     \hdashline
     \assembleur{RLCF f, d, a} & Rotate Left f through Carry & \pic!rlcf f! & \pic!rlcf f, W!\\
     \hdashline
@@ -1085,20 +1090,23 @@ Ces instructions, ainsi que le traduction en Piccolo, sont listées dans le \ref
     \hdashline
     \assembleur{XORWF f, d, a} & Exclusive OR WREG with f & \pic!xorwf f! & \pic!xorwf f, W!\\
   \end{tabular}
-  \caption{Instructions \emph{pic18} nommant un registre, et optionnellement \assembleur{W}}
+  \caption{Instructions \emph{pic18} nommant un registre, et optionellement \assembleur{W}}
   \labelTableau{instructionsPic18RegistreEtW}
   \ligne
 \end{table}
+
+
+À partir de la version 3.1.4, l'instruction \pic!movf f! émet une alerte. En effet, cette instruction n'effectue aucun transfert de données, elle charge simplement les indicateurs booléens. Souvent, c'est une confusion de l'utilisateur qui a oublié l'argument \pic!W!. Pour supprimer l'alerte, écrire l'instruction sous la forme \pic!movf *, f!. Elle n'émet pas l'alerte, et engendre le même code que \pic!movf f!.
 
 
 \subsectionLabel{Opérations d'affectation de bit}{opPic18AffectationBit}
 
 Ces instructions Piccolo correspondent aux instructions assembleur \assembleur{BCF}, \assembleur{BSF} et \assembleur{BTG} (\refTableau{operationsPic18AffectationBit}).
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{llll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{En Piccolo}\\
     \assembleur{BCF f, b, a} & Bit Clear f & \pic!bcf f.b! \\
@@ -1164,10 +1172,10 @@ Pour être valide dans les opérations statiques avec \assembleur{WREG}, le rés
 Par exemple : \pic!movlw -14! engendre l’instruction assembleur : \pic!MOVLW 0xf2!.
 
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \assembleur{ADDLW k} & Add Literal and WREG & \pic!addlw k!\\
@@ -1194,10 +1202,10 @@ Par exemple : \pic!movlw -14! engendre l’instruction assembleur : \pic!MOVLW 0
 
 Ces instructions sont listées dans le \refTableau{operationsPic18IdentiquesAssembleur}.
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{2}{\fondTableau}{}
+  \fondTableau
   \begin{tabular}{lll}
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \assembleur{CLRWDT} & Clear Watchdog Timer & \pic!clrwdt!\\
@@ -1356,10 +1364,10 @@ Le code engendré par une instruction \pic!jump cc! peut occuper deux, quatre ou
 
 
 
-\begin{table}[!t]
+\begin{table}[htbp]
   \centering
   \small
-%  \rowcolors{3}{}{\fondTableau}
+  \fondTableau
   \begin{tabular}{llp{2.5cm}p{2.5cm}}
       & \multicolumn{3}{c}{\bf Code engendré}\\
     \textbf{Instruction Piccolo} & \textbf{2 octets} & \textbf{4 octets} & \textbf{6 octets}\\
