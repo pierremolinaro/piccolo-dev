@@ -29,7 +29,7 @@ noreturn routine main page 0 {
   iorwf var, W
   iorwf var
   movf var, W
-  movf var
+  movf *, var
   movwf var
   nop
   rlf var, W
