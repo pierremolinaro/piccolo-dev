@@ -1,5 +1,4 @@
-#ifndef all_2D_declarations_2D__38__ENTITIES_DEFINED
-#define all_2D_declarations_2D__38__ENTITIES_DEFINED
+#pragma once
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -745,4 +744,3 @@ void callExtensionMethod_getMnemonic (const class cPtr_midrange_5F_instruction_5
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
-#endif

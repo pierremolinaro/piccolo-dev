@@ -1,5 +1,4 @@
-#ifndef all_2D_declarations_2D__31__31__ENTITIES_DEFINED
-#define all_2D_declarations_2D__31__31__ENTITIES_DEFINED
+#pragma once
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -273,4 +272,3 @@ class GALGAS_codeList function_pic_31__38__5F_definition_5F_label (const class G
                                                                    class C_Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
-#endif
