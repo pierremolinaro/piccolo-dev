@@ -1,5 +1,4 @@
-#ifndef all_2D_declarations_2D__31__32__ENTITIES_DEFINED
-#define all_2D_declarations_2D__31__32__ENTITIES_DEFINED
+#pragma once
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -201,4 +200,3 @@ void routine_enterGoto_34_block (const class GALGAS_symbolTableForBlockOptimizat
                                  class C_Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
 
-#endif

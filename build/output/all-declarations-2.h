@@ -1,5 +1,4 @@
-#ifndef all_2D_declarations_2D__32__ENTITIES_DEFINED
-#define all_2D_declarations_2D__32__ENTITIES_DEFINED
+#pragma once
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -7147,4 +7146,3 @@ class cPtr_pic_31__38_Instruction_5F_NOPBRA : public cPtr_pic_31__38_PiccoloInst
 
 } ;
 
-#endif

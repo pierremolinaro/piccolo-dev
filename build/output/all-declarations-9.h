@@ -1,5 +1,4 @@
-#ifndef all_2D_declarations_2D__39__ENTITIES_DEFINED
-#define all_2D_declarations_2D__39__ENTITIES_DEFINED
+#pragma once
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -422,4 +421,3 @@ void routine_perform_5F_baseline_5F_optimizations (class GALGAS_baseline_5F_inte
 class GALGAS_stringset function_acceptableTRISoperand (class C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
-#endif

@@ -1,5 +1,4 @@
-#ifndef all_2D_declarations_2D__31__33__ENTITIES_DEFINED
-#define all_2D_declarations_2D__31__33__ENTITIES_DEFINED
+#pragma once
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -1088,4 +1087,3 @@ extern const cRegularFileWrapper gWrapperFile_476_embeddedDevices ;
 
 extern const cDirectoryWrapper gWrapperDirectory_0_embeddedDevices ;
 
-#endif
