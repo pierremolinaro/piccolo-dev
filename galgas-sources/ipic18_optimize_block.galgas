@@ -87,7 +87,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
   !@ipic18AbstractBlockTerminator outOptimizedTerminator {
 #---- Useless condition ?
   if mTargetLabelWhenTrue.string == mTargetLabelWhenFalse.string then
-    outOptimizedTerminator = @ipic18JumpTerminator. new {
+    outOptimizedTerminator = @ipic18JumpTerminator.new {
       !mInstructionLocation
       !mTargetLabelWhenFalse
       !@jumpInstructionKind. ipicRelative}
@@ -102,6 +102,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
       [inSymbolTable searchKey !mTargetLabelWhenTrue ?let @uint targetBlockIndex]
       let @ipic18Block targetBlock = [inBlockList mBlockAtIndex !targetBlockIndex]
       if (targetBlock.mAddress == @uint. max) # Relocatable
+       & (mTargetLabelWhenTrue.string != targetLabelWhenTrue.string)
        & ([targetBlock.mInstructionList length] == 0) # Empty block
        & (targetBlock.mTerminator is >= @ipic18JumpTerminator) then
         let @ipic18JumpTerminator jp = ( targetBlock.mTerminator as @ipic18JumpTerminator)
@@ -120,9 +121,10 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
       [inSymbolTable searchKey !mTargetLabelWhenFalse ?let @uint targetBlockIndex]
       let @ipic18Block targetBlock = [inBlockList mBlockAtIndex !targetBlockIndex]
       if (targetBlock.mAddress == @uint. max) # Relocatable
+       & (mTargetLabelWhenFalse.string != targetLabelWhenFalse.string)
        & ([targetBlock.mInstructionList length] == 0) # Empty block
        & (targetBlock.mTerminator is >= @ipic18JumpTerminator) then
-        let @ipic18JumpTerminator jp = ( targetBlock.mTerminator as @ipic18JumpTerminator)
+        let @ipic18JumpTerminator jp = (targetBlock.mTerminator as @ipic18JumpTerminator)
         targetLabelWhenFalse = [jp mLabel]
         optimized = true
         ioListFileContents += "  [P] " + inBlockLabel + ", jump optimization: "
