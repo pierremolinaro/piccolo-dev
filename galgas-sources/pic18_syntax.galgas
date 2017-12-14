@@ -574,7 +574,7 @@ rule <structured_instruction>
         !?ioNeedsComputedGoto4
         !?ioLabelMap
     end
-    outInstruction = @pic18Instruction_switch. new {
+    outInstruction = @pic18Instruction_switch.new {
       !instructionLocation
       !caseList
       !elseLocation
