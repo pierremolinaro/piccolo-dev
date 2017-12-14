@@ -2302,6 +2302,8 @@ override method @pic18IntervalCaseItem analyzeCaseItem
   #--- Labels
     let greaterThanLowBoundLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
     ioLocalLabelIndex ++
+    let conditionIntermediateLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
+    ioLocalLabelIndex ++
     let conditionFalseLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
     ioLocalLabelIndex ++
   #--- Terminate current block with a BC instruction
@@ -2310,27 +2312,25 @@ override method @pic18IntervalCaseItem analyzeCaseItem
       !@conditional_branch.bc
       !greaterThanLowBoundLabel
       !@conditionalBranchMode.native
-      !conditionFalseLabel
-      !@conditionalBranchMode.native}
+      !conditionIntermediateLabel
+      !@conditionalBranchMode.native
+    }
   #--- Save current block
     ioGeneratedBlockList += !@ipic18Block. new {
-      !@uint. max # relocatable
+      !.max # relocatable
       !ioBlockLabel
       !ioGeneratedInstructionList
       !t
       !@uint.max
       !0
     }
-    ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
     ioBlockLabel = conditionFalseLabel
-  #--- Generate second addlw instruction  
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
+  #--- Second addlw instruction  
+    let @ipic18SequentialInstruction instruction = @ipic18_intermediate_instruction_literalOperation. new {
       !mCaseExpressionLocation
       !@literal_instruction_opcode. ADDLW
       ![(- (maxBound - minBound + 1LS)) & 0xFFLS uint]
     }
-    !.max
-    !0
   #--- Terminate current block with a BC instruction
     let @ipic18AbstractBlockTerminator t2 = @ipic18ConditionalJumpTerminator. new {
       !mCaseExpressionLocation
@@ -2340,18 +2340,28 @@ override method @pic18IntervalCaseItem analyzeCaseItem
       !inConditionTrueLabel
       !@conditionalBranchMode. native}
   #--- Save current block
-    ioGeneratedBlockList += !@ipic18Block. new {
-      !@uint. max # relocatable
+    ioGeneratedBlockList += !@ipic18Block.new {
+      !.max # relocatable
       !greaterThanLowBoundLabel
-      !ioGeneratedInstructionList
+      !{!instruction !.max !0}
       !t2
       !@uint.max
       !0
     }
-    ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+  #--- Add intermediate addition block
+    ioGeneratedBlockList += !@ipic18Block.new {
+      !.max # relocatable
+      !conditionIntermediateLabel
+      !{!instruction !.max !0}
+      !@ipic18JumpTerminator.new {!mCaseExpressionLocation !conditionFalseLabel !.relative}
+      !@uint.max
+      !0
+    }
+  #---
+    ioGeneratedInstructionList = {}
     ioBlockLabel = conditionFalseLabel
   #--- Update comparison value
-    ioLastComparisonValue = maxBound
+    ioLastComparisonValue = maxBound + 1
   end
 }
 
@@ -2372,7 +2382,8 @@ override method @pic18Instruction_switch analyze
   ?!@uint ioCurrentBank
   ?let @bool inShouldPreserveBSR
   ?let @routineKind inRoutineKind
-  ?!@stringset ioUsedRegisters {
+  ?!@stringset ioUsedRegisters
+{
   var caseConstantMap =@caseConstantMap.emptyMap{}
 #--- Labels
   let exitLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
