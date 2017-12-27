@@ -5,7 +5,8 @@
 
 #import "OC_Token.h"
 #import "F_CocoaWrapperForGalgas.h"
-#import "lexique-piccolo-5F-lexique-cocoa.m"
+#import "OC_GGS_CommandLineOption.h"
+#import "lexique-piccolo-5F-lexique-cocoa.h"
 #import "PMPiccoloCocoa.h"
 #import "installCLITools.h"
 
@@ -42,7 +43,7 @@ NSArray * nibsAndClasses (void) {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#import "option-piccolo-5F-options-cocoa.m"
+#import "option-piccolo-5F-options-cocoa.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -226,6 +227,12 @@ NSArray * tokenizers (void) {
     [OC_Tokenizer_piccolo_lexique new],
     nil
   ] ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+NSString * buildRunOption (void) {
+  return @"" ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
