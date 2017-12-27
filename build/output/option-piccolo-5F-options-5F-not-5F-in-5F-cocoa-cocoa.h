@@ -19,9 +19,9 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 void enterOptionsFor_piccolo_5F_options_5F_not_5F_in_5F_cocoa (NSMutableArray * ioBoolOptionArray,
-                                                       NSMutableArray * ioUIntOptionArray,
-                                                       NSMutableArray * ioStringOptionArray,
-                                                       NSMutableArray * ioStringListOptionArray) ;
+                                                               NSMutableArray * ioUIntOptionArray,
+                                                               NSMutableArray * ioStringOptionArray,
+                                                               NSMutableArray * ioStringListOptionArray) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 

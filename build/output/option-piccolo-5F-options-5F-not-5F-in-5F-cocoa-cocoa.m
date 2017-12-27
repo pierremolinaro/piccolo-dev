@@ -10,9 +10,9 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 void enterOptionsFor_piccolo_5F_options_5F_not_5F_in_5F_cocoa (NSMutableArray * ioBoolOptionArray,
-                                                       NSMutableArray * ioUIntOptionArray,
-                                                       NSMutableArray * ioStringOptionArray,
-                                                       NSMutableArray * ioStringListOptionArray) {
+                                                               NSMutableArray * ioUIntOptionArray,
+                                                               NSMutableArray * ioStringOptionArray,
+                                                               NSMutableArray * ioStringListOptionArray) {
   OC_GGS_CommandLineOption * option ;
   option = [[OC_GGS_CommandLineOption alloc]
     initWithDomainName:@"piccolo_options_not_in_cocoa"
