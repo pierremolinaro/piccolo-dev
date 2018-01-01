@@ -68,6 +68,8 @@ project (3:1:6) -> "piccolo" {
   "galgas-sources/pic18_semantics.galgas"
   "galgas-sources/pic18_bootloader_specification_semantics.galgas"
 
+  "galgas-sources/ipic18-switch-instruction.galgas"
+
   "galgas-sources/ipic18_block_representation.galgas"
   "galgas-sources/ipic18_terminators.galgas"
   "galgas-sources/ipic18_regular_instructions.galgas"

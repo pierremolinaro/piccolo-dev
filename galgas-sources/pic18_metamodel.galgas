@@ -135,43 +135,6 @@ abstract class @pic18AbstractCaseItem {
 
 #----------------------------------------------------*
 
-class @pic18SimpleConstantCaseItem : @pic18AbstractCaseItem {
-  @immediatExpression mCaseExpression
-  @location mCaseExpressionLocation
-}
-
-#----------------------------------------------------*
-
-class @pic18IntervalCaseItem : @pic18AbstractCaseItem {
-  @immediatExpression mMinExpression
-  @immediatExpression mMaxExpression
-  @location mCaseExpressionLocation
-}
-
-#----------------------------------------------------*
-
-list @pic18CaseExpressionList {
-  @pic18AbstractCaseItem mCaseItem
-}
-
-#----------------------------------------------------*
-
-list @pic18SwitchInstructionCaseList {
-  @location mStartOfCase
-  @pic18CaseExpressionList mCaseExpressionList
-  @pic18InstructionList mInstructionList
-}
-
-#----------------------------------------------------*
-
-class @pic18Instruction_switch : @pic18PiccoloInstruction {
-  @pic18SwitchInstructionCaseList mCaseList
-  @location mElseBranchStartLocation
-  @pic18InstructionList mElseInstructionList
-}
-
-#----------------------------------------------------*
-
 enum @pic18Instruction_FDA_base_code_AST {
   case ADDWF  case ADDWFC  case ANDWF  case COMF  case DECF  case INCF 
   case IORWF  case MOVF  case RLCF  case RLNCF  case RRCF  case RRNCF

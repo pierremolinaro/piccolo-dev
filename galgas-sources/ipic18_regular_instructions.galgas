@@ -280,8 +280,8 @@ override method @ipic18_intermediate_instruction_MOVFF generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_literalOperation instructionDisplay ->@stringlist outResult {
-  @string s = [mLiteralInstruction mnemonic] + " " + [mLiteralValue hexString]
-  outResult = @stringlist. listWithValue { !s}
+  @string s = [mLiteralInstruction mnemonic] + " " + [mLiteralValue hexString] + " ; " + mLiteralValue
+  outResult = {!s}
 }
 
 #----------------------------------------------------------------------------*
