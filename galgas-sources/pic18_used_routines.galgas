@@ -223,18 +223,6 @@ override method @pic18Instruction_structured_if addUsedRoutines
 
 #---------------------------------------------------------------------------*
 
-override method @pic18Instruction_switch addUsedRoutines
-  ?let @pic18MacroMap inMacroMap
-  ?!@stringset ioUsedRoutines
-{
-  for () in  mCaseList do
-    addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
-  end
-  addPic18UsedRoutinesFromInstructionList (!mElseInstructionList !inMacroMap !?ioUsedRoutines )
-}
-
-#---------------------------------------------------------------------------*
-
 override method @pic18Instruction_macro addUsedRoutines
   ?let @pic18MacroMap inMacroMap
   ?!@stringset ioUsedRoutines

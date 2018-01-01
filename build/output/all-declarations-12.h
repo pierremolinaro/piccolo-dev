@@ -10,18 +10,6 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
-//                                  Routine 'addPic18UsedRoutinesFromInstructionList'                                  *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_addPic_31__38_UsedRoutinesFromInstructionList (const class GALGAS_pic_31__38_InstructionList constinArgument0,
-                                                            const class GALGAS_pic_31__38_MacroMap constinArgument1,
-                                                            class GALGAS_stringset & ioArgument2,
-                                                            class C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
 //                                     Routine 'performInlineFromInstructionList'                                      *
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -45,31 +33,6 @@ void routine_displayBlockList (const class GALGAS_string constinArgument0,
                                const class GALGAS_ipic_31__38_BlockList constinArgument2,
                                class C_Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
-
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                     *
-//                                          Routine 'analyzeInstructionList'                                           *
-//                                                                                                                     *
-//---------------------------------------------------------------------------------------------------------------------*
-
-void routine_analyzeInstructionList (const class GALGAS_pic_31__38_InstructionList constinArgument0,
-                                     class GALGAS_ipic_31__38_BlockList & ioArgument1,
-                                     const class GALGAS_uint constinArgument2,
-                                     const class GALGAS_routineMap constinArgument3,
-                                     const class GALGAS_registerTable constinArgument4,
-                                     const class GALGAS_pic_31__38__5F_dataMap constinArgument5,
-                                     const class GALGAS_constantMap constinArgument6,
-                                     const class GALGAS_pic_31__38_MacroMap constinArgument7,
-                                     class GALGAS_uint & ioArgument8,
-                                     class GALGAS_ipic_31__38_SequentialInstructionList & ioArgument9,
-                                     class GALGAS_lstring & ioArgument10,
-                                     class GALGAS_string & ioArgument11,
-                                     class GALGAS_uint & ioArgument12,
-                                     const class GALGAS_bool constinArgument13,
-                                     const class GALGAS_routineKind constinArgument14,
-                                     class GALGAS_stringset & ioArgument15,
-                                     class C_Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

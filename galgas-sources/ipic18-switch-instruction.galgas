@@ -1,0 +1,396 @@
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#! AST
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+class @pic18SimpleConstantCaseItem : @pic18AbstractCaseItem {
+  @immediatExpression mCaseExpression
+  @location mCaseExpressionLocation
+}
+
+#·······················································································································
+
+class @pic18IntervalCaseItem : @pic18AbstractCaseItem {
+  @immediatExpression mMinExpression
+  @immediatExpression mMaxExpression
+  @location mCaseExpressionLocation
+}
+
+#·······················································································································
+
+list @pic18CaseExpressionList {
+  @pic18AbstractCaseItem mCaseItem
+}
+
+#·······················································································································
+
+list @pic18SwitchInstructionCaseList {
+  @location mStartOfCase
+  @pic18CaseExpressionList mCaseExpressionList
+  @pic18InstructionList mInstructionList
+}
+
+#·······················································································································
+
+class @pic18Instruction_switch : @pic18PiccoloInstruction {
+  @pic18SwitchInstructionCaseList mCaseList
+  @location mElseBranchStartLocation
+  @pic18InstructionList mElseInstructionList
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#! ANALYZE
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+override method @pic18Instruction_switch analyze
+  ?let @uint inAccessBankSplitOffset
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?let @routineMap inRoutineMap
+  ?let @registerTable inRegisterTable
+  ?let @pic18_dataMap inDataMap
+  ?let @constantMap inConstantMap
+  ?let @pic18MacroMap inMacroMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@lstring ioBlockLabel
+  ?!@string ioListFileContents
+  ?!@uint ioCurrentBank
+  ?let @bool inShouldPreserveBSR
+  ?let @routineKind inRoutineKind
+  ?!@stringset ioUsedRegisters
+{
+  var caseConstantMap =@caseConstantMap.emptyMap{}
+#--- Labels
+  let exitLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+  ioLocalLabelIndex ++
+#--- Comparison value
+  @sint64 lastComparisonValue = 0LS
+#--- By default, do not continue in sequence
+  @bool continuesInSequence = false
+#---
+  let initialBankSetting = ioCurrentBank
+  @uint finalBankSetting = .max # Any value
+  var finalBankSettingDefined = false
+#---
+  for () in  mCaseList do
+  #--- Label
+    let conditionTrueLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+    ioLocalLabelIndex ++
+  #--- Generate test blocks
+    for () in  mCaseExpressionList do
+      [mCaseItem analyzeCaseItem
+        !inRegisterTable
+        !inConstantMap
+        !conditionTrueLabel
+        !?ioUsedRegisters
+        !?caseConstantMap
+        !?ioLocalLabelIndex
+        !?ioGeneratedInstructionList
+        !?ioGeneratedBlockList
+        !?ioBlockLabel
+        !?lastComparisonValue
+      ]
+    end
+  #--- Analyze instruction list
+    let @lstring conditionFalseLabel = ioBlockLabel
+    ioBlockLabel = conditionTrueLabel
+    @uint branchFinalBank = initialBankSetting
+    analyzeInstructionList (
+      !mInstructionList
+      !?ioGeneratedBlockList
+      !inAccessBankSplitOffset
+      !inRoutineMap
+      !inRegisterTable
+      !inDataMap
+      !inConstantMap
+      !inMacroMap
+      !?ioLocalLabelIndex
+      !?ioGeneratedInstructionList
+      !?ioBlockLabel
+      !?ioListFileContents
+      !?branchFinalBank
+      !inShouldPreserveBSR
+      !inRoutineKind
+      !?ioUsedRegisters
+    )
+    if ioBlockLabel.string != "" then
+      continuesInSequence = true
+      ioGeneratedBlockList += !@ipic18Block.new {
+        !@uint. max # relocatable
+        !ioBlockLabel
+        !ioGeneratedInstructionList
+        !@ipic18JumpTerminator. new { !mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}
+        !@uint.max
+        !0
+      }
+    end
+    if finalBankSettingDefined then
+      if finalBankSetting != branchFinalBank then
+        error mStartOfCase: "this branch leaves bank setting to "
+        + if branchFinalBank == @uint. max then "'no selection'" else [branchFinalBank string] end
+        + ", but first branch leaves bank setting to "
+        + if finalBankSetting == @uint. max then "'no selection'" else [finalBankSetting string] end
+        + " (should be the same setting)"
+      end
+    else
+      finalBankSettingDefined = true
+      finalBankSetting = branchFinalBank
+    end
+    ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+    ioBlockLabel = conditionFalseLabel
+  end
+#--- "else" instruction list
+  @uint branchFinalBank = initialBankSetting
+  analyzeInstructionList (
+    !mElseInstructionList
+    !?ioGeneratedBlockList
+    !inAccessBankSplitOffset
+    !inRoutineMap
+    !inRegisterTable
+    !inDataMap
+    !inConstantMap
+    !inMacroMap
+    !?ioLocalLabelIndex
+    !?ioGeneratedInstructionList
+    !?ioBlockLabel
+    !?ioListFileContents
+    !?branchFinalBank
+    !inShouldPreserveBSR
+    !inRoutineKind
+    !?ioUsedRegisters
+  )
+  let @bool thenContinuesInSequence = ioBlockLabel.string != ""
+  if thenContinuesInSequence then
+    ioGeneratedBlockList += !@ipic18Block.new {
+      !@uint. max # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !@ipic18JumpTerminator.new { !mInstructionLocation !exitLabel !.ipicRelative}
+      !@uint.max
+      !0
+    }
+  end
+  ioGeneratedInstructionList = {}
+#--- Bank setting
+  if finalBankSetting != branchFinalBank then
+    error mElseBranchStartLocation: "the 'else' branch leaves bank setting to "
+    + if branchFinalBank == @uint. max then "'no selection'" else [branchFinalBank string] end
+    + ", but first branch leaves bank setting to "
+    + if finalBankSetting == @uint. max then "'no selection'" else [finalBankSetting string] end
+    + " (should be the same setting)"
+  end
+#---
+  ioCurrentBank = finalBankSetting
+  if continuesInSequence then
+    ioBlockLabel = exitLabel
+  else
+    ioBlockLabel = ["" nowhere]
+  end
+}
+
+#·······················································································································
+
+map @caseConstantMap {
+  insert insertKey error message "the '%K' constant is already declared in %L"
+}
+
+#·······················································································································
+
+abstract method @pic18AbstractCaseItem analyzeCaseItem
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?let @lstring inConditionTrueLabel
+  ?!@stringset ioUsedRegisters
+  ?!@caseConstantMap ioCaseConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@lstring ioBlockLabel
+  ?!@sint64 ioLastComparisonValue
+
+#·······················································································································
+
+override method @pic18SimpleConstantCaseItem analyzeCaseItem
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?let @lstring inConditionTrueLabel
+  ?!@stringset ioUsedRegisters
+  ?!@caseConstantMap ioCaseConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@lstring ioBlockLabel
+  ?!@sint64 ioLastComparisonValue
+{
+  [mCaseExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+#---
+  if (result > 255LS) | (result < 0LS) then
+    error mCaseExpressionLocation:"case value is evaluated as " + result + " (should be between 0 and 255)"
+  end
+#--- Check constant is unique
+  if [ioCaseConstantMap hasKey ![result string]] then
+    error mCaseExpressionLocation : "the '" + result + "' constant is already used in switch instruction"
+    error [ioCaseConstantMap locationForKey ![result string]] : "the '" + result + "' constant is used here"
+  else
+    [!?ioCaseConstantMap insertKey !@lstring. new { ![result string] !mCaseExpressionLocation}]
+  end
+#--- Generate addlw instruction  
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
+    !mCaseExpressionLocation
+    !@literal_instruction_opcode.ADDLW
+    ![(ioLastComparisonValue - result) & 0xFFLS uint]
+  }
+  !@uint.max
+  !0
+#--- Update comparison value
+  ioLastComparisonValue = result
+#--- Condition false label
+  let conditionFalseLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
+  ioLocalLabelIndex ++
+#--- Terminate current block with a BZ instruction
+  let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator. new {
+    !mCaseExpressionLocation
+    !@conditional_branch. bz
+    !inConditionTrueLabel
+    !@conditionalBranchMode. native
+    !conditionFalseLabel
+    !@conditionalBranchMode. native}
+#--- Save current block block
+  ioGeneratedBlockList += !@ipic18Block. new {
+    !@uint. max # relocatable
+    !ioBlockLabel
+    !ioGeneratedInstructionList
+    !t
+    !@uint.max
+    !0
+  }
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList. emptyList
+  ioBlockLabel = conditionFalseLabel
+}
+
+#·······················································································································
+
+override method @pic18IntervalCaseItem analyzeCaseItem
+  ?let @registerTable inRegisterTable
+  ?let @constantMap inConstantMap
+  ?let @lstring inConditionTrueLabel
+  ?!@stringset ioUsedRegisters
+  ?!@caseConstantMap ioCaseConstantMap
+  ?!@uint ioLocalLabelIndex
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
+  ?!@ipic18BlockList ioGeneratedBlockList
+  ?!@lstring ioBlockLabel
+  ?!@sint64 ioLastComparisonValue
+{
+  [mMinExpression eval !inRegisterTable !inConstantMap ?let @sint64 minBound !?ioUsedRegisters]
+  [mMaxExpression eval !inRegisterTable !inConstantMap ?let @sint64 maxBound !?ioUsedRegisters]
+#---
+  var ok = true
+  if (minBound > 255LS) | (minBound < 0LS) then
+    error mCaseExpressionLocation:"min bound is evaluated as " + minBound + " (should be between 0 and 255)"
+    ok = false
+  end
+  if (maxBound > 255LS) | (maxBound < 0LS) then
+    error mCaseExpressionLocation:"max bound is evaluated as " + maxBound + " (should be between 0 and 255)"
+    ok = false
+  end
+  if maxBound <= minBound then
+    error mCaseExpressionLocation:"max bound (" + maxBound + ") should be greater than low bound (" + minBound + ")"
+    ok = false
+  end
+  if ok then
+  #--- Check constant is unique
+    for n in @range.new {![minBound uint] ![maxBound - minBound + 1LS uint]} do
+      if [ioCaseConstantMap hasKey ![n string]] then
+        error mCaseExpressionLocation : "the '" + n + "' constant is already used in switch instruction"
+        error [ioCaseConstantMap locationForKey ![n string]] : "the '" + n + "' constant is used here"
+      else
+        [!?ioCaseConstantMap insertKey !@lstring. new { ![n string] !mCaseExpressionLocation}]
+      end
+    end
+  #--- Generate first addlw instruction  
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
+        !mCaseExpressionLocation
+        !@literal_instruction_opcode.ADDLW
+        ![(ioLastComparisonValue - minBound) & 0xFFLS uint]
+      }
+      !.max
+      !0
+  #--- Labels
+    let greaterThanLowBoundLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
+    ioLocalLabelIndex ++
+    let conditionIntermediateLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
+    ioLocalLabelIndex ++
+    let conditionRejectedLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
+    ioLocalLabelIndex ++
+  #--- Terminate current block with a BC instruction
+    let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator. new {
+      !mCaseExpressionLocation
+      !@conditional_branch.bc
+      !greaterThanLowBoundLabel
+      !@conditionalBranchMode.native
+      !conditionIntermediateLabel
+      !@conditionalBranchMode.native
+    }
+  #--- Save current block
+    ioGeneratedBlockList += !@ipic18Block. new {
+      !.max # relocatable
+      !ioBlockLabel
+      !ioGeneratedInstructionList
+      !t
+      !@uint.max
+      !0
+    }
+  #--- Second addlw instruction  
+    let @ipic18SequentialInstruction secondAddlwInstruction = @ipic18_intermediate_instruction_literalOperation. new {
+      !mCaseExpressionLocation
+      !@literal_instruction_opcode.ADDLW
+      ![(minBound - maxBound - 1LS) & 0xFFLS uint]
+    }
+  #--- Add intermediate addition block
+    ioGeneratedBlockList += !@ipic18Block.new {
+      !.max # relocatable
+      !conditionIntermediateLabel
+      !{!secondAddlwInstruction !.max !0}
+      !@ipic18JumpTerminator.new {!mCaseExpressionLocation !conditionRejectedLabel !.relative}
+      !.max
+      !0
+    }
+  #--- Terminate current block with a BC instruction
+    let @ipic18AbstractBlockTerminator t2 = @ipic18ConditionalJumpTerminator. new {
+      !mCaseExpressionLocation
+      !@conditional_branch.bnc
+      !inConditionTrueLabel
+      !@conditionalBranchMode.native
+      !conditionRejectedLabel
+      !@conditionalBranchMode.native
+    }
+  #--- Save current block
+    ioGeneratedBlockList += !@ipic18Block.new {
+      !.max # relocatable
+      !greaterThanLowBoundLabel
+      !{!secondAddlwInstruction !.max !0}
+      !t2
+      !.max
+      !0
+    }
+  #---
+    ioGeneratedInstructionList = {}
+    ioBlockLabel = conditionRejectedLabel
+  #--- Update comparison value
+    ioLastComparisonValue = maxBound + 1
+  end
+}
+
+#·······················································································································
+
+override method @pic18Instruction_switch addUsedRoutines
+  ?let @pic18MacroMap inMacroMap
+  ?!@stringset ioUsedRoutines
+{
+  for () in  mCaseList do
+    addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
+  end
+  addPic18UsedRoutinesFromInstructionList (!mElseInstructionList !inMacroMap !?ioUsedRoutines )
+}
+
+#———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
