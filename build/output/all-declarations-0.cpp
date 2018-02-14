@@ -556,167 +556,172 @@ static const char * gSyntaxErrorMessage_piccolo_5F_lexique__2E__2E__2E_ = "the '
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccolo_5F_lexique::getMessageForTerminal (const int16_t inTerminalIndex) const {
-  static const char * syntaxErrorMessageArray [160] = {kEndOfSourceLexicalErrorMessage,
-    gSyntaxErrorMessage_piccolo_5F_lexique_identifier,
-    gSyntaxErrorMessage_piccolo_5F_lexique_label,
-    gSyntaxErrorMessage_piccolo_5F_lexique_integer,
-    gSyntaxErrorMessage_piccolo_5F_lexique_literal_5F_char,
-    gSyntaxErrorMessage_piccolo_5F_lexique_literal_5F_string,
-    gSyntaxErrorMessage_piccolo_5F_lexique_comment,
-    gSyntaxErrorMessage_piccolo_5F_lexique_commentMark,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bank,
-    gSyntaxErrorMessage_piccolo_5F_lexique_banksave,
-    gSyntaxErrorMessage_piccolo_5F_lexique_banksel,
-    gSyntaxErrorMessage_piccolo_5F_lexique_baseline,
-    gSyntaxErrorMessage_piccolo_5F_lexique_block,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bootloader,
-    gSyntaxErrorMessage_piccolo_5F_lexique_byte,
-    gSyntaxErrorMessage_piccolo_5F_lexique_case,
-    gSyntaxErrorMessage_piccolo_5F_lexique_checkbank,
-    gSyntaxErrorMessage_piccolo_5F_lexique_checknobank,
-    gSyntaxErrorMessage_piccolo_5F_lexique_checkpic,
-    gSyntaxErrorMessage_piccolo_5F_lexique_computed,
-    gSyntaxErrorMessage_piccolo_5F_lexique_configuration,
-    gSyntaxErrorMessage_piccolo_5F_lexique_const,
-    gSyntaxErrorMessage_piccolo_5F_lexique_contextsave,
-    gSyntaxErrorMessage_piccolo_5F_lexique_data,
-    gSyntaxErrorMessage_piccolo_5F_lexique_data_31__36_,
-    gSyntaxErrorMessage_piccolo_5F_lexique_data_38_,
-    gSyntaxErrorMessage_piccolo_5F_lexique_do,
-    gSyntaxErrorMessage_piccolo_5F_lexique_end,
-    gSyntaxErrorMessage_piccolo_5F_lexique_else,
-    gSyntaxErrorMessage_piccolo_5F_lexique_elsif,
-    gSyntaxErrorMessage_piccolo_5F_lexique_ensures,
-    gSyntaxErrorMessage_piccolo_5F_lexique_fast,
-    gSyntaxErrorMessage_piccolo_5F_lexique_forever,
-    gSyntaxErrorMessage_piccolo_5F_lexique_if,
-    gSyntaxErrorMessage_piccolo_5F_lexique_implements,
-    gSyntaxErrorMessage_piccolo_5F_lexique_include,
-    gSyntaxErrorMessage_piccolo_5F_lexique_inline,
-    gSyntaxErrorMessage_piccolo_5F_lexique_interrupt,
-    gSyntaxErrorMessage_piccolo_5F_lexique_macro,
-    gSyntaxErrorMessage_piccolo_5F_lexique_midrange,
-    gSyntaxErrorMessage_piccolo_5F_lexique_nobank,
-    gSyntaxErrorMessage_piccolo_5F_lexique_noreturn,
-    gSyntaxErrorMessage_piccolo_5F_lexique_page,
-    gSyntaxErrorMessage_piccolo_5F_lexique_pic_31__38_,
-    gSyntaxErrorMessage_piccolo_5F_lexique_preserved,
-    gSyntaxErrorMessage_piccolo_5F_lexique_protected,
-    gSyntaxErrorMessage_piccolo_5F_lexique_private,
-    gSyntaxErrorMessage_piccolo_5F_lexique_ram,
-    gSyntaxErrorMessage_piccolo_5F_lexique_requires,
-    gSyntaxErrorMessage_piccolo_5F_lexique_rom,
-    gSyntaxErrorMessage_piccolo_5F_lexique_routine,
-    gSyntaxErrorMessage_piccolo_5F_lexique_switch,
-    gSyntaxErrorMessage_piccolo_5F_lexique_unused,
-    gSyntaxErrorMessage_piccolo_5F_lexique_uses,
-    gSyntaxErrorMessage_piccolo_5F_lexique_w,
-    gSyntaxErrorMessage_piccolo_5F_lexique_while,
-    gSyntaxErrorMessage_piccolo_5F_lexique_addlw,
-    gSyntaxErrorMessage_piccolo_5F_lexique_addwf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_addwfc,
-    gSyntaxErrorMessage_piccolo_5F_lexique_andlw,
-    gSyntaxErrorMessage_piccolo_5F_lexique_andwf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bc,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bcf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bn,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bnc,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bnn,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bov,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bnov,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bnz,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bsf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bra,
-    gSyntaxErrorMessage_piccolo_5F_lexique_btg,
-    gSyntaxErrorMessage_piccolo_5F_lexique_bz,
-    gSyntaxErrorMessage_piccolo_5F_lexique_call,
-    gSyntaxErrorMessage_piccolo_5F_lexique_clrf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_clrw,
-    gSyntaxErrorMessage_piccolo_5F_lexique_clrwdt,
-    gSyntaxErrorMessage_piccolo_5F_lexique_comf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_daw,
-    gSyntaxErrorMessage_piccolo_5F_lexique_decf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_incf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_iorlw,
-    gSyntaxErrorMessage_piccolo_5F_lexique_iorwf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_fnop,
-    gSyntaxErrorMessage_piccolo_5F_lexique_goto,
-    gSyntaxErrorMessage_piccolo_5F_lexique_jsr,
-    gSyntaxErrorMessage_piccolo_5F_lexique_jump,
-    gSyntaxErrorMessage_piccolo_5F_lexique_lfsr,
-    gSyntaxErrorMessage_piccolo_5F_lexique_ldataptr,
-    gSyntaxErrorMessage_piccolo_5F_lexique_ldata_38_ptr,
-    gSyntaxErrorMessage_piccolo_5F_lexique_ldata_31__36_ptr,
-    gSyntaxErrorMessage_piccolo_5F_lexique_ltblptr,
-    gSyntaxErrorMessage_piccolo_5F_lexique_mnop,
-    gSyntaxErrorMessage_piccolo_5F_lexique_movf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_movff,
-    gSyntaxErrorMessage_piccolo_5F_lexique_movlw,
-    gSyntaxErrorMessage_piccolo_5F_lexique_movwf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_mullw,
-    gSyntaxErrorMessage_piccolo_5F_lexique_mulwf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_negf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_nop,
-    gSyntaxErrorMessage_piccolo_5F_lexique_nopbra,
-    gSyntaxErrorMessage_piccolo_5F_lexique_pop,
-    gSyntaxErrorMessage_piccolo_5F_lexique_option,
-    gSyntaxErrorMessage_piccolo_5F_lexique_push,
-    gSyntaxErrorMessage_piccolo_5F_lexique_rcall,
-    gSyntaxErrorMessage_piccolo_5F_lexique_reset,
-    gSyntaxErrorMessage_piccolo_5F_lexique_retlw,
-    gSyntaxErrorMessage_piccolo_5F_lexique_rlcf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_rlf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_rlncf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_rrcf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_rrf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_rrncf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_setf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_sleep,
-    gSyntaxErrorMessage_piccolo_5F_lexique_subfwb,
-    gSyntaxErrorMessage_piccolo_5F_lexique_sublw,
-    gSyntaxErrorMessage_piccolo_5F_lexique_subwf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_subwfb,
-    gSyntaxErrorMessage_piccolo_5F_lexique_swapf,
-    gSyntaxErrorMessage_piccolo_5F_lexique_tblrd,
-    gSyntaxErrorMessage_piccolo_5F_lexique_tblwt,
-    gSyntaxErrorMessage_piccolo_5F_lexique_tris,
-    gSyntaxErrorMessage_piccolo_5F_lexique_xorlw,
-    gSyntaxErrorMessage_piccolo_5F_lexique_xorwf,
-    gSyntaxErrorMessage_piccolo_5F_lexique__2A_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__2A__2B_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__2C_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__21__3D_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__3C__3D_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__3E__3D_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__2A__2D_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__2B__2A_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__3B_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__3A_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__3D__3D_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__3C_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__3E_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__5B_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__5D_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__2E_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__21_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__26_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__7C_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__3D_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__7B_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__7D_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__28_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__29_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__2F_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__2D_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__2B_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__3F_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__5E_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__3C__3C_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__3E__3E_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__7E_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__25_,
-    gSyntaxErrorMessage_piccolo_5F_lexique__2E__2E__2E_} ;
-  return syntaxErrorMessageArray [inTerminalIndex] ;
+  C_String result = "<unknown>" ;
+  if ((inTerminalIndex >= 0) && (inTerminalIndex < 160)) {
+    static const char * syntaxErrorMessageArray [160] = {kEndOfSourceLexicalErrorMessage,
+        gSyntaxErrorMessage_piccolo_5F_lexique_identifier,
+        gSyntaxErrorMessage_piccolo_5F_lexique_label,
+        gSyntaxErrorMessage_piccolo_5F_lexique_integer,
+        gSyntaxErrorMessage_piccolo_5F_lexique_literal_5F_char,
+        gSyntaxErrorMessage_piccolo_5F_lexique_literal_5F_string,
+        gSyntaxErrorMessage_piccolo_5F_lexique_comment,
+        gSyntaxErrorMessage_piccolo_5F_lexique_commentMark,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bank,
+        gSyntaxErrorMessage_piccolo_5F_lexique_banksave,
+        gSyntaxErrorMessage_piccolo_5F_lexique_banksel,
+        gSyntaxErrorMessage_piccolo_5F_lexique_baseline,
+        gSyntaxErrorMessage_piccolo_5F_lexique_block,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bootloader,
+        gSyntaxErrorMessage_piccolo_5F_lexique_byte,
+        gSyntaxErrorMessage_piccolo_5F_lexique_case,
+        gSyntaxErrorMessage_piccolo_5F_lexique_checkbank,
+        gSyntaxErrorMessage_piccolo_5F_lexique_checknobank,
+        gSyntaxErrorMessage_piccolo_5F_lexique_checkpic,
+        gSyntaxErrorMessage_piccolo_5F_lexique_computed,
+        gSyntaxErrorMessage_piccolo_5F_lexique_configuration,
+        gSyntaxErrorMessage_piccolo_5F_lexique_const,
+        gSyntaxErrorMessage_piccolo_5F_lexique_contextsave,
+        gSyntaxErrorMessage_piccolo_5F_lexique_data,
+        gSyntaxErrorMessage_piccolo_5F_lexique_data_31__36_,
+        gSyntaxErrorMessage_piccolo_5F_lexique_data_38_,
+        gSyntaxErrorMessage_piccolo_5F_lexique_do,
+        gSyntaxErrorMessage_piccolo_5F_lexique_end,
+        gSyntaxErrorMessage_piccolo_5F_lexique_else,
+        gSyntaxErrorMessage_piccolo_5F_lexique_elsif,
+        gSyntaxErrorMessage_piccolo_5F_lexique_ensures,
+        gSyntaxErrorMessage_piccolo_5F_lexique_fast,
+        gSyntaxErrorMessage_piccolo_5F_lexique_forever,
+        gSyntaxErrorMessage_piccolo_5F_lexique_if,
+        gSyntaxErrorMessage_piccolo_5F_lexique_implements,
+        gSyntaxErrorMessage_piccolo_5F_lexique_include,
+        gSyntaxErrorMessage_piccolo_5F_lexique_inline,
+        gSyntaxErrorMessage_piccolo_5F_lexique_interrupt,
+        gSyntaxErrorMessage_piccolo_5F_lexique_macro,
+        gSyntaxErrorMessage_piccolo_5F_lexique_midrange,
+        gSyntaxErrorMessage_piccolo_5F_lexique_nobank,
+        gSyntaxErrorMessage_piccolo_5F_lexique_noreturn,
+        gSyntaxErrorMessage_piccolo_5F_lexique_page,
+        gSyntaxErrorMessage_piccolo_5F_lexique_pic_31__38_,
+        gSyntaxErrorMessage_piccolo_5F_lexique_preserved,
+        gSyntaxErrorMessage_piccolo_5F_lexique_protected,
+        gSyntaxErrorMessage_piccolo_5F_lexique_private,
+        gSyntaxErrorMessage_piccolo_5F_lexique_ram,
+        gSyntaxErrorMessage_piccolo_5F_lexique_requires,
+        gSyntaxErrorMessage_piccolo_5F_lexique_rom,
+        gSyntaxErrorMessage_piccolo_5F_lexique_routine,
+        gSyntaxErrorMessage_piccolo_5F_lexique_switch,
+        gSyntaxErrorMessage_piccolo_5F_lexique_unused,
+        gSyntaxErrorMessage_piccolo_5F_lexique_uses,
+        gSyntaxErrorMessage_piccolo_5F_lexique_w,
+        gSyntaxErrorMessage_piccolo_5F_lexique_while,
+        gSyntaxErrorMessage_piccolo_5F_lexique_addlw,
+        gSyntaxErrorMessage_piccolo_5F_lexique_addwf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_addwfc,
+        gSyntaxErrorMessage_piccolo_5F_lexique_andlw,
+        gSyntaxErrorMessage_piccolo_5F_lexique_andwf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bc,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bcf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bn,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bnc,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bnn,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bov,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bnov,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bnz,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bsf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bra,
+        gSyntaxErrorMessage_piccolo_5F_lexique_btg,
+        gSyntaxErrorMessage_piccolo_5F_lexique_bz,
+        gSyntaxErrorMessage_piccolo_5F_lexique_call,
+        gSyntaxErrorMessage_piccolo_5F_lexique_clrf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_clrw,
+        gSyntaxErrorMessage_piccolo_5F_lexique_clrwdt,
+        gSyntaxErrorMessage_piccolo_5F_lexique_comf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_daw,
+        gSyntaxErrorMessage_piccolo_5F_lexique_decf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_incf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_iorlw,
+        gSyntaxErrorMessage_piccolo_5F_lexique_iorwf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_fnop,
+        gSyntaxErrorMessage_piccolo_5F_lexique_goto,
+        gSyntaxErrorMessage_piccolo_5F_lexique_jsr,
+        gSyntaxErrorMessage_piccolo_5F_lexique_jump,
+        gSyntaxErrorMessage_piccolo_5F_lexique_lfsr,
+        gSyntaxErrorMessage_piccolo_5F_lexique_ldataptr,
+        gSyntaxErrorMessage_piccolo_5F_lexique_ldata_38_ptr,
+        gSyntaxErrorMessage_piccolo_5F_lexique_ldata_31__36_ptr,
+        gSyntaxErrorMessage_piccolo_5F_lexique_ltblptr,
+        gSyntaxErrorMessage_piccolo_5F_lexique_mnop,
+        gSyntaxErrorMessage_piccolo_5F_lexique_movf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_movff,
+        gSyntaxErrorMessage_piccolo_5F_lexique_movlw,
+        gSyntaxErrorMessage_piccolo_5F_lexique_movwf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_mullw,
+        gSyntaxErrorMessage_piccolo_5F_lexique_mulwf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_negf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_nop,
+        gSyntaxErrorMessage_piccolo_5F_lexique_nopbra,
+        gSyntaxErrorMessage_piccolo_5F_lexique_pop,
+        gSyntaxErrorMessage_piccolo_5F_lexique_option,
+        gSyntaxErrorMessage_piccolo_5F_lexique_push,
+        gSyntaxErrorMessage_piccolo_5F_lexique_rcall,
+        gSyntaxErrorMessage_piccolo_5F_lexique_reset,
+        gSyntaxErrorMessage_piccolo_5F_lexique_retlw,
+        gSyntaxErrorMessage_piccolo_5F_lexique_rlcf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_rlf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_rlncf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_rrcf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_rrf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_rrncf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_setf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_sleep,
+        gSyntaxErrorMessage_piccolo_5F_lexique_subfwb,
+        gSyntaxErrorMessage_piccolo_5F_lexique_sublw,
+        gSyntaxErrorMessage_piccolo_5F_lexique_subwf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_subwfb,
+        gSyntaxErrorMessage_piccolo_5F_lexique_swapf,
+        gSyntaxErrorMessage_piccolo_5F_lexique_tblrd,
+        gSyntaxErrorMessage_piccolo_5F_lexique_tblwt,
+        gSyntaxErrorMessage_piccolo_5F_lexique_tris,
+        gSyntaxErrorMessage_piccolo_5F_lexique_xorlw,
+        gSyntaxErrorMessage_piccolo_5F_lexique_xorwf,
+        gSyntaxErrorMessage_piccolo_5F_lexique__2A_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__2A__2B_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__2C_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__21__3D_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__3C__3D_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__3E__3D_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__2A__2D_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__2B__2A_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__3B_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__3A_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__3D__3D_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__3C_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__3E_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__5B_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__5D_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__2E_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__21_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__26_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__7C_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__3D_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__7B_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__7D_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__28_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__29_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__2F_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__2D_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__2B_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__3F_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__5E_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__3C__3C_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__3E__3E_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__7E_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__25_,
+        gSyntaxErrorMessage_piccolo_5F_lexique__2E__2E__2E_
+    } ;
+    result = syntaxErrorMessageArray [inTerminalIndex] ;
+  }
+  return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -3522,6 +3527,7 @@ void C_Lexique_piccolo_5F_lexique::enterToken (cTokenFor_piccolo_5F_lexique & io
   cTokenFor_piccolo_5F_lexique * ptr = NULL ;
   macroMyNew (ptr, cTokenFor_piccolo_5F_lexique ()) ;
   ptr->mTokenCode = ioToken.mTokenCode ;
+  // ptr->mIsOptional = ioToken.mIsOptional ;
   ptr->mStartLocation = mTokenStartLocation ;
   ptr->mEndLocation = mTokenEndLocation ;
   ptr->mTemplateStringBeforeToken = ioToken.mTemplateStringBeforeToken ;
@@ -3538,28 +3544,28 @@ void C_Lexique_piccolo_5F_lexique::enterToken (cTokenFor_piccolo_5F_lexique & io
 //---------------------------------------------------------------------------------------------------------------------*
 
 utf32 C_Lexique_piccolo_5F_lexique::attributeValue_charValue (void) const {
-  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
+  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) currentTokenPtr (HERE) ;
   return ptr->mLexicalAttribute_charValue ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccolo_5F_lexique::attributeValue_identifierString (void) const {
-  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
+  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) currentTokenPtr (HERE) ;
   return ptr->mLexicalAttribute_identifierString ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 C_String C_Lexique_piccolo_5F_lexique::attributeValue_tokenString (void) const {
-  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
+  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) currentTokenPtr (HERE) ;
   return ptr->mLexicalAttribute_tokenString ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 uint32_t C_Lexique_piccolo_5F_lexique::attributeValue_uint_33__32_value (void) const {
-  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
+  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) currentTokenPtr (HERE) ;
   return ptr->mLexicalAttribute_uint_33__32_value ;
 }
 
@@ -3568,7 +3574,7 @@ uint32_t C_Lexique_piccolo_5F_lexique::attributeValue_uint_33__32_value (void) c
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lchar C_Lexique_piccolo_5F_lexique::synthetizedAttribute_charValue (void) const {
-  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
+  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) currentTokenPtr (HERE) ;
   macroValidSharedObject (ptr, cTokenFor_piccolo_5F_lexique) ;
   GALGAS_location currentLocation (ptr->mStartLocation, ptr->mEndLocation, sourceText ()) ;
   GALGAS_char value (ptr->mLexicalAttribute_charValue) ;
@@ -3579,7 +3585,7 @@ GALGAS_lchar C_Lexique_piccolo_5F_lexique::synthetizedAttribute_charValue (void)
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring C_Lexique_piccolo_5F_lexique::synthetizedAttribute_identifierString (void) const {
-  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
+  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) currentTokenPtr (HERE) ;
   macroValidSharedObject (ptr, cTokenFor_piccolo_5F_lexique) ;
   GALGAS_location currentLocation (ptr->mStartLocation, ptr->mEndLocation, sourceText ()) ;
   GALGAS_string value (ptr->mLexicalAttribute_identifierString) ;
@@ -3590,7 +3596,7 @@ GALGAS_lstring C_Lexique_piccolo_5F_lexique::synthetizedAttribute_identifierStri
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_lstring C_Lexique_piccolo_5F_lexique::synthetizedAttribute_tokenString (void) const {
-  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
+  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) currentTokenPtr (HERE) ;
   macroValidSharedObject (ptr, cTokenFor_piccolo_5F_lexique) ;
   GALGAS_location currentLocation (ptr->mStartLocation, ptr->mEndLocation, sourceText ()) ;
   GALGAS_string value (ptr->mLexicalAttribute_tokenString) ;
@@ -3601,7 +3607,7 @@ GALGAS_lstring C_Lexique_piccolo_5F_lexique::synthetizedAttribute_tokenString (v
 //---------------------------------------------------------------------------------------------------------------------*
 
 GALGAS_luint C_Lexique_piccolo_5F_lexique::synthetizedAttribute_uint_33__32_value (void) const {
-  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) mCurrentTokenPtr ;
+  cTokenFor_piccolo_5F_lexique * ptr = (cTokenFor_piccolo_5F_lexique *) currentTokenPtr (HERE) ;
   macroValidSharedObject (ptr, cTokenFor_piccolo_5F_lexique) ;
   GALGAS_location currentLocation (ptr->mStartLocation, ptr->mEndLocation, sourceText ()) ;
   GALGAS_uint value (ptr->mLexicalAttribute_uint_33__32_value) ;

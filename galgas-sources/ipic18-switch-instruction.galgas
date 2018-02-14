@@ -73,17 +73,18 @@ override method @pic18Instruction_switch analyze
 #---
   for () in  mCaseList do
   #--- Label
-    let conditionTrueLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
-    ioLocalLabelIndex ++
+    let conditionTrueLabel = @lstring.new { !".L.accepted." + [ioLocalLabelIndex string] !mInstructionLocation} 
   #--- Generate test blocks
-    for () in  mCaseExpressionList do
+    for () in mCaseExpressionList do
+      let conditionLabel = [ioLocalLabelIndex string]
+      ioLocalLabelIndex ++
       [mCaseItem analyzeCaseItem
         !inRegisterTable
         !inConstantMap
         !conditionTrueLabel
+        !conditionLabel
         !?ioUsedRegisters
         !?caseConstantMap
-        !?ioLocalLabelIndex
         !?ioGeneratedInstructionList
         !?ioGeneratedBlockList
         !?ioBlockLabel
@@ -199,9 +200,9 @@ abstract method @pic18AbstractCaseItem analyzeCaseItem
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   ?let @lstring inConditionTrueLabel
+  ?let @string inIndexForLabels
   ?!@stringset ioUsedRegisters
   ?!@caseConstantMap ioCaseConstantMap
-  ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@ipic18BlockList ioGeneratedBlockList
   ?!@lstring ioBlockLabel
@@ -213,9 +214,9 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   ?let @lstring inConditionTrueLabel
+  ?let @string inIndexForLabels
   ?!@stringset ioUsedRegisters
   ?!@caseConstantMap ioCaseConstantMap
-  ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@ipic18BlockList ioGeneratedBlockList
   ?!@lstring ioBlockLabel
@@ -231,12 +232,12 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
     error mCaseExpressionLocation : "the '" + result + "' constant is already used in switch instruction"
     error [ioCaseConstantMap locationForKey ![result string]] : "the '" + result + "' constant is used here"
   else
-    [!?ioCaseConstantMap insertKey !@lstring. new { ![result string] !mCaseExpressionLocation}]
+    [!?ioCaseConstantMap insertKey !.new { ![result string] !mCaseExpressionLocation}]
   end
 #--- Generate addlw instruction  
   ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
     !mCaseExpressionLocation
-    !@literal_instruction_opcode.ADDLW
+    !.ADDLW
     ![(ioLastComparisonValue - result) & 0xFFLS uint]
   }
   !@uint.max
@@ -244,16 +245,15 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
 #--- Update comparison value
   ioLastComparisonValue = result
 #--- Condition false label
-  let conditionFalseLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
-  ioLocalLabelIndex ++
+  let conditionFalseLabel = @lstring.new { !".L.value.rejected." + inIndexForLabels !mCaseExpressionLocation} 
 #--- Terminate current block with a BZ instruction
   let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator. new {
     !mCaseExpressionLocation
-    !@conditional_branch. bz
+    !.bz
     !inConditionTrueLabel
-    !@conditionalBranchMode. native
+    !.native
     !conditionFalseLabel
-    !@conditionalBranchMode. native}
+    !.native}
 #--- Save current block block
   ioGeneratedBlockList += !@ipic18Block. new {
     !@uint. max # relocatable
@@ -273,9 +273,9 @@ override method @pic18IntervalCaseItem analyzeCaseItem
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   ?let @lstring inConditionTrueLabel
+  ?let @string inIndexForLabels
   ?!@stringset ioUsedRegisters
   ?!@caseConstantMap ioCaseConstantMap
-  ?!@uint ioLocalLabelIndex
   ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
   ?!@ipic18BlockList ioGeneratedBlockList
   ?!@lstring ioBlockLabel
@@ -296,6 +296,9 @@ override method @pic18IntervalCaseItem analyzeCaseItem
   if maxBound <= minBound then
     error mCaseExpressionLocation:"max bound (" + maxBound + ") should be greater than low bound (" + minBound + ")"
     ok = false
+  elsif (maxBound == 255LS) & (minBound == 0LS) then
+    error mCaseExpressionLocation : "condition is always true"
+    ok = false
   end
   if ok then
   #--- Check constant is unique
@@ -307,29 +310,32 @@ override method @pic18IntervalCaseItem analyzeCaseItem
         [!?ioCaseConstantMap insertKey !@lstring. new { ![n string] !mCaseExpressionLocation}]
       end
     end
-  #--- Generate first addlw instruction  
+  #--- Labels
+    let firstConditionAcceptedLabel = @lstring.new { !".L.first.accepted." + inIndexForLabels !mCaseExpressionLocation} 
+    let firstConditionRejectedLabel = @lstring.new { !".L.first.rejected." + inIndexForLabels !mCaseExpressionLocation} 
+    let intervalRejectedLabel = @lstring.new { !".L.interval.rejected." + inIndexForLabels !mCaseExpressionLocation} 
+  #--- Second sublw instruction  
+    let @ipic18SequentialInstruction secondTestInstruction = @ipic18_intermediate_instruction_literalOperation. new {
+      !mCaseExpressionLocation
+      !.ADDLW
+      ![maxBound - minBound + 1LS uint]
+    }
+  #---------------------- First test
     ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
         !mCaseExpressionLocation
-        !@literal_instruction_opcode.ADDLW
-        ![(ioLastComparisonValue - minBound) & 0xFFLS uint]
+        !.ADDLW
+        ![(ioLastComparisonValue + 255LS - maxBound) & 0xFFLS uint]
       }
       !.max
       !0
-  #--- Labels
-    let greaterThanLowBoundLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
-    ioLocalLabelIndex ++
-    let conditionIntermediateLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
-    ioLocalLabelIndex ++
-    let conditionRejectedLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mCaseExpressionLocation} 
-    ioLocalLabelIndex ++
   #--- Terminate current block with a BC instruction
     let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator. new {
       !mCaseExpressionLocation
-      !@conditional_branch.bc
-      !greaterThanLowBoundLabel
-      !@conditionalBranchMode.native
-      !conditionIntermediateLabel
-      !@conditionalBranchMode.native
+      !.bnc
+      !firstConditionAcceptedLabel
+      !.native
+      !firstConditionRejectedLabel
+      !.native
     }
   #--- Save current block
     ioGeneratedBlockList += !@ipic18Block. new {
@@ -340,44 +346,38 @@ override method @pic18IntervalCaseItem analyzeCaseItem
       !@uint.max
       !0
     }
-  #--- Second addlw instruction  
-    let @ipic18SequentialInstruction secondAddlwInstruction = @ipic18_intermediate_instruction_literalOperation. new {
-      !mCaseExpressionLocation
-      !@literal_instruction_opcode.ADDLW
-      ![(minBound - maxBound - 1LS) & 0xFFLS uint]
-    }
-  #--- Add intermediate addition block
+  #---------------------- First test reject
     ioGeneratedBlockList += !@ipic18Block.new {
       !.max # relocatable
-      !conditionIntermediateLabel
-      !{!secondAddlwInstruction !.max !0}
-      !@ipic18JumpTerminator.new {!mCaseExpressionLocation !conditionRejectedLabel !.relative}
+      !firstConditionRejectedLabel
+      !{!secondTestInstruction !.max !0}
+      !@ipic18JumpTerminator.new {!mCaseExpressionLocation !intervalRejectedLabel !.relative}
       !.max
       !0
     }
-  #--- Terminate current block with a BC instruction
+  #---------------------- First test accepted
     let @ipic18AbstractBlockTerminator t2 = @ipic18ConditionalJumpTerminator. new {
       !mCaseExpressionLocation
-      !@conditional_branch.bnc
+      !.bc
       !inConditionTrueLabel
-      !@conditionalBranchMode.native
-      !conditionRejectedLabel
-      !@conditionalBranchMode.native
+      !.native
+      !intervalRejectedLabel
+      !.native
     }
   #--- Save current block
     ioGeneratedBlockList += !@ipic18Block.new {
       !.max # relocatable
-      !greaterThanLowBoundLabel
-      !{!secondAddlwInstruction !.max !0}
+      !firstConditionAcceptedLabel
+      !{!secondTestInstruction !.max !0}
       !t2
       !.max
       !0
     }
-  #---
+  #----------------------
     ioGeneratedInstructionList = {}
-    ioBlockLabel = conditionRejectedLabel
+    ioBlockLabel = intervalRejectedLabel
   #--- Update comparison value
-    ioLastComparisonValue = maxBound + 1
+    ioLastComparisonValue = minBound
   end
 }
 

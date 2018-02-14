@@ -1643,9 +1643,9 @@ void callExtensionMethod_analyzeCaseItem (const cPtr_pic_31__38_AbstractCaseItem
                                           const GALGAS_registerTable constin_inRegisterTable,
                                           const GALGAS_constantMap constin_inConstantMap,
                                           const GALGAS_lstring constin_inConditionTrueLabel,
+                                          const GALGAS_string constin_inIndexForLabels,
                                           GALGAS_stringset & io_ioUsedRegisters,
                                           GALGAS_caseConstantMap & io_ioCaseConstantMap,
-                                          GALGAS_uint & io_ioLocalLabelIndex,
                                           GALGAS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
                                           GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
                                           GALGAS_lstring & io_ioBlockLabel,
@@ -1675,7 +1675,7 @@ void callExtensionMethod_analyzeCaseItem (const cPtr_pic_31__38_AbstractCaseItem
     if (NULL == f) {
       fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
     }else{
-      f (inObject, constin_inRegisterTable, constin_inConstantMap, constin_inConditionTrueLabel, io_ioUsedRegisters, io_ioCaseConstantMap, io_ioLocalLabelIndex, io_ioGeneratedInstructionList, io_ioGeneratedBlockList, io_ioBlockLabel, io_ioLastComparisonValue, inCompiler COMMA_THERE) ;
+      f (inObject, constin_inRegisterTable, constin_inConstantMap, constin_inConditionTrueLabel, constin_inIndexForLabels, io_ioUsedRegisters, io_ioCaseConstantMap, io_ioGeneratedInstructionList, io_ioGeneratedBlockList, io_ioBlockLabel, io_ioLastComparisonValue, inCompiler COMMA_THERE) ;
     }
   }
 }
