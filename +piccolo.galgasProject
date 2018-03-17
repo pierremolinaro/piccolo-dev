@@ -1,4 +1,4 @@
-project (3:1:6) -> "piccolo" {
+project (3:1:7) -> "piccolo" {
 #--- Targets
   %codeblocks-linux32
   %codeblocks-linux64
