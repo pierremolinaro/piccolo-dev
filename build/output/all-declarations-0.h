@@ -455,7 +455,7 @@ class GALGAS_bitSliceTable_2D_element : public AC_GALGAS_root {
   public : GALGAS_bitSliceTable_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_bitSliceTable_2D_element (void) ;
+  public : virtual ~ GALGAS_bitSliceTable_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_bitSliceTable_2D_element (const GALGAS_lstring & in_lkey,
@@ -766,6 +766,10 @@ class GALGAS_declarationInRamList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_declarationInRamList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_declarationInRam constinArgument0,
                                                        class GALGAS_uint constinArgument1,
                                                        C_Compiler * inCompiler
@@ -858,7 +862,7 @@ class GALGAS_declarationInRamList_2D_element : public AC_GALGAS_root {
   public : GALGAS_declarationInRamList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_declarationInRamList_2D_element (void) ;
+  public : virtual ~ GALGAS_declarationInRamList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_declarationInRamList_2D_element (const GALGAS_declarationInRam & in_mDeclarationInRAM) ;
@@ -954,6 +958,10 @@ class GALGAS_ramDefinitionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_ramDefinitionList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
                                                        class GALGAS_declarationInRamList constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -1062,7 +1070,7 @@ class GALGAS_ramDefinitionList_2D_element : public AC_GALGAS_root {
   public : GALGAS_ramDefinitionList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_ramDefinitionList_2D_element (void) ;
+  public : virtual ~ GALGAS_ramDefinitionList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_ramDefinitionList_2D_element (const GALGAS_lstring & in_mBankName,
@@ -1162,6 +1170,10 @@ class GALGAS_configSettingList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_configSettingList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
                                                        class GALGAS_lstring constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -1270,7 +1282,7 @@ class GALGAS_configSettingList_2D_element : public AC_GALGAS_root {
   public : GALGAS_configSettingList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_configSettingList_2D_element (void) ;
+  public : virtual ~ GALGAS_configSettingList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_configSettingList_2D_element (const GALGAS_lstring & in_mSettingName,
@@ -1370,6 +1382,10 @@ class GALGAS_configDefinitionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_configDefinitionList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_location constinArgument0,
                                                        class GALGAS_configSettingList constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -1478,7 +1494,7 @@ class GALGAS_configDefinitionList_2D_element : public AC_GALGAS_root {
   public : GALGAS_configDefinitionList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_configDefinitionList_2D_element (void) ;
+  public : virtual ~ GALGAS_configDefinitionList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_configDefinitionList_2D_element (const GALGAS_location & in_mDefinitionLocation,
@@ -1578,6 +1594,10 @@ class GALGAS_immediatExpressionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_immediatExpressionList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_immediatExpression constinArgument0,
                                                        class GALGAS_location constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -1683,7 +1703,7 @@ class GALGAS_immediatExpressionList_2D_element : public AC_GALGAS_root {
   public : GALGAS_immediatExpressionList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_immediatExpressionList_2D_element (void) ;
+  public : virtual ~ GALGAS_immediatExpressionList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_immediatExpressionList_2D_element (const GALGAS_immediatExpression & in_mExpression,
@@ -3337,6 +3357,10 @@ class GALGAS_immediatSliceExpressionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_immediatSliceExpressionList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
                                                        class GALGAS_immediatExpression constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -3442,7 +3466,7 @@ class GALGAS_immediatSliceExpressionList_2D_element : public AC_GALGAS_root {
   public : GALGAS_immediatSliceExpressionList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_immediatSliceExpressionList_2D_element (void) ;
+  public : virtual ~ GALGAS_immediatSliceExpressionList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_immediatSliceExpressionList_2D_element (const GALGAS_lstring & in_mSliceName,
@@ -3542,6 +3566,10 @@ class GALGAS_constantDefinitionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_constantDefinitionList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
                                                        class GALGAS_immediatExpression constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -3647,7 +3675,7 @@ class GALGAS_constantDefinitionList_2D_element : public AC_GALGAS_root {
   public : GALGAS_constantDefinitionList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_constantDefinitionList_2D_element (void) ;
+  public : virtual ~ GALGAS_constantDefinitionList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_constantDefinitionList_2D_element (const GALGAS_lstring & in_mConstantName,
@@ -3867,7 +3895,7 @@ class GALGAS_actualConfigurationMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_actualConfigurationMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_actualConfigurationMap_2D_element (void) ;
+  public : virtual ~ GALGAS_actualConfigurationMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_actualConfigurationMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -4289,7 +4317,7 @@ class GALGAS_labelMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_labelMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_labelMap_2D_element (void) ;
+  public : virtual ~ GALGAS_labelMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_labelMap_2D_element (const GALGAS_lstring & in_lkey) ;
@@ -4498,7 +4526,7 @@ class GALGAS_constantMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_constantMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_constantMap_2D_element (void) ;
+  public : virtual ~ GALGAS_constantMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_constantMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -4752,7 +4780,7 @@ class GALGAS_routineMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_routineMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_routineMap_2D_element (void) ;
+  public : virtual ~ GALGAS_routineMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_routineMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -5314,7 +5342,7 @@ class GALGAS_symbolTableForOptimizations_2D_element : public AC_GALGAS_root {
   public : GALGAS_symbolTableForOptimizations_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_symbolTableForOptimizations_2D_element (void) ;
+  public : virtual ~ GALGAS_symbolTableForOptimizations_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_symbolTableForOptimizations_2D_element (const GALGAS_lstring & in_lkey,
@@ -5689,7 +5717,7 @@ class GALGAS_configFieldMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_configFieldMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_configFieldMap_2D_element (void) ;
+  public : virtual ~ GALGAS_configFieldMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_configFieldMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -5804,7 +5832,7 @@ class GALGAS_fieldSettingMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_fieldSettingMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_fieldSettingMap_2D_element (void) ;
+  public : virtual ~ GALGAS_fieldSettingMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_fieldSettingMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -6454,6 +6482,10 @@ class GALGAS_baseline_5F_instructionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_baseline_5F_instructionList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_baseline_5F_instruction constinArgument0,
                                                        class GALGAS_uint constinArgument1,
                                                        C_Compiler * inCompiler
@@ -6546,7 +6578,7 @@ class GALGAS_baseline_5F_instructionList_2D_element : public AC_GALGAS_root {
   public : GALGAS_baseline_5F_instructionList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_baseline_5F_instructionList_2D_element (void) ;
+  public : virtual ~ GALGAS_baseline_5F_instructionList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_baseline_5F_instructionList_2D_element (const GALGAS_baseline_5F_instruction & in_mInstruction) ;
@@ -7155,93 +7187,6 @@ class cPtr_baseline_5F_negateCondition : public cPtr_baseline_5F_conditionExpres
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_conditionExpression getter_mCondition (LOCATION_ARGS) const ;
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                           @baseline_5F_andCondition class                                           *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_baseline_5F_andCondition : public GALGAS_baseline_5F_conditionExpression {
-//--- Constructor
-  public : GALGAS_baseline_5F_andCondition (void) ;
-
-//---
-  public : inline const class cPtr_baseline_5F_andCondition * ptr (void) const { return (const cPtr_baseline_5F_andCondition *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_baseline_5F_andCondition (const cPtr_baseline_5F_andCondition * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_baseline_5F_andCondition extractObject (const GALGAS_object & inObject,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_baseline_5F_andCondition constructor_new (const class GALGAS_baseline_5F_conditionExpression & inOperand0,
-                                                                         const class GALGAS_baseline_5F_conditionExpression & inOperand1
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_baseline_5F_andCondition & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_conditionExpression getter_mLeftExpression (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_baseline_5F_conditionExpression getter_mRightExpression (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_baseline_5F_andCondition class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_andCondition ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                   Pointer class for @baseline_andCondition class                                    *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cPtr_baseline_5F_andCondition : public cPtr_baseline_5F_conditionExpression {
-//--- Attributes
-  public : GALGAS_baseline_5F_conditionExpression mProperty_mLeftExpression ;
-  public : GALGAS_baseline_5F_conditionExpression mProperty_mRightExpression ;
-
-//--- Constructor
-  public : cPtr_baseline_5F_andCondition (const GALGAS_baseline_5F_conditionExpression & in_mLeftExpression,
-                                          const GALGAS_baseline_5F_conditionExpression & in_mRightExpression
-                                          COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_conditionExpression getter_mLeftExpression (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_baseline_5F_conditionExpression getter_mRightExpression (LOCATION_ARGS) const ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;

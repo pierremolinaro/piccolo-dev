@@ -9,6 +9,228 @@
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                                                                                                     *
+//                             Extension method '@baseline_intermediate_JUMP optimizeJUMP'                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_JUMP_optimizeJUMP> gExtensionMethodTable_baseline_5F_intermediate_5F_JUMP_optimizeJUMP ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionMethod_optimizeJUMP (const int32_t inClassIndex,
+                                        extensionMethodSignature_baseline_5F_intermediate_5F_JUMP_optimizeJUMP inMethod) {
+  gExtensionMethodTable_baseline_5F_intermediate_5F_JUMP_optimizeJUMP.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void callExtensionMethod_optimizeJUMP (const cPtr_baseline_5F_intermediate_5F_JUMP * inObject,
+                                       const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                       const GALGAS_uint constin_inLineIndex,
+                                       GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       GALGAS_string & io_ioListFileContents,
+                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) {
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_JUMP) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    extensionMethodSignature_baseline_5F_intermediate_5F_JUMP_optimizeJUMP f = NULL ;
+    if (classIndex < gExtensionMethodTable_baseline_5F_intermediate_5F_JUMP_optimizeJUMP.count ()) {
+      f = gExtensionMethodTable_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionMethodTable_baseline_5F_intermediate_5F_JUMP_optimizeJUMP.count ()) {
+           f = gExtensionMethodTable_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionMethodTable_baseline_5F_intermediate_5F_JUMP_optimizeJUMP.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      f (inObject, constin_inSymbolTable, constin_inLineIndex, io_ioGeneratedInstructionList, io_ioListFileContents, io_ioOptimizationsDone, inCompiler COMMA_THERE) ;
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (const cPtr_baseline_5F_intermediate_5F_JUMP * inObject,
+                                                                           const GALGAS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
+                                                                           const GALGAS_uint constinArgument_inLineIndex,
+                                                                           GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
+                                                                           GALGAS_string & ioArgument_ioListFileContents,
+                                                                           GALGAS_bool & ioArgument_ioOptimizationsDone,
+                                                                           C_Compiler * inCompiler
+                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_intermediate_5F_JUMP * object = inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_JUMP) ;
+  GALGAS_uint var_line_12264 ;
+  constinArgument_inSymbolTable.method_searchKey (object->mProperty_mTargetLabel, var_line_12264, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 307)) ;
+  GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_12455 ;
+  {
+  routine_findBaselineFirstInstructionFromAddress (var_line_12264.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 310)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_12455, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 309)) ;
+  }
+  if (var_firstInstruction_12455.isValid ()) {
+    if (var_firstInstruction_12455.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation) {
+      GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation cast_12602_literalOp ((cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) var_firstInstruction_12455.ptr ()) ;
+      const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, cast_12602_literalOp.getter_mInstruction (SOURCE_FILE ("baseline_optimizations.galgas", 317)).objectCompare (GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_RETLW (SOURCE_FILE ("baseline_optimizations.galgas", 317)))).boolEnum () ;
+      if (kBoolTrue == test_0) {
+        {
+        ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (cast_12602_literalOp, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 318)) ;
+        }
+        ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 323)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 323)).add_operation (GALGAS_string (": JUMP branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 323)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 323)) ;
+      }
+    }else if (var_firstInstruction_12455.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO) {
+      GALGAS_baseline_5F_intermediate_5F_GOTO cast_12990_goto ((cPtr_baseline_5F_intermediate_5F_GOTO *) var_firstInstruction_12455.ptr ()) ;
+      const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, object->mProperty_mTargetLabel.objectCompare (cast_12990_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 326)))).boolEnum () ;
+      if (kBoolTrue == test_1) {
+        {
+        ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_JUMP::constructor_new (object->mProperty_mInstructionLocation, cast_12990_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 330)), object->mProperty_mCurrentPage, object->mProperty_mTargetPage  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 328)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 327)) ;
+        }
+        ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 336)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (GALGAS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (object->mProperty_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 336)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (GALGAS_string (" branching to GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)).add_operation (cast_12990_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 337)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 337)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 337)).add_operation (GALGAS_string (" replaced by JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 337)).add_operation (cast_12990_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 338)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 338)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 338)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 338)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 336)) ;
+      }
+    }else if (var_firstInstruction_12455.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JUMP) {
+      GALGAS_baseline_5F_intermediate_5F_JUMP cast_13560_jump ((cPtr_baseline_5F_intermediate_5F_JUMP *) var_firstInstruction_12455.ptr ()) ;
+      const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, object->mProperty_mTargetLabel.objectCompare (cast_13560_jump.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 341)))).boolEnum () ;
+      if (kBoolTrue == test_2) {
+        {
+        ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_JUMP::constructor_new (object->mProperty_mInstructionLocation, cast_13560_jump.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 345)), object->mProperty_mCurrentPage, cast_13560_jump.getter_mTargetPage (SOURCE_FILE ("baseline_optimizations.galgas", 347))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 343)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 342)) ;
+        }
+        ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 351)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (GALGAS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (object->mProperty_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 351)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (GALGAS_string (" branching to JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)).add_operation (cast_13560_jump.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 352)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 352)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 352)).add_operation (GALGAS_string (" replaced by JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 352)).add_operation (cast_13560_jump.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 353)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 353)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 353)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 353)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 351)) ;
+      }
+    }
+  }
+}
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (void) {
+  enterExtensionMethod_optimizeJUMP (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JUMP.mSlotID,
+                                     extensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (void) {
+  gExtensionMethodTable_baseline_5F_intermediate_5F_JUMP_optimizeJUMP.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP (defineExtensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP,
+                                                                          freeExtensionMethod_baseline_5F_intermediate_5F_JUMP_optimizeJUMP) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                             Extension method '@baseline_intermediate_CALL optimizeCALL'                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static TC_UniqueArray <extensionMethodSignature_baseline_5F_intermediate_5F_CALL_optimizeCALL> gExtensionMethodTable_baseline_5F_intermediate_5F_CALL_optimizeCALL ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void enterExtensionMethod_optimizeCALL (const int32_t inClassIndex,
+                                        extensionMethodSignature_baseline_5F_intermediate_5F_CALL_optimizeCALL inMethod) {
+  gExtensionMethodTable_baseline_5F_intermediate_5F_CALL_optimizeCALL.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void callExtensionMethod_optimizeCALL (const cPtr_baseline_5F_intermediate_5F_CALL * inObject,
+                                       const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                       const GALGAS_uint constin_inLineIndex,
+                                       GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       GALGAS_string & io_ioListFileContents,
+                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       C_Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) {
+  if (NULL != inObject) {
+    macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_CALL) ;
+    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
+    const int32_t classIndex = info->mSlotID ;
+    extensionMethodSignature_baseline_5F_intermediate_5F_CALL_optimizeCALL f = NULL ;
+    if (classIndex < gExtensionMethodTable_baseline_5F_intermediate_5F_CALL_optimizeCALL.count ()) {
+      f = gExtensionMethodTable_baseline_5F_intermediate_5F_CALL_optimizeCALL (classIndex COMMA_HERE) ;
+    }
+    if (NULL == f) {
+       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
+       while ((NULL == f) && (NULL != p)) {
+         if (p->mSlotID < gExtensionMethodTable_baseline_5F_intermediate_5F_CALL_optimizeCALL.count ()) {
+           f = gExtensionMethodTable_baseline_5F_intermediate_5F_CALL_optimizeCALL (p->mSlotID COMMA_HERE) ;
+         }
+         p = p->mSuperclassDescriptor ;
+       }
+       gExtensionMethodTable_baseline_5F_intermediate_5F_CALL_optimizeCALL.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
+    }
+    if (NULL == f) {
+      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
+    }else{
+      f (inObject, constin_inSymbolTable, constin_inLineIndex, io_ioGeneratedInstructionList, io_ioListFileContents, io_ioOptimizationsDone, inCompiler COMMA_THERE) ;
+    }
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void extensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL (const cPtr_baseline_5F_intermediate_5F_CALL * inObject,
+                                                                           const GALGAS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
+                                                                           const GALGAS_uint constinArgument_inLineIndex,
+                                                                           GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
+                                                                           GALGAS_string & ioArgument_ioListFileContents,
+                                                                           GALGAS_bool & ioArgument_ioOptimizationsDone,
+                                                                           C_Compiler * inCompiler
+                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_baseline_5F_intermediate_5F_CALL * object = inObject ;
+  macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_CALL) ;
+  GALGAS_uint var_line_14573 ;
+  constinArgument_inSymbolTable.method_searchKey (object->mProperty_mTargetLabel, var_line_14573, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 368)) ;
+  GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_14764 ;
+  {
+  routine_findBaselineFirstInstructionFromAddress (var_line_14573.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 371)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_14764, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 370)) ;
+  }
+  if (var_firstInstruction_14764.isValid ()) {
+    if (var_firstInstruction_14764.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation) {
+      GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation cast_14911_literalOp ((cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) var_firstInstruction_14764.ptr ()) ;
+      const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, cast_14911_literalOp.getter_mInstruction (SOURCE_FILE ("baseline_optimizations.galgas", 378)).objectCompare (GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_RETLW (SOURCE_FILE ("baseline_optimizations.galgas", 378)))).boolEnum () ;
+      if (kBoolTrue == test_0) {
+        {
+        ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (object->mProperty_mInstructionLocation, GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_MOVLW (SOURCE_FILE ("baseline_optimizations.galgas", 382)), cast_14911_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 383))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 380)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 379)) ;
+        }
+        ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 387)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (GALGAS_string (": CALL "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (object->mProperty_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 387)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (GALGAS_string (" to RETLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)).add_operation (cast_14911_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 388)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 388)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 388)).add_operation (GALGAS_string (" replaced by MOVLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 388)).add_operation (cast_14911_literalOp.getter_mLiteralValue (SOURCE_FILE ("baseline_optimizations.galgas", 389)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 389)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 389)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 389)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 387)) ;
+      }
+    }
+  }
+}
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void defineExtensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL (void) {
+  enterExtensionMethod_optimizeCALL (kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_CALL.mSlotID,
+                                     extensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+static void freeExtensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL (void) {
+  gExtensionMethodTable_baseline_5F_intermediate_5F_CALL_optimizeCALL.free () ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+C_PrologueEpilogue gMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL (defineExtensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL,
+                                                                          freeExtensionMethod_baseline_5F_intermediate_5F_CALL_optimizeCALL) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
 //                              Extension method '@baseline_intermediate_JSR optimizeJSR'                              *
 //                                                                                                                     *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*

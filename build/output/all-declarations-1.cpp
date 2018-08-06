@@ -11,6 +11,182 @@
 //   Object comparison                                                                                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+typeComparisonResult cPtr_baseline_5F_andCondition::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_baseline_5F_andCondition * p = (const cPtr_baseline_5F_andCondition *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+
+typeComparisonResult GALGAS_baseline_5F_andCondition::objectCompare (const GALGAS_baseline_5F_andCondition & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const int32_t mySlot = mObjectPtr->classDescriptor ()->mSlotID ;
+    const int32_t operandSlot = inOperand.mObjectPtr->classDescriptor ()->mSlotID ;
+    if (mySlot < operandSlot) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (mySlot > operandSlot) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_baseline_5F_andCondition::GALGAS_baseline_5F_andCondition (void) :
+GALGAS_baseline_5F_conditionExpression () {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_baseline_5F_andCondition::GALGAS_baseline_5F_andCondition (const cPtr_baseline_5F_andCondition * inSourcePtr) :
+GALGAS_baseline_5F_conditionExpression (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_andCondition) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_baseline_5F_andCondition GALGAS_baseline_5F_andCondition::constructor_new (const GALGAS_baseline_5F_conditionExpression & inAttribute_mLeftExpression,
+                                                                                  const GALGAS_baseline_5F_conditionExpression & inAttribute_mRightExpression
+                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_andCondition result ;
+  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_andCondition (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_conditionExpression result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_baseline_5F_andCondition * p = (const cPtr_baseline_5F_andCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
+    result = p->mProperty_mLeftExpression ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_andCondition::getter_mLeftExpression (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mLeftExpression ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_conditionExpression result ;
+  if (NULL != mObjectPtr) {
+    const cPtr_baseline_5F_andCondition * p = (const cPtr_baseline_5F_andCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
+    result = p->mProperty_mRightExpression ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_baseline_5F_conditionExpression cPtr_baseline_5F_andCondition::getter_mRightExpression (UNUSED_LOCATION_ARGS) const {
+  return mProperty_mRightExpression ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                   Pointer class for @baseline_andCondition class                                    *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cPtr_baseline_5F_andCondition::cPtr_baseline_5F_andCondition (const GALGAS_baseline_5F_conditionExpression & in_mLeftExpression,
+                                                              const GALGAS_baseline_5F_conditionExpression & in_mRightExpression
+                                                              COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_conditionExpression (THERE),
+mProperty_mLeftExpression (in_mLeftExpression),
+mProperty_mRightExpression (in_mRightExpression) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * cPtr_baseline_5F_andCondition::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_andCondition ;
+}
+
+void cPtr_baseline_5F_andCondition::description (C_String & ioString,
+                                                 const int32_t inIndentation) const {
+  ioString << "[@baseline_andCondition:" ;
+  mProperty_mLeftExpression.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mRightExpression.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+acPtr_class * cPtr_baseline_5F_andCondition::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_baseline_5F_andCondition (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//                                                                                                                     *
+//                                             @baseline_andCondition type                                             *
+//                                                                                                                     *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_baseline_5F_andCondition ("baseline_andCondition",
+                                                 & kTypeDescriptor_GALGAS_baseline_5F_conditionExpression) ;
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+const C_galgas_type_descriptor * GALGAS_baseline_5F_andCondition::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_andCondition ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+AC_GALGAS_root * GALGAS_baseline_5F_andCondition::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_baseline_5F_andCondition (*this)) ;
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+GALGAS_baseline_5F_andCondition GALGAS_baseline_5F_andCondition::extractObject (const GALGAS_object & inObject,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_andCondition result ;
+  const GALGAS_baseline_5F_andCondition * p = (const GALGAS_baseline_5F_andCondition *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_baseline_5F_andCondition *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_andCondition", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//   Object comparison                                                                                                 *
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 typeComparisonResult cPtr_baseline_5F_instruction_5F_structured_5F_if::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (const cPtr_baseline_5F_instruction_5F_structured_5F_if *) inOperandPtr ;
@@ -251,11 +427,12 @@ GALGAS_baseline_5F_instruction_5F_structured_5F_if GALGAS_baseline_5F_instructio
 class cCollectionElement_baseline_5F_partList : public cCollectionElement {
   public : GALGAS_baseline_5F_partList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public : cCollectionElement_baseline_5F_partList (const GALGAS_baseline_5F_conditionExpression & in_mCondition,
                                                     const GALGAS_baseline_5F_instructionList & in_mInstructionList,
                                                     const GALGAS_location & in_mEndOfPartLocation
                                                     COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_baseline_5F_partList (const GALGAS_baseline_5F_partList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -278,6 +455,13 @@ cCollectionElement_baseline_5F_partList::cCollectionElement_baseline_5F_partList
                                                                                   COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mCondition, in_mInstructionList, in_mEndOfPartLocation) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_baseline_5F_partList::cCollectionElement_baseline_5F_partList (const GALGAS_baseline_5F_partList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mCondition, inElement.mProperty_mInstructionList, inElement.mProperty_mEndOfPartLocation) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -377,6 +561,21 @@ void GALGAS_baseline_5F_partList::addAssign_operation (const GALGAS_baseline_5F_
   if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_baseline_5F_partList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_baseline_5F_partList::setter_append (GALGAS_baseline_5F_partList_2D_element inElement,
+                                                 C_Compiler * /* inCompiler */
+                                                 COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_baseline_5F_partList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -928,13 +1127,14 @@ GALGAS_baseline_5F_instruction_5F_do_5F_while GALGAS_baseline_5F_instruction_5F_
 class cCollectionElement_baseline_5F_routineDefinitionList : public cCollectionElement {
   public : GALGAS_baseline_5F_routineDefinitionList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public : cCollectionElement_baseline_5F_routineDefinitionList (const GALGAS_lstring & in_mRoutineName,
                                                                  const GALGAS_luint & in_mPage,
                                                                  const GALGAS_bool & in_mIsNoReturn,
                                                                  const GALGAS_baseline_5F_instructionList & in_mInstructionList,
                                                                  const GALGAS_location & in_mEndOfRoutineLocation
                                                                  COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_baseline_5F_routineDefinitionList (const GALGAS_baseline_5F_routineDefinitionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -959,6 +1159,13 @@ cCollectionElement_baseline_5F_routineDefinitionList::cCollectionElement_baselin
                                                                                                             COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mRoutineName, in_mPage, in_mIsNoReturn, in_mInstructionList, in_mEndOfRoutineLocation) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_baseline_5F_routineDefinitionList::cCollectionElement_baseline_5F_routineDefinitionList (const GALGAS_baseline_5F_routineDefinitionList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mRoutineName, inElement.mProperty_mPage, inElement.mProperty_mIsNoReturn, inElement.mProperty_mInstructionList, inElement.mProperty_mEndOfRoutineLocation) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1074,6 +1281,21 @@ void GALGAS_baseline_5F_routineDefinitionList::addAssign_operation (const GALGAS
   if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_baseline_5F_routineDefinitionList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_baseline_5F_routineDefinitionList::setter_append (GALGAS_baseline_5F_routineDefinitionList_2D_element inElement,
+                                                              C_Compiler * /* inCompiler */
+                                                              COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_baseline_5F_routineDefinitionList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -2127,9 +2349,10 @@ GALGAS_baseline_5F_intermediate_5F_instruction GALGAS_baseline_5F_intermediate_5
 class cCollectionElement_baseline_5F_intermediate_5F_instructionList : public cCollectionElement {
   public : GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public : cCollectionElement_baseline_5F_intermediate_5F_instructionList (const GALGAS_baseline_5F_intermediate_5F_instruction & in_mInstruction
                                                                            COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_baseline_5F_intermediate_5F_instructionList (const GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -2150,6 +2373,13 @@ cCollectionElement_baseline_5F_intermediate_5F_instructionList::cCollectionEleme
                                                                                                                                 COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mInstruction) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_baseline_5F_intermediate_5F_instructionList::cCollectionElement_baseline_5F_intermediate_5F_instructionList (const GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mInstruction) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2233,6 +2463,21 @@ void GALGAS_baseline_5F_intermediate_5F_instructionList::addAssign_operation (co
   if (isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::setter_append (GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element inElement,
+                                                                        C_Compiler * /* inCompiler */
+                                                                        COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -6160,9 +6405,10 @@ GALGAS_baseline_5F_assembly_5F_instruction GALGAS_baseline_5F_assembly_5F_instru
 class cCollectionElement_baseline_5F_assembly_5F_instructionList : public cCollectionElement {
   public : GALGAS_baseline_5F_assembly_5F_instructionList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public : cCollectionElement_baseline_5F_assembly_5F_instructionList (const GALGAS_baseline_5F_assembly_5F_instruction & in_mInstruction
                                                                        COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_baseline_5F_assembly_5F_instructionList (const GALGAS_baseline_5F_assembly_5F_instructionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -6183,6 +6429,13 @@ cCollectionElement_baseline_5F_assembly_5F_instructionList::cCollectionElement_b
                                                                                                                         COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mInstruction) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_baseline_5F_assembly_5F_instructionList::cCollectionElement_baseline_5F_assembly_5F_instructionList (const GALGAS_baseline_5F_assembly_5F_instructionList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mInstruction) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -6266,6 +6519,21 @@ void GALGAS_baseline_5F_assembly_5F_instructionList::addAssign_operation (const 
   if (isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_baseline_5F_assembly_5F_instructionList::setter_append (GALGAS_baseline_5F_assembly_5F_instructionList_2D_element inElement,
+                                                                    C_Compiler * /* inCompiler */
+                                                                    COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -8998,9 +9266,10 @@ GALGAS_midrange_5F_instruction GALGAS_midrange_5F_instruction::extractObject (co
 class cCollectionElement_midrange_5F_instructionList : public cCollectionElement {
   public : GALGAS_midrange_5F_instructionList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public : cCollectionElement_midrange_5F_instructionList (const GALGAS_midrange_5F_instruction & in_mInstruction
                                                            COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_midrange_5F_instructionList (const GALGAS_midrange_5F_instructionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -9021,6 +9290,13 @@ cCollectionElement_midrange_5F_instructionList::cCollectionElement_midrange_5F_i
                                                                                                 COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mInstruction) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_midrange_5F_instructionList::cCollectionElement_midrange_5F_instructionList (const GALGAS_midrange_5F_instructionList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mInstruction) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -9104,6 +9380,21 @@ void GALGAS_midrange_5F_instructionList::addAssign_operation (const GALGAS_midra
   if (isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_midrange_5F_instructionList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_midrange_5F_instructionList::setter_append (GALGAS_midrange_5F_instructionList_2D_element inElement,
+                                                        C_Compiler * /* inCompiler */
+                                                        COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_midrange_5F_instructionList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -12743,11 +13034,12 @@ GALGAS_midrange_5F_instruction_5F_structured_5F_if GALGAS_midrange_5F_instructio
 class cCollectionElement_midrange_5F_partList : public cCollectionElement {
   public : GALGAS_midrange_5F_partList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public : cCollectionElement_midrange_5F_partList (const GALGAS_midrange_5F_conditionExpression & in_mCondition,
                                                     const GALGAS_midrange_5F_instructionList & in_mInstructionList,
                                                     const GALGAS_location & in_mEndOfPartLocation
                                                     COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_midrange_5F_partList (const GALGAS_midrange_5F_partList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -12770,6 +13062,13 @@ cCollectionElement_midrange_5F_partList::cCollectionElement_midrange_5F_partList
                                                                                   COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mCondition, in_mInstructionList, in_mEndOfPartLocation) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_midrange_5F_partList::cCollectionElement_midrange_5F_partList (const GALGAS_midrange_5F_partList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mCondition, inElement.mProperty_mInstructionList, inElement.mProperty_mEndOfPartLocation) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -12869,6 +13168,21 @@ void GALGAS_midrange_5F_partList::addAssign_operation (const GALGAS_midrange_5F_
   if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_midrange_5F_partList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_midrange_5F_partList::setter_append (GALGAS_midrange_5F_partList_2D_element inElement,
+                                                 C_Compiler * /* inCompiler */
+                                                 COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_midrange_5F_partList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -13406,562 +13720,6 @@ GALGAS_midrange_5F_instruction_5F_do_5F_while GALGAS_midrange_5F_instruction_5F_
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_do_while", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                          Class for element of '@midrange_5F_interruptDefinitionList' list                           *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cCollectionElement_midrange_5F_interruptDefinitionList : public cCollectionElement {
-  public : GALGAS_midrange_5F_interruptDefinitionList_2D_element mObject ;
-
-//--- Constructor
-  public : cCollectionElement_midrange_5F_interruptDefinitionList (const GALGAS_location & in_mInterruptLocation,
-                                                                   const GALGAS_midrange_5F_instructionList & in_mInstructionList,
-                                                                   const GALGAS_lstring & in_mFirstSaveRegister,
-                                                                   const GALGAS_lstring & in_mSecondSaveRegister,
-                                                                   const GALGAS_location & in_mEndOfInterruptLocation
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
-
-//--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cCollectionElement_midrange_5F_interruptDefinitionList::cCollectionElement_midrange_5F_interruptDefinitionList (const GALGAS_location & in_mInterruptLocation,
-                                                                                                                const GALGAS_midrange_5F_instructionList & in_mInstructionList,
-                                                                                                                const GALGAS_lstring & in_mFirstSaveRegister,
-                                                                                                                const GALGAS_lstring & in_mSecondSaveRegister,
-                                                                                                                const GALGAS_location & in_mEndOfInterruptLocation
-                                                                                                                COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (in_mInterruptLocation, in_mInstructionList, in_mFirstSaveRegister, in_mSecondSaveRegister, in_mEndOfInterruptLocation) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-bool cCollectionElement_midrange_5F_interruptDefinitionList::isValid (void) const {
-  return mObject.isValid () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cCollectionElement * cCollectionElement_midrange_5F_interruptDefinitionList::copy (void) {
-  cCollectionElement * result = NULL ;
-  macroMyNew (result, cCollectionElement_midrange_5F_interruptDefinitionList (mObject.mProperty_mInterruptLocation, mObject.mProperty_mInstructionList, mObject.mProperty_mFirstSaveRegister, mObject.mProperty_mSecondSaveRegister, mObject.mProperty_mEndOfInterruptLocation COMMA_HERE)) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cCollectionElement_midrange_5F_interruptDefinitionList::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mInterruptLocation" ":" ;
-  mObject.mProperty_mInterruptLocation.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mInstructionList" ":" ;
-  mObject.mProperty_mInstructionList.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mFirstSaveRegister" ":" ;
-  mObject.mProperty_mFirstSaveRegister.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mSecondSaveRegister" ":" ;
-  mObject.mProperty_mSecondSaveRegister.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mEndOfInterruptLocation" ":" ;
-  mObject.mProperty_mEndOfInterruptLocation.description (ioString, inIndentation) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cCollectionElement_midrange_5F_interruptDefinitionList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_midrange_5F_interruptDefinitionList * operand = (cCollectionElement_midrange_5F_interruptDefinitionList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-  return mObject.objectCompare (operand->mObject) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_interruptDefinitionList::GALGAS_midrange_5F_interruptDefinitionList (void) :
-AC_GALGAS_list () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_interruptDefinitionList::GALGAS_midrange_5F_interruptDefinitionList (const capCollectionElementArray & inSharedArray) :
-AC_GALGAS_list (inSharedArray) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_midrange_5F_interruptDefinitionList  (capCollectionElementArray ()) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::constructor_listWithValue (const GALGAS_location & inOperand0,
-                                                                                                                  const GALGAS_midrange_5F_instructionList & inOperand1,
-                                                                                                                  const GALGAS_lstring & inOperand2,
-                                                                                                                  const GALGAS_lstring & inOperand3,
-                                                                                                                  const GALGAS_location & inOperand4
-                                                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_midrange_5F_interruptDefinitionList result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    result = GALGAS_midrange_5F_interruptDefinitionList (capCollectionElementArray ()) ;
-    capCollectionElement attributes ;
-    GALGAS_midrange_5F_interruptDefinitionList::makeAttributesFromObjects (attributes, inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE) ;
-    result.appendObject (attributes) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_midrange_5F_interruptDefinitionList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                            const GALGAS_location & in_mInterruptLocation,
-                                                                            const GALGAS_midrange_5F_instructionList & in_mInstructionList,
-                                                                            const GALGAS_lstring & in_mFirstSaveRegister,
-                                                                            const GALGAS_lstring & in_mSecondSaveRegister,
-                                                                            const GALGAS_location & in_mEndOfInterruptLocation
-                                                                            COMMA_LOCATION_ARGS) {
-  cCollectionElement_midrange_5F_interruptDefinitionList * p = NULL ;
-  macroMyNew (p, cCollectionElement_midrange_5F_interruptDefinitionList (in_mInterruptLocation,
-                                                                         in_mInstructionList,
-                                                                         in_mFirstSaveRegister,
-                                                                         in_mSecondSaveRegister,
-                                                                         in_mEndOfInterruptLocation COMMA_THERE)) ;
-  outAttributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_midrange_5F_interruptDefinitionList::addAssign_operation (const GALGAS_location & inOperand0,
-                                                                      const GALGAS_midrange_5F_instructionList & inOperand1,
-                                                                      const GALGAS_lstring & inOperand2,
-                                                                      const GALGAS_lstring & inOperand3,
-                                                                      const GALGAS_location & inOperand4
-                                                                      COMMA_LOCATION_ARGS) {
-  if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_midrange_5F_interruptDefinitionList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_midrange_5F_interruptDefinitionList::setter_insertAtIndex (const GALGAS_location inOperand0,
-                                                                       const GALGAS_midrange_5F_instructionList inOperand1,
-                                                                       const GALGAS_lstring inOperand2,
-                                                                       const GALGAS_lstring inOperand3,
-                                                                       const GALGAS_location inOperand4,
-                                                                       const GALGAS_uint inInsertionIndex,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-    cCollectionElement * p = NULL ;
-    macroMyNew (p, cCollectionElement_midrange_5F_interruptDefinitionList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_midrange_5F_interruptDefinitionList::setter_removeAtIndex (GALGAS_location & outOperand0,
-                                                                       GALGAS_midrange_5F_instructionList & outOperand1,
-                                                                       GALGAS_lstring & outOperand2,
-                                                                       GALGAS_lstring & outOperand3,
-                                                                       GALGAS_location & outOperand4,
-                                                                       const GALGAS_uint inRemoveIndex,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) {
-  if (isValid () && inRemoveIndex.isValid ()) {
-    capCollectionElement attributes ;
-    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-    cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-    if (NULL == p) {
-      outOperand0.drop () ;
-      outOperand1.drop () ;
-      outOperand2.drop () ;
-      outOperand3.drop () ;
-      outOperand4.drop () ;
-    }else{
-      macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-      outOperand0 = p->mObject.mProperty_mInterruptLocation ;
-      outOperand1 = p->mObject.mProperty_mInstructionList ;
-      outOperand2 = p->mObject.mProperty_mFirstSaveRegister ;
-      outOperand3 = p->mObject.mProperty_mSecondSaveRegister ;
-      outOperand4 = p->mObject.mProperty_mEndOfInterruptLocation ;
-    }
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_midrange_5F_interruptDefinitionList::setter_popFirst (GALGAS_location & outOperand0,
-                                                                  GALGAS_midrange_5F_instructionList & outOperand1,
-                                                                  GALGAS_lstring & outOperand2,
-                                                                  GALGAS_lstring & outOperand3,
-                                                                  GALGAS_location & outOperand4,
-                                                                  C_Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-    outOperand4.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-    outOperand0 = p->mObject.mProperty_mInterruptLocation ;
-    outOperand1 = p->mObject.mProperty_mInstructionList ;
-    outOperand2 = p->mObject.mProperty_mFirstSaveRegister ;
-    outOperand3 = p->mObject.mProperty_mSecondSaveRegister ;
-    outOperand4 = p->mObject.mProperty_mEndOfInterruptLocation ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_midrange_5F_interruptDefinitionList::setter_popLast (GALGAS_location & outOperand0,
-                                                                 GALGAS_midrange_5F_instructionList & outOperand1,
-                                                                 GALGAS_lstring & outOperand2,
-                                                                 GALGAS_lstring & outOperand3,
-                                                                 GALGAS_location & outOperand4,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-    outOperand4.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-    outOperand0 = p->mObject.mProperty_mInterruptLocation ;
-    outOperand1 = p->mObject.mProperty_mInstructionList ;
-    outOperand2 = p->mObject.mProperty_mFirstSaveRegister ;
-    outOperand3 = p->mObject.mProperty_mSecondSaveRegister ;
-    outOperand4 = p->mObject.mProperty_mEndOfInterruptLocation ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_midrange_5F_interruptDefinitionList::method_first (GALGAS_location & outOperand0,
-                                                               GALGAS_midrange_5F_instructionList & outOperand1,
-                                                               GALGAS_lstring & outOperand2,
-                                                               GALGAS_lstring & outOperand3,
-                                                               GALGAS_location & outOperand4,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-    outOperand4.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-    outOperand0 = p->mObject.mProperty_mInterruptLocation ;
-    outOperand1 = p->mObject.mProperty_mInstructionList ;
-    outOperand2 = p->mObject.mProperty_mFirstSaveRegister ;
-    outOperand3 = p->mObject.mProperty_mSecondSaveRegister ;
-    outOperand4 = p->mObject.mProperty_mEndOfInterruptLocation ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_midrange_5F_interruptDefinitionList::method_last (GALGAS_location & outOperand0,
-                                                              GALGAS_midrange_5F_instructionList & outOperand1,
-                                                              GALGAS_lstring & outOperand2,
-                                                              GALGAS_lstring & outOperand3,
-                                                              GALGAS_location & outOperand4,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-    outOperand2.drop () ;
-    outOperand3.drop () ;
-    outOperand4.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-    outOperand0 = p->mObject.mProperty_mInterruptLocation ;
-    outOperand1 = p->mObject.mProperty_mInstructionList ;
-    outOperand2 = p->mObject.mProperty_mFirstSaveRegister ;
-    outOperand3 = p->mObject.mProperty_mSecondSaveRegister ;
-    outOperand4 = p->mObject.mProperty_mEndOfInterruptLocation ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::add_operation (const GALGAS_midrange_5F_interruptDefinitionList & inOperand,
-                                                                                                      C_Compiler * /* inCompiler */
-                                                                                                      COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_interruptDefinitionList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::getter_subListWithRange (const GALGAS_range & inRange,
-                                                                                                                C_Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_interruptDefinitionList result = GALGAS_midrange_5F_interruptDefinitionList::constructor_emptyList (THERE) ;
-  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
-                                                                                                                C_Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_interruptDefinitionList result = GALGAS_midrange_5F_interruptDefinitionList::constructor_emptyList (THERE) ;
-  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::getter_subListToIndex (const GALGAS_uint & inIndex,
-                                                                                                              C_Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_interruptDefinitionList result = GALGAS_midrange_5F_interruptDefinitionList::constructor_emptyList (THERE) ;
-  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_midrange_5F_interruptDefinitionList::plusAssign_operation (const GALGAS_midrange_5F_interruptDefinitionList inOperand,
-                                                                       C_Compiler * /* inCompiler */
-                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  appendList (inOperand) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_location GALGAS_midrange_5F_interruptDefinitionList::getter_mInterruptLocationAtIndex (const GALGAS_uint & inIndex,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  GALGAS_location result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-    result = p->mObject.mProperty_mInterruptLocation ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_interruptDefinitionList::getter_mInstructionListAtIndex (const GALGAS_uint & inIndex,
-                                                                                                               C_Compiler * inCompiler
-                                                                                                               COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  GALGAS_midrange_5F_instructionList result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-    result = p->mObject.mProperty_mInstructionList ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_midrange_5F_interruptDefinitionList::getter_mFirstSaveRegisterAtIndex (const GALGAS_uint & inIndex,
-                                                                                             C_Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  GALGAS_lstring result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-    result = p->mObject.mProperty_mFirstSaveRegister ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring GALGAS_midrange_5F_interruptDefinitionList::getter_mSecondSaveRegisterAtIndex (const GALGAS_uint & inIndex,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  GALGAS_lstring result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-    result = p->mObject.mProperty_mSecondSaveRegister ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_location GALGAS_midrange_5F_interruptDefinitionList::getter_mEndOfInterruptLocationAtIndex (const GALGAS_uint & inIndex,
-                                                                                                   C_Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  GALGAS_location result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-    result = p->mObject.mProperty_mEndOfInterruptLocation ;
-  }
-  return result ;
-}
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cEnumerator_midrange_5F_interruptDefinitionList::cEnumerator_midrange_5F_interruptDefinitionList (const GALGAS_midrange_5F_interruptDefinitionList & inEnumeratedObject,
-                                                                                                  const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_interruptDefinitionList_2D_element cEnumerator_midrange_5F_interruptDefinitionList::current (LOCATION_ARGS) const {
-  const cCollectionElement_midrange_5F_interruptDefinitionList * p = (const cCollectionElement_midrange_5F_interruptDefinitionList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-  return p->mObject ;
-}
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_location cEnumerator_midrange_5F_interruptDefinitionList::current_mInterruptLocation (LOCATION_ARGS) const {
-  const cCollectionElement_midrange_5F_interruptDefinitionList * p = (const cCollectionElement_midrange_5F_interruptDefinitionList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-  return p->mObject.mProperty_mInterruptLocation ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_instructionList cEnumerator_midrange_5F_interruptDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
-  const cCollectionElement_midrange_5F_interruptDefinitionList * p = (const cCollectionElement_midrange_5F_interruptDefinitionList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-  return p->mObject.mProperty_mInstructionList ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cEnumerator_midrange_5F_interruptDefinitionList::current_mFirstSaveRegister (LOCATION_ARGS) const {
-  const cCollectionElement_midrange_5F_interruptDefinitionList * p = (const cCollectionElement_midrange_5F_interruptDefinitionList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-  return p->mObject.mProperty_mFirstSaveRegister ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cEnumerator_midrange_5F_interruptDefinitionList::current_mSecondSaveRegister (LOCATION_ARGS) const {
-  const cCollectionElement_midrange_5F_interruptDefinitionList * p = (const cCollectionElement_midrange_5F_interruptDefinitionList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-  return p->mObject.mProperty_mSecondSaveRegister ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_location cEnumerator_midrange_5F_interruptDefinitionList::current_mEndOfInterruptLocation (LOCATION_ARGS) const {
-  const cCollectionElement_midrange_5F_interruptDefinitionList * p = (const cCollectionElement_midrange_5F_interruptDefinitionList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
-  return p->mObject.mProperty_mEndOfInterruptLocation ;
-}
-
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                       @midrange_interruptDefinitionList type                                        *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList ("midrange_interruptDefinitionList",
-                                                            NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_midrange_5F_interruptDefinitionList::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_midrange_5F_interruptDefinitionList::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_midrange_5F_interruptDefinitionList (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::extractObject (const GALGAS_object & inObject,
-                                                                                                      C_Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_midrange_5F_interruptDefinitionList result ;
-  const GALGAS_midrange_5F_interruptDefinitionList * p = (const GALGAS_midrange_5F_interruptDefinitionList *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_interruptDefinitionList *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("midrange_interruptDefinitionList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

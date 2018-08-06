@@ -26,7 +26,7 @@ class GALGAS_pic_31__38_CaseExpressionList_2D_element : public AC_GALGAS_root {
   public : GALGAS_pic_31__38_CaseExpressionList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_pic_31__38_CaseExpressionList_2D_element (void) ;
+  public : virtual ~ GALGAS_pic_31__38_CaseExpressionList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_pic_31__38_CaseExpressionList_2D_element (const GALGAS_pic_31__38_AbstractCaseItem & in_mCaseItem) ;
@@ -95,7 +95,7 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element : public AC_GALGAS_
   public : GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (void) ;
+  public : virtual ~ GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (const GALGAS_location & in_mStartOfCase,
@@ -277,7 +277,7 @@ class GALGAS_caseConstantMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_caseConstantMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_caseConstantMap_2D_element (void) ;
+  public : virtual ~ GALGAS_caseConstantMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_caseConstantMap_2D_element (const GALGAS_lstring & in_lkey) ;
@@ -411,6 +411,10 @@ class GALGAS_ipic_31__38_BlockList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_ipic_31__38_BlockList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_ipic_31__38_Block constinArgument0,
                                                        class GALGAS_uint constinArgument1,
                                                        C_Compiler * inCompiler
@@ -540,6 +544,10 @@ class GALGAS_ipic_31__38_SequentialInstructionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_ipic_31__38_SequentialInstructionList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_ipic_31__38_SequentialInstruction constinArgument0,
                                                        class GALGAS_uint constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -808,7 +816,7 @@ class GALGAS_pic_31__38__5F_dataMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_pic_31__38__5F_dataMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_pic_31__38__5F_dataMap_2D_element (void) ;
+  public : virtual ~ GALGAS_pic_31__38__5F_dataMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_pic_31__38__5F_dataMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -956,7 +964,7 @@ class GALGAS_ipic_31__38_SequentialInstructionList_2D_element : public AC_GALGAS
   public : GALGAS_ipic_31__38_SequentialInstructionList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_ipic_31__38_SequentialInstructionList_2D_element (void) ;
+  public : virtual ~ GALGAS_ipic_31__38_SequentialInstructionList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_ipic_31__38_SequentialInstructionList_2D_element (const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
@@ -1110,7 +1118,7 @@ class GALGAS_ipic_31__38_Block : public AC_GALGAS_root {
   public : GALGAS_ipic_31__38_Block (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_ipic_31__38_Block (void) ;
+  public : virtual ~ GALGAS_ipic_31__38_Block (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_ipic_31__38_Block (const GALGAS_uint & in_mAddress,
@@ -1192,7 +1200,7 @@ class GALGAS_ipic_31__38_BlockList_2D_element : public AC_GALGAS_root {
   public : GALGAS_ipic_31__38_BlockList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_ipic_31__38_BlockList_2D_element (void) ;
+  public : virtual ~ GALGAS_ipic_31__38_BlockList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_ipic_31__38_BlockList_2D_element (const GALGAS_ipic_31__38_Block & in_mBlock) ;
@@ -2083,7 +2091,7 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression : public AC_GALG
   public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (void) ;
+  public : virtual ~ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (const GALGAS_string & in_mAssemblyString,
@@ -2797,7 +2805,7 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndicat
   public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (void) ;
+  public : virtual ~ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (const GALGAS_string & in_mAssemblyString,
@@ -4570,7 +4578,7 @@ class GALGAS_symbolTableForBlockOptimization_2D_element : public AC_GALGAS_root 
   public : GALGAS_symbolTableForBlockOptimization_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_symbolTableForBlockOptimization_2D_element (void) ;
+  public : virtual ~ GALGAS_symbolTableForBlockOptimization_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_symbolTableForBlockOptimization_2D_element (const GALGAS_lstring & in_lkey,
@@ -4773,7 +4781,7 @@ class GALGAS_symbolTableForClusterOrdering_2D_element : public AC_GALGAS_root {
   public : GALGAS_symbolTableForClusterOrdering_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_symbolTableForClusterOrdering_2D_element (void) ;
+  public : virtual ~ GALGAS_symbolTableForClusterOrdering_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_symbolTableForClusterOrdering_2D_element (const GALGAS_lstring & in_lkey,
@@ -5136,7 +5144,7 @@ class GALGAS_symbolTableForRelativesResolution_2D_element : public AC_GALGAS_roo
   public : GALGAS_symbolTableForRelativesResolution_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_symbolTableForRelativesResolution_2D_element (void) ;
+  public : virtual ~ GALGAS_symbolTableForRelativesResolution_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_symbolTableForRelativesResolution_2D_element (const GALGAS_lstring & in_lkey,
@@ -5236,6 +5244,10 @@ class GALGAS_codeList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_append (class GALGAS_codeList_2D_element inArgument0,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
   public : VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_string constinArgument0,
                                                        class GALGAS_uintlist constinArgument1,
                                                        class GALGAS_uint constinArgument2,
@@ -5344,7 +5356,7 @@ class GALGAS_codeList_2D_element : public AC_GALGAS_root {
   public : GALGAS_codeList_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_codeList_2D_element (void) ;
+  public : virtual ~ GALGAS_codeList_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_codeList_2D_element (const GALGAS_string & in_mAssemblyCode,
@@ -5547,7 +5559,7 @@ class GALGAS_pic_31__38__5F_dataAddressMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_pic_31__38__5F_dataAddressMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_pic_31__38__5F_dataAddressMap_2D_element (void) ;
+  public : virtual ~ GALGAS_pic_31__38__5F_dataAddressMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_pic_31__38__5F_dataAddressMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -6055,7 +6067,7 @@ class GALGAS_declaredRoutineMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_declaredRoutineMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_declaredRoutineMap_2D_element (void) ;
+  public : virtual ~ GALGAS_declaredRoutineMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_declaredRoutineMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -6424,7 +6436,7 @@ class GALGAS_blockInstructionBlockMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_blockInstructionBlockMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_blockInstructionBlockMap_2D_element (void) ;
+  public : virtual ~ GALGAS_blockInstructionBlockMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_blockInstructionBlockMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -6652,7 +6664,7 @@ class GALGAS_blockInitialBankSelectionMap_2D_element : public AC_GALGAS_root {
   public : GALGAS_blockInitialBankSelectionMap_2D_element (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_blockInitialBankSelectionMap_2D_element (void) ;
+  public : virtual ~ GALGAS_blockInitialBankSelectionMap_2D_element (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_blockInitialBankSelectionMap_2D_element (const GALGAS_lstring & in_lkey,
@@ -6887,7 +6899,7 @@ class GALGAS_optimizeFlagStruct : public AC_GALGAS_root {
   public : GALGAS_optimizeFlagStruct (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_optimizeFlagStruct (void) ;
+  public : virtual ~ GALGAS_optimizeFlagStruct (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_optimizeFlagStruct (const GALGAS_bool & in_mRemoveEmptyRoutine,
@@ -6954,132 +6966,4 @@ class GALGAS_optimizeFlagStruct : public AC_GALGAS_root {
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_optimizeFlagStruct ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                    Extension method '@ipic18AbstractConditionTerminator getOptimizedTerminators'                    *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef void (*extensionMethodSignature_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators) (const class cPtr_ipic_31__38_AbstractConditionTerminator * inObject,
-                                                                                                          const class GALGAS_symbolTableForBlockOptimization constinArgument0,
-                                                                                                          const class GALGAS_optimizeFlagStruct constinArgument1,
-                                                                                                          const class GALGAS_ipic_31__38_BlockList constinArgument2,
-                                                                                                          const class GALGAS_string constinArgument3,
-                                                                                                          class GALGAS_bool & ioArgument4,
-                                                                                                          class GALGAS_string & ioArgument5,
-                                                                                                          class GALGAS_ipic_31__38_SingleInstructionTerminator & outArgument6,
-                                                                                                          class GALGAS_ipic_31__38_SingleInstructionTerminator & outArgument7,
-                                                                                                          class GALGAS_bool & outArgument8,
-                                                                                                          class C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_getOptimizedTerminators (const int32_t inClassIndex,
-                                                   extensionMethodSignature_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_getOptimizedTerminators (const class cPtr_ipic_31__38_AbstractConditionTerminator * inObject,
-                                                  const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                                  const GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
-                                                  const GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                                  const GALGAS_string constin_inBlockLabel,
-                                                  GALGAS_bool & io_ioOptimizationDone,
-                                                  GALGAS_string & io_ioListFileContents,
-                                                  GALGAS_ipic_31__38_SingleInstructionTerminator & out_outOptimizedTrueTerminator,
-                                                  GALGAS_ipic_31__38_SingleInstructionTerminator & out_outOptimizedFalseTerminator,
-                                                  GALGAS_bool & out_outIdenticalTerminators,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                          @ipic_31__38_JumpTerminator class                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_ipic_31__38_JumpTerminator : public GALGAS_ipic_31__38_SingleInstructionTerminator {
-//--- Constructor
-  public : GALGAS_ipic_31__38_JumpTerminator (void) ;
-
-//---
-  public : inline const class cPtr_ipic_31__38_JumpTerminator * ptr (void) const { return (const cPtr_ipic_31__38_JumpTerminator *) mObjectPtr ; }
-
-//--------------------------------- Constructor from pointer
-  public : GALGAS_ipic_31__38_JumpTerminator (const cPtr_ipic_31__38_JumpTerminator * inSourcePtr) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_ipic_31__38_JumpTerminator extractObject (const GALGAS_object & inObject,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_ipic_31__38_JumpTerminator constructor_new (const class GALGAS_location & inOperand0,
-                                                                           const class GALGAS_lstring & inOperand1,
-                                                                           const class GALGAS_jumpInstructionKind & inOperand2
-                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_JumpTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_jumpInstructionKind getter_mKind (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mLabel (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_ipic_31__38_JumpTerminator class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_JumpTerminator ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                    Pointer class for @ipic18JumpTerminator class                                    *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cPtr_ipic_31__38_JumpTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
-//--- Attributes
-  public : GALGAS_lstring mProperty_mLabel ;
-  public : GALGAS_jumpInstructionKind mProperty_mKind ;
-
-//--- Constructor
-  public : cPtr_ipic_31__38_JumpTerminator (const GALGAS_location & in_mInstructionLocation,
-                                            const GALGAS_lstring & in_mLabel,
-                                            const GALGAS_jumpInstructionKind & in_mKind
-                                            COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
-
-//--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mLabel (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG GALGAS_jumpInstructionKind getter_mKind (LOCATION_ARGS) const ;
-//--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
-
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
-
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
-
-} ;
 
