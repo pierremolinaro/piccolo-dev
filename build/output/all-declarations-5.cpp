@@ -394,9 +394,10 @@ GALGAS_pic_31__38_IntervalCaseItem GALGAS_pic_31__38_IntervalCaseItem::extractOb
 class cCollectionElement_pic_31__38_CaseExpressionList : public cCollectionElement {
   public : GALGAS_pic_31__38_CaseExpressionList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public : cCollectionElement_pic_31__38_CaseExpressionList (const GALGAS_pic_31__38_AbstractCaseItem & in_mCaseItem
                                                              COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_pic_31__38_CaseExpressionList (const GALGAS_pic_31__38_CaseExpressionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -417,6 +418,13 @@ cCollectionElement_pic_31__38_CaseExpressionList::cCollectionElement_pic_31__38_
                                                                                                     COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mCaseItem) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_pic_31__38_CaseExpressionList::cCollectionElement_pic_31__38_CaseExpressionList (const GALGAS_pic_31__38_CaseExpressionList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mCaseItem) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -500,6 +508,21 @@ void GALGAS_pic_31__38_CaseExpressionList::addAssign_operation (const GALGAS_pic
   if (isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_pic_31__38_CaseExpressionList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_CaseExpressionList::setter_append (GALGAS_pic_31__38_CaseExpressionList_2D_element inElement,
+                                                          C_Compiler * /* inCompiler */
+                                                          COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_pic_31__38_CaseExpressionList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -754,11 +777,12 @@ GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::extra
 class cCollectionElement_pic_31__38_SwitchInstructionCaseList : public cCollectionElement {
   public : GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public : cCollectionElement_pic_31__38_SwitchInstructionCaseList (const GALGAS_location & in_mStartOfCase,
                                                                     const GALGAS_pic_31__38_CaseExpressionList & in_mCaseExpressionList,
                                                                     const GALGAS_pic_31__38_InstructionList & in_mInstructionList
                                                                     COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_pic_31__38_SwitchInstructionCaseList (const GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -781,6 +805,13 @@ cCollectionElement_pic_31__38_SwitchInstructionCaseList::cCollectionElement_pic_
                                                                                                                   COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mStartOfCase, in_mCaseExpressionList, in_mInstructionList) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_pic_31__38_SwitchInstructionCaseList::cCollectionElement_pic_31__38_SwitchInstructionCaseList (const GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mStartOfCase, inElement.mProperty_mCaseExpressionList, inElement.mProperty_mInstructionList) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -880,6 +911,21 @@ void GALGAS_pic_31__38_SwitchInstructionCaseList::addAssign_operation (const GAL
   if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_SwitchInstructionCaseList::setter_append (GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element inElement,
+                                                                 C_Compiler * /* inCompiler */
+                                                                 COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -2104,11 +2150,12 @@ GALGAS_ipic_31__38_SequentialInstruction GALGAS_ipic_31__38_SequentialInstructio
 class cCollectionElement_ipic_31__38_SequentialInstructionList : public cCollectionElement {
   public : GALGAS_ipic_31__38_SequentialInstructionList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public : cCollectionElement_ipic_31__38_SequentialInstructionList (const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
                                                                      const GALGAS_uint & in_mMin,
                                                                      const GALGAS_uint & in_mMax
                                                                      COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_ipic_31__38_SequentialInstructionList (const GALGAS_ipic_31__38_SequentialInstructionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -2131,6 +2178,13 @@ cCollectionElement_ipic_31__38_SequentialInstructionList::cCollectionElement_ipi
                                                                                                                     COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mInstruction, in_mMin, in_mMax) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_ipic_31__38_SequentialInstructionList::cCollectionElement_ipic_31__38_SequentialInstructionList (const GALGAS_ipic_31__38_SequentialInstructionList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mInstruction, inElement.mProperty_mMin, inElement.mProperty_mMax) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2230,6 +2284,21 @@ void GALGAS_ipic_31__38_SequentialInstructionList::addAssign_operation (const GA
   if (isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_SequentialInstructionList::setter_append (GALGAS_ipic_31__38_SequentialInstructionList_2D_element inElement,
+                                                                  C_Compiler * /* inCompiler */
+                                                                  COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -2669,9 +2738,10 @@ GALGAS_ipic_31__38_AbstractBlockTerminator GALGAS_ipic_31__38_AbstractBlockTermi
 class cCollectionElement_ipic_31__38_BlockList : public cCollectionElement {
   public : GALGAS_ipic_31__38_BlockList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public : cCollectionElement_ipic_31__38_BlockList (const GALGAS_ipic_31__38_Block & in_mBlock
                                                      COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_ipic_31__38_BlockList (const GALGAS_ipic_31__38_BlockList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -2692,6 +2762,13 @@ cCollectionElement_ipic_31__38_BlockList::cCollectionElement_ipic_31__38_BlockLi
                                                                                     COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mBlock) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_ipic_31__38_BlockList::cCollectionElement_ipic_31__38_BlockList (const GALGAS_ipic_31__38_BlockList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mBlock) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2775,6 +2852,21 @@ void GALGAS_ipic_31__38_BlockList::addAssign_operation (const GALGAS_ipic_31__38
   if (isValid () && inOperand0.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_ipic_31__38_BlockList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_BlockList::setter_append (GALGAS_ipic_31__38_BlockList_2D_element inElement,
+                                                  C_Compiler * /* inCompiler */
+                                                  COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_ipic_31__38_BlockList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -10285,10 +10377,11 @@ GALGAS_symbolTableForRelativesResolution GALGAS_symbolTableForRelativesResolutio
 class cCollectionElement_codeList : public cCollectionElement {
   public : GALGAS_codeList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public : cCollectionElement_codeList (const GALGAS_string & in_mAssemblyCode,
                                         const GALGAS_uintlist & in_mBinaryCode
                                         COMMA_LOCATION_ARGS) ;
+  public : cCollectionElement_codeList (const GALGAS_codeList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
   public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
@@ -10310,6 +10403,13 @@ cCollectionElement_codeList::cCollectionElement_codeList (const GALGAS_string & 
                                                           COMMA_LOCATION_ARGS) :
 cCollectionElement (THERE),
 mObject (in_mAssemblyCode, in_mBinaryCode) {
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+cCollectionElement_codeList::cCollectionElement_codeList (const GALGAS_codeList_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mAssemblyCode, inElement.mProperty_mBinaryCode) {
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -10401,6 +10501,21 @@ void GALGAS_codeList::addAssign_operation (const GALGAS_string & inOperand0,
   if (isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
     cCollectionElement * p = NULL ;
     macroMyNew (p, cCollectionElement_codeList (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_codeList::setter_append (GALGAS_codeList_2D_element inElement,
+                                     C_Compiler * /* inCompiler */
+                                     COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.isValid ()) {
+    cCollectionElement * p = NULL ;
+    macroMyNew (p, cCollectionElement_codeList (inElement COMMA_THERE)) ;
     capCollectionElement attributes ;
     attributes.setPointer (p) ;
     macroDetachSharedObject (p) ;
@@ -13225,171 +13340,4 @@ void callExtensionMethod_optimizeTerminator (const cPtr_ipic_31__38_AbstractBloc
     }
   }
 }
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                    Extension method '@ipic18AbstractConditionTerminator getOptimizedTerminators'                    *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators> gExtensionMethodTable_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_getOptimizedTerminators (const int32_t inClassIndex,
-                                                   extensionMethodSignature_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators inMethod) {
-  gExtensionMethodTable_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_getOptimizedTerminators (const cPtr_ipic_31__38_AbstractConditionTerminator * inObject,
-                                                  const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                                  const GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
-                                                  const GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                                  const GALGAS_string constin_inBlockLabel,
-                                                  GALGAS_bool & io_ioOptimizationDone,
-                                                  GALGAS_string & io_ioListFileContents,
-                                                  GALGAS_ipic_31__38_SingleInstructionTerminator & out_outOptimizedTrueTerminator,
-                                                  GALGAS_ipic_31__38_SingleInstructionTerminator & out_outOptimizedFalseTerminator,
-                                                  GALGAS_bool & out_outIdenticalTerminators,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
-  out_outOptimizedTrueTerminator.drop () ;
-  out_outOptimizedFalseTerminator.drop () ;
-  out_outIdenticalTerminators.drop () ;
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractConditionTerminator) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators f = NULL ;
-    if (classIndex < gExtensionMethodTable_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators.count ()) {
-      f = gExtensionMethodTable_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-       const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-       while ((NULL == f) && (NULL != p)) {
-         if (p->mSlotID < gExtensionMethodTable_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators.count ()) {
-           f = gExtensionMethodTable_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators (p->mSlotID COMMA_HERE) ;
-         }
-         p = p->mSuperclassDescriptor ;
-       }
-       gExtensionMethodTable_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, constin_inSymbolTable, constin_inOptimizeFlagStruct, constin_inBlockList, constin_inBlockLabel, io_ioOptimizationDone, io_ioListFileContents, out_outOptimizedTrueTerminator, out_outOptimizedFalseTerminator, out_outIdenticalTerminators, inCompiler COMMA_THERE) ;
-    }
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void extensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators (const cPtr_ipic_31__38_AbstractConditionTerminator * inObject,
-                                                                                             const GALGAS_symbolTableForBlockOptimization constinArgument_inSymbolTable,
-                                                                                             const GALGAS_optimizeFlagStruct constinArgument_inOptimizeFlagStruct,
-                                                                                             const GALGAS_ipic_31__38_BlockList constinArgument_inBlockList,
-                                                                                             const GALGAS_string constinArgument_inBlockLabel,
-                                                                                             GALGAS_bool & ioArgument_ioOptimizationDone,
-                                                                                             GALGAS_string & ioArgument_ioListFileContents,
-                                                                                             GALGAS_ipic_31__38_SingleInstructionTerminator & outArgument_outOptimizedTrueTerminator,
-                                                                                             GALGAS_ipic_31__38_SingleInstructionTerminator & outArgument_outOptimizedFalseTerminator,
-                                                                                             GALGAS_bool & outArgument_outIdenticalTerminators,
-                                                                                             C_Compiler * inCompiler
-                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_ipic_31__38_AbstractConditionTerminator * object = inObject ;
-  macroValidSharedObject (object, cPtr_ipic_31__38_AbstractConditionTerminator) ;
-  GALGAS_ipic_31__38_AbstractBlockTerminator var_optimizedTrueTerminator_7221 ;
-  callExtensionMethod_optimizeTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mProperty_mSingleInstructionTerminatorIfConditionTrue.ptr (), constinArgument_inSymbolTable, constinArgument_inOptimizeFlagStruct, constinArgument_inBlockList, constinArgument_inBlockLabel, ioArgument_ioOptimizationDone, ioArgument_ioListFileContents, var_optimizedTrueTerminator_7221, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 166)) ;
-  GALGAS_ipic_31__38_SingleInstructionTerminator temp_0 ;
-  if (var_optimizedTrueTerminator_7221.isValid ()) {
-    if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_optimizedTrueTerminator_7221.ptr ())) {
-      temp_0 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_optimizedTrueTerminator_7221.ptr () ;
-    }else{
-      inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_optimizedTrueTerminator_7221.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 175)) ;
-    }
-  }
-  outArgument_outOptimizedTrueTerminator = temp_0 ;
-  GALGAS_ipic_31__38_AbstractBlockTerminator var_optimizedFalseTerminator_7588 ;
-  callExtensionMethod_optimizeTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) object->mProperty_mSingleInstructionTerminatorIfConditionFalse.ptr (), constinArgument_inSymbolTable, constinArgument_inOptimizeFlagStruct, constinArgument_inBlockList, constinArgument_inBlockLabel, ioArgument_ioOptimizationDone, ioArgument_ioListFileContents, var_optimizedFalseTerminator_7588, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 177)) ;
-  GALGAS_ipic_31__38_SingleInstructionTerminator temp_1 ;
-  if (var_optimizedFalseTerminator_7588.isValid ()) {
-    if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_optimizedFalseTerminator_7588.ptr ())) {
-      temp_1 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_optimizedFalseTerminator_7588.ptr () ;
-    }else{
-      inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_optimizedFalseTerminator_7588.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 186)) ;
-    }
-  }
-  outArgument_outOptimizedFalseTerminator = temp_1 ;
-  const enumGalgasBool test_2 = GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_ReturnTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())).operator_and (GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_ReturnTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 188)).boolEnum () ;
-  if (kBoolTrue == test_2) {
-    outArgument_outIdenticalTerminators = GALGAS_bool (true) ;
-  }else if (kBoolFalse == test_2) {
-    const enumGalgasBool test_3 = GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())).operator_and (GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 190)).boolEnum () ;
-    if (kBoolTrue == test_3) {
-      GALGAS_ipic_31__38_RetlwTerminator temp_4 ;
-      if (outArgument_outOptimizedTrueTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())) {
-          temp_4 = (cPtr_ipic_31__38_RetlwTerminator *) outArgument_outOptimizedTrueTerminator.ptr () ;
-        }else{
-          inCompiler->castError ("ipic_31__38_RetlwTerminator", outArgument_outOptimizedTrueTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 191)) ;
-        }
-      }
-      GALGAS_ipic_31__38_RetlwTerminator var_t_8047 = temp_4 ;
-      GALGAS_ipic_31__38_RetlwTerminator temp_5 ;
-      if (outArgument_outOptimizedFalseTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) {
-          temp_5 = (cPtr_ipic_31__38_RetlwTerminator *) outArgument_outOptimizedFalseTerminator.ptr () ;
-        }else{
-          inCompiler->castError ("ipic_31__38_RetlwTerminator", outArgument_outOptimizedFalseTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 192)) ;
-        }
-      }
-      GALGAS_ipic_31__38_RetlwTerminator var_f_8138 = temp_5 ;
-      outArgument_outIdenticalTerminators = GALGAS_bool (kIsEqual, var_t_8047.getter_mLiteralValue (SOURCE_FILE ("ipic18_optimize_block.galgas", 193)).objectCompare (var_f_8138.getter_mLiteralValue (SOURCE_FILE ("ipic18_optimize_block.galgas", 193)))) ;
-    }else if (kBoolFalse == test_3) {
-      const enumGalgasBool test_6 = GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())).operator_and (GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 194)).boolEnum () ;
-      if (kBoolTrue == test_6) {
-        GALGAS_ipic_31__38_JumpTerminator temp_7 ;
-        if (outArgument_outOptimizedTrueTerminator.isValid ()) {
-          if (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())) {
-            temp_7 = (cPtr_ipic_31__38_JumpTerminator *) outArgument_outOptimizedTrueTerminator.ptr () ;
-          }else{
-            inCompiler->castError ("ipic_31__38_JumpTerminator", outArgument_outOptimizedTrueTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 195)) ;
-          }
-        }
-        GALGAS_ipic_31__38_JumpTerminator var_t_8428 = temp_7 ;
-        GALGAS_ipic_31__38_JumpTerminator temp_8 ;
-        if (outArgument_outOptimizedFalseTerminator.isValid ()) {
-          if (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) {
-            temp_8 = (cPtr_ipic_31__38_JumpTerminator *) outArgument_outOptimizedFalseTerminator.ptr () ;
-          }else{
-            inCompiler->castError ("ipic_31__38_JumpTerminator", outArgument_outOptimizedFalseTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 196)) ;
-          }
-        }
-        GALGAS_ipic_31__38_JumpTerminator var_f_8517 = temp_8 ;
-        outArgument_outIdenticalTerminators = GALGAS_bool (kIsEqual, var_t_8428.getter_mLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 197)).objectCompare (var_f_8517.getter_mLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 197)))) ;
-      }else if (kBoolFalse == test_6) {
-        outArgument_outIdenticalTerminators = GALGAS_bool (false) ;
-      }
-    }
-  }
-}
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void defineExtensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators (void) {
-  enterExtensionMethod_getOptimizedTerminators (kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator.mSlotID,
-                                                extensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void freeExtensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators (void) {
-  gExtensionMethodTable_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators.free () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators (defineExtensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators,
-                                                                                            freeExtensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimizedTerminators) ;
 

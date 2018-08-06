@@ -121,7 +121,7 @@ class GALGAS_baseline_5F_model : public AC_GALGAS_root {
   public : GALGAS_baseline_5F_model (void) ;
 
 //--------------------------------- Virtual destructor (in debug mode)
-  public : VIRTUAL_IN_DEBUG ~ GALGAS_baseline_5F_model (void) ;
+  public : virtual ~ GALGAS_baseline_5F_model (void) ;
 
 //--------------------------------- Native constructor
   public : GALGAS_baseline_5F_model (const GALGAS_lstring & in_mProgramName,
