@@ -197,31 +197,3 @@ void routine_midrange_5F_compute_5F_JSR_5F_JUMP (class GALGAS_midrange_5F_interm
                                                  class C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                       Routine 'midrange_build_assembly_code'                                        *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_midrange_5F_build_5F_assembly_5F_code (const class GALGAS_string constinArgument0,
-                                                    const class GALGAS_registerTable constinArgument1,
-                                                    const class GALGAS_registerTable constinArgument2,
-                                                    const class GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument3,
-                                                    const class GALGAS_actualConfigurationMap constinArgument4,
-                                                    class GALGAS_string & outArgument5,
-                                                    class C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                       Routine 'emitMidrangeCodeAtWordAddress'                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_emitMidrangeCodeAtWordAddress (const class GALGAS_uint constinArgument0,
-                                            class GALGAS_uint & ioArgument1,
-                                            const class GALGAS_midrange_5F_intermediate_5F_instruction constinArgument2,
-                                            class GALGAS_string & ioArgument3,
-                                            class C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
-

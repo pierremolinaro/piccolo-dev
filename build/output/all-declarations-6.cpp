@@ -103,54 +103,66 @@ static void extensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimized
     }
   }
   outArgument_outOptimizedFalseTerminator = temp_1 ;
-  const enumGalgasBool test_2 = GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_ReturnTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())).operator_and (GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_ReturnTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 188)).boolEnum () ;
+  enumGalgasBool test_2 = kBoolTrue ;
   if (kBoolTrue == test_2) {
-    outArgument_outIdenticalTerminators = GALGAS_bool (true) ;
-  }else if (kBoolFalse == test_2) {
-    const enumGalgasBool test_3 = GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())).operator_and (GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 190)).boolEnum () ;
+    test_2 = GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_ReturnTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())).operator_and (GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_ReturnTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 188)).boolEnum () ;
+    if (kBoolTrue == test_2) {
+      outArgument_outIdenticalTerminators = GALGAS_bool (true) ;
+    }
+  }
+  if (kBoolFalse == test_2) {
+    enumGalgasBool test_3 = kBoolTrue ;
     if (kBoolTrue == test_3) {
-      GALGAS_ipic_31__38_RetlwTerminator temp_4 ;
-      if (outArgument_outOptimizedTrueTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())) {
-          temp_4 = (cPtr_ipic_31__38_RetlwTerminator *) outArgument_outOptimizedTrueTerminator.ptr () ;
-        }else{
-          inCompiler->castError ("ipic_31__38_RetlwTerminator", outArgument_outOptimizedTrueTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 191)) ;
-        }
-      }
-      GALGAS_ipic_31__38_RetlwTerminator var_t_8047 = temp_4 ;
-      GALGAS_ipic_31__38_RetlwTerminator temp_5 ;
-      if (outArgument_outOptimizedFalseTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) {
-          temp_5 = (cPtr_ipic_31__38_RetlwTerminator *) outArgument_outOptimizedFalseTerminator.ptr () ;
-        }else{
-          inCompiler->castError ("ipic_31__38_RetlwTerminator", outArgument_outOptimizedFalseTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 192)) ;
-        }
-      }
-      GALGAS_ipic_31__38_RetlwTerminator var_f_8138 = temp_5 ;
-      outArgument_outIdenticalTerminators = GALGAS_bool (kIsEqual, var_t_8047.getter_mLiteralValue (SOURCE_FILE ("ipic18_optimize_block.galgas", 193)).objectCompare (var_f_8138.getter_mLiteralValue (SOURCE_FILE ("ipic18_optimize_block.galgas", 193)))) ;
-    }else if (kBoolFalse == test_3) {
-      const enumGalgasBool test_6 = GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())).operator_and (GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 194)).boolEnum () ;
-      if (kBoolTrue == test_6) {
-        GALGAS_ipic_31__38_JumpTerminator temp_7 ;
+      test_3 = GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())).operator_and (GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 190)).boolEnum () ;
+      if (kBoolTrue == test_3) {
+        GALGAS_ipic_31__38_RetlwTerminator temp_4 ;
         if (outArgument_outOptimizedTrueTerminator.isValid ()) {
-          if (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())) {
-            temp_7 = (cPtr_ipic_31__38_JumpTerminator *) outArgument_outOptimizedTrueTerminator.ptr () ;
+          if (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())) {
+            temp_4 = (cPtr_ipic_31__38_RetlwTerminator *) outArgument_outOptimizedTrueTerminator.ptr () ;
           }else{
-            inCompiler->castError ("ipic_31__38_JumpTerminator", outArgument_outOptimizedTrueTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 195)) ;
+            inCompiler->castError ("ipic_31__38_RetlwTerminator", outArgument_outOptimizedTrueTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 191)) ;
           }
         }
-        GALGAS_ipic_31__38_JumpTerminator var_t_8428 = temp_7 ;
-        GALGAS_ipic_31__38_JumpTerminator temp_8 ;
+        GALGAS_ipic_31__38_RetlwTerminator var_t_8047 = temp_4 ;
+        GALGAS_ipic_31__38_RetlwTerminator temp_5 ;
         if (outArgument_outOptimizedFalseTerminator.isValid ()) {
-          if (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) {
-            temp_8 = (cPtr_ipic_31__38_JumpTerminator *) outArgument_outOptimizedFalseTerminator.ptr () ;
+          if (NULL != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) {
+            temp_5 = (cPtr_ipic_31__38_RetlwTerminator *) outArgument_outOptimizedFalseTerminator.ptr () ;
           }else{
-            inCompiler->castError ("ipic_31__38_JumpTerminator", outArgument_outOptimizedFalseTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 196)) ;
+            inCompiler->castError ("ipic_31__38_RetlwTerminator", outArgument_outOptimizedFalseTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 192)) ;
           }
         }
-        GALGAS_ipic_31__38_JumpTerminator var_f_8517 = temp_8 ;
-        outArgument_outIdenticalTerminators = GALGAS_bool (kIsEqual, var_t_8428.getter_mLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 197)).objectCompare (var_f_8517.getter_mLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 197)))) ;
-      }else if (kBoolFalse == test_6) {
+        GALGAS_ipic_31__38_RetlwTerminator var_f_8138 = temp_5 ;
+        outArgument_outIdenticalTerminators = GALGAS_bool (kIsEqual, var_t_8047.getter_mLiteralValue (SOURCE_FILE ("ipic18_optimize_block.galgas", 193)).objectCompare (var_f_8138.getter_mLiteralValue (SOURCE_FILE ("ipic18_optimize_block.galgas", 193)))) ;
+      }
+    }
+    if (kBoolFalse == test_3) {
+      enumGalgasBool test_6 = kBoolTrue ;
+      if (kBoolTrue == test_6) {
+        test_6 = GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())).operator_and (GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 194)).boolEnum () ;
+        if (kBoolTrue == test_6) {
+          GALGAS_ipic_31__38_JumpTerminator temp_7 ;
+          if (outArgument_outOptimizedTrueTerminator.isValid ()) {
+            if (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedTrueTerminator.ptr ())) {
+              temp_7 = (cPtr_ipic_31__38_JumpTerminator *) outArgument_outOptimizedTrueTerminator.ptr () ;
+            }else{
+              inCompiler->castError ("ipic_31__38_JumpTerminator", outArgument_outOptimizedTrueTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 195)) ;
+            }
+          }
+          GALGAS_ipic_31__38_JumpTerminator var_t_8428 = temp_7 ;
+          GALGAS_ipic_31__38_JumpTerminator temp_8 ;
+          if (outArgument_outOptimizedFalseTerminator.isValid ()) {
+            if (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) {
+              temp_8 = (cPtr_ipic_31__38_JumpTerminator *) outArgument_outOptimizedFalseTerminator.ptr () ;
+            }else{
+              inCompiler->castError ("ipic_31__38_JumpTerminator", outArgument_outOptimizedFalseTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 196)) ;
+            }
+          }
+          GALGAS_ipic_31__38_JumpTerminator var_f_8517 = temp_8 ;
+          outArgument_outIdenticalTerminators = GALGAS_bool (kIsEqual, var_t_8428.getter_mLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 197)).objectCompare (var_f_8517.getter_mLabel (SOURCE_FILE ("ipic18_optimize_block.galgas", 197)))) ;
+        }
+      }
+      if (kBoolFalse == test_6) {
         outArgument_outIdenticalTerminators = GALGAS_bool (false) ;
       }
     }
@@ -5535,34 +5547,46 @@ void extensionMethod_checkPrivateAccess (const GALGAS_registerTable inObject,
     break ;
   case GALGAS_registerProtection::kEnum_protectedRegister:
     {
-      GALGAS_bool test_0 = constinArgument_inWriteAccess ;
-      if (kBoolTrue == test_0.boolEnum ()) {
-        const GALGAS_registerTable temp_1 = inObject ;
-        test_0 = temp_1.getter_hasKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 32)) COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 32)) ;
-      }
-      const enumGalgasBool test_2 = test_0.boolEnum () ;
-      if (kBoolTrue == test_2) {
-        const GALGAS_registerTable temp_3 = inObject ;
-        GALGAS_location var_declarationLocation_982 = temp_3.getter_locationForKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 33)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 33)) ;
-        const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, var_declarationLocation_982.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 34)).objectCompare (constinArgument_inKey.getter_location (HERE).getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 34)))).boolEnum () ;
-        if (kBoolTrue == test_4) {
-          TC_Array <C_FixItDescription> fixItArray5 ;
-          inCompiler->emitSemanticError (constinArgument_inKey.getter_location (SOURCE_FILE ("piccoloDevice_semantics.galgas", 35)), GALGAS_string ("register is protected, write is reserved to instructions in declaration file"), fixItArray5  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 35)) ;
+      enumGalgasBool test_0 = kBoolTrue ;
+      if (kBoolTrue == test_0) {
+        GALGAS_bool test_1 = constinArgument_inWriteAccess ;
+        if (kBoolTrue == test_1.boolEnum ()) {
+          const GALGAS_registerTable temp_2 = inObject ;
+          test_1 = temp_2.getter_hasKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 32)) COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 32)) ;
+        }
+        test_0 = test_1.boolEnum () ;
+        if (kBoolTrue == test_0) {
+          const GALGAS_registerTable temp_3 = inObject ;
+          GALGAS_location var_declarationLocation_982 = temp_3.getter_locationForKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 33)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 33)) ;
+          enumGalgasBool test_4 = kBoolTrue ;
+          if (kBoolTrue == test_4) {
+            test_4 = GALGAS_bool (kIsNotEqual, var_declarationLocation_982.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 34)).objectCompare (constinArgument_inKey.getter_location (HERE).getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 34)))).boolEnum () ;
+            if (kBoolTrue == test_4) {
+              TC_Array <C_FixItDescription> fixItArray5 ;
+              inCompiler->emitSemanticError (constinArgument_inKey.getter_location (SOURCE_FILE ("piccoloDevice_semantics.galgas", 35)), GALGAS_string ("register is protected, write is reserved to instructions in declaration file"), fixItArray5  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 35)) ;
+            }
+          }
         }
       }
     }
     break ;
   case GALGAS_registerProtection::kEnum_privateRegister:
     {
-      const GALGAS_registerTable temp_6 = inObject ;
-      const enumGalgasBool test_7 = temp_6.getter_hasKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 39)) COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 39)).boolEnum () ;
-      if (kBoolTrue == test_7) {
-        const GALGAS_registerTable temp_8 = inObject ;
-        GALGAS_location var_declarationLocation_1286 = temp_8.getter_locationForKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 40)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 40)) ;
-        const enumGalgasBool test_9 = GALGAS_bool (kIsNotEqual, var_declarationLocation_1286.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 41)).objectCompare (constinArgument_inKey.getter_location (HERE).getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 41)))).boolEnum () ;
-        if (kBoolTrue == test_9) {
-          TC_Array <C_FixItDescription> fixItArray10 ;
-          inCompiler->emitSemanticError (constinArgument_inKey.getter_location (SOURCE_FILE ("piccoloDevice_semantics.galgas", 42)), GALGAS_string ("register is private to declaration file"), fixItArray10  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 42)) ;
+      enumGalgasBool test_6 = kBoolTrue ;
+      if (kBoolTrue == test_6) {
+        const GALGAS_registerTable temp_7 = inObject ;
+        test_6 = temp_7.getter_hasKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 39)) COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 39)).boolEnum () ;
+        if (kBoolTrue == test_6) {
+          const GALGAS_registerTable temp_8 = inObject ;
+          GALGAS_location var_declarationLocation_1286 = temp_8.getter_locationForKey (constinArgument_inKey.getter_string (SOURCE_FILE ("piccoloDevice_semantics.galgas", 40)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 40)) ;
+          enumGalgasBool test_9 = kBoolTrue ;
+          if (kBoolTrue == test_9) {
+            test_9 = GALGAS_bool (kIsNotEqual, var_declarationLocation_1286.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 41)).objectCompare (constinArgument_inKey.getter_location (HERE).getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 41)))).boolEnum () ;
+            if (kBoolTrue == test_9) {
+              TC_Array <C_FixItDescription> fixItArray10 ;
+              inCompiler->emitSemanticError (constinArgument_inKey.getter_location (SOURCE_FILE ("piccoloDevice_semantics.galgas", 42)), GALGAS_string ("register is private to declaration file"), fixItArray10  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas", 42)) ;
+            }
+          }
         }
       }
     }
@@ -7388,22 +7412,38 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   GALGAS_processorType var_processorType_397 ;
   GALGAS_lstring var_processorName_437 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 16)) ;
-  const enumGalgasBool test_0 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 17)).objectCompare (GALGAS_string ("pic18_60"))).boolEnum () ;
+  enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    var_processorType_397 = GALGAS_processorType::constructor_pic_31__38__5F__36__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 18)) ;
-  }else if (kBoolFalse == test_0) {
-    const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 19)).objectCompare (GALGAS_string ("pic18_80"))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 17)).objectCompare (GALGAS_string ("pic18_60"))).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      var_processorType_397 = GALGAS_processorType::constructor_pic_31__38__5F__36__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 18)) ;
+    }
+  }
+  if (kBoolFalse == test_0) {
+    enumGalgasBool test_1 = kBoolTrue ;
     if (kBoolTrue == test_1) {
-      var_processorType_397 = GALGAS_processorType::constructor_pic_31__38__5F__38__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 20)) ;
-    }else if (kBoolFalse == test_1) {
-      const enumGalgasBool test_2 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 21)).objectCompare (GALGAS_string ("mid-range"))).boolEnum () ;
+      test_1 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 19)).objectCompare (GALGAS_string ("pic18_80"))).boolEnum () ;
+      if (kBoolTrue == test_1) {
+        var_processorType_397 = GALGAS_processorType::constructor_pic_31__38__5F__38__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 20)) ;
+      }
+    }
+    if (kBoolFalse == test_1) {
+      enumGalgasBool test_2 = kBoolTrue ;
       if (kBoolTrue == test_2) {
-        var_processorType_397 = GALGAS_processorType::constructor_midrange (SOURCE_FILE ("piccoloDevice_syntax.galgas", 22)) ;
-      }else if (kBoolFalse == test_2) {
-        const enumGalgasBool test_3 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 23)).objectCompare (GALGAS_string ("baseline"))).boolEnum () ;
+        test_2 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 21)).objectCompare (GALGAS_string ("mid-range"))).boolEnum () ;
+        if (kBoolTrue == test_2) {
+          var_processorType_397 = GALGAS_processorType::constructor_midrange (SOURCE_FILE ("piccoloDevice_syntax.galgas", 22)) ;
+        }
+      }
+      if (kBoolFalse == test_2) {
+        enumGalgasBool test_3 = kBoolTrue ;
         if (kBoolTrue == test_3) {
-          var_processorType_397 = GALGAS_processorType::constructor_baseline (SOURCE_FILE ("piccoloDevice_syntax.galgas", 24)) ;
-        }else if (kBoolFalse == test_3) {
+          test_3 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 23)).objectCompare (GALGAS_string ("baseline"))).boolEnum () ;
+          if (kBoolTrue == test_3) {
+            var_processorType_397 = GALGAS_processorType::constructor_baseline (SOURCE_FILE ("piccoloDevice_syntax.galgas", 24)) ;
+          }
+        }
+        if (kBoolFalse == test_3) {
           TC_Array <C_FixItDescription> fixItArray4 ;
           inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)), GALGAS_string ("The '").add_operation (var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)).add_operation (GALGAS_string ("' processor is not handled"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)), fixItArray4  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)) ;
           var_processorType_397.drop () ; // Release error dropped variable
@@ -7554,10 +7594,13 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
             inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 111)) ;
             switch (select_piccoloDevice_5F_syntax_11 (inCompiler)) {
             case 1: {
-              const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (GALGAS_uint ((uint32_t) 1U))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 113)).boolEnum () ;
+              enumGalgasBool test_12 = kBoolTrue ;
               if (kBoolTrue == test_12) {
-                TC_Array <C_FixItDescription> fixItArray13 ;
-                inCompiler->emitSemanticError (var_sliceName_2787.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)), GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_2787.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)), fixItArray13  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)) ;
+                test_12 = GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (GALGAS_uint ((uint32_t) 1U))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 113)).boolEnum () ;
+                if (kBoolTrue == test_12) {
+                  TC_Array <C_FixItDescription> fixItArray13 ;
+                  inCompiler->emitSemanticError (var_sliceName_2787.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)), GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_2787.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)), fixItArray13  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)) ;
+                }
               }
               var_sliceWidth_2663 = GALGAS_uint ((uint32_t) 1U) ;
               var_bitDefinitionString_2607.plusAssign_operation(var_sliceName_2787.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 117)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 117)) ;
@@ -7566,10 +7609,13 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
               inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 119)) ;
               GALGAS_luint var_sliceSize_3120 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
               inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
-              const enumGalgasBool test_14 = GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (var_sliceSize_3120.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 121)))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 121)).boolEnum () ;
+              enumGalgasBool test_14 = kBoolTrue ;
               if (kBoolTrue == test_14) {
-                TC_Array <C_FixItDescription> fixItArray15 ;
-                inCompiler->emitSemanticError (var_sliceName_2787.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), GALGAS_string ("a slice of ").add_operation (var_sliceWidth_2663.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (var_sliceName_2787.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), fixItArray15  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)) ;
+                test_14 = GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_2663.objectCompare (var_sliceSize_3120.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 121)))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 121)).boolEnum () ;
+                if (kBoolTrue == test_14) {
+                  TC_Array <C_FixItDescription> fixItArray15 ;
+                  inCompiler->emitSemanticError (var_sliceName_2787.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), GALGAS_string ("a slice of ").add_operation (var_sliceWidth_2663.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (var_sliceName_2787.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), fixItArray15  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)) ;
+                }
               }
               var_sliceWidth_2663 = var_sliceSize_3120.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 124)) ;
               var_sliceBase_2726 = var_sliceBase_2726.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)).substract_operation (var_sliceSize_3120.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)) ;
@@ -7612,10 +7658,13 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           break ;
         }
       }
-      const enumGalgasBool test_16 = GALGAS_bool (kIsNotEqual, var_sliceIndex_2522.objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      enumGalgasBool test_16 = kBoolTrue ;
       if (kBoolTrue == test_16) {
-        TC_Array <C_FixItDescription> fixItArray17 ;
-        inCompiler->emitSemanticError (var_registerName_2296.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), GALGAS_string ("Incorrect bit definition for register '").add_operation (var_registerName_2296.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), fixItArray17  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)) ;
+        test_16 = GALGAS_bool (kIsNotEqual, var_sliceIndex_2522.objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+        if (kBoolTrue == test_16) {
+          TC_Array <C_FixItDescription> fixItArray17 ;
+          inCompiler->emitSemanticError (var_registerName_2296.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), GALGAS_string ("Incorrect bit definition for register '").add_operation (var_registerName_2296.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), fixItArray17  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)) ;
+        }
       }
       var_bitDefinitionString_2607.plusAssign_operation(GALGAS_string (">"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 147)) ;
       inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
@@ -7673,10 +7722,13 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
         case 2: {
           GALGAS_lstring var_maskName_4990 = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 177)) ;
-          const enumGalgasBool test_21 = var_settingNameSet_4903.getter_hasKey (var_maskName_4990.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 178)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 178)).boolEnum () ;
+          enumGalgasBool test_21 = kBoolTrue ;
           if (kBoolTrue == test_21) {
-            TC_Array <C_FixItDescription> fixItArray22 ;
-            inCompiler->emitSemanticError (var_maskName_4990.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), GALGAS_string ("The '").add_operation (var_maskName_4990.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)).add_operation (GALGAS_string ("' setting is already defined"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), fixItArray22  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)) ;
+            test_21 = var_settingNameSet_4903.getter_hasKey (var_maskName_4990.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 178)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 178)).boolEnum () ;
+            if (kBoolTrue == test_21) {
+              TC_Array <C_FixItDescription> fixItArray22 ;
+              inCompiler->emitSemanticError (var_maskName_4990.getter_location (SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), GALGAS_string ("The '").add_operation (var_maskName_4990.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)).add_operation (GALGAS_string ("' setting is already defined"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), fixItArray22  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)) ;
+            }
           }
           var_settingNameSet_4903.addAssign_operation (var_maskName_4990.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 181))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 181)) ;
           inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
@@ -7728,53 +7780,62 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 208)) ;
-  const enumGalgasBool test_24 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).objectCompare (GALGAS_string ("pic18_60"))).operator_or (GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).objectCompare (GALGAS_string ("pic18_80"))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).boolEnum () ;
+  enumGalgasBool test_24 = kBoolTrue ;
   if (kBoolTrue == test_24) {
-    GALGAS_uintlist joker_6164_5 ; // Joker input parameter
-    GALGAS_uint joker_6164_4 ; // Joker input parameter
-    GALGAS_bitSliceTable joker_6164_3 ; // Joker input parameter
-    GALGAS_string joker_6164_2 ; // Joker input parameter
-    GALGAS_registerProtection joker_6164_1 ; // Joker input parameter
-    var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("BSR"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)), joker_6164_5, joker_6164_4, joker_6164_3, joker_6164_2, joker_6164_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)) ;
-    GALGAS_uintlist joker_6240_5 ; // Joker input parameter
-    GALGAS_uint joker_6240_4 ; // Joker input parameter
-    GALGAS_bitSliceTable joker_6240_3 ; // Joker input parameter
-    GALGAS_string joker_6240_2 ; // Joker input parameter
-    GALGAS_registerProtection joker_6240_1 ; // Joker input parameter
-    var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSL"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), joker_6240_5, joker_6240_4, joker_6240_3, joker_6240_2, joker_6240_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)) ;
-    GALGAS_uintlist joker_6316_5 ; // Joker input parameter
-    GALGAS_uint joker_6316_4 ; // Joker input parameter
-    GALGAS_bitSliceTable joker_6316_3 ; // Joker input parameter
-    GALGAS_string joker_6316_2 ; // Joker input parameter
-    GALGAS_registerProtection joker_6316_1 ; // Joker input parameter
-    var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), joker_6316_5, joker_6316_4, joker_6316_3, joker_6316_2, joker_6316_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)) ;
-    GALGAS_uintlist joker_6392_5 ; // Joker input parameter
-    GALGAS_uint joker_6392_4 ; // Joker input parameter
-    GALGAS_bitSliceTable joker_6392_3 ; // Joker input parameter
-    GALGAS_string joker_6392_2 ; // Joker input parameter
-    GALGAS_registerProtection joker_6392_1 ; // Joker input parameter
-    var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSU"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), joker_6392_5, joker_6392_4, joker_6392_3, joker_6392_2, joker_6392_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)) ;
+    test_24 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).objectCompare (GALGAS_string ("pic18_60"))).operator_or (GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).objectCompare (GALGAS_string ("pic18_80"))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).boolEnum () ;
+    if (kBoolTrue == test_24) {
+      GALGAS_uintlist joker_6164_5 ; // Joker input parameter
+      GALGAS_uint joker_6164_4 ; // Joker input parameter
+      GALGAS_bitSliceTable joker_6164_3 ; // Joker input parameter
+      GALGAS_string joker_6164_2 ; // Joker input parameter
+      GALGAS_registerProtection joker_6164_1 ; // Joker input parameter
+      var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("BSR"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)), joker_6164_5, joker_6164_4, joker_6164_3, joker_6164_2, joker_6164_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)) ;
+      GALGAS_uintlist joker_6240_5 ; // Joker input parameter
+      GALGAS_uint joker_6240_4 ; // Joker input parameter
+      GALGAS_bitSliceTable joker_6240_3 ; // Joker input parameter
+      GALGAS_string joker_6240_2 ; // Joker input parameter
+      GALGAS_registerProtection joker_6240_1 ; // Joker input parameter
+      var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSL"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), joker_6240_5, joker_6240_4, joker_6240_3, joker_6240_2, joker_6240_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)) ;
+      GALGAS_uintlist joker_6316_5 ; // Joker input parameter
+      GALGAS_uint joker_6316_4 ; // Joker input parameter
+      GALGAS_bitSliceTable joker_6316_3 ; // Joker input parameter
+      GALGAS_string joker_6316_2 ; // Joker input parameter
+      GALGAS_registerProtection joker_6316_1 ; // Joker input parameter
+      var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), joker_6316_5, joker_6316_4, joker_6316_3, joker_6316_2, joker_6316_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)) ;
+      GALGAS_uintlist joker_6392_5 ; // Joker input parameter
+      GALGAS_uint joker_6392_4 ; // Joker input parameter
+      GALGAS_bitSliceTable joker_6392_3 ; // Joker input parameter
+      GALGAS_string joker_6392_2 ; // Joker input parameter
+      GALGAS_registerProtection joker_6392_1 ; // Joker input parameter
+      var_registerTable_2192.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSU"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), joker_6392_5, joker_6392_4, joker_6392_3, joker_6392_2, joker_6392_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)) ;
+    }
   }
   GALGAS_string var_sharedBankName_6469 = GALGAS_string::makeEmptyString () ;
-  const enumGalgasBool test_25 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 218)).objectCompare (GALGAS_string ("mid-range"))).boolEnum () ;
+  enumGalgasBool test_25 = kBoolTrue ;
   if (kBoolTrue == test_25) {
-    cEnumerator_ramBankTable enumerator_6578 (var_ramBankTable_1532, kENUMERATION_UP) ;
-    bool bool_26 = GALGAS_bool (kIsEqual, var_sharedBankName_6469.objectCompare (GALGAS_string::makeEmptyString ())).isValidAndTrue () ;
-    if (enumerator_6578.hasCurrentObject () && bool_26) {
-      while (enumerator_6578.hasCurrentObject () && bool_26) {
-        GALGAS_uint var_bankAccessibility_6639 = GALGAS_uint ((uint32_t) 1U).left_shift_operation (enumerator_6578.current_mFirstFreeAddress (HERE).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)) ;
-        cEnumerator_uintlist enumerator_6706 (enumerator_6578.current_mMirrorOffsetList (HERE), kENUMERATION_UP) ;
-        while (enumerator_6706.hasCurrentObject ()) {
-          var_bankAccessibility_6639 = var_bankAccessibility_6639.operator_or (GALGAS_uint ((uint32_t) 1U).left_shift_operation (enumerator_6578.current_mFirstFreeAddress (HERE).add_operation (enumerator_6706.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) ;
-          enumerator_6706.gotoNextObject () ;
-        }
-        const enumGalgasBool test_27 = GALGAS_bool (kIsEqual, GALGAS_uint ((uint32_t) 1U).left_shift_operation (var_bankCount_1326.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).objectCompare (var_bankAccessibility_6639.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)))).boolEnum () ;
-        if (kBoolTrue == test_27) {
-          var_sharedBankName_6469 = enumerator_6578.current_lkey (HERE).getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 225)) ;
-        }
-        enumerator_6578.gotoNextObject () ;
-        if (enumerator_6578.hasCurrentObject ()) {
-          bool_26 = GALGAS_bool (kIsEqual, var_sharedBankName_6469.objectCompare (GALGAS_string::makeEmptyString ())).isValidAndTrue () ;
+    test_25 = GALGAS_bool (kIsEqual, var_processorName_437.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 218)).objectCompare (GALGAS_string ("mid-range"))).boolEnum () ;
+    if (kBoolTrue == test_25) {
+      cEnumerator_ramBankTable enumerator_6578 (var_ramBankTable_1532, kENUMERATION_UP) ;
+      bool bool_26 = GALGAS_bool (kIsEqual, var_sharedBankName_6469.objectCompare (GALGAS_string::makeEmptyString ())).isValidAndTrue () ;
+      if (enumerator_6578.hasCurrentObject () && bool_26) {
+        while (enumerator_6578.hasCurrentObject () && bool_26) {
+          GALGAS_uint var_bankAccessibility_6639 = GALGAS_uint ((uint32_t) 1U).left_shift_operation (enumerator_6578.current_mFirstFreeAddress (HERE).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)) ;
+          cEnumerator_uintlist enumerator_6706 (enumerator_6578.current_mMirrorOffsetList (HERE), kENUMERATION_UP) ;
+          while (enumerator_6706.hasCurrentObject ()) {
+            var_bankAccessibility_6639 = var_bankAccessibility_6639.operator_or (GALGAS_uint ((uint32_t) 1U).left_shift_operation (enumerator_6578.current_mFirstFreeAddress (HERE).add_operation (enumerator_6706.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).right_shift_operation (GALGAS_uint ((uint32_t) 7U) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) ;
+            enumerator_6706.gotoNextObject () ;
+          }
+          enumGalgasBool test_27 = kBoolTrue ;
+          if (kBoolTrue == test_27) {
+            test_27 = GALGAS_bool (kIsEqual, GALGAS_uint ((uint32_t) 1U).left_shift_operation (var_bankCount_1326.getter_uint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).objectCompare (var_bankAccessibility_6639.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)))).boolEnum () ;
+            if (kBoolTrue == test_27) {
+              var_sharedBankName_6469 = enumerator_6578.current_lkey (HERE).getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 225)) ;
+            }
+          }
+          enumerator_6578.gotoNextObject () ;
+          if (enumerator_6578.hasCurrentObject ()) {
+            bool_26 = GALGAS_bool (kIsEqual, var_sharedBankName_6469.objectCompare (GALGAS_string::makeEmptyString ())).isValidAndTrue () ;
+          }
         }
       }
     }
@@ -14133,13 +14194,17 @@ static void extensionMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (const
   GALGAS_baseline_5F_intermediate_5F_instruction joker_10117 ; // Joker input parameter
   routine_findBaselineFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 261)), ioArgument_ioGeneratedInstructionList, joker_10117, var_reachedLabelSet_10021, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 261)) ;
   }
-  const enumGalgasBool test_0 = var_reachedLabelSet_10021.getter_hasKey (object->mProperty_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 262)) COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 262)).boolEnum () ;
+  enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    {
-    ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("baseline_optimizations.galgas", 263)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 263)) ;
+    test_0 = var_reachedLabelSet_10021.getter_hasKey (object->mProperty_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 262)) COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 262)).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      {
+      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("baseline_optimizations.galgas", 263)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 263)) ;
+      }
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264)).add_operation (GALGAS_string (": GOTO branching to next instruction deleted\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264)) ;
     }
-    ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 264)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264)).add_operation (GALGAS_string (": GOTO branching to next instruction deleted\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 264)) ;
-  }else if (kBoolFalse == test_0) {
+  }
+  if (kBoolFalse == test_0) {
     GALGAS_uint var_line_10528 ;
     constinArgument_inSymbolTable.method_searchKey (object->mProperty_mTargetLabel, var_line_10528, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 267)) ;
     GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_10626 ;
@@ -14149,23 +14214,29 @@ static void extensionMethod_baseline_5F_intermediate_5F_GOTO_optimizeGOTO (const
     if (var_firstInstruction_10626.isValid ()) {
       if (var_firstInstruction_10626.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation) {
         GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation cast_10879_literalOp ((cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) var_firstInstruction_10626.ptr ()) ;
-        const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, cast_10879_literalOp.getter_mInstruction (SOURCE_FILE ("baseline_optimizations.galgas", 274)).objectCompare (GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_RETLW (SOURCE_FILE ("baseline_optimizations.galgas", 274)))).boolEnum () ;
+        enumGalgasBool test_1 = kBoolTrue ;
         if (kBoolTrue == test_1) {
-          {
-          ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (cast_10879_literalOp, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 275)) ;
+          test_1 = GALGAS_bool (kIsEqual, cast_10879_literalOp.getter_mInstruction (SOURCE_FILE ("baseline_optimizations.galgas", 274)).objectCompare (GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_RETLW (SOURCE_FILE ("baseline_optimizations.galgas", 274)))).boolEnum () ;
+          if (kBoolTrue == test_1) {
+            {
+            ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (cast_10879_literalOp, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 275)) ;
+            }
+            ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
+            ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 280)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280)).add_operation (GALGAS_string (": GOTO branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280)) ;
           }
-          ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 280)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280)).add_operation (GALGAS_string (": GOTO branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 280)) ;
         }
       }else if (var_firstInstruction_10626.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO) {
         GALGAS_baseline_5F_intermediate_5F_GOTO cast_11285_goto ((cPtr_baseline_5F_intermediate_5F_GOTO *) var_firstInstruction_10626.ptr ()) ;
-        const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, object->mProperty_mTargetLabel.objectCompare (cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 283)))).boolEnum () ;
+        enumGalgasBool test_2 = kBoolTrue ;
         if (kBoolTrue == test_2) {
-          {
-          ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mProperty_mInstructionLocation, cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 287))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 285)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 284)) ;
+          test_2 = GALGAS_bool (kIsNotEqual, object->mProperty_mTargetLabel.objectCompare (cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 283)))).boolEnum () ;
+          if (kBoolTrue == test_2) {
+            {
+            ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (object->mProperty_mInstructionLocation, cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 287))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 285)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 284)) ;
+            }
+            ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
+            ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (": GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (object->mProperty_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (" branching to GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 291)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (" replaced by GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 291)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)) ;
           }
-          ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (": GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (object->mProperty_mTargetLabel.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (" branching to GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 291)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string (" replaced by GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (cast_11285_goto.getter_mTargetLabel (SOURCE_FILE ("baseline_optimizations.galgas", 291)).getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 291)) ;
         }
       }
     }
