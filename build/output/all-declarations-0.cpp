@@ -11784,11 +11784,15 @@ GALGAS_string extensionGetter_x_34_String (const GALGAS_uint & inObject,
                                            C_Compiler * inCompiler
                                            COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string result_outResult ; // Returned variable
-  const GALGAS_uint temp_0 = inObject ;
-  const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, temp_0.objectCompare (GALGAS_uint ((uint32_t) 65535U))).boolEnum () ;
-  if (kBoolTrue == test_1) {
-    result_outResult = GALGAS_string ("****") ;
-  }else if (kBoolFalse == test_1) {
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_uint temp_1 = inObject ;
+    test_0 = GALGAS_bool (kIsStrictSup, temp_1.objectCompare (GALGAS_uint ((uint32_t) 65535U))).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      result_outResult = GALGAS_string ("****") ;
+    }
+  }
+  if (kBoolFalse == test_0) {
     const GALGAS_uint temp_2 = inObject ;
     result_outResult = temp_2.right_shift_operation (GALGAS_uint ((uint32_t) 12U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 31)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 31)) ;
     const GALGAS_uint temp_3 = inObject ;

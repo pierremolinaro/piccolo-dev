@@ -6270,21 +6270,32 @@ static void extensionMethod_baseline_5F_intermediate_5F_incDecRegisterInConditio
       ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
       ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 490)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 490)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 490)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 490)) ;
       ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("GOTO "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 491)) ;
-      const enumGalgasBool test_0 = object->mProperty_mIncrement.boolEnum () ;
+      enumGalgasBool test_0 = kBoolTrue ;
       if (kBoolTrue == test_0) {
-        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 493)) ;
-      }else if (kBoolFalse == test_0) {
+        test_0 = object->mProperty_mIncrement.boolEnum () ;
+        if (kBoolTrue == test_0) {
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 493)) ;
+        }
+      }
+      if (kBoolFalse == test_0) {
         ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 495)) ;
       }
       ioArgument_ioListFileContents.plusAssign_operation(object->mProperty_mRegisterDescription.getter_mAssemblyString (SOURCE_FILE ("baseline_optimizations.galgas", 497)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 497)) ;
-      const enumGalgasBool test_1 = object->mProperty_m_5F_W_5F_isDestination.boolEnum () ;
+      enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 499)) ;
+        test_1 = object->mProperty_m_5F_W_5F_isDestination.boolEnum () ;
+        if (kBoolTrue == test_1) {
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 499)) ;
+        }
       }
-      const enumGalgasBool test_2 = object->mProperty_mBranchIfZero.boolEnum () ;
+      enumGalgasBool test_2 = kBoolTrue ;
       if (kBoolTrue == test_2) {
-        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)) ;
-      }else if (kBoolFalse == test_2) {
+        test_2 = object->mProperty_mBranchIfZero.boolEnum () ;
+        if (kBoolTrue == test_2) {
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)) ;
+        }
+      }
+      if (kBoolFalse == test_2) {
         ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" NZ"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 504)) ;
       }
       ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": branching to GOTO replaced by second GOTO label\n"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 506)) ;
