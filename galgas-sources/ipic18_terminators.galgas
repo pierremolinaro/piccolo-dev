@@ -136,10 +136,16 @@ override method @ipic18RetlwTerminator generateTerminatorCode
 override getter @ipic18RetlwTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
-  outResult = (inTerminator is == @ipic18RetlwTerminator)
-  if outResult then
-    let @ipic18RetlwTerminator t = ( inTerminator as @ipic18RetlwTerminator)
+#  outResult = (inTerminator is == @ipic18RetlwTerminator)
+#  if outResult then
+#    let @ipic18RetlwTerminator t = ( inTerminator as @ipic18RetlwTerminator)
+#    outResult = mLiteralValue == [t mLiteralValue]
+#  end
+
+  if let t = inTerminator as @ipic18RetlwTerminator then
     outResult = mLiteralValue == [t mLiteralValue]
+  else
+    outResult = false
   end
 }
 
@@ -257,10 +263,16 @@ override method @ipic18JumpTerminator generateTerminatorCode
 override getter @ipic18JumpTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
-  outResult = (inTerminator is == @ipic18JumpTerminator)
-  if outResult then
-    let @ipic18JumpTerminator t = ( inTerminator as @ipic18JumpTerminator)
+#  outResult = (inTerminator is == @ipic18JumpTerminator)
+#  if outResult then
+#    let @ipic18JumpTerminator t = ( inTerminator as @ipic18JumpTerminator)
+#    outResult = (mLabel.string == [t mLabel].string) & (mKind == [t mKind])
+#  end
+
+  if let t = inTerminator as @ipic18JumpTerminator then
     outResult = (mLabel.string == [t mLabel].string) & (mKind == [t mKind])
+  else
+    outResult = false
   end
 }
 
