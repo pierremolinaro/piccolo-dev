@@ -29,7 +29,7 @@
 //  |||  ||||  ||++-> checksum (2's complement of 03+00+00+04+12+34)         *
 //  |||  |||+--+-> 2 bytes of data : 12 34: fix the 16 upper bits of address *
 //  |||  |++-> Record type 04                                                *
-//  ||+--+-> Address (big endian) : 00 00 (should allways be zero)           *
+//  ||+--+-> Address (big endian) : 00 00 (should always be zero)            *
 //  ++-> Data bytes count (2)                                                *
 //                                                                           *
 // Data line example:                                                        *
