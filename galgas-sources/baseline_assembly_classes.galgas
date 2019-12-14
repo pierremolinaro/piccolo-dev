@@ -8,7 +8,7 @@ abstract class @baseline_assembly_instruction {
 #-------------------------------------------------------------------------------*
 
 list @baseline_assembly_instructionList {
-  @baseline_assembly_instruction mInstruction %setter
+  @baseline_assembly_instruction mInstruction
 }
 
 #-------------------------------------------------------------------------------*

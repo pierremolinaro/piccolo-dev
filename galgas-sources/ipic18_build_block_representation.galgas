@@ -3633,16 +3633,16 @@ proc build_ipic18_block_representation_list
   #----------------------------------------------------------- Print usage
     if @application.verboseOutput then
       @string verboseMessage = "Resource usage:\n"
-      verboseMessage += "  ROM size: " + inROMSize + " bytes;"
-      verboseMessage += " used: " + [usedROMsize string] + " bytes ("
-      verboseMessage += [(usedROMsize * 100) / inROMSize string] + "%).\n"
-      for () in  inRamBank do
+      verboseMessage += "  ROM, used " + [usedROMsize string]
+      verboseMessage += " / " + inROMSize + " bytes ("
+      verboseMessage += [(usedROMsize * 100) / inROMSize string] + "%)\n"
+      for () in inRamBank do
         @uint bankSize = mLastAddressPlusOne - mFirstAddress
         @uint usedSize = mFirstFreeAddress - mFirstAddress
-        verboseMessage += "  RAM bank '" + lkey + "': "
-        verboseMessage += [bankSize string] + " bytes, used "
-        verboseMessage += [usedSize string] + " bytes ("
-        verboseMessage += [(usedSize * 100) / bankSize string] + "%).\n"
+        verboseMessage += "  Bank '" + lkey + "': "
+        verboseMessage += [usedSize string] + " / "
+        verboseMessage += [bankSize string] + " bytes ("
+        verboseMessage += [(usedSize * 100) / bankSize string] + "%)\n"
       end
       message verboseMessage
     end

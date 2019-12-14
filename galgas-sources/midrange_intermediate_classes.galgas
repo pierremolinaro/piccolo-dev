@@ -95,7 +95,7 @@ abstract class @midrange_intermediate_instruction {
 #----------------------------------------------------*
 
 list @midrange_intermediate_instructionList {
-  @midrange_intermediate_instruction mInstruction %setter
+  @midrange_intermediate_instruction mInstruction
 }
 
 #----------------------------------------------------*

@@ -433,6 +433,11 @@ class GALGAS_ipic_31__38_BlockList : public AC_GALGAS_list {
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
+  public : VIRTUAL_IN_DEBUG void setter_setMBlockAtIndex (class GALGAS_ipic_31__38_Block constinArgument0,
+                                                          class GALGAS_uint constinArgument1,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
   public : VIRTUAL_IN_DEBUG void method_first (class GALGAS_ipic_31__38_Block & outArgument0,
@@ -573,6 +578,21 @@ class GALGAS_ipic_31__38_SequentialInstructionList : public AC_GALGAS_list {
                                                        class GALGAS_uint constinArgument3,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMInstructionAtIndex (class GALGAS_ipic_31__38_SequentialInstruction constinArgument0,
+                                                                class GALGAS_uint constinArgument1,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMMaxAtIndex (class GALGAS_uint constinArgument0,
+                                                        class GALGAS_uint constinArgument1,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMMinAtIndex (class GALGAS_uint constinArgument0,
+                                                        class GALGAS_uint constinArgument1,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
@@ -898,6 +918,9 @@ class GALGAS_ipic_31__38_SequentialInstruction : public AC_GALGAS_class {
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_SequentialInstruction & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMInstructionLocation (class GALGAS_location inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -932,6 +955,7 @@ class cPtr_ipic_31__38_SequentialInstruction : public acPtr_class {
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_location getter_mInstructionLocation (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMInstructionLocation (GALGAS_location inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const = 0 ;
@@ -1046,6 +1070,9 @@ class GALGAS_ipic_31__38_AbstractBlockTerminator : public AC_GALGAS_class {
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_AbstractBlockTerminator & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMInstructionLocation (class GALGAS_location inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -1080,6 +1107,7 @@ class cPtr_ipic_31__38_AbstractBlockTerminator : public acPtr_class {
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_location getter_mInstructionLocation (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMInstructionLocation (GALGAS_location inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const = 0 ;
@@ -1432,6 +1460,9 @@ class GALGAS_ipic_31__38_RetlwTerminator : public GALGAS_ipic_31__38_SingleInstr
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_RetlwTerminator & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMLiteralValue (class GALGAS_uint inArgument0
+                                                          COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -1470,6 +1501,7 @@ class cPtr_ipic_31__38_RetlwTerminator : public cPtr_ipic_31__38_SingleInstructi
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mLiteralValue (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMLiteralValue (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -1518,6 +1550,9 @@ class GALGAS_ipic_31__38_RetfieTerminator : public GALGAS_ipic_31__38_SingleInst
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_RetfieTerminator & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMFastReturn (class GALGAS_bool inArgument0
+                                                        COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -1556,6 +1591,7 @@ class cPtr_ipic_31__38_RetfieTerminator : public cPtr_ipic_31__38_SingleInstruct
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mFastReturn (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMFastReturn (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -1605,6 +1641,12 @@ class GALGAS_ipic_31__38_ComputedGotoTerminator : public GALGAS_ipic_31__38_Abst
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_ComputedGotoTerminator & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMTargetLabels (class GALGAS_lstringlist inArgument0
+                                                          COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (class GALGAS_bool inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -1647,7 +1689,9 @@ class cPtr_ipic_31__38_ComputedGotoTerminator : public cPtr_ipic_31__38_Abstract
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mTargetLabels (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMTargetLabels (GALGAS_lstringlist inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mUsesRCALL (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -1697,6 +1741,12 @@ class GALGAS_ipic_31__38_ComputedRETLWTerminator : public GALGAS_ipic_31__38_Abs
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_ComputedRETLWTerminator & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMLiteralValues (class GALGAS_uintlist inArgument0
+                                                           COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (class GALGAS_bool inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -1739,7 +1789,9 @@ class cPtr_ipic_31__38_ComputedRETLWTerminator : public cPtr_ipic_31__38_Abstrac
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_uintlist getter_mLiteralValues (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMLiteralValues (GALGAS_uintlist inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mUsesRCALL (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -1861,6 +1913,12 @@ class GALGAS_ipic_31__38_ComputedBraTerminator : public GALGAS_ipic_31__38_Abstr
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_ComputedBraTerminator & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMTargetLabels (class GALGAS_lstringlist inArgument0
+                                                          COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (class GALGAS_bool inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -1903,7 +1961,9 @@ class cPtr_ipic_31__38_ComputedBraTerminator : public cPtr_ipic_31__38_AbstractB
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_lstringlist getter_mTargetLabels (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMTargetLabels (GALGAS_lstringlist inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mUsesRCALL (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2016,6 +2076,12 @@ class GALGAS_ipic_31__38_AbstractConditionTerminator : public GALGAS_ipic_31__38
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_AbstractConditionTerminator & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMSingleInstructionTerminatorIfConditionFalse (class GALGAS_ipic_31__38_SingleInstructionTerminator inArgument0
+                                                                                         COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMSingleInstructionTerminatorIfConditionTrue (class GALGAS_ipic_31__38_SingleInstructionTerminator inArgument0
+                                                                                        COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2055,7 +2121,9 @@ class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_Abs
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38_SingleInstructionTerminator getter_mSingleInstructionTerminatorIfConditionTrue (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMSingleInstructionTerminatorIfConditionTrue (GALGAS_ipic_31__38_SingleInstructionTerminator inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38_SingleInstructionTerminator getter_mSingleInstructionTerminatorIfConditionFalse (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMSingleInstructionTerminatorIfConditionFalse (GALGAS_ipic_31__38_SingleInstructionTerminator inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const = 0 ;
@@ -2182,6 +2250,15 @@ class GALGAS_ipic_31__38_IncDecRegisterTerminator : public GALGAS_ipic_31__38_Ab
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_IncDecRegisterTerminator & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMIncrement (class GALGAS_bool inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setM_5F_W_5F_isDestination (class GALGAS_bool inArgument0
+                                                                    COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2230,8 +2307,11 @@ class cPtr_ipic_31__38_IncDecRegisterTerminator : public cPtr_ipic_31__38_Abstra
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mIncrement (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMIncrement (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_m_5F_W_5F_isDestination (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2279,6 +2359,9 @@ class GALGAS_pic_31__38_TestRegisterTerminator : public GALGAS_ipic_31__38_Abstr
   public : typeComparisonResult objectCompare (const GALGAS_pic_31__38_TestRegisterTerminator & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2319,6 +2402,7 @@ class cPtr_pic_31__38_TestRegisterTerminator : public cPtr_ipic_31__38_AbstractC
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2367,6 +2451,12 @@ class GALGAS_pic_31__38_BitTestTerminator : public GALGAS_ipic_31__38_AbstractCo
   public : typeComparisonResult objectCompare (const GALGAS_pic_31__38_BitTestTerminator & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMBitNumber (class GALGAS_uint inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2411,7 +2501,9 @@ class cPtr_pic_31__38_BitTestTerminator : public cPtr_ipic_31__38_AbstractCondit
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mBitNumber (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMBitNumber (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2457,6 +2549,9 @@ class GALGAS_ipic_31__38_InstructionWithNoOperand : public GALGAS_ipic_31__38_Se
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_InstructionWithNoOperand & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMKind (class GALGAS_pic_31__38_InstructionWithNoOperandKind inArgument0
+                                                  COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2495,6 +2590,7 @@ class cPtr_ipic_31__38_InstructionWithNoOperand : public cPtr_ipic_31__38_Sequen
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_pic_31__38_InstructionWithNoOperandKind getter_mKind (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMKind (GALGAS_pic_31__38_InstructionWithNoOperandKind inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2553,6 +2649,15 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public GALGAS_
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMInstruction_5F_FDA_5F_base_5F_code (class GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST inArgument0
+                                                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setM_5F_W_5F_isDestination (class GALGAS_bool inArgument0
+                                                                    COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2599,8 +2704,11 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public cPtr_ipic
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST getter_mInstruction_5F_FDA_5F_base_5F_code (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMInstruction_5F_FDA_5F_base_5F_code (GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_m_5F_W_5F_isDestination (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2729,6 +2837,12 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public GALGAS_i
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMFAinstruction (class GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code inArgument0
+                                                           COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2771,7 +2885,9 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public cPtr_ipic_
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code getter_mFAinstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMFAinstruction (GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2892,6 +3008,12 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public GALGA
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMDestinationRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication inArgument0
+                                                                            COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMSourceRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication inArgument0
+                                                                       COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2934,7 +3056,9 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public cPtr_ip
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication getter_mSourceRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMSourceRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication getter_mDestinationRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMDestinationRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -2981,6 +3105,12 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : p
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMLiteralInstruction (class GALGAS_literal_5F_instruction_5F_opcode inArgument0
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMLiteralValue (class GALGAS_uint inArgument0
+                                                          COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3023,7 +3153,9 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : pub
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_literal_5F_instruction_5F_opcode getter_mLiteralInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMLiteralInstruction (GALGAS_literal_5F_instruction_5F_opcode inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mLiteralValue (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMLiteralValue (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3073,6 +3205,12 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public GALGAS
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMFSRindex (class GALGAS_luint inArgument0
+                                                      COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMValue (class GALGAS_uint inArgument0
+                                                   COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3115,7 +3253,9 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public cPtr_ipi
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_luint getter_mFSRindex (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMFSRindex (GALGAS_luint inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mValue (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMValue (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3163,6 +3303,15 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public GALGAS_
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMBitNumber (class GALGAS_uint inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMBitOrientedOp (class GALGAS_bit_5F_oriented_5F_op inArgument0
+                                                           COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3209,8 +3358,11 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public cPtr_ipic
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_bit_5F_oriented_5F_op getter_mBitOrientedOp (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMBitOrientedOp (GALGAS_bit_5F_oriented_5F_op inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mBitNumber (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMBitNumber (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3259,6 +3411,9 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public GALGA
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMBankIndex (class GALGAS_luint inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3297,6 +3452,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public cPtr_ip
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_luint getter_mBankIndex (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMBankIndex (GALGAS_luint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3345,6 +3501,9 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public GALGAS
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMBlankValue (class GALGAS_uint inArgument0
+                                                        COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3383,6 +3542,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public cPtr_ipi
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mBlankValue (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMBlankValue (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3431,6 +3591,9 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public GALGA
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMBlankValue (class GALGAS_uint inArgument0
+                                                        COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3469,6 +3632,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public cPtr_ip
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mBlankValue (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMBlankValue (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3514,6 +3678,9 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public GALGA
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMOption (class GALGAS_tableAccessOption inArgument0
+                                                    COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3552,6 +3719,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public cPtr_ip
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_tableAccessOption getter_mOption (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMOption (GALGAS_tableAccessOption inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3597,6 +3765,9 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public GALGA
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMOption (class GALGAS_tableAccessOption inArgument0
+                                                    COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3635,6 +3806,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public cPtr_ip
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_tableAccessOption getter_mOption (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMOption (GALGAS_tableAccessOption inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3683,6 +3855,9 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public GALGAS
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMOccurrenceFactor (class GALGAS_luint inArgument0
+                                                              COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3721,6 +3896,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public cPtr_ipi
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_luint getter_mOccurrenceFactor (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMOccurrenceFactor (GALGAS_luint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3769,6 +3945,9 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public GALG
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMOccurrenceFactor (class GALGAS_luint inArgument0
+                                                              COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3807,6 +3986,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public cPtr_i
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_luint getter_mOccurrenceFactor (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMOccurrenceFactor (GALGAS_luint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3856,6 +4036,12 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : 
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMTargetInstructions (class GALGAS_ipic_31__38_SequentialInstructionList inArgument0
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (class GALGAS_bool inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3898,7 +4084,9 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : pu
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38_SequentialInstructionList getter_mTargetInstructions (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMTargetInstructions (GALGAS_ipic_31__38_SequentialInstructionList inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mUsesRCALL (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -3939,6 +4127,9 @@ class GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction : public GALGAS_ip
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMEmbeddedInstruction (class GALGAS_ipic_31__38_SequentialInstruction inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3974,6 +4165,7 @@ class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction : public cPtr_ipic_3
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38_SequentialInstruction getter_mEmbeddedInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMEmbeddedInstruction (GALGAS_ipic_31__38_SequentialInstruction inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const = 0 ;
@@ -4022,6 +4214,15 @@ class GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public GALGAS_
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMBitNumber (class GALGAS_uint inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMSkipIfSet (class GALGAS_bool inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4069,8 +4270,11 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public cPtr_ipic
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_mSkipIfSet (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMSkipIfSet (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mBitNumber (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMBitNumber (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -4195,6 +4399,12 @@ class GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register : public
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMCompareInstruction (class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code inArgument0
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4238,7 +4448,9 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register : public c
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code getter_mCompareInstruction (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMCompareInstruction (GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -4364,6 +4576,15 @@ class GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public GALGAS_ipic_31_
   public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inOperand) const ;
 
 //--------------------------------- Setters
+  public : VIRTUAL_IN_DEBUG void setter_setMInstruction_5F_FDA_5F_base_5F_code (class GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code inArgument0
+                                                                                COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
+                                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setM_5F_W_5F_isDestination (class GALGAS_bool inArgument0
+                                                                    COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4411,8 +4632,11 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public cPtr_ipic_31__38_
 
 //--- Attribute accessors
   public : VIRTUAL_IN_DEBUG GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code getter_mInstruction_5F_FDA_5F_base_5F_code (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMInstruction_5F_FDA_5F_base_5F_code (GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue COMMA_LOCATION_ARGS) ;
   public : VIRTUAL_IN_DEBUG GALGAS_bool getter_m_5F_W_5F_isDestination (LOCATION_ARGS) const ;
+  public : VIRTUAL_IN_DEBUG void setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue COMMA_LOCATION_ARGS) ;
 //--- Description
   public : virtual void description (C_String & ioString,
                                      const int32_t inIndentation) const ;
@@ -5269,6 +5493,16 @@ class GALGAS_codeList : public AC_GALGAS_list {
                                                        class GALGAS_uint constinArgument2,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMAssemblyCodeAtIndex (class GALGAS_string constinArgument0,
+                                                                 class GALGAS_uint constinArgument1,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+  public : VIRTUAL_IN_DEBUG void setter_setMBinaryCodeAtIndex (class GALGAS_uintlist constinArgument0,
+                                                               class GALGAS_uint constinArgument1,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
@@ -6159,811 +6393,4 @@ void callExtensionMethod_performInlining (const class cPtr_pic_31__38_PiccoloIns
                                           GALGAS_pic_31__38_InstructionList & io_ioInstructionList,
                                           C_Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                 Abstract extension method '@pic18PiccoloSimpleInstruction analyzeSimpleInstruction'                 *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef void (*extensionMethodSignature_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction) (const class cPtr_pic_31__38_PiccoloSimpleInstruction * inObject,
-                                                                                                       const class GALGAS_uint constinArgument0,
-                                                                                                       const class GALGAS_routineMap constinArgument1,
-                                                                                                       const class GALGAS_registerTable constinArgument2,
-                                                                                                       const class GALGAS_pic_31__38__5F_dataMap constinArgument3,
-                                                                                                       const class GALGAS_constantMap constinArgument4,
-                                                                                                       class GALGAS_uint & ioArgument5,
-                                                                                                       const class GALGAS_bool constinArgument6,
-                                                                                                       class GALGAS_stringset & ioArgument7,
-                                                                                                       class GALGAS_ipic_31__38_SequentialInstruction & outArgument8,
-                                                                                                       class C_Compiler * inCompiler
-                                                                                                       COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_analyzeSimpleInstruction (const int32_t inClassIndex,
-                                                    extensionMethodSignature_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_analyzeSimpleInstruction (const class cPtr_pic_31__38_PiccoloSimpleInstruction * inObject,
-                                                   const GALGAS_uint constin_inAccessBankSplitOffset,
-                                                   const GALGAS_routineMap constin_inRoutineMap,
-                                                   const GALGAS_registerTable constin_inRegisterTable,
-                                                   const GALGAS_pic_31__38__5F_dataMap constin_inDataMap,
-                                                   const GALGAS_constantMap constin_inConstantMap,
-                                                   GALGAS_uint & io_ioCurrentBank,
-                                                   const GALGAS_bool constin_inShouldPreserveBSR,
-                                                   GALGAS_stringset & io_ioUsedRegisters,
-                                                   GALGAS_ipic_31__38_SequentialInstruction & out_outInstruction,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                            Abstract extension method '@pic18PiccoloInstruction analyze'                             *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef void (*extensionMethodSignature_pic_31__38_PiccoloInstruction_analyze) (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                                                                const class GALGAS_uint constinArgument0,
-                                                                                class GALGAS_ipic_31__38_BlockList & ioArgument1,
-                                                                                const class GALGAS_routineMap constinArgument2,
-                                                                                const class GALGAS_registerTable constinArgument3,
-                                                                                const class GALGAS_pic_31__38__5F_dataMap constinArgument4,
-                                                                                const class GALGAS_constantMap constinArgument5,
-                                                                                const class GALGAS_pic_31__38_MacroMap constinArgument6,
-                                                                                class GALGAS_uint & ioArgument7,
-                                                                                class GALGAS_ipic_31__38_SequentialInstructionList & ioArgument8,
-                                                                                class GALGAS_lstring & ioArgument9,
-                                                                                class GALGAS_string & ioArgument10,
-                                                                                class GALGAS_uint & ioArgument11,
-                                                                                const class GALGAS_bool constinArgument12,
-                                                                                const class GALGAS_routineKind constinArgument13,
-                                                                                class GALGAS_stringset & ioArgument14,
-                                                                                class C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_analyze (const int32_t inClassIndex,
-                                   extensionMethodSignature_pic_31__38_PiccoloInstruction_analyze inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_analyze (const class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                  const GALGAS_uint constin_inAccessBankSplitOffset,
-                                  GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                  const GALGAS_routineMap constin_inRoutineMap,
-                                  const GALGAS_registerTable constin_inRegisterTable,
-                                  const GALGAS_pic_31__38__5F_dataMap constin_inDataMap,
-                                  const GALGAS_constantMap constin_inConstantMap,
-                                  const GALGAS_pic_31__38_MacroMap constin_inMacroMap,
-                                  GALGAS_uint & io_ioLocalLabelIndex,
-                                  GALGAS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
-                                  GALGAS_lstring & io_ioBlockLabel,
-                                  GALGAS_string & io_ioListFileContents,
-                                  GALGAS_uint & io_ioCurrentBank,
-                                  const GALGAS_bool constin_inShouldPreserveBSR,
-                                  const GALGAS_routineKind constin_inRoutineKind,
-                                  GALGAS_stringset & io_ioUsedRegisters,
-                                  C_Compiler * inCompiler
-                                  COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                            @blockInstructionBlockMap map                                            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cMapElement_blockInstructionBlockMap ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const char * kSearchErrorMessage_blockInstructionBlockMap_searchKey ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_blockInstructionBlockMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
-  public : GALGAS_blockInstructionBlockMap (void) ;
-
-//--------------------------------- Handle copy
-  public : GALGAS_blockInstructionBlockMap (const GALGAS_blockInstructionBlockMap & inSource) ;
-  public : GALGAS_blockInstructionBlockMap & operator = (const GALGAS_blockInstructionBlockMap & inSource) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_blockInstructionBlockMap extractObject (const GALGAS_object & inObject,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_blockInstructionBlockMap constructor_emptyMap (LOCATION_ARGS) ;
-
-  public : static class GALGAS_blockInstructionBlockMap constructor_mapWithMapToOverride (const class GALGAS_blockInstructionBlockMap & inOperand0
-                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
-                                                      const class GALGAS_pic_31__38_InstructionList & inOperand1,
-                                                      const class GALGAS_abstractBlockTerminationForBlockInstruction & inOperand2,
-                                                      const class GALGAS_location & inOperand3,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
-                                                   class GALGAS_pic_31__38_InstructionList constinArgument1,
-                                                   class GALGAS_abstractBlockTerminationForBlockInstruction constinArgument2,
-                                                   class GALGAS_location constinArgument3,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMBlockTerminaisonForBlockInstructionForKey (class GALGAS_abstractBlockTerminationForBlockInstruction constinArgument0,
-                                                                                       class GALGAS_string constinArgument1,
-                                                                                       C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMEndOfBlockForKey (class GALGAS_location constinArgument0,
-                                                              class GALGAS_string constinArgument1,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMInstructionListForKey (class GALGAS_pic_31__38_InstructionList constinArgument0,
-                                                                   class GALGAS_string constinArgument1,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
-                                                   class GALGAS_pic_31__38_InstructionList & outArgument1,
-                                                   class GALGAS_abstractBlockTerminationForBlockInstruction & outArgument2,
-                                                   class GALGAS_location & outArgument3,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_abstractBlockTerminationForBlockInstruction getter_mBlockTerminaisonForBlockInstructionForKey (const class GALGAS_string & constinOperand0,
-                                                                                                                                        C_Compiler * inCompiler
-                                                                                                                                        COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_location getter_mEndOfBlockForKey (const class GALGAS_string & constinOperand0,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList getter_mInstructionListForKey (const class GALGAS_string & constinOperand0,
-                                                                                                   C_Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_blockInstructionBlockMap getter_overriddenMap (C_Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
-  public : VIRTUAL_IN_DEBUG cMapElement_blockInstructionBlockMap * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
-                                                                                                      const GALGAS_string & inKey
-                                                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Friend
-
-  friend class cEnumerator_blockInstructionBlockMap ;
- 
-} ; // End of GALGAS_blockInstructionBlockMap class
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Enumerator declaration                                                                                            *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cEnumerator_blockInstructionBlockMap : public cGenericAbstractEnumerator {
-  public : cEnumerator_blockInstructionBlockMap (const GALGAS_blockInstructionBlockMap & inEnumeratedObject,
-                                                 const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public : class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
-  public : class GALGAS_pic_31__38_InstructionList current_mInstructionList (LOCATION_ARGS) const ;
-  public : class GALGAS_abstractBlockTerminationForBlockInstruction current_mBlockTerminaisonForBlockInstruction (LOCATION_ARGS) const ;
-  public : class GALGAS_location current_mEndOfBlock (LOCATION_ARGS) const ;
-//--- Current element access
-  public : class GALGAS_blockInstructionBlockMap_2D_element current (LOCATION_ARGS) const ;
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInstructionBlockMap ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                Class for element of '@blockInstructionBlockMap' map                                 *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cMapElement_blockInstructionBlockMap : public cMapElement {
-//--- Map attributes
-  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
-  public : GALGAS_abstractBlockTerminationForBlockInstruction mProperty_mBlockTerminaisonForBlockInstruction ;
-  public : GALGAS_location mProperty_mEndOfBlock ;
-
-//--- Constructor
-  public : cMapElement_blockInstructionBlockMap (const GALGAS_lstring & inKey,
-                                                 const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                 const GALGAS_abstractBlockTerminationForBlockInstruction & in_mBlockTerminaisonForBlockInstruction,
-                                                 const GALGAS_location & in_mEndOfBlock
-                                                 COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public : virtual cMapElement * copy (void) ;
-
-//--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                     @blockInstructionBlockMap_2D_element struct                                     *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_blockInstructionBlockMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_lstring mProperty_lkey ;
-
-  public : GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
-
-  public : GALGAS_abstractBlockTerminationForBlockInstruction mProperty_mBlockTerminaisonForBlockInstruction ;
-
-  public : GALGAS_location mProperty_mEndOfBlock ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_blockInstructionBlockMap_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : virtual ~ GALGAS_blockInstructionBlockMap_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_blockInstructionBlockMap_2D_element (const GALGAS_lstring & in_lkey,
-                                                       const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                       const GALGAS_abstractBlockTerminationForBlockInstruction & in_mBlockTerminaisonForBlockInstruction,
-                                                       const GALGAS_location & in_mEndOfBlock) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_blockInstructionBlockMap_2D_element extractObject (const GALGAS_object & inObject,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_blockInstructionBlockMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                    const class GALGAS_pic_31__38_InstructionList & inOperand1,
-                                                                                    const class GALGAS_abstractBlockTerminationForBlockInstruction & inOperand2,
-                                                                                    const class GALGAS_location & inOperand3
-                                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_blockInstructionBlockMap_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_abstractBlockTerminationForBlockInstruction getter_mBlockTerminaisonForBlockInstruction (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_location getter_mEndOfBlock (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList getter_mInstructionList (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_blockInstructionBlockMap_2D_element class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInstructionBlockMap_2D_element ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                          @blockInitialBankSelectionMap map                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cMapElement_blockInitialBankSelectionMap ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const char * kSearchErrorMessage_blockInitialBankSelectionMap_searchKey ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_blockInitialBankSelectionMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
-  public : GALGAS_blockInitialBankSelectionMap (void) ;
-
-//--------------------------------- Handle copy
-  public : GALGAS_blockInitialBankSelectionMap (const GALGAS_blockInitialBankSelectionMap & inSource) ;
-  public : GALGAS_blockInitialBankSelectionMap & operator = (const GALGAS_blockInitialBankSelectionMap & inSource) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_blockInitialBankSelectionMap extractObject (const GALGAS_object & inObject,
-                                                                     C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_blockInitialBankSelectionMap constructor_emptyMap (LOCATION_ARGS) ;
-
-  public : static class GALGAS_blockInitialBankSelectionMap constructor_mapWithMapToOverride (const class GALGAS_blockInitialBankSelectionMap & inOperand0
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public : VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
-                                                      const class GALGAS_uint & inOperand1,
-                                                      const class GALGAS_string & inOperand2,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
-                                                   class GALGAS_uint constinArgument1,
-                                                   class GALGAS_string constinArgument2,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMInitialBankSelectionForKey (class GALGAS_uint constinArgument0,
-                                                                        class GALGAS_string constinArgument1,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMSourceBlockForKey (class GALGAS_string constinArgument0,
-                                                               class GALGAS_string constinArgument1,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public : VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
-                                                   class GALGAS_uint & outArgument1,
-                                                   class GALGAS_string & outArgument2,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mInitialBankSelectionForKey (const class GALGAS_string & constinOperand0,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSourceBlockForKey (const class GALGAS_string & constinOperand0,
-                                                                           C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_blockInitialBankSelectionMap getter_overriddenMap (C_Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
-  public : VIRTUAL_IN_DEBUG cMapElement_blockInitialBankSelectionMap * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
-                                                                                                          const GALGAS_string & inKey
-                                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Friend
-
-  friend class cEnumerator_blockInitialBankSelectionMap ;
- 
-} ; // End of GALGAS_blockInitialBankSelectionMap class
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//   Enumerator declaration                                                                                            *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cEnumerator_blockInitialBankSelectionMap : public cGenericAbstractEnumerator {
-  public : cEnumerator_blockInitialBankSelectionMap (const GALGAS_blockInitialBankSelectionMap & inEnumeratedObject,
-                                                     const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public : class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
-  public : class GALGAS_uint current_mInitialBankSelection (LOCATION_ARGS) const ;
-  public : class GALGAS_string current_mSourceBlock (LOCATION_ARGS) const ;
-//--- Current element access
-  public : class GALGAS_blockInitialBankSelectionMap_2D_element current (LOCATION_ARGS) const ;
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInitialBankSelectionMap ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                              Class for element of '@blockInitialBankSelectionMap' map                               *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class cMapElement_blockInitialBankSelectionMap : public cMapElement {
-//--- Map attributes
-  public : GALGAS_uint mProperty_mInitialBankSelection ;
-  public : GALGAS_string mProperty_mSourceBlock ;
-
-//--- Constructor
-  public : cMapElement_blockInitialBankSelectionMap (const GALGAS_lstring & inKey,
-                                                     const GALGAS_uint & in_mInitialBankSelection,
-                                                     const GALGAS_string & in_mSourceBlock
-                                                     COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public : virtual cMapElement * copy (void) ;
-
-//--- Description
- public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                   @blockInitialBankSelectionMap_2D_element struct                                   *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_blockInitialBankSelectionMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_lstring mProperty_lkey ;
-
-  public : GALGAS_uint mProperty_mInitialBankSelection ;
-
-  public : GALGAS_string mProperty_mSourceBlock ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_blockInitialBankSelectionMap_2D_element constructor_default (LOCATION_ARGS) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_blockInitialBankSelectionMap_2D_element (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : virtual ~ GALGAS_blockInitialBankSelectionMap_2D_element (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_blockInitialBankSelectionMap_2D_element (const GALGAS_lstring & in_lkey,
-                                                           const GALGAS_uint & in_mInitialBankSelection,
-                                                           const GALGAS_string & in_mSourceBlock) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_blockInitialBankSelectionMap_2D_element extractObject (const GALGAS_object & inObject,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_blockInitialBankSelectionMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                        const class GALGAS_uint & inOperand1,
-                                                                                        const class GALGAS_string & inOperand2
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_blockInitialBankSelectionMap_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_lkey (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mInitialBankSelection (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_string getter_mSourceBlock (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_blockInitialBankSelectionMap_2D_element class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInitialBankSelectionMap_2D_element ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//              Abstract extension method '@abstractBlockTerminationForBlockInstruction addVisitedBlocks'              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef void (*extensionMethodSignature_abstractBlockTerminationForBlockInstruction_addVisitedBlocks) (const class cPtr_abstractBlockTerminationForBlockInstruction * inObject,
-                                                                                                       class GALGAS_stringset & ioArgument0,
-                                                                                                       const class GALGAS_blockInstructionBlockMap constinArgument1,
-                                                                                                       const class GALGAS_string constinArgument2,
-                                                                                                       const class GALGAS_uint constinArgument3,
-                                                                                                       class GALGAS_blockInitialBankSelectionMap & ioArgument4,
-                                                                                                       class GALGAS_bool & ioArgument5,
-                                                                                                       class GALGAS_bool & ioArgument6,
-                                                                                                       class C_Compiler * inCompiler
-                                                                                                       COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_addVisitedBlocks (const int32_t inClassIndex,
-                                            extensionMethodSignature_abstractBlockTerminationForBlockInstruction_addVisitedBlocks inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_addVisitedBlocks (const class cPtr_abstractBlockTerminationForBlockInstruction * inObject,
-                                           GALGAS_stringset & io_ioVisitedBlockSet,
-                                           const GALGAS_blockInstructionBlockMap constin_inBlockMap,
-                                           const GALGAS_string constin_inCurrentBlockName,
-                                           const GALGAS_uint constin_inInitialBlockSetting,
-                                           GALGAS_blockInitialBankSelectionMap & io_ioBlockInitialBankSelectionMap,
-                                           GALGAS_bool & io_ioContinuesInSequence,
-                                           GALGAS_bool & io_ioContinueAccessibilityExploration,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//               Abstract extension method '@abstractBlockTerminationForBlockInstruction generateBlock'                *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef void (*extensionMethodSignature_abstractBlockTerminationForBlockInstruction_generateBlock) (const class cPtr_abstractBlockTerminationForBlockInstruction * inObject,
-                                                                                                    const class GALGAS_uint constinArgument0,
-                                                                                                    const class GALGAS_uint constinArgument1,
-                                                                                                    const class GALGAS_registerTable constinArgument2,
-                                                                                                    const class GALGAS_constantMap constinArgument3,
-                                                                                                    class GALGAS_uint & ioArgument4,
-                                                                                                    class GALGAS_ipic_31__38_BlockList & ioArgument5,
-                                                                                                    class GALGAS_stringset & ioArgument6,
-                                                                                                    const class GALGAS_string constinArgument7,
-                                                                                                    class GALGAS_ipic_31__38_AbstractBlockTerminator & outArgument8,
-                                                                                                    class C_Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_generateBlock (const int32_t inClassIndex,
-                                         extensionMethodSignature_abstractBlockTerminationForBlockInstruction_generateBlock inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_generateBlock (const class cPtr_abstractBlockTerminationForBlockInstruction * inObject,
-                                        const GALGAS_uint constin_inAccessBankSplitOffset,
-                                        const GALGAS_uint constin_inCurrentBank,
-                                        const GALGAS_registerTable constin_inRegisterTable,
-                                        const GALGAS_constantMap constin_inConstantMap,
-                                        GALGAS_uint & io_ioLocalLabelIndex,
-                                        GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                        GALGAS_stringset & io_ioUsedRegisters,
-                                        const GALGAS_string constin_inLabelForBlock,
-                                        GALGAS_ipic_31__38_AbstractBlockTerminator & out_outTerminator,
-                                        C_Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                       Abstract extension method '@pic18ConditionExpression analyzeCondition'                        *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef void (*extensionMethodSignature_pic_31__38_ConditionExpression_analyzeCondition) (const class cPtr_pic_31__38_ConditionExpression * inObject,
-                                                                                          const class GALGAS_uint constinArgument0,
-                                                                                          const class GALGAS_uint constinArgument1,
-                                                                                          const class GALGAS_registerTable constinArgument2,
-                                                                                          const class GALGAS_constantMap constinArgument3,
-                                                                                          class GALGAS_uint & ioArgument4,
-                                                                                          class GALGAS_ipic_31__38_BlockList & ioArgument5,
-                                                                                          const class GALGAS_lstring constinArgument6,
-                                                                                          const class GALGAS_lstring constinArgument7,
-                                                                                          class GALGAS_stringset & ioArgument8,
-                                                                                          class GALGAS_ipic_31__38_AbstractBlockTerminator & outArgument9,
-                                                                                          class C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_analyzeCondition (const int32_t inClassIndex,
-                                            extensionMethodSignature_pic_31__38_ConditionExpression_analyzeCondition inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_analyzeCondition (const class cPtr_pic_31__38_ConditionExpression * inObject,
-                                           const GALGAS_uint constin_inAccessBankSplitOffset,
-                                           const GALGAS_uint constin_inCurrentBank,
-                                           const GALGAS_registerTable constin_inRegisterTable,
-                                           const GALGAS_constantMap constin_inConstantMap,
-                                           GALGAS_uint & io_ioLocalLabelIndex,
-                                           GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                           const GALGAS_lstring constin_inConditionTrueLabel,
-                                           const GALGAS_lstring constin_inConditionFalseLabel,
-                                           GALGAS_stringset & io_ioUsedRegisters,
-                                           GALGAS_ipic_31__38_AbstractBlockTerminator & out_outCurrentBlockTerminator,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                    Abstract extension method '@ipic18AbstractBlockTerminator optimizeTerminator'                    *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typedef void (*extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_optimizeTerminator) (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                                                 const class GALGAS_symbolTableForBlockOptimization constinArgument0,
-                                                                                                 const class GALGAS_optimizeFlagStruct constinArgument1,
-                                                                                                 const class GALGAS_ipic_31__38_BlockList constinArgument2,
-                                                                                                 const class GALGAS_string constinArgument3,
-                                                                                                 class GALGAS_bool & ioArgument4,
-                                                                                                 class GALGAS_string & ioArgument5,
-                                                                                                 class GALGAS_ipic_31__38_AbstractBlockTerminator & outArgument6,
-                                                                                                 class C_Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_optimizeTerminator (const int32_t inClassIndex,
-                                              extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_optimizeTerminator inMethod) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_optimizeTerminator (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                             const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                             const GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
-                                             const GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                             const GALGAS_string constin_inBlockLabel,
-                                             GALGAS_bool & io_ioOptimizationDone,
-                                             GALGAS_string & io_ioListFileContents,
-                                             GALGAS_ipic_31__38_AbstractBlockTerminator & out_outOptimizedTerminator,
-                                             C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             @optimizeFlagStruct struct                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-class GALGAS_optimizeFlagStruct : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public : GALGAS_bool mProperty_mRemoveEmptyRoutine ;
-
-  public : GALGAS_bool mProperty_mJSRtoRETLWreplacedByMOVLW ;
-
-  public : GALGAS_bool mProperty_mJSRfollowedByRETreplacedByJUMP ;
-
-  public : GALGAS_bool mProperty_mMOVLWfollowedByRETreplacedByRETLW ;
-
-  public : GALGAS_bool mProperty_mJSRtoOneInstructionRoutineReplacedByInstruction ;
-
-  public : GALGAS_bool mProperty_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction ;
-
-  public : GALGAS_bool mProperty_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank ;
-
-//--------------------------------- Accessors
-  public : VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public : VIRTUAL_IN_DEBUG void drop (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public : static GALGAS_optimizeFlagStruct constructor_default (LOCATION_ARGS) ;
-
-//--------------------------------- Default constructor
-  public : GALGAS_optimizeFlagStruct (void) ;
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public : virtual ~ GALGAS_optimizeFlagStruct (void) ;
-
-//--------------------------------- Native constructor
-  public : GALGAS_optimizeFlagStruct (const GALGAS_bool & in_mRemoveEmptyRoutine,
-                                      const GALGAS_bool & in_mJSRtoRETLWreplacedByMOVLW,
-                                      const GALGAS_bool & in_mJSRfollowedByRETreplacedByJUMP,
-                                      const GALGAS_bool & in_mMOVLWfollowedByRETreplacedByRETLW,
-                                      const GALGAS_bool & in_mJSRtoOneInstructionRoutineReplacedByInstruction,
-                                      const GALGAS_bool & in_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction,
-                                      const GALGAS_bool & in_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank) ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
-
-//--------------------------------- Object extraction
-  public : static GALGAS_optimizeFlagStruct extractObject (const GALGAS_object & inObject,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public : static class GALGAS_optimizeFlagStruct constructor_new (const class GALGAS_bool & inOperand0,
-                                                                   const class GALGAS_bool & inOperand1,
-                                                                   const class GALGAS_bool & inOperand2,
-                                                                   const class GALGAS_bool & inOperand3,
-                                                                   const class GALGAS_bool & inOperand4,
-                                                                   const class GALGAS_bool & inOperand5,
-                                                                   const class GALGAS_bool & inOperand6
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public : VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
-//--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_optimizeFlagStruct & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mJSRfollowedByRETreplacedByJUMP (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mJSRtoOneInstructionRoutineReplacedByInstruction (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mJSRtoRETLWreplacedByMOVLW (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mMOVLWfollowedByRETreplacedByRETLW (LOCATION_ARGS) const ;
-
-  public : VIRTUAL_IN_DEBUG class GALGAS_bool getter_mRemoveEmptyRoutine (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
- 
-} ; // End of GALGAS_optimizeFlagStruct class
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_optimizeFlagStruct ;
 

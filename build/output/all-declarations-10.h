@@ -186,14 +186,3 @@ void routine_perform_5F_midrange_5F_optimizations (class GALGAS_midrange_5F_inte
                                                    class C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                         Routine 'midrange_compute_JSR_JUMP'                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_midrange_5F_compute_5F_JSR_5F_JUMP (class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument0,
-                                                 class GALGAS_string & ioArgument1,
-                                                 class C_Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-

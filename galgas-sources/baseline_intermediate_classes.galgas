@@ -15,7 +15,7 @@ abstract class @baseline_intermediate_instruction {
 #-------------------------------------------------------------------------------*
 
 list @baseline_intermediate_instructionList {
-  @baseline_intermediate_instruction mInstruction %setter
+  @baseline_intermediate_instruction mInstruction
 }
 
 #-------------------------------------------------------------------------------*

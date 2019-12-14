@@ -174,9 +174,9 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
       for () in  ramBank do
         @uint bankSize = mLastAddressPlusOne - mFirstAddress
         @uint usedSize = mFirstFreeAddress - mFirstAddress
-        verboseMessage += "  RAM bank '" + lkey + "': "
-        verboseMessage += [bankSize string] + " bytes, used "
-        verboseMessage += [usedSize string] + " bytes ("
+        verboseMessage += "  Bank '" + lkey + "': used "
+        verboseMessage += [usedSize string] + " / "
+        verboseMessage += [bankSize string] + " bytes ("
         verboseMessage += [(usedSize * 100) / bankSize string] + "%).\n"
       end
       message verboseMessage

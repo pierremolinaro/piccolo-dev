@@ -375,7 +375,7 @@ proc buildOrderedGraph
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   ioListFileContents += "Block ordering optimization:\n"
   let @uint n = blockDiscontinuityCount (!ioBlockList)
-  ioListFileContents += "  count before optimization: " + n + "\n"
+  ioListFileContents += "  jump count before optimization: " + n + "\n"
 #---
   if @application.verboseOutput then
     message "Block ordering optimization... "
@@ -474,7 +474,7 @@ proc buildOrderedGraph
   end 
 #------------------------ Messaging
   let @uint p = blockDiscontinuityCount (!orderedBlockList)
-  ioListFileContents += "  count after optimization: " + p + "\n\n"
+  ioListFileContents += "  jump count after optimization: " + p + "\n\n"
   if @application.verboseOutput then
     message [n string] + " -> " + p + ".\n\n"
   end

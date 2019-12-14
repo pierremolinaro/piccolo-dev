@@ -105,6 +105,44 @@ GALGAS_location cPtr_pic_31__38_SimpleConstantCaseItem::getter_mCaseExpressionLo
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_SimpleConstantCaseItem::setter_setMCaseExpression (GALGAS_immediatExpression inValue
+                                                                          COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_pic_31__38_SimpleConstantCaseItem * p = (cPtr_pic_31__38_SimpleConstantCaseItem *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_SimpleConstantCaseItem) ;
+    p->mProperty_mCaseExpression = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_pic_31__38_SimpleConstantCaseItem::setter_setMCaseExpression (GALGAS_immediatExpression inValue
+                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mCaseExpression = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_SimpleConstantCaseItem::setter_setMCaseExpressionLocation (GALGAS_location inValue
+                                                                                  COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_pic_31__38_SimpleConstantCaseItem * p = (cPtr_pic_31__38_SimpleConstantCaseItem *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_SimpleConstantCaseItem) ;
+    p->mProperty_mCaseExpressionLocation = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_pic_31__38_SimpleConstantCaseItem::setter_setMCaseExpressionLocation (GALGAS_location inValue
+                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mCaseExpressionLocation = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                Pointer class for @pic18SimpleConstantCaseItem class                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -300,6 +338,63 @@ GALGAS_location GALGAS_pic_31__38_IntervalCaseItem::getter_mCaseExpressionLocati
 
 GALGAS_location cPtr_pic_31__38_IntervalCaseItem::getter_mCaseExpressionLocation (UNUSED_LOCATION_ARGS) const {
   return mProperty_mCaseExpressionLocation ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_IntervalCaseItem::setter_setMMinExpression (GALGAS_immediatExpression inValue
+                                                                   COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_pic_31__38_IntervalCaseItem * p = (cPtr_pic_31__38_IntervalCaseItem *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_IntervalCaseItem) ;
+    p->mProperty_mMinExpression = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_pic_31__38_IntervalCaseItem::setter_setMMinExpression (GALGAS_immediatExpression inValue
+                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mMinExpression = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_IntervalCaseItem::setter_setMMaxExpression (GALGAS_immediatExpression inValue
+                                                                   COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_pic_31__38_IntervalCaseItem * p = (cPtr_pic_31__38_IntervalCaseItem *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_IntervalCaseItem) ;
+    p->mProperty_mMaxExpression = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_pic_31__38_IntervalCaseItem::setter_setMMaxExpression (GALGAS_immediatExpression inValue
+                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mMaxExpression = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_IntervalCaseItem::setter_setMCaseExpressionLocation (GALGAS_location inValue
+                                                                            COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_pic_31__38_IntervalCaseItem * p = (cPtr_pic_31__38_IntervalCaseItem *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_IntervalCaseItem) ;
+    p->mProperty_mCaseExpressionLocation = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_pic_31__38_IntervalCaseItem::setter_setMCaseExpressionLocation (GALGAS_location inValue
+                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mCaseExpressionLocation = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -678,6 +773,20 @@ void GALGAS_pic_31__38_CaseExpressionList::plusAssign_operation (const GALGAS_pi
                                                                  C_Compiler * /* inCompiler */
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_CaseExpressionList::setter_setMCaseItemAtIndex (GALGAS_pic_31__38_AbstractCaseItem inOperand,
+                                                                       GALGAS_uint inIndex,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) {
+  cCollectionElement_pic_31__38_CaseExpressionList * p = (cCollectionElement_pic_31__38_CaseExpressionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_pic_31__38_CaseExpressionList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mCaseItem = inOperand ;
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1117,6 +1226,20 @@ void GALGAS_pic_31__38_SwitchInstructionCaseList::plusAssign_operation (const GA
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+void GALGAS_pic_31__38_SwitchInstructionCaseList::setter_setMStartOfCaseAtIndex (GALGAS_location inOperand,
+                                                                                 GALGAS_uint inIndex,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement_pic_31__38_SwitchInstructionCaseList * p = (cCollectionElement_pic_31__38_SwitchInstructionCaseList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mStartOfCase = inOperand ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 GALGAS_location GALGAS_pic_31__38_SwitchInstructionCaseList::getter_mStartOfCaseAtIndex (const GALGAS_uint & inIndex,
                                                                                          C_Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) const {
@@ -1132,6 +1255,20 @@ GALGAS_location GALGAS_pic_31__38_SwitchInstructionCaseList::getter_mStartOfCase
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+void GALGAS_pic_31__38_SwitchInstructionCaseList::setter_setMCaseExpressionListAtIndex (GALGAS_pic_31__38_CaseExpressionList inOperand,
+                                                                                        GALGAS_uint inIndex,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) {
+  cCollectionElement_pic_31__38_SwitchInstructionCaseList * p = (cCollectionElement_pic_31__38_SwitchInstructionCaseList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mCaseExpressionList = inOperand ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_SwitchInstructionCaseList::getter_mCaseExpressionListAtIndex (const GALGAS_uint & inIndex,
                                                                                                                      C_Compiler * inCompiler
                                                                                                                      COMMA_LOCATION_ARGS) const {
@@ -1143,6 +1280,20 @@ GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_SwitchInstructionCaseList
     result = p->mObject.mProperty_mCaseExpressionList ;
   }
   return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_SwitchInstructionCaseList::setter_setMInstructionListAtIndex (GALGAS_pic_31__38_InstructionList inOperand,
+                                                                                     GALGAS_uint inIndex,
+                                                                                     C_Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) {
+  cCollectionElement_pic_31__38_SwitchInstructionCaseList * p = (cCollectionElement_pic_31__38_SwitchInstructionCaseList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mInstructionList = inOperand ;
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -1380,6 +1531,63 @@ GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_Instruction_5F_switch::gette
 
 GALGAS_pic_31__38_InstructionList cPtr_pic_31__38_Instruction_5F_switch::getter_mElseInstructionList (UNUSED_LOCATION_ARGS) const {
   return mProperty_mElseInstructionList ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_Instruction_5F_switch::setter_setMCaseList (GALGAS_pic_31__38_SwitchInstructionCaseList inValue
+                                                                   COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_pic_31__38_Instruction_5F_switch * p = (cPtr_pic_31__38_Instruction_5F_switch *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_switch) ;
+    p->mProperty_mCaseList = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_pic_31__38_Instruction_5F_switch::setter_setMCaseList (GALGAS_pic_31__38_SwitchInstructionCaseList inValue
+                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mCaseList = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_Instruction_5F_switch::setter_setMElseBranchStartLocation (GALGAS_location inValue
+                                                                                  COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_pic_31__38_Instruction_5F_switch * p = (cPtr_pic_31__38_Instruction_5F_switch *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_switch) ;
+    p->mProperty_mElseBranchStartLocation = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_pic_31__38_Instruction_5F_switch::setter_setMElseBranchStartLocation (GALGAS_location inValue
+                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mElseBranchStartLocation = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_Instruction_5F_switch::setter_setMElseInstructionList (GALGAS_pic_31__38_InstructionList inValue
+                                                                              COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_pic_31__38_Instruction_5F_switch * p = (cPtr_pic_31__38_Instruction_5F_switch *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_switch) ;
+    p->mProperty_mElseInstructionList = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_pic_31__38_Instruction_5F_switch::setter_setMElseInstructionList (GALGAS_pic_31__38_InstructionList inValue
+                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mElseInstructionList = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2088,6 +2296,25 @@ GALGAS_location cPtr_ipic_31__38_SequentialInstruction::getter_mInstructionLocat
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_SequentialInstruction::setter_setMInstructionLocation (GALGAS_location inValue
+                                                                               COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_SequentialInstruction * p = (cPtr_ipic_31__38_SequentialInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_SequentialInstruction) ;
+    p->mProperty_mInstructionLocation = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_SequentialInstruction::setter_setMInstructionLocation (GALGAS_location inValue
+                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mInstructionLocation = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                Pointer class for @ipic18SequentialInstruction class                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -2490,6 +2717,20 @@ void GALGAS_ipic_31__38_SequentialInstructionList::plusAssign_operation (const G
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+void GALGAS_ipic_31__38_SequentialInstructionList::setter_setMInstructionAtIndex (GALGAS_ipic_31__38_SequentialInstruction inOperand,
+                                                                                  GALGAS_uint inIndex,
+                                                                                  C_Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) {
+  cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mInstruction = inOperand ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 GALGAS_ipic_31__38_SequentialInstruction GALGAS_ipic_31__38_SequentialInstructionList::getter_mInstructionAtIndex (const GALGAS_uint & inIndex,
                                                                                                                    C_Compiler * inCompiler
                                                                                                                    COMMA_LOCATION_ARGS) const {
@@ -2505,6 +2746,20 @@ GALGAS_ipic_31__38_SequentialInstruction GALGAS_ipic_31__38_SequentialInstructio
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+void GALGAS_ipic_31__38_SequentialInstructionList::setter_setMMinAtIndex (GALGAS_uint inOperand,
+                                                                          GALGAS_uint inIndex,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mMin = inOperand ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 GALGAS_uint GALGAS_ipic_31__38_SequentialInstructionList::getter_mMinAtIndex (const GALGAS_uint & inIndex,
                                                                               C_Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const {
@@ -2516,6 +2771,20 @@ GALGAS_uint GALGAS_ipic_31__38_SequentialInstructionList::getter_mMinAtIndex (co
     result = p->mObject.mProperty_mMin ;
   }
   return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_SequentialInstructionList::setter_setMMaxAtIndex (GALGAS_uint inOperand,
+                                                                          GALGAS_uint inIndex,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  cCollectionElement_ipic_31__38_SequentialInstructionList * p = (cCollectionElement_ipic_31__38_SequentialInstructionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mMax = inOperand ;
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -2673,6 +2942,25 @@ GALGAS_location GALGAS_ipic_31__38_AbstractBlockTerminator::getter_mInstructionL
 
 GALGAS_location cPtr_ipic_31__38_AbstractBlockTerminator::getter_mInstructionLocation (UNUSED_LOCATION_ARGS) const {
   return mProperty_mInstructionLocation ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_AbstractBlockTerminator::setter_setMInstructionLocation (GALGAS_location inValue
+                                                                                 COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_AbstractBlockTerminator * p = (cPtr_ipic_31__38_AbstractBlockTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_AbstractBlockTerminator) ;
+    p->mProperty_mInstructionLocation = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_AbstractBlockTerminator::setter_setMInstructionLocation (GALGAS_location inValue
+                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mInstructionLocation = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -3022,6 +3310,20 @@ void GALGAS_ipic_31__38_BlockList::plusAssign_operation (const GALGAS_ipic_31__3
                                                          C_Compiler * /* inCompiler */
                                                          COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_BlockList::setter_setMBlockAtIndex (GALGAS_ipic_31__38_Block inOperand,
+                                                            GALGAS_uint inIndex,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  cCollectionElement_ipic_31__38_BlockList * p = (cCollectionElement_ipic_31__38_BlockList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_ipic_31__38_BlockList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mBlock = inOperand ;
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -3426,6 +3728,25 @@ GALGAS_uint cPtr_ipic_31__38_RetlwTerminator::getter_mLiteralValue (UNUSED_LOCAT
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_RetlwTerminator::setter_setMLiteralValue (GALGAS_uint inValue
+                                                                  COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_RetlwTerminator * p = (cPtr_ipic_31__38_RetlwTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_RetlwTerminator) ;
+    p->mProperty_mLiteralValue = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_RetlwTerminator::setter_setMLiteralValue (GALGAS_uint inValue
+                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mLiteralValue = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                   Pointer class for @ipic18RetlwTerminator class                                    *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -3588,6 +3909,25 @@ GALGAS_bool GALGAS_ipic_31__38_RetfieTerminator::getter_mFastReturn (UNUSED_LOCA
 
 GALGAS_bool cPtr_ipic_31__38_RetfieTerminator::getter_mFastReturn (UNUSED_LOCATION_ARGS) const {
   return mProperty_mFastReturn ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_RetfieTerminator::setter_setMFastReturn (GALGAS_bool inValue
+                                                                 COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_RetfieTerminator * p = (cPtr_ipic_31__38_RetfieTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_RetfieTerminator) ;
+    p->mProperty_mFastReturn = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_RetfieTerminator::setter_setMFastReturn (GALGAS_bool inValue
+                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mFastReturn = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -3776,6 +4116,44 @@ GALGAS_bool GALGAS_ipic_31__38_ComputedGotoTerminator::getter_mUsesRCALL (UNUSED
 
 GALGAS_bool cPtr_ipic_31__38_ComputedGotoTerminator::getter_mUsesRCALL (UNUSED_LOCATION_ARGS) const {
   return mProperty_mUsesRCALL ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_ComputedGotoTerminator::setter_setMTargetLabels (GALGAS_lstringlist inValue
+                                                                         COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_ComputedGotoTerminator * p = (cPtr_ipic_31__38_ComputedGotoTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedGotoTerminator) ;
+    p->mProperty_mTargetLabels = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_ComputedGotoTerminator::setter_setMTargetLabels (GALGAS_lstringlist inValue
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mTargetLabels = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_ComputedGotoTerminator::setter_setMUsesRCALL (GALGAS_bool inValue
+                                                                      COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_ComputedGotoTerminator * p = (cPtr_ipic_31__38_ComputedGotoTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedGotoTerminator) ;
+    p->mProperty_mUsesRCALL = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_ComputedGotoTerminator::setter_setMUsesRCALL (GALGAS_bool inValue
+                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mUsesRCALL = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -3968,6 +4346,44 @@ GALGAS_bool GALGAS_ipic_31__38_ComputedRETLWTerminator::getter_mUsesRCALL (UNUSE
 
 GALGAS_bool cPtr_ipic_31__38_ComputedRETLWTerminator::getter_mUsesRCALL (UNUSED_LOCATION_ARGS) const {
   return mProperty_mUsesRCALL ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_ComputedRETLWTerminator::setter_setMLiteralValues (GALGAS_uintlist inValue
+                                                                           COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_ComputedRETLWTerminator * p = (cPtr_ipic_31__38_ComputedRETLWTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
+    p->mProperty_mLiteralValues = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_ComputedRETLWTerminator::setter_setMLiteralValues (GALGAS_uintlist inValue
+                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mLiteralValues = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_ComputedRETLWTerminator::setter_setMUsesRCALL (GALGAS_bool inValue
+                                                                       COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_ComputedRETLWTerminator * p = (cPtr_ipic_31__38_ComputedRETLWTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
+    p->mProperty_mUsesRCALL = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_ComputedRETLWTerminator::setter_setMUsesRCALL (GALGAS_bool inValue
+                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mUsesRCALL = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -4287,6 +4703,44 @@ GALGAS_bool cPtr_ipic_31__38_ComputedBraTerminator::getter_mUsesRCALL (UNUSED_LO
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_ComputedBraTerminator::setter_setMTargetLabels (GALGAS_lstringlist inValue
+                                                                        COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_ComputedBraTerminator * p = (cPtr_ipic_31__38_ComputedBraTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedBraTerminator) ;
+    p->mProperty_mTargetLabels = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_ComputedBraTerminator::setter_setMTargetLabels (GALGAS_lstringlist inValue
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mTargetLabels = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_ComputedBraTerminator::setter_setMUsesRCALL (GALGAS_bool inValue
+                                                                     COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_ComputedBraTerminator * p = (cPtr_ipic_31__38_ComputedBraTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedBraTerminator) ;
+    p->mProperty_mUsesRCALL = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_ComputedBraTerminator::setter_setMUsesRCALL (GALGAS_bool inValue
+                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mUsesRCALL = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                Pointer class for @ipic18ComputedBraTerminator class                                 *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -4561,6 +5015,44 @@ GALGAS_ipic_31__38_SingleInstructionTerminator GALGAS_ipic_31__38_AbstractCondit
 
 GALGAS_ipic_31__38_SingleInstructionTerminator cPtr_ipic_31__38_AbstractConditionTerminator::getter_mSingleInstructionTerminatorIfConditionFalse (UNUSED_LOCATION_ARGS) const {
   return mProperty_mSingleInstructionTerminatorIfConditionFalse ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_AbstractConditionTerminator::setter_setMSingleInstructionTerminatorIfConditionTrue (GALGAS_ipic_31__38_SingleInstructionTerminator inValue
+                                                                                                            COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_AbstractConditionTerminator * p = (cPtr_ipic_31__38_AbstractConditionTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_AbstractConditionTerminator) ;
+    p->mProperty_mSingleInstructionTerminatorIfConditionTrue = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_AbstractConditionTerminator::setter_setMSingleInstructionTerminatorIfConditionTrue (GALGAS_ipic_31__38_SingleInstructionTerminator inValue
+                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mSingleInstructionTerminatorIfConditionTrue = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_AbstractConditionTerminator::setter_setMSingleInstructionTerminatorIfConditionFalse (GALGAS_ipic_31__38_SingleInstructionTerminator inValue
+                                                                                                             COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_AbstractConditionTerminator * p = (cPtr_ipic_31__38_AbstractConditionTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_AbstractConditionTerminator) ;
+    p->mProperty_mSingleInstructionTerminatorIfConditionFalse = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_AbstractConditionTerminator::setter_setMSingleInstructionTerminatorIfConditionFalse (GALGAS_ipic_31__38_SingleInstructionTerminator inValue
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mSingleInstructionTerminatorIfConditionFalse = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -4906,6 +5398,63 @@ GALGAS_bool cPtr_ipic_31__38_IncDecRegisterTerminator::getter_m_5F_W_5F_isDestin
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_IncDecRegisterTerminator::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                  COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_IncDecRegisterTerminator * p = (cPtr_ipic_31__38_IncDecRegisterTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_IncDecRegisterTerminator) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_IncDecRegisterTerminator::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mRegisterDescription = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_IncDecRegisterTerminator::setter_setMIncrement (GALGAS_bool inValue
+                                                                        COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_IncDecRegisterTerminator * p = (cPtr_ipic_31__38_IncDecRegisterTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_IncDecRegisterTerminator) ;
+    p->mProperty_mIncrement = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_IncDecRegisterTerminator::setter_setMIncrement (GALGAS_bool inValue
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mIncrement = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_IncDecRegisterTerminator::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
+                                                                                     COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_IncDecRegisterTerminator * p = (cPtr_ipic_31__38_IncDecRegisterTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_IncDecRegisterTerminator) ;
+    p->mProperty_m_5F_W_5F_isDestination = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_IncDecRegisterTerminator::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
+                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_m_5F_W_5F_isDestination = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                               Pointer class for @ipic18IncDecRegisterTerminator class                               *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5082,6 +5631,25 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_pic_31__38_Test
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression cPtr_pic_31__38_TestRegisterTerminator::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mProperty_mRegisterDescription ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_TestRegisterTerminator::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                               COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_pic_31__38_TestRegisterTerminator * p = (cPtr_pic_31__38_TestRegisterTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_TestRegisterTerminator) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_pic_31__38_TestRegisterTerminator::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mRegisterDescription = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -5278,6 +5846,44 @@ GALGAS_uint cPtr_pic_31__38_BitTestTerminator::getter_mBitNumber (UNUSED_LOCATIO
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_BitTestTerminator::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                          COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_pic_31__38_BitTestTerminator * p = (cPtr_pic_31__38_BitTestTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_BitTestTerminator) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_pic_31__38_BitTestTerminator::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mRegisterDescription = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_pic_31__38_BitTestTerminator::setter_setMBitNumber (GALGAS_uint inValue
+                                                                COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_pic_31__38_BitTestTerminator * p = (cPtr_pic_31__38_BitTestTerminator *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_BitTestTerminator) ;
+    p->mProperty_mBitNumber = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_pic_31__38_BitTestTerminator::setter_setMBitNumber (GALGAS_uint inValue
+                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mBitNumber = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                                   Pointer class for @pic18BitTestTerminator class                                   *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -5442,6 +6048,25 @@ GALGAS_pic_31__38_InstructionWithNoOperandKind GALGAS_ipic_31__38_InstructionWit
 
 GALGAS_pic_31__38_InstructionWithNoOperandKind cPtr_ipic_31__38_InstructionWithNoOperand::getter_mKind (UNUSED_LOCATION_ARGS) const {
   return mProperty_mKind ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38_InstructionWithNoOperand::setter_setMKind (GALGAS_pic_31__38_InstructionWithNoOperandKind inValue
+                                                                   COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38_InstructionWithNoOperand * p = (cPtr_ipic_31__38_InstructionWithNoOperand *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38_InstructionWithNoOperand) ;
+    p->mProperty_mKind = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38_InstructionWithNoOperand::setter_setMKind (GALGAS_pic_31__38_InstructionWithNoOperandKind inValue
+                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mKind = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -5676,6 +6301,63 @@ GALGAS_bool GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::getter_m_
 
 GALGAS_bool cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   return mProperty_m_5F_W_5F_isDestination ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::setter_setMInstruction_5F_FDA_5F_base_5F_code (GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST inValue
+                                                                                                               COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA) ;
+    p->mProperty_mInstruction_5F_FDA_5F_base_5F_code = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::setter_setMInstruction_5F_FDA_5F_base_5F_code (GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST inValue
+                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mInstruction_5F_FDA_5F_base_5F_code = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                                COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mRegisterDescription = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
+                                                                                                   COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA) ;
+    p->mProperty_m_5F_W_5F_isDestination = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
+                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_m_5F_W_5F_isDestination = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -6020,6 +6702,44 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression cPtr_ipic_31__38__5F_i
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::setter_setMFAinstruction (GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code inValue
+                                                                                         COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA) ;
+    p->mProperty_mFAinstruction = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::setter_setMFAinstruction (GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code inValue
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mFAinstruction = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                               COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mRegisterDescription = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                             Pointer class for @ipic18_intermediate_instruction_FA class                             *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6349,6 +7069,44 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication cP
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::setter_setMSourceRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication inValue
+                                                                                                        COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF) ;
+    p->mProperty_mSourceRegisterDescription = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::setter_setMSourceRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication inValue
+                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mSourceRegisterDescription = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::setter_setMDestinationRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication inValue
+                                                                                                             COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF) ;
+    p->mProperty_mDestinationRegisterDescription = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::setter_setMDestinationRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication inValue
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mDestinationRegisterDescription = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                           Pointer class for @ipic18_intermediate_instruction_MOVFF class                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -6529,6 +7287,44 @@ GALGAS_uint GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperati
 
 GALGAS_uint cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::getter_mLiteralValue (UNUSED_LOCATION_ARGS) const {
   return mProperty_mLiteralValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::setter_setMLiteralInstruction (GALGAS_literal_5F_instruction_5F_opcode inValue
+                                                                                                            COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation) ;
+    p->mProperty_mLiteralInstruction = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::setter_setMLiteralInstruction (GALGAS_literal_5F_instruction_5F_opcode inValue
+                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mLiteralInstruction = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::setter_setMLiteralValue (GALGAS_uint inValue
+                                                                                                      COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation) ;
+    p->mProperty_mLiteralValue = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::setter_setMLiteralValue (GALGAS_uint inValue
+                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mLiteralValue = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -6721,6 +7517,44 @@ GALGAS_uint GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::getter_m
 
 GALGAS_uint cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::getter_mValue (UNUSED_LOCATION_ARGS) const {
   return mProperty_mValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::setter_setMFSRindex (GALGAS_luint inValue
+                                                                                      COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR) ;
+    p->mProperty_mFSRindex = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::setter_setMFSRindex (GALGAS_luint inValue
+                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mFSRindex = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::setter_setMValue (GALGAS_uint inValue
+                                                                                   COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR) ;
+    p->mProperty_mValue = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::setter_setMValue (GALGAS_uint inValue
+                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mValue = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -6929,6 +7763,63 @@ GALGAS_uint cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::getter_mBit
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::setter_setMBitOrientedOp (GALGAS_bit_5F_oriented_5F_op inValue
+                                                                                          COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA) ;
+    p->mProperty_mBitOrientedOp = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::setter_setMBitOrientedOp (GALGAS_bit_5F_oriented_5F_op inValue
+                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mBitOrientedOp = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                                COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mRegisterDescription = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::setter_setMBitNumber (GALGAS_uint inValue
+                                                                                      COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA) ;
+    p->mProperty_mBitNumber = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::setter_setMBitNumber (GALGAS_uint inValue
+                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mBitNumber = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                            Pointer class for @ipic18_intermediate_instruction_FBA class                             *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7102,6 +7993,25 @@ GALGAS_luint cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::getter_m
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::setter_setMBankIndex (GALGAS_luint inValue
+                                                                                        COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB) ;
+    p->mProperty_mBankIndex = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::setter_setMBankIndex (GALGAS_luint inValue
+                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mBankIndex = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                           Pointer class for @ipic18_intermediate_instruction_MOVLB class                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7264,6 +8174,25 @@ GALGAS_uint GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::getter_m
 
 GALGAS_uint cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::getter_mBlankValue (UNUSED_LOCATION_ARGS) const {
   return mProperty_mBlankValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::setter_setMBlankValue (GALGAS_uint inValue
+                                                                                        COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP) ;
+    p->mProperty_mBlankValue = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::setter_setMBlankValue (GALGAS_uint inValue
+                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mBlankValue = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7432,6 +8361,25 @@ GALGAS_uint cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::getter_mB
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::setter_setMBlankValue (GALGAS_uint inValue
+                                                                                         COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK) ;
+    p->mProperty_mBlankValue = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::setter_setMBlankValue (GALGAS_uint inValue
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mBlankValue = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                           Pointer class for @ipic18_intermediate_instruction_BLANK class                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7589,6 +8537,25 @@ GALGAS_tableAccessOption cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBL
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::setter_setMOption (GALGAS_tableAccessOption inValue
+                                                                                     COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD) ;
+    p->mProperty_mOption = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::setter_setMOption (GALGAS_tableAccessOption inValue
+                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mOption = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                           Pointer class for @ipic18_intermediate_instruction_TBLRD class                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -7743,6 +8710,25 @@ GALGAS_tableAccessOption GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_T
 
 GALGAS_tableAccessOption cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::getter_mOption (UNUSED_LOCATION_ARGS) const {
   return mProperty_mOption ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::setter_setMOption (GALGAS_tableAccessOption inValue
+                                                                                     COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT) ;
+    p->mProperty_mOption = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::setter_setMOption (GALGAS_tableAccessOption inValue
+                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mOption = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -7911,6 +8897,25 @@ GALGAS_luint cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::getter_mO
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::setter_setMOccurrenceFactor (GALGAS_luint inValue
+                                                                                              COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP) ;
+    p->mProperty_mOccurrenceFactor = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::setter_setMOccurrenceFactor (GALGAS_luint inValue
+                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mOccurrenceFactor = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                            Pointer class for @ipic18_intermediate_instruction_MNOP class                            *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -8073,6 +9078,25 @@ GALGAS_luint GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::gette
 
 GALGAS_luint cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::getter_mOccurrenceFactor (UNUSED_LOCATION_ARGS) const {
   return mProperty_mOccurrenceFactor ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::setter_setMOccurrenceFactor (GALGAS_luint inValue
+                                                                                                COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA) ;
+    p->mProperty_mOccurrenceFactor = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::setter_setMOccurrenceFactor (GALGAS_luint inValue
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mOccurrenceFactor = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8264,6 +9288,44 @@ GALGAS_bool cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcal
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::setter_setMTargetInstructions (GALGAS_ipic_31__38_SequentialInstructionList inValue
+                                                                                                             COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall) ;
+    p->mProperty_mTargetInstructions = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::setter_setMTargetInstructions (GALGAS_ipic_31__38_SequentialInstructionList inValue
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mTargetInstructions = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::setter_setMUsesRCALL (GALGAS_bool inValue
+                                                                                                    COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall) ;
+    p->mProperty_mUsesRCALL = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::setter_setMUsesRCALL (GALGAS_bool inValue
+                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mUsesRCALL = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 //                       Pointer class for @ipic18_intermediate_instruction_computed_rcall class                       *
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
@@ -8396,6 +9458,25 @@ GALGAS_ipic_31__38_SequentialInstruction GALGAS_ipic_31__38__5F_condition_5F_ski
 
 GALGAS_ipic_31__38_SequentialInstruction cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction::getter_mEmbeddedInstruction (UNUSED_LOCATION_ARGS) const {
   return mProperty_mEmbeddedInstruction ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction::setter_setMEmbeddedInstruction (GALGAS_ipic_31__38_SequentialInstruction inValue
+                                                                                              COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * p = (cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
+    p->mProperty_mEmbeddedInstruction = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction::setter_setMEmbeddedInstruction (GALGAS_ipic_31__38_SequentialInstruction inValue
+                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mEmbeddedInstruction = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8578,6 +9659,63 @@ GALGAS_uint GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::getter_mB
 
 GALGAS_uint cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::getter_mBitNumber (UNUSED_LOCATION_ARGS) const {
   return mProperty_mBitNumber ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::setter_setMSkipIfSet (GALGAS_bool inValue
+                                                                                      COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
+    p->mProperty_mSkipIfSet = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::setter_setMSkipIfSet (GALGAS_bool inValue
+                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mSkipIfSet = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                                COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mRegisterDescription = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::setter_setMBitNumber (GALGAS_uint inValue
+                                                                                      COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
+    p->mProperty_mBitNumber = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::setter_setMBitNumber (GALGAS_uint inValue
+                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mBitNumber = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -8911,6 +10049,44 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F
 
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::getter_mRegisterDescription (UNUSED_LOCATION_ARGS) const {
   return mProperty_mRegisterDescription ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::setter_setMCompareInstruction (GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code inValue
+                                                                                                       COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
+    p->mProperty_mCompareInstruction = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::setter_setMCompareInstruction (GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code inValue
+                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mCompareInstruction = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                                        COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mRegisterDescription = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -9262,6 +10438,63 @@ GALGAS_bool GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::getter_m_5F_W_5F_
 
 GALGAS_bool cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::getter_m_5F_W_5F_isDestination (UNUSED_LOCATION_ARGS) const {
   return mProperty_m_5F_W_5F_isDestination ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setter_setMInstruction_5F_FDA_5F_base_5F_code (GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code inValue
+                                                                                                       COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    p->mProperty_mInstruction_5F_FDA_5F_base_5F_code = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setter_setMInstruction_5F_FDA_5F_base_5F_code (GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code inValue
+                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mInstruction_5F_FDA_5F_base_5F_code = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                        COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_mRegisterDescription = inValue ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
+                                                                                           COMMA_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    insulate (THERE) ;
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    p->mProperty_m_5F_W_5F_isDestination = inValue ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
+                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  mProperty_m_5F_W_5F_isDestination = inValue ;
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -10697,6 +11930,20 @@ void GALGAS_codeList::plusAssign_operation (const GALGAS_codeList inOperand,
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
 
+void GALGAS_codeList::setter_setMAssemblyCodeAtIndex (GALGAS_string inOperand,
+                                                      GALGAS_uint inIndex,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
+  cCollectionElement_codeList * p = (cCollectionElement_codeList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_codeList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mAssemblyCode = inOperand ;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
 GALGAS_string GALGAS_codeList::getter_mAssemblyCodeAtIndex (const GALGAS_uint & inIndex,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) const {
@@ -10708,6 +11955,20 @@ GALGAS_string GALGAS_codeList::getter_mAssemblyCodeAtIndex (const GALGAS_uint & 
     result = p->mObject.mProperty_mAssemblyCode ;
   }
   return result ;
+}
+
+//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+
+void GALGAS_codeList::setter_setMBinaryCodeAtIndex (GALGAS_uintlist inOperand,
+                                                    GALGAS_uint inIndex,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) {
+  cCollectionElement_codeList * p = (cCollectionElement_codeList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (NULL != p) {
+    macroValidSharedObject (p, cCollectionElement_codeList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mBinaryCode = inOperand ;
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
@@ -12262,1088 +13523,4 @@ static void freeExtensionMethod_pic_31__38_PiccoloInstruction_performInlining (v
 
 C_PrologueEpilogue gMethod_pic_31__38_PiccoloInstruction_performInlining (defineExtensionMethod_pic_31__38_PiccoloInstruction_performInlining,
                                                                           freeExtensionMethod_pic_31__38_PiccoloInstruction_performInlining) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                 Abstract extension method '@pic18PiccoloSimpleInstruction analyzeSimpleInstruction'                 *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static TC_UniqueArray <extensionMethodSignature_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction> gExtensionMethodTable_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_analyzeSimpleInstruction (const int32_t inClassIndex,
-                                                    extensionMethodSignature_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction inMethod) {
-  gExtensionMethodTable_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void freeExtensionMethod_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction (void) {
-  gExtensionMethodTable_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction.free () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction (NULL,
-                                                                                         freeExtensionMethod_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_analyzeSimpleInstruction (const cPtr_pic_31__38_PiccoloSimpleInstruction * inObject,
-                                                   const GALGAS_uint constin_inAccessBankSplitOffset,
-                                                   const GALGAS_routineMap constin_inRoutineMap,
-                                                   const GALGAS_registerTable constin_inRegisterTable,
-                                                   const GALGAS_pic_31__38__5F_dataMap constin_inDataMap,
-                                                   const GALGAS_constantMap constin_inConstantMap,
-                                                   GALGAS_uint & io_ioCurrentBank,
-                                                   const GALGAS_bool constin_inShouldPreserveBSR,
-                                                   GALGAS_stringset & io_ioUsedRegisters,
-                                                   GALGAS_ipic_31__38_SequentialInstruction & out_outInstruction,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-  out_outInstruction.drop () ;
-//--- Find method
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_pic_31__38_PiccoloSimpleInstruction) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction f = NULL ;
-    if (classIndex < gExtensionMethodTable_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction.count ()) {
-      f = gExtensionMethodTable_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction.count ()) {
-          f = gExtensionMethodTable_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_pic_31__38_PiccoloSimpleInstruction_analyzeSimpleInstruction.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, constin_inAccessBankSplitOffset, constin_inRoutineMap, constin_inRegisterTable, constin_inDataMap, constin_inConstantMap, io_ioCurrentBank, constin_inShouldPreserveBSR, io_ioUsedRegisters, out_outInstruction, inCompiler COMMA_THERE) ;
-    }
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                            Abstract extension method '@pic18PiccoloInstruction analyze'                             *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static TC_UniqueArray <extensionMethodSignature_pic_31__38_PiccoloInstruction_analyze> gExtensionMethodTable_pic_31__38_PiccoloInstruction_analyze ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_analyze (const int32_t inClassIndex,
-                                   extensionMethodSignature_pic_31__38_PiccoloInstruction_analyze inMethod) {
-  gExtensionMethodTable_pic_31__38_PiccoloInstruction_analyze.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void freeExtensionMethod_pic_31__38_PiccoloInstruction_analyze (void) {
-  gExtensionMethodTable_pic_31__38_PiccoloInstruction_analyze.free () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_pic_31__38_PiccoloInstruction_analyze (NULL,
-                                                                  freeExtensionMethod_pic_31__38_PiccoloInstruction_analyze) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_analyze (const cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                  const GALGAS_uint constin_inAccessBankSplitOffset,
-                                  GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                  const GALGAS_routineMap constin_inRoutineMap,
-                                  const GALGAS_registerTable constin_inRegisterTable,
-                                  const GALGAS_pic_31__38__5F_dataMap constin_inDataMap,
-                                  const GALGAS_constantMap constin_inConstantMap,
-                                  const GALGAS_pic_31__38_MacroMap constin_inMacroMap,
-                                  GALGAS_uint & io_ioLocalLabelIndex,
-                                  GALGAS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
-                                  GALGAS_lstring & io_ioBlockLabel,
-                                  GALGAS_string & io_ioListFileContents,
-                                  GALGAS_uint & io_ioCurrentBank,
-                                  const GALGAS_bool constin_inShouldPreserveBSR,
-                                  const GALGAS_routineKind constin_inRoutineKind,
-                                  GALGAS_stringset & io_ioUsedRegisters,
-                                  C_Compiler * inCompiler
-                                  COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-//--- Find method
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_pic_31__38_PiccoloInstruction) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_pic_31__38_PiccoloInstruction_analyze f = NULL ;
-    if (classIndex < gExtensionMethodTable_pic_31__38_PiccoloInstruction_analyze.count ()) {
-      f = gExtensionMethodTable_pic_31__38_PiccoloInstruction_analyze (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_pic_31__38_PiccoloInstruction_analyze.count ()) {
-          f = gExtensionMethodTable_pic_31__38_PiccoloInstruction_analyze (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_pic_31__38_PiccoloInstruction_analyze.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, constin_inAccessBankSplitOffset, io_ioGeneratedBlockList, constin_inRoutineMap, constin_inRegisterTable, constin_inDataMap, constin_inConstantMap, constin_inMacroMap, io_ioLocalLabelIndex, io_ioGeneratedInstructionList, io_ioBlockLabel, io_ioListFileContents, io_ioCurrentBank, constin_inShouldPreserveBSR, constin_inRoutineKind, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
-    }
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cMapElement_blockInstructionBlockMap::cMapElement_blockInstructionBlockMap (const GALGAS_lstring & inKey,
-                                                                            const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                            const GALGAS_abstractBlockTerminationForBlockInstruction & in_mBlockTerminaisonForBlockInstruction,
-                                                                            const GALGAS_location & in_mEndOfBlock
-                                                                            COMMA_LOCATION_ARGS) :
-cMapElement (inKey COMMA_THERE),
-mProperty_mInstructionList (in_mInstructionList),
-mProperty_mBlockTerminaisonForBlockInstruction (in_mBlockTerminaisonForBlockInstruction),
-mProperty_mEndOfBlock (in_mEndOfBlock) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-bool cMapElement_blockInstructionBlockMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mInstructionList.isValid () && mProperty_mBlockTerminaisonForBlockInstruction.isValid () && mProperty_mEndOfBlock.isValid () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cMapElement * cMapElement_blockInstructionBlockMap::copy (void) {
-  cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_blockInstructionBlockMap (mProperty_lkey, mProperty_mInstructionList, mProperty_mBlockTerminaisonForBlockInstruction, mProperty_mEndOfBlock COMMA_HERE)) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cMapElement_blockInstructionBlockMap::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mInstructionList" ":" ;
-  mProperty_mInstructionList.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mBlockTerminaisonForBlockInstruction" ":" ;
-  mProperty_mBlockTerminaisonForBlockInstruction.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mEndOfBlock" ":" ;
-  mProperty_mEndOfBlock.description (ioString, inIndentation) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cMapElement_blockInstructionBlockMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_blockInstructionBlockMap * operand = (cMapElement_blockInstructionBlockMap *) inOperand ;
-  typeComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mInstructionList.objectCompare (operand->mProperty_mInstructionList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mBlockTerminaisonForBlockInstruction.objectCompare (operand->mProperty_mBlockTerminaisonForBlockInstruction) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mEndOfBlock.objectCompare (operand->mProperty_mEndOfBlock) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInstructionBlockMap::GALGAS_blockInstructionBlockMap (void) :
-AC_GALGAS_map () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInstructionBlockMap::GALGAS_blockInstructionBlockMap (const GALGAS_blockInstructionBlockMap & inSource) :
-AC_GALGAS_map (inSource) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInstructionBlockMap & GALGAS_blockInstructionBlockMap::operator = (const GALGAS_blockInstructionBlockMap & inSource) {
-  * ((AC_GALGAS_map *) this) = inSource ;
-  return * this ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::constructor_emptyMap (LOCATION_ARGS) {
-  GALGAS_blockInstructionBlockMap result ;
-  result.makeNewEmptyMap (THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::constructor_mapWithMapToOverride (const GALGAS_blockInstructionBlockMap & inMapToOverride
-                                                                                                   COMMA_LOCATION_ARGS) {
-  GALGAS_blockInstructionBlockMap result ;
-  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::getter_overriddenMap (C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) const {
-  GALGAS_blockInstructionBlockMap result ;
-  getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_blockInstructionBlockMap::addAssign_operation (const GALGAS_lstring & inKey,
-                                                           const GALGAS_pic_31__38_InstructionList & inArgument0,
-                                                           const GALGAS_abstractBlockTerminationForBlockInstruction & inArgument1,
-                                                           const GALGAS_location & inArgument2,
-                                                           C_Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
-  cMapElement_blockInstructionBlockMap * p = NULL ;
-  macroMyNew (p, cMapElement_blockInstructionBlockMap (inKey, inArgument0, inArgument1, inArgument2 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@blockInstructionBlockMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_blockInstructionBlockMap::setter_insertKey (GALGAS_lstring inKey,
-                                                        GALGAS_pic_31__38_InstructionList inArgument0,
-                                                        GALGAS_abstractBlockTerminationForBlockInstruction inArgument1,
-                                                        GALGAS_location inArgument2,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
-  cMapElement_blockInstructionBlockMap * p = NULL ;
-  macroMyNew (p, cMapElement_blockInstructionBlockMap (inKey, inArgument0, inArgument1, inArgument2 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "the '%K' block is already declared" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const char * kSearchErrorMessage_blockInstructionBlockMap_searchKey = "the '%K' block is not declared" ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_blockInstructionBlockMap::method_searchKey (GALGAS_lstring inKey,
-                                                        GALGAS_pic_31__38_InstructionList & outArgument0,
-                                                        GALGAS_abstractBlockTerminationForBlockInstruction & outArgument1,
-                                                        GALGAS_location & outArgument2,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const {
-  const cMapElement_blockInstructionBlockMap * p = (const cMapElement_blockInstructionBlockMap *) performSearch (inKey,
-                                                                                                                 inCompiler,
-                                                                                                                 kSearchErrorMessage_blockInstructionBlockMap_searchKey
-                                                                                                                 COMMA_THERE) ;
-  if (NULL == p) {
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-    outArgument2.drop () ;
-  }else{
-    macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-    outArgument0 = p->mProperty_mInstructionList ;
-    outArgument1 = p->mProperty_mBlockTerminaisonForBlockInstruction ;
-    outArgument2 = p->mProperty_mEndOfBlock ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_pic_31__38_InstructionList GALGAS_blockInstructionBlockMap::getter_mInstructionListForKey (const GALGAS_string & inKey,
-                                                                                                  C_Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_blockInstructionBlockMap * p = (const cMapElement_blockInstructionBlockMap *) attributes ;
-  GALGAS_pic_31__38_InstructionList result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-    result = p->mProperty_mInstructionList ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_blockInstructionBlockMap::getter_mBlockTerminaisonForBlockInstructionForKey (const GALGAS_string & inKey,
-                                                                                                                                       C_Compiler * inCompiler
-                                                                                                                                       COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_blockInstructionBlockMap * p = (const cMapElement_blockInstructionBlockMap *) attributes ;
-  GALGAS_abstractBlockTerminationForBlockInstruction result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-    result = p->mProperty_mBlockTerminaisonForBlockInstruction ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_location GALGAS_blockInstructionBlockMap::getter_mEndOfBlockForKey (const GALGAS_string & inKey,
-                                                                           C_Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_blockInstructionBlockMap * p = (const cMapElement_blockInstructionBlockMap *) attributes ;
-  GALGAS_location result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-    result = p->mProperty_mEndOfBlock ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_blockInstructionBlockMap::setter_setMInstructionListForKey (GALGAS_pic_31__38_InstructionList inAttributeValue,
-                                                                        GALGAS_string inKey,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_blockInstructionBlockMap * p = (cMapElement_blockInstructionBlockMap *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-    p->mProperty_mInstructionList = inAttributeValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_blockInstructionBlockMap::setter_setMBlockTerminaisonForBlockInstructionForKey (GALGAS_abstractBlockTerminationForBlockInstruction inAttributeValue,
-                                                                                            GALGAS_string inKey,
-                                                                                            C_Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_blockInstructionBlockMap * p = (cMapElement_blockInstructionBlockMap *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-    p->mProperty_mBlockTerminaisonForBlockInstruction = inAttributeValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_blockInstructionBlockMap::setter_setMEndOfBlockForKey (GALGAS_location inAttributeValue,
-                                                                   GALGAS_string inKey,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_blockInstructionBlockMap * p = (cMapElement_blockInstructionBlockMap *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-    p->mProperty_mEndOfBlock = inAttributeValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cMapElement_blockInstructionBlockMap * GALGAS_blockInstructionBlockMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
-                                                                                                           const GALGAS_string & inKey
-                                                                                                           COMMA_LOCATION_ARGS) {
-  cMapElement_blockInstructionBlockMap * result = (cMapElement_blockInstructionBlockMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
-  macroNullOrValidSharedObject (result, cMapElement_blockInstructionBlockMap) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cEnumerator_blockInstructionBlockMap::cEnumerator_blockInstructionBlockMap (const GALGAS_blockInstructionBlockMap & inEnumeratedObject,
-                                                                            const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInstructionBlockMap_2D_element cEnumerator_blockInstructionBlockMap::current (LOCATION_ARGS) const {
-  const cMapElement_blockInstructionBlockMap * p = (const cMapElement_blockInstructionBlockMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-  return GALGAS_blockInstructionBlockMap_2D_element (p->mProperty_lkey, p->mProperty_mInstructionList, p->mProperty_mBlockTerminaisonForBlockInstruction, p->mProperty_mEndOfBlock) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cEnumerator_blockInstructionBlockMap::current_lkey (LOCATION_ARGS) const {
-  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement) ;
-  return p->mProperty_lkey ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_pic_31__38_InstructionList cEnumerator_blockInstructionBlockMap::current_mInstructionList (LOCATION_ARGS) const {
-  const cMapElement_blockInstructionBlockMap * p = (const cMapElement_blockInstructionBlockMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-  return p->mProperty_mInstructionList ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_abstractBlockTerminationForBlockInstruction cEnumerator_blockInstructionBlockMap::current_mBlockTerminaisonForBlockInstruction (LOCATION_ARGS) const {
-  const cMapElement_blockInstructionBlockMap * p = (const cMapElement_blockInstructionBlockMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-  return p->mProperty_mBlockTerminaisonForBlockInstruction ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_location cEnumerator_blockInstructionBlockMap::current_mEndOfBlock (LOCATION_ARGS) const {
-  const cMapElement_blockInstructionBlockMap * p = (const cMapElement_blockInstructionBlockMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-  return p->mProperty_mEndOfBlock ;
-}
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                           @blockInstructionBlockMap type                                            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockInstructionBlockMap ("blockInstructionBlockMap",
-                                                 NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_blockInstructionBlockMap::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_blockInstructionBlockMap ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_blockInstructionBlockMap::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_blockInstructionBlockMap (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::extractObject (const GALGAS_object & inObject,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_blockInstructionBlockMap result ;
-  const GALGAS_blockInstructionBlockMap * p = (const GALGAS_blockInstructionBlockMap *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_blockInstructionBlockMap *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("blockInstructionBlockMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cMapElement_blockInitialBankSelectionMap::cMapElement_blockInitialBankSelectionMap (const GALGAS_lstring & inKey,
-                                                                                    const GALGAS_uint & in_mInitialBankSelection,
-                                                                                    const GALGAS_string & in_mSourceBlock
-                                                                                    COMMA_LOCATION_ARGS) :
-cMapElement (inKey COMMA_THERE),
-mProperty_mInitialBankSelection (in_mInitialBankSelection),
-mProperty_mSourceBlock (in_mSourceBlock) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-bool cMapElement_blockInitialBankSelectionMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mInitialBankSelection.isValid () && mProperty_mSourceBlock.isValid () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cMapElement * cMapElement_blockInitialBankSelectionMap::copy (void) {
-  cMapElement * result = NULL ;
-  macroMyNew (result, cMapElement_blockInitialBankSelectionMap (mProperty_lkey, mProperty_mInitialBankSelection, mProperty_mSourceBlock COMMA_HERE)) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void cMapElement_blockInitialBankSelectionMap::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mInitialBankSelection" ":" ;
-  mProperty_mInitialBankSelection.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mSourceBlock" ":" ;
-  mProperty_mSourceBlock.description (ioString, inIndentation) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-typeComparisonResult cMapElement_blockInitialBankSelectionMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_blockInitialBankSelectionMap * operand = (cMapElement_blockInitialBankSelectionMap *) inOperand ;
-  typeComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mInitialBankSelection.objectCompare (operand->mProperty_mInitialBankSelection) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mSourceBlock.objectCompare (operand->mProperty_mSourceBlock) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInitialBankSelectionMap::GALGAS_blockInitialBankSelectionMap (void) :
-AC_GALGAS_map () {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInitialBankSelectionMap::GALGAS_blockInitialBankSelectionMap (const GALGAS_blockInitialBankSelectionMap & inSource) :
-AC_GALGAS_map (inSource) {
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInitialBankSelectionMap & GALGAS_blockInitialBankSelectionMap::operator = (const GALGAS_blockInitialBankSelectionMap & inSource) {
-  * ((AC_GALGAS_map *) this) = inSource ;
-  return * this ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::constructor_emptyMap (LOCATION_ARGS) {
-  GALGAS_blockInitialBankSelectionMap result ;
-  result.makeNewEmptyMap (THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::constructor_mapWithMapToOverride (const GALGAS_blockInitialBankSelectionMap & inMapToOverride
-                                                                                                           COMMA_LOCATION_ARGS) {
-  GALGAS_blockInitialBankSelectionMap result ;
-  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::getter_overriddenMap (C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_blockInitialBankSelectionMap result ;
-  getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_blockInitialBankSelectionMap::addAssign_operation (const GALGAS_lstring & inKey,
-                                                               const GALGAS_uint & inArgument0,
-                                                               const GALGAS_string & inArgument1,
-                                                               C_Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) {
-  cMapElement_blockInitialBankSelectionMap * p = NULL ;
-  macroMyNew (p, cMapElement_blockInitialBankSelectionMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@blockInitialBankSelectionMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_blockInitialBankSelectionMap::setter_insertKey (GALGAS_lstring inKey,
-                                                            GALGAS_uint inArgument0,
-                                                            GALGAS_string inArgument1,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
-  cMapElement_blockInitialBankSelectionMap * p = NULL ;
-  macroMyNew (p, cMapElement_blockInitialBankSelectionMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "the '%K' block is already declared (internal error)" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const char * kSearchErrorMessage_blockInitialBankSelectionMap_searchKey = "the '%K' block is not declared (internal error)" ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_blockInitialBankSelectionMap::method_searchKey (GALGAS_lstring inKey,
-                                                            GALGAS_uint & outArgument0,
-                                                            GALGAS_string & outArgument1,
-                                                            C_Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) const {
-  const cMapElement_blockInitialBankSelectionMap * p = (const cMapElement_blockInitialBankSelectionMap *) performSearch (inKey,
-                                                                                                                         inCompiler,
-                                                                                                                         kSearchErrorMessage_blockInitialBankSelectionMap_searchKey
-                                                                                                                         COMMA_THERE) ;
-  if (NULL == p) {
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }else{
-    macroValidSharedObject (p, cMapElement_blockInitialBankSelectionMap) ;
-    outArgument0 = p->mProperty_mInitialBankSelection ;
-    outArgument1 = p->mProperty_mSourceBlock ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_uint GALGAS_blockInitialBankSelectionMap::getter_mInitialBankSelectionForKey (const GALGAS_string & inKey,
-                                                                                     C_Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_blockInitialBankSelectionMap * p = (const cMapElement_blockInitialBankSelectionMap *) attributes ;
-  GALGAS_uint result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockInitialBankSelectionMap) ;
-    result = p->mProperty_mInitialBankSelection ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string GALGAS_blockInitialBankSelectionMap::getter_mSourceBlockForKey (const GALGAS_string & inKey,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_blockInitialBankSelectionMap * p = (const cMapElement_blockInitialBankSelectionMap *) attributes ;
-  GALGAS_string result ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockInitialBankSelectionMap) ;
-    result = p->mProperty_mSourceBlock ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_blockInitialBankSelectionMap::setter_setMInitialBankSelectionForKey (GALGAS_uint inAttributeValue,
-                                                                                 GALGAS_string inKey,
-                                                                                 C_Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_blockInitialBankSelectionMap * p = (cMapElement_blockInitialBankSelectionMap *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockInitialBankSelectionMap) ;
-    p->mProperty_mInitialBankSelection = inAttributeValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void GALGAS_blockInitialBankSelectionMap::setter_setMSourceBlockForKey (GALGAS_string inAttributeValue,
-                                                                        GALGAS_string inKey,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_blockInitialBankSelectionMap * p = (cMapElement_blockInitialBankSelectionMap *) attributes ;
-  if (NULL != p) {
-    macroValidSharedObject (p, cMapElement_blockInitialBankSelectionMap) ;
-    p->mProperty_mSourceBlock = inAttributeValue ;
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cMapElement_blockInitialBankSelectionMap * GALGAS_blockInitialBankSelectionMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
-                                                                                                                   const GALGAS_string & inKey
-                                                                                                                   COMMA_LOCATION_ARGS) {
-  cMapElement_blockInitialBankSelectionMap * result = (cMapElement_blockInitialBankSelectionMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
-  macroNullOrValidSharedObject (result, cMapElement_blockInitialBankSelectionMap) ;
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-cEnumerator_blockInitialBankSelectionMap::cEnumerator_blockInitialBankSelectionMap (const GALGAS_blockInitialBankSelectionMap & inEnumeratedObject,
-                                                                                    const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInitialBankSelectionMap_2D_element cEnumerator_blockInitialBankSelectionMap::current (LOCATION_ARGS) const {
-  const cMapElement_blockInitialBankSelectionMap * p = (const cMapElement_blockInitialBankSelectionMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_blockInitialBankSelectionMap) ;
-  return GALGAS_blockInitialBankSelectionMap_2D_element (p->mProperty_lkey, p->mProperty_mInitialBankSelection, p->mProperty_mSourceBlock) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_lstring cEnumerator_blockInitialBankSelectionMap::current_lkey (LOCATION_ARGS) const {
-  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement) ;
-  return p->mProperty_lkey ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_uint cEnumerator_blockInitialBankSelectionMap::current_mInitialBankSelection (LOCATION_ARGS) const {
-  const cMapElement_blockInitialBankSelectionMap * p = (const cMapElement_blockInitialBankSelectionMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_blockInitialBankSelectionMap) ;
-  return p->mProperty_mInitialBankSelection ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_string cEnumerator_blockInitialBankSelectionMap::current_mSourceBlock (LOCATION_ARGS) const {
-  const cMapElement_blockInitialBankSelectionMap * p = (const cMapElement_blockInitialBankSelectionMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_blockInitialBankSelectionMap) ;
-  return p->mProperty_mSourceBlock ;
-}
-
-
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                         @blockInitialBankSelectionMap type                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockInitialBankSelectionMap ("blockInitialBankSelectionMap",
-                                                     NULL) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-const C_galgas_type_descriptor * GALGAS_blockInitialBankSelectionMap::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_blockInitialBankSelectionMap ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-AC_GALGAS_root * GALGAS_blockInitialBankSelectionMap::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_blockInitialBankSelectionMap (*this)) ;
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::extractObject (const GALGAS_object & inObject,
-                                                                                        C_Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_blockInitialBankSelectionMap result ;
-  const GALGAS_blockInitialBankSelectionMap * p = (const GALGAS_blockInitialBankSelectionMap *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_blockInitialBankSelectionMap *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("blockInitialBankSelectionMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//              Abstract extension method '@abstractBlockTerminationForBlockInstruction addVisitedBlocks'              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static TC_UniqueArray <extensionMethodSignature_abstractBlockTerminationForBlockInstruction_addVisitedBlocks> gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_addVisitedBlocks ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_addVisitedBlocks (const int32_t inClassIndex,
-                                            extensionMethodSignature_abstractBlockTerminationForBlockInstruction_addVisitedBlocks inMethod) {
-  gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_addVisitedBlocks.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void freeExtensionMethod_abstractBlockTerminationForBlockInstruction_addVisitedBlocks (void) {
-  gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_addVisitedBlocks.free () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_abstractBlockTerminationForBlockInstruction_addVisitedBlocks (NULL,
-                                                                                         freeExtensionMethod_abstractBlockTerminationForBlockInstruction_addVisitedBlocks) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_addVisitedBlocks (const cPtr_abstractBlockTerminationForBlockInstruction * inObject,
-                                           GALGAS_stringset & io_ioVisitedBlockSet,
-                                           const GALGAS_blockInstructionBlockMap constin_inBlockMap,
-                                           const GALGAS_string constin_inCurrentBlockName,
-                                           const GALGAS_uint constin_inInitialBlockSetting,
-                                           GALGAS_blockInitialBankSelectionMap & io_ioBlockInitialBankSelectionMap,
-                                           GALGAS_bool & io_ioContinuesInSequence,
-                                           GALGAS_bool & io_ioContinueAccessibilityExploration,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-//--- Find method
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_abstractBlockTerminationForBlockInstruction) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_abstractBlockTerminationForBlockInstruction_addVisitedBlocks f = NULL ;
-    if (classIndex < gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_addVisitedBlocks.count ()) {
-      f = gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_addVisitedBlocks (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_addVisitedBlocks.count ()) {
-          f = gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_addVisitedBlocks (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_addVisitedBlocks.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, io_ioVisitedBlockSet, constin_inBlockMap, constin_inCurrentBlockName, constin_inInitialBlockSetting, io_ioBlockInitialBankSelectionMap, io_ioContinuesInSequence, io_ioContinueAccessibilityExploration, inCompiler COMMA_THERE) ;
-    }
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//               Abstract extension method '@abstractBlockTerminationForBlockInstruction generateBlock'                *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static TC_UniqueArray <extensionMethodSignature_abstractBlockTerminationForBlockInstruction_generateBlock> gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_generateBlock ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_generateBlock (const int32_t inClassIndex,
-                                         extensionMethodSignature_abstractBlockTerminationForBlockInstruction_generateBlock inMethod) {
-  gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_generateBlock.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void freeExtensionMethod_abstractBlockTerminationForBlockInstruction_generateBlock (void) {
-  gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_generateBlock.free () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_abstractBlockTerminationForBlockInstruction_generateBlock (NULL,
-                                                                                      freeExtensionMethod_abstractBlockTerminationForBlockInstruction_generateBlock) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_generateBlock (const cPtr_abstractBlockTerminationForBlockInstruction * inObject,
-                                        const GALGAS_uint constin_inAccessBankSplitOffset,
-                                        const GALGAS_uint constin_inCurrentBank,
-                                        const GALGAS_registerTable constin_inRegisterTable,
-                                        const GALGAS_constantMap constin_inConstantMap,
-                                        GALGAS_uint & io_ioLocalLabelIndex,
-                                        GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                        GALGAS_stringset & io_ioUsedRegisters,
-                                        const GALGAS_string constin_inLabelForBlock,
-                                        GALGAS_ipic_31__38_AbstractBlockTerminator & out_outTerminator,
-                                        C_Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-  out_outTerminator.drop () ;
-//--- Find method
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_abstractBlockTerminationForBlockInstruction) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_abstractBlockTerminationForBlockInstruction_generateBlock f = NULL ;
-    if (classIndex < gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_generateBlock.count ()) {
-      f = gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_generateBlock (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_generateBlock.count ()) {
-          f = gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_generateBlock (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_abstractBlockTerminationForBlockInstruction_generateBlock.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, constin_inAccessBankSplitOffset, constin_inCurrentBank, constin_inRegisterTable, constin_inConstantMap, io_ioLocalLabelIndex, io_ioGeneratedBlockList, io_ioUsedRegisters, constin_inLabelForBlock, out_outTerminator, inCompiler COMMA_THERE) ;
-    }
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                       Abstract extension method '@pic18ConditionExpression analyzeCondition'                        *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static TC_UniqueArray <extensionMethodSignature_pic_31__38_ConditionExpression_analyzeCondition> gExtensionMethodTable_pic_31__38_ConditionExpression_analyzeCondition ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_analyzeCondition (const int32_t inClassIndex,
-                                            extensionMethodSignature_pic_31__38_ConditionExpression_analyzeCondition inMethod) {
-  gExtensionMethodTable_pic_31__38_ConditionExpression_analyzeCondition.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void freeExtensionMethod_pic_31__38_ConditionExpression_analyzeCondition (void) {
-  gExtensionMethodTable_pic_31__38_ConditionExpression_analyzeCondition.free () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_pic_31__38_ConditionExpression_analyzeCondition (NULL,
-                                                                            freeExtensionMethod_pic_31__38_ConditionExpression_analyzeCondition) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_analyzeCondition (const cPtr_pic_31__38_ConditionExpression * inObject,
-                                           const GALGAS_uint constin_inAccessBankSplitOffset,
-                                           const GALGAS_uint constin_inCurrentBank,
-                                           const GALGAS_registerTable constin_inRegisterTable,
-                                           const GALGAS_constantMap constin_inConstantMap,
-                                           GALGAS_uint & io_ioLocalLabelIndex,
-                                           GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                           const GALGAS_lstring constin_inConditionTrueLabel,
-                                           const GALGAS_lstring constin_inConditionFalseLabel,
-                                           GALGAS_stringset & io_ioUsedRegisters,
-                                           GALGAS_ipic_31__38_AbstractBlockTerminator & out_outCurrentBlockTerminator,
-                                           C_Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-  out_outCurrentBlockTerminator.drop () ;
-//--- Find method
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_pic_31__38_ConditionExpression) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_pic_31__38_ConditionExpression_analyzeCondition f = NULL ;
-    if (classIndex < gExtensionMethodTable_pic_31__38_ConditionExpression_analyzeCondition.count ()) {
-      f = gExtensionMethodTable_pic_31__38_ConditionExpression_analyzeCondition (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_pic_31__38_ConditionExpression_analyzeCondition.count ()) {
-          f = gExtensionMethodTable_pic_31__38_ConditionExpression_analyzeCondition (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_pic_31__38_ConditionExpression_analyzeCondition.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, constin_inAccessBankSplitOffset, constin_inCurrentBank, constin_inRegisterTable, constin_inConstantMap, io_ioLocalLabelIndex, io_ioGeneratedBlockList, constin_inConditionTrueLabel, constin_inConditionFalseLabel, io_ioUsedRegisters, out_outCurrentBlockTerminator, inCompiler COMMA_THERE) ;
-    }
-  }
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                    Abstract extension method '@ipic18AbstractBlockTerminator optimizeTerminator'                    *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static TC_UniqueArray <extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_optimizeTerminator> gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_optimizeTerminator ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void enterExtensionMethod_optimizeTerminator (const int32_t inClassIndex,
-                                              extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_optimizeTerminator inMethod) {
-  gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_optimizeTerminator.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-static void freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_optimizeTerminator (void) {
-  gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_optimizeTerminator.free () ;
-}
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_optimizeTerminator (NULL,
-                                                                                   freeExtensionMethod_ipic_31__38_AbstractBlockTerminator_optimizeTerminator) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void callExtensionMethod_optimizeTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                             const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                             const GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
-                                             const GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                             const GALGAS_string constin_inBlockLabel,
-                                             GALGAS_bool & io_ioOptimizationDone,
-                                             GALGAS_string & io_ioListFileContents,
-                                             GALGAS_ipic_31__38_AbstractBlockTerminator & out_outOptimizedTerminator,
-                                             C_Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-  out_outOptimizedTerminator.drop () ;
-//--- Find method
-  if (NULL != inObject) {
-    macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractBlockTerminator) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_ipic_31__38_AbstractBlockTerminator_optimizeTerminator f = NULL ;
-    if (classIndex < gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_optimizeTerminator.count ()) {
-      f = gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_optimizeTerminator (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_optimizeTerminator.count ()) {
-          f = gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_optimizeTerminator (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_ipic_31__38_AbstractBlockTerminator_optimizeTerminator.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, constin_inSymbolTable, constin_inOptimizeFlagStruct, constin_inBlockList, constin_inBlockLabel, io_ioOptimizationDone, io_ioListFileContents, out_outOptimizedTerminator, inCompiler COMMA_THERE) ;
-    }
-  }
-}
 
