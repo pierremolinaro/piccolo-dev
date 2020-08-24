@@ -6988,7 +6988,8 @@
       CODE_SIGN_IDENTITY = "Mac Developer" ;
       DEVELOPMENT_TEAM = "YW8QY74J2A" ;
       INFOPLIST_FILE = "Info.plist";
-      PRODUCT_NAME = "CocoaPiccolo" ;
+      PRODUCT_NAME = "CocoaPiccolo";
+      PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.piccolo";
     };
     name = Default;
   };

@@ -1,42 +1,18 @@
 #pragma once
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "all-declarations-12.h"
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                              Routine 'enterGoto2block'                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_enterGoto_32_block (const class GALGAS_symbolTableForBlockOptimization constinArgument0,
-                                 const class GALGAS_ipic_31__38_BlockList constinArgument1,
-                                 class GALGAS_stringset & ioArgument2,
-                                 class C_Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                              Routine 'enterGoto4block'                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-
-void routine_enterGoto_34_block (const class GALGAS_symbolTableForBlockOptimization constinArgument0,
-                                 const class GALGAS_ipic_31__38_BlockList constinArgument1,
-                                 class GALGAS_stringset & ioArgument2,
-                                 class C_Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
-
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                             Routine 'buildOrderedGraph'                                             *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'buildOrderedGraph'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_buildOrderedGraph (class GALGAS_ipic_31__38_BlockList & ioArgument0,
                                 const class GALGAS_string constinArgument1,
@@ -44,21 +20,21 @@ void routine_buildOrderedGraph (class GALGAS_ipic_31__38_BlockList & ioArgument0
                                 class C_Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                         Function 'blockDiscontinuityCount'                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Function 'blockDiscontinuityCount'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_uint function_blockDiscontinuityCount (const class GALGAS_ipic_31__38_BlockList & constinArgument0,
                                                     class C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                         Routine 'perform_cluster_ordering'                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'perform_cluster_ordering'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_perform_5F_cluster_5F_ordering (const class GALGAS_clusterList constinArgument0,
                                              class GALGAS_ipic_31__38_BlockList & ioArgument1,
@@ -66,32 +42,32 @@ void routine_perform_5F_cluster_5F_ordering (const class GALGAS_clusterList cons
                                              class C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                           Routine 'buildInvocationGraph'                                            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'buildInvocationGraph'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_buildInvocationGraph (const class GALGAS_ipic_31__38_BlockList constinArgument0,
                                    class GALGAS_string & outArgument1,
                                    class C_Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                                 Function 'sortKey'                                                  *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Function 'sortKey'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string function_sortKey (const class GALGAS_clusterList & constinArgument0,
                                       class C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                       Routine 'ipic18RelativeBranchOverflow'                                        *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'ipic18RelativeBranchOverflow'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_ipic_31__38_RelativeBranchOverflow (const class GALGAS_ipic_31__38_BlockList constinArgument0,
                                                  const class GALGAS_ipic_31__38_BlockList constinArgument1,
@@ -99,11 +75,11 @@ void routine_ipic_31__38_RelativeBranchOverflow (const class GALGAS_ipic_31__38_
                                                  class C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                        Routine 'performRelativesResolution'                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'performRelativesResolution'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_performRelativesResolution (const class GALGAS_symbolTableForRelativesResolution constinArgument0,
                                          class GALGAS_ipic_31__38_BlockList & ioArgument1,
@@ -112,11 +88,11 @@ void routine_performRelativesResolution (const class GALGAS_symbolTableForRelati
                                          class C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                      Routine 'computeLabelAbsoluteAddressMap'                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'computeLabelAbsoluteAddressMap'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_computeLabelAbsoluteAddressMap (const class GALGAS_ipic_31__38_BlockList constinArgument0,
                                              const class GALGAS_ipic_31__38_BlockList constinArgument1,
@@ -125,11 +101,11 @@ void routine_computeLabelAbsoluteAddressMap (const class GALGAS_ipic_31__38_Bloc
                                              class C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                         Routine 'pic18GenerateAssemblyFile'                                         *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'pic18GenerateAssemblyFile'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_pic_31__38_GenerateAssemblyFile (const class GALGAS_string constinArgument0,
                                               const class GALGAS_string constinArgument1,
@@ -140,11 +116,11 @@ void routine_pic_31__38_GenerateAssemblyFile (const class GALGAS_string constinA
                                               class C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                            Filewrapper 'embeddedDevices'                                            *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'embeddedDevices'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const char * gWrapperFileContent_349_embeddedDevices ;
 extern const char * gWrapperFileContent_174_embeddedDevices ;
@@ -624,10 +600,10 @@ extern const char * gWrapperFileContent_37_embeddedDevices ;
 extern const char * gWrapperFileContent_455_embeddedDevices ;
 extern const char * gWrapperFileContent_64_embeddedDevices ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const cRegularFileWrapper gWrapperFile_0_embeddedDevices ;
 extern const cRegularFileWrapper gWrapperFile_1_embeddedDevices ;
@@ -1107,7 +1083,7 @@ extern const cRegularFileWrapper gWrapperFile_474_embeddedDevices ;
 extern const cRegularFileWrapper gWrapperFile_475_embeddedDevices ;
 extern const cRegularFileWrapper gWrapperFile_476_embeddedDevices ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 extern const cDirectoryWrapper gWrapperDirectory_0_embeddedDevices ;
 

@@ -1,18 +1,18 @@
 #pragma once
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 #include "all-declarations-9.h"
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                       Routine 'emitBaselineCodeAtWordAddress'                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'emitBaselineCodeAtWordAddress'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_emitBaselineCodeAtWordAddress (const class GALGAS_uint constinArgument0,
                                             class GALGAS_uint & ioArgument1,
@@ -21,11 +21,11 @@ void routine_emitBaselineCodeAtWordAddress (const class GALGAS_uint constinArgum
                                             class C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                      Routine 'emitNoBaselineCodeAtWordAddress'                                      *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'emitNoBaselineCodeAtWordAddress'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_emitNoBaselineCodeAtWordAddress (const class GALGAS_uint constinArgument0,
                                               const class GALGAS_baseline_5F_assembly_5F_instruction constinArgument1,
@@ -33,33 +33,33 @@ void routine_emitNoBaselineCodeAtWordAddress (const class GALGAS_uint constinArg
                                               class C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                Routine 'addMidRangeUsedRoutinesFromInstructionList'                                 *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'addMidRangeUsedRoutinesFromInstructionList'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_addMidRangeUsedRoutinesFromInstructionList (const class GALGAS_midrange_5F_instructionList constinArgument0,
                                                          class GALGAS_stringset & ioArgument1,
                                                          class C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                       Function 'midrange_computeUsedRoutines'                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Function 'midrange_computeUsedRoutines'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_stringset function_midrange_5F_computeUsedRoutines (const class GALGAS_midrange_5F_interruptDefinitionList & constinArgument0,
                                                                  const class GALGAS_midrange_5F_routineDefinitionList & constinArgument1,
                                                                  class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                       Routine 'handleMidrangeInstructionList'                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'handleMidrangeInstructionList'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_handleMidrangeInstructionList (const class GALGAS_midrange_5F_instructionList constinArgument0,
                                             const class GALGAS_routineMap constinArgument1,
@@ -77,11 +77,11 @@ void routine_handleMidrangeInstructionList (const class GALGAS_midrange_5F_instr
                                             class C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                 Routine 'build_midrange_assembly_instruction_list'                                  *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'build_midrange_assembly_instruction_list'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (const class GALGAS_uint constinArgument0,
                                                                    const class GALGAS_uint constinArgument1,
@@ -96,11 +96,11 @@ void routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (const class G
                                                                    class C_Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                          Routine 'handleInterruptRoutine'                                           *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'handleInterruptRoutine'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_handleInterruptRoutine (const class GALGAS_midrange_5F_model constinArgument0,
                                      const class GALGAS_bool constinArgument1,
@@ -118,11 +118,11 @@ void routine_handleInterruptRoutine (const class GALGAS_midrange_5F_model consti
                                      class C_Compiler * inCompiler
                                      COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                     Routine 'interruptRoutineShouldSavePCLATH'                                      *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'interruptRoutineShouldSavePCLATH'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_interruptRoutineShouldSavePCLATH (const class GALGAS_midrange_5F_model constinArgument0,
                                                const class GALGAS_uint constinArgument1,
@@ -131,11 +131,11 @@ void routine_interruptRoutineShouldSavePCLATH (const class GALGAS_midrange_5F_mo
                                                class C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                            Routine 'generateInterruptRoutineForControllerWithSharedRAM'                             *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'generateInterruptRoutineForControllerWithSharedRAM'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateInterruptRoutineForControllerWithSharedRAM (const class GALGAS_uint constinArgument0,
                                                                  const class GALGAS_registerTable constinArgument1,
@@ -153,11 +153,11 @@ void routine_generateInterruptRoutineForControllerWithSharedRAM (const class GAL
                                                                  class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                           Routine 'generateInterruptRoutineForControllerWithoutSharedRAM'                           *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'generateInterruptRoutineForControllerWithoutSharedRAM'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_generateInterruptRoutineForControllerWithoutSharedRAM (const class GALGAS_uint constinArgument0,
                                                                     const class GALGAS_registerTable constinArgument1,
@@ -175,14 +175,78 @@ void routine_generateInterruptRoutineForControllerWithoutSharedRAM (const class 
                                                                     class C_Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                                      Routine 'perform_midrange_optimizations'                                       *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'perform_midrange_optimizations'
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 void routine_perform_5F_midrange_5F_optimizations (class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument0,
                                                    class GALGAS_string & ioArgument1,
                                                    class C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'midrange_compute_JSR_JUMP'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_midrange_5F_compute_5F_JSR_5F_JUMP (class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument0,
+                                                 class GALGAS_string & ioArgument1,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'midrange_build_assembly_code'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_midrange_5F_build_5F_assembly_5F_code (const class GALGAS_string constinArgument0,
+                                                    const class GALGAS_registerTable constinArgument1,
+                                                    const class GALGAS_registerTable constinArgument2,
+                                                    const class GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument3,
+                                                    const class GALGAS_actualConfigurationMap constinArgument4,
+                                                    class GALGAS_string & outArgument5,
+                                                    class C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'emitMidrangeCodeAtWordAddress'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_emitMidrangeCodeAtWordAddress (const class GALGAS_uint constinArgument0,
+                                            class GALGAS_uint & ioArgument1,
+                                            const class GALGAS_midrange_5F_intermediate_5F_instruction constinArgument2,
+                                            class GALGAS_string & ioArgument3,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'emitMidrangeDirectCodeAtWordAddress'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_emitMidrangeDirectCodeAtWordAddress (const class GALGAS_uint constinArgument0,
+                                                  class GALGAS_uint & ioArgument1,
+                                                  const class GALGAS_string constinArgument2,
+                                                  class GALGAS_string & ioArgument3,
+                                                  class C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'emitNoMidrangeCodeAtWordAddress'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_emitNoMidrangeCodeAtWordAddress (const class GALGAS_uint constinArgument0,
+                                              const class GALGAS_midrange_5F_intermediate_5F_instruction constinArgument1,
+                                              class GALGAS_string & ioArgument2,
+                                              class C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 

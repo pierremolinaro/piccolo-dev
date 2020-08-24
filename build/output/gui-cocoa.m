@@ -14,15 +14,15 @@
   #import "user_default_colors.h"
 #endif
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 #pragma mark Nibs
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//          N I B S   A N D   T H E I R   M A I N   C L A S S E S                                                      *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//          N I B S   A N D   T H E I R   M A I N   C L A S S E S                                
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 NSArray * nibsAndClasses (void) {
   return [NSArray arrayWithObjects:
@@ -33,19 +33,19 @@ NSArray * nibsAndClasses (void) {
 }
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 #pragma mark Command Line Options
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                       Command Line Options                                                                          *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//                       Command Line Options                                                    
+//
+//----------------------------------------------------------------------------------------------------------------------
 
 #import "option-piccolo-5F-options-cocoa.h"
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 void enterOptions (NSMutableArray * ioBoolOptionArray,
                    NSMutableArray * ioUIntOptionArray,
@@ -63,45 +63,45 @@ void enterOptions (NSMutableArray * ioBoolOptionArray,
   [ioBoolOptionArray addObject:option] ;
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 #pragma mark Lexique piccolo_lexique
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                     P O P    U P    L I S T    D A T A                                                              *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//                     P O P    U P    L I S T    D A T A                                        
+//
+//----------------------------------------------------------------------------------------------------------------------
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_241 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_241 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_routine, 0,
   piccolo_lexique_1_identifier, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_269 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_269 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_ram, 0,
   piccolo_lexique_1_identifier, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_303 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_303 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_interrupt, 0,
   piccolo_lexique_1_identifier, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_339 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_339 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_include, 0,
   piccolo_lexique_1_literal_5F_string, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_378 [8] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_378 [8] = {
   0, // Leading character count to strip
   piccolo_lexique_1_unused, 0,
   piccolo_lexique_1_byte, 0,
@@ -109,7 +109,7 @@ static const UInt16 gPopUpData_piccolo_5F_lexique_378 [8] = {
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_420 [8] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_420 [8] = {
   0, // Leading character count to strip
   piccolo_lexique_1_unused, 0,
   piccolo_lexique_1_routine, 0,
@@ -117,30 +117,30 @@ static const UInt16 gPopUpData_piccolo_5F_lexique_420 [8] = {
   0
 } ;
 
-static const UInt16 gPopUpData_piccolo_5F_lexique_450 [4] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_450 [4] = {
   1, // Leading character count to strip
   piccolo_lexique_1_commentMark, 32,
   0
 } ;
 
-static const UInt16 * gPopUpData_piccolo_5F_lexique [8] = {
-  gPopUpData_piccolo_5F_lexique_241,
-  gPopUpData_piccolo_5F_lexique_269,
-  gPopUpData_piccolo_5F_lexique_303,
-  gPopUpData_piccolo_5F_lexique_339,
-  gPopUpData_piccolo_5F_lexique_378,
-  gPopUpData_piccolo_5F_lexique_420,
-  gPopUpData_piccolo_5F_lexique_450,
+static const UInt16 * gPopUpData_0_piccolo_5F_lexique [8] = {
+  gPopUpData_0_piccolo_5F_lexique_241,
+  gPopUpData_0_piccolo_5F_lexique_269,
+  gPopUpData_0_piccolo_5F_lexique_303,
+  gPopUpData_0_piccolo_5F_lexique_339,
+  gPopUpData_0_piccolo_5F_lexique_378,
+  gPopUpData_0_piccolo_5F_lexique_420,
+  gPopUpData_0_piccolo_5F_lexique_450,
   NULL
 } ;
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
-//                                                                                                                     *
-//                            Lexique interface                                                                        *
-//                                                                                                                     *
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
+//
+//                            Lexique interface                                                  
+//
+//----------------------------------------------------------------------------------------------------------------------
 
-@interface OC_Tokenizer_piccolo_lexique : OC_Lexique_piccolo_lexique {
+@interface OC_Tokenizer_0_piccolo_lexique : OC_Lexique_piccolo_lexique {
 
 }
 
@@ -158,35 +158,35 @@ static const UInt16 * gPopUpData_piccolo_5F_lexique [8] = {
 
 @end
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
-@implementation OC_Tokenizer_piccolo_lexique
+@implementation OC_Tokenizer_0_piccolo_lexique
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 - (NSString *) blockComment {
   return @"#" ;
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 - (const UInt16 * *) popupListData {
-  return gPopUpData_piccolo_5F_lexique ;
+  return gPopUpData_0_piccolo_5F_lexique ;
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 - (NSUInteger) textMacroCount {
   return 0 ;
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 - (NSString *) tabItemTitle {
   return @"Source" ;
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 - (NSString *) textMacroTitleAtIndex: (const UInt32) inIndex {
   static NSString * kTextMacroTitle [1] = {
@@ -195,7 +195,7 @@ static const UInt16 * gPopUpData_piccolo_5F_lexique [8] = {
   return kTextMacroTitle [inIndex] ;
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 - (NSString *) textMacroContentAtIndex: (const UInt32) inIndex {
   static NSString * kTextMacroContent [1] = {
@@ -204,38 +204,38 @@ static const UInt16 * gPopUpData_piccolo_5F_lexique [8] = {
   return kTextMacroContent [inIndex] ;
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 @end
 
 
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 OC_Lexique * tokenizerForExtension (const NSString * inExtension) {
   OC_Lexique * result = nil ;
   if ([inExtension isEqualToString:@"piccolo"]) {
-    result = [OC_Tokenizer_piccolo_lexique new] ;
+    result = [OC_Tokenizer_0_piccolo_lexique new] ;
   }
   return result ;
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 NSArray * tokenizers (void) {
   return [NSArray arrayWithObjects:
-    [OC_Tokenizer_piccolo_lexique new],
+    [OC_Tokenizer_0_piccolo_lexique new],
     nil
   ] ;
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 NSString * buildRunOption (void) {
   return @"" ;
 }
 
-//—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————*
+//----------------------------------------------------------------------------------------------------------------------
 
 //--- START OF USER ZONE 2
 
