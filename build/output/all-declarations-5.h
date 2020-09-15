@@ -6117,7 +6117,7 @@ class GALGAS_uint callExtensionGetter_terminatorSize (const class cPtr_ipic_31__
 typedef class GALGAS_uint (*enterExtensionGetter_ipic_31__38_SequentialInstruction_instructionSize) (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
                                                                                                      C_Compiler * inCompiler
                                                                                                      COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_instructionSize (const int32_t inClassIndex,

@@ -3645,7 +3645,7 @@ void callExtensionMethod_computeInstructionCountForCondition (const class cPtr_m
 typedef class GALGAS_bool (*enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isLABELorORG) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                                                                         C_Compiler * inCompiler
                                                                                                         COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_isLABELorORG (const int32_t inClassIndex,
@@ -3666,7 +3666,7 @@ class GALGAS_bool callExtensionGetter_isLABELorORG (const cPtr_midrange_5F_inter
 typedef class GALGAS_bool (*enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isNULL) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                                                                   C_Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_isNULL (const int32_t inClassIndex,
@@ -3710,7 +3710,7 @@ void callExtensionMethod_enterReferencedLabel (const class cPtr_midrange_5F_inte
 typedef class GALGAS_bool (*enterExtensionGetter_midrange_5F_intermediate_5F_instruction_isSkippingInstruction) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                                                                                  C_Compiler * inCompiler
                                                                                                                  COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_isSkippingInstruction (const int32_t inClassIndex,
@@ -3731,7 +3731,7 @@ class GALGAS_bool callExtensionGetter_isSkippingInstruction (const cPtr_midrange
 typedef class GALGAS_bool (*enterExtensionGetter_midrange_5F_intermediate_5F_instruction_nextInstructionIsReachable) (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
                                                                                                                       C_Compiler * inCompiler
                                                                                                                       COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_nextInstructionIsReachable (const int32_t inClassIndex,

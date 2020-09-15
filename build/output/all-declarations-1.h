@@ -3592,7 +3592,7 @@ void callExtensionMethod_setCurrentAddress (const class cPtr_baseline_5F_interme
 typedef class GALGAS_bool (*enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isLABEL) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                                                                                    C_Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_isLABEL (const int32_t inClassIndex,
@@ -3613,7 +3613,7 @@ class GALGAS_bool callExtensionGetter_isLABEL (const cPtr_baseline_5F_intermedia
 typedef class GALGAS_bool (*enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isNULL) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                                                                                   C_Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_isNULL (const int32_t inClassIndex,
@@ -3634,7 +3634,7 @@ class GALGAS_bool callExtensionGetter_isNULL (const cPtr_baseline_5F_intermediat
 typedef class GALGAS_bool (*enterExtensionGetter_baseline_5F_intermediate_5F_instruction_isSkippingInstruction) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                                                                                                  C_Compiler * inCompiler
                                                                                                                  COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_isSkippingInstruction (const int32_t inClassIndex,
@@ -3655,7 +3655,7 @@ class GALGAS_bool callExtensionGetter_isSkippingInstruction (const cPtr_baseline
 typedef class GALGAS_bool (*enterExtensionGetter_baseline_5F_intermediate_5F_instruction_nextInstructionIsReachable) (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
                                                                                                                       C_Compiler * inCompiler
                                                                                                                       COMMA_LOCATION_ARGS) ;
-
+ 
 //----------------------------------------------------------------------------------------------------------------------
 
 void enterExtensionGetter_nextInstructionIsReachable (const int32_t inClassIndex,
