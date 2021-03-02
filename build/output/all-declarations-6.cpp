@@ -6801,6 +6801,34 @@ GALGAS_processorType GALGAS_processorType::constructor_baseline (UNUSED_LOCATION
 
 //----------------------------------------------------------------------------------------------------------------------
 
+bool GALGAS_processorType::optional_pic_31__38__5F__36__30_ () const {
+  const bool ok = mEnum == kEnum_pic_31__38__5F__36__30_ ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_processorType::optional_pic_31__38__5F__38__30_ () const {
+  const bool ok = mEnum == kEnum_pic_31__38__5F__38__30_ ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_processorType::optional_midrange () const {
+  const bool ok = mEnum == kEnum_midrange ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_processorType::optional_baseline () const {
+  const bool ok = mEnum == kEnum_baseline ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static const char * gEnumNameArrayFor_processorType [5] = {
   "(not built)",
   "pic18_60",

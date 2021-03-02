@@ -4526,6 +4526,27 @@ GALGAS_conditionalBranchMode GALGAS_conditionalBranchMode::constructor_ipicGOTO 
 
 //----------------------------------------------------------------------------------------------------------------------
 
+bool GALGAS_conditionalBranchMode::optional_native () const {
+  const bool ok = mEnum == kEnum_native ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_conditionalBranchMode::optional_ipicBRA () const {
+  const bool ok = mEnum == kEnum_ipicBRA ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_conditionalBranchMode::optional_ipicGOTO () const {
+  const bool ok = mEnum == kEnum_ipicGOTO ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static const char * gEnumNameArrayFor_conditionalBranchMode [4] = {
   "(not built)",
   "native",
@@ -4876,6 +4897,27 @@ GALGAS_ipic_31__38_RegisterComparison GALGAS_ipic_31__38_RegisterComparison::con
   GALGAS_ipic_31__38_RegisterComparison result ;
   result.mEnum = kEnum_registerLowerThanW ;
   return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_ipic_31__38_RegisterComparison::optional_registerEqualsToW () const {
+  const bool ok = mEnum == kEnum_registerEqualsToW ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_ipic_31__38_RegisterComparison::optional_registerGreaterThanW () const {
+  const bool ok = mEnum == kEnum_registerGreaterThanW ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_ipic_31__38_RegisterComparison::optional_registerLowerThanW () const {
+  const bool ok = mEnum == kEnum_registerLowerThanW ;
+  return ok ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6516,6 +6558,41 @@ GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5
   GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_SETF ;
   return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::optional_CLRF () const {
+  const bool ok = mEnum == kEnum_CLRF ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::optional_MOVWF () const {
+  const bool ok = mEnum == kEnum_MOVWF ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::optional_MULWF () const {
+  const bool ok = mEnum == kEnum_MULWF ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::optional_NEGF () const {
+  const bool ok = mEnum == kEnum_NEGF ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::optional_SETF () const {
+  const bool ok = mEnum == kEnum_SETF ;
+  return ok ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9873,6 +9950,34 @@ GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS
 
 //----------------------------------------------------------------------------------------------------------------------
 
+bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_CPFSEQ () const {
+  const bool ok = mEnum == kEnum_CPFSEQ ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_CPFSGT () const {
+  const bool ok = mEnum == kEnum_CPFSGT ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_CPFSLT () const {
+  const bool ok = mEnum == kEnum_CPFSLT ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_TSTFSZ () const {
+  const bool ok = mEnum == kEnum_TSTFSZ ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static const char * gEnumNameArrayFor_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code [5] = {
   "(not built)",
   "CPFSEQ",
@@ -10236,6 +10341,34 @@ GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_
   GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
   result.mEnum = kEnum_INFSNZ ;
   return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::optional_DECFSZ () const {
+  const bool ok = mEnum == kEnum_DECFSZ ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::optional_DCFSNZ () const {
+  const bool ok = mEnum == kEnum_DCFSNZ ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::optional_INCFSZ () const {
+  const bool ok = mEnum == kEnum_INCFSZ ;
+  return ok ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::optional_INFSNZ () const {
+  const bool ok = mEnum == kEnum_INFSNZ ;
+  return ok ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

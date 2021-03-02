@@ -1909,6 +1909,12 @@ class GALGAS_conditionalBranchMode : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_ipicBRA () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_ipicGOTO () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_native () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -2085,6 +2091,12 @@ class GALGAS_ipic_31__38_RegisterComparison : public AC_GALGAS_root {
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_registerEqualsToW () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_registerGreaterThanW () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_registerLowerThanW () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -2856,6 +2868,16 @@ class GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code : public AC_GALGAS_
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_CLRF () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_MOVWF () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_MULWF () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_NEGF () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_SETF () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -4451,6 +4473,14 @@ class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code 
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_CPFSEQ () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_CPFSGT () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_CPFSLT () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_TSTFSZ () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
@@ -4631,6 +4661,14 @@ class GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code : public AC_GALGAS_root 
 
 
 //--------------------------------- Optional Methods
+  public : VIRTUAL_IN_DEBUG bool optional_DCFSNZ () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_DECFSZ () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_INCFSZ () const ;
+
+  public : VIRTUAL_IN_DEBUG bool optional_INFSNZ () const ;
+
 
 //--------------------------------- Introspection
   public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
