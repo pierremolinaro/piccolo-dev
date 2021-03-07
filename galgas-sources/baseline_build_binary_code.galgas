@@ -51,7 +51,7 @@ method @baseline_assembly_instruction enterLabelAtAddress
 override method @baseline_assembly_pseudo_LABEL enterLabelAtAddress
   ?!@baseline_symbolTable ioRoutineSymbolTable
   ?!@uint ioWordAddress {
-  [!?ioRoutineSymbolTable insertKey !mLabel !ioWordAddress]
+  [!?ioRoutineSymbolTable insertKey !self.mLabel !ioWordAddress]
 }
 
 #----------------------------------------------------------------------------*
@@ -59,7 +59,7 @@ override method @baseline_assembly_pseudo_LABEL enterLabelAtAddress
 override method @baseline_assembly_pseudo_ORG enterLabelAtAddress
   ?!@baseline_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioWordAddress {
-  ioWordAddress = mOrigin
+  ioWordAddress = self.mOrigin
 }
 
 #----------------------------------------------------------------------------*
@@ -87,8 +87,8 @@ override method @baseline_assembly_pseudo_BEGINOFROUTINE generateBinaryCodeAtAdd
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  if mIsRegular & ((ioWordAddress & 0x0100) != 0) then
-    error mRoutineName : "the 8th bit of the routine address is not 0; a regular routine should be begin in the first half of a page"
+  if self.mIsRegular & ((ioWordAddress & 0x0100) != 0) then
+    error self.mRoutineName : "the 8th bit of the routine address is not 0; a regular routine should be begin in the first half of a page"
   end
   emitNoBaselineCodeAtWordAddress ( !ioWordAddress !self !?ioListFileContents )
 }
@@ -99,8 +99,8 @@ override method @baseline_assembly_pseudo_ENDOFROUTINE generateBinaryCodeAtAddre
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  if ioWordAddress > (mPage * 512 + 512) then
-    error mRoutineName : "the routine is too large, it does not lie in page " + mPage + " (" + (ioWordAddress - (mPage * 512 + 512)) + " word(s) in excess)"
+  if ioWordAddress > (self.mPage * 512 + 512) then
+    error self.mRoutineName : "the routine is too large, it does not lie in page " + self.mPage + " (" + (ioWordAddress - (self.mPage * 512 + 512)) + " word(s) in excess)"
   end
   emitNoBaselineCodeAtWordAddress ( !ioWordAddress !self !?ioListFileContents )
 }
@@ -111,8 +111,8 @@ override method @baseline_assembly_pseudo_ORG generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  ioWordAddress = mOrigin
-  setEmitAddress ( !mOrigin * 2 )
+  ioWordAddress = self.mOrigin
+  setEmitAddress ( !self.mOrigin * 2 )
   emitNoBaselineCodeAtWordAddress ( !ioWordAddress !self !?ioListFileContents )
 }
 
@@ -124,7 +124,7 @@ override method @baseline_assembly_instruction_FD generateBinaryCodeAtAddress
   ?!@uint ioWordAddress {
 #--- Emit Code
   @uint code
-  switch mInstruction
+  switch self.mInstruction
   case ADDWF  : code = 0x01C0
   case ANDWF  : code = 0x0140
   case COMF   : code = 0x0240
@@ -140,10 +140,10 @@ override method @baseline_assembly_instruction_FD generateBinaryCodeAtAddress
   case SWAPF  : code = 0x0380
   case XORWF  : code = 0x0180
   end
-  if not m_W_isDestination then
+  if not self.m_W_isDestination then
     code = code | 0x20
   end
-  code = code | ([mRegisterDescription mRegisterAddress] & 0x1F)
+  code = code | ([self.mRegisterDescription mRegisterAddress] & 0x1F)
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
@@ -154,11 +154,11 @@ override method @baseline_assembly_instruction_F generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
   @uint code
-  switch mInstruction
+  switch self.mInstruction
     case CLRF   : code = 0x0060
     case MOVWF  : code = 0x0020
   end
-  code = code | ([mRegisterDescription mRegisterAddress] & 0x1F)
+  code = code | ([self.mRegisterDescription mRegisterAddress] & 0x1F)
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
@@ -169,12 +169,12 @@ override method @baseline_assembly_instruction_FB generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
   @uint code
-  switch mInstruction
+  switch self.mInstruction
     case BCF : code = 0x0400
     case BSF : code = 0x0500
   end
-  code = code | ([mRegisterDescription mRegisterAddress] & 0x1F)
-  code = code | (mBitNumber << 5)
+  code = code | ([self.mRegisterDescription mRegisterAddress] & 0x1F)
+  code = code | (self.mBitNumber << 5)
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
@@ -186,13 +186,13 @@ override method @baseline_assembly_instruction_BitTestSkip generateBinaryCodeAtA
   ?!@uint ioWordAddress {
 #--- Emit Code
   @uint code
-  if mSkipIfSet then
+  if self.mSkipIfSet then
     code = 0x0700 # "BTFSS"
   else
     code = 0x0600 # BTFSC
   end
-  code = code | ([mRegisterDescription mRegisterAddress] & 0x1F)
-  code = code | (mBitNumber << 5)
+  code = code | ([self.mRegisterDescription mRegisterAddress] & 0x1F)
+  code = code | (self.mBitNumber << 5)
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
@@ -203,7 +203,7 @@ override method @baseline_assembly_GOTO generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
 #---
-  [inRoutineSymbolTable searchKey !mTargetLabel ?var @uint targetAddress]
+  [inRoutineSymbolTable searchKey !self.mTargetLabel ?var @uint targetAddress]
 #---
   emitBaselineCodeAtWordAddress ( !0x0A00 | (targetAddress & 0x1FF) !?ioWordAddress !self !?ioListFileContents )
 }
@@ -225,7 +225,7 @@ override method @baseline_assembly_CALL generateBinaryCodeAtAddress
   ?!@uint ioWordAddress {
 #---
   @uint targetAddress
-  [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress]
+  [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
 #---
   emitBaselineCodeAtWordAddress ( !0x0900 | (targetAddress & 0xFF) !?ioWordAddress !self !?ioListFileContents )
 }
@@ -237,15 +237,15 @@ override method @baseline_assembly_incDecRegisterInCondition generateBinaryCodeA
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
   @uint code
-  if mIncrement then
+  if self.mIncrement then
     code = 0x03C0 # INCFSZ
   else
     code = 0x02C0 # DECFSZ
   end
-  if not m_W_isDestination then
+  if not self.m_W_isDestination then
     code = code | 0x0020
   end
-  code = code | ([mRegisterDescription mRegisterAddress] & 0x1F)
+  code = code | ([self.mRegisterDescription mRegisterAddress] & 0x1F)
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
@@ -256,7 +256,7 @@ override method @baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
   @uint code
-  switch mInstruction
+  switch self.mInstruction
   case CLRW    : code = 0x0040
   case NOP     : code = 0x0000
   case CLRWDT  : code = 0x0004
@@ -272,7 +272,7 @@ override method @baseline_assembly_TRIS generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  emitBaselineCodeAtWordAddress ( !mOpcode !?ioWordAddress !self !?ioListFileContents )
+  emitBaselineCodeAtWordAddress ( !self.mOpcode !?ioWordAddress !self !?ioListFileContents )
 }
 
 #----------------------------------------------------------------------------*
@@ -282,14 +282,14 @@ override method @baseline_assembly_instruction_literalOperation generateBinaryCo
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
   @uint code
-  switch mInstruction
+  switch self.mInstruction
   case ANDLW : code = 0x0E00
   case IORLW : code = 0x0D00
   case MOVLW : code = 0x0C00
   case RETLW : code = 0x0800
   case XORLW : code = 0x0F00
   end
-  code = code | mLiteralValue
+  code = code | self.mLiteralValue
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
@@ -300,9 +300,9 @@ override method @baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
   @uint targetAddress
-  [inRoutineSymbolTable searchKey !mLabel ?targetAddress]
+  [inRoutineSymbolTable searchKey !self.mLabel ?targetAddress]
   if (targetAddress != ioWordAddress) then
-    error mLabel: "Internal second pass error: the '" + mLabel
+    error self.mLabel: "Internal second pass error: the '" + self.mLabel
     + "' label gets " + [ioWordAddress hexString] + " value in second pass, while it gets "
     + [targetAddress hexString] + " in first pass"
   end

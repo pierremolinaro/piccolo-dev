@@ -20,7 +20,7 @@ override method @midrange_intermediate_NULL buildAssemblyCode
 override method @midrange_intermediate_pseudo_ORG buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  ORG " + [mOrigin hexString] + "\n"
+  ioString += "  ORG " + [self.mOrigin hexString] + "\n"
 }
 
 #----------------------------------------------------*
@@ -28,7 +28,7 @@ override method @midrange_intermediate_pseudo_ORG buildAssemblyCode
 override method @midrange_intermediate_pseudo_LABEL buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += [mLabel string] + ":\n"
+  ioString += [self.mLabel string] + ":\n"
 }
 
 #----------------------------------------------------*
@@ -36,8 +36,8 @@ override method @midrange_intermediate_pseudo_LABEL buildAssemblyCode
 override method @midrange_intermediate_instruction_FD buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  " + [mInstruction_FD_base_code mnemonic] + " " + [mRegisterDescription mAssemblyString]
-  if m_W_isDestination then
+  ioString += "  " + [self.mInstruction_FD_base_code mnemonic] + " " + [self.mRegisterDescription mAssemblyString]
+  if self.m_W_isDestination then
     ioString += ", W"
   else
     ioString += ", F"
@@ -50,9 +50,9 @@ override method @midrange_intermediate_instruction_FD buildAssemblyCode
 override method @midrange_intermediate_instruction_FB buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  " + [mBitOrientedOp mnemonic]
-  ioString += "  " + [mRegisterDescription mAssemblyString]
-  ioString += ", " + [mBitNumber string]
+  ioString += "  " + [self.mBitOrientedOp mnemonic]
+  ioString += "  " + [self.mRegisterDescription mAssemblyString]
+  ioString += ", " + [self.mBitNumber string]
   ioString += "\n"
 }
 
@@ -62,13 +62,13 @@ override method @midrange_intermediate_instruction_BitTestSkip buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  "
-  if mSkipIfSet then
+  if self.mSkipIfSet then
     ioString += "BTFSS"
   else
     ioString += "BTFSC"
   end
-  ioString += "  " + [mRegisterDescription mAssemblyString]
-  ioString += ", " + [mBitNumber string]
+  ioString += "  " + [self.mRegisterDescription mAssemblyString]
+  ioString += ", " + [self.mBitNumber string]
   ioString += "\n"
 }
 
@@ -77,7 +77,7 @@ override method @midrange_intermediate_instruction_BitTestSkip buildAssemblyCode
 override method @midrange_intermediate_instruction_F buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  " + [mFinstruction mnemonic] + " " + [mRegisterDescription mAssemblyString]
+  ioString += "  " + [self.mFinstruction mnemonic] + " " + [self.mRegisterDescription mAssemblyString]
   ioString += "\n"
 }
 
@@ -86,25 +86,25 @@ override method @midrange_intermediate_instruction_F buildAssemblyCode
 override method @midrange_intermediate_incDecRegisterInCondition buildAssemblyCode
   ?!@string ioString
   ?!@uint ioLocalLabelIndex {
-  if mIncrement then
+  if self.mIncrement then
     ioString += "  " + "INCFSZ "
   else
     ioString += "  " + "DECFSZ "
   end
-  ioString += [mRegisterDescription mAssemblyString]
-  if m_W_isDestination then
+  ioString += [self.mRegisterDescription mAssemblyString]
+  if self.m_W_isDestination then
     ioString += ", W"
   else
     ioString += ", F"
   end
   ioString += "\n"
-  if mBranchIfZero then
+  if self.mBranchIfZero then
     let @string localLabel = ".LL" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
     ioString += "  GOTO " + localLabel + "\n"
-    ioString += "  GOTO " + mTargetLabel + "\n"
+    ioString += "  GOTO " + self.mTargetLabel + "\n"
     ioString += localLabel + ":\n"
   else
-    ioString += "  GOTO " + mTargetLabel + "\n"
+    ioString += "  GOTO " + self.mTargetLabel + "\n"
   end
 }
 
@@ -113,17 +113,17 @@ override method @midrange_intermediate_incDecRegisterInCondition buildAssemblyCo
 override method @midrange_intermediate_JUMP buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  switch mBit11 
+  switch self.mBit11 
   case set   : ioString += "  BSF PCLATH, 3\n"
   case clear : ioString += "  BCF PCLATH, 3\n"
   case noChange :
   end
-  switch mBit12 
+  switch self.mBit12 
   case set   : ioString += "  BSF PCLATH, 4\n"
   case clear : ioString += "  BCF PCLATH, 4\n"
   case noChange :
   end
-  ioString += "  GOTO   " + [mTargetLabel string] + "\n"
+  ioString += "  GOTO   " + [self.mTargetLabel string] + "\n"
 }
 
 #----------------------------------------------------*
@@ -131,7 +131,7 @@ override method @midrange_intermediate_JUMP buildAssemblyCode
 override method @midrange_intermediate_GOTO buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  GOTO   " + [mTargetLabel string] + "\n"
+  ioString += "  GOTO   " + [self.mTargetLabel string] + "\n"
 }
 
 #----------------------------------------------------*
@@ -139,23 +139,23 @@ override method @midrange_intermediate_GOTO buildAssemblyCode
 override method @midrange_intermediate_JSR buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  switch mBit11 
+  switch self.mBit11 
   case set   : ioString += "  BSF PCLATH, 3\n"
   case clear : ioString += "  BCF PCLATH, 3\n"
   case noChange :
   end
-  switch mBit12 
+  switch self.mBit12 
   case set   : ioString += "  BSF PCLATH, 4\n"
   case clear : ioString += "  BCF PCLATH, 4\n"
   case noChange :
   end
-  ioString += "  CALL  " + [mTargetLabel string] + "\n"
-  switch mBit11 
+  ioString += "  CALL  " + [self.mTargetLabel string] + "\n"
+  switch self.mBit11 
   case set   : ioString += "  BCF PCLATH, 3\n"
   case clear : ioString += "  BSF PCLATH, 3\n"
   case noChange :
   end
-  switch mBit12 
+  switch self.mBit12 
   case set   : ioString += "  BCF PCLATH, 4\n"
   case clear : ioString += "  BSF PCLATH, 4\n"
   case noChange :
@@ -167,7 +167,7 @@ override method @midrange_intermediate_JSR buildAssemblyCode
 override method @midrange_intermediate_CALL buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  CALL  " + [mTargetLabel string] + "\n"
+  ioString += "  CALL  " + [self.mTargetLabel string] + "\n"
 }
 
 #----------------------------------------------------*
@@ -223,7 +223,7 @@ override method @midrange_intermediate_instruction_RETURN buildAssemblyCode
 override method @midrange_intermediate_instruction_literalOperation buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  " + [mLiteralInstruction mnemonic] + " " + [mLiteralValue hexString] + "\n"
+  ioString += "  " + [self.mLiteralInstruction mnemonic] + " " + [self.mLiteralValue hexString] + "\n"
 }
 
 #----------------------------------------------------*
@@ -231,12 +231,12 @@ override method @midrange_intermediate_instruction_literalOperation buildAssembl
 override method @midrange_intermediate_instruction_MNOP buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  if [mOccurrenceFactor uint] == 0 then
-    warning mOccurrenceFactor: "No generated code"
+  if [self.mOccurrenceFactor uint] == 0 then
+    warning self.mOccurrenceFactor: "No generated code"
   end
   @uint idx = 0
-  loop( [mOccurrenceFactor uint])
-  while idx < [mOccurrenceFactor uint]
+  loop( [self.mOccurrenceFactor uint])
+  while idx < [self.mOccurrenceFactor uint]
   do
     ioString += "  NOP\n"
     idx ++

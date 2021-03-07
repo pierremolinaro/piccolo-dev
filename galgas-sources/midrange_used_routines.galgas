@@ -9,56 +9,56 @@ abstract method @midrange_instruction addUsedRoutines
 
 override method @midrange_instruction_IF_BitTest addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  [mInstruction addUsedRoutines !?ioUsedRoutines]
+  [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
 #---------------------------------------------------------------------------*
 
 override method @midrange_instruction_IF_SEMI_COLON addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  [mInstruction addUsedRoutines !?ioUsedRoutines]
+  [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
 #---------------------------------------------------------------------------*
 
 override method @midrange_instruction_IF_IncDec addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  [mInstruction addUsedRoutines !?ioUsedRoutines]
+  [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
 #---------------------------------------------------------------------------*
 
 override method @midrange_instruction_JUMP addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !mTargetLabel.string
+  ioUsedRoutines += !self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
 
 override method @midrange_instruction_GOTO addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !mTargetLabel.string
+  ioUsedRoutines += !self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
 
 override method @midrange_instruction_CALL addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !mTargetLabel.string
+  ioUsedRoutines += !self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
 
 override method @midrange_instruction_FOREVER addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  addMidRangeUsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+  addMidRangeUsedRoutinesFromInstructionList ( !self.mInstructionList !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
 
 override method @midrange_instruction_STATIC_REPEAT addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  addMidRangeUsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+  addMidRangeUsedRoutinesFromInstructionList ( !self.mInstructionList !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
@@ -131,8 +131,8 @@ override method @midrange_instruction_banksel_register addUsedRoutines
 
 override method @midrange_instruction_do_while addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  addMidRangeUsedRoutinesFromInstructionList ( !mRepeatedInstructionList !?ioUsedRoutines )
-  for () in  mWhilePartList do
+  addMidRangeUsedRoutinesFromInstructionList ( !self.mRepeatedInstructionList !?ioUsedRoutines )
+  for () in  self.mWhilePartList do
     addMidRangeUsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
   end
 }
@@ -147,15 +147,15 @@ override method @midrange_instruction_nobanksel addUsedRoutines
 
 override method @midrange_instruction_savebank addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  addMidRangeUsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+  addMidRangeUsedRoutinesFromInstructionList ( !self.mInstructionList !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
 
 override method @midrange_instruction_structured_if addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  addMidRangeUsedRoutinesFromInstructionList ( !mThenInstructionList !?ioUsedRoutines )
-  addMidRangeUsedRoutinesFromInstructionList ( !mElseInstructionList !?ioUsedRoutines )
+  addMidRangeUsedRoutinesFromInstructionList ( !self.mThenInstructionList !?ioUsedRoutines )
+  addMidRangeUsedRoutinesFromInstructionList ( !self.mElseInstructionList !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
@@ -168,7 +168,7 @@ override method @midrange_instruction_FD addUsedRoutines
 
 override method @midrange_instruction_JSR addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !mTargetLabel.string
+  ioUsedRoutines += !self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*

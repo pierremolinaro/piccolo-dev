@@ -15,22 +15,22 @@ method @midrange_intermediate_NULL print ?!@string ioListFileContents {
 
 override
 method @midrange_intermediate_pseudo_ORG print ?!@string ioListFileContents {
-  ioListFileContents += "ORG " + [mOrigin hexString]
+  ioListFileContents += "ORG " + [self.mOrigin hexString]
 }
 
 #----------------------------------------------------------------------------*
 
 override
 method @midrange_intermediate_pseudo_LABEL print ?!@string ioListFileContents {
-  ioListFileContents += mLabel.string + ":"
+  ioListFileContents += self.mLabel.string + ":"
 }
 
 #----------------------------------------------------------------------------*
 
 override
 method @midrange_intermediate_instruction_FD print ?!@string ioListFileContents {
-  ioListFileContents += [mInstruction_FD_base_code mnemonic] + " " + [mRegisterDescription mAssemblyString]
-  if m_W_isDestination then
+  ioListFileContents += [self.mInstruction_FD_base_code mnemonic] + " " + [self.mRegisterDescription mAssemblyString]
+  if self.m_W_isDestination then
     ioListFileContents += ", W"
   end
 }
@@ -39,54 +39,54 @@ method @midrange_intermediate_instruction_FD print ?!@string ioListFileContents 
 
 override
 method @midrange_intermediate_instruction_F print ?!@string ioListFileContents {
-  ioListFileContents += [mFinstruction mnemonic] + " " + [mRegisterDescription mAssemblyString]
+  ioListFileContents += [self.mFinstruction mnemonic] + " " + [self.mRegisterDescription mAssemblyString]
 }
 
 #----------------------------------------------------------------------------*
 
 override
 method @midrange_intermediate_instruction_FB print ?!@string ioListFileContents {
-  ioListFileContents += [mBitOrientedOp mnemonic] + " " + [mRegisterDescription mAssemblyString] + ", " + [mBitNumber string]
+  ioListFileContents += [self.mBitOrientedOp mnemonic] + " " + [self.mRegisterDescription mAssemblyString] + ", " + [self.mBitNumber string]
 }
 
 #----------------------------------------------------------------------------*
 
 override
 method @midrange_intermediate_instruction_BitTestSkip print ?!@string ioListFileContents {
-  if mSkipIfSet then
+  if self.mSkipIfSet then
     ioListFileContents += "BTFSS"
   else
     ioListFileContents += "BTFSC"
   end
-  ioListFileContents += " " + [mRegisterDescription mAssemblyString] + ", " + [mBitNumber string]
+  ioListFileContents += " " + [self.mRegisterDescription mAssemblyString] + ", " + [self.mBitNumber string]
 }
 
 #----------------------------------------------------------------------------*
 
 override
 method @midrange_intermediate_JUMP print ?!@string ioListFileContents {
-  ioListFileContents += "JUMP " + mTargetLabel
+  ioListFileContents += "JUMP " + self.mTargetLabel
 }
 
 #----------------------------------------------------------------------------*
 
 override
 method @midrange_intermediate_GOTO print ?!@string ioListFileContents {
-  ioListFileContents += "GOTO " + mTargetLabel
+  ioListFileContents += "GOTO " + self.mTargetLabel
 }
 
 #----------------------------------------------------------------------------*
 
 override
 method @midrange_intermediate_CALL print ?!@string ioListFileContents {
-  ioListFileContents += "CALL " + mTargetLabel
+  ioListFileContents += "CALL " + self.mTargetLabel
 }
 
 #----------------------------------------------------------------------------*
 
 override
 method @midrange_intermediate_JSR print ?!@string ioListFileContents {
-  ioListFileContents += "JSR " + mTargetLabel
+  ioListFileContents += "JSR " + self.mTargetLabel
 }
 
 #----------------------------------------------------------------------------*
@@ -136,14 +136,14 @@ method @midrange_intermediate_instruction_SLEEP print ?!@string ioListFileConten
 
 override
 method @midrange_intermediate_instruction_literalOperation print ?!@string ioListFileContents {
-  ioListFileContents += [mLiteralInstruction mnemonic] + " " + [mLiteralValue hexString]
+  ioListFileContents += [self.mLiteralInstruction mnemonic] + " " + [self.mLiteralValue hexString]
 }
 
 #----------------------------------------------------------------------------*
 
 override
 method @midrange_intermediate_instruction_MNOP print ?!@string ioListFileContents {
-  ioListFileContents += "MNOP " + [[mOccurrenceFactor uint] string]
+  ioListFileContents += "MNOP " + [[self.mOccurrenceFactor uint] string]
 }
 
 #----------------------------------------------------------------------------*
@@ -151,21 +151,21 @@ method @midrange_intermediate_instruction_MNOP print ?!@string ioListFileContent
 override
 method @midrange_intermediate_incDecRegisterInCondition print ?!@string ioListFileContents {
   ioListFileContents += "JUMP "
-  if mIncrement then
+  if self.mIncrement then
     ioListFileContents += "INCF "
   else
     ioListFileContents += "DECF "
   end
-  ioListFileContents += [mRegisterDescription mAssemblyString]
-  if m_W_isDestination then
+  ioListFileContents += [self.mRegisterDescription mAssemblyString]
+  if self.m_W_isDestination then
     ioListFileContents += ", W"
   end
-  if mBranchIfZero then
+  if self.mBranchIfZero then
     ioListFileContents += " Z"
   else
     ioListFileContents += " NZ"
   end
-  ioListFileContents += " " + mTargetLabel
+  ioListFileContents += " " + self.mTargetLabel
 }
 
 #----------------------------------------------------------------------------*

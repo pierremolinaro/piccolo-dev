@@ -60,7 +60,7 @@ override method @pic18Instruction_switch analyze
 {
   var caseConstantMap =@caseConstantMap.emptyMap{}
 #--- Labels
-  let exitLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !mInstructionLocation} 
+  let exitLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
   ioLocalLabelIndex ++
 #--- Comparison value
   @sint64 lastComparisonValue = 0LS
@@ -71,9 +71,9 @@ override method @pic18Instruction_switch analyze
   @uint finalBankSetting = .max # Any value
   var finalBankSettingDefined = false
 #---
-  for () in  mCaseList do
+  for () in  self.mCaseList do
   #--- Label
-    let conditionTrueLabel = @lstring.new { !".L.accepted." + [ioLocalLabelIndex string] !mInstructionLocation} 
+    let conditionTrueLabel = @lstring.new { !".L.accepted." + [ioLocalLabelIndex string] !self.mInstructionLocation} 
   #--- Generate test blocks
     for () in mCaseExpressionList do
       let conditionLabel = [ioLocalLabelIndex string]
@@ -119,7 +119,7 @@ override method @pic18Instruction_switch analyze
         !@uint. max # relocatable
         !ioBlockLabel
         !ioGeneratedInstructionList
-        !@ipic18JumpTerminator. new { !mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}
+        !@ipic18JumpTerminator. new { !self.mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}
         !@uint.max
         !0
       }
@@ -142,7 +142,7 @@ override method @pic18Instruction_switch analyze
 #--- "else" instruction list
   @uint branchFinalBank = initialBankSetting
   analyzeInstructionList (
-    !mElseInstructionList
+    !self.mElseInstructionList
     !?ioGeneratedBlockList
     !inAccessBankSplitOffset
     !inRoutineMap
@@ -165,7 +165,7 @@ override method @pic18Instruction_switch analyze
       !@uint. max # relocatable
       !ioBlockLabel
       !ioGeneratedInstructionList
-      !@ipic18JumpTerminator.new { !mInstructionLocation !exitLabel !.ipicRelative}
+      !@ipic18JumpTerminator.new { !self.mInstructionLocation !exitLabel !.ipicRelative}
       !@uint.max
       !0
     }
@@ -173,7 +173,7 @@ override method @pic18Instruction_switch analyze
   ioGeneratedInstructionList = {}
 #--- Bank setting
   if finalBankSetting != branchFinalBank then
-    error mElseBranchStartLocation: "the 'else' branch leaves bank setting to "
+    error self.mElseBranchStartLocation: "the 'else' branch leaves bank setting to "
     + if branchFinalBank == @uint. max then "'no selection'" else [branchFinalBank string] end
     + ", but first branch leaves bank setting to "
     + if finalBankSetting == @uint. max then "'no selection'" else [finalBankSetting string] end
@@ -222,21 +222,21 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
   ?!@lstring ioBlockLabel
   ?!@sint64 ioLastComparisonValue
 {
-  [mCaseExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+  [self.mCaseExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 #---
   if (result > 255LS) | (result < 0LS) then
-    error mCaseExpressionLocation:"case value is evaluated as " + result + " (should be between 0 and 255)"
+    error self.mCaseExpressionLocation:"case value is evaluated as " + result + " (should be between 0 and 255)"
   end
 #--- Check constant is unique
   if [ioCaseConstantMap hasKey ![result string]] then
-    error mCaseExpressionLocation : "the '" + result + "' constant is already used in switch instruction"
+    error self.mCaseExpressionLocation : "the '" + result + "' constant is already used in switch instruction"
     error [ioCaseConstantMap locationForKey ![result string]] : "the '" + result + "' constant is used here"
   else
-    [!?ioCaseConstantMap insertKey !.new { ![result string] !mCaseExpressionLocation}]
+    [!?ioCaseConstantMap insertKey !.new { ![result string] !self.mCaseExpressionLocation}]
   end
 #--- Generate addlw instruction  
   ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
-    !mCaseExpressionLocation
+    !self.mCaseExpressionLocation
     !.ADDLW
     ![(ioLastComparisonValue - result) & 0xFFLS uint]
   }
@@ -245,10 +245,10 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
 #--- Update comparison value
   ioLastComparisonValue = result
 #--- Condition false label
-  let conditionFalseLabel = @lstring.new { !".L.value.rejected." + inIndexForLabels !mCaseExpressionLocation} 
+  let conditionFalseLabel = @lstring.new { !".L.value.rejected." + inIndexForLabels !self.mCaseExpressionLocation} 
 #--- Terminate current block with a BZ instruction
   let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator. new {
-    !mCaseExpressionLocation
+    !self.mCaseExpressionLocation
     !.bz
     !inConditionTrueLabel
     !.native
@@ -281,48 +281,48 @@ override method @pic18IntervalCaseItem analyzeCaseItem
   ?!@lstring ioBlockLabel
   ?!@sint64 ioLastComparisonValue
 {
-  [mMinExpression eval !inRegisterTable !inConstantMap ?let @sint64 minBound !?ioUsedRegisters]
-  [mMaxExpression eval !inRegisterTable !inConstantMap ?let @sint64 maxBound !?ioUsedRegisters]
+  [self.mMinExpression eval !inRegisterTable !inConstantMap ?let @sint64 minBound !?ioUsedRegisters]
+  [self.mMaxExpression eval !inRegisterTable !inConstantMap ?let @sint64 maxBound !?ioUsedRegisters]
 #---
   var ok = true
   if (minBound > 255LS) | (minBound < 0LS) then
-    error mCaseExpressionLocation:"min bound is evaluated as " + minBound + " (should be between 0 and 255)"
+    error self.mCaseExpressionLocation:"min bound is evaluated as " + minBound + " (should be between 0 and 255)"
     ok = false
   end
   if (maxBound > 255LS) | (maxBound < 0LS) then
-    error mCaseExpressionLocation:"max bound is evaluated as " + maxBound + " (should be between 0 and 255)"
+    error self.mCaseExpressionLocation:"max bound is evaluated as " + maxBound + " (should be between 0 and 255)"
     ok = false
   end
   if maxBound <= minBound then
-    error mCaseExpressionLocation:"max bound (" + maxBound + ") should be greater than low bound (" + minBound + ")"
+    error self.mCaseExpressionLocation:"max bound (" + maxBound + ") should be greater than low bound (" + minBound + ")"
     ok = false
   elsif (maxBound == 255LS) & (minBound == 0LS) then
-    error mCaseExpressionLocation : "condition is always true"
+    error self.mCaseExpressionLocation : "condition is always true"
     ok = false
   end
   if ok then
   #--- Check constant is unique
     for n in @range.new {![minBound uint] ![maxBound - minBound + 1LS uint]} do
       if [ioCaseConstantMap hasKey ![n string]] then
-        error mCaseExpressionLocation : "the '" + n + "' constant is already used in switch instruction"
+        error self.mCaseExpressionLocation : "the '" + n + "' constant is already used in switch instruction"
         error [ioCaseConstantMap locationForKey ![n string]] : "the '" + n + "' constant is used here"
       else
-        [!?ioCaseConstantMap insertKey !@lstring. new { ![n string] !mCaseExpressionLocation}]
+        [!?ioCaseConstantMap insertKey !@lstring. new { ![n string] !self.mCaseExpressionLocation}]
       end
     end
   #--- Labels
-    let firstConditionAcceptedLabel = @lstring.new { !".L.first.accepted." + inIndexForLabels !mCaseExpressionLocation} 
-    let firstConditionRejectedLabel = @lstring.new { !".L.first.rejected." + inIndexForLabels !mCaseExpressionLocation} 
-    let intervalRejectedLabel = @lstring.new { !".L.interval.rejected." + inIndexForLabels !mCaseExpressionLocation} 
+    let firstConditionAcceptedLabel = @lstring.new { !".L.first.accepted." + inIndexForLabels !self.mCaseExpressionLocation} 
+    let firstConditionRejectedLabel = @lstring.new { !".L.first.rejected." + inIndexForLabels !self.mCaseExpressionLocation} 
+    let intervalRejectedLabel = @lstring.new { !".L.interval.rejected." + inIndexForLabels !self.mCaseExpressionLocation} 
   #--- Second sublw instruction  
     let @ipic18SequentialInstruction secondTestInstruction = @ipic18_intermediate_instruction_literalOperation. new {
-      !mCaseExpressionLocation
+      !self.mCaseExpressionLocation
       !.ADDLW
       ![maxBound - minBound + 1LS uint]
     }
   #---------------------- First test
     ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
-        !mCaseExpressionLocation
+        !self.mCaseExpressionLocation
         !.ADDLW
         ![(ioLastComparisonValue + 255LS - maxBound) & 0xFFLS uint]
       }
@@ -330,7 +330,7 @@ override method @pic18IntervalCaseItem analyzeCaseItem
       !0
   #--- Terminate current block with a BC instruction
     let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator. new {
-      !mCaseExpressionLocation
+      !self.mCaseExpressionLocation
       !.bnc
       !firstConditionAcceptedLabel
       !.native
@@ -351,13 +351,13 @@ override method @pic18IntervalCaseItem analyzeCaseItem
       !.max # relocatable
       !firstConditionRejectedLabel
       !{!secondTestInstruction !.max !0}
-      !@ipic18JumpTerminator.new {!mCaseExpressionLocation !intervalRejectedLabel !.relative}
+      !@ipic18JumpTerminator.new {!self.mCaseExpressionLocation !intervalRejectedLabel !.relative}
       !.max
       !0
     }
   #---------------------- First test accepted
     let @ipic18AbstractBlockTerminator t2 = @ipic18ConditionalJumpTerminator. new {
-      !mCaseExpressionLocation
+      !self.mCaseExpressionLocation
       !.bc
       !inConditionTrueLabel
       !.native
@@ -387,10 +387,10 @@ override method @pic18Instruction_switch addUsedRoutines
   ?let @pic18MacroMap inMacroMap
   ?!@stringset ioUsedRoutines
 {
-  for () in  mCaseList do
+  for () in  self.mCaseList do
     addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
   end
-  addPic18UsedRoutinesFromInstructionList (!mElseInstructionList !inMacroMap !?ioUsedRoutines )
+  addPic18UsedRoutinesFromInstructionList (!self.mElseInstructionList !inMacroMap !?ioUsedRoutines )
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

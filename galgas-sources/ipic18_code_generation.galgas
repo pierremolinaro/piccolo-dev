@@ -97,34 +97,34 @@ method @ipic18Block generateCodeForBlock
 {
   ioListFileContents +=
     "Addr.  Code       Duration    Assembly                                           Intermediate Representation\n"
-  if mAddress == .max then # Relocatable
+  if self.mAddress == .max then # Relocatable
     generateLineWithCode (
       !inBlockAddress
-      !{!mLabel.string + ":" !{}}
-      !{!"LABEL " + mLabel}
+      !{!self.mLabel.string + ":" !{}}
+      !{!"LABEL " + self.mLabel}
       !@uint.max
       !0
       !?ioListFileContents
     )
-    ioAssemblyString += mLabel.string + ":\n"
+    ioAssemblyString += self.mLabel.string + ":\n"
   else
     @codeList cd = {}
     cd += !"ORG " + [inBlockAddress hexString] !{}
-    cd += !mLabel.string + ":" !{}
+    cd += !self.mLabel.string + ":" !{}
     generateLineWithCode (
       !inBlockAddress
       !cd
-      !{!"LABEL " + mLabel + ", ORG "+ [inBlockAddress hexString]}
+      !{!"LABEL " + self.mLabel + ", ORG "+ [inBlockAddress hexString]}
       !@uint.max
       !0
       !?ioListFileContents
     )  
     ioAssemblyString += "    ORG "+ [inBlockAddress hexString] + "\n"
-    ioAssemblyString += mLabel.string + ":\n"
+    ioAssemblyString += self.mLabel.string + ":\n"
   end
 #--- Generate regular instructions
   var address = inBlockAddress
-  for () in mInstructionList do
+  for () in self.mInstructionList do
     [mInstruction generateCode
       !address
       !inSymbolTable
@@ -160,7 +160,7 @@ method @ipic18Block generateCodeForBlock
     end
   end
 #--- Generate block terminator
-  [mTerminator generateTerminatorCode
+  [self.mTerminator generateTerminatorCode
     !address
     !inSymbolTable
     !inNextBlockLabel
@@ -169,9 +169,9 @@ method @ipic18Block generateCodeForBlock
   generateLineWithCode (
     !address
     !code
-    !{![mTerminator terminatorDisplay !inNextBlockLabel]}
-    !mTerminatorMin
-    !mTerminatorMax
+    !{![self.mTerminator terminatorDisplay !inNextBlockLabel]}
+    !self.mTerminatorMin
+    !self.mTerminatorMax
     !?ioListFileContents
   )
   for () in code do
@@ -185,9 +185,9 @@ method @ipic18Block generateCodeForBlock
     for () in code do
       generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode length]
     end
-    if generatedCodeSize != [mTerminator terminatorSize !inNextBlockLabel] then
+    if generatedCodeSize != [self.mTerminator terminatorSize !inNextBlockLabel] then
       var s = "*** INTERNAL ERROR ** generated code size ("
-      + generatedCodeSize + ") != instruction size (" + [mTerminator terminatorSize !inNextBlockLabel] + ")"
+      + generatedCodeSize + ") != instruction size (" + [self.mTerminator terminatorSize !inNextBlockLabel] + ")"
       error .nowhere : s
       ioListFileContents += s + "\n"
     end

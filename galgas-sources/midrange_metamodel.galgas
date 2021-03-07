@@ -231,7 +231,7 @@ class @midrange_instruction_IF_BitTest : @midrange_instruction_IF_SEMI_COLON {
 }
 
 method @midrange_instruction_IF_BitTest getBaseCode !@uint outBaseCode {
-  if mSkipIfSet then
+  if self.mSkipIfSet then
     outBaseCode = 0x1C00 # BTFSS
   else
     outBaseCode = 0x1800 # BTFSC
@@ -239,7 +239,7 @@ method @midrange_instruction_IF_BitTest getBaseCode !@uint outBaseCode {
 } 
 
 method @midrange_instruction_IF_BitTest getMnemonic !@string outMnemonic {
-  if mSkipIfSet then
+  if self.mSkipIfSet then
     outMnemonic = "BTFSS"
   else
     outMnemonic = "BTFSC"

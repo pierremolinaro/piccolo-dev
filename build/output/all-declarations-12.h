@@ -139,27 +139,3 @@ void routine_ipic_31__38_StackComputations (class GALGAS_string & ioArgument0,
                                             class C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'enterGoto2block'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_enterGoto_32_block (const class GALGAS_symbolTableForBlockOptimization constinArgument0,
-                                 const class GALGAS_ipic_31__38_BlockList constinArgument1,
-                                 class GALGAS_stringset & ioArgument2,
-                                 class C_Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'enterGoto4block'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_enterGoto_34_block (const class GALGAS_symbolTableForBlockOptimization constinArgument0,
-                                 const class GALGAS_ipic_31__38_BlockList constinArgument1,
-                                 class GALGAS_stringset & ioArgument2,
-                                 class C_Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
-

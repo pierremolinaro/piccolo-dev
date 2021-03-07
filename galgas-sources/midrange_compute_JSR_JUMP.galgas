@@ -25,7 +25,7 @@ override
 method @midrange_intermediate_pseudo_LABEL defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives ioRoutineSymbolTable
   ?!@uint ioAddress {
-  [!?ioRoutineSymbolTable insertKey !mLabel !ioAddress]
+  [!?ioRoutineSymbolTable insertKey !self.mLabel !ioAddress]
 }
 
 #----------------------------------------------------------------------------*
@@ -34,11 +34,11 @@ override
 method @midrange_intermediate_pseudo_ORG defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress {
-  if (ioAddress > mOrigin) then
+  if (ioAddress > self.mOrigin) then
     error @location.here :"internal error: current address ("
-     + [ioAddress hexString] + ") is greater than origin (" + [mOrigin hexString] + ")"
+     + [ioAddress hexString] + ") is greater than origin (" + [self.mOrigin hexString] + ")"
   end
-  ioAddress = mOrigin
+  ioAddress = self.mOrigin
 }
 
 #----------------------------------------------------------------------------*
@@ -49,7 +49,7 @@ method @midrange_intermediate_actualInstruction defineLabelAtAddress
   ?!@uint ioAddress {
   @uint nextAddress = ioAddress  + [self instructionLength]
   if ((nextAddress ^ ioAddress) & 0xF800) != 0 then
-    error mInstructionLocation:"Routine too long, crosses page boundary at this instruction"
+    error self.mInstructionLocation:"Routine too long, crosses page boundary at this instruction"
   end
   ioAddress = nextAddress
 }
@@ -100,7 +100,7 @@ method @midrange_intermediate_pseudo_ORG compute
   ?!@midrange_intermediate_instructionList unused ioGeneratedInstructionList
   ?let @uint unused inIndex
   ?!@string unused ioListFileContents {
-  ioAddress = mOrigin
+  ioAddress = self.mOrigin
 }
 
 #----------------------------------------------------------------------------*
@@ -114,7 +114,7 @@ override method @midrange_intermediate_JUMP compute
   ?!@string ioListFileContents {
 #--- Get target address
     @uint targetAddress
-    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress]
+    [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
 #--- Change bit 11 ?
    @uint flags = ioAddress ^ targetAddress
    @midrange_call_goto_bit bit11
@@ -135,10 +135,10 @@ override method @midrange_intermediate_JUMP compute
      bit12 = @midrange_call_goto_bit. set
    end
 #--- Change ?
-  if (bit11 != mBit11) | (bit12 != mBit12) then
+  if (bit11 != self.mBit11) | (bit12 != self.mBit12) then
     @midrange_intermediate_actualInstruction instruction = @midrange_intermediate_JUMP. new {
-      !mInstructionLocation
-      !mTargetLabel
+      !self.mInstructionLocation
+      !self.mTargetLabel
       !bit11
       !bit12}
     [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex]
@@ -158,7 +158,7 @@ override method @midrange_intermediate_JSR compute
   ?!@string ioListFileContents {
 #--- Get target address
     @uint targetAddress
-    [inRoutineSymbolTable searchKey !mTargetLabel ?targetAddress]
+    [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
 #--- Change bit 11 ?
    @uint flags = ioAddress ^ targetAddress
    @midrange_call_goto_bit bit11
@@ -179,10 +179,10 @@ override method @midrange_intermediate_JSR compute
      bit12 = @midrange_call_goto_bit. set
    end
 #--- Change ?
-  if (bit11 != mBit11) | (bit12 != mBit12) then
+  if (bit11 != self.mBit11) | (bit12 != self.mBit12) then
     @midrange_intermediate_actualInstruction instruction = @midrange_intermediate_JSR. new {
-      !mInstructionLocation
-      !mTargetLabel
+      !self.mInstructionLocation
+      !self.mTargetLabel
       !bit11
       !bit12}
     [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex]
@@ -201,9 +201,9 @@ override method @midrange_intermediate_pseudo_LABEL compute
   ?let @uint unused inIndex
   ?!@string unused ioListFileContents {
   @uint targetAddress
-  [inRoutineSymbolTable searchKey !mLabel ?targetAddress]
+  [inRoutineSymbolTable searchKey !self.mLabel ?targetAddress]
   if (targetAddress != ioAddress) then
-    error mLabel: "Internal second pass error: the '" + mLabel
+    error self.mLabel: "Internal second pass error: the '" + self.mLabel
     + "' label gets " + [ioAddress hexString] + " value in second pass, while it gets "
     + [targetAddress hexString] + " in first pass"
   end

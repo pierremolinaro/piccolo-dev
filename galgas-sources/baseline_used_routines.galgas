@@ -9,56 +9,56 @@ abstract method @baseline_instruction addUsedRoutines
 
 override method @baseline_instruction_IF_BitTest addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  [mInstruction addUsedRoutines !?ioUsedRoutines]
+  [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
 #---------------------------------------------------------------------------*
 
 override method @baseline_instruction_IF_SEMI_COLON addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  [mInstruction addUsedRoutines !?ioUsedRoutines]
+  [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
 #---------------------------------------------------------------------------*
 
 override method @baseline_instruction_IF_IncDec addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  [mInstruction addUsedRoutines !?ioUsedRoutines]
+  [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
 #---------------------------------------------------------------------------*
 
 override method @baseline_instruction_JUMP addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !mTargetLabel.string
+  ioUsedRoutines += !self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
 
 override method @baseline_instruction_GOTO addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !mTargetLabel.string
+  ioUsedRoutines += !self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
 
 override method @baseline_instruction_CALL addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !mTargetLabel.string
+  ioUsedRoutines += !self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
 
 override method @baseline_instruction_FOREVER addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  addBaselineUsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+  addBaselineUsedRoutinesFromInstructionList ( !self.mInstructionList !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
 
 override method @baseline_instruction_STATIC_REPEAT addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  addBaselineUsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
+  addBaselineUsedRoutinesFromInstructionList ( !self.mInstructionList !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
@@ -95,8 +95,8 @@ override method @baseline_instruction_FB addUsedRoutines
 
 override method @baseline_instruction_do_while addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  addBaselineUsedRoutinesFromInstructionList ( !mRepeatedInstructionList !?ioUsedRoutines )
-  for () in  mWhilePartList do
+  addBaselineUsedRoutinesFromInstructionList ( !self.mRepeatedInstructionList !?ioUsedRoutines )
+  for () in  self.mWhilePartList do
     addBaselineUsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
   end
 }
@@ -105,8 +105,8 @@ override method @baseline_instruction_do_while addUsedRoutines
 
 override method @baseline_instruction_structured_if addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  addBaselineUsedRoutinesFromInstructionList ( !mThenInstructionList !?ioUsedRoutines )
-  addBaselineUsedRoutinesFromInstructionList ( !mElseInstructionList !?ioUsedRoutines )
+  addBaselineUsedRoutinesFromInstructionList ( !self.mThenInstructionList !?ioUsedRoutines )
+  addBaselineUsedRoutinesFromInstructionList ( !self.mElseInstructionList !?ioUsedRoutines )
 }
 
 #---------------------------------------------------------------------------*
@@ -119,7 +119,7 @@ override method @baseline_instruction_FD addUsedRoutines
 
 override method @baseline_instruction_JSR addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !mTargetLabel.string
+  ioUsedRoutines += !self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*

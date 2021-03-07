@@ -18,23 +18,23 @@ method @registerExpression resolveBaselineAccess
   !@bitSliceTable outBitSliceTable
   ?!@stringset ioUsedRegisters
 {
-  [mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
-  ioUsedRegisters += !mRegisterName.string
+  [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
+  ioUsedRegisters += !self.mRegisterName.string
 #--- Build assembly string
-  @string assemblyString = [mRegisterName string]
+  @string assemblyString = [self.mRegisterName string]
   if offset > 0LS then
     assemblyString += " + " + [[offset uint] hexString]
   end
 #--- Find register
   [inRegisterTable searchKey
-    !mRegisterName
+    !self.mRegisterName
     ?let @uintlist registerAddressList
     ?*
     ?outBitSliceTable
     ?*
     ?let protection
   ]
-  [inRegisterTable checkPrivateAccess !mRegisterName !write:true !protection]
+  [inRegisterTable checkPrivateAccess !self.mRegisterName !write:true !protection]
 #--- Accept if one address is <= 0x1F
   @uint registerAddress = 0
   if [registerAddressList length] > 0 then
@@ -44,7 +44,7 @@ method @registerExpression resolveBaselineAccess
       found = mValue <= 0x1F
     end
     if not found then
-      error mRegisterName : "the register cannot be accessed directly; use indirect addressing throught FSR register"
+      error self.mRegisterName : "the register cannot be accessed directly; use indirect addressing throught FSR register"
     end
   end
 #---
@@ -121,9 +121,9 @@ override method @baseline_instruction_WO_OPERAND build_baseline_intermediate_ins
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset unused ioUsedRegisters {
   if inLastInstructionShouldReturn then
-    error mInstructionLocation : "the last routine instruction should be MOVLW"
+    error self.mInstructionLocation : "the last routine instruction should be MOVLW"
   end
-  ioGeneratedInstructionList += !@baseline_intermediate_WO_OPERAND. new { !mInstructionLocation !mInstruction}
+  ioGeneratedInstructionList += !@baseline_intermediate_WO_OPERAND. new { !self.mInstructionLocation !self.mInstruction}
 }
 
 #----------------------------------------------------------------------------*
@@ -153,23 +153,23 @@ override method @baseline_instruction_TRIS build_baseline_intermediate_instructi
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset unused ioUsedRegisters {
   if inLastInstructionShouldReturn then
-    error mInstructionLocation : "this instruction is the last routine instruction but should be MOVLW"
+    error self.mInstructionLocation : "this instruction is the last routine instruction but should be MOVLW"
   end
 #---
-  if not [acceptableTRISoperand () hasKey !mOperand.string] then
+  if not [acceptableTRISoperand () hasKey !self.mOperand.string] then
     @string s = ""
     for () in  acceptableTRISoperand ()
     do s += key
     between s += ", "    
     end
-    error mInstructionLocation : "invalid TRIS operand; accepted operand are: " + s
+    error self.mInstructionLocation : "invalid TRIS operand; accepted operand are: " + s
   end
 #---
-  [inRegisterTable searchKey !mOperand ?let @uintlist registerAddressList ?3* ?let protection]
-  [inRegisterTable checkPrivateAccess !mOperand !write:true !protection]
+  [inRegisterTable searchKey !self.mOperand ?let @uintlist registerAddressList ?3* ?let protection]
+  [inRegisterTable checkPrivateAccess !self.mOperand !write:true !protection]
   [registerAddressList first ?let @uint opcode]
 #---
-  ioGeneratedInstructionList += !@baseline_intermediate_TRIS. new { !mInstructionLocation !mOperand !opcode}
+  ioGeneratedInstructionList += !@baseline_intermediate_TRIS. new { !self.mInstructionLocation !self.mOperand !opcode}
 }
 
 #----------------------------------------------------------------------------*
@@ -187,9 +187,9 @@ override method @baseline_instruction_MNOP build_baseline_intermediate_instructi
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset unused ioUsedRegisters {
   if inLastInstructionShouldReturn then
-    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+    error self.mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
   end
-  ioGeneratedInstructionList += !@baseline_intermediate_instruction_MNOP. new { !mInstructionLocation !mOccurrenceFactor}
+  ioGeneratedInstructionList += !@baseline_intermediate_instruction_MNOP. new { !self.mInstructionLocation !self.mOccurrenceFactor}
 }
 
 #----------------------------------------------------------------------------*
@@ -206,24 +206,24 @@ override method @baseline_instruction_literalOperation build_baseline_intermedia
   ?let @routineKind unused inRoutineKind
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters {
-  if inLastInstructionShouldReturn & (mLiteralInstruction != @baseline_literal_instruction_opcode. MOVLW) then
-    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+  if inLastInstructionShouldReturn & (self.mLiteralInstruction != @baseline_literal_instruction_opcode. MOVLW) then
+    error self.mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
   end
-  [mImmediatExpression eval !inRegisterTable !inConstantMap ?var @sint64 immediatValue !?ioUsedRegisters]
+  [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?var @sint64 immediatValue !?ioUsedRegisters]
 #---
    if (immediatValue > 255LS) | (immediatValue < -128LS) then
-     error mInstructionLocation:"immediate value is evaluated as " + immediatValue + " (should be betwween -128 and 255)"
+     error self.mInstructionLocation:"immediate value is evaluated as " + immediatValue + " (should be betwween -128 and 255)"
    end
 #---  
   if inLastInstructionShouldReturn then
     ioGeneratedInstructionList += !@baseline_intermediate_instruction_literalOperation. new {
-      !mInstructionLocation
+      !self.mInstructionLocation
       !@baseline_literal_instruction_opcode. RETLW
       ![immediatValue & 0x000000FFS uint]}
   else
     ioGeneratedInstructionList += !@baseline_intermediate_instruction_literalOperation. new {
-      !mInstructionLocation
-      !mLiteralInstruction
+      !self.mInstructionLocation
+      !self.mLiteralInstruction
       ![immediatValue & 0x000000FFS uint]}
   end
 }
@@ -244,9 +244,9 @@ override method @baseline_instruction_FD build_baseline_intermediate_instruction
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters {
   if inLastInstructionShouldReturn then
-    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+    error self.mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
   end
-  [mRegisterExpression resolveBaselineAccess
+  [self.mRegisterExpression resolveBaselineAccess
     !inRegisterTable
     !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
@@ -254,10 +254,10 @@ override method @baseline_instruction_FD build_baseline_intermediate_instruction
     !?ioUsedRegisters
   ]
   ioGeneratedInstructionList += !@baseline_intermediate_instruction_FD. new {
-    !mInstructionLocation
-    !mInstruction_FD_base_code
+    !self.mInstructionLocation
+    !self.mInstruction_FD_base_code
     !intermediateRegisterDescription
-    !m_W_isDestination}
+    !self.m_W_isDestination}
 }
 
 #----------------------------------------------------------------------------*
@@ -275,22 +275,22 @@ override method @baseline_instruction_CALL build_baseline_intermediate_instructi
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset unused ioUsedRegisters {
 #--- Check instruction
-  [inRoutineMap searchKey !mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
+  [inRoutineMap searchKey !self.mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
   if isNoReturn then
-    error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or a JUMP instruction"
+    error self.mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or a JUMP instruction"
   end
   if inCurrentPage != targetPage.uint then
-    error mTargetLabel:"for an inter-page regular routine call, use a JSR instruction"
+    error self.mTargetLabel:"for an inter-page regular routine call, use a JSR instruction"
   end
 #---
   if inLastInstructionShouldReturn then
     ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
-      !mInstructionLocation
-      !mTargetLabel}
+      !self.mInstructionLocation
+      !self.mTargetLabel}
   else
     ioGeneratedInstructionList += !@baseline_intermediate_CALL. new {
-      !mInstructionLocation
-      !mTargetLabel}
+      !self.mInstructionLocation
+      !self.mTargetLabel}
   end
 }
 
@@ -309,21 +309,21 @@ override method @baseline_instruction_JSR build_baseline_intermediate_instructio
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset unused ioUsedRegisters {
 #--- Check instruction
-  [inRoutineMap searchKey !mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
+  [inRoutineMap searchKey !self.mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
   if isNoReturn then
-    error mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or a JUMP instruction"
+    error self.mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or a JUMP instruction"
   end
 #---
   if inLastInstructionShouldReturn then
     ioGeneratedInstructionList += !@baseline_intermediate_JUMP. new {
-      !mInstructionLocation
-      !mTargetLabel
+      !self.mInstructionLocation
+      !self.mTargetLabel
       !inCurrentPage
       !targetPage.uint}
   else
     ioGeneratedInstructionList += !@baseline_intermediate_JSR. new {
-      !mInstructionLocation
-      !mTargetLabel
+      !self.mInstructionLocation
+      !self.mTargetLabel
       !inCurrentPage
       !targetPage.uint}
   end
@@ -344,9 +344,9 @@ override method @baseline_instruction_F build_baseline_intermediate_instructionL
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters {
   if inLastInstructionShouldReturn then
-    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+    error self.mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
   end
-  [mRegisterExpression resolveBaselineAccess
+  [self.mRegisterExpression resolveBaselineAccess
     !inRegisterTable
     !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
@@ -354,8 +354,8 @@ override method @baseline_instruction_F build_baseline_intermediate_instructionL
     !?ioUsedRegisters
   ]
   ioGeneratedInstructionList += !@baseline_intermediate_instruction_F. new {
-    !mInstructionLocation
-    !mFAinstruction
+    !self.mInstructionLocation
+    !self.mFAinstruction
     !intermediateRegisterDescription}
 }
 
@@ -374,16 +374,16 @@ override method @baseline_instruction_FB build_baseline_intermediate_instruction
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters {
   if inLastInstructionShouldReturn then
-    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+    error self.mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
   end
-  [mRegisterExpression resolveBaselineAccess
+  [self.mRegisterExpression resolveBaselineAccess
     !inRegisterTable
     !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
     ?var @bitSliceTable bitSliceTable
     !?ioUsedRegisters
   ]
-  [mBitNumber getBitNumber
+  [self.mBitNumber getBitNumber
     !inRegisterTable
     !inConstantMap
     !?ioUsedRegisters
@@ -391,8 +391,8 @@ override method @baseline_instruction_FB build_baseline_intermediate_instruction
     ?var @uint bitNumber
   ]
   ioGeneratedInstructionList += !@baseline_intermediate_instruction_FB. new {
-    !mInstructionLocation
-    !mBitOrientedOp
+    !self.mInstructionLocation
+    !self.mBitOrientedOp
     !intermediateRegisterDescription
     !bitNumber
   }
@@ -413,20 +413,20 @@ override method @baseline_instruction_GOTO build_baseline_intermediate_instructi
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset unused ioUsedRegisters {
   if inLastInstructionShouldReturn then
-    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+    error self.mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
   end
-  [inRoutineMap searchKey !mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
+  [inRoutineMap searchKey !self.mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
   if not isNoReturn then
-    error mTargetLabel:"a regular routine should be called with a CALL or a JSR instruction"
+    error self.mTargetLabel:"a regular routine should be called with a CALL or a JSR instruction"
   end
   if inCurrentPage != targetPage.uint then
-    error mTargetLabel:"for an inter-page noreturn routine call, use a JUMP instruction"
+    error self.mTargetLabel:"for an inter-page noreturn routine call, use a JUMP instruction"
   end
   ioContinuesInSequence = false
 #---
   ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
-    !mInstructionLocation
-    !mTargetLabel}
+    !self.mInstructionLocation
+    !self.mTargetLabel}
 }
 
 #----------------------------------------------------------------------------*
@@ -444,17 +444,17 @@ override method @baseline_instruction_JUMP build_baseline_intermediate_instructi
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset unused ioUsedRegisters {
   if inLastInstructionShouldReturn then
-    error mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
+    error self.mInstructionLocation : "this instruction is the last routine instruction and should be MOVLW"
   end
-  [inRoutineMap searchKey !mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
+  [inRoutineMap searchKey !self.mTargetLabel ?var @bool isNoReturn ?var @luint targetPage]
   if not isNoReturn then
-    error mTargetLabel:"a regular routine should be called with a CALL or a JSR instruction"
+    error self.mTargetLabel:"a regular routine should be called with a CALL or a JSR instruction"
   end
   ioContinuesInSequence = false
 #---
   ioGeneratedInstructionList += !@baseline_intermediate_JUMP. new {
-    !mInstructionLocation
-    !mTargetLabel
+    !self.mInstructionLocation
+    !self.mTargetLabel
     !inCurrentPage
     !targetPage.uint}
 }
@@ -473,7 +473,7 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
   ?let @routineKind inRoutineKind
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters {
-  [mRegisterExpression resolveBaselineAccess
+  [self.mRegisterExpression resolveBaselineAccess
     !inRegisterTable
     !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
@@ -481,7 +481,7 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
     !?ioUsedRegisters
   ]
   @uint bitNumber
-  [mBitNumber getBitNumber
+  [self.mBitNumber getBitNumber
     !inRegisterTable
     !inConstantMap
     !?ioUsedRegisters
@@ -489,13 +489,13 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
     ?bitNumber
   ]
   ioGeneratedInstructionList += !@baseline_intermediate_instruction_BitTestSkip. new {
-    !mInstructionLocation
-    !mSkipIfSet
+    !self.mInstructionLocation
+    !self.mSkipIfSet
     !intermediateRegisterDescription
     !bitNumber}
 #--- Append Instruction
   @bool unusedContinuesInSequence = true
-  [mInstruction build_baseline_intermediate_instructionList
+  [self.mInstruction build_baseline_intermediate_instructionList
     !inCurrentPage
     !inRoutineMap
     !inRegisterTable
@@ -526,13 +526,13 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
   ?!@stringset ioUsedRegisters {
 #---
   @baseline_instruction_FD_base_code baseCode
-  if mIncrement then
+  if self.mIncrement then
     baseCode = @baseline_instruction_FD_base_code. INCFSZ
   else
     baseCode = @baseline_instruction_FD_base_code. DECFSZ
   end
 #---
-  [mRegisterExpression resolveBaselineAccess
+  [self.mRegisterExpression resolveBaselineAccess
     !inRegisterTable
     !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
@@ -541,13 +541,13 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
   ]
 #---
   ioGeneratedInstructionList += !@baseline_intermediate_instruction_FD. new {
-    !mInstructionLocation
+    !self.mInstructionLocation
     !baseCode
     !intermediateRegisterDescription
-    !m_W_isDestination}
+    !self.m_W_isDestination}
 #---
   @bool unusedContinuesInSequence = true
-  [mInstruction build_baseline_intermediate_instructionList
+  [self.mInstruction build_baseline_intermediate_instructionList
     !inCurrentPage
     !inRoutineMap
     !inRegisterTable
@@ -578,18 +578,18 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
   ?!@stringset ioUsedRegisters {
   switch inRoutineKind
   case regularRoutine :
-    error mInstructionLocation:"a regular routine does not accept the \"forever\" instruction"
+    error self.mInstructionLocation:"a regular routine does not accept the \"forever\" instruction"
   case noReturnRoutine : # ok
   case interruptRoutine :
-    error mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction"
+    error self.mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction"
   end
 #--- Check instruction list does not change bank
   @string label0 = ".L" + [ioLocalLabelIndex string] 
   ioLocalLabelIndex ++
-  ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label0 !mInstructionLocation}}
+  ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label0 !self.mInstructionLocation}}
   handleBaselineInstructionList (
     !inCurrentPage
-    !mInstructionList 
+    !self.mInstructionList 
     !inRoutineMap
     !inRegisterTable
     !inConstantMap
@@ -603,8 +603,8 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
   )
 #--- Generate GOTO to the beginning of the loop
   ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
-    !mInstructionLocation
-    !@lstring. new { !label0 !mInstructionLocation}}
+    !self.mInstructionLocation
+    !@lstring. new { !label0 !self.mInstructionLocation}}
 #---
   ioContinuesInSequence = false
 }
@@ -625,20 +625,20 @@ override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_
   ?!@stringset ioUsedRegisters
 {
 #--- Solve immediat expression
-  [mLowerBoundExpression eval !inRegisterTable !inConstantMap ?let @sint64 lowerBound !?ioUsedRegisters]
-  [mUpperBoundExpression eval !inRegisterTable !inConstantMap ?let @sint64 upperBound !?ioUsedRegisters]
+  [self.mLowerBoundExpression eval !inRegisterTable !inConstantMap ?let @sint64 lowerBound !?ioUsedRegisters]
+  [self.mUpperBoundExpression eval !inRegisterTable !inConstantMap ?let @sint64 upperBound !?ioUsedRegisters]
 #---
   if lowerBound > upperBound then
-    error mInstructionLocation: "lower bound (" + lowerBound + ") greater then upper bound (" + upperBound + ")"
+    error self.mInstructionLocation: "lower bound (" + lowerBound + ") greater then upper bound (" + upperBound + ")"
   elsif (upperBound - lowerBound) > 0xFFFF_LS then
-    error mInstructionLocation:"repeat count (" + (upperBound - lowerBound) + ") too large (should be <= 0xFFFF)"
+    error self.mInstructionLocation:"repeat count (" + (upperBound - lowerBound) + ") too large (should be <= 0xFFFF)"
   end
 #--- First pass
   var tempConstantMap = inConstantMap
-  [!?tempConstantMap insertKey !mConstantName !lowerBound]
+  [!?tempConstantMap insertKey !self.mConstantName !lowerBound]
   handleBaselineInstructionList (
     !inCurrentPage
-    !mInstructionList 
+    !self.mInstructionList 
     !inRoutineMap
     !inRegisterTable
     !tempConstantMap
@@ -651,16 +651,16 @@ override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_
     !?ioUsedRegisters
   )
   if not ioContinuesInSequence then
-    error mEndOfInstruction:"enclosed instruction list contains an endless loop"
+    error self.mEndOfInstruction:"enclosed instruction list contains an endless loop"
   end
 #--- Other passes
   var idx = lowerBound + 1
   loop ([upperBound - lowerBound + 1 uint]) while (idx <= upperBound) && (@uint.errorCount == 0) do
     var constantMap = inConstantMap
-    [!?constantMap insertKey !mConstantName !idx]
+    [!?constantMap insertKey !self.mConstantName !idx]
     handleBaselineInstructionList (
       !inCurrentPage
-      !mInstructionList 
+      !self.mInstructionList 
       !inRoutineMap
       !inRegisterTable
       !constantMap
@@ -693,11 +693,11 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
 #--- Generate label
   @string labelInstructionBegin = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
 #--- Define label
-  ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !labelInstructionBegin !mInstructionLocation}}
+  ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !labelInstructionBegin !self.mInstructionLocation}}
 #--- Repeated instructions
   handleBaselineInstructionList (
     !inCurrentPage
-    !mRepeatedInstructionList
+    !self.mRepeatedInstructionList
     !inRoutineMap
     !inRegisterTable
     !inConstantMap
@@ -710,7 +710,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
     !?ioUsedRegisters
   )
 #--- while parts
-  for () in  mWhilePartList do
+  for () in  self.mWhilePartList do
     if [mInstructionList length] == 0 then
       [mCondition build_intermediate_condition_instructions
         !inCurrentPage
@@ -718,7 +718,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
         !inConstantMap
         !?ioLocalLabelIndex
         !false
-        !mInstructionLocation
+        !self.mInstructionLocation
         !labelInstructionBegin
         !?ioGeneratedInstructionList
         !?ioUsedRegisters
@@ -731,7 +731,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
         !inConstantMap
         !?ioLocalLabelIndex
         !true
-        !mInstructionLocation
+        !self.mInstructionLocation
         !nextBranchLabel
         !?ioGeneratedInstructionList
         !?ioUsedRegisters
@@ -751,9 +751,9 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
         !?ioUsedRegisters
       )
       ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
-        !mInstructionLocation
-        !@lstring. new { !labelInstructionBegin !mInstructionLocation}}
-      ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !nextBranchLabel !mInstructionLocation}}
+        !self.mInstructionLocation
+        !@lstring. new { !labelInstructionBegin !self.mInstructionLocation}}
+      ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !nextBranchLabel !self.mInstructionLocation}}
     end
   end
 }
@@ -776,13 +776,13 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
   @string label_nextCondition = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
   @string label_endOfIfinstruction = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
 #--- Translate condition
-  [mIfCondition build_intermediate_condition_instructions
+  [self.mIfCondition build_intermediate_condition_instructions
     !inCurrentPage
     !inRegisterTable
     !inConstantMap
     !?ioLocalLabelIndex
     !true
-    !mInstructionLocation
+    !self.mInstructionLocation
     !label_nextCondition
     !?ioGeneratedInstructionList
     !?ioUsedRegisters
@@ -790,7 +790,7 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
 #--- 'then' instructions
   handleBaselineInstructionList (
     !inCurrentPage
-    !mThenInstructionList
+    !self.mThenInstructionList
     !inRoutineMap
     !inRegisterTable
     !inConstantMap
@@ -803,15 +803,15 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
     !?ioUsedRegisters
   )
 #--- 'else' instructions
-  if ([mElseInstructionList length] > 0) & not inLastInstructionShouldReturn then
+  if ([self.mElseInstructionList length] > 0) & not inLastInstructionShouldReturn then
     ioGeneratedInstructionList += !@baseline_intermediate_GOTO. new {
-      !mInstructionLocation
-      !@lstring. new { !label_endOfIfinstruction !mInstructionLocation}}
+      !self.mInstructionLocation
+      !@lstring. new { !label_endOfIfinstruction !self.mInstructionLocation}}
   end
-  ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label_nextCondition !mInstructionLocation}}
+  ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label_nextCondition !self.mInstructionLocation}}
   handleBaselineInstructionList (
     !inCurrentPage
-    !mElseInstructionList
+    !self.mElseInstructionList
     !inRoutineMap
     !inRegisterTable
     !inConstantMap
@@ -823,8 +823,8 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
     !inLastInstructionShouldReturn
     !?ioUsedRegisters
   )
-  if ([mElseInstructionList length] > 0) & not inLastInstructionShouldReturn then
-    ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label_endOfIfinstruction !mInstructionLocation}}
+  if ([self.mElseInstructionList length] > 0) & not inLastInstructionShouldReturn then
+    ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label_endOfIfinstruction !self.mInstructionLocation}}
   end
 #---
   ioContinuesInSequence = thenContinuesInSequence | elseContinuesInSequence
@@ -859,7 +859,7 @@ override method @baseline_incDecRegisterInCondition build_intermediate_condition
   ?let @string inTargetLabel
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@stringset ioUsedRegisters {
-  [mRegisterExpression resolveBaselineAccess
+  [self.mRegisterExpression resolveBaselineAccess
     !inRegisterTable
     !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
@@ -871,9 +871,9 @@ override method @baseline_incDecRegisterInCondition build_intermediate_condition
     !inInstructionLocation
     !intermediateRegisterDescription
     !inTargetLabel
-    !mIncrement
-    !m_W_isDestination
-    !mBranchIfZero ^ inComplementaryBranch}
+    !self.mIncrement
+    !self.m_W_isDestination
+    !self.mBranchIfZero ^ inComplementaryBranch}
 }
 
 #----------------------------------------------------*
@@ -888,7 +888,7 @@ override method @baseline_negateCondition build_intermediate_condition_instructi
   ?let @string inTargetLabel
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@stringset ioUsedRegisters {
-  [mCondition build_intermediate_condition_instructions
+  [self.mCondition build_intermediate_condition_instructions
     !inCurrentPage
     !inRegisterTable
     !inConstantMap
@@ -914,7 +914,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@stringset ioUsedRegisters {
   if inComplementaryBranch then
-    [mLeftExpression build_intermediate_condition_instructions
+    [self.mLeftExpression build_intermediate_condition_instructions
       !inCurrentPage
       !inRegisterTable
       !inConstantMap
@@ -925,7 +925,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
       !?ioGeneratedInstructionList
       !?ioUsedRegisters
     ]
-    [mRightExpression build_intermediate_condition_instructions
+    [self.mRightExpression build_intermediate_condition_instructions
       !inCurrentPage
       !inRegisterTable
       !inConstantMap
@@ -938,7 +938,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
     ]
   else
     let @string label0 = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
-    [mLeftExpression build_intermediate_condition_instructions
+    [self.mLeftExpression build_intermediate_condition_instructions
       !inCurrentPage
       !inRegisterTable
       !inConstantMap
@@ -949,7 +949,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
       !?ioGeneratedInstructionList
       !?ioUsedRegisters
     ]
-    [mRightExpression build_intermediate_condition_instructions
+    [self.mRightExpression build_intermediate_condition_instructions
       !inCurrentPage
       !inRegisterTable
       !inConstantMap
@@ -977,7 +977,7 @@ override method @baseline_bitTest_in_structured_if_condition build_intermediate_
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@stringset ioUsedRegisters
 {
-  [mRegisterExpression resolveBaselineAccess
+  [self.mRegisterExpression resolveBaselineAccess
     !inRegisterTable
     !inConstantMap
     ?var @baseline_intermediate_registerExpression intermediateRegisterDescription
@@ -985,7 +985,7 @@ override method @baseline_bitTest_in_structured_if_condition build_intermediate_
     !?ioUsedRegisters
   ]
   @uint bitNumber
-  [mBitNumber getBitNumber
+  [self.mBitNumber getBitNumber
     !inRegisterTable
     !inConstantMap
     !?ioUsedRegisters

@@ -13,10 +13,10 @@ method @ipic18Block performRelativesResolution
 #--- Instruction
   var modifiedInstructionList =@ipic18SequentialInstructionList.emptyList{}
   @uint address = inBlockStartAddress
-  for () in  mInstructionList do
+  for () in  self.mInstructionList do
     [mInstruction performInstructionRelativeBranchResolution
       !address
-      !mLabel.string
+      !self.mLabel.string
       !inSymbolTable
       !?ioConversionCount
       !?ioListFileContents
@@ -26,9 +26,9 @@ method @ipic18Block performRelativesResolution
     address = address + [mInstruction instructionSize]
   end
 #--- Terminator
-  [mTerminator performTerminatorRelativeBranchResolution
+  [self.mTerminator performTerminatorRelativeBranchResolution
     !address
-    !mLabel.string
+    !self.mLabel.string
     !inSymbolTable
     !inNextBlockLabel
     !?ioConversionCount
@@ -37,8 +37,8 @@ method @ipic18Block performRelativesResolution
   ]
 #---
   outModifiedBlock = @ipic18Block. new {
-    !mAddress
-    !mLabel
+    !self.mAddress
+    !self.mLabel
     !modifiedInstructionList
     !modifiedTerminator
     !@uint.max
@@ -89,8 +89,8 @@ proc performRelativesResolution
 getter @ipic18Block blockSize
   ?let @string inNextBlockLabel
   ->@uint outResult {
-  outResult = [mTerminator terminatorSize !inNextBlockLabel]
-  for () in  mInstructionList do
+  outResult = [self.mTerminator terminatorSize !inNextBlockLabel]
+  for () in  self.mInstructionList do
     outResult = outResult + [mInstruction instructionSize]  
   end
 }
@@ -197,19 +197,19 @@ method @ipic18Block relativeBranchOverflow
   ?!@branchOverflowMap ioOverflowMap {
 #--- Instruction
   @uint address = inBlockStartAddress
-  for () in  mInstructionList do
+  for () in  self.mInstructionList do
     [mInstruction instructionRelativeBranchOverflow
       !address
-      !mLabel.string
+      !self.mLabel.string
       !inSymbolTable
       !?ioOverflowMap
     ]
     address = address + [mInstruction instructionSize]
   end
 #--- Terminator
-  [mTerminator terminatorRelativeBranchOverflow
+  [self.mTerminator terminatorRelativeBranchOverflow
     !address
-    !mLabel.string
+    !self.mLabel.string
     !inSymbolTable
     !inNextBlockLabel
     !?ioOverflowMap

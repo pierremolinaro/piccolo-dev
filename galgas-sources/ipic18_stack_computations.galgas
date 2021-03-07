@@ -38,12 +38,12 @@ override method @ipic18AbstractConditionTerminator exploreAccessibleBlocksForSta
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
 {
-  [mSingleInstructionTerminatorIfConditionTrue exploreAccessibleBlocksForStackComputations
+  [self.mSingleInstructionTerminatorIfConditionTrue exploreAccessibleBlocksForStackComputations
     !?ioBlockToExploreSet
     !?ioExploredBlockSet
     ?let trueStackNeeds
   ]
-  [mSingleInstructionTerminatorIfConditionFalse exploreAccessibleBlocksForStackComputations
+  [self.mSingleInstructionTerminatorIfConditionFalse exploreAccessibleBlocksForStackComputations
     !?ioBlockToExploreSet
     !?ioExploredBlockSet
     ?let falseStackNeeds
@@ -58,7 +58,7 @@ override method @ipic18ComputedBraTerminator exploreAccessibleBlocksForStackComp
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
 {
-  for () in  mTargetLabels do
+  for () in  self.mTargetLabels do
     if not [ioExploredBlockSet hasKey !mValue.string] then
       ioBlockToExploreSet += !mValue.string
     end
@@ -73,7 +73,7 @@ override method @ipic18ComputedGotoTerminator exploreAccessibleBlocksForStackCom
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
 {
-  for () in  mTargetLabels do
+  for () in  self.mTargetLabels do
     if not [ioExploredBlockSet hasKey !mValue.string] then
       ioBlockToExploreSet += !mValue.string
     end
@@ -88,8 +88,8 @@ override method @ipic18JumpTerminator exploreAccessibleBlocksForStackComputation
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
 {
-  if not [ioExploredBlockSet hasKey !mLabel.string] then
-    ioBlockToExploreSet += !mLabel.string
+  if not [ioExploredBlockSet hasKey !self.mLabel.string] then
+    ioBlockToExploreSet += !self.mLabel.string
   end
   outStackNeeds = 0
 }
@@ -101,11 +101,11 @@ override method @ipic18ConditionalJumpTerminator exploreAccessibleBlocksForStack
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
 {
-  if not [ioExploredBlockSet hasKey !mTargetLabelWhenTrue.string] then
-    ioBlockToExploreSet += !mTargetLabelWhenTrue.string
+  if not [ioExploredBlockSet hasKey !self.mTargetLabelWhenTrue.string] then
+    ioBlockToExploreSet += !self.mTargetLabelWhenTrue.string
   end
-  if not [ioExploredBlockSet hasKey !mTargetLabelWhenFalse.string] then
-    ioBlockToExploreSet += !mTargetLabelWhenFalse.string
+  if not [ioExploredBlockSet hasKey !self.mTargetLabelWhenFalse.string] then
+    ioBlockToExploreSet += !self.mTargetLabelWhenFalse.string
   end
   outStackNeeds = 0
 }
@@ -165,14 +165,14 @@ method @ipic18SequentialInstruction buildCalledRoutineSetForStackComputations
 
 override method @ipic18_intermediate_JSR buildCalledRoutineSetForStackComputations
   ?!@stringset ioRoutineCalledSet {
-  ioRoutineCalledSet += !mTargetLabel.string
+  ioRoutineCalledSet += !self.mTargetLabel.string
 }
 
 #----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_computed_rcall buildCalledRoutineSetForStackComputations
   ?!@stringset ioRoutineCalledSet {
-  for () in  mTargetInstructions do
+  for () in  self.mTargetInstructions do
     [mInstruction buildCalledRoutineSetForStackComputations !?ioRoutineCalledSet]
   end
 }
@@ -181,7 +181,7 @@ override method @ipic18_intermediate_instruction_computed_rcall buildCalledRouti
 
 override method @ipic18_condition_skip_instruction buildCalledRoutineSetForStackComputations
   ?!@stringset ioRoutineCalledSet {
-  [mEmbeddedInstruction buildCalledRoutineSetForStackComputations !?ioRoutineCalledSet]
+  [self.mEmbeddedInstruction buildCalledRoutineSetForStackComputations !?ioRoutineCalledSet]
 }
 
 #----------------------------------------------------------------------------*

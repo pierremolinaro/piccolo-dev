@@ -50,31 +50,31 @@ method @midrange_intermediate_instruction enterReferencedLabel ?!@stringset unus
 #----------------------------------------------------------------------------*
 
 override method @midrange_intermediate_JUMP enterReferencedLabel ?!@stringset ioReferencedLabelSet {
-  ioReferencedLabelSet += ![mTargetLabel string]
+  ioReferencedLabelSet += ![self.mTargetLabel string]
 }
 
 #----------------------------------------------------------------------------*
 
 override method @midrange_intermediate_GOTO enterReferencedLabel ?!@stringset ioReferencedLabelSet {
-  ioReferencedLabelSet += ![mTargetLabel string]
+  ioReferencedLabelSet += ![self.mTargetLabel string]
 }
 
 #----------------------------------------------------------------------------*
 
 override method @midrange_intermediate_CALL enterReferencedLabel ?!@stringset ioReferencedLabelSet {
-  ioReferencedLabelSet += ![mTargetLabel string]
+  ioReferencedLabelSet += ![self.mTargetLabel string]
 }
 
 #----------------------------------------------------------------------------*
 
 override method @midrange_intermediate_JSR enterReferencedLabel ?!@stringset ioReferencedLabelSet {
-  ioReferencedLabelSet += ![mTargetLabel string]
+  ioReferencedLabelSet += ![self.mTargetLabel string]
 }
 
 #----------------------------------------------------------------------------*
 
 override method @midrange_intermediate_incDecRegisterInCondition enterReferencedLabel ?!@stringset ioReferencedLabelSet {
-  ioReferencedLabelSet += !mTargetLabel
+  ioReferencedLabelSet += !self.mTargetLabel
 }
 
 #----------------------------------------------------------------------------*
@@ -132,7 +132,7 @@ override getter @midrange_intermediate_instruction_RETFIE nextInstructionIsReach
 #----------------------------------------------------------------------------*
 
 override getter @midrange_intermediate_instruction_literalOperation nextInstructionIsReachable -> @bool outIsReachable {
-  outIsReachable = mLiteralInstruction != @midrange_literal_instruction_opcode. RETLW
+  outIsReachable = self.mLiteralInstruction != @midrange_literal_instruction_opcode. RETLW
 }
 
 #----------------------------------------------------------------------------*
@@ -152,7 +152,7 @@ override
 method @midrange_intermediate_pseudo_LABEL defineLabel
   ?!@symbolTableForOptimizations ioRoutineSymbolTable
   ?let @uint inLineIndex {
-  [!?ioRoutineSymbolTable insertKey !mLabel !inLineIndex !mIsDeletable]
+  [!?ioRoutineSymbolTable insertKey !self.mLabel !inLineIndex !self.mIsDeletable]
 }
 
 #----------------------------------------------------------------------------*
@@ -228,12 +228,12 @@ method @midrange_intermediate_JUMP optimizeJUMP
   @stringset reachedLabelSet
   findMidRangeFirstInstructionOrLabelFromAddress ( !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet )
 #  log reachedLabelSet ; log inLineIndex ;
-  if [reachedLabelSet hasKey ![mTargetLabel string]] then
+  if [reachedLabelSet hasKey ![self.mTargetLabel string]] then
     [!?ioGeneratedInstructionList setMInstructionAtIndex !@midrange_intermediate_NULL. new !inLineIndex]
     ioListFileContents += "  line " + [inLineIndex string] + ": JUMP branching to next instruction deleted\n"
   else      
   #--- Find destination label definition line
-    [inSymbolTable searchKey !mTargetLabel ?var @uint line ?*]
+    [inSymbolTable searchKey !self.mTargetLabel ?var @uint line ?*]
   #--- Find first executable instruction
     @midrange_intermediate_instruction firstInstruction
     findMidRangeFirstInstructionFromAddress ( !line + 1 !ioGeneratedInstructionList ?firstInstruction )
@@ -241,7 +241,7 @@ method @midrange_intermediate_JUMP optimizeJUMP
     cast firstInstruction
     case == @midrange_intermediate_instruction_RETURN :
       [!?ioGeneratedInstructionList setMInstructionAtIndex
-        !@midrange_intermediate_instruction_RETURN. new { !mInstructionLocation}
+        !@midrange_intermediate_instruction_RETURN. new { !self.mInstructionLocation}
         !inLineIndex
       ]
       ioOptimizationsDone = true
@@ -256,9 +256,9 @@ method @midrange_intermediate_JUMP optimizeJUMP
         ioListFileContents += "  line " + [inLineIndex string] + ": JUMP branching to RETLW replaced by RETLW\n"
       end
     case == @midrange_intermediate_JUMP jump :
-      if mTargetLabel != [jump mTargetLabel] then
+      if self.mTargetLabel != [jump mTargetLabel] then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
-          !@midrange_intermediate_JUMP. new { !mInstructionLocation ![jump mTargetLabel] !@midrange_call_goto_bit. noChange !@midrange_call_goto_bit. noChange}
+          !@midrange_intermediate_JUMP. new { !self.mInstructionLocation ![jump mTargetLabel] !@midrange_call_goto_bit. noChange !@midrange_call_goto_bit. noChange}
           !inLineIndex
         ]
         ioOptimizationsDone = true
@@ -282,12 +282,12 @@ method @midrange_intermediate_GOTO optimizeGOTO
   @stringset reachedLabelSet
   findMidRangeFirstInstructionOrLabelFromAddress ( !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet )
 #  log reachedLabelSet ; log inLineIndex ;
-  if [reachedLabelSet hasKey ![mTargetLabel string]] then
+  if [reachedLabelSet hasKey ![self.mTargetLabel string]] then
     [!?ioGeneratedInstructionList setMInstructionAtIndex !@midrange_intermediate_NULL. new !inLineIndex]
     ioListFileContents += "  line " + [inLineIndex string] + ": GOTO branching to next instruction deleted\n"
   else      
   #--- Find destination label definition line
-    [inSymbolTable searchKey !mTargetLabel ?var @uint line ?*]
+    [inSymbolTable searchKey !self.mTargetLabel ?var @uint line ?*]
   #--- Find first executable instruction
     @midrange_intermediate_instruction firstInstruction
     findMidRangeFirstInstructionFromAddress ( !line + 1 !ioGeneratedInstructionList ?firstInstruction )
@@ -296,7 +296,7 @@ method @midrange_intermediate_GOTO optimizeGOTO
     cast firstInstruction
     case == @midrange_intermediate_instruction_RETURN :
       [!?ioGeneratedInstructionList setMInstructionAtIndex
-        !@midrange_intermediate_instruction_RETURN. new { !mInstructionLocation}
+        !@midrange_intermediate_instruction_RETURN. new { !self.mInstructionLocation}
         !inLineIndex
       ]
       ioOptimizationsDone = true
@@ -311,18 +311,18 @@ method @midrange_intermediate_GOTO optimizeGOTO
         ioListFileContents += "  line " + [inLineIndex string] + ": GOTO branching to RETLW replaced by RETLW\n"
       end
     case == @midrange_intermediate_JUMP jump :
-      if mTargetLabel != [jump mTargetLabel] then
+      if self.mTargetLabel != [jump mTargetLabel] then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
-          !@midrange_intermediate_JUMP. new { !mInstructionLocation ![jump mTargetLabel] !@midrange_call_goto_bit. noChange !@midrange_call_goto_bit. noChange}
+          !@midrange_intermediate_JUMP. new { !self.mInstructionLocation ![jump mTargetLabel] !@midrange_call_goto_bit. noChange !@midrange_call_goto_bit. noChange}
           !inLineIndex
         ]
         ioOptimizationsDone = true
         ioListFileContents += "  line " + [inLineIndex string] + ": GOTO branching to JUMP replaced by JUMP\n"
       end
     case == @midrange_intermediate_GOTO goto :
-      if mTargetLabel != [goto mTargetLabel] then
+      if self.mTargetLabel != [goto mTargetLabel] then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
-          !@midrange_intermediate_GOTO. new { !mInstructionLocation ![goto mTargetLabel]}
+          !@midrange_intermediate_GOTO. new { !self.mInstructionLocation ![goto mTargetLabel]}
           !inLineIndex
         ]
         ioOptimizationsDone = true
@@ -364,7 +364,7 @@ method @midrange_intermediate_instruction_literalOperation optimizeMOVLW
   ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone {
-  if mLiteralInstruction == @midrange_literal_instruction_opcode. MOVLW then
+  if self.mLiteralInstruction == @midrange_literal_instruction_opcode. MOVLW then
   #--- Find first executable instruction
     @midrange_intermediate_instruction firstInstruction
     findMidRangeFirstInstructionFromAddress ( !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction )
@@ -372,7 +372,7 @@ method @midrange_intermediate_instruction_literalOperation optimizeMOVLW
     cast firstInstruction
     case == @midrange_intermediate_instruction_RETURN :
       [!?ioGeneratedInstructionList setMInstructionAtIndex
-        !@midrange_intermediate_instruction_literalOperation. new { !mInstructionLocation !@midrange_literal_instruction_opcode. RETLW !mLiteralValue}
+        !@midrange_intermediate_instruction_literalOperation. new { !self.mInstructionLocation !@midrange_literal_instruction_opcode. RETLW !self.mLiteralValue}
         !inLineIndex
       ]
       ioOptimizationsDone = true
@@ -392,7 +392,7 @@ method @midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc
   ?!@bool ioOptimizationsDone {
 #  message "optimizeTestDecInc " . [inLineIndex string] . "\n" ;
 #--- Find destination label definition line
-  [inSymbolTable searchKey !@lstring. new { !mTargetLabel !@location.here} ?var @uint line ?*]
+  [inSymbolTable searchKey !@lstring. new { !self.mTargetLabel !@location.here} ?var @uint line ?*]
 #--- Find first executable instruction
   @midrange_intermediate_instruction firstInstruction
   findMidRangeFirstInstructionFromAddress ( !line + 1 !ioGeneratedInstructionList ?firstInstruction )
@@ -402,27 +402,27 @@ method @midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc
   case == @midrange_intermediate_JUMP jump :
     [!?ioGeneratedInstructionList setMInstructionAtIndex
       !@midrange_intermediate_incDecRegisterInCondition. new {
-        !mInstructionLocation
-        !mRegisterDescription
+        !self.mInstructionLocation
+        !self.mRegisterDescription
         ![[jump mTargetLabel] string]
-        !mIncrement
-        !m_W_isDestination
-        !mBranchIfZero}
+        !self.mIncrement
+        !self.m_W_isDestination
+        !self.mBranchIfZero}
       !inLineIndex
     ]
     ioOptimizationsDone = true
     ioListFileContents += "  line " + [inLineIndex string] + ": label of "
     ioListFileContents += "JUMP "
-    if mIncrement then
+    if self.mIncrement then
       ioListFileContents += "INCF "
     else
       ioListFileContents += "DECF "
     end
-    ioListFileContents += [mRegisterDescription mAssemblyString]
-    if m_W_isDestination then
+    ioListFileContents += [self.mRegisterDescription mAssemblyString]
+    if self.m_W_isDestination then
       ioListFileContents += ", W "
     end
-    if mBranchIfZero then
+    if self.mBranchIfZero then
       ioListFileContents += "Z"
     else
       ioListFileContents += "NZ"
@@ -431,27 +431,27 @@ method @midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc
   case == @midrange_intermediate_GOTO goto :
     [!?ioGeneratedInstructionList setMInstructionAtIndex
       !@midrange_intermediate_incDecRegisterInCondition. new {
-        !mInstructionLocation
-        !mRegisterDescription
+        !self.mInstructionLocation
+        !self.mRegisterDescription
         ![[goto mTargetLabel] string]
-        !mIncrement
-        !m_W_isDestination
-        !mBranchIfZero}
+        !self.mIncrement
+        !self.m_W_isDestination
+        !self.mBranchIfZero}
       !inLineIndex
     ]
     ioOptimizationsDone = true
     ioListFileContents += "  line " + [inLineIndex string] + ": label of "
     ioListFileContents += "JUMP "
-    if mIncrement then
+    if self.mIncrement then
       ioListFileContents += "INCF "
     else
       ioListFileContents += "DECF "
     end
-    ioListFileContents += [mRegisterDescription mAssemblyString]
-    if m_W_isDestination then
+    ioListFileContents += [self.mRegisterDescription mAssemblyString]
+    if self.m_W_isDestination then
       ioListFileContents += ", W"
     end
-    if mBranchIfZero then
+    if self.mBranchIfZero then
       ioListFileContents += " Z"
     else
       ioListFileContents += " NZ"
@@ -498,10 +498,10 @@ method @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
   #--- Complement Bit test instruction (at inLineIndex)
     [!?ioGeneratedInstructionList setMInstructionAtIndex
       !@midrange_intermediate_instruction_BitTestSkip. new {
-        !mInstructionLocation
-        !not mSkipIfSet
-        !mRegisterDescription
-        !mBitNumber}
+        !self.mInstructionLocation
+        !not self.mSkipIfSet
+        !self.mRegisterDescription
+        !self.mBitNumber}
       !inLineIndex
     ]
   #--- Delete instruction at (inLineIndex + 1)

@@ -6314,19 +6314,22 @@ GALGAS_bool extensionGetter_isEqualToRegister (const GALGAS_ipic_31__38__5F_inte
                                                C_Compiler * /* inCompiler */
                                                COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bool result_outResult ; // Returned variable
-  result_outResult = GALGAS_bool (kIsEqual, inObject.mProperty_mAssemblyString.objectCompare (constinArgument_inRegister.getter_mAssemblyString (HERE))) ;
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
-    test_0 = result_outResult.boolEnum () ;
-    if (kBoolTrue == test_0) {
-      result_outResult = GALGAS_bool (kIsEqual, inObject.mProperty_mRegisterAddress.objectCompare (constinArgument_inRegister.getter_mRegisterAddress (HERE))) ;
-    }
-  }
+  const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression temp_0 = inObject ;
+  result_outResult = GALGAS_bool (kIsEqual, temp_0.getter_mAssemblyString (HERE).objectCompare (constinArgument_inRegister.getter_mAssemblyString (HERE))) ;
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
     test_1 = result_outResult.boolEnum () ;
     if (kBoolTrue == test_1) {
-      result_outResult = GALGAS_bool (kIsEqual, inObject.mProperty_mNeedsBSR.objectCompare (constinArgument_inRegister.getter_mNeedsBSR (HERE))) ;
+      const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression temp_2 = inObject ;
+      result_outResult = GALGAS_bool (kIsEqual, temp_2.getter_mRegisterAddress (HERE).objectCompare (constinArgument_inRegister.getter_mRegisterAddress (HERE))) ;
+    }
+  }
+  enumGalgasBool test_3 = kBoolTrue ;
+  if (kBoolTrue == test_3) {
+    test_3 = result_outResult.boolEnum () ;
+    if (kBoolTrue == test_3) {
+      const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression temp_4 = inObject ;
+      result_outResult = GALGAS_bool (kIsEqual, temp_4.getter_mNeedsBSR (HERE).objectCompare (constinArgument_inRegister.getter_mNeedsBSR (HERE))) ;
     }
   }
 //---

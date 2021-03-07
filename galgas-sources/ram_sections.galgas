@@ -28,24 +28,24 @@ override method @byteDeclarationInRam handleDeclaration
   @uint firstFreeAddress
   @uintlist mirrorOffsetList
   [ioRamBank searchKey !inCurrentRamBank ?* ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList]
-  [mSizeExpression eval !ioRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
+  [self.mSizeExpression eval !ioRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
   if size <= 0S then
-    error mName: "size expression should be > 0"
+    error self.mName: "size expression should be > 0"
   elsif size > 4096S then
-    error mName: "size expression should be < 4096"
+    error self.mName: "size expression should be < 4096"
   else
     @uintlist addressList = {!firstFreeAddress}
     for () in  mirrorOffsetList do
       addressList += !firstFreeAddress + mValue
     end
-    if not [ioDeclaredByteMap hasKey !mName.string] then
-      [!?ioDeclaredByteMap insertKey !mName]
+    if not [ioDeclaredByteMap hasKey !self.mName.string] then
+      [!?ioDeclaredByteMap insertKey !self.mName]
     end
-    [!?ioRegisterTable insertKey !mName !addressList ![size uint] !mBitSliceTable !mBitDefinitionString !mProtection]
+    [!?ioRegisterTable insertKey !self.mName !addressList ![size uint] !self.mBitSliceTable !self.mBitDefinitionString !self.mProtection]
     firstFreeAddress = firstFreeAddress + [size uint]
     [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress ![inCurrentRamBank string]]
     if firstFreeAddress > lastAddressPlusOne then
-      error mName: "overflow in '" + inCurrentRamBank + "' ram bank for '" + mName + "' declaration"
+      error self.mName: "overflow in '" + inCurrentRamBank + "' ram bank for '" + self.mName + "' declaration"
     end
   end
 }

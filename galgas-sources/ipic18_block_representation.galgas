@@ -184,12 +184,12 @@ struct @ipic18_intermediate_registerExpression {
 getter @ipic18_intermediate_registerExpression isEqualToRegister
   ?let @ipic18_intermediate_registerExpression inRegister
   -> @bool outResult {
-  outResult = mAssemblyString == inRegister.mAssemblyString
+  outResult = self.mAssemblyString == inRegister.mAssemblyString
   if outResult then
-    outResult = mRegisterAddress == inRegister.mRegisterAddress
+    outResult = self.mRegisterAddress == inRegister.mRegisterAddress
   end
   if outResult then
-    outResult = mNeedsBSR == inRegister.mNeedsBSR
+    outResult = self.mNeedsBSR == inRegister.mNeedsBSR
   end
 }
 

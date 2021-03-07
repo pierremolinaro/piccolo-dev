@@ -9,13 +9,13 @@
 method @ipic18Block display
   ?let @string inNextBlockLabel
   ?!@string ioListFileContents {
-  ioListFileContents += "LABEL " + mLabel
-  if mAddress != @uint. max then
-    ioListFileContents += ", ORG " + [mAddress hexString]
+  ioListFileContents += "LABEL " + self.mLabel
+  if self.mAddress != @uint. max then
+    ioListFileContents += ", ORG " + [self.mAddress hexString]
   end
   ioListFileContents += ":\n"
 #--- Instruction list
-  for () in  mInstructionList do
+  for () in  self.mInstructionList do
     let @stringlist d = [mInstruction instructionDisplay]
     for () in  d do 
       ioListFileContents += "  " + mValue + "\n"
@@ -23,7 +23,7 @@ method @ipic18Block display
   end
 #--- Terminator
   ioListFileContents += "  "
-  ioListFileContents += [mTerminator terminatorDisplay !inNextBlockLabel]
+  ioListFileContents += [self.mTerminator terminatorDisplay !inNextBlockLabel]
   ioListFileContents += "\n\n"
 }
 

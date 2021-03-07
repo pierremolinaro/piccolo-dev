@@ -33,10 +33,10 @@ override getter @midrange_intermediate_actualInstruction instructionLength -> @u
 override
 getter @midrange_intermediate_JUMP instructionLength -> @uint outLength {
   outLength = 1
-  if mBit11 != @midrange_call_goto_bit. noChange then
+  if self.mBit11 != @midrange_call_goto_bit. noChange then
     outLength ++
   end
-  if mBit12 != @midrange_call_goto_bit. noChange then
+  if self.mBit12 != @midrange_call_goto_bit. noChange then
     outLength ++
   end
 }
@@ -46,10 +46,10 @@ getter @midrange_intermediate_JUMP instructionLength -> @uint outLength {
 override
 getter @midrange_intermediate_JSR instructionLength -> @uint outLength {
   outLength = 1
-  if mBit11 != @midrange_call_goto_bit. noChange then
+  if self.mBit11 != @midrange_call_goto_bit. noChange then
     outLength = outLength  + 2
   end
-  if mBit12 != @midrange_call_goto_bit. noChange then
+  if self.mBit12 != @midrange_call_goto_bit. noChange then
     outLength = outLength  + 2
   end
 }
@@ -58,14 +58,14 @@ getter @midrange_intermediate_JSR instructionLength -> @uint outLength {
 
 override
 getter @midrange_intermediate_instruction_MNOP instructionLength -> @uint outLength {
-  outLength = [mOccurrenceFactor uint]
+  outLength = [self.mOccurrenceFactor uint]
 }
 
 #----------------------------------------------------*
 
 override
 getter @midrange_intermediate_incDecRegisterInCondition instructionLength -> @uint outLength {
-  if mBranchIfZero then
+  if self.mBranchIfZero then
     outLength = 3
   else
     outLength = 2

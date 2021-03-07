@@ -15,15 +15,15 @@ map @baseline_declaredRoutineMap {
 
 method @baseline_instruction shouldTerminateWithMOVLW
   ?let @string inErrorMessage {
-  error mInstructionLocation : inErrorMessage
+  error self.mInstructionLocation : inErrorMessage
 }
 
 #----------------------------------------------------------------------------*
 
 override method @baseline_instruction_literalOperation shouldTerminateWithMOVLW
   ?let @string inErrorMessage {
-  if mLiteralInstruction != @baseline_literal_instruction_opcode. MOVLW then
-    error mInstructionLocation : inErrorMessage  
+  if self.mLiteralInstruction != @baseline_literal_instruction_opcode. MOVLW then
+    error self.mInstructionLocation : inErrorMessage  
   end
 }
 
@@ -38,17 +38,17 @@ override method @baseline_instruction_CALL shouldTerminateWithMOVLW
 override method @baseline_instruction_structured_if shouldTerminateWithMOVLW
   ?let @string unused inErrorMessage {
 #--- THEN branch
-  if [mThenInstructionList length] == 0 then
-    error mInstructionLocation : "the 'then' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
+  if [self.mThenInstructionList length] == 0 then
+    error self.mInstructionLocation : "the 'then' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
   else
-   [mThenInstructionList last ?var @baseline_instruction lastInstruction]
+   [self.mThenInstructionList last ?var @baseline_instruction lastInstruction]
    [lastInstruction shouldTerminateWithMOVLW !"the 'then' branch of this 'if' instruction must terminate with a MOVLW instruction"]
   end
 #--- ELSE branch
-  if [mElseInstructionList length] == 0 then
-    error mInstructionLocation : "the 'else' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
+  if [self.mElseInstructionList length] == 0 then
+    error self.mInstructionLocation : "the 'else' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
   else
-   [mElseInstructionList last ?var @baseline_instruction lastInstruction]
+   [self.mElseInstructionList last ?var @baseline_instruction lastInstruction]
    [lastInstruction shouldTerminateWithMOVLW !"the 'else' branch of this 'if' instruction must terminate with a MOVLW instruction"]
   end
 
@@ -61,7 +61,7 @@ override method @baseline_instruction_structured_if shouldTerminateWithMOVLW
 #----------------------------------------------------------------------------*
 
 method @baseline_instruction shouldNotContinueInSequence ?let @string inErrorMessage {
-  error mInstructionLocation : inErrorMessage
+  error self.mInstructionLocation : inErrorMessage
 }
 
 #----------------------------------------------------------------------------*

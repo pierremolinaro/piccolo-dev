@@ -18,26 +18,26 @@ method @registerExpression resolveMidrangeAccess
   !@bitSliceTable outBitSliceTable
   ?!@stringset ioUsedRegisters
 {
-  [mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
-  ioUsedRegisters += !mRegisterName.string
+  [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
+  ioUsedRegisters += !self.mRegisterName.string
 #--- Build assembly string
-  @string assemblyString = mRegisterName.string
+  @string assemblyString = self.mRegisterName.string
   if offset > 0LS then
     assemblyString += " + " + [[offset uint] hexString]
   end
 #--- 
   [inRegisterTable searchKey
-    !mRegisterName
+    !self.mRegisterName
     ?var @uintlist registerAddressList
     ?var @uint size
     ?outBitSliceTable
     ?*
     ?let protection
   ]
-  [inRegisterTable checkPrivateAccess !mRegisterName !write:true !protection]
+  [inRegisterTable checkPrivateAccess !self.mRegisterName !write:true !protection]
 #---
   if [offset uint] >= size then
-    error mEndOfOffsetExpression: "maximum index value is " + (size - 1)
+    error self.mEndOfOffsetExpression: "maximum index value is " + (size - 1)
   end
 #--- Find acceptable bank settings
   var acceptableBanks =@uintlist.emptyList{}
@@ -64,7 +64,7 @@ method @registerExpression resolveMidrangeAccess
       do acceptableBankMessage += [mValue >> 7 string]
       between acceptableBankMessage += ", "
       end
-      error mRegisterName:"as no bank is currently known, the '" + mRegisterName + "' register accessible from bank "+ acceptableBankMessage  + ", but should be able to be accessed from any bank setting"
+      error self.mRegisterName:"as no bank is currently known, the '" + self.mRegisterName + "' register accessible from bank "+ acceptableBankMessage  + ", but should be able to be accessed from any bank setting"
     end
   else
     @bool found = false
@@ -78,7 +78,7 @@ method @registerExpression resolveMidrangeAccess
       do acceptableBankMessage += [mValue >> 7 string]
       between acceptableBankMessage += ", "
       end
-      error mRegisterName:"the '" + mRegisterName + "' register cannot be accessed from bank " + [inCurrentBank string] + " (valid bank setting: " + acceptableBankMessage + ")"
+      error self.mRegisterName:"the '" + self.mRegisterName + "' register cannot be accessed from bank " + [inCurrentBank string] + " (valid bank setting: " + acceptableBankMessage + ")"
     end
   end
 #---

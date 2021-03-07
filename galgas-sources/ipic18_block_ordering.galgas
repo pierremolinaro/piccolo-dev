@@ -26,7 +26,7 @@ method @ipic18SequentialInstruction buildInstructionInvocationGraph
 override method @ipic18_intermediate_JSR buildInstructionInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString {
-  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + mTargetLabel + "\" [color=red] ;\n"
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + self.mTargetLabel + "\" [color=red] ;\n"
 }
 
 #----------------------------------------------------------------------------*
@@ -35,7 +35,7 @@ override method @ipic18_intermediate_instruction_computed_rcall buildInstruction
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString {
   ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"_computed_goto_4\" [color=red] ;\n"
-  for () in  mTargetInstructions do
+  for () in  self.mTargetInstructions do
     [mInstruction buildInstructionInvocationGraph
       !inBlockLabel
       !?ioGraphVizString
@@ -48,7 +48,7 @@ override method @ipic18_intermediate_instruction_computed_rcall buildInstruction
 override method @ipic18_condition_skip_instruction buildInstructionInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString {
-  [mEmbeddedInstruction buildInstructionInvocationGraph
+  [self.mEmbeddedInstruction buildInstructionInvocationGraph
     !inBlockLabel
     !?ioGraphVizString
   ]
@@ -122,8 +122,8 @@ override method @ipic18AbstractConditionTerminator buildTerminatorInvocationGrap
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool unused inDottedArrow {
-  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
-  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
+  [self.mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
+  [self.mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
 }
 
 #----------------------------------------------------------------------------*
@@ -132,8 +132,8 @@ override method @pic18RegisterComparisonTerminator buildTerminatorInvocationGrap
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool unused inDottedArrow {
-  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
-  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true]
+  [self.mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
+  [self.mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true]
 }
 
 #----------------------------------------------------------------------------*
@@ -142,8 +142,8 @@ override method @pic18TestRegisterTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool unused inDottedArrow {
-  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
-  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true]
+  [self.mSingleInstructionTerminatorIfConditionTrue buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
+  [self.mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true]
 }
 
 #----------------------------------------------------------------------------*
@@ -152,7 +152,7 @@ override method @ipic18JumpTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool inDottedArrow {
-  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + mLabel + "\""
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + self.mLabel + "\""
   if inDottedArrow then
     ioGraphVizString += " [style=dashed]"
   end
@@ -165,12 +165,12 @@ override method @ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool inDottedArrow {
-  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + mTargetLabelWhenTrue + "\""
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + self.mTargetLabelWhenTrue + "\""
   if inDottedArrow then
     ioGraphVizString += " [style=dashed]"
   end
   ioGraphVizString += " ;\n"
-  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + mTargetLabelWhenFalse + "\""
+  ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + self.mTargetLabelWhenFalse + "\""
   if inDottedArrow then
     ioGraphVizString += " [style=dashed]"
   end
@@ -216,7 +216,7 @@ override getter @ipic18RetfieTerminator needToInsertJumpInstruction
 override getter @ipic18JumpTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
   ->@bool outResult {
-  outResult = mLabel.string != inNextBlockLabel
+  outResult = self.mLabel.string != inNextBlockLabel
 }
 
 #----------------------------------------------------------------------------*
@@ -257,9 +257,9 @@ override getter @ipic18AbstractConditionTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
   ->@bool outResult {
   outResult =
-    [mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
+    [self.mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
     &
-    [mSingleInstructionTerminatorIfConditionFalse needToInsertJumpInstruction !inNextBlockLabel]
+    [self.mSingleInstructionTerminatorIfConditionFalse needToInsertJumpInstruction !inNextBlockLabel]
 }
 
 #----------------------------------------------------------------------------*
@@ -268,7 +268,7 @@ override getter @pic18RegisterComparisonTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
   ->@bool outResult {
   outResult =
-    [mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
+    [self.mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
 }
 
 #----------------------------------------------------------------------------*
@@ -277,7 +277,7 @@ override getter @pic18TestRegisterTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
   ->@bool outResult {
   outResult =
-    [mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
+    [self.mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
 }
 
 #----------------------------------------------------------------------------*
@@ -296,7 +296,7 @@ method @ipic18AbstractBlockTerminator buildTerminatorOrderedGraph
 override method @ipic18JumpTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
-  [!?ioGraph addEdge !inBlockLabel !mLabel]
+  [!?ioGraph addEdge !inBlockLabel !self.mLabel]
 }
 
 #----------------------------------------------------------------------------*
@@ -304,8 +304,8 @@ override method @ipic18JumpTerminator buildTerminatorOrderedGraph
 override method @ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
-  [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenTrue]
-  [!?ioGraph addEdge !inBlockLabel !mTargetLabelWhenFalse]
+  [!?ioGraph addEdge !inBlockLabel !self.mTargetLabelWhenTrue]
+  [!?ioGraph addEdge !inBlockLabel !self.mTargetLabelWhenFalse]
 }
 
 #----------------------------------------------------------------------------*
@@ -313,7 +313,7 @@ override method @ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph
 override method @pic18RegisterComparisonTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
-  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
+  [self.mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ]
@@ -324,7 +324,7 @@ override method @pic18RegisterComparisonTerminator buildTerminatorOrderedGraph
 override method @pic18TestRegisterTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
-  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
+  [self.mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ]
@@ -335,11 +335,11 @@ override method @pic18TestRegisterTerminator buildTerminatorOrderedGraph
 override method @ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
-  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
+  [self.mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ]
-  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorOrderedGraph
+  [self.mSingleInstructionTerminatorIfConditionFalse buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ]
@@ -350,11 +350,11 @@ override method @ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph
 override method @pic18BitTestTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
-  [mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
+  [self.mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ]
-  [mSingleInstructionTerminatorIfConditionFalse buildTerminatorOrderedGraph
+  [self.mSingleInstructionTerminatorIfConditionFalse buildTerminatorOrderedGraph
     !inBlockLabel
     !?ioGraph
   ]

@@ -49,8 +49,8 @@ override method @ipic18JumpTerminator optimizeTerminator
   ?!@string ioListFileContents
   !@ipic18AbstractBlockTerminator outOptimizedTerminator {
   outOptimizedTerminator = self
-  if inBlockLabel != mLabel.string then
-    [inSymbolTable searchKey !mLabel ?let @uint targetBlockIndex]
+  if inBlockLabel != self.mLabel.string then
+    [inSymbolTable searchKey !self.mLabel ?let @uint targetBlockIndex]
     let @ipic18Block targetBlock = [inBlockList mBlockAtIndex !targetBlockIndex]
     if (targetBlock.mAddress == @uint. max) # Relocatable
      & ([targetBlock.mInstructionList length] == 0) # Empty block
@@ -58,7 +58,7 @@ override method @ipic18JumpTerminator optimizeTerminator
       @bool optimize
       if (targetBlock.mTerminator is >= @ipic18JumpTerminator) then
         let @ipic18JumpTerminator candidate = ( targetBlock.mTerminator as @ipic18JumpTerminator)
-        optimize = mLabel.string != [candidate mLabel].string
+        optimize = self.mLabel.string != [candidate mLabel].string
       else
         optimize = true
       end
@@ -86,49 +86,49 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
   ?!@string ioListFileContents
   !@ipic18AbstractBlockTerminator outOptimizedTerminator {
 #---- Useless condition ?
-  if mTargetLabelWhenTrue.string == mTargetLabelWhenFalse.string then
+  if self.mTargetLabelWhenTrue.string == self.mTargetLabelWhenFalse.string then
     outOptimizedTerminator = @ipic18JumpTerminator.new {
-      !mInstructionLocation
-      !mTargetLabelWhenFalse
+      !self.mInstructionLocation
+      !self.mTargetLabelWhenFalse
       !@jumpInstructionKind. ipicRelative}
     ioOptimizationDone = true
-    ioListFileContents += "  [U] " + inBlockLabel + ", useless terminator condition: replaced by JUMP " + mTargetLabelWhenFalse + "\n"
-    warning mInstructionLocation : "useless condition deleted"
+    ioListFileContents += "  [U] " + inBlockLabel + ", useless terminator condition: replaced by JUMP " + self.mTargetLabelWhenFalse + "\n"
+    warning self.mInstructionLocation : "useless condition deleted"
   else
     @bool optimized = false
   #--- Optimize true label
-    @lstring targetLabelWhenTrue = mTargetLabelWhenTrue
-    if inBlockLabel != mTargetLabelWhenTrue.string then
-      [inSymbolTable searchKey !mTargetLabelWhenTrue ?let @uint targetBlockIndex]
+    @lstring targetLabelWhenTrue = self.mTargetLabelWhenTrue
+    if inBlockLabel != self.mTargetLabelWhenTrue.string then
+      [inSymbolTable searchKey !self.mTargetLabelWhenTrue ?let @uint targetBlockIndex]
       let @ipic18Block targetBlock = [inBlockList mBlockAtIndex !targetBlockIndex]
       if (targetBlock.mAddress == @uint. max) # Relocatable
-       & (mTargetLabelWhenTrue.string != targetLabelWhenTrue.string)
+       & (self.mTargetLabelWhenTrue.string != targetLabelWhenTrue.string)
        & ([targetBlock.mInstructionList length] == 0) # Empty block
        & (targetBlock.mTerminator is >= @ipic18JumpTerminator) then
         let @ipic18JumpTerminator jp = ( targetBlock.mTerminator as @ipic18JumpTerminator)
         targetLabelWhenTrue = [jp mLabel]
         optimized = true
         ioListFileContents += "  [P] " + inBlockLabel + ", jump optimization: "
-        ioListFileContents += mTargetLabelWhenTrue.string
+        ioListFileContents += self.mTargetLabelWhenTrue.string
         ioListFileContents += " -> "
         ioListFileContents += targetLabelWhenTrue.string
         ioListFileContents += "\n"
       end
     end
   #--- Optimize false label
-    @lstring targetLabelWhenFalse = mTargetLabelWhenFalse
-    if inBlockLabel != mTargetLabelWhenFalse.string then
-      [inSymbolTable searchKey !mTargetLabelWhenFalse ?let @uint targetBlockIndex]
+    @lstring targetLabelWhenFalse = self.mTargetLabelWhenFalse
+    if inBlockLabel != self.mTargetLabelWhenFalse.string then
+      [inSymbolTable searchKey !self.mTargetLabelWhenFalse ?let @uint targetBlockIndex]
       let @ipic18Block targetBlock = [inBlockList mBlockAtIndex !targetBlockIndex]
       if (targetBlock.mAddress == @uint. max) # Relocatable
-       & (mTargetLabelWhenFalse.string != targetLabelWhenFalse.string)
+       & (self.mTargetLabelWhenFalse.string != targetLabelWhenFalse.string)
        & ([targetBlock.mInstructionList length] == 0) # Empty block
        & (targetBlock.mTerminator is >= @ipic18JumpTerminator) then
         let @ipic18JumpTerminator jp = (targetBlock.mTerminator as @ipic18JumpTerminator)
         targetLabelWhenFalse = [jp mLabel]
         optimized = true
         ioListFileContents += "  [P] " + inBlockLabel + ", jump optimization: "
-        ioListFileContents += mTargetLabelWhenFalse.string
+        ioListFileContents += self.mTargetLabelWhenFalse.string
         ioListFileContents += " -> "
         ioListFileContents += targetLabelWhenFalse.string
         ioListFileContents += "\n"
@@ -138,12 +138,12 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
     if optimized then
       ioOptimizationDone = true
       outOptimizedTerminator = @ipic18ConditionalJumpTerminator. new {
-        !mInstructionLocation
-        !mConditionalBranch
+        !self.mInstructionLocation
+        !self.mConditionalBranch
         !targetLabelWhenTrue
-        !mBranchModeOnTrueLabel
+        !self.mBranchModeOnTrueLabel
         !targetLabelWhenFalse
-        !mBranchModeOnFalseLabel}  
+        !self.mBranchModeOnFalseLabel}  
     else
       outOptimizedTerminator = self
     end
@@ -163,7 +163,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
   !@ipic18SingleInstructionTerminator outOptimizedFalseTerminator
   !@bool outIdenticalTerminators {
 #---
-  [mSingleInstructionTerminatorIfConditionTrue optimizeTerminator
+  [self.mSingleInstructionTerminatorIfConditionTrue optimizeTerminator
     !inSymbolTable
     !inOptimizeFlagStruct
     !inBlockList
@@ -174,7 +174,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
   ]
   outOptimizedTrueTerminator = ( optimizedTrueTerminator as @ipic18SingleInstructionTerminator)
 #---
-  [mSingleInstructionTerminatorIfConditionFalse optimizeTerminator
+  [self.mSingleInstructionTerminatorIfConditionFalse optimizeTerminator
     !inSymbolTable
     !inOptimizeFlagStruct
     !inBlockList
@@ -225,15 +225,15 @@ override method @ipic18IncDecRegisterTerminator optimizeTerminator
   ]
   if identicalTerminators then
     outOptimizedTerminator = self
-    error mInstructionLocation : "useless decf/incf condition should be replaced by decf/incf instruction"
+    error self.mInstructionLocation : "useless decf/incf condition should be replaced by decf/incf instruction"
   elsif optimization then
     outOptimizedTerminator = @ipic18IncDecRegisterTerminator. new {
-      !mInstructionLocation
+      !self.mInstructionLocation
       !optimizedTrueTerminator
       !optimizedFalseTerminator 
-      !mRegisterDescription
-      !mIncrement
-      !m_W_isDestination}
+      !self.mRegisterDescription
+      !self.mIncrement
+      !self.m_W_isDestination}
     ioOptimizationDone = true
   else
     outOptimizedTerminator = self
@@ -267,14 +267,14 @@ override method @pic18BitTestTerminator optimizeTerminator
     outOptimizedTerminator = optimizedTrueTerminator
     ioOptimizationDone = true
     ioListFileContents += "  [U] " + inBlockLabel + ", useless terminator condition: replaced by " + [optimizedTrueTerminator terminatorDisplay !""] + "\n"
-    warning mInstructionLocation : "useless condition deleted"
+    warning self.mInstructionLocation : "useless condition deleted"
   elsif optimization then
     outOptimizedTerminator = @pic18BitTestTerminator. new {
-      !mInstructionLocation
+      !self.mInstructionLocation
       !optimizedTrueTerminator
       !optimizedFalseTerminator 
-      !mRegisterDescription
-      !mBitNumber}
+      !self.mRegisterDescription
+      !self.mBitNumber}
     ioOptimizationDone = true
   else
     outOptimizedTerminator = self
@@ -307,14 +307,14 @@ override method @pic18RegisterComparisonTerminator optimizeTerminator
     outOptimizedTerminator = optimizedTrueTerminator
     ioOptimizationDone = true
     ioListFileContents += "  [U] " + inBlockLabel + ", useless terminator condition: replaced by " + [optimizedTrueTerminator terminatorDisplay !""] + "\n"
-    warning mInstructionLocation : "useless condition deleted"
+    warning self.mInstructionLocation : "useless condition deleted"
   elsif optimization then
     outOptimizedTerminator = @pic18RegisterComparisonTerminator. new {
-      !mInstructionLocation
+      !self.mInstructionLocation
       !optimizedTrueTerminator
       !optimizedFalseTerminator 
-      !mRegisterDescription
-      !mComparison}
+      !self.mRegisterDescription
+      !self.mComparison}
     ioOptimizationDone = true
   else
     outOptimizedTerminator = self
@@ -347,13 +347,13 @@ override method @pic18TestRegisterTerminator optimizeTerminator
     outOptimizedTerminator = optimizedTrueTerminator
     ioOptimizationDone = true
     ioListFileContents += "  [U] " + inBlockLabel + ", useless terminator condition: replaced by " + [optimizedTrueTerminator terminatorDisplay !""] + "\n"
-    warning mInstructionLocation : "useless condition deleted"
+    warning self.mInstructionLocation : "useless condition deleted"
   elsif optimization then
     outOptimizedTerminator = @pic18TestRegisterTerminator. new {
-      !mInstructionLocation
+      !self.mInstructionLocation
       !optimizedTrueTerminator
       !optimizedFalseTerminator 
-      !mRegisterDescription}
+      !self.mRegisterDescription}
     ioOptimizationDone = true
   else
     outOptimizedTerminator = self
@@ -483,7 +483,7 @@ override method @ipic18ComputedBraTerminator enterTerminatorReferencedLabels
     !inBlockList
     !?ioReferencedBlockSet
   )
-  for () in  mTargetLabels do
+  for () in  self.mTargetLabels do
     if not [ioReferencedBlockSet hasKey !mValue.string] then
       ioReferencedBlockSet += !mValue.string
       [inSymbolTable searchKey !mValue ?let @uint blockIndex]
@@ -508,7 +508,7 @@ override method @ipic18ComputedGotoTerminator enterTerminatorReferencedLabels
     !inBlockList
     !?ioReferencedBlockSet
   )
-  for () in  mTargetLabels do
+  for () in  self.mTargetLabels do
     if not [ioReferencedBlockSet hasKey !mValue.string] then
       ioReferencedBlockSet += !mValue.string
       [inSymbolTable searchKey !mValue ?let @uint blockIndex]
@@ -528,9 +528,9 @@ override method @ipic18JumpTerminator enterTerminatorReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet {
-  if not [ioReferencedBlockSet hasKey !mLabel.string] then
-    ioReferencedBlockSet += !mLabel.string
-    [inSymbolTable searchKey !mLabel ?let @uint blockIndex]
+  if not [ioReferencedBlockSet hasKey !self.mLabel.string] then
+    ioReferencedBlockSet += !self.mLabel.string
+    [inSymbolTable searchKey !self.mLabel ?let @uint blockIndex]
     let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
     [b enterReferencedLabels
       !inSymbolTable
@@ -546,9 +546,9 @@ override method @ipic18ConditionalJumpTerminator enterTerminatorReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet {
-  if not [ioReferencedBlockSet hasKey !mTargetLabelWhenTrue.string] then
-    ioReferencedBlockSet += !mTargetLabelWhenTrue.string
-    [inSymbolTable searchKey !mTargetLabelWhenTrue ?let @uint blockIndex]
+  if not [ioReferencedBlockSet hasKey !self.mTargetLabelWhenTrue.string] then
+    ioReferencedBlockSet += !self.mTargetLabelWhenTrue.string
+    [inSymbolTable searchKey !self.mTargetLabelWhenTrue ?let @uint blockIndex]
     let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
     [b enterReferencedLabels
       !inSymbolTable
@@ -556,9 +556,9 @@ override method @ipic18ConditionalJumpTerminator enterTerminatorReferencedLabels
       !?ioReferencedBlockSet
     ]
   end
-  if not [ioReferencedBlockSet hasKey !mTargetLabelWhenFalse.string] then
-    ioReferencedBlockSet += !mTargetLabelWhenFalse.string
-    [inSymbolTable searchKey !mTargetLabelWhenFalse ?let @uint blockIndex]
+  if not [ioReferencedBlockSet hasKey !self.mTargetLabelWhenFalse.string] then
+    ioReferencedBlockSet += !self.mTargetLabelWhenFalse.string
+    [inSymbolTable searchKey !self.mTargetLabelWhenFalse ?let @uint blockIndex]
     let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
     [b enterReferencedLabels
       !inSymbolTable
@@ -582,8 +582,8 @@ override method @ipic18AbstractConditionTerminator enterTerminatorReferencedLabe
   ?let @symbolTableForBlockOptimization inSymbolTable
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet {
-  [mSingleInstructionTerminatorIfConditionTrue enterTerminatorReferencedLabels !inSymbolTable !inBlockList !?ioReferencedBlockSet]
-  [mSingleInstructionTerminatorIfConditionFalse enterTerminatorReferencedLabels !inSymbolTable !inBlockList !?ioReferencedBlockSet]
+  [self.mSingleInstructionTerminatorIfConditionTrue enterTerminatorReferencedLabels !inSymbolTable !inBlockList !?ioReferencedBlockSet]
+  [self.mSingleInstructionTerminatorIfConditionFalse enterTerminatorReferencedLabels !inSymbolTable !inBlockList !?ioReferencedBlockSet]
 }
 
 #----------------------------------------------------------------------------*
@@ -604,9 +604,9 @@ override method @ipic18_intermediate_JSR enterInstructionReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet {
-  if not [ioReferencedBlockSet hasKey !mTargetLabel.string] then
-    ioReferencedBlockSet += !mTargetLabel.string
-    [inSymbolTable searchKey !mTargetLabel ?let @uint blockIndex]
+  if not [ioReferencedBlockSet hasKey !self.mTargetLabel.string] then
+    ioReferencedBlockSet += !self.mTargetLabel.string
+    [inSymbolTable searchKey !self.mTargetLabel ?let @uint blockIndex]
     let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
     [b enterReferencedLabels
       !inSymbolTable
@@ -627,7 +627,7 @@ override method @ipic18_intermediate_instruction_computed_rcall enterInstruction
     !inBlockList
     !?ioReferencedBlockSet
   )
-  for () in  mTargetInstructions do
+  for () in  self.mTargetInstructions do
     [mInstruction enterInstructionReferencedLabels
       !inSymbolTable
       !inBlockList
@@ -642,7 +642,7 @@ override method @ipic18_condition_skip_instruction  enterInstructionReferencedLa
   ?let @symbolTableForBlockOptimization inSymbolTable
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet {
-  [mEmbeddedInstruction enterInstructionReferencedLabels
+  [self.mEmbeddedInstruction enterInstructionReferencedLabels
     !inSymbolTable
     !inBlockList
     !?ioReferencedBlockSet
@@ -685,7 +685,7 @@ override method @ipic18_intermediate_JSR optimizeInstruction
   outOptimizationDone = false
   outNOPsubstitution = false
 #---
-  [inSymbolTable searchKey !mTargetLabel ?let @uint targetBlockIndex] 
+  [inSymbolTable searchKey !self.mTargetLabel ?let @uint targetBlockIndex] 
   let @ipic18Block targetBloc = [inBlockList mBlockAtIndex !targetBlockIndex]  
 #--- Remove empty routine calls
   if inOptimizeFlagStruct.mRemoveEmptyRoutine
@@ -694,9 +694,9 @@ override method @ipic18_intermediate_JSR optimizeInstruction
    & (targetBloc.mTerminator is >= @ipic18ReturnTerminator) then # Ends with RETURN
     outOptimizationDone = true
     ioListFileContents += "  [E] " + inBlockLabel + ": "
-    ioListFileContents += "call to empty " + mTargetLabel + " routine deleted"
+    ioListFileContents += "call to empty " + self.mTargetLabel + " routine deleted"
     ioListFileContents += "\n"
-    outOptimizedInstruction = @ipic18InstructionWithNoOperand. new { !mInstructionLocation !@pic18InstructionWithNoOperandKind. NOP}
+    outOptimizedInstruction = @ipic18InstructionWithNoOperand. new { !self.mInstructionLocation !@pic18InstructionWithNoOperandKind. NOP}
     outNOPsubstitution = true
 #--- Replace call to a RETLW routine with a MOVLW instruction
   elsif inOptimizeFlagStruct.mJSRtoRETLWreplacedByMOVLW
@@ -706,10 +706,10 @@ override method @ipic18_intermediate_JSR optimizeInstruction
     let @ipic18RetlwTerminator t = ( targetBloc.mTerminator as @ipic18RetlwTerminator)
     outOptimizationDone = true
     ioListFileContents += "  [R] " + inBlockLabel + ": "
-    ioListFileContents += "call to RETLW " + mTargetLabel + " routine transformed to MOVLW"
+    ioListFileContents += "call to RETLW " + self.mTargetLabel + " routine transformed to MOVLW"
     ioListFileContents += "\n"
     outOptimizedInstruction = @ipic18_intermediate_instruction_literalOperation. new {
-      !mInstructionLocation
+      !self.mInstructionLocation
       !@literal_instruction_opcode. MOVLW
       ![t mLiteralValue]}
 #--- Replace call to a single instruction routine with the routine instruction
@@ -720,7 +720,7 @@ override method @ipic18_intermediate_JSR optimizeInstruction
     outOptimizedInstruction = [targetBloc.mInstructionList mInstructionAtIndex !0]
     outOptimizationDone = true
     ioListFileContents += "  [I] " + inBlockLabel + ", "
-    ioListFileContents += "call to single instruction routine " + mTargetLabel + " replaced by this single instruction"
+    ioListFileContents += "call to single instruction routine " + self.mTargetLabel + " replaced by this single instruction"
     ioListFileContents += "\n"
   end    
 }
@@ -741,7 +741,7 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
   outNOPsubstitution = false
 #---
   @ipic18SequentialInstructionList optimizedInstructionList = {}
-  for () in  mTargetInstructions do
+  for () in  self.mTargetInstructions do
     @bool opt = false
     if (mInstruction is >= @ipic18_intermediate_JSR) then
       let @ipic18_intermediate_JSR jsr = ( mInstruction as @ipic18_intermediate_JSR)
@@ -777,9 +777,9 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
   end
   if outOptimizationDone then
     outOptimizedInstruction = @ipic18_intermediate_instruction_computed_rcall. new {
-      !mInstructionLocation
+      !self.mInstructionLocation
       !optimizedInstructionList
-      !mUsesRCALL}
+      !self.mUsesRCALL}
   else
     outOptimizedInstruction = self
   end  
@@ -798,7 +798,7 @@ override method @ipic18_skip_instruction_BitTestSkip optimizeInstruction
   !@bool outNOPsubstitution {
   outNOPsubstitution = false
 #---
-  [mEmbeddedInstruction optimizeInstruction
+  [self.mEmbeddedInstruction optimizeInstruction
     !inSymbolTable
     !inOptimizeFlagStruct
     !inBlockList
@@ -810,11 +810,11 @@ override method @ipic18_skip_instruction_BitTestSkip optimizeInstruction
   ]
   if outOptimizationDone then
     outOptimizedInstruction = @ipic18_skip_instruction_BitTestSkip. new {
-      !mInstructionLocation
+      !self.mInstructionLocation
       !optimizedEmbeddedInstruction
-      !mSkipIfSet
-      !mRegisterDescription
-      !mBitNumber}
+      !self.mSkipIfSet
+      !self.mRegisterDescription
+      !self.mBitNumber}
   else
     outOptimizedInstruction = self
   end
@@ -833,7 +833,7 @@ override method @ipic18_skip_instruction_compare_register optimizeInstruction
   !@bool outNOPsubstitution {
   outNOPsubstitution = false
 #---
-  [mEmbeddedInstruction optimizeInstruction
+  [self.mEmbeddedInstruction optimizeInstruction
     !inSymbolTable
     !inOptimizeFlagStruct
     !inBlockList
@@ -845,10 +845,10 @@ override method @ipic18_skip_instruction_compare_register optimizeInstruction
   ]
   if outOptimizationDone then
     outOptimizedInstruction = @ipic18_skip_instruction_compare_register. new {
-      !mInstructionLocation
+      !self.mInstructionLocation
       !optimizedEmbeddedInstruction
-      !mCompareInstruction
-      !mRegisterDescription}
+      !self.mCompareInstruction
+      !self.mRegisterDescription}
   else
     outOptimizedInstruction = self
   end
@@ -867,7 +867,7 @@ override method @ipic18_skip_instruction_FDA optimizeInstruction
   !@bool outNOPsubstitution {
   outNOPsubstitution = false
 #---
-  [mEmbeddedInstruction optimizeInstruction
+  [self.mEmbeddedInstruction optimizeInstruction
     !inSymbolTable
     !inOptimizeFlagStruct
     !inBlockList
@@ -879,11 +879,11 @@ override method @ipic18_skip_instruction_FDA optimizeInstruction
   ]
   if outOptimizationDone then
     outOptimizedInstruction = @ipic18_skip_instruction_FDA. new {
-      !mInstructionLocation
+      !self.mInstructionLocation
       !optimizedEmbeddedInstruction
-      !mInstruction_FDA_base_code
-      !mRegisterDescription
-      !m_W_isDestination}
+      !self.mInstruction_FDA_base_code
+      !self.mRegisterDescription
+      !self.m_W_isDestination}
   else
     outOptimizedInstruction = self
   end
@@ -951,12 +951,12 @@ method @ipic18Block enterReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet {
-  [mInstructionList enterInstructionReferencedLabels
+  [self.mInstructionList enterInstructionReferencedLabels
     !inSymbolTable
     !inBlockList
     !?ioReferencedBlockSet
   ]
-  [mTerminator enterTerminatorReferencedLabels
+  [self.mTerminator enterTerminatorReferencedLabels
     !inSymbolTable
     !inBlockList
     !?ioReferencedBlockSet
@@ -977,15 +977,15 @@ method @ipic18Block optimize
     !inSymbolTable
     !inOptimizeFlagStruct
     !inBlockList
-    !mInstructionList
-    !mLabel
+    !self.mInstructionList
+    !self.mLabel
     ?var @bool optimized
     !?ioListFileContents
     ?var @ipic18SequentialInstructionList optimizedInstructionList
   )
 #--- Transform MOVLW k ; RETURN to RETLW
-  @ipic18AbstractBlockTerminator optimizedTerminator = mTerminator
-  if ([optimizedInstructionList length] > 0) & (mTerminator is >= @ipic18ReturnTerminator) then
+  @ipic18AbstractBlockTerminator optimizedTerminator = self.mTerminator
+  if ([optimizedInstructionList length] > 0) & (self.mTerminator is >= @ipic18ReturnTerminator) then
     [optimizedInstructionList last ?let @ipic18SequentialInstruction lastInstruction ?2*]
     cast lastInstruction
     case == @ipic18_intermediate_instruction_literalOperation op :
@@ -993,7 +993,7 @@ method @ipic18Block optimize
         [!?optimizedInstructionList popLast ?3*]
         optimizedTerminator = @ipic18RetlwTerminator. new { ![op mInstructionLocation] ![op mLiteralValue]}
         optimized = true
-        ioListFileContents += "  [M] " + mLabel + ": MOVLW k ; RETURN --> RETLW k\n"
+        ioListFileContents += "  [M] " + self.mLabel + ": MOVLW k ; RETURN --> RETLW k\n"
       end
   #--- Transform JSR label ; RETURN to JUMP label
     case == @ipic18_intermediate_JSR jsr :
@@ -1001,7 +1001,7 @@ method @ipic18Block optimize
         [!?optimizedInstructionList popLast ?3*]
         optimizedTerminator = @ipic18JumpTerminator.new {![jsr mInstructionLocation] ![jsr mTargetLabel] ![jsr mKind]}
         optimized = true
-        ioListFileContents += "  [J] " + mLabel + ": JSR " + [jsr mTargetLabel] + " ; RETURN --> JUMP " + [jsr mTargetLabel] + "\n"
+        ioListFileContents += "  [J] " + self.mLabel + ": JSR " + [jsr mTargetLabel] + " ; RETURN --> JUMP " + [jsr mTargetLabel] + "\n"
       end
   #--- Transform computed rcall ; RETURN to computed bra
 #    case == @ipic18_intermediate_instruction_computed_rcall computedRCALL :
@@ -1021,11 +1021,11 @@ method @ipic18Block optimize
 #--- Optimize terminator 
 # DO NOT OPTIMIZE WHEN TERMINATOR HAS BEEN CHANGED IN PREVIOUS INSTRUCTIONS
   if not optimized then
-    [mTerminator optimizeTerminator
+    [self.mTerminator optimizeTerminator
       !inSymbolTable
       !inOptimizeFlagStruct
       !inBlockList
-      !mLabel.string
+      !self.mLabel.string
       !?optimized
       !?ioListFileContents
       ?optimizedTerminator
@@ -1035,8 +1035,8 @@ method @ipic18Block optimize
   if optimized then
     ioOptimizationDone = true
     outOptimizedBlock = @ipic18Block. new {
-      !mAddress
-      !mLabel
+      !self.mAddress
+      !self.mLabel
       !optimizedInstructionList
       !optimizedTerminator
       !@uint.max

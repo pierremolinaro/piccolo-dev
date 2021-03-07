@@ -43,27 +43,27 @@ override getter @baseline_intermediate_actualInstruction length -> @uint outLeng
 #-------------------------------------------------------------------------------*
 
 override getter @baseline_intermediate_JUMP length -> @uint outLength {
-  outLength = 1 + [mCurrentPage ^ mTargetPage oneBitCount]
+  outLength = 1 + [self.mCurrentPage ^ self.mTargetPage oneBitCount]
 }
 
 #-------------------------------------------------------------------------------*
 
 override getter @baseline_intermediate_JSR length -> @uint outLength {
-  outLength = 1 + 2 * [mCurrentPage ^ mTargetPage oneBitCount]
+  outLength = 1 + 2 * [self.mCurrentPage ^ self.mTargetPage oneBitCount]
 }
 
 #-------------------------------------------------------------------------------*
 
 override
 getter @baseline_intermediate_instruction_MNOP length -> @uint outLength {
-  outLength = [mOccurrenceFactor uint]
+  outLength = [self.mOccurrenceFactor uint]
 }
 
 #-------------------------------------------------------------------------------*
 
 
 override getter @baseline_intermediate_incDecRegisterInCondition length -> @uint outLength {
-  if mBranchIfZero then
+  if self.mBranchIfZero then
     outLength = 3
   else
     outLength = 2
