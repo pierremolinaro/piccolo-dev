@@ -151,13 +151,13 @@ before {
       @piccoloDeviceModel piccoloDeviceModel
       parseDeviceDefinition ( !@lstring. new { ! deviceForRegistersDescription !@location.here} ?piccoloDeviceModel )
       message deviceForRegistersDescription + " has " + [[[piccoloDeviceModel mRegisterTable] count] string] + " special registers:\n"
-      for () in  [piccoloDeviceModel mRegisterTable] do
-        @string s = "  '" + lkey + "' at "
-        for () in  mRegisterAddressList
-        do s += [mValue hexString]
+      for register in  [piccoloDeviceModel mRegisterTable] do
+        @string s = "  '" + register.lkey + "' at "
+        for address in  register.mRegisterAddressList
+        do s += [address.mValue hexString]
         between s += ", "
         end
-        s += mBitDefinitionString + "\n"
+        s += register.mBitDefinitionString + "\n"
         message s
       end
     else
