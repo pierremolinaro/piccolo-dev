@@ -467,7 +467,8 @@ method @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
   ?let @uint inLineIndex
   ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
-  ?!@bool ioOptimizationsDone {
+  ?!@bool ioOptimizationsDone
+{
 #--- First following instruction is a JUMP ?
   @string jumpLabel = "" # No By default
   @bool ok = false
@@ -488,7 +489,7 @@ method @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
   end
 #--- Get third following instruction
   if (ok) then
-    @midrange_intermediate_instruction thirdInstruction = @midrange_intermediate_NULL. new
+    @midrange_intermediate_instruction thirdInstruction = @midrange_intermediate_NULL.new
     @stringset reachedLabelSet
     findMidRangeFirstInstructionOrLabelFromAddress ( !inLineIndex+3 !ioGeneratedInstructionList ?* ?reachedLabelSet )
     ok = [reachedLabelSet hasKey !jumpLabel]
@@ -496,8 +497,9 @@ method @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
 #--- If Ok, perform optimization
   if ok then
   #--- Complement Bit test instruction (at inLineIndex)
+    message "  Line " + inLineIndex + "\n"
     [!?ioGeneratedInstructionList setMInstructionAtIndex
-      !@midrange_intermediate_instruction_BitTestSkip. new {
+      !@midrange_intermediate_instruction_BitTestSkip.new {
         !self.mInstructionLocation
         !not self.mSkipIfSet
         !self.mRegisterDescription
@@ -506,7 +508,7 @@ method @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
     ]
   #--- Delete instruction at (inLineIndex + 1)
     [!?ioGeneratedInstructionList setMInstructionAtIndex
-      !@midrange_intermediate_NULL. new
+      !@midrange_intermediate_NULL.new
       !inLineIndex + 1
     ]
   #--- 
@@ -545,8 +547,11 @@ proc perform_midrange_optimizations
     iteration ++
     ioListFileContents += "Pass " + [iteration string] + ":\n"
   #--- Optimization loop
-    for () in  ioGeneratedInstructionList do(idx)
-      cast mInstruction
+    var idx = 0
+    loop ([ioGeneratedInstructionList length]) while idx < [ioGeneratedInstructionList length] do
+#    for () in ioGeneratedInstructionList do (idx)
+      let instruction = [ioGeneratedInstructionList mInstructionAtIndex !idx]
+      cast instruction
       case == @midrange_intermediate_GOTO ipic_GOTO :
         [ipic_GOTO optimizeGOTO !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
       case == @midrange_intermediate_JUMP ipic_JUMP :
@@ -561,6 +566,7 @@ proc perform_midrange_optimizations
         [ipic_bitTestSkip optimizeBitTestSkip !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
       else
       end
+      idx = idx + 1
     end
   #--- Delete non referenced labels
     var referencedLabels =@stringset.emptySet{}
