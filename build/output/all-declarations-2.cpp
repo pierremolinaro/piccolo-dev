@@ -8925,20 +8925,19 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSk
   if (kBoolTrue == test_2) {
     test_2 = var_ok_20061.boolEnum () ;
     if (kBoolTrue == test_2) {
-      inCompiler->printMessage (GALGAS_string ("  Line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 500)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 500)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 500))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 500)) ;
       {
       const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_3 = object ;
       const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_4 = object ;
       const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_5 = object ;
       const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_6 = object ;
-      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::constructor_new (temp_3.getter_mInstructionLocation (HERE), temp_4.getter_mSkipIfSet (HERE).operator_not (SOURCE_FILE ("midrange_optimizations.galgas", 504)), temp_5.getter_mRegisterDescription (HERE), temp_6.getter_mBitNumber (HERE)  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 502)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 501)) ;
+      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::constructor_new (temp_3.getter_mInstructionLocation (HERE), temp_4.getter_mSkipIfSet (HERE).operator_not (SOURCE_FILE ("midrange_optimizations.galgas", 503)), temp_5.getter_mRegisterDescription (HERE), temp_6.getter_mBitNumber (HERE)  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 501)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 500)) ;
       }
       {
-      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("midrange_optimizations.galgas", 511)), constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 512)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 510)) ;
+      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("midrange_optimizations.galgas", 510)), constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 511)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 509)) ;
       }
       ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  lines ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 517)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 517)).add_operation (GALGAS_string (" to "), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 517)).add_operation (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 517)).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 517)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 517)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 517)) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" bit test skip, following by a JUMP skipping next instruction, is complemented\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 518)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  lines ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 516)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 516)).add_operation (GALGAS_string (" to "), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 516)).add_operation (constinArgument_inLineIndex.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 516)).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 516)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 516)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 516)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" bit test skip, following by a JUMP skipping next instruction, is complemented\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 517)) ;
     }
   }
 }

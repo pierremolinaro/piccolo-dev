@@ -84,13 +84,15 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
   ?let @string inBlockLabel
   ?!@bool ioOptimizationDone
   ?!@string ioListFileContents
-  !@ipic18AbstractBlockTerminator outOptimizedTerminator {
+  !@ipic18AbstractBlockTerminator outOptimizedTerminator
+{
 #---- Useless condition ?
   if self.mTargetLabelWhenTrue.string == self.mTargetLabelWhenFalse.string then
     outOptimizedTerminator = @ipic18JumpTerminator.new {
       !self.mInstructionLocation
       !self.mTargetLabelWhenFalse
-      !@jumpInstructionKind. ipicRelative}
+      !@jumpInstructionKind.ipicRelative
+    }
     ioOptimizationDone = true
     ioListFileContents += "  [U] " + inBlockLabel + ", useless terminator condition: replaced by JUMP " + self.mTargetLabelWhenFalse + "\n"
     warning self.mInstructionLocation : "useless condition deleted"
@@ -101,18 +103,18 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
     if inBlockLabel != self.mTargetLabelWhenTrue.string then
       [inSymbolTable searchKey !self.mTargetLabelWhenTrue ?let @uint targetBlockIndex]
       let @ipic18Block targetBlock = [inBlockList mBlockAtIndex !targetBlockIndex]
-      if (targetBlock.mAddress == @uint. max) # Relocatable
-       & (self.mTargetLabelWhenTrue.string != targetLabelWhenTrue.string)
-       & ([targetBlock.mInstructionList length] == 0) # Empty block
-       & (targetBlock.mTerminator is >= @ipic18JumpTerminator) then
-        let @ipic18JumpTerminator jp = ( targetBlock.mTerminator as @ipic18JumpTerminator)
-        targetLabelWhenTrue = [jp mLabel]
-        optimized = true
-        ioListFileContents += "  [P] " + inBlockLabel + ", jump optimization: "
-        ioListFileContents += self.mTargetLabelWhenTrue.string
-        ioListFileContents += " -> "
-        ioListFileContents += targetLabelWhenTrue.string
-        ioListFileContents += "\n"
+      if targetBlock.mAddress == @uint.max, # Relocatable
+             [targetBlock.mInstructionList length] == 0, # Empty block
+             let targetBlockJumpTerminator = targetBlock.mTerminator as @ipic18JumpTerminator then
+        targetLabelWhenTrue = [targetBlockJumpTerminator mLabel]
+        if self.mTargetLabelWhenTrue.string != targetLabelWhenTrue.string then
+          optimized = true
+          ioListFileContents += "  [P] " + inBlockLabel + ", jump optimization: "
+          ioListFileContents += self.mTargetLabelWhenTrue.string
+          ioListFileContents += " -> "
+          ioListFileContents += targetLabelWhenTrue.string
+          ioListFileContents += "\n"
+        end
       end
     end
   #--- Optimize false label
@@ -120,18 +122,18 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
     if inBlockLabel != self.mTargetLabelWhenFalse.string then
       [inSymbolTable searchKey !self.mTargetLabelWhenFalse ?let @uint targetBlockIndex]
       let @ipic18Block targetBlock = [inBlockList mBlockAtIndex !targetBlockIndex]
-      if (targetBlock.mAddress == @uint. max) # Relocatable
-       & (self.mTargetLabelWhenFalse.string != targetLabelWhenFalse.string)
-       & ([targetBlock.mInstructionList length] == 0) # Empty block
-       & (targetBlock.mTerminator is >= @ipic18JumpTerminator) then
-        let @ipic18JumpTerminator jp = (targetBlock.mTerminator as @ipic18JumpTerminator)
-        targetLabelWhenFalse = [jp mLabel]
-        optimized = true
-        ioListFileContents += "  [P] " + inBlockLabel + ", jump optimization: "
-        ioListFileContents += self.mTargetLabelWhenFalse.string
-        ioListFileContents += " -> "
-        ioListFileContents += targetLabelWhenFalse.string
-        ioListFileContents += "\n"
+      if targetBlock.mAddress == @uint.max, # Relocatable
+            [targetBlock.mInstructionList length] == 0, # Empty block
+            let targetBlockJumpTerminator = targetBlock.mTerminator as @ipic18JumpTerminator then
+         targetLabelWhenFalse = [targetBlockJumpTerminator mLabel]
+         if self.mTargetLabelWhenFalse.string != targetLabelWhenFalse.string then
+          optimized = true
+          ioListFileContents += "  [P] " + inBlockLabel + ", jump optimization: "
+          ioListFileContents += self.mTargetLabelWhenFalse.string
+          ioListFileContents += " -> "
+          ioListFileContents += targetLabelWhenFalse.string
+          ioListFileContents += "\n"
+        end
       end
     end
   #--- Optimized ?
@@ -161,7 +163,8 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
   ?!@string ioListFileContents
   !@ipic18SingleInstructionTerminator outOptimizedTrueTerminator
   !@ipic18SingleInstructionTerminator outOptimizedFalseTerminator
-  !@bool outIdenticalTerminators {
+  !@bool outIdenticalTerminators
+{
 #---
   [self.mSingleInstructionTerminatorIfConditionTrue optimizeTerminator
     !inSymbolTable

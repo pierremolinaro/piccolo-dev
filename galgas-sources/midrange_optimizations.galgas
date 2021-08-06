@@ -497,7 +497,6 @@ method @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
 #--- If Ok, perform optimization
   if ok then
   #--- Complement Bit test instruction (at inLineIndex)
-    message "  Line " + inLineIndex + "\n"
     [!?ioGeneratedInstructionList setMInstructionAtIndex
       !@midrange_intermediate_instruction_BitTestSkip.new {
         !self.mInstructionLocation
