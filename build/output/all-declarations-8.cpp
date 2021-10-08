@@ -11095,13 +11095,13 @@ typeComparisonResult GALGAS_registerExpression::objectCompare (const GALGAS_regi
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression::GALGAS_registerExpression (void) :
-AC_GALGAS_class (false) {
+AC_GALGAS_class (true) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression::GALGAS_registerExpression (const cPtr_registerExpression * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr, false) {
+AC_GALGAS_class (inSourcePtr, true) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_registerExpression) ;
 }
 

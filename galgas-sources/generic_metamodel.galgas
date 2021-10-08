@@ -11,7 +11,7 @@ map @bitSliceTable {
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @registerExpression {
+shared class @registerExpression {
   @lstring mRegisterName
   @immediatExpression mOffset
   @location mEndOfOffsetExpression
@@ -19,7 +19,7 @@ class @registerExpression {
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-abstract class @declarationInRam {
+abstract shared class @declarationInRam {
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -32,7 +32,7 @@ enum @registerProtection {
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @byteDeclarationInRam : @declarationInRam {
+shared class @byteDeclarationInRam : @declarationInRam {
   @lstring mName
   @immediatExpression mSizeExpression
   @bitSliceTable mBitSliceTable
@@ -69,7 +69,7 @@ list @configDefinitionList {
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-abstract class @immediatExpression {
+abstract shared class @immediatExpression {
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -81,137 +81,137 @@ list @immediatExpressionList {
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatInteger : @immediatExpression {
+shared class @immediatInteger : @immediatExpression {
   @luint mValue
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatRegister : @immediatExpression {
+shared class @immediatRegister : @immediatExpression {
   @registerExpression mRegister
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatAdd : @immediatExpression {
+shared class @immediatAdd : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatSub : @immediatExpression {
+shared class @immediatSub : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatMul : @immediatExpression {
+shared class @immediatMul : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatDiv : @immediatExpression {
+shared class @immediatDiv : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatMod : @immediatExpression {
+shared class @immediatMod : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatOr : @immediatExpression {
+shared class @immediatOr : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatAnd : @immediatExpression {
+shared class @immediatAnd : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatXor : @immediatExpression {
+shared class @immediatXor : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatLeftShift : @immediatExpression {
+shared class @immediatLeftShift : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatRightShift : @immediatExpression {
+shared class @immediatRightShift : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatEqualTest : @immediatExpression {
+shared class @immediatEqualTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatNotEqualTest : @immediatExpression {
+shared class @immediatNotEqualTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatGreaterTest : @immediatExpression {
+shared class @immediatGreaterTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatGreaterOrEqualTest : @immediatExpression {
+shared class @immediatGreaterOrEqualTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatLowerTest : @immediatExpression {
+shared class @immediatLowerTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatLowerOrEqualTest : @immediatExpression {
+shared class @immediatLowerOrEqualTest : @immediatExpression {
   @immediatExpression mLeftExpression
   @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatNegate : @immediatExpression {
+shared class @immediatNegate : @immediatExpression {
   @immediatExpression mExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatComplement : @immediatExpression {
+shared class @immediatComplement : @immediatExpression {
   @immediatExpression mExpression
 }
 
@@ -224,7 +224,7 @@ list @immediatSliceExpressionList {
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @immediatSlice : @immediatExpression {
+shared class @immediatSlice : @immediatExpression {
   @lstring mRegisterName
   @immediatSliceExpressionList mSliceExpressionList
 }
@@ -247,25 +247,25 @@ map @actualConfigurationMap {
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-abstract class @bitNumberExpression {
+abstract shared class @bitNumberExpression {
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @bitNumberLiteralExpression : @bitNumberExpression {
+shared class @bitNumberLiteralExpression : @bitNumberExpression {
   @immediatExpression mBitNumberLiteralExpression
   @location mEndOfExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @bitNumberLiteralValue : @bitNumberExpression {
+shared class @bitNumberLiteralValue : @bitNumberExpression {
   @luint mBitNumberLiteralValue
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class @bitNumberLabelValue : @bitNumberExpression {
+shared class @bitNumberLabelValue : @bitNumberExpression {
   @lstring mBitNumberLabelValue
   @luint mBitNumberIndexValue
 }

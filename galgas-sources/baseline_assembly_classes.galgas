@@ -2,7 +2,7 @@
 
 #-------------------------------------------------------------------------------*
 
-abstract class @baseline_assembly_instruction {
+abstract shared class @baseline_assembly_instruction {
 }
 
 #-------------------------------------------------------------------------------*
@@ -13,39 +13,39 @@ list @baseline_assembly_instructionList {
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_pseudo_ORG : @baseline_assembly_instruction {
+shared class @baseline_assembly_pseudo_ORG : @baseline_assembly_instruction {
   @uint mOrigin
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_pseudo_BEGINOFROUTINE : @baseline_assembly_instruction {
+shared class @baseline_assembly_pseudo_BEGINOFROUTINE : @baseline_assembly_instruction {
   @lstring mRoutineName
   @bool mIsRegular
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_pseudo_ENDOFROUTINE : @baseline_assembly_instruction {
+shared class @baseline_assembly_pseudo_ENDOFROUTINE : @baseline_assembly_instruction {
   @lstring mRoutineName
   @uint mPage
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_pseudo_LABEL : @baseline_assembly_instruction {
+shared class @baseline_assembly_pseudo_LABEL : @baseline_assembly_instruction {
   @lstring mLabel
 }
 
 #-------------------------------------------------------------------------------*
 
-abstract class @baseline_assembly_actualInstruction : @baseline_assembly_instruction {
+abstract shared class @baseline_assembly_actualInstruction : @baseline_assembly_instruction {
   @location mInstructionLocation
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_instruction_FD : @baseline_assembly_actualInstruction {
+shared class @baseline_assembly_instruction_FD : @baseline_assembly_actualInstruction {
   @baseline_instruction_FD_base_code mInstruction
   @baseline_intermediate_registerExpression mRegisterDescription
   @bool m_W_isDestination
@@ -53,14 +53,14 @@ class @baseline_assembly_instruction_FD : @baseline_assembly_actualInstruction {
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_instruction_F : @baseline_assembly_actualInstruction {
+shared class @baseline_assembly_instruction_F : @baseline_assembly_actualInstruction {
   @baseline_F_instruction_base_code mInstruction
   @baseline_intermediate_registerExpression mRegisterDescription
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_instruction_FB : @baseline_assembly_actualInstruction {
+shared class @baseline_assembly_instruction_FB : @baseline_assembly_actualInstruction {
   @baseline_bit_oriented_op mInstruction
   @baseline_intermediate_registerExpression mRegisterDescription
   @uint mBitNumber
@@ -68,7 +68,7 @@ class @baseline_assembly_instruction_FB : @baseline_assembly_actualInstruction {
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_instruction_BitTestSkip : @baseline_assembly_actualInstruction {
+shared class @baseline_assembly_instruction_BitTestSkip : @baseline_assembly_actualInstruction {
   @bool mSkipIfSet
   @baseline_intermediate_registerExpression mRegisterDescription
   @uint mBitNumber
@@ -76,44 +76,44 @@ class @baseline_assembly_instruction_BitTestSkip : @baseline_assembly_actualInst
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_GOTO : @baseline_assembly_actualInstruction {
+shared class @baseline_assembly_GOTO : @baseline_assembly_actualInstruction {
   @lstring mTargetLabel
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_SKIP : @baseline_assembly_actualInstruction {
+shared class @baseline_assembly_SKIP : @baseline_assembly_actualInstruction {
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_CALL : @baseline_assembly_actualInstruction {
+shared class @baseline_assembly_CALL : @baseline_assembly_actualInstruction {
   @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-class @baseline_assembly_WO_OPERAND : @baseline_assembly_actualInstruction {
+shared class @baseline_assembly_WO_OPERAND : @baseline_assembly_actualInstruction {
   @baseline_WO_OPERAND_group mInstruction
 }
 
 #----------------------------------------------------*
 
-class @baseline_assembly_TRIS : @baseline_assembly_actualInstruction {
+shared class @baseline_assembly_TRIS : @baseline_assembly_actualInstruction {
   @lstring mOperand
   @uint mOpcode
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_instruction_literalOperation : @baseline_assembly_actualInstruction {
+shared class @baseline_assembly_instruction_literalOperation : @baseline_assembly_actualInstruction {
   @baseline_literal_instruction_opcode mInstruction
   @uint mLiteralValue
 }
 
 #-------------------------------------------------------------------------------*
 
-class @baseline_assembly_incDecRegisterInCondition : @baseline_assembly_actualInstruction {
+shared class @baseline_assembly_incDecRegisterInCondition : @baseline_assembly_actualInstruction {
   @baseline_intermediate_registerExpression mRegisterDescription
   @bool mIncrement
   @bool m_W_isDestination

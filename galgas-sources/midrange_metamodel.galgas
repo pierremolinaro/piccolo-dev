@@ -2,7 +2,7 @@
 
 #----------------------------------------------------*
 
-abstract class @midrange_instruction {
+abstract shared class @midrange_instruction {
   @location mInstructionLocation
 }
 
@@ -14,37 +14,37 @@ list @midrange_instructionList {
 
 #----------------------------------------------------*
 
-class @midrange_instruction_nobanksel : @midrange_instruction {
+shared class @midrange_instruction_nobanksel : @midrange_instruction {
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_banksel : @midrange_instruction {
+shared class @midrange_instruction_banksel : @midrange_instruction {
   @luint mBankIndex
   @bool mWarningOnUselessBanksel
 }
 
 #----------------------------------------------------*
 
-class @midrangeInstruction_checkbank : @midrange_instruction {
+shared class @midrangeInstruction_checkbank : @midrange_instruction {
   @uint mBankIndex
 }
 
 #----------------------------------------------------*
 
-class @midrangeInstruction_checknobank : @midrange_instruction {
+shared class @midrangeInstruction_checknobank : @midrange_instruction {
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_banksel_register : @midrange_instruction {
+shared class @midrange_instruction_banksel_register : @midrange_instruction {
   @registerExpression mRegister
   @bool mWarningOnUselessBanksel
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_savebank : @midrange_instruction {
+shared class @midrange_instruction_savebank : @midrange_instruction {
   @registerExpression mRegister
   @midrange_instructionList mInstructionList
   @location mEndOfSaveBankInstruction
@@ -52,7 +52,7 @@ class @midrange_instruction_savebank : @midrange_instruction {
 
 #----------------------------------------------------*
 
-class @midrange_instruction_STATIC_REPEAT : @midrange_instruction {
+shared class @midrange_instruction_STATIC_REPEAT : @midrange_instruction {
   @lstring mConstantName
   @immediatExpression mLowerBoundExpression
   @immediatExpression mUpperBoundExpression
@@ -87,7 +87,7 @@ getter @midrange_instruction_FD_base_code mnemonic -> @string outResult {
 
 #----------------------------------------------------*
 
-class @midrange_instruction_FD : @midrange_instruction {
+shared class @midrange_instruction_FD : @midrange_instruction {
   @midrange_instruction_FD_base_code mInstruction_FD_base_code
   @registerExpression mRegisterExpression
   @bool m_W_isDestination
@@ -108,7 +108,7 @@ getter @midrange_F_instruction_base_code mnemonic -> @string outResult {
 
 #----------------------------------------------------*
 
-class @midrange_instruction_F : @midrange_instruction {
+shared class @midrange_instruction_F : @midrange_instruction {
   @midrange_F_instruction_base_code mFAinstruction
   @registerExpression mRegisterExpression
 }
@@ -128,7 +128,7 @@ getter @midrange_bit_oriented_op mnemonic -> @string outResult {
 
 #----------------------------------------------------*
 
-class @midrange_instruction_FB : @midrange_instruction {
+shared class @midrange_instruction_FB : @midrange_instruction {
   @midrange_bit_oriented_op mBitOrientedOp
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
@@ -136,46 +136,46 @@ class @midrange_instruction_FB : @midrange_instruction {
 
 #----------------------------------------------------*
 
-class @midrange_instruction_CALL : @midrange_instruction {
+shared class @midrange_instruction_CALL : @midrange_instruction {
   @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_JSR : @midrange_instruction {
+shared class @midrange_instruction_JSR : @midrange_instruction {
   @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_JUMP : @midrange_instruction {
+shared class @midrange_instruction_JUMP : @midrange_instruction {
   @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_GOTO : @midrange_instruction {
+shared class @midrange_instruction_GOTO : @midrange_instruction {
   @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_CLRWDT : @midrange_instruction {
+shared class @midrange_instruction_CLRWDT : @midrange_instruction {
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_CLRW : @midrange_instruction {
+shared class @midrange_instruction_CLRW : @midrange_instruction {
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_NOP : @midrange_instruction {
+shared class @midrange_instruction_NOP : @midrange_instruction {
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_SLEEP : @midrange_instruction {
+shared class @midrange_instruction_SLEEP : @midrange_instruction {
 }
 
 #----------------------------------------------------*
@@ -198,33 +198,33 @@ getter @midrange_literal_instruction_opcode mnemonic -> @string outResult {
 
 #----------------------------------------------------*
 
-class @midrange_instruction_literalOperation : @midrange_instruction {
+shared class @midrange_instruction_literalOperation : @midrange_instruction {
   @midrange_literal_instruction_opcode mLiteralInstruction
   @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_MNOP : @midrange_instruction {
+shared class @midrange_instruction_MNOP : @midrange_instruction {
   @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_FOREVER : @midrange_instruction {
+shared class @midrange_instruction_FOREVER : @midrange_instruction {
   @midrange_instructionList mInstructionList
   @location mEndOfInstructionList
 }
 
 #----------------------------------------------------*
 
-abstract class @midrange_instruction_IF_SEMI_COLON : @midrange_instruction {
+abstract shared class @midrange_instruction_IF_SEMI_COLON : @midrange_instruction {
   @midrange_instruction mInstruction
 }
 
 #----------------------------------------------------*
 
-class @midrange_instruction_IF_BitTest : @midrange_instruction_IF_SEMI_COLON {
+shared class @midrange_instruction_IF_BitTest : @midrange_instruction_IF_SEMI_COLON {
   @bool mSkipIfSet
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
@@ -249,7 +249,7 @@ method @midrange_instruction_IF_BitTest getMnemonic !@string outMnemonic {
 
 #----------------------------------------------------*
 
-class @midrange_instruction_IF_IncDec : @midrange_instruction_IF_SEMI_COLON {
+shared class @midrange_instruction_IF_IncDec : @midrange_instruction_IF_SEMI_COLON {
   @bool mIncrement
   @registerExpression mRegisterExpression
   @bool m_W_isDestination
@@ -257,12 +257,12 @@ class @midrange_instruction_IF_IncDec : @midrange_instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
-abstract class @midrange_conditionExpression {
+abstract shared class @midrange_conditionExpression {
 }
 
 #----------------------------------------------------*
 
-class @midrange_incDecRegisterInCondition : @midrange_conditionExpression {
+shared class @midrange_incDecRegisterInCondition : @midrange_conditionExpression {
   @registerExpression mRegisterExpression
   @bool mIncrement
   @bool m_W_isDestination
@@ -271,20 +271,20 @@ class @midrange_incDecRegisterInCondition : @midrange_conditionExpression {
 
 #----------------------------------------------------*
 
-class @midrange_negateCondition : @midrange_conditionExpression {
+shared class @midrange_negateCondition : @midrange_conditionExpression {
   @midrange_conditionExpression mCondition
 }
 
 #----------------------------------------------------*
 
-class @midrange_andCondition : @midrange_conditionExpression {
+shared class @midrange_andCondition : @midrange_conditionExpression {
   @midrange_conditionExpression mLeftExpression
   @midrange_conditionExpression mRightExpression
 }
 
 #----------------------------------------------------*
 
-class @midrange_bitTest_in_structured_if_condition : @midrange_conditionExpression {
+shared class @midrange_bitTest_in_structured_if_condition : @midrange_conditionExpression {
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
 #  @bool mBTFSSinstruction
@@ -292,7 +292,7 @@ class @midrange_bitTest_in_structured_if_condition : @midrange_conditionExpressi
 
 #----------------------------------------------------*
 
-class @midrange_instruction_structured_if : @midrange_instruction {
+shared class @midrange_instruction_structured_if : @midrange_instruction {
   @midrange_conditionExpression mIfCondition
   @midrange_instructionList mThenInstructionList
   @midrange_instructionList mElseInstructionList
@@ -309,7 +309,7 @@ list @midrange_partList {
 
 #----------------------------------------------------*
 
-class @midrange_instruction_do_while : @midrange_instruction {
+shared class @midrange_instruction_do_while : @midrange_instruction {
   @midrange_instructionList mRepeatedInstructionList
   @location mEndOfRepeatedInstructionList
   @midrange_partList mWhilePartList

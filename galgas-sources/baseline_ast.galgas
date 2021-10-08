@@ -2,7 +2,7 @@
 
 #----------------------------------------------------*
 
-abstract class @baseline_instruction {
+abstract shared class @baseline_instruction {
   @location mInstructionLocation
 }
 
@@ -14,7 +14,7 @@ list @baseline_instructionList {
 
 #----------------------------------------------------*
 
-class @baseline_instruction_FD : @baseline_instruction {
+shared class @baseline_instruction_FD : @baseline_instruction {
   @baseline_instruction_FD_base_code mInstruction_FD_base_code
   @registerExpression mRegisterExpression
   @bool m_W_isDestination
@@ -22,14 +22,14 @@ class @baseline_instruction_FD : @baseline_instruction {
 
 #----------------------------------------------------*
 
-class @baseline_instruction_F : @baseline_instruction {
+shared class @baseline_instruction_F : @baseline_instruction {
   @baseline_F_instruction_base_code mFAinstruction
   @registerExpression mRegisterExpression
 }
 
 #----------------------------------------------------*
 
-class @baseline_instruction_FB : @baseline_instruction {
+shared class @baseline_instruction_FB : @baseline_instruction {
   @baseline_bit_oriented_op mBitOrientedOp
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
@@ -37,63 +37,63 @@ class @baseline_instruction_FB : @baseline_instruction {
 
 #----------------------------------------------------*
 
-class @baseline_instruction_CALL : @baseline_instruction {
+shared class @baseline_instruction_CALL : @baseline_instruction {
   @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-class @baseline_instruction_JSR : @baseline_instruction {
+shared class @baseline_instruction_JSR : @baseline_instruction {
   @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-class @baseline_instruction_GOTO : @baseline_instruction {
+shared class @baseline_instruction_GOTO : @baseline_instruction {
   @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-class @baseline_instruction_JUMP : @baseline_instruction {
+shared class @baseline_instruction_JUMP : @baseline_instruction {
   @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-class @baseline_instruction_WO_OPERAND : @baseline_instruction {
+shared class @baseline_instruction_WO_OPERAND : @baseline_instruction {
   @baseline_WO_OPERAND_group mInstruction
 }
 
 #----------------------------------------------------*
 
-class @baseline_instruction_TRIS : @baseline_instruction {
+shared class @baseline_instruction_TRIS : @baseline_instruction {
   @lstring mOperand
 }
 
 #----------------------------------------------------*
 
-class @baseline_instruction_literalOperation : @baseline_instruction {
+shared class @baseline_instruction_literalOperation : @baseline_instruction {
   @baseline_literal_instruction_opcode mLiteralInstruction
   @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
-class @baseline_instruction_MNOP : @baseline_instruction {
+shared class @baseline_instruction_MNOP : @baseline_instruction {
   @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
-class @baseline_instruction_FOREVER : @baseline_instruction {
+shared class @baseline_instruction_FOREVER : @baseline_instruction {
   @baseline_instructionList mInstructionList
   @location mEndOfInstructionList
 }
 
 #----------------------------------------------------*
 
-class @baseline_instruction_STATIC_REPEAT : @baseline_instruction {
+shared class @baseline_instruction_STATIC_REPEAT : @baseline_instruction {
   @lstring mConstantName
   @immediatExpression mLowerBoundExpression
   @immediatExpression mUpperBoundExpression
@@ -103,13 +103,13 @@ class @baseline_instruction_STATIC_REPEAT : @baseline_instruction {
 
 #----------------------------------------------------*
 
-abstract class @baseline_instruction_IF_SEMI_COLON : @baseline_instruction {
+abstract shared class @baseline_instruction_IF_SEMI_COLON : @baseline_instruction {
   @baseline_instruction mInstruction
 }
 
 #----------------------------------------------------*
 
-class @baseline_instruction_IF_BitTest : @baseline_instruction_IF_SEMI_COLON {
+shared class @baseline_instruction_IF_BitTest : @baseline_instruction_IF_SEMI_COLON {
   @bool mSkipIfSet
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
@@ -134,7 +134,7 @@ method @baseline_instruction_IF_BitTest getMnemonic !@string outMnemonic {
 
 #----------------------------------------------------*
 
-class @baseline_instruction_IF_IncDec : @baseline_instruction_IF_SEMI_COLON {
+shared class @baseline_instruction_IF_IncDec : @baseline_instruction_IF_SEMI_COLON {
   @bool mIncrement
   @registerExpression mRegisterExpression
   @bool m_W_isDestination
@@ -142,12 +142,12 @@ class @baseline_instruction_IF_IncDec : @baseline_instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
-abstract class @baseline_conditionExpression {
+abstract shared class @baseline_conditionExpression {
 }
 
 #----------------------------------------------------*
 
-class @baseline_incDecRegisterInCondition : @baseline_conditionExpression {
+shared class @baseline_incDecRegisterInCondition : @baseline_conditionExpression {
   @registerExpression mRegisterExpression
   @bool mIncrement
   @bool m_W_isDestination
@@ -156,20 +156,20 @@ class @baseline_incDecRegisterInCondition : @baseline_conditionExpression {
 
 #----------------------------------------------------*
 
-class @baseline_negateCondition : @baseline_conditionExpression {
+shared class @baseline_negateCondition : @baseline_conditionExpression {
   @baseline_conditionExpression mCondition
 }
 
 #----------------------------------------------------*
 
-class @baseline_andCondition : @baseline_conditionExpression {
+shared class @baseline_andCondition : @baseline_conditionExpression {
   @baseline_conditionExpression mLeftExpression
   @baseline_conditionExpression mRightExpression
 }
 
 #----------------------------------------------------*
 
-class @baseline_bitTest_in_structured_if_condition : @baseline_conditionExpression {
+shared class @baseline_bitTest_in_structured_if_condition : @baseline_conditionExpression {
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
 #  @bool mBTFSSinstruction
@@ -177,7 +177,7 @@ class @baseline_bitTest_in_structured_if_condition : @baseline_conditionExpressi
 
 #----------------------------------------------------*
 
-class @baseline_instruction_structured_if : @baseline_instruction {
+shared class @baseline_instruction_structured_if : @baseline_instruction {
   @baseline_conditionExpression mIfCondition
   @baseline_instructionList mThenInstructionList
   @baseline_instructionList mElseInstructionList
@@ -194,7 +194,7 @@ list @baseline_partList {
 
 #----------------------------------------------------*
 
-class @baseline_instruction_do_while : @baseline_instruction {
+shared class @baseline_instruction_do_while : @baseline_instruction {
   @baseline_instructionList mRepeatedInstructionList
   @location mEndOfRepeatedInstructionList
   @baseline_partList mWhilePartList

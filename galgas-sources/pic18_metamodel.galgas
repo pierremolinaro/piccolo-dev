@@ -14,7 +14,7 @@ map @bootloaderReservedRAMmap {
 
 #----------------------------------------------------*
 
-abstract class @pic18PiccoloInstruction {
+abstract shared class @pic18PiccoloInstruction {
   @location mInstructionLocation
 }
 
@@ -26,42 +26,42 @@ list @pic18InstructionList {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_nobanksel : @pic18PiccoloInstruction {
+shared class @pic18Instruction_nobanksel : @pic18PiccoloInstruction {
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_checknobank : @pic18PiccoloInstruction {
+shared class @pic18Instruction_checknobank : @pic18PiccoloInstruction {
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_checkbank : @pic18PiccoloInstruction {
+shared class @pic18Instruction_checkbank : @pic18PiccoloInstruction {
   @uint mBankIndex
 }
 
 #----------------------------------------------------*
 
-abstract class @pic18PiccoloSimpleInstruction : @pic18PiccoloInstruction {
+abstract shared class @pic18PiccoloSimpleInstruction : @pic18PiccoloInstruction {
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_banksel : @pic18PiccoloInstruction {
+shared class @pic18Instruction_banksel : @pic18PiccoloInstruction {
   @luint mBankIndex
   @bool mWarningOnUselessBanksel
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_banksel_register : @pic18PiccoloInstruction {
+shared class @pic18Instruction_banksel_register : @pic18PiccoloInstruction {
   @registerExpression mRegisterExpression
   @bool mWarningOnUselessBanksel
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_savebank : @pic18PiccoloInstruction {
+shared class @pic18Instruction_savebank : @pic18PiccoloInstruction {
   @registerExpression mRegister
   @pic18InstructionList mInstructionList
   @location mEndOfSaveBankInstruction
@@ -69,7 +69,7 @@ class @pic18Instruction_savebank : @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_repetitionStatique : @pic18PiccoloInstruction {
+shared class @pic18Instruction_repetitionStatique : @pic18PiccoloInstruction {
   @lstring mConstantName
   @immediatExpression mLowerBoundExpression
   @immediatExpression mUpperBoundExpression
@@ -83,24 +83,24 @@ class @pic18Instruction_repetitionStatique : @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-abstract class @abstractBlockTerminationForBlockInstruction {
+abstract shared class @abstractBlockTerminationForBlockInstruction {
 }
 
 #----------------------------------------------------*
 
-class @exitBlockTerminationForBlockInstruction : @abstractBlockTerminationForBlockInstruction {
+shared class @exitBlockTerminationForBlockInstruction : @abstractBlockTerminationForBlockInstruction {
   @location mLocation
 }
 
 #----------------------------------------------------*
 
-class @gotoTerminationForBlockInstruction : @abstractBlockTerminationForBlockInstruction {
+shared class @gotoTerminationForBlockInstruction : @abstractBlockTerminationForBlockInstruction {
   @lstring mNextBlock
 }
 
 #----------------------------------------------------*
 
-class @testTerminationForBlockInstruction : @abstractBlockTerminationForBlockInstruction {
+shared class @testTerminationForBlockInstruction : @abstractBlockTerminationForBlockInstruction {
   @pic18ConditionExpression mCondition
   @abstractBlockTerminationForBlockInstruction mTrueTermination
   @abstractBlockTerminationForBlockInstruction mFalseTermination
@@ -118,7 +118,7 @@ list @pic18BlockInstructionBlockList {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_block : @pic18PiccoloInstruction {
+shared class @pic18Instruction_block : @pic18PiccoloInstruction {
   @lstring mStartBlockName
   @pic18BlockInstructionBlockList mBlockList
   @location mEndOfBlockInstruction
@@ -130,7 +130,7 @@ class @pic18Instruction_block : @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-abstract class @pic18AbstractCaseItem {
+abstract shared class @pic18AbstractCaseItem {
 }
 
 #----------------------------------------------------*
@@ -143,7 +143,7 @@ enum @pic18Instruction_FDA_base_code_AST {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_FDA : @pic18PiccoloSimpleInstruction {
+shared class @pic18Instruction_FDA : @pic18PiccoloSimpleInstruction {
   @pic18Instruction_FDA_base_code_AST mInstruction_FDA_base_code
   @registerExpression mRegisterExpression
   @bool m_W_isDestination
@@ -157,14 +157,14 @@ enum @FA_instruction_base_code {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_FA : @pic18PiccoloSimpleInstruction {
+shared class @pic18Instruction_FA : @pic18PiccoloSimpleInstruction {
   @FA_instruction_base_code mFAinstruction
   @registerExpression mRegisterExpression
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_MOVFF : @pic18PiccoloSimpleInstruction {
+shared class @pic18Instruction_MOVFF : @pic18PiccoloSimpleInstruction {
   @registerExpression mSourceRegisterName
   @registerExpression mDestinationRegisterName
 }
@@ -177,7 +177,7 @@ enum @bit_oriented_op {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_FBA : @pic18PiccoloSimpleInstruction {
+shared class @pic18Instruction_FBA : @pic18PiccoloSimpleInstruction {
   @bit_oriented_op mBitOrientedOp
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
@@ -199,28 +199,28 @@ enum @jumpInstructionKind {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_JSR : @pic18PiccoloSimpleInstruction {
+shared class @pic18Instruction_JSR : @pic18PiccoloSimpleInstruction {
   @lstring mTargetLabel
   @jumpInstructionKind mKind
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_macro : @pic18PiccoloInstruction {
+shared class @pic18Instruction_macro : @pic18PiccoloInstruction {
   @lstring mMacroName
   @immediatExpressionList mExpressionList
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_JUMP : @pic18PiccoloInstruction {
+shared class @pic18Instruction_JUMP : @pic18PiccoloInstruction {
   @lstring mTargetLabel
   @jumpInstructionKind mKind
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_JUMPCC : @pic18PiccoloInstruction {
+shared class @pic18Instruction_JUMPCC : @pic18PiccoloInstruction {
   @lstring mTargetLabel
   @conditional_branch mConditionalBranch
   @bool mIsBcc
@@ -240,7 +240,7 @@ enum @pic18InstructionWithNoOperandKind {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_withNoOperand : @pic18PiccoloSimpleInstruction {
+shared class @pic18Instruction_withNoOperand : @pic18PiccoloSimpleInstruction {
   @pic18InstructionWithNoOperandKind mKind
 }
 
@@ -252,40 +252,40 @@ enum @literal_instruction_opcode {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_literalOperation : @pic18PiccoloSimpleInstruction {
+shared class @pic18Instruction_literalOperation : @pic18PiccoloSimpleInstruction {
   @literal_instruction_opcode mLiteralInstruction
   @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_fnop : @pic18PiccoloSimpleInstruction {
+shared class @pic18Instruction_fnop : @pic18PiccoloSimpleInstruction {
   @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_LFSR : @pic18PiccoloSimpleInstruction {
+shared class @pic18Instruction_LFSR : @pic18PiccoloSimpleInstruction {
   @luint mFSRindex
   @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_LTBLPTR : @pic18PiccoloInstruction {
+shared class @pic18Instruction_LTBLPTR : @pic18PiccoloInstruction {
   @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_LDATA8PTR : @pic18PiccoloInstruction {
+shared class @pic18Instruction_LDATA8PTR : @pic18PiccoloInstruction {
   @lstring mDataName
   @luint mDataIndex
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_LDATA16PTR : @pic18PiccoloInstruction {
+shared class @pic18Instruction_LDATA16PTR : @pic18PiccoloInstruction {
   @lstring mDataName
   @luint mDataIndex
 }
@@ -298,31 +298,31 @@ enum @tableAccessOption {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_TBLRD : @pic18PiccoloSimpleInstruction {
+shared class @pic18Instruction_TBLRD : @pic18PiccoloSimpleInstruction {
   @tableAccessOption mOption
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_TBLWT : @pic18PiccoloSimpleInstruction {
+shared class @pic18Instruction_TBLWT : @pic18PiccoloSimpleInstruction {
   @tableAccessOption mOption
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_MNOP : @pic18PiccoloInstruction {
+shared class @pic18Instruction_MNOP : @pic18PiccoloInstruction {
   @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_NOPBRA : @pic18PiccoloInstruction {
+shared class @pic18Instruction_NOPBRA : @pic18PiccoloInstruction {
   @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_FOREVER : @pic18PiccoloInstruction {
+shared class @pic18Instruction_FOREVER : @pic18PiccoloInstruction {
   @pic18InstructionList mInstructionList
   @location mEndOfInstructionList
 }
@@ -335,20 +335,20 @@ enum @if_semi_colon_op {
 
 #----------------------------------------------------*
 
-abstract class @pic18Instruction_IF_SEMI_COLON : @pic18PiccoloInstruction {
+abstract shared class @pic18Instruction_IF_SEMI_COLON : @pic18PiccoloInstruction {
   @pic18PiccoloSimpleInstruction mEmbeddedInstruction
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_IF_FA_SEMI_COLON : @pic18Instruction_IF_SEMI_COLON {
+shared class @pic18Instruction_IF_FA_SEMI_COLON : @pic18Instruction_IF_SEMI_COLON {
   @if_semi_colon_op mOpCode
   @registerExpression mRegisterExpression
 }
 
 #----------------------------------------------------*
 
-class @pic18Instruction_IF_BitTest : @pic18Instruction_IF_SEMI_COLON {
+shared class @pic18Instruction_IF_BitTest : @pic18Instruction_IF_SEMI_COLON {
   @bool mSkipIfSet
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
@@ -356,7 +356,7 @@ class @pic18Instruction_IF_BitTest : @pic18Instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_IF_IncDec : @pic18Instruction_IF_SEMI_COLON {
+shared class @pic18Instruction_IF_IncDec : @pic18Instruction_IF_SEMI_COLON {
   @bool mIncrement
   @bool mSkipIfZero
   @registerExpression mRegisterExpression
@@ -365,7 +365,7 @@ class @pic18Instruction_IF_IncDec : @pic18Instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_computed_retlw : @pic18PiccoloInstruction {
+shared class @pic18Instruction_computed_retlw : @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression
   @immediatExpressionList mImmediateExpressionList
   @bool mUsesRelativeCall
@@ -373,7 +373,7 @@ class @pic18Instruction_computed_retlw : @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_computed_bra : @pic18PiccoloInstruction {
+shared class @pic18Instruction_computed_bra : @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression
   @lstringlist mTargetLabels
   @bool mUsesRelativeCall
@@ -381,7 +381,7 @@ class @pic18Instruction_computed_bra : @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_computed_goto : @pic18PiccoloInstruction {
+shared class @pic18Instruction_computed_goto : @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression
   @lstringlist mTargetLabels
   @bool mUsesRelativeCall
@@ -389,7 +389,7 @@ class @pic18Instruction_computed_goto : @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_computed_rcall : @pic18PiccoloInstruction {
+shared class @pic18Instruction_computed_rcall : @pic18PiccoloInstruction {
   @immediatExpression mSizeExpression
   @lstringlist mTargetLabels
   @bool mUsesRelativeCall
@@ -397,12 +397,12 @@ class @pic18Instruction_computed_rcall : @pic18PiccoloInstruction {
 
 #----------------------------------------------------*
 
-abstract class @pic18ConditionExpression {
+abstract shared class @pic18ConditionExpression {
 }
 
 #----------------------------------------------------*
 
-class @pic18RegisterTestCondition : @pic18ConditionExpression {
+shared class @pic18RegisterTestCondition : @pic18ConditionExpression {
   @registerExpression mRegisterExpression
   @bool mBranchIfZero
 }
@@ -415,14 +415,14 @@ enum @pic18RegisterComparison {
 
 #----------------------------------------------------*
 
-class @pic18RegisterComparisonCondition : @pic18ConditionExpression {
+shared class @pic18RegisterComparisonCondition : @pic18ConditionExpression {
   @registerExpression mRegisterExpression
   @pic18RegisterComparison mComparison
 }
 
 #----------------------------------------------------*
 
-class @pic18IncDecRegisterInCondition : @pic18ConditionExpression {
+shared class @pic18IncDecRegisterInCondition : @pic18ConditionExpression {
   @registerExpression mRegisterExpression
   @bool mIncrement
   @bool m_W_isDestination
@@ -431,27 +431,27 @@ class @pic18IncDecRegisterInCondition : @pic18ConditionExpression {
 
 #----------------------------------------------------*
 
-class @pic18BccInStructuredCondition : @pic18ConditionExpression {
+shared class @pic18BccInStructuredCondition : @pic18ConditionExpression {
   @location mConditionLocation
   @conditional_branch mCondition
 }
 
 #----------------------------------------------------*
 
-class @pic18NegateCondition : @pic18ConditionExpression {
+shared class @pic18NegateCondition : @pic18ConditionExpression {
   @pic18ConditionExpression mCondition
 }
 
 #----------------------------------------------------*
 
-class @pic18AndCondition : @pic18ConditionExpression {
+shared class @pic18AndCondition : @pic18ConditionExpression {
   @pic18ConditionExpression mLeftExpression
   @pic18ConditionExpression mRightExpression
 }
 
 #----------------------------------------------------*
 
-class @pic18BitTestInStructuredCondition : @pic18ConditionExpression {
+shared class @pic18BitTestInStructuredCondition : @pic18ConditionExpression {
   @registerExpression mRegisterExpression
   @bitNumberExpression mBitNumber
 #  @bool mBTFSSinstruction
@@ -459,7 +459,7 @@ class @pic18BitTestInStructuredCondition : @pic18ConditionExpression {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_structured_if : @pic18PiccoloInstruction {
+shared class @pic18Instruction_structured_if : @pic18PiccoloInstruction {
   @pic18ConditionExpression mIfCondition
   @pic18InstructionList mThenInstructionList
   @pic18InstructionList mElseInstructionList
@@ -476,7 +476,7 @@ list @pic18DoWhilePartList {
 
 #----------------------------------------------------*
 
-class @pic18Instruction_do_while : @pic18PiccoloInstruction {
+shared class @pic18Instruction_do_while : @pic18PiccoloInstruction {
   @pic18InstructionList mRepeatedInstructionList
   @location mEndOfRepeatedInstructionList
   @pic18DoWhilePartList mWhilePartList

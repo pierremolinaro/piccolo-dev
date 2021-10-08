@@ -4509,13 +4509,13 @@ typeComparisonResult GALGAS_immediatExpression::objectCompare (const GALGAS_imme
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpression::GALGAS_immediatExpression (void) :
-AC_GALGAS_class (false) {
+AC_GALGAS_class (true) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpression::GALGAS_immediatExpression (const cPtr_immediatExpression * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr, false) {
+AC_GALGAS_class (inSourcePtr, true) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_immediatExpression) ;
 }
 
@@ -4596,13 +4596,13 @@ typeComparisonResult GALGAS_declarationInRam::objectCompare (const GALGAS_declar
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_declarationInRam::GALGAS_declarationInRam (void) :
-AC_GALGAS_class (false) {
+AC_GALGAS_class (true) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_declarationInRam::GALGAS_declarationInRam (const cPtr_declarationInRam * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr, false) {
+AC_GALGAS_class (inSourcePtr, true) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_declarationInRam) ;
 }
 
@@ -12224,13 +12224,13 @@ typeComparisonResult GALGAS_bitNumberExpression::objectCompare (const GALGAS_bit
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bitNumberExpression::GALGAS_bitNumberExpression (void) :
-AC_GALGAS_class (false) {
+AC_GALGAS_class (true) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bitNumberExpression::GALGAS_bitNumberExpression (const cPtr_bitNumberExpression * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr, false) {
+AC_GALGAS_class (inSourcePtr, true) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_bitNumberExpression) ;
 }
 
@@ -16277,13 +16277,13 @@ typeComparisonResult GALGAS_baseline_5F_instruction::objectCompare (const GALGAS
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_instruction::GALGAS_baseline_5F_instruction (void) :
-AC_GALGAS_class (false) {
+AC_GALGAS_class (true) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_instruction::GALGAS_baseline_5F_instruction (const cPtr_baseline_5F_instruction * inSourcePtr) :
-AC_GALGAS_class (inSourcePtr, false) {
+AC_GALGAS_class (inSourcePtr, true) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_instruction) ;
 }
 
