@@ -2117,24 +2117,24 @@ C_PrologueEpilogue gMethod_ipic_31__38_AbstractBlockTerminator_buildTerminatorOr
 //----------------------------------------------------------------------------------------------------------------------
 
 class cCollectionElement_clusterList : public cCollectionElement {
-  public : GALGAS_clusterList_2D_element mObject ;
+  public: GALGAS_clusterList_2D_element mObject ;
 
 //--- Constructors
-  public : cCollectionElement_clusterList (const GALGAS_ipic_31__38_BlockList & in_mBlockList
-                                           COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_clusterList (const GALGAS_clusterList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_clusterList (const GALGAS_ipic_31__38_BlockList & in_mBlockList
+                                          COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_clusterList (const GALGAS_clusterList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
+  public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
+  public: virtual cCollectionElement * copy (void) ;
 
 //--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7336,26 +7336,26 @@ GALGAS_processorType GALGAS_processorType::extractObject (const GALGAS_object & 
 //----------------------------------------------------------------------------------------------------------------------
 
 class cCollectionElement_illegalMaskList : public cCollectionElement {
-  public : GALGAS_illegalMaskList_2D_element mObject ;
+  public: GALGAS_illegalMaskList_2D_element mObject ;
 
 //--- Constructors
-  public : cCollectionElement_illegalMaskList (const GALGAS_luint & in_mIllegalValue,
-                                               const GALGAS_luint & in_mIllegalMask,
-                                               const GALGAS_lstring & in_mDescription
-                                               COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_illegalMaskList (const GALGAS_illegalMaskList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_illegalMaskList (const GALGAS_luint & in_mIllegalValue,
+                                              const GALGAS_luint & in_mIllegalMask,
+                                              const GALGAS_lstring & in_mDescription
+                                              COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_illegalMaskList (const GALGAS_illegalMaskList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
+  public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
+  public: virtual cCollectionElement * copy (void) ;
 
 //--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------

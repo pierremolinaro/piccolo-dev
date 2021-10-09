@@ -16,72 +16,72 @@
 
 class GALGAS_ipic_31__38_ConditionalJumpTerminator : public GALGAS_ipic_31__38_AbstractBlockTerminator {
 //--- Constructor
-  public : GALGAS_ipic_31__38_ConditionalJumpTerminator (void) ;
+  public: GALGAS_ipic_31__38_ConditionalJumpTerminator (void) ;
 
 //---
-  public : inline const class cPtr_ipic_31__38_ConditionalJumpTerminator * ptr (void) const { return (const cPtr_ipic_31__38_ConditionalJumpTerminator *) mObjectPtr ; }
+  public: inline const class cPtr_ipic_31__38_ConditionalJumpTerminator * ptr (void) const { return (const cPtr_ipic_31__38_ConditionalJumpTerminator *) mObjectPtr ; }
 
 //--------------------------------- Constructor from pointer
-  public : GALGAS_ipic_31__38_ConditionalJumpTerminator (const cPtr_ipic_31__38_ConditionalJumpTerminator * inSourcePtr) ;
+  public: GALGAS_ipic_31__38_ConditionalJumpTerminator (const cPtr_ipic_31__38_ConditionalJumpTerminator * inSourcePtr) ;
 
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_ipic_31__38_ConditionalJumpTerminator extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_ConditionalJumpTerminator extractObject (const GALGAS_object & inObject,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_ipic_31__38_ConditionalJumpTerminator constructor_new (const class GALGAS_location & inOperand0,
-                                                                                      const class GALGAS_conditional_5F_branch & inOperand1,
-                                                                                      const class GALGAS_lstring & inOperand2,
-                                                                                      const class GALGAS_conditionalBranchMode & inOperand3,
-                                                                                      const class GALGAS_lstring & inOperand4,
-                                                                                      const class GALGAS_conditionalBranchMode & inOperand5
-                                                                                      COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_ipic_31__38_ConditionalJumpTerminator constructor_new (const class GALGAS_location & inOperand0,
+                                                                                     const class GALGAS_conditional_5F_branch & inOperand1,
+                                                                                     const class GALGAS_lstring & inOperand2,
+                                                                                     const class GALGAS_conditionalBranchMode & inOperand3,
+                                                                                     const class GALGAS_lstring & inOperand4,
+                                                                                     const class GALGAS_conditionalBranchMode & inOperand5
+                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38_ConditionalJumpTerminator & inOperand) const ;
+  public: typeComparisonResult objectCompare (const GALGAS_ipic_31__38_ConditionalJumpTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_setMBranchModeOnFalseLabel (class GALGAS_conditionalBranchMode inArgument0
-                                                                    COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMBranchModeOnTrueLabel (class GALGAS_conditionalBranchMode inArgument0
+  public: VIRTUAL_IN_DEBUG void setter_setMBranchModeOnFalseLabel (class GALGAS_conditionalBranchMode inArgument0
                                                                    COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMConditionalBranch (class GALGAS_conditional_5F_branch inArgument0
-                                                               COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMTargetLabelWhenFalse (class GALGAS_lstring inArgument0
+  public: VIRTUAL_IN_DEBUG void setter_setMBranchModeOnTrueLabel (class GALGAS_conditionalBranchMode inArgument0
                                                                   COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMTargetLabelWhenTrue (class GALGAS_lstring inArgument0
+  public: VIRTUAL_IN_DEBUG void setter_setMConditionalBranch (class GALGAS_conditional_5F_branch inArgument0
+                                                              COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMTargetLabelWhenFalse (class GALGAS_lstring inArgument0
                                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMTargetLabelWhenTrue (class GALGAS_lstring inArgument0
+                                                                COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_conditionalBranchMode getter_mBranchModeOnFalseLabel (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_conditionalBranchMode getter_mBranchModeOnFalseLabel (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_conditionalBranchMode getter_mBranchModeOnTrueLabel (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_conditionalBranchMode getter_mBranchModeOnTrueLabel (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_conditional_5F_branch getter_mConditionalBranch (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_conditional_5F_branch getter_mConditionalBranch (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mTargetLabelWhenFalse (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mTargetLabelWhenFalse (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mTargetLabelWhenTrue (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mTargetLabelWhenTrue (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_ipic_31__38_ConditionalJumpTerminator class
 
@@ -98,42 +98,42 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Conditi
 
 class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 //--- Attributes
-  public : GALGAS_conditional_5F_branch mProperty_mConditionalBranch ;
-  public : GALGAS_lstring mProperty_mTargetLabelWhenTrue ;
-  public : GALGAS_conditionalBranchMode mProperty_mBranchModeOnTrueLabel ;
-  public : GALGAS_lstring mProperty_mTargetLabelWhenFalse ;
-  public : GALGAS_conditionalBranchMode mProperty_mBranchModeOnFalseLabel ;
+  public: GALGAS_conditional_5F_branch mProperty_mConditionalBranch ;
+  public: GALGAS_lstring mProperty_mTargetLabelWhenTrue ;
+  public: GALGAS_conditionalBranchMode mProperty_mBranchModeOnTrueLabel ;
+  public: GALGAS_lstring mProperty_mTargetLabelWhenFalse ;
+  public: GALGAS_conditionalBranchMode mProperty_mBranchModeOnFalseLabel ;
 
 //--- Constructor
-  public : cPtr_ipic_31__38_ConditionalJumpTerminator (const GALGAS_location & in_mInstructionLocation,
-                                                       const GALGAS_conditional_5F_branch & in_mConditionalBranch,
-                                                       const GALGAS_lstring & in_mTargetLabelWhenTrue,
-                                                       const GALGAS_conditionalBranchMode & in_mBranchModeOnTrueLabel,
-                                                       const GALGAS_lstring & in_mTargetLabelWhenFalse,
-                                                       const GALGAS_conditionalBranchMode & in_mBranchModeOnFalseLabel
-                                                       COMMA_LOCATION_ARGS) ;
+  public: cPtr_ipic_31__38_ConditionalJumpTerminator (const GALGAS_location & in_mInstructionLocation,
+                                                      const GALGAS_conditional_5F_branch & in_mConditionalBranch,
+                                                      const GALGAS_lstring & in_mTargetLabelWhenTrue,
+                                                      const GALGAS_conditionalBranchMode & in_mBranchModeOnTrueLabel,
+                                                      const GALGAS_lstring & in_mTargetLabelWhenFalse,
+                                                      const GALGAS_conditionalBranchMode & in_mBranchModeOnFalseLabel
+                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_conditional_5F_branch getter_mConditionalBranch (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMConditionalBranch (GALGAS_conditional_5F_branch inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTargetLabelWhenTrue (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMTargetLabelWhenTrue (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_conditionalBranchMode getter_mBranchModeOnTrueLabel (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMBranchModeOnTrueLabel (GALGAS_conditionalBranchMode inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTargetLabelWhenFalse (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMTargetLabelWhenFalse (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_conditionalBranchMode getter_mBranchModeOnFalseLabel (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMBranchModeOnFalseLabel (GALGAS_conditionalBranchMode inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_conditional_5F_branch getter_mConditionalBranch (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMConditionalBranch (GALGAS_conditional_5F_branch inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTargetLabelWhenTrue (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMTargetLabelWhenTrue (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_conditionalBranchMode getter_mBranchModeOnTrueLabel (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMBranchModeOnTrueLabel (GALGAS_conditionalBranchMode inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTargetLabelWhenFalse (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMTargetLabelWhenFalse (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_conditionalBranchMode getter_mBranchModeOnFalseLabel (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMBranchModeOnFalseLabel (GALGAS_conditionalBranchMode inValue COMMA_LOCATION_ARGS) ;
 //--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const ;
 
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
 
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
 
 } ;
 
@@ -145,56 +145,56 @@ class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_Abstr
 
 class GALGAS_pic_31__38_RegisterComparisonTerminator : public GALGAS_ipic_31__38_AbstractConditionTerminator {
 //--- Constructor
-  public : GALGAS_pic_31__38_RegisterComparisonTerminator (void) ;
+  public: GALGAS_pic_31__38_RegisterComparisonTerminator (void) ;
 
 //---
-  public : inline const class cPtr_pic_31__38_RegisterComparisonTerminator * ptr (void) const { return (const cPtr_pic_31__38_RegisterComparisonTerminator *) mObjectPtr ; }
+  public: inline const class cPtr_pic_31__38_RegisterComparisonTerminator * ptr (void) const { return (const cPtr_pic_31__38_RegisterComparisonTerminator *) mObjectPtr ; }
 
 //--------------------------------- Constructor from pointer
-  public : GALGAS_pic_31__38_RegisterComparisonTerminator (const cPtr_pic_31__38_RegisterComparisonTerminator * inSourcePtr) ;
+  public: GALGAS_pic_31__38_RegisterComparisonTerminator (const cPtr_pic_31__38_RegisterComparisonTerminator * inSourcePtr) ;
 
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_pic_31__38_RegisterComparisonTerminator extractObject (const GALGAS_object & inObject,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_pic_31__38_RegisterComparisonTerminator extractObject (const GALGAS_object & inObject,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_pic_31__38_RegisterComparisonTerminator constructor_new (const class GALGAS_location & inOperand0,
-                                                                                        const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                        const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                        const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                        const class GALGAS_ipic_31__38_RegisterComparison & inOperand4
-                                                                                        COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_pic_31__38_RegisterComparisonTerminator constructor_new (const class GALGAS_location & inOperand0,
+                                                                                       const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
+                                                                                       const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+                                                                                       const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                       const class GALGAS_ipic_31__38_RegisterComparison & inOperand4
+                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterComparisonTerminator & inOperand) const ;
+  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterComparisonTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_setMComparison (class GALGAS_ipic_31__38_RegisterComparison inArgument0
-                                                        COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void setter_setMComparison (class GALGAS_ipic_31__38_RegisterComparison inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
-                                                                 COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
+                                                                COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_ipic_31__38_RegisterComparison getter_mComparison (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_ipic_31__38_RegisterComparison getter_mComparison (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_pic_31__38_RegisterComparisonTerminator class
 
@@ -211,32 +211,32 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Register
 
 class cPtr_pic_31__38_RegisterComparisonTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
 //--- Attributes
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
-  public : GALGAS_ipic_31__38_RegisterComparison mProperty_mComparison ;
+  public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public: GALGAS_ipic_31__38_RegisterComparison mProperty_mComparison ;
 
 //--- Constructor
-  public : cPtr_pic_31__38_RegisterComparisonTerminator (const GALGAS_location & in_mInstructionLocation,
-                                                         const GALGAS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
-                                                         const GALGAS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
-                                                         const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                         const GALGAS_ipic_31__38_RegisterComparison & in_mComparison
-                                                         COMMA_LOCATION_ARGS) ;
+  public: cPtr_pic_31__38_RegisterComparisonTerminator (const GALGAS_location & in_mInstructionLocation,
+                                                        const GALGAS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
+                                                        const GALGAS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
+                                                        const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                        const GALGAS_ipic_31__38_RegisterComparison & in_mComparison
+                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_ipic_31__38_RegisterComparison getter_mComparison (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMComparison (GALGAS_ipic_31__38_RegisterComparison inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression getter_mRegisterDescription (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_ipic_31__38_RegisterComparison getter_mComparison (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMComparison (GALGAS_ipic_31__38_RegisterComparison inValue COMMA_LOCATION_ARGS) ;
 //--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const ;
 
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
 
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
 
 } ;
 
@@ -248,54 +248,54 @@ class cPtr_pic_31__38_RegisterComparisonTerminator : public cPtr_ipic_31__38_Abs
 
 class GALGAS_ipic_31__38__5F_intermediate_5F_JSR : public GALGAS_ipic_31__38_SequentialInstruction {
 //--- Constructor
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_JSR (void) ;
+  public: GALGAS_ipic_31__38__5F_intermediate_5F_JSR (void) ;
 
 //---
-  public : inline const class cPtr_ipic_31__38__5F_intermediate_5F_JSR * ptr (void) const { return (const cPtr_ipic_31__38__5F_intermediate_5F_JSR *) mObjectPtr ; }
+  public: inline const class cPtr_ipic_31__38__5F_intermediate_5F_JSR * ptr (void) const { return (const cPtr_ipic_31__38__5F_intermediate_5F_JSR *) mObjectPtr ; }
 
 //--------------------------------- Constructor from pointer
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_JSR (const cPtr_ipic_31__38__5F_intermediate_5F_JSR * inSourcePtr) ;
+  public: GALGAS_ipic_31__38__5F_intermediate_5F_JSR (const cPtr_ipic_31__38__5F_intermediate_5F_JSR * inSourcePtr) ;
 
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_ipic_31__38__5F_intermediate_5F_JSR extractObject (const GALGAS_object & inObject,
-                                                                            C_Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_JSR extractObject (const GALGAS_object & inObject,
+                                                                           C_Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_ipic_31__38__5F_intermediate_5F_JSR constructor_new (const class GALGAS_location & inOperand0,
-                                                                                    const class GALGAS_lstring & inOperand1,
-                                                                                    const class GALGAS_jumpInstructionKind & inOperand2
-                                                                                    COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_ipic_31__38__5F_intermediate_5F_JSR constructor_new (const class GALGAS_location & inOperand0,
+                                                                                   const class GALGAS_lstring & inOperand1,
+                                                                                   const class GALGAS_jumpInstructionKind & inOperand2
+                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_JSR & inOperand) const ;
+  public: typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_JSR & inOperand) const ;
 
 //--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_setMKind (class GALGAS_jumpInstructionKind inArgument0
-                                                  COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void setter_setMKind (class GALGAS_jumpInstructionKind inArgument0
+                                                 COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMTargetLabel (class GALGAS_lstring inArgument0
-                                                         COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void setter_setMTargetLabel (class GALGAS_lstring inArgument0
+                                                        COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_jumpInstructionKind getter_mKind (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_jumpInstructionKind getter_mKind (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mTargetLabel (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mTargetLabel (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_ipic_31__38__5F_intermediate_5F_JSR class
 
@@ -312,30 +312,30 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_JSR : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_lstring mProperty_mTargetLabel ;
-  public : GALGAS_jumpInstructionKind mProperty_mKind ;
+  public: GALGAS_lstring mProperty_mTargetLabel ;
+  public: GALGAS_jumpInstructionKind mProperty_mKind ;
 
 //--- Constructor
-  public : cPtr_ipic_31__38__5F_intermediate_5F_JSR (const GALGAS_location & in_mInstructionLocation,
-                                                     const GALGAS_lstring & in_mTargetLabel,
-                                                     const GALGAS_jumpInstructionKind & in_mKind
-                                                     COMMA_LOCATION_ARGS) ;
+  public: cPtr_ipic_31__38__5F_intermediate_5F_JSR (const GALGAS_location & in_mInstructionLocation,
+                                                    const GALGAS_lstring & in_mTargetLabel,
+                                                    const GALGAS_jumpInstructionKind & in_mKind
+                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTargetLabel (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMTargetLabel (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_jumpInstructionKind getter_mKind (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMKind (GALGAS_jumpInstructionKind inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_lstring getter_mTargetLabel (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMTargetLabel (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_jumpInstructionKind getter_mKind (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMKind (GALGAS_jumpInstructionKind inValue COMMA_LOCATION_ARGS) ;
 //--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const ;
 
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
 
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
 
 } ;
 
@@ -347,63 +347,63 @@ class cPtr_ipic_31__38__5F_intermediate_5F_JSR : public cPtr_ipic_31__38_Sequent
 
 class GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public GALGAS_ipic_31__38_SequentialInstruction {
 //--- Constructor
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (void) ;
+  public: GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (void) ;
 
 //--------------------------------- Default GALGAS constructor
-  public : static GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W constructor_default (LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W constructor_default (LOCATION_ARGS) ;
 
 //---
-  public : inline const class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * ptr (void) const { return (const cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W *) mObjectPtr ; }
+  public: inline const class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * ptr (void) const { return (const cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W *) mObjectPtr ; }
 
 //--------------------------------- Constructor from pointer
-  public : GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (const cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * inSourcePtr) ;
+  public: GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (const cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * inSourcePtr) ;
 
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected : virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
 
 //--------------------------------- Object extraction
-  public : static GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W extractObject (const GALGAS_object & inObject,
+                                                                                         C_Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public : static class GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W constructor_new (const class GALGAS_location & inOperand0,
-                                                                                                  const class GALGAS_lstring & inOperand1,
-                                                                                                  const class GALGAS_uint & inOperand2,
-                                                                                                  const class GALGAS_uint & inOperand3
-                                                                                                  COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W constructor_new (const class GALGAS_location & inOperand0,
+                                                                                                 const class GALGAS_lstring & inOperand1,
+                                                                                                 const class GALGAS_uint & inOperand2,
+                                                                                                 const class GALGAS_uint & inOperand3
+                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public : typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W & inOperand) const ;
+  public: typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W & inOperand) const ;
 
 //--------------------------------- Setters
-  public : VIRTUAL_IN_DEBUG void setter_setMLabel (class GALGAS_lstring inArgument0
+  public: VIRTUAL_IN_DEBUG void setter_setMLabel (class GALGAS_lstring inArgument0
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMOffset (class GALGAS_uint inArgument0
                                                    COMMA_LOCATION_ARGS) ;
 
-  public : VIRTUAL_IN_DEBUG void setter_setMOffset (class GALGAS_uint inArgument0
-                                                    COMMA_LOCATION_ARGS) ;
-
-  public : VIRTUAL_IN_DEBUG void setter_setMRightShift (class GALGAS_uint inArgument0
-                                                        COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void setter_setMRightShift (class GALGAS_uint inArgument0
+                                                       COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public : VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mLabel (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mLabel (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mOffset (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_mOffset (LOCATION_ARGS) const ;
 
-  public : VIRTUAL_IN_DEBUG class GALGAS_uint getter_mRightShift (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_mRightShift (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public : VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
  
 } ; // End of GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W class
 
@@ -420,34 +420,34 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public cPtr_ipic_31__38_SequentialInstruction {
 //--- Attributes
-  public : GALGAS_lstring mProperty_mLabel ;
-  public : GALGAS_uint mProperty_mOffset ;
-  public : GALGAS_uint mProperty_mRightShift ;
+  public: GALGAS_lstring mProperty_mLabel ;
+  public: GALGAS_uint mProperty_mOffset ;
+  public: GALGAS_uint mProperty_mRightShift ;
 
 //--- Constructor
-  public : cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (const GALGAS_location & in_mInstructionLocation,
-                                                                   const GALGAS_lstring & in_mLabel,
-                                                                   const GALGAS_uint & in_mOffset,
-                                                                   const GALGAS_uint & in_mRightShift
-                                                                   COMMA_LOCATION_ARGS) ;
+  public: cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (const GALGAS_location & in_mInstructionLocation,
+                                                                  const GALGAS_lstring & in_mLabel,
+                                                                  const GALGAS_uint & in_mOffset,
+                                                                  const GALGAS_uint & in_mRightShift
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public : virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
 
 //--- Attribute accessors
-  public : VIRTUAL_IN_DEBUG GALGAS_lstring getter_mLabel (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMLabel (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mOffset (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMOffset (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
-  public : VIRTUAL_IN_DEBUG GALGAS_uint getter_mRightShift (LOCATION_ARGS) const ;
-  public : VIRTUAL_IN_DEBUG void setter_setMRightShift (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_lstring getter_mLabel (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMLabel (GALGAS_lstring inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_uint getter_mOffset (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMOffset (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG GALGAS_uint getter_mRightShift (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void setter_setMRightShift (GALGAS_uint inValue COMMA_LOCATION_ARGS) ;
 //--- Description
-  public : virtual void description (C_String & ioString,
-                                     const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const ;
 
-  public : virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
 
-  public : virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
 
 } ;
 
@@ -613,67 +613,67 @@ void extensionMethod_computeDuration (const class GALGAS_ipic_31__38_Block inObj
 class cGrammar_piccoloDevice_5F_grammar : public cParser_piccoloDevice_5F_syntax {
 //------------------------------------- 'start_symbol' non terminal
 //--- 'parse' label
-  public : virtual void nt_start_5F_symbol_parse (C_Lexique_piccoloDevice_5F_lexique * inCompiler) ;
+  public: virtual void nt_start_5F_symbol_parse (C_Lexique_piccoloDevice_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public : virtual void nt_start_5F_symbol_ (GALGAS_piccoloDeviceModel & outArgument0,
-                                             C_Lexique_piccoloDevice_5F_lexique * inCompiler) ;
+  public: virtual void nt_start_5F_symbol_ (GALGAS_piccoloDeviceModel & outArgument0,
+                                            C_Lexique_piccoloDevice_5F_lexique * inCompiler) ;
 
 //--- Start symbol
-  public : static void _performSourceFileParsing_ (C_Compiler * inCompiler,
-                                                   GALGAS_lstring inFileName,
-                                                   GALGAS_piccoloDeviceModel & outArgument0
-                                                   COMMA_LOCATION_ARGS) ;
+  public: static void _performSourceFileParsing_ (C_Compiler * inCompiler,
+                                                  GALGAS_lstring inFileName,
+                                                  GALGAS_piccoloDeviceModel & outArgument0
+                                                  COMMA_LOCATION_ARGS) ;
 
-  public : static void _performSourceStringParsing_ (C_Compiler * inCompiler,
-                                                     GALGAS_string inSourceString,
-                                                     GALGAS_string inNameString,
-                                                     GALGAS_piccoloDeviceModel & outArgument0
-                                                     COMMA_LOCATION_ARGS) ;
+  public: static void _performSourceStringParsing_ (C_Compiler * inCompiler,
+                                                    GALGAS_string inSourceString,
+                                                    GALGAS_string inNameString,
+                                                    GALGAS_piccoloDeviceModel & outArgument0
+                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Indexing
-  public : static void performIndexing (C_Compiler * inCompiler,
-                                        const C_String & inSourceFilePath) ;
+  public: static void performIndexing (C_Compiler * inCompiler,
+                                       const C_String & inSourceFilePath) ;
 
 //--- Only lexical analysis
-  public : static void performOnlyLexicalAnalysis (C_Compiler * inCompiler,
-                                                   const C_String & inSourceFilePath) ;
-
-//--- Only syntax analysis
-  public : static void performOnlySyntaxAnalysis (C_Compiler * inCompiler,
+  public: static void performOnlyLexicalAnalysis (C_Compiler * inCompiler,
                                                   const C_String & inSourceFilePath) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_0 (C_Lexique_piccoloDevice_5F_lexique *) ;
+//--- Only syntax analysis
+  public: static void performOnlySyntaxAnalysis (C_Compiler * inCompiler,
+                                                 const C_String & inSourceFilePath) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_1 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_0 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_2 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_1 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_3 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_2 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_4 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_3 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_5 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_4 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_6 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_5 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_7 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_6 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_8 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_7 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_9 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_8 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_10 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_9 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_11 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_10 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_12 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_11 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_13 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_12 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_14 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_13 (C_Lexique_piccoloDevice_5F_lexique *) ;
 
-  public : virtual int32_t select_piccoloDevice_5F_syntax_15 (C_Lexique_piccoloDevice_5F_lexique *) ;
+  public: virtual int32_t select_piccoloDevice_5F_syntax_14 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_15 (C_Lexique_piccoloDevice_5F_lexique *) ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------

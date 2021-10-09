@@ -1336,26 +1336,26 @@ GALGAS_midrange_5F_instruction_5F_structured_5F_if GALGAS_midrange_5F_instructio
 //----------------------------------------------------------------------------------------------------------------------
 
 class cCollectionElement_midrange_5F_partList : public cCollectionElement {
-  public : GALGAS_midrange_5F_partList_2D_element mObject ;
+  public: GALGAS_midrange_5F_partList_2D_element mObject ;
 
 //--- Constructors
-  public : cCollectionElement_midrange_5F_partList (const GALGAS_midrange_5F_conditionExpression & in_mCondition,
-                                                    const GALGAS_midrange_5F_instructionList & in_mInstructionList,
-                                                    const GALGAS_location & in_mEndOfPartLocation
-                                                    COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_midrange_5F_partList (const GALGAS_midrange_5F_partList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_midrange_5F_partList (const GALGAS_midrange_5F_conditionExpression & in_mCondition,
+                                                   const GALGAS_midrange_5F_instructionList & in_mInstructionList,
+                                                   const GALGAS_location & in_mEndOfPartLocation
+                                                   COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_midrange_5F_partList (const GALGAS_midrange_5F_partList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
+  public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
+  public: virtual cCollectionElement * copy (void) ;
 
 //--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2159,28 +2159,28 @@ GALGAS_midrange_5F_instruction_5F_do_5F_while GALGAS_midrange_5F_instruction_5F_
 //----------------------------------------------------------------------------------------------------------------------
 
 class cCollectionElement_midrange_5F_interruptDefinitionList : public cCollectionElement {
-  public : GALGAS_midrange_5F_interruptDefinitionList_2D_element mObject ;
+  public: GALGAS_midrange_5F_interruptDefinitionList_2D_element mObject ;
 
 //--- Constructors
-  public : cCollectionElement_midrange_5F_interruptDefinitionList (const GALGAS_location & in_mInterruptLocation,
-                                                                   const GALGAS_midrange_5F_instructionList & in_mInstructionList,
-                                                                   const GALGAS_lstring & in_mFirstSaveRegister,
-                                                                   const GALGAS_lstring & in_mSecondSaveRegister,
-                                                                   const GALGAS_location & in_mEndOfInterruptLocation
-                                                                   COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_midrange_5F_interruptDefinitionList (const GALGAS_midrange_5F_interruptDefinitionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_midrange_5F_interruptDefinitionList (const GALGAS_location & in_mInterruptLocation,
+                                                                  const GALGAS_midrange_5F_instructionList & in_mInstructionList,
+                                                                  const GALGAS_lstring & in_mFirstSaveRegister,
+                                                                  const GALGAS_lstring & in_mSecondSaveRegister,
+                                                                  const GALGAS_location & in_mEndOfInterruptLocation
+                                                                  COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_midrange_5F_interruptDefinitionList (const GALGAS_midrange_5F_interruptDefinitionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
+  public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
+  public: virtual cCollectionElement * copy (void) ;
 
 //--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2836,31 +2836,31 @@ GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitio
 //----------------------------------------------------------------------------------------------------------------------
 
 class cCollectionElement_midrange_5F_routineDefinitionList : public cCollectionElement {
-  public : GALGAS_midrange_5F_routineDefinitionList_2D_element mObject ;
+  public: GALGAS_midrange_5F_routineDefinitionList_2D_element mObject ;
 
 //--- Constructors
-  public : cCollectionElement_midrange_5F_routineDefinitionList (const GALGAS_lstring & in_mRoutineName,
-                                                                 const GALGAS_luint & in_mPage,
-                                                                 const GALGAS_luint & in_mRequiredBank,
-                                                                 const GALGAS_luint & in_mReturnedBank,
-                                                                 const GALGAS_bool & in_mPreservesBank,
-                                                                 const GALGAS_bool & in_mIsNoReturn,
-                                                                 const GALGAS_midrange_5F_instructionList & in_mInstructionList,
-                                                                 const GALGAS_location & in_mEndOfRoutineLocation
-                                                                 COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_midrange_5F_routineDefinitionList (const GALGAS_midrange_5F_routineDefinitionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_midrange_5F_routineDefinitionList (const GALGAS_lstring & in_mRoutineName,
+                                                                const GALGAS_luint & in_mPage,
+                                                                const GALGAS_luint & in_mRequiredBank,
+                                                                const GALGAS_luint & in_mReturnedBank,
+                                                                const GALGAS_bool & in_mPreservesBank,
+                                                                const GALGAS_bool & in_mIsNoReturn,
+                                                                const GALGAS_midrange_5F_instructionList & in_mInstructionList,
+                                                                const GALGAS_location & in_mEndOfRoutineLocation
+                                                                COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_midrange_5F_routineDefinitionList (const GALGAS_midrange_5F_routineDefinitionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
+  public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
+  public: virtual cCollectionElement * copy (void) ;
 
 //--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3932,24 +3932,24 @@ GALGAS_midrange_5F_intermediate_5F_instruction GALGAS_midrange_5F_intermediate_5
 //----------------------------------------------------------------------------------------------------------------------
 
 class cCollectionElement_midrange_5F_intermediate_5F_instructionList : public cCollectionElement {
-  public : GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element mObject ;
+  public: GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element mObject ;
 
 //--- Constructors
-  public : cCollectionElement_midrange_5F_intermediate_5F_instructionList (const GALGAS_midrange_5F_intermediate_5F_instruction & in_mInstruction
-                                                                           COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_midrange_5F_intermediate_5F_instructionList (const GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_midrange_5F_intermediate_5F_instructionList (const GALGAS_midrange_5F_intermediate_5F_instruction & in_mInstruction
+                                                                          COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_midrange_5F_intermediate_5F_instructionList (const GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
+  public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
+  public: virtual cCollectionElement * copy (void) ;
 
 //--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10674,24 +10674,24 @@ GALGAS_pic_31__38_PiccoloInstruction GALGAS_pic_31__38_PiccoloInstruction::extra
 //----------------------------------------------------------------------------------------------------------------------
 
 class cCollectionElement_pic_31__38_InstructionList : public cCollectionElement {
-  public : GALGAS_pic_31__38_InstructionList_2D_element mObject ;
+  public: GALGAS_pic_31__38_InstructionList_2D_element mObject ;
 
 //--- Constructors
-  public : cCollectionElement_pic_31__38_InstructionList (const GALGAS_pic_31__38_PiccoloInstruction & in_mInstruction
-                                                          COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_pic_31__38_InstructionList (const GALGAS_pic_31__38_InstructionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_pic_31__38_InstructionList (const GALGAS_pic_31__38_PiccoloInstruction & in_mInstruction
+                                                         COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_pic_31__38_InstructionList (const GALGAS_pic_31__38_InstructionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
+  public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
+  public: virtual cCollectionElement * copy (void) ;
 
 //--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -12219,27 +12219,27 @@ GALGAS_pic_31__38_ConditionExpression GALGAS_pic_31__38_ConditionExpression::ext
 //----------------------------------------------------------------------------------------------------------------------
 
 class cCollectionElement_pic_31__38_BlockInstructionBlockList : public cCollectionElement {
-  public : GALGAS_pic_31__38_BlockInstructionBlockList_2D_element mObject ;
+  public: GALGAS_pic_31__38_BlockInstructionBlockList_2D_element mObject ;
 
 //--- Constructors
-  public : cCollectionElement_pic_31__38_BlockInstructionBlockList (const GALGAS_lstring & in_mBlockName,
-                                                                    const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                    const GALGAS_abstractBlockTerminationForBlockInstruction & in_mBlockTerminaisonForBlockInstruction,
-                                                                    const GALGAS_location & in_mEndOfBlock
-                                                                    COMMA_LOCATION_ARGS) ;
-  public : cCollectionElement_pic_31__38_BlockInstructionBlockList (const GALGAS_pic_31__38_BlockInstructionBlockList_2D_element & inElement COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_pic_31__38_BlockInstructionBlockList (const GALGAS_lstring & in_mBlockName,
+                                                                   const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                   const GALGAS_abstractBlockTerminationForBlockInstruction & in_mBlockTerminaisonForBlockInstruction,
+                                                                   const GALGAS_location & in_mEndOfBlock
+                                                                   COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_pic_31__38_BlockInstructionBlockList (const GALGAS_pic_31__38_BlockInstructionBlockList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public : virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
-  public : virtual bool isValid (void) const ;
+  public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public : virtual cCollectionElement * copy (void) ;
+  public: virtual cCollectionElement * copy (void) ;
 
 //--- Description
-  public : virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+  public: virtual void description (C_String & ioString, const int32_t inIndentation) const ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
