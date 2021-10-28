@@ -9,7 +9,7 @@ struct @baseline_intermediate_registerExpression {
 
 #-------------------------------------------------------------------------------*
 
-abstract shared class @baseline_intermediate_instruction {
+abstract refclass @baseline_intermediate_instruction {
 }
 
 #-------------------------------------------------------------------------------*
@@ -20,49 +20,49 @@ list @baseline_intermediate_instructionList {
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_NULL : @baseline_intermediate_instruction {
+refclass @baseline_intermediate_NULL : @baseline_intermediate_instruction {
 }
 
 #-------------------------------------------------------------------------------*
 
-abstract shared class @baseline_intermediate_pseudo : @baseline_intermediate_instruction {
+abstract refclass @baseline_intermediate_pseudo : @baseline_intermediate_instruction {
 }
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_pseudo_PAGE : @baseline_intermediate_pseudo {
+refclass @baseline_intermediate_pseudo_PAGE : @baseline_intermediate_pseudo {
   @uint mPage
 }
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_pseudo_LABEL : @baseline_intermediate_pseudo {
+refclass @baseline_intermediate_pseudo_LABEL : @baseline_intermediate_pseudo {
   @lstring mLabel
 }
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_pseudo_BEGIN_ROUTINE : @baseline_intermediate_pseudo {
+refclass @baseline_intermediate_pseudo_BEGIN_ROUTINE : @baseline_intermediate_pseudo {
   @lstring mRoutineName
   @bool mIsRegular
 }
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_pseudo_END_ROUTINE : @baseline_intermediate_pseudo {
+refclass @baseline_intermediate_pseudo_END_ROUTINE : @baseline_intermediate_pseudo {
   @lstring mRoutineName
   @uint mPage
 }
 
 #-------------------------------------------------------------------------------*
 
-abstract shared class @baseline_intermediate_actualInstruction : @baseline_intermediate_instruction {
+abstract refclass @baseline_intermediate_actualInstruction : @baseline_intermediate_instruction {
   @location mInstructionLocation
 }
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_instruction_FD : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_instruction_FD : @baseline_intermediate_actualInstruction {
   @baseline_instruction_FD_base_code mInstruction
   @baseline_intermediate_registerExpression mRegisterDescription
   @bool m_W_isDestination
@@ -70,14 +70,14 @@ shared class @baseline_intermediate_instruction_FD : @baseline_intermediate_actu
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_instruction_F : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_instruction_F : @baseline_intermediate_actualInstruction {
   @baseline_F_instruction_base_code mInstruction
   @baseline_intermediate_registerExpression mRegisterDescription
 }
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_instruction_FB : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_instruction_FB : @baseline_intermediate_actualInstruction {
   @baseline_bit_oriented_op mInstruction
   @baseline_intermediate_registerExpression mRegisterDescription
   @uint mBitNumber
@@ -85,7 +85,7 @@ shared class @baseline_intermediate_instruction_FB : @baseline_intermediate_actu
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_instruction_BitTestSkip : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_instruction_BitTestSkip : @baseline_intermediate_actualInstruction {
   @bool mSkipIfSet
   @baseline_intermediate_registerExpression mRegisterDescription
   @uint mBitNumber
@@ -93,13 +93,13 @@ shared class @baseline_intermediate_instruction_BitTestSkip : @baseline_intermed
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_GOTO : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_GOTO : @baseline_intermediate_actualInstruction {
   @lstring mTargetLabel
 }
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_JUMP : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_JUMP : @baseline_intermediate_actualInstruction {
   @lstring mTargetLabel
   @uint mCurrentPage
   @uint mTargetPage
@@ -107,13 +107,13 @@ shared class @baseline_intermediate_JUMP : @baseline_intermediate_actualInstruct
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_CALL : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_CALL : @baseline_intermediate_actualInstruction {
   @lstring mTargetLabel
 }
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_JSR : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_JSR : @baseline_intermediate_actualInstruction {
   @lstring mTargetLabel
   @uint mCurrentPage
   @uint mTargetPage
@@ -121,33 +121,33 @@ shared class @baseline_intermediate_JSR : @baseline_intermediate_actualInstructi
 
 #----------------------------------------------------*
 
-shared class @baseline_intermediate_WO_OPERAND : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_WO_OPERAND : @baseline_intermediate_actualInstruction {
   @baseline_WO_OPERAND_group mInstruction
 }
 
 #----------------------------------------------------*
 
-shared class @baseline_intermediate_TRIS : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_TRIS : @baseline_intermediate_actualInstruction {
   @lstring mOperand
   @uint mOpcode
 }
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_instruction_literalOperation : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_instruction_literalOperation : @baseline_intermediate_actualInstruction {
   @baseline_literal_instruction_opcode mInstruction
   @uint mLiteralValue
 }
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_instruction_MNOP : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_instruction_MNOP : @baseline_intermediate_actualInstruction {
   @luint mOccurrenceFactor
 }
 
 #-------------------------------------------------------------------------------*
 
-shared class @baseline_intermediate_incDecRegisterInCondition : @baseline_intermediate_actualInstruction {
+refclass @baseline_intermediate_incDecRegisterInCondition : @baseline_intermediate_actualInstruction {
   @baseline_intermediate_registerExpression mRegisterDescription
   @string mTargetLabel
   @bool mIncrement
