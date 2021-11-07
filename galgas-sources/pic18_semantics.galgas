@@ -11,35 +11,35 @@ proc pic18_analyze
   ?let @string inSourceFileName
 {
 #-------------------------------- Check source file name
-  @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
-  if sourceFileBaseName != [[inPiccoloModel mProgramName] string] then
-    error [inPiccoloModel mProgramName]: "the program name ('" + [inPiccoloModel mProgramName]
+  var @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+  if sourceFileBaseName != inPiccoloModel.mProgramName.string then
+    error inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
     + "') should be identical to the file base name '" + sourceFileBaseName + "'"
   end
-  @string listFileContents = ""
+  var @string listFileContents = ""
 #-------------------------------- Analyze Device
-  @piccoloDeviceModel piccoloDeviceModel
-  @uint accessBankSplitOffset
-  @ramBankTable ramBank
-  @bootloaderReservedRAMmap bootloaderReservedRAMmap # Used only for bootloader implementation
-  @routineDeclarationList bootloaderRoutineDeclarationListForBootloaderImplementation
-  @routineDeclarationList userRoutineDeclarationListForBootloaderImplementation
-  @routineDeclarationList bootloaderRoutineDeclarationListForUserProgramImplementation
-  @routineDeclarationList userRoutineDeclarationListForUserProgramImplementation
-  @luint bootloaderReservedROMsize # Used only for bootloader implementation or user program implementation, zero for regular program
-  @registerTable registerTable
-  @string piccoloDeviceName
+  var @piccoloDeviceModel piccoloDeviceModel
+  var @uint accessBankSplitOffset
+  var @ramBankTable ramBank
+  var @bootloaderReservedRAMmap bootloaderReservedRAMmap # Used only for bootloader implementation
+  var @routineDeclarationList bootloaderRoutineDeclarationListForBootloaderImplementation
+  var @routineDeclarationList userRoutineDeclarationListForBootloaderImplementation
+  var @routineDeclarationList bootloaderRoutineDeclarationListForUserProgramImplementation
+  var @routineDeclarationList userRoutineDeclarationListForUserProgramImplementation
+  var @luint bootloaderReservedROMsize # Used only for bootloader implementation or user program implementation, zero for regular program
+  var @registerTable registerTable
+  var @string piccoloDeviceName
   switch inPiccoloModel.mProgramKind
   case regularProgram :
     piccoloDeviceName = inPiccoloModel.mDeviceNameOrBootLoaderReference.string
-    parseDeviceDefinition ( ![inPiccoloModel mDeviceNameOrBootLoaderReference] ?piccoloDeviceModel )
-    switch [piccoloDeviceModel mProcessorType]
+    parseDeviceDefinition ( !inPiccoloModel.mDeviceNameOrBootLoaderReference ?piccoloDeviceModel )
+    switch piccoloDeviceModel.mProcessorType
       case pic18_60 : accessBankSplitOffset = 0x60
       case pic18_80 : accessBankSplitOffset = 0x80
-      case midrange : error [inPiccoloModel mDeviceNameOrBootLoaderReference]: "a midrange device is not accepted here" : accessBankSplitOffset
-      case baseline : error [inPiccoloModel mDeviceNameOrBootLoaderReference]: "a baseline device is not accepted here" : accessBankSplitOffset
+      case midrange : error inPiccoloModel.mDeviceNameOrBootLoaderReference: "a midrange device is not accepted here" : accessBankSplitOffset
+      case baseline : error inPiccoloModel.mDeviceNameOrBootLoaderReference: "a baseline device is not accepted here" : accessBankSplitOffset
     end
-    ramBank = [piccoloDeviceModel mRamBankTable]
+    ramBank = piccoloDeviceModel.mRamBankTable
     bootloaderReservedRAMmap = @bootloaderReservedRAMmap. emptyMap
     registerTable = piccoloDeviceModel.mRegisterTable
     bootloaderRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList. emptyList
@@ -50,7 +50,7 @@ proc pic18_analyze
   case bootloaderProgram :
     bootloaderRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList. emptyList
     userRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList. emptyList
-    grammar pic18_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
+    grammar pic18_grammar label importBootloaderSpecification in inPiccoloModel.mDeviceNameOrBootLoaderReference
       ?piccoloDeviceModel
       ?piccoloDeviceName
       ?accessBankSplitOffset
@@ -60,11 +60,11 @@ proc pic18_analyze
       ?bootloaderRoutineDeclarationListForBootloaderImplementation
       ?userRoutineDeclarationListForBootloaderImplementation
       ?bootloaderReservedROMsize
-    for () in  ramBank do #--- Reset first free addresses for all banks
-      [!?ramBank setMFirstFreeAddressForKey !mFirstAddress ![lkey string]]
+    for (lkey mFirstAddress * * *) in  ramBank do #--- Reset first free addresses for all banks
+      [!?ramBank setMFirstFreeAddressForKey !mFirstAddress !lkey.string]
     end
   case userProgram :
-    grammar pic18_grammar label importBootloaderSpecification in [inPiccoloModel mDeviceNameOrBootLoaderReference]
+    grammar pic18_grammar label importBootloaderSpecification in inPiccoloModel.mDeviceNameOrBootLoaderReference
       ?piccoloDeviceModel
       ?piccoloDeviceName
       ?accessBankSplitOffset
@@ -78,8 +78,8 @@ proc pic18_analyze
     userRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList. emptyList
   end
 #-------------------------------- Build macro map
-  @pic18MacroMap macroMap = {}
-  for () in inPiccoloModel.mMacroDefinitionList do
+  var @pic18MacroMap macroMap = {}
+  for (mMacroName mConstantNameList mInstructionList) in inPiccoloModel.mMacroDefinitionList do
     [!?macroMap insertKey !mMacroName !mConstantNameList !mInstructionList]
   end
 #-------------------------------- Compute used routine set
@@ -91,7 +91,7 @@ proc pic18_analyze
     !userRoutineDeclarationListForUserProgramImplementation
   )
   var declaredRoutineMap =@declaredRoutineMap.emptyMap{}
-  for () in  inPiccoloModel.mRoutineDefinitionList do
+  for (mRoutineName mRequiredBank mReturnedBank mPreservesBank mIsNoReturn mInstructionList *) in  inPiccoloModel.mRoutineDefinitionList do
     [!?declaredRoutineMap insertKey
       !mRoutineName
       !mRequiredBank
@@ -103,7 +103,7 @@ proc pic18_analyze
   end
 #-------------------------------- Check used routines
   var unusedDeclarationUnicity =@stringset.emptySet{}
-  for () in  inPiccoloModel.mUnusedRoutineList do
+  for (mValue) in  inPiccoloModel.mUnusedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' routine is not declared"
     elsif [unusedDeclarationUnicity hasKey !mValue.string] then
@@ -113,14 +113,14 @@ proc pic18_analyze
     end
     unusedDeclarationUnicity += !mValue.string
   end
-  for () in  declaredRoutineMap do
+  for (lkey * * * * *) in  declaredRoutineMap do
     if (not [usedRoutineSet hasKey !lkey.string]) & (not [unusedDeclarationUnicity hasKey !lkey.string]) then
       warning lkey : "the '" + lkey + "' routine is unused"
     end
   end
 #-------------------------------- inline routines
   var inlinedRoutineSet =@stringset.emptySet{}
-  for () in  inPiccoloModel.mInlinedRoutineList do
+  for (mValue) in  inPiccoloModel.mInlinedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' routine is not declared"
     elsif not [usedRoutineSet hasKey !mValue.string] then
@@ -129,8 +129,8 @@ proc pic18_analyze
       inlinedRoutineSet += !mValue.string
     end
   end
-  @pic18InterruptDefinitionList interruptDefinitionList = inPiccoloModel.mInterruptDefinitionList
-  @pic18RoutineDefinitionList routineDefinitionList = inPiccoloModel.mRoutineDefinitionList
+  var @pic18InterruptDefinitionList interruptDefinitionList = inPiccoloModel.mInterruptDefinitionList
+  var @pic18RoutineDefinitionList routineDefinitionList = inPiccoloModel.mRoutineDefinitionList
   pic18PerformRoutineInline (
     !inlinedRoutineSet
     !declaredRoutineMap
@@ -138,9 +138,9 @@ proc pic18_analyze
     !?routineDefinitionList
   )
 #-------------------------------- Check 'checkpic' instructions
-  for () in  inPiccoloModel.mCheckpicList do
-    @bool found = false
-    for () in  mValueList while not found do
+  for (mErrorLocation mValueList) in  inPiccoloModel.mCheckpicList do
+    var @bool found = false
+    for (mValue) in  mValueList while not found do
       found = mValue.string == piccoloDeviceName
     end
     if not found then
@@ -148,21 +148,21 @@ proc pic18_analyze
     end
   end
 #-------------------------------- Interrupts ?
-  @bool hasHighInterrupt = false
-  @bool highInterruptIsFast = false
-  @bool hasLowInterrupt = false
-  @bool lowInterruptIsFast = false
-  for () in  interruptDefinitionList do
-    if [inPiccoloModel mProgramKind] == @programKind. userProgram then
+  var @bool hasHighInterrupt = false
+  var @bool highInterruptIsFast = false
+  var @bool hasLowInterrupt = false
+  var @bool lowInterruptIsFast = false
+  for (mInterruptName mFastReturn * *) in  interruptDefinitionList do
+    if inPiccoloModel.mProgramKind == @programKind. userProgram then
       error mInterruptName: "interrupt routine is not allowed for a bootloader user program"
     end
-    if [mInterruptName string] == "high" then
+    if mInterruptName.string == "high" then
       highInterruptIsFast = mFastReturn
       if hasHighInterrupt then
         error mInterruptName: "Only one 'high' interrupt routine is allowed"
       end
       hasHighInterrupt = true
-    elsif [mInterruptName string] == "low" then
+    elsif mInterruptName.string == "low" then
       lowInterruptIsFast = mFastReturn
       if hasLowInterrupt then
         error mInterruptName: "Only one 'low' interrupt routine is allowed"
@@ -176,42 +176,42 @@ proc pic18_analyze
     end
   end
 #-------------------------------- Config definition
-  @actualConfigurationMap actualConfigurationMap
-  if [inPiccoloModel mProgramKind] == @programKind. userProgram then
-    for () in  [inPiccoloModel mConfigDefinitionList] do
+  var @actualConfigurationMap actualConfigurationMap
+  if inPiccoloModel.mProgramKind == @programKind. userProgram then
+    for (mDefinitionLocation *) in  inPiccoloModel.mConfigDefinitionList do
       error mDefinitionLocation: "configuration is not allowed for a bootloader user program"
     end
     actualConfigurationMap = @actualConfigurationMap. emptyMap
   else
     buildConfig (
-      ![piccoloDeviceModel mConfigRegisterMap]
-      ![inPiccoloModel mConfigDefinitionList]
+      !piccoloDeviceModel.mConfigRegisterMap
+      !inPiccoloModel.mConfigDefinitionList
       !?listFileContents
       ?actualConfigurationMap
     )
   end
 #-------------------------------- Compute RAM size
-  @uint RAMsize = 0
-  for () in ramBank do
+  var @uint RAMsize = 0
+  for (* * * mLastAddressPlusOne *) in ramBank do
     if mLastAddressPlusOne > RAMsize then
       RAMsize = mLastAddressPlusOne
     end
   end
 #-------------------------------- Build constant map
-  @constantMap constantMap = {}
+  var @constantMap constantMap = {}
 #--- Add "ROM_SIZE" and "RAM_SIZE" constants
   [!?constantMap insertKey !@lstring. new { !"ROM_SIZE" !@location.here} ![piccoloDeviceModel.mRomSize.uint sint64]]
   [!?constantMap insertKey !@lstring. new { !"RAM_SIZE" !@location.here} ![RAMsize sint64]]
 #--- Add "BOOTLOADER_RESERVED_SIZE" constant
   if inPiccoloModel.mProgramKind != @programKind. regularProgram then
     var bootloaderSizeString =@lstring.new{ !"BOOTLOADER_RESERVED_SIZE" !@location.here}
-    [!?constantMap insertKey !bootloaderSizeString ![[bootloaderReservedROMsize uint] sint64]]
+    [!?constantMap insertKey !bootloaderSizeString ![bootloaderReservedROMsize.uint sint64]]
   end
 #--- Add declared constants
   var usedRegisters = @stringset.emptySet{}
-  for () in  inPiccoloModel.mConstantDefinitionList do
+  for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
     [mExpression eval !piccoloDeviceModel.mRegisterTable !constantMap ?let @sint64 result !?usedRegisters]
-    if [piccoloDeviceModel.mRegisterTable hasKey ![mConstantName string]] then
+    if [piccoloDeviceModel.mRegisterTable hasKey !mConstantName.string] then
       error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
     else
       [!?constantMap insertKey !mConstantName !result]
@@ -220,7 +220,7 @@ proc pic18_analyze
 #-------------------------------- Ram definition
   analyze_ram_sections (
     !"DECLARED VARIABLES"
-    ![inPiccoloModel mRamDefinitionList]
+    !inPiccoloModel.mRamDefinitionList
     !constantMap
     !?usedRegisters
     !?ramBank
@@ -230,16 +230,16 @@ proc pic18_analyze
     ?let @declaredByteMap declaredByteMap
   )
 #--- For bootloader implementation, check declared var footprint does not span beyond values declared in specification
-  if [inPiccoloModel mProgramKind] == @programKind. bootloaderProgram then
-    for () in ramBank do
-      if [bootloaderReservedRAMmap hasKey ![lkey string]] then
-        @luint bootloaderReservedSize
+  if inPiccoloModel.mProgramKind == @programKind. bootloaderProgram then
+    for (lkey mFirstAddress mFirstFreeAddress * *) in ramBank do
+      if [bootloaderReservedRAMmap hasKey !lkey.string] then
+        var @luint bootloaderReservedSize
         [bootloaderReservedRAMmap searchKey !lkey ?bootloaderReservedSize]
-        if (mFirstFreeAddress - mFirstAddress) > [bootloaderReservedSize uint] then
+        if (mFirstFreeAddress - mFirstAddress) > bootloaderReservedSize.uint then
           error @location.here: "for '" + lkey + "' RAM bank, the bootloader implementation declares "
           + [mFirstFreeAddress - mFirstAddress string]
           + " byte(s), althought the bootloader specification reserves "
-          + [[bootloaderReservedSize uint] string]
+          + [bootloaderReservedSize.uint string]
           + " byte(s)"
         end
       elsif mFirstFreeAddress > mFirstAddress then
@@ -281,7 +281,7 @@ proc pic18_analyze
 #-------------------------------- Write listing file
   if [option piccolo_options.ouputListingFile value] then
     listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-    @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
+    var @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]
   end
 }

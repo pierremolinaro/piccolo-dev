@@ -3,8 +3,8 @@
 #----------------------------------------------------*
 
 struct @midrange_intermediate_registerExpression {
-  @string mAssemblyString
-  @uint mRegisterAddress # xxx bit full address
+  public var @string mAssemblyString
+  public var @uint mRegisterAddress # xxx bit full address
 }
 
 #----------------------------------------------------*
@@ -21,7 +21,7 @@ method @registerExpression resolveMidrangeAccess
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   ioUsedRegisters += !self.mRegisterName.string
 #--- Build assembly string
-  @string assemblyString = self.mRegisterName.string
+  var @string assemblyString = self.mRegisterName.string
   if offset > 0LS then
     assemblyString += " + " + [[offset uint] hexString]
   end
@@ -41,40 +41,40 @@ method @registerExpression resolveMidrangeAccess
   end
 #--- Find acceptable bank settings
   var acceptableBanks =@uintlist.emptyList{}
-  for () in  registerAddressList do
+  for (mValue) in  registerAddressList do
     acceptableBanks += !mValue >> 7
   end
 #---
-  @uint registerAddress = 0
+  var @uint registerAddress = 0
   if inCurrentBank == @uint. max then
   #--- No selected bank, register should be mirrored in all banks
-    @uint bank = 0
-    @bool ok = true
+    var @uint bank = 0
+    var @bool ok = true
     loop( inTotalBankCount) while (bank < inTotalBankCount) & ok do
       ok = false
-      for () in  registerAddressList while not ok do
+      for (mValue) in  registerAddressList while not ok do
         ok = (mValue >= (bank * 128)) & (mValue < (bank * 128 + 128))
         registerAddress = mValue & 0x7F
       end
       bank ++
     end
     if not ok then
-      @string acceptableBankMessage = ""
-      for () in  registerAddressList
+      var @string acceptableBankMessage = ""
+      for (mValue) in  registerAddressList
       do acceptableBankMessage += [mValue >> 7 string]
       between acceptableBankMessage += ", "
       end
       error self.mRegisterName:"as no bank is currently known, the '" + self.mRegisterName + "' register accessible from bank "+ acceptableBankMessage  + ", but should be able to be accessed from any bank setting"
     end
   else
-    @bool found = false
-    for () in  registerAddressList while not found do
+    var @bool found = false
+    for (mValue) in  registerAddressList while not found do
       found = (mValue >= (inCurrentBank * 128)) & (mValue < (inCurrentBank * 128 + 128))
       registerAddress = mValue & 0x7F
     end
     if not found then
-      @string acceptableBankMessage = ""
-      for () in  registerAddressList
+      var @string acceptableBankMessage = ""
+      for (mValue) in  registerAddressList
       do acceptableBankMessage += [mValue >> 7 string]
       between acceptableBankMessage += ", "
       end
@@ -95,7 +95,7 @@ abstract refclass @midrange_intermediate_instruction {
 #----------------------------------------------------*
 
 list @midrange_intermediate_instructionList {
-  @midrange_intermediate_instruction mInstruction
+  public var @midrange_intermediate_instruction mInstruction
 }
 
 #----------------------------------------------------*
@@ -107,51 +107,51 @@ refclass @midrange_intermediate_NULL : @midrange_intermediate_instruction {
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_pseudo_ORG : @midrange_intermediate_instruction {
-  @uint mOrigin
+  public var @uint mOrigin
 }
 
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_pseudo_LABEL : @midrange_intermediate_instruction {
-  @lstring mLabel
-  @bool mIsDeletable
+  public var @lstring mLabel
+  public var @bool mIsDeletable
 }
 
 #----------------------------------------------------*
 
 abstract refclass @midrange_intermediate_actualInstruction : @midrange_intermediate_instruction {
-  @location mInstructionLocation
+  public var @location mInstructionLocation
 }
 
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_instruction_FD : @midrange_intermediate_actualInstruction {
-  @midrange_instruction_FD_base_code mInstruction_FD_base_code
-  @midrange_intermediate_registerExpression mRegisterDescription
-  @bool m_W_isDestination
+  public var @midrange_instruction_FD_base_code mInstruction_FD_base_code
+  public var @midrange_intermediate_registerExpression mRegisterDescription
+  public var @bool m_W_isDestination
 }
 
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_instruction_F : @midrange_intermediate_actualInstruction {
-  @midrange_F_instruction_base_code mFinstruction
-  @midrange_intermediate_registerExpression mRegisterDescription
+  public var @midrange_F_instruction_base_code mFinstruction
+  public var @midrange_intermediate_registerExpression mRegisterDescription
 }
 
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_instruction_FB : @midrange_intermediate_actualInstruction {
-  @midrange_bit_oriented_op mBitOrientedOp
-  @midrange_intermediate_registerExpression mRegisterDescription
-  @uint mBitNumber
+  public var @midrange_bit_oriented_op mBitOrientedOp
+  public var @midrange_intermediate_registerExpression mRegisterDescription
+  public var @uint mBitNumber
 }
 
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_instruction_BitTestSkip : @midrange_intermediate_actualInstruction {
-  @bool mSkipIfSet
-  @midrange_intermediate_registerExpression mRegisterDescription
-  @uint mBitNumber
+  public var @bool mSkipIfSet
+  public var @midrange_intermediate_registerExpression mRegisterDescription
+  public var @uint mBitNumber
 }
 
 #----------------------------------------------------*
@@ -163,29 +163,29 @@ enum @midrange_call_goto_bit {
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_JUMP : @midrange_intermediate_actualInstruction {
-  @lstring mTargetLabel
-  @midrange_call_goto_bit mBit11
-  @midrange_call_goto_bit mBit12
+  public var @lstring mTargetLabel
+  public var @midrange_call_goto_bit mBit11
+  public var @midrange_call_goto_bit mBit12
 }
 
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_GOTO : @midrange_intermediate_actualInstruction {
-  @lstring mTargetLabel
+  public var @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_CALL : @midrange_intermediate_actualInstruction {
-  @lstring mTargetLabel
+  public var @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_JSR : @midrange_intermediate_actualInstruction {
-  @lstring mTargetLabel
-  @midrange_call_goto_bit mBit11
-  @midrange_call_goto_bit mBit12
+  public var @lstring mTargetLabel
+  public var @midrange_call_goto_bit mBit11
+  public var @midrange_call_goto_bit mBit12
 }
 
 #----------------------------------------------------*
@@ -221,24 +221,24 @@ refclass @midrange_intermediate_instruction_SLEEP : @midrange_intermediate_actua
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_instruction_literalOperation : @midrange_intermediate_actualInstruction {
-  @midrange_literal_instruction_opcode mLiteralInstruction
-  @uint mLiteralValue
+  public var @midrange_literal_instruction_opcode mLiteralInstruction
+  public var @uint mLiteralValue
 }
 
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_instruction_MNOP : @midrange_intermediate_actualInstruction {
-  @luint mOccurrenceFactor
+  public var @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
 refclass @midrange_intermediate_incDecRegisterInCondition : @midrange_intermediate_actualInstruction {
-  @midrange_intermediate_registerExpression mRegisterDescription
-  @string mTargetLabel
-  @bool mIncrement
-  @bool m_W_isDestination
-  @bool mBranchIfZero
+  public var @midrange_intermediate_registerExpression mRegisterDescription
+  public var @string mTargetLabel
+  public var @bool mIncrement
+  public var @bool m_W_isDestination
+  public var @bool mBranchIfZero
 }
 
 #----------------------------------------------------*

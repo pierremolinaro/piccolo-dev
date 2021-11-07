@@ -147,7 +147,7 @@ override method @pic18Instruction_computed_bra addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
   ?!@stringset ioUsedRoutines
 {
-  for () in  self.mTargetLabels do
+  for (mValue) in  self.mTargetLabels do
     ioUsedRoutines += !mValue.string
   end
 }
@@ -158,7 +158,7 @@ override method @pic18Instruction_computed_goto addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
   ?!@stringset ioUsedRoutines
 {
-  for () in  self.mTargetLabels do
+  for (mValue) in  self.mTargetLabels do
     ioUsedRoutines += !mValue.string
   end
 }
@@ -169,7 +169,7 @@ override method @pic18Instruction_computed_rcall addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
   ?!@stringset ioUsedRoutines
 {
-  for () in  self.mTargetLabels do
+  for (mValue) in  self.mTargetLabels do
     ioUsedRoutines += !mValue.string
   end
 }
@@ -189,7 +189,7 @@ override method @pic18Instruction_do_while addUsedRoutines
   ?!@stringset ioUsedRoutines
 {
   addPic18UsedRoutinesFromInstructionList (!self.mRepeatedInstructionList !inMacroMap !?ioUsedRoutines )
-  for () in  self.mWhilePartList do
+  for (* mInstructionList *) in  self.mWhilePartList do
     addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
   end
 }
@@ -326,7 +326,7 @@ override method @pic18Instruction_block addUsedRoutines
   ?let @pic18MacroMap inMacroMap
   ?!@stringset ioUsedRoutines
 {
-  for () in  self.mBlockList do
+  for (* mInstructionList * *) in  self.mBlockList do
     addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
   end
 }
@@ -338,7 +338,7 @@ proc addPic18UsedRoutinesFromInstructionList
   ?let @pic18MacroMap inMacroMap
   ?!@stringset ioUsedRoutines
 {
-  for () in  inInstructionList do
+  for (mInstruction) in  inInstructionList do
     [mInstruction addUsedRoutines !inMacroMap !?ioUsedRoutines]
   end
 }
@@ -355,7 +355,7 @@ func pic18_computeUsedRoutines
 #--- Main routine is used
   outUsedRoutineSet = @stringset. setWithString { !"main"}
 #--- Routines called by interrupt routines are used
-  for () in  inInterruptDefinitionList do
+  for (* * mInstructionList *) in  inInterruptDefinitionList do
     addPic18UsedRoutinesFromInstructionList (
       !mInstructionList
       !inMacroMap
@@ -363,11 +363,11 @@ func pic18_computeUsedRoutines
     )  
   end
 #--- bootloader routines are used
-  for () in  inBootloaderRoutineDeclarationListForBootloaderImplementation do
+  for (mRoutineName * * * *) in  inBootloaderRoutineDeclarationListForBootloaderImplementation do
     outUsedRoutineSet += !mRoutineName.string
   end
 #--- user routines are used
-  for () in  inUserRoutineDeclarationListForUserProgramImplementation do
+  for (mRoutineName * * * *) in  inUserRoutineDeclarationListForUserProgramImplementation do
     outUsedRoutineSet += !mRoutineName.string
   end
 #--- Loop for accumulating used routines
@@ -375,7 +375,7 @@ func pic18_computeUsedRoutines
   loop( [inRoutineDefinitionList length])
   while s != outUsedRoutineSet do
     s = outUsedRoutineSet
-    for () in  inRoutineDefinitionList do
+    for (mRoutineName * * * * mInstructionList *) in  inRoutineDefinitionList do
       if [outUsedRoutineSet hasKey !mRoutineName.string] then
         addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?outUsedRoutineSet)
       end

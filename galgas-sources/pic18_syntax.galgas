@@ -108,7 +108,7 @@ rule <body>
     $macro$
     $identifier$ ?let macroName
     $($
-    @lstringlist constantNameList = {}
+    var @lstringlist constantNameList = {}
     repeat
       $identifier$ ?let constantName
       constantNameList += !constantName
@@ -117,7 +117,7 @@ rule <body>
     end
     $)$
     ${$
-    @labelMap labelMap = {}
+    var @labelMap labelMap = {}
     <instruction_list>
       ?let @pic18InstructionList instructionList
       !?needsComputedGoto2
@@ -158,7 +158,7 @@ rule <data_definition> ?!@dataList ioDataList {
   end
   $identifier$ ?let @lstring dataName
   ${$
-  @immediatExpressionList valueList = {}
+  var @immediatExpressionList valueList = {}
   repeat
     <immediate_expression> ?let @immediatExpression expression
     valueList += !expression !@location.here
@@ -175,7 +175,7 @@ rule <data_definition> ?!@dataList ioDataList {
   $data8$
   $identifier$ ?let @lstring dataName
   ${$
-  @immediatExpressionList valueList = {}
+  var @immediatExpressionList valueList = {}
   repeat
     <immediate_expression> ?let @immediatExpression expression
     valueList += !expression !@location.here
@@ -200,7 +200,7 @@ rule <instruction_list>
     <simple_instruction> ?let @pic18PiccoloSimpleInstruction instruction
     outInstructionList += !instruction
   while
-    @pic18PiccoloInstruction instruction
+    var @pic18PiccoloInstruction instruction
     <structured_instruction>
       ?instruction
       !?ioNeedsComputedGoto2
@@ -219,7 +219,7 @@ rule <interrupt_definition>
 {
   $interrupt$
   $identifier$ ?let @lstring interruptName
-  @bool isFast
+  var @bool isFast
   select
     isFast = false
   or
@@ -227,7 +227,7 @@ rule <interrupt_definition>
     isFast = true
   end
   ${$
-  @labelMap labelMap = {}
+  var @labelMap labelMap = {}
   <instruction_list>
     ?let instructionList
     !?ioNeedsComputedGoto2
@@ -243,7 +243,7 @@ rule <routine_definition>
   ?!@pic18RoutineDefinitionList ioRoutineDefinitionList
   ?!@bool ioNeedsComputedGoto2 
   ?!@bool ioNeedsComputedGoto4 {
-  @bool noreturn
+  var @bool noreturn
   select
     noreturn = false
   or
@@ -252,9 +252,9 @@ rule <routine_definition>
   end
   $routine$
   $identifier$ ?let @lstring routineName indexing routineDefinition
-  @luint requiredBank
-  @luint returnedBank
-  @bool preservesBank
+  var @luint requiredBank
+  var @luint returnedBank
+  var @bool preservesBank
   select
     requiredBank = @luint. new { !@uint. max !@location.here}
     returnedBank = @luint. new { !@uint. max !@location.here}
@@ -294,7 +294,7 @@ rule <routine_definition>
     end
   end
   ${$
-  @labelMap labelMap = {}
+  var @labelMap labelMap = {}
   <instruction_list>
     ?let @pic18InstructionList instructionList
     !?ioNeedsComputedGoto2
@@ -309,7 +309,7 @@ rule <routine_definition>
 rule <condition_factor>
   !@pic18ConditionExpression outCondition {
   $!$
-  @pic18ConditionExpression condition
+  var @pic18ConditionExpression condition
   <condition_factor> ? condition
   outCondition = @pic18NegateCondition. new { !condition}
 }
@@ -326,23 +326,23 @@ rule <condition_factor>
 rule <condition_factor>
   !@pic18ConditionExpression outCondition {
   select
-    @bool isIncrement
+    var @bool isIncrement
     select
       $incf$ isIncrement = true
     or
       $decf$ isIncrement = false
     end
-    @registerExpression registerExpression
+    var @registerExpression registerExpression
     <register_parsing> ? registerExpression
-    @bool W_isDestination
+    var @bool W_isDestination
     select
       W_isDestination = false
     or
       $,$ $w$ W_isDestination = true
     end
     $identifier$ ?let @lstring conditionString
-    @string condition = [[conditionString string] uppercaseString]
-    @bool branchIfZero
+    var @string condition = [conditionString.string uppercaseString]
+    var @bool branchIfZero
     if condition == "Z" then
       branchIfZero = true
     elsif condition == "NZ" then
@@ -358,9 +358,9 @@ rule <condition_factor>
       !W_isDestination
       !branchIfZero}
   or
-    @registerExpression registerExpression
+    var @registerExpression registerExpression
     <register_parsing> ? registerExpression
-    @pic18RegisterComparison comparison
+    var @pic18RegisterComparison comparison
     select
       $!=$ $w$ comparison = @pic18RegisterComparison. notEqual
     or
@@ -378,21 +378,21 @@ rule <condition_factor>
       !registerExpression
       !comparison}
   or
-    @registerExpression registerExpression
+    var @registerExpression registerExpression
     <register_parsing> ? registerExpression
     $.$
-    @bitNumberExpression bitNumberExpression
+    var @bitNumberExpression bitNumberExpression
     <bit_number_parsing> ?bitNumberExpression
     outCondition = @pic18BitTestInStructuredCondition. new {
       !registerExpression
       !bitNumberExpression
     }
   or
-    @registerExpression registerName
+    var @registerExpression registerName
     <register_parsing> ?registerName
     $identifier$ ?let @lstring conditionString
-    @string condition = [[conditionString string] uppercaseString]
-    @bool branchIfZero
+    var @string condition = [conditionString.string uppercaseString]
+    var @bool branchIfZero
     if condition == "Z" then
       branchIfZero = true
     elsif condition == "NZ" then
@@ -404,9 +404,9 @@ rule <condition_factor>
     end
     outCondition = @pic18RegisterTestCondition. new { !registerName !branchIfZero}
   or
-    @conditional_branch conditional_branch
+    var @conditional_branch conditional_branch
     $identifier$ ?let @lstring conditionString
-    @string condition = [[conditionString string] uppercaseString]
+    var @string condition = [conditionString.string uppercaseString]
     if condition == "Z" then
       conditional_branch = @conditional_branch. bz
     elsif condition == "NZ" then
@@ -441,10 +441,10 @@ rule <condition_expression>
   repeat
   while
     $|$
-    @pic18ConditionExpression c
+    var @pic18ConditionExpression c
     <condition_term> ? c
-    @pic18ConditionExpression rc = @pic18NegateCondition. new { !c}
-    @pic18ConditionExpression lc = @pic18NegateCondition. new { !outCondition}
+    var @pic18ConditionExpression rc = @pic18NegateCondition. new { !c}
+    var @pic18ConditionExpression lc = @pic18NegateCondition. new { !outCondition}
     outCondition = @pic18NegateCondition. new { !@pic18AndCondition. new { !lc !rc}}
   end
   $)$
@@ -502,7 +502,7 @@ rule <structured_instruction>
 {
   select
     $switch$
-    @lstring switchLabel
+    var @lstring switchLabel
     select
       switchLabel = .new {!"" !.here}
     or
@@ -511,10 +511,10 @@ rule <structured_instruction>
     end
     let instructionLocation = @location.here
     $w$
-    @pic18SwitchInstructionCaseList caseList = {}
+    var @pic18SwitchInstructionCaseList caseList = {}
     repeat
       $case$
-      @lstring caseLabel
+      var @lstring caseLabel
       select
         caseLabel = .new {!"" !.here}
       or
@@ -550,14 +550,14 @@ rule <structured_instruction>
       caseList += !caseLocation !caseExpressionList !instructionList
     while
     end
-    @pic18InstructionList elseInstructionList
-    @location elseLocation
+    var @pic18InstructionList elseInstructionList
+    var @location elseLocation
     select
       elseLocation = @location.here
       elseInstructionList = @pic18InstructionList. emptyList
     or
       $else$
-      @lstring elseLabel
+      var @lstring elseLabel
       select
         elseLabel = .new {!"" !.here}
       or
@@ -580,7 +580,7 @@ rule <structured_instruction>
       !elseLocation
       !elseInstructionList}
     $end$
-    @lstring endSwitchLabel
+    var @lstring endSwitchLabel
     select
       endSwitchLabel = .new {!"" !.here}
     or
@@ -618,7 +618,7 @@ rule <structured_instruction>
     $end$
   or
     $do$
-    @lstring doLabel
+    var @lstring doLabel
     select
       doLabel = .new {!"" !.here}
     or
@@ -647,7 +647,7 @@ rule <structured_instruction>
       !@location.here
     }
     $end$
-    @lstring endDoLabel
+    var @lstring endDoLabel
     select
       endDoLabel = .new {!"" !.here}
     or
@@ -694,7 +694,7 @@ rule <structured_instruction>
     $banksel$
     let @location instructionLocation = @location.here
     $integer$ ?let @luint bank
-    @bool warningOnUselessBanksel
+    var @bool warningOnUselessBanksel
     select
       warningOnUselessBanksel = true
     or
@@ -707,7 +707,7 @@ rule <structured_instruction>
     $banksel$
     let @location instructionLocation = @location.here
     <register_parsing> ?var @registerExpression register
-    @bool warningOnUselessBanksel
+    var @bool warningOnUselessBanksel
     select
       warningOnUselessBanksel = true
     or
@@ -739,14 +739,14 @@ rule <structured_instruction>
     $computed$
     let @location instructionLocation = @location.here
     $[$
-    @immediatExpression sizeExpression
+    var @immediatExpression sizeExpression
     <immediate_expression> ?sizeExpression
     $]$
     select
       $retlw$
       var argumentList =@immediatExpressionList.emptyList{}
       repeat
-        @immediatExpression expression
+        var @immediatExpression expression
         <immediate_expression> ?expression
         argumentList += !expression !@location.here
       while
@@ -806,7 +806,7 @@ rule <structured_instruction>
     end
   or
     $forever$
-    @lstring foreverLabel
+    var @lstring foreverLabel
     select
       foreverLabel = .new {!"" !.here}
     or
@@ -820,7 +820,7 @@ rule <structured_instruction>
       !?ioNeedsComputedGoto4
       !?ioLabelMap
     $end$
-    @lstring endForeverLabel
+    var @lstring endForeverLabel
     select
       endForeverLabel = .new {!"" !.here}
     or
@@ -838,9 +838,9 @@ rule <structured_instruction>
   or
     $if$
     let @location instructionLocation = @location.here
-    @registerExpression registerName
+    var @registerExpression registerName
     <register_parsing> ?registerName
-    @if_semi_colon_op opCode
+    var @if_semi_colon_op opCode
     select
       $!=$ $w$ opCode = @if_semi_colon_op. CPFSEQ
     or
@@ -849,7 +849,7 @@ rule <structured_instruction>
       $>=$ $w$ opCode = @if_semi_colon_op. CPFSLT
     or
       $identifier$ ?let @lstring conditionString
-      @string condition = [[conditionString string] uppercaseString]
+      var @string condition = [conditionString.string uppercaseString]
       if condition != "NZ" then
         error conditionString:"invalid '" + condition + "' condition; it should be 'nz'"
       end
@@ -865,9 +865,9 @@ rule <structured_instruction>
   or
     $if$
     let @location instructionLocation = @location.here
-    @registerExpression registerName
-    @bitNumberExpression bitNumber
-    @bool skipIfSet
+    var @registerExpression registerName
+    var @bitNumberExpression bitNumber
+    var @bool skipIfSet
     select
       $!$
       <register_parsing> ?registerName
@@ -892,23 +892,23 @@ rule <structured_instruction>
   or
     $if$
     let @location instructionLocation = @location.here
-    @bool increment
+    var @bool increment
     select
       $decf$ increment = false
     or
       $incf$ increment = true
     end
-    @registerExpression registerName
+    var @registerExpression registerName
     <register_parsing> ?registerName
-    @bool w_isTarget
+    var @bool w_isTarget
     select
       w_isTarget = false
     or
       $,$ $w$ w_isTarget = true
     end
-    @bool skipIfZero
+    var @bool skipIfZero
     $identifier$ ?let @lstring conditionString
-    @string condition = [[conditionString string] uppercaseString]
+    var @string condition = [conditionString.string uppercaseString]
     if condition == "Z" then
       skipIfZero = false
     elsif condition == "NZ" then
@@ -927,7 +927,7 @@ rule <structured_instruction>
       !w_isTarget}
   or
     $if$
-    @lstring ifLabel
+    var @lstring ifLabel
     select
       ifLabel = .new {!"" !.here}
     or
@@ -941,7 +941,7 @@ rule <structured_instruction>
       !?ioNeedsComputedGoto4
       !?ioLabelMap
     $end$
-    @lstring endIfLabel
+    var @lstring endIfLabel
     select
       endIfLabel = .new {!"" !.here}
     or
@@ -953,7 +953,7 @@ rule <structured_instruction>
     end 
   or
     $do$
-    @lstring doLabel
+    var @lstring doLabel
     select
       doLabel = .new {!"" !.here}
     or
@@ -961,7 +961,7 @@ rule <structured_instruction>
       [!?ioLabelMap insertKey !doLabel]
     end
     let @location instructionLocation = @location.here
-    @pic18InstructionList repeatedInstructionList
+    var @pic18InstructionList repeatedInstructionList
     <instruction_list>
       ?repeatedInstructionList
       !?ioNeedsComputedGoto2
@@ -971,7 +971,7 @@ rule <structured_instruction>
     var whilePartList =@pic18DoWhilePartList.emptyList{}
     repeat
       $while$
-      @lstring whileLabel
+      var @lstring whileLabel
       select
         whileLabel = .new {!"" !.here}
       or
@@ -981,9 +981,9 @@ rule <structured_instruction>
         error whileLabel : "'while' label does not match 'do' label, it should be "
            + (if doLabel.string != "" then doLabel.string else "empty" end)
       end 
-      @pic18ConditionExpression whileCondition
+      var @pic18ConditionExpression whileCondition
       <condition_expression> ?whileCondition
-      @pic18InstructionList instructionList
+      var @pic18InstructionList instructionList
       <instruction_list>
         ?instructionList
         !?ioNeedsComputedGoto2
@@ -993,7 +993,7 @@ rule <structured_instruction>
     while
     end
     $end$
-    @lstring endDoLabel
+    var @lstring endDoLabel
     select
       endDoLabel = .new {!"" !.here}
     or
@@ -1020,7 +1020,7 @@ rule <structured_instruction>
     $integer$ ?let @luint occurrenceFactor
     outInstruction = @pic18Instruction_NOPBRA. new {!instructionLocation !occurrenceFactor}
   or
-    @conditional_branch condition
+    var @conditional_branch condition
     select
       $bc$ condition = @conditional_branch. bc
     or
@@ -1048,9 +1048,9 @@ rule <structured_instruction>
   or
     $jump$
     let @location instructionLocation = @location.here
-    @conditional_branch conditional_branch
+    var @conditional_branch conditional_branch
     $identifier$ ?var @lstring conditionString
-    @string condition = [[conditionString string] uppercaseString]
+    var @string condition = [conditionString.string uppercaseString]
     if condition == "Z" then
       conditional_branch = @conditional_branch. bz
     elsif condition == "NZ" then
@@ -1107,7 +1107,7 @@ rule <structured_instruction>
     $macro$
     $identifier$ ?let macroName
     $($
-    @immediatExpressionList immediatExpressionList = {}
+    var @immediatExpressionList immediatExpressionList = {}
     repeat
       <immediate_expression> ?let @immediatExpression constantExpression
       immediatExpressionList += !constantExpression !.here
@@ -1132,21 +1132,21 @@ rule <structured_if_instruction>
   ?!@bool ioNeedsComputedGoto4
   ?!@labelMap ioLabelMap
 {
-  @location instructionLocation = @location.here
-  @pic18ConditionExpression structured_if_condition
+  var @location instructionLocation = @location.here
+  var @pic18ConditionExpression structured_if_condition
   <condition_expression> ?structured_if_condition
-  @pic18InstructionList thenInstructionList
+  var @pic18InstructionList thenInstructionList
   <instruction_list>
     ?thenInstructionList
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
     !?ioLabelMap
-  @pic18InstructionList elseInstructionList
+  var @pic18InstructionList elseInstructionList
   select
     elseInstructionList = @pic18InstructionList. emptyList
   or
     $elsif$
-    @lstring elsifIfLabel
+    var @lstring elsifIfLabel
     select
       elsifIfLabel = .new {!"" !.here}
     or
@@ -1156,7 +1156,7 @@ rule <structured_if_instruction>
       error elsifIfLabel : "'elsif' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
-    @pic18PiccoloInstruction elsifPartInstruction
+    var @pic18PiccoloInstruction elsifPartInstruction
     <structured_if_instruction>
       !ifLabel
       ?elsifPartInstruction
@@ -1167,7 +1167,7 @@ rule <structured_if_instruction>
     elseInstructionList += !elsifPartInstruction
   or
     $else$
-    @lstring elsifLabel
+    var @lstring elsifLabel
     select
       elsifLabel = .new {!"" !.here}
     or
@@ -1183,7 +1183,7 @@ rule <structured_if_instruction>
       !?ioNeedsComputedGoto4
       !?ioLabelMap
   end
-  @location endOfElsePartLocation = @location.here
+  var @location endOfElsePartLocation = @location.here
   outInstruction = @pic18Instruction_structured_if. new {
     !instructionLocation
     !structured_if_condition
@@ -1196,7 +1196,7 @@ rule <structured_if_instruction>
 
 rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
   select
-    @pic18Instruction_FDA_base_code_AST baseCode
+    var @pic18Instruction_FDA_base_code_AST baseCode
     select
       $addwf$
       baseCode = .ADDWF
@@ -1276,7 +1276,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
       !false # W is not destination
     }
   or
-    @FA_instruction_base_code FAinstruction
+    var @FA_instruction_base_code FAinstruction
     select
       $clrf$
       FAinstruction = @FA_instruction_base_code. CLRF
@@ -1294,7 +1294,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
       FAinstruction = @FA_instruction_base_code. SETF
     end
     let @location instructionLocation = @location.here
-    @registerExpression registerName
+    var @registerExpression registerName
     <register_parsing> ?registerName
     outInstruction = @pic18Instruction_FA. new {
       !instructionLocation
@@ -1303,17 +1303,17 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
   or
     $movff$
     let @location instructionLocation = @location.here
-    @registerExpression sourceRegisterName
+    var @registerExpression sourceRegisterName
     <register_parsing> ?sourceRegisterName
     $,$
-    @registerExpression destinationRegisterName
+    var @registerExpression destinationRegisterName
     <register_parsing> ? destinationRegisterName
     outInstruction = @pic18Instruction_MOVFF. new {
       !instructionLocation
       !sourceRegisterName
       !destinationRegisterName}
   or
-    @bit_oriented_op bitOrientedOp
+    var @bit_oriented_op bitOrientedOp
     select
       $bcf$ bitOrientedOp = @bit_oriented_op. BCF
     or
@@ -1384,7 +1384,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
       !instructionLocation
       !expression}
   or
-    @literal_instruction_opcode literalInstruction
+    var @literal_instruction_opcode literalInstruction
     select
       $addlw$ literalInstruction = @literal_instruction_opcode. ADDLW
     or
@@ -1411,13 +1411,13 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
     let @location instructionLocation = @location.here
     $integer$ ?var  @luint FSRindex
     $,$
-    @immediatExpression expression
+    var @immediatExpression expression
     <immediate_expression> ?expression
     outInstruction = @pic18Instruction_LFSR. new { !instructionLocation !FSRindex !expression}
   or
     $tblrd$
     let @location instructionLocation = @location.here
-    @tableAccessOption accessOption
+    var @tableAccessOption accessOption
     select
       $*$
       accessOption = @tableAccessOption. simpleAccess
@@ -1435,7 +1435,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
   or
     $tblwt$
     let @location instructionLocation = @location.here
-    @tableAccessOption accessOption
+    var @tableAccessOption accessOption
     select
       $*$
       accessOption = @tableAccessOption. simpleAccess

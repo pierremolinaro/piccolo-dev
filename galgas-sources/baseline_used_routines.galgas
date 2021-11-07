@@ -96,7 +96,7 @@ override method @baseline_instruction_FB addUsedRoutines
 override method @baseline_instruction_do_while addUsedRoutines
   ?!@stringset ioUsedRoutines {
   addBaselineUsedRoutinesFromInstructionList ( !self.mRepeatedInstructionList !?ioUsedRoutines )
-  for () in  self.mWhilePartList do
+  for (* mInstructionList *) in  self.mWhilePartList do
     addBaselineUsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
   end
 }
@@ -133,7 +133,7 @@ override method @baseline_instruction_literalOperation addUsedRoutines
 proc addBaselineUsedRoutinesFromInstructionList
   ?let @baseline_instructionList inInstructionList
   ?!@stringset ioUsedRoutines {
-  for () in  inInstructionList do
+  for (mInstruction) in  inInstructionList do
     [mInstruction addUsedRoutines !?ioUsedRoutines]
   end
 }
@@ -150,7 +150,7 @@ func baseline_computeUsedRoutines
   loop( [inRoutineDefinitionList length])
   while s != outUsedRoutineSet do
     s = outUsedRoutineSet
-    for () in  inRoutineDefinitionList do
+    for (mRoutineName * * mInstructionList *) in  inRoutineDefinitionList do
       if [outUsedRoutineSet hasKey !mRoutineName.string] then
         addBaselineUsedRoutinesFromInstructionList ( !mInstructionList !?outUsedRoutineSet )
       end

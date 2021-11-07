@@ -38,7 +38,7 @@ getter @uint x4String ->@string outResult {
 #----------------------------------------------------------------------------*
 
 proc checkCurrentEmitAddress ?let @uint inCurrentAddress {
-  @uint addr currentEmitAddress ( ? addr )
+  var @uint addr currentEmitAddress ( ? addr )
   if (@uint. errorCount == 0) & (addr != inCurrentAddress) then
     error @location.here:"internal error: current emit address is " + [addr hexString]
     + "; it should be " + [inCurrentAddress hexString]
@@ -50,7 +50,7 @@ proc checkCurrentEmitAddress ?let @uint inCurrentAddress {
 #----------------------------------------------------------------------------*
 
 map @constantMap {
-  @sint64 mValue
+  public var @sint64 mValue
   insert insertKey error message "the '%K' constant is already declared in %L"
   search searchKey error message "the '%K' constant is not declared"
 }
@@ -60,10 +60,10 @@ map @constantMap {
 #----------------------------------------------------------------------------*
 
 map @routineMap {
-  @bool mIsNoReturn
-  @uint mRequiredBank
-  @uint mReturnedBank
-  @bool mPreservesBank
+  public var @bool mIsNoReturn
+  public var @uint mRequiredBank
+  public var @uint mReturnedBank
+  public var @bool mPreservesBank
   insert insertKey error message "the '%K' routine is already declared in %L"
   search searchKey error message "the '%K' routine is not declared"
 }
@@ -94,7 +94,7 @@ override method @immediatInteger eval
   !@sint64 outResult
   ?!@stringset unused ioUsedRegisters
 {
-  outResult = [[self.mValue uint] sint64]
+  outResult = [self.mValue.uint sint64]
 }
 
 #----------------------------------------------------------------------------*
@@ -105,29 +105,29 @@ override method @immediatRegister eval
   !@sint64 outResult
   ?!@stringset ioUsedRegisters
 {
-  if [inRegisterTable hasKey ![[self.mRegister mRegisterName] string]] then
-    ioUsedRegisters += ![self.mRegister mRegisterName].string
-    [inRegisterTable searchKey ![self.mRegister mRegisterName] ?let registerAddressList ?let size ?2* ?let protection]
-    [inRegisterTable checkPrivateAccess ![self.mRegister mRegisterName] !write:false !protection]
+  if [inRegisterTable hasKey !self.mRegister.mRegisterName.string] then
+    ioUsedRegisters += !self.mRegister.mRegisterName.string
+    [inRegisterTable searchKey !self.mRegister.mRegisterName ?let registerAddressList ?let size ?2* ?let protection]
+    [inRegisterTable checkPrivateAccess !self.mRegister.mRegisterName !write:false !protection]
     [registerAddressList first ?@uint registerAddress]
-    [[self.mRegister mOffset] eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
+    [self.mRegister.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
     if offset < 0LS then
-      error [self.mRegister mEndOfOffsetExpression]
+      error self.mRegister.mEndOfOffsetExpression
       :"index (" + offset + ") should be >= 0"
     elsif [offset uint] >= size then
-      error [self.mRegister mEndOfOffsetExpression]
+      error self.mRegister.mEndOfOffsetExpression
       :"index (" + offset + ") should be lower than size (" + [size string] + ")"
     end
     outResult = [registerAddress sint64] + offset
-  elsif [inConstantMap hasKey ![[self.mRegister mRegisterName] string]] then
-    [inConstantMap searchKey ![self.mRegister mRegisterName] ?outResult]
-    [[self.mRegister mOffset] eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
+  elsif [inConstantMap hasKey !self.mRegister.mRegisterName.string] then
+    [inConstantMap searchKey !self.mRegister.mRegisterName ?outResult]
+    [self.mRegister.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
     if offset != 0LS then
-      error [self.mRegister mEndOfOffsetExpression]:
+      error self.mRegister.mEndOfOffsetExpression:
       "index notation (" + offset + ") cannot be used with a constant"
     end
   else
-    error [self.mRegister mRegisterName]: "'" + [self.mRegister mRegisterName] + "' should be declared as ram register or as constant" : outResult
+    error self.mRegister.mRegisterName: "'" + self.mRegister.mRegisterName + "' should be declared as ram register or as constant" : outResult
   end
 }
 
@@ -377,19 +377,19 @@ override method @immediatSlice eval
   !@sint64 outResult
   ?!@stringset ioUsedRegisters
 {
-  @bitSliceTable bitSliceTable
+  var @bitSliceTable bitSliceTable
   outResult = 0LS
   ioUsedRegisters += !self.mRegisterName.string
   [inRegisterTable searchKey !self.mRegisterName ?* ?* ? bitSliceTable ?* ?let protection]
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:false !protection]
   var sliceNameSet =@stringset.emptySet{}
-  for () in  self.mSliceExpressionList do
-    if [sliceNameSet hasKey ![mSliceName string]] then
+  for (mSliceName mExpression) in  self.mSliceExpressionList do
+    if [sliceNameSet hasKey !mSliceName.string] then
       error mSliceName:"the '" + mSliceName + "' bit field has been already defined"
     else
-      sliceNameSet += ![mSliceName string]
-      @uint sliceIndex
-      @uint sliceSize
+      sliceNameSet += !mSliceName.string
+      var @uint sliceIndex
+      var @uint sliceSize
       [bitSliceTable searchKey !mSliceName ?sliceIndex ?sliceSize]
       [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
       if (result < 0LS) | (result > ((1LS << sliceSize) - 1LS)) then
@@ -423,10 +423,10 @@ override method @bitNumberLiteralValue getBitNumber
   ?let @bitSliceTable unused inBitSliceTable
   !@uint outBitNumber
 {
-  if [self.mBitNumberLiteralValue uint] > 7 then
-    error self.mBitNumberLiteralValue:"The bit number is " + [[self.mBitNumberLiteralValue uint] string] + " (should be <= 7)"
+  if self.mBitNumberLiteralValue.uint > 7 then
+    error self.mBitNumberLiteralValue:"The bit number is " + [self.mBitNumberLiteralValue.uint string] + " (should be <= 7)"
   end
-  outBitNumber = [self.mBitNumberLiteralValue uint]
+  outBitNumber = self.mBitNumberLiteralValue.uint
 }
 
 #----------------------------------------------------------------------------*
@@ -439,11 +439,11 @@ override method @bitNumberLabelValue getBitNumber
   !@uint outBitNumber
 {
   [inBitSliceTable searchKey !self.mBitNumberLabelValue ?let sliceIndex ?let sliceSize]
-  if [self.mBitNumberIndexValue uint] > sliceSize then
-    error self.mBitNumberIndexValue: "The " + [[self.mBitNumberIndexValue uint] string]
+  if self.mBitNumberIndexValue.uint > sliceSize then
+    error self.mBitNumberIndexValue: "The " + [self.mBitNumberIndexValue.uint string]
     + " index is too large (should be < " + [sliceSize string] + ")"
   end
-  outBitNumber = sliceIndex + [self.mBitNumberIndexValue uint]
+  outBitNumber = sliceIndex + self.mBitNumberIndexValue.uint
 }
 
 #----------------------------------------------------------------------------*
@@ -468,8 +468,8 @@ override method @bitNumberLiteralExpression getBitNumber
 #----------------------------------------------------------------------------*
 
 map @symbolTableForOptimizations {
-  @uint mDefinitionLineIndex
-  @bool mIsDeletable
+  public var @uint mDefinitionLineIndex
+  public var @bool mIsDeletable
   insert insertKey error message "the '%K' label is already declared in %L"
   search searchKey error message "the '%K' label is not declared"
   remove removeKey error message "the '%K' label is not declared"
@@ -489,8 +489,8 @@ proc print_constant_definition
     ioListFileContents += "*" + ["CONSTANTS" stringByLeftAndRightPadding !117 !' '] + "*\n"
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     ioListFileContents += ["Constant" stringByLeftPadding !40 !' '] + " Value\n"
-    for () in  inConstantMap do
-      ioListFileContents += [[lkey string] stringByLeftPadding !40 !' '] + " " + [mValue string] + "\n"
+    for (lkey mValue) in  inConstantMap do
+      ioListFileContents += [lkey.string stringByLeftPadding !40 !' '] + " " + [mValue string] + "\n"
     end
     ioListFileContents += "\n"
   end

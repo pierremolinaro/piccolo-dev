@@ -3,8 +3,8 @@
 #----------------------------------------------------------------------------*
 
 map @pic18_dataMap {
-  @uintlist mData
-  @bool mIsData8 # true: data8, false: data16
+  public var @uintlist mData
+  public var @bool mIsData8 # true: data8, false: data16
   insert insertKey error message "the '%K' data is already declared"
   search searchKey error message "the '%K' data is not declared"
 }
@@ -12,38 +12,38 @@ map @pic18_dataMap {
 #----------------------------------------------------------------------------*
 
 abstract refclass @ipic18SequentialInstruction {
-  @location mInstructionLocation
+  public var @location mInstructionLocation
 }
 
 #----------------------------------------------------------------------------*
 
 list @ipic18SequentialInstructionList {
-  @ipic18SequentialInstruction mInstruction
-  @uint mMin
-  @uint mMax
+  public var @ipic18SequentialInstruction mInstruction
+  public var @uint mMin
+  public var @uint mMax
 }
 
 #----------------------------------------------------------------------------*
 
 abstract refclass @ipic18AbstractBlockTerminator {
-  @location mInstructionLocation
+  public var @location mInstructionLocation
 }
 
 #----------------------------------------------------------------------------*
 
 struct @ipic18Block {
-  @uint mAddress # [@uint max] if relocatable
-  @lstring mLabel
-  @ipic18SequentialInstructionList mInstructionList
-  @ipic18AbstractBlockTerminator mTerminator
-  @uint mTerminatorMin
-  @uint mTerminatorMax
+  public var @uint mAddress # [@uint max] if relocatable
+  public var @lstring mLabel
+  public var @ipic18SequentialInstructionList mInstructionList
+  public var @ipic18AbstractBlockTerminator mTerminator
+  public var @uint mTerminatorMin
+  public var @uint mTerminatorMax
 }
 
 #----------------------------------------------------------------------------*
 
 list @ipic18BlockList {
-  @ipic18Block mBlock
+  public var @ipic18Block mBlock
 }
 
 #----------------------------------------------------------------------------*
@@ -63,34 +63,34 @@ refclass @ipic18ReturnTerminator : @ipic18SingleInstructionTerminator {
 #----------------------------------------------------------------------------*
 
 refclass @ipic18RetlwTerminator : @ipic18SingleInstructionTerminator {
-  @uint mLiteralValue
+  public var @uint mLiteralValue
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18RetfieTerminator : @ipic18SingleInstructionTerminator {
-  @bool mFastReturn
+  public var @bool mFastReturn
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18JumpTerminator : @ipic18SingleInstructionTerminator {
-  @lstring mLabel
-  @jumpInstructionKind mKind
+  public var @lstring mLabel
+  public var @jumpInstructionKind mKind
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18ComputedGotoTerminator : @ipic18AbstractBlockTerminator {
-  @lstringlist mTargetLabels
-  @bool mUsesRCALL
+  public var @lstringlist mTargetLabels
+  public var @bool mUsesRCALL
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18ComputedRETLWTerminator : @ipic18AbstractBlockTerminator {
-  @uintlist mLiteralValues
-  @bool mUsesRCALL
+  public var @uintlist mLiteralValues
+  public var @bool mUsesRCALL
 }
 
 #----------------------------------------------------------------------------*
@@ -104,18 +104,18 @@ enum @conditionalBranchMode {
 #----------------------------------------------------------------------------*
 
 refclass @ipic18ConditionalJumpTerminator : @ipic18AbstractBlockTerminator {
-  @conditional_branch mConditionalBranch
-  @lstring mTargetLabelWhenTrue
-  @conditionalBranchMode mBranchModeOnTrueLabel
-  @lstring mTargetLabelWhenFalse
-  @conditionalBranchMode mBranchModeOnFalseLabel
+  public var @conditional_branch mConditionalBranch
+  public var @lstring mTargetLabelWhenTrue
+  public var @conditionalBranchMode mBranchModeOnTrueLabel
+  public var @lstring mTargetLabelWhenFalse
+  public var @conditionalBranchMode mBranchModeOnFalseLabel
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18ComputedBraTerminator : @ipic18AbstractBlockTerminator {
-  @lstringlist mTargetLabels
-  @bool mUsesRCALL
+  public var @lstringlist mTargetLabels
+  public var @bool mUsesRCALL
 }
 
 #----------------------------------------------------*
@@ -129,36 +129,36 @@ enum @ipic18RegisterComparison {
 #----------------------------------------------------------------------------*
 
 abstract refclass @ipic18AbstractConditionTerminator : @ipic18AbstractBlockTerminator {
-  @ipic18SingleInstructionTerminator mSingleInstructionTerminatorIfConditionTrue
-  @ipic18SingleInstructionTerminator mSingleInstructionTerminatorIfConditionFalse
+  public var @ipic18SingleInstructionTerminator mSingleInstructionTerminatorIfConditionTrue
+  public var @ipic18SingleInstructionTerminator mSingleInstructionTerminatorIfConditionFalse
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @pic18RegisterComparisonTerminator : @ipic18AbstractConditionTerminator {
-  @ipic18_intermediate_registerExpression mRegisterDescription
-  @ipic18RegisterComparison mComparison
+  public var @ipic18_intermediate_registerExpression mRegisterDescription
+  public var @ipic18RegisterComparison mComparison
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18IncDecRegisterTerminator : @ipic18AbstractConditionTerminator {
-  @ipic18_intermediate_registerExpression mRegisterDescription
-  @bool mIncrement
-  @bool m_W_isDestination
+  public var @ipic18_intermediate_registerExpression mRegisterDescription
+  public var @bool mIncrement
+  public var @bool m_W_isDestination
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @pic18TestRegisterTerminator : @ipic18AbstractConditionTerminator {
-  @ipic18_intermediate_registerExpression mRegisterDescription
+  public var @ipic18_intermediate_registerExpression mRegisterDescription
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @pic18BitTestTerminator : @ipic18AbstractConditionTerminator {
-  @ipic18_intermediate_registerExpression mRegisterDescription
-  @uint mBitNumber
+  public var @ipic18_intermediate_registerExpression mRegisterDescription
+  public var @uint mBitNumber
 }
 
 #----------------------------------------------------------------------------*
@@ -168,15 +168,15 @@ refclass @pic18BitTestTerminator : @ipic18AbstractConditionTerminator {
 #----------------------------------------------------------------------------*
 
 refclass @ipic18InstructionWithNoOperand : @ipic18SequentialInstruction {
-  @pic18InstructionWithNoOperandKind mKind
+  public var @pic18InstructionWithNoOperandKind mKind
 }
 
 #----------------------------------------------------------------------------*
 
 struct @ipic18_intermediate_registerExpression {
-  @string mAssemblyString
-  @uint mRegisterAddress # 12 bit full address
-  @bool mNeedsBSR
+  public var @string mAssemblyString
+  public var @uint mRegisterAddress # 12 bit full address
+  public var @bool mNeedsBSR
 }
 
 #----------------------------------------------------------------------------*
@@ -196,9 +196,9 @@ getter @ipic18_intermediate_registerExpression isEqualToRegister
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_FDA : @ipic18SequentialInstruction {
-  @pic18Instruction_FDA_base_code_AST mInstruction_FDA_base_code
-  @ipic18_intermediate_registerExpression mRegisterDescription
-  @bool m_W_isDestination
+  public var @pic18Instruction_FDA_base_code_AST mInstruction_FDA_base_code
+  public var @ipic18_intermediate_registerExpression mRegisterDescription
+  public var @bool m_W_isDestination
 }
 
 #----------------------------------------------------*
@@ -210,121 +210,121 @@ enum @FA_sequential_instruction_base_code {
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_FA : @ipic18SequentialInstruction {
-  @FA_sequential_instruction_base_code mFAinstruction
-  @ipic18_intermediate_registerExpression mRegisterDescription
+  public var @FA_sequential_instruction_base_code mFAinstruction
+  public var @ipic18_intermediate_registerExpression mRegisterDescription
 }
 
 #----------------------------------------------------------------------------*
 
 struct @ipic18_intermediate_registerExpressionWithoutBSRIndication {
-  @string mAssemblyString
-  @uint mRegisterAddress # 12 bit full address
+  public var @string mAssemblyString
+  public var @uint mRegisterAddress # 12 bit full address
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_MOVFF : @ipic18SequentialInstruction {
-  @ipic18_intermediate_registerExpressionWithoutBSRIndication mSourceRegisterDescription
-  @ipic18_intermediate_registerExpressionWithoutBSRIndication mDestinationRegisterDescription
+  public var @ipic18_intermediate_registerExpressionWithoutBSRIndication mSourceRegisterDescription
+  public var @ipic18_intermediate_registerExpressionWithoutBSRIndication mDestinationRegisterDescription
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_literalOperation : @ipic18SequentialInstruction {
-  @literal_instruction_opcode mLiteralInstruction
-  @uint mLiteralValue
+  public var @literal_instruction_opcode mLiteralInstruction
+  public var @uint mLiteralValue
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_LFSR : @ipic18SequentialInstruction {
-  @luint mFSRindex
-  @uint mValue
+  public var @luint mFSRindex
+  public var @uint mValue
 }  
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_FBA : @ipic18SequentialInstruction {
-  @bit_oriented_op mBitOrientedOp
-  @ipic18_intermediate_registerExpression mRegisterDescription
-  @uint mBitNumber
+  public var @bit_oriented_op mBitOrientedOp
+  public var @ipic18_intermediate_registerExpression mRegisterDescription
+  public var @uint mBitNumber
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_JSR : @ipic18SequentialInstruction {
-  @lstring mTargetLabel
-  @jumpInstructionKind mKind
+  public var @lstring mTargetLabel
+  public var @jumpInstructionKind mKind
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_MOVLB : @ipic18SequentialInstruction {
-  @luint mBankIndex
+  public var @luint mBankIndex
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_FNOP : @ipic18SequentialInstruction {
-  @uint mBlankValue
+  public var @uint mBlankValue
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_BLANK : @ipic18SequentialInstruction {
-  @uint mBlankValue
+  public var @uint mBlankValue
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_TBLRD : @ipic18SequentialInstruction {
-  @tableAccessOption mOption
+  public var @tableAccessOption mOption
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_TBLWT : @ipic18SequentialInstruction {
-  @tableAccessOption mOption
+  public var @tableAccessOption mOption
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_MNOP : @ipic18SequentialInstruction {
-  @luint mOccurrenceFactor
+  public var @luint mOccurrenceFactor
 }
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_NOPBRA : @ipic18SequentialInstruction {
-  @luint mOccurrenceFactor
+  public var @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_MOV_LABEL_W : @ipic18SequentialInstruction {
-  @lstring mLabel
-  @uint mOffset
-  @uint mRightShift
+  public var @lstring mLabel
+  public var @uint mOffset
+  public var @uint mRightShift
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_intermediate_instruction_computed_rcall : @ipic18SequentialInstruction {
-  @ipic18SequentialInstructionList mTargetInstructions
-  @bool mUsesRCALL
+  public var @ipic18SequentialInstructionList mTargetInstructions
+  public var @bool mUsesRCALL
 }
 
 #----------------------------------------------------------------------------*
 
 abstract refclass @ipic18_condition_skip_instruction : @ipic18SequentialInstruction {
-  @ipic18SequentialInstruction mEmbeddedInstruction
+  public var @ipic18SequentialInstruction mEmbeddedInstruction
 }
 
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_skip_instruction_BitTestSkip : @ipic18_condition_skip_instruction {
-  @bool mSkipIfSet
-  @ipic18_intermediate_registerExpression mRegisterDescription
-  @uint mBitNumber
+  public var @bool mSkipIfSet
+  public var @ipic18_intermediate_registerExpression mRegisterDescription
+  public var @uint mBitNumber
 }
 
 #----------------------------------------------------*
@@ -336,8 +336,8 @@ enum @ipic18_compare_register_instruction_base_code {
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_skip_instruction_compare_register : @ipic18_condition_skip_instruction {
-  @ipic18_compare_register_instruction_base_code mCompareInstruction
-  @ipic18_intermediate_registerExpression mRegisterDescription
+  public var @ipic18_compare_register_instruction_base_code mCompareInstruction
+  public var @ipic18_intermediate_registerExpression mRegisterDescription
 }
 
 #----------------------------------------------------*
@@ -349,9 +349,9 @@ enum @skip_instruction_FDA_base_code {
 #----------------------------------------------------------------------------*
 
 refclass @ipic18_skip_instruction_FDA : @ipic18_condition_skip_instruction {
-  @skip_instruction_FDA_base_code mInstruction_FDA_base_code
-  @ipic18_intermediate_registerExpression mRegisterDescription
-  @bool m_W_isDestination
+  public var @skip_instruction_FDA_base_code mInstruction_FDA_base_code
+  public var @ipic18_intermediate_registerExpression mRegisterDescription
+  public var @bool m_W_isDestination
 }
 
 #----------------------------------------------------------------------------*
@@ -361,7 +361,7 @@ refclass @ipic18_skip_instruction_FDA : @ipic18_condition_skip_instruction {
 #----------------------------------------------------------------------------*
 
 map @symbolTableForBlockOptimization {
-  @uint mDefinitionBlockIndex
+  public var @uint mDefinitionBlockIndex
   insert insertKey error message "the '%K' label is already declared in %L"
   search searchKey error message "the '%K' label is not declared"
 }
@@ -373,7 +373,7 @@ map @symbolTableForBlockOptimization {
 #----------------------------------------------------------------------------*
 
 map @symbolTableForClusterOrdering {
-  @uint mCluster
+  public var @uint mCluster
   insert insertKey error message "the '%K' label is already declared in %L"
   search searchKey error message "the '%K' label is not declared"
 }
@@ -421,7 +421,7 @@ method @ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution
 #----------------------------------------------------------------------------*
 
 map @symbolTableForRelativesResolution {
-  @uint mLabelAddress
+  public var @uint mLabelAddress
   insert insertKey error message "the '%K' label is already declared in %L"
   search searchKey error message "the '%K' label is not declared"
 }
@@ -429,14 +429,14 @@ map @symbolTableForRelativesResolution {
 #----------------------------------------------------------------------------*
 
 list @codeList {
-  @string mAssemblyCode
-  @uintlist mBinaryCode
+  public var @string mAssemblyCode
+  public var @uintlist mBinaryCode
 }
   
 #----------------------------------------------------------------------------*
 
 map @pic18_dataAddressMap {
-  @uint mDataAddress
+  public var @uint mDataAddress
   insert insertKey error message "the '%K' data is already declared"
   search searchKey error message "the '%K' data is not declared"
 }
@@ -521,7 +521,7 @@ func pic18_Bcc_instruction_code
     error inTargetLabel: "** INTERNAL ERROR ** displacement too large for conditional branch instruction"
   end
 
-  @conditional_branch conditionalBranch
+  var @conditional_branch conditionalBranch
   if inComplemented then
     switch inConditionalBranch
     case bz   : conditionalBranch = @conditional_branch. bnz
@@ -537,8 +537,8 @@ func pic18_Bcc_instruction_code
     conditionalBranch = inConditionalBranch
   end
   
-  @uint baseCode
-  @string mnemonic
+  var @uint baseCode
+  var @string mnemonic
   switch conditionalBranch
   case bz   : baseCode = 0xE000 mnemonic = "BZ"
   case bnz  : baseCode = 0xE100 mnemonic = "BNZ"

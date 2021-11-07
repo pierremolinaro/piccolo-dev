@@ -46,11 +46,11 @@ rule <start_symbol> {
     }
     baseline_analysis ( !piccoloModel !@string. stringWithSourceFilePath )
   else
-    @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
+    var @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
     if [hexDestinationFile fileExists] then
       [@string deleteFile !hexDestinationFile]
     end
-    @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
+    var @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
     if [asmDestinationFile fileExists] then
       [@string deleteFile !asmDestinationFile]
     end

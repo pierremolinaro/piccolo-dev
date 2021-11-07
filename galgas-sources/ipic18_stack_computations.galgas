@@ -1,5 +1,5 @@
 map @blockMapForStackComputation {
-  @ipic18Block mBlock
+  public var @ipic18Block mBlock
   insert insertKey error message "the '%K' block is already declared in %L"
   search searchKey error message "the '%K' block is not declared"
 }
@@ -7,15 +7,15 @@ map @blockMapForStackComputation {
 #------------------------------------------------------------------------------*
 
 map @routineCallMap {
-  @stringset mCalledRoutineSet
-  @uint mTerminatorStackNeeds
+  public var @stringset mCalledRoutineSet
+  public var @uint mTerminatorStackNeeds
   insert insertKey error message "the '%K' entry is already declared in %L"
 }
 
 #------------------------------------------------------------------------------*
 
 map @routineStackRequirementMap {
-  @uint mLevels
+  public var @uint mLevels
   insert insertKey error message "the '%K' entry is already declared in %L"
   search searchKey error message "the '%K' entry is not declared"
 }
@@ -58,7 +58,7 @@ override method @ipic18ComputedBraTerminator exploreAccessibleBlocksForStackComp
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
 {
-  for () in  self.mTargetLabels do
+  for (mValue) in  self.mTargetLabels do
     if not [ioExploredBlockSet hasKey !mValue.string] then
       ioBlockToExploreSet += !mValue.string
     end
@@ -73,7 +73,7 @@ override method @ipic18ComputedGotoTerminator exploreAccessibleBlocksForStackCom
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
 {
-  for () in  self.mTargetLabels do
+  for (mValue) in  self.mTargetLabels do
     if not [ioExploredBlockSet hasKey !mValue.string] then
       ioBlockToExploreSet += !mValue.string
     end
@@ -172,7 +172,7 @@ override method @ipic18_intermediate_JSR buildCalledRoutineSetForStackComputatio
 
 override method @ipic18_intermediate_instruction_computed_rcall buildCalledRoutineSetForStackComputations
   ?!@stringset ioRoutineCalledSet {
-  for () in  self.mTargetInstructions do
+  for (mInstruction * *) in  self.mTargetInstructions do
     [mInstruction buildCalledRoutineSetForStackComputations !?ioRoutineCalledSet]
   end
 }
@@ -200,14 +200,14 @@ proc ipic18StackComputations
 #--- Find all absolute blocks
   var startLabelsToExplore =@stringset.emptySet{}
   var blockMapForStackComputation =@blockMapForStackComputation.emptyMap{}
-  for () in  inBlockList do
+  for (mBlock) in  inBlockList do
     if mBlock.mAddress != @uint. max then # Absolute block
       startLabelsToExplore += !mBlock.mLabel.string    
     end  
     [!?blockMapForStackComputation insertKey !mBlock.mLabel !mBlock]
   end
 #--- Explore all blocks to find called routines
-  @routineCallMap routineCallMap = {}
+  var @routineCallMap routineCallMap = {}
   loop( [inBlockList length] + 1)
   while [startLabelsToExplore count] > 0
   do
@@ -216,9 +216,9 @@ proc ipic18StackComputations
   #--- Explore accessible blocks
     var blockToExploreSet =@stringset.emptySet{}
     blockToExploreSet += !startLabel
-    @stringset exploredBlockSet = {}
-    @stringset calledRoutineSet = {}
-    @uint terminatorStackNeeds = 0
+    var @stringset exploredBlockSet = {}
+    var @stringset calledRoutineSet = {}
+    var @uint terminatorStackNeeds = 0
     loop( [inBlockList length] + 1)
     while [blockToExploreSet count] > 0
     do
@@ -234,12 +234,12 @@ proc ipic18StackComputations
       if tsn > terminatorStackNeeds then
         terminatorStackNeeds = tsn
       end
-      for () in aBlock.mInstructionList do
+      for (mInstruction * *) in aBlock.mInstructionList do
         [mInstruction buildCalledRoutineSetForStackComputations !?calledRoutineSet]
       end
     end
     [!?routineCallMap insertKey ![startLabel nowhere] !calledRoutineSet !terminatorStackNeeds]
-    for () in  calledRoutineSet do
+    for (key) in  calledRoutineSet do
       if not [routineCallMap hasKey !key] then
         startLabelsToExplore += !key
       end
@@ -247,18 +247,18 @@ proc ipic18StackComputations
   end
 #  log routineCallMap ;
 #--- Compute stack requirement of every routine
-  @routineStackRequirementMap routineStackRequirementMap = {}
+  var @routineStackRequirementMap routineStackRequirementMap = {}
   var progress = true
   loop( [routineCallMap count] + 1)
   while progress
   do
     progress = false
-    @routineCallMap tempRoutineCallMap = routineCallMap
+    var @routineCallMap tempRoutineCallMap = routineCallMap
     routineCallMap = {}
-    for () in  tempRoutineCallMap do
-      @uint levels = mTerminatorStackNeeds
-      @bool solved = true
-      for () in mCalledRoutineSet while solved do
+    for (lkey mCalledRoutineSet mTerminatorStackNeeds) in  tempRoutineCallMap do
+      var @uint levels = mTerminatorStackNeeds
+      var @bool solved = true
+      for (key) in mCalledRoutineSet while solved do
         solved = [routineStackRequirementMap hasKey !key]
         if solved then
           [routineStackRequirementMap searchKey ![key nowhere] ?let @uint rLevel]
@@ -276,7 +276,7 @@ proc ipic18StackComputations
     end
   end
   ioListFileContents += "Levels Routine\n"
-  for () in  routineStackRequirementMap do
+  for (lkey mLevels) in  routineStackRequirementMap do
     ioListFileContents += [[mLevels string]stringByLeftPadding !6 !' '] + " " + lkey + "\n"
   end
   ioListFileContents += "\n"
@@ -287,7 +287,7 @@ proc ipic18StackComputations
       warning @location. nowhere: "There are recursive routines"
     end
     ioListFileContents += "The following routines are recursive:\n"
-    for () in  routineCallMap do
+    for (lkey * *) in  routineCallMap do
       ioListFileContents += "  - " + lkey + "\n"
     end  
     ioListFileContents += "\n"
@@ -295,7 +295,7 @@ proc ipic18StackComputations
 #--- Total stack requirements
   if noRecursiveRoutine then
     [routineStackRequirementMap searchKey ![".START" nowhere] ?let @uint mainLevels]
-    @uint totalLevels = mainLevels
+    var @uint totalLevels = mainLevels
     if [routineStackRequirementMap hasKey !".HIGH_INTERRUPT"] then
       [routineStackRequirementMap searchKey ![".HIGH_INTERRUPT" nowhere] ?let @uint highIntLevels]
       totalLevels = totalLevels + highIntLevels + 1

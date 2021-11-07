@@ -35,7 +35,7 @@ override method @ipic18_intermediate_instruction_computed_rcall buildInstruction
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString {
   ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"_computed_goto_4\" [color=red] ;\n"
-  for () in  self.mTargetInstructions do
+  for (mInstruction * *) in  self.mTargetInstructions do
     [mInstruction buildInstructionInvocationGraph
       !inBlockLabel
       !?ioGraphVizString
@@ -382,12 +382,12 @@ proc buildOrderedGraph
   end
 #-------------------------------- Build label map
   var symbolTable =@symbolTableForBlockOptimization.emptyMap{}
-  for () in  ioBlockList do(blockIndex)
+  for (mBlock) in  ioBlockList do(blockIndex)
     [!?symbolTable insertKey !mBlock.mLabel !blockIndex]
   end
 #---
   var g =@blockInvocationGraph.emptyGraph{}
-  for () in  ioBlockList do
+  for (mBlock) in  ioBlockList do
     if mBlock.mAddress == @uint. max then # Only relocatable block
       [!?g addNode !mBlock.mLabel !mBlock.mLabel.string]
       [mBlock.mTerminator buildTerminatorOrderedGraph !mBlock.mLabel !?g]
@@ -398,12 +398,12 @@ proc buildOrderedGraph
   var newOrderedLabelList =@stringlist.emptyList{}
   var visitedNodeSet =@stringset.emptySet{}
   var clusterList =@clusterList.emptyList{}
-  for () in  nodeList do
-    @blockInvocationGraph gg = [g subgraphFromNodes
+  for (mValue) in  nodeList do
+    var @blockInvocationGraph gg = [g subgraphFromNodes
       !@lstringlist. listWithValue { !mValue}
       !visitedNodeSet
     ]
-    for () in  [gg keyList] do
+    for (mValue) in  [gg keyList] do
       visitedNodeSet += ! mValue
     end    
     [!?gg removeEdgesToDominators]
@@ -413,7 +413,7 @@ proc buildOrderedGraph
     ]
     newOrderedLabelList += partialOrderedLabelList
     var cluster =@ipic18BlockList.emptyList{}
-    for () in  partialOrderedLabelList do
+    for (mValue) in  partialOrderedLabelList do
       [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
       let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
       cluster += !b
@@ -421,14 +421,14 @@ proc buildOrderedGraph
     clusterList += !cluster
   end
 #----------------------- Add nodes that are involved in a circular dependance
-  for () in  ioBlockList do
+  for (mBlock) in  ioBlockList do
     if (mBlock.mAddress == @uint. max) # Only relocatable block
      & not [visitedNodeSet hasKey !mBlock.mLabel.string] then
-      @blockInvocationGraph gg = [g subgraphFromNodes
+      var @blockInvocationGraph gg = [g subgraphFromNodes
         !@lstringlist. listWithValue { !mBlock.mLabel}
         !visitedNodeSet
       ]
-      for () in  [gg keyList] do
+      for (mValue) in  [gg keyList] do
         visitedNodeSet += ! mValue
       end
       [!?gg removeEdgesToNode !mBlock.mLabel.string]
@@ -439,7 +439,7 @@ proc buildOrderedGraph
       ]
       newOrderedLabelList += partialOrderedLabelList
       var cluster =@ipic18BlockList.emptyList{}
-      for () in  partialOrderedLabelList do
+      for (mValue) in  partialOrderedLabelList do
         [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
         let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
         cluster += !b
@@ -450,15 +450,15 @@ proc buildOrderedGraph
 #----------------------- Build sorted block list
   var orderedBlockList =@ipic18BlockList.emptyList{}
 #--- First insert absolute blocks from 0
-  @bool continue = true
-  for () in  ioBlockList while continue do
+  var @bool continue = true
+  for (mBlock) in  ioBlockList while continue do
     continue = mBlock.mAddress != @uint. max
     if continue then
       orderedBlockList += !mBlock
     end
   end 
 #--- Insert sorted blocks 
-  for () in  newOrderedLabelList do
+  for (mValue) in  newOrderedLabelList do
     [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
     let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
     orderedBlockList += !b
@@ -466,7 +466,7 @@ proc buildOrderedGraph
 #--- First insert absolute blocks from the end
   let @uint insertionIndex = [orderedBlockList length]
   continue = true
-  for > () in  ioBlockList while continue do
+  for > (mBlock) in  ioBlockList while continue do
     continue = mBlock.mAddress != @uint. max
     if continue then
       [!?orderedBlockList insertAtIndex !mBlock !insertionIndex]
@@ -484,8 +484,8 @@ proc buildOrderedGraph
   end
 #--- Check block definition
   var newSymbolSet =@stringset.emptySet{}
-  @bool ok = true
-  for () in  orderedBlockList do
+  var @bool ok = true
+  for (mBlock) in  orderedBlockList do
     if [newSymbolSet hasKey !mBlock.mLabel.string] then
       let @string s = "BLOCK REORDERING INTERNAL ERROR: block \""
       + mBlock.mLabel + "\" is duplicated"
@@ -496,7 +496,7 @@ proc buildOrderedGraph
       newSymbolSet += !mBlock.mLabel.string
     end
   end
-  for () in  symbolTable do
+  for (lkey *) in  symbolTable do
     if not [newSymbolSet hasKey !lkey.string] then
       let @string s = "BLOCK REORDERING INTERNAL ERROR: block \""
       + lkey + "\" is missing"
@@ -532,11 +532,11 @@ proc buildInvocationGraph
   !@string outGraphVizString {
   outGraphVizString = "digraph G {\n"
   outGraphVizString += "  node [fontname=courier]\n"
-  for () in  inBlockList do
+  for (mBlock) in  inBlockList do
     if mBlock.mAddress != @uint. max then # Absolute bloc
       outGraphVizString += "  \"" + mBlock.mLabel + "\" [shape=rectangle]\n"
     end
-    for () in  mBlock.mInstructionList do
+    for (mInstruction * *) in  mBlock.mInstructionList do
       [mInstruction buildInstructionInvocationGraph !mBlock.mLabel !?outGraphVizString]
     end
     [mBlock.mTerminator buildTerminatorInvocationGraph !mBlock.mLabel !?outGraphVizString !false]
@@ -550,9 +550,9 @@ func blockDiscontinuityCount
   ?let @ipic18BlockList inBlockList
   ->@uint outResult {
   outResult = 0
-  for () in  inBlockList do(blockIndex)
+  for (mBlock) in  inBlockList do(blockIndex)
     if mBlock.mAddress == @uint. max then # Only relocatable block
-      @string nextBlockLabel
+      var @string nextBlockLabel
       if (blockIndex+1) < [inBlockList length] then
         nextBlockLabel = [inBlockList mBlockAtIndex !blockIndex+1].mLabel.string
       else

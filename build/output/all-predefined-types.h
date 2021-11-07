@@ -374,6 +374,10 @@ class GALGAS_location : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG class GALGAS_string getter_locationString (C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const ;
 
+  public: VIRTUAL_IN_DEBUG class GALGAS_location getter_union (const class GALGAS_location & constinOperand0,
+                                                               C_Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Optional Methods
 
@@ -3227,8 +3231,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_uint_36__34_ ;
 class GALGAS_luint : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_uint mProperty_uint ;
+  public: inline GALGAS_uint readProperty_uint (void) const {
+    return mProperty_uint ;
+  }
 
   public: GALGAS_location mProperty_location ;
+  public: inline GALGAS_location readProperty_location (void) const {
+    return mProperty_location ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -3283,10 +3293,6 @@ class GALGAS_luint : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_location getter_location (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_uint (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -4649,8 +4655,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lbigintlist ;
 class GALGAS_lbigint : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_bigint mProperty_bigint ;
+  public: inline GALGAS_bigint readProperty_bigint (void) const {
+    return mProperty_bigint ;
+  }
 
   public: GALGAS_location mProperty_location ;
+  public: inline GALGAS_location readProperty_location (void) const {
+    return mProperty_location ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4705,10 +4717,6 @@ class GALGAS_lbigint : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bigint getter_bigint (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_location getter_location (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -4731,8 +4739,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lbigint ;
 class GALGAS_lbool : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_bool mProperty_bool ;
+  public: inline GALGAS_bool readProperty_bool (void) const {
+    return mProperty_bool ;
+  }
 
   public: GALGAS_location mProperty_location ;
+  public: inline GALGAS_location readProperty_location (void) const {
+    return mProperty_location ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4787,10 +4801,6 @@ class GALGAS_lbool : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_bool (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_location getter_location (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -4813,8 +4823,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lbool ;
 class GALGAS_lchar : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_char mProperty_char ;
+  public: inline GALGAS_char readProperty_char (void) const {
+    return mProperty_char ;
+  }
 
   public: GALGAS_location mProperty_location ;
+  public: inline GALGAS_location readProperty_location (void) const {
+    return mProperty_location ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4869,10 +4885,6 @@ class GALGAS_lchar : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_char getter_char (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_location getter_location (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -4895,8 +4907,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lchar ;
 class GALGAS_ldouble : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_double mProperty_double ;
+  public: inline GALGAS_double readProperty_double (void) const {
+    return mProperty_double ;
+  }
 
   public: GALGAS_location mProperty_location ;
+  public: inline GALGAS_location readProperty_location (void) const {
+    return mProperty_location ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -4951,10 +4969,6 @@ class GALGAS_ldouble : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_double getter_double (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_location getter_location (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -4977,8 +4991,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ldouble ;
 class GALGAS_lsint : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_sint mProperty_sint ;
+  public: inline GALGAS_sint readProperty_sint (void) const {
+    return mProperty_sint ;
+  }
 
   public: GALGAS_location mProperty_location ;
+  public: inline GALGAS_location readProperty_location (void) const {
+    return mProperty_location ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5033,10 +5053,6 @@ class GALGAS_lsint : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_location getter_location (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_sint getter_sint (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5059,8 +5075,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lsint ;
 class GALGAS_lsint_36__34_ : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_sint_36__34_ mProperty_sint_36__34_ ;
+  public: inline GALGAS_sint_36__34_ readProperty_sint_36__34_ (void) const {
+    return mProperty_sint_36__34_ ;
+  }
 
   public: GALGAS_location mProperty_location ;
+  public: inline GALGAS_location readProperty_location (void) const {
+    return mProperty_location ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5115,10 +5137,6 @@ class GALGAS_lsint_36__34_ : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_location getter_location (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_sint_36__34_ getter_sint_36__34_ (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5141,8 +5159,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lsint_36__34_ ;
 class GALGAS_luint_36__34_ : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_uint_36__34_ mProperty_uint_36__34_ ;
+  public: inline GALGAS_uint_36__34_ readProperty_uint_36__34_ (void) const {
+    return mProperty_uint_36__34_ ;
+  }
 
   public: GALGAS_location mProperty_location ;
+  public: inline GALGAS_location readProperty_location (void) const {
+    return mProperty_location ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5197,10 +5221,6 @@ class GALGAS_luint_36__34_ : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_location getter_location (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_uint_36__34_ getter_uint_36__34_ (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5529,8 +5549,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS__32_lstringlist ;
 class GALGAS_range : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_uint mProperty_start ;
+  public: inline GALGAS_uint readProperty_start (void) const {
+    return mProperty_start ;
+  }
 
   public: GALGAS_uint mProperty_length ;
+  public: inline GALGAS_uint readProperty_length (void) const {
+    return mProperty_length ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5585,10 +5611,6 @@ class GALGAS_range : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_length (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_start (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5611,6 +5633,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_range ;
 class GALGAS_functionlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_function mProperty_mValue ;
+  public: inline GALGAS_function readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5656,8 +5681,6 @@ class GALGAS_functionlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_function getter_mValue (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5680,6 +5703,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_functionlist_2D_ele
 class GALGAS_luintlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_luint mProperty_mValue ;
+  public: inline GALGAS_luint readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5728,8 +5754,6 @@ class GALGAS_luintlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_luint getter_mValue (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5752,6 +5776,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_luintlist_2D_elemen
 class GALGAS_objectlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_object mProperty_mValue ;
+  public: inline GALGAS_object readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5797,8 +5824,6 @@ class GALGAS_objectlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_object getter_mValue (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5821,6 +5846,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_objectlist_2D_eleme
 class GALGAS_stringlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_string mProperty_mValue ;
+  public: inline GALGAS_string readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5869,8 +5897,6 @@ class GALGAS_stringlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mValue (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5893,6 +5919,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stringlist_2D_eleme
 class GALGAS_typelist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_type mProperty_mValue ;
+  public: inline GALGAS_type readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -5938,8 +5967,6 @@ class GALGAS_typelist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_type getter_mValue (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -5962,6 +5989,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typelist_2D_element
 class GALGAS_uintlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_uint mProperty_mValue ;
+  public: inline GALGAS_uint readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6010,8 +6040,6 @@ class GALGAS_uintlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_mValue (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -6034,6 +6062,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_uintlist_2D_element
 class GALGAS_uint_36__34_list_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_uint_36__34_ mProperty_mValue ;
+  public: inline GALGAS_uint_36__34_ readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6082,8 +6113,6 @@ class GALGAS_uint_36__34_list_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_uint_36__34_ getter_mValue (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -6106,6 +6135,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_uint_36__34_list_2D
 class GALGAS_bigintlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_bigint mProperty_mValue ;
+  public: inline GALGAS_bigint readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6154,8 +6186,6 @@ class GALGAS_bigintlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bigint getter_mValue (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -6178,6 +6208,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bigintlist_2D_eleme
 class GALGAS_lbigintlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lbigint mProperty_mValue ;
+  public: inline GALGAS_lbigint readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6226,8 +6259,6 @@ class GALGAS_lbigintlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lbigint getter_mValue (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -6250,8 +6281,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lbigintlist_2D_elem
 class GALGAS__32_stringlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_string mProperty_mValue_30_ ;
+  public: inline GALGAS_string readProperty_mValue_30_ (void) const {
+    return mProperty_mValue_30_ ;
+  }
 
   public: GALGAS_string mProperty_mValue_31_ ;
+  public: inline GALGAS_string readProperty_mValue_31_ (void) const {
+    return mProperty_mValue_31_ ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6306,10 +6343,6 @@ class GALGAS__32_stringlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mValue_30_ (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_mValue_31_ (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -6332,8 +6365,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS__32_stringlist_2D_e
 class GALGAS_lstring : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_string mProperty_string ;
+  public: inline GALGAS_string readProperty_string (void) const {
+    return mProperty_string ;
+  }
 
   public: GALGAS_location mProperty_location ;
+  public: inline GALGAS_location readProperty_location (void) const {
+    return mProperty_location ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6388,10 +6427,6 @@ class GALGAS_lstring : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_location getter_location (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_string getter_string (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -6414,6 +6449,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lstring ;
 class GALGAS_lstringlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_mValue ;
+  public: inline GALGAS_lstring readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6462,8 +6500,6 @@ class GALGAS_lstringlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mValue (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 
@@ -6486,8 +6522,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lstringlist_2D_elem
 class GALGAS__32_lstringlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GALGAS_lstring mProperty_mValue_30_ ;
+  public: inline GALGAS_lstring readProperty_mValue_30_ (void) const {
+    return mProperty_mValue_30_ ;
+  }
 
   public: GALGAS_lstring mProperty_mValue_31_ ;
+  public: inline GALGAS_lstring readProperty_mValue_31_ (void) const {
+    return mProperty_mValue_31_ ;
+  }
 
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
@@ -6542,10 +6584,6 @@ class GALGAS__32_lstringlist_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mValue_30_ (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mValue_31_ (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Optional Methods
 

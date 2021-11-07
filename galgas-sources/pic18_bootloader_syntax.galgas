@@ -50,11 +50,11 @@ rule <parse_bootloader>
     $rom$
     $=$
     $integer$ ?var  @luint rs
-    if [outReservedRomSize uint] != 0 then
+    if outReservedRomSize.uint != 0 then
       error rs : "ROM size already defined"
-    elsif [rs uint] == 0 then
+    elsif rs.uint == 0 then
       error rs: "ROM size should be > 0"
-    elsif ([rs uint] mod 8) != 0 then
+    elsif (rs.uint mod 8) != 0 then
       error rs: "ROM size should be a multiple of 8"
     else
       outReservedRomSize = rs
@@ -64,9 +64,9 @@ rule <parse_bootloader>
     $identifier$ ?var  @lstring bankName
     $=$
     $integer$ ?var  @luint rs
-    if [outBootloaderReservedRAMmap hasKey ![bankName string]] then
+    if [outBootloaderReservedRAMmap hasKey !bankName.string] then
       error rs : "RAM size already defined for '" + bankName + "' bank"
-    elsif [rs uint] == 0 then
+    elsif rs.uint == 0 then
       error rs: "RAM size should be > 0"
     else
       [!?outBootloaderReservedRAMmap  insertKey !bankName !rs]
@@ -110,18 +110,18 @@ rule <parse_bootloader>
 #----------------------------------------------------*
 
 rule <start_symbol> {
-  @lstring bootloaderName
-  @lstring deviceName
-  @routineDeclarationList bootloaderRoutineDeclarationList
-  @bootloaderReservedRAMmap bootloaderReservedRAMmap
-  @luint reservedRomSize
-  @routineDeclarationList userRoutineDeclarationList
-  @ramDefinitionList sharedRamDefinitionList
-  @string listFileContents
-  @piccoloDeviceModel piccoloDeviceModel
-  @uint accessBankSplitOffset
-  @ramBankTable ramBank
-  @registerTable registerTable
+  var @lstring bootloaderName
+  var @lstring deviceName
+  var @routineDeclarationList bootloaderRoutineDeclarationList
+  var @bootloaderReservedRAMmap bootloaderReservedRAMmap
+  var @luint reservedRomSize
+  var @routineDeclarationList userRoutineDeclarationList
+  var @ramDefinitionList sharedRamDefinitionList
+  var @string listFileContents
+  var @piccoloDeviceModel piccoloDeviceModel
+  var @uint accessBankSplitOffset
+  var @ramBankTable ramBank
+  var @registerTable registerTable
   <parse_bootloader>
     ?bootloaderName
     ?deviceName
@@ -136,7 +136,7 @@ rule <start_symbol> {
     ?ramBank
     ?registerTable
 #--- Semantic analysis
-  @string listingFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".list"
+  var @string listingFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".list"
   if (@uint. errorCount == 0) & [option piccolo_options.ouputListingFile value] then
     [listFileContents writeToFileWhenDifferentContents !listingFile ?*]
   end
@@ -154,9 +154,9 @@ label importBootloaderSpecification
   !@routineDeclarationList outBootloaderRoutineDeclarationList
   !@routineDeclarationList outUserRoutineDeclarationList
   !@luint outBootloaderReservedROMsize {
-  @lstring bootloaderName
-  @ramDefinitionList sharedRamDefinitionList
-  @string listFileContents
+  var @lstring bootloaderName
+  var @ramDefinitionList sharedRamDefinitionList
+  var @string listFileContents
   <parse_bootloader>
     ?bootloaderName
     ?var @lstring deviceName
@@ -177,7 +177,7 @@ label importBootloaderSpecification
 
 rule <routine_declaration>
   ?!@routineDeclarationList ioRoutineDefinitionList {
-  @bool noreturn
+  var @bool noreturn
   select
     noreturn = false
   or
@@ -186,9 +186,9 @@ rule <routine_declaration>
   end
   $routine$
   $identifier$ ?var  @lstring routineName
-  @luint requiredBank
-  @luint returnedBank
-  @bool preservesBank
+  var @luint requiredBank
+  var @luint returnedBank
+  var @bool preservesBank
   select
     requiredBank = @luint. new { !@uint. max !@location.here}
     returnedBank = @luint. new { !@uint. max !@location.here}

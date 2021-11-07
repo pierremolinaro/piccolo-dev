@@ -91,60 +91,60 @@ override method @baseline_instruction_FOREVER shouldNotContinueInSequence
 proc baseline_analysis
   ?let @baseline_model inPiccoloModel
   ?let @string inSourceFileName {
-  @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
-  if sourceFileBaseName != [[inPiccoloModel mProgramName] string] then
-    error [inPiccoloModel mProgramName]: "the program name ('" + [inPiccoloModel mProgramName]
+  var @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+  if sourceFileBaseName != inPiccoloModel.mProgramName.string then
+    error inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
     + "') should be identical to the file base name '" + sourceFileBaseName + "'"
   end
-  @string listFileContents = ""
+  var @string listFileContents = ""
 #-------------------------------- Analyze Device
-  @piccoloDeviceModel piccoloDeviceModel
+  var @piccoloDeviceModel piccoloDeviceModel
   parseDeviceDefinition ( !inPiccoloModel.mDeviceName ?piccoloDeviceModel )
-  switch [piccoloDeviceModel mProcessorType]
+  switch piccoloDeviceModel.mProcessorType
     case baseline :
-    case pic18_60, pic18_80 : error [inPiccoloModel mDeviceName]: "a pic18 device is not accepted here : only a baseline device"
-    case midrange : error [inPiccoloModel mDeviceName]: "a mid-ranfe device is not accepted here : only a baseline device"
+    case pic18_60, pic18_80 : error inPiccoloModel.mDeviceName: "a pic18 device is not accepted here : only a baseline device"
+    case midrange : error inPiccoloModel.mDeviceName: "a mid-ranfe device is not accepted here : only a baseline device"
   end
 #-------------------------------- Config definition
-  @actualConfigurationMap actualConfigurationMap
+  var @actualConfigurationMap actualConfigurationMap
   buildConfig (
-    ![piccoloDeviceModel mConfigRegisterMap]
-    ![inPiccoloModel mConfigDefinitionList]
+    !piccoloDeviceModel.mConfigRegisterMap
+    !inPiccoloModel.mConfigDefinitionList
     !?listFileContents
     ?actualConfigurationMap
   )
 #-------------------------------- Build constant map
-  @constantMap constantMap = {}
-  @registerTable registerTable = [piccoloDeviceModel mRegisterTable]
+  var @constantMap constantMap = {}
+  var @registerTable registerTable = piccoloDeviceModel.mRegisterTable
 #--- Add "ROM_SIZE" constant
 #  @lstring romSizeString [new !"ROM_SIZE" !here] ;
 #  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
 #--- Add declared constants
-  @stringset usedRegisters = {}
-  for () in  [inPiccoloModel mConstantDefinitionList] do
+  var @stringset usedRegisters = {}
+  for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
     [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
-    if [registerTable hasKey ![mConstantName string]] then
+    if [registerTable hasKey !mConstantName.string] then
       error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
     else
       [!?constantMap insertKey !mConstantName !result]
     end
   end
 #-------------------------------- Ram definition
-  @ramBankTable ramBank = [piccoloDeviceModel mRamBankTable]
+  var @ramBankTable ramBank = piccoloDeviceModel.mRamBankTable
   analyze_ram_sections (
     !"DECLARED VARIABLES"
     !inPiccoloModel.mRamDefinitionList
     !constantMap
     !?usedRegisters
     !?ramBank
-    ![piccoloDeviceModel mRegisterTable]
+    !piccoloDeviceModel.mRegisterTable
     !?listFileContents
     !?registerTable
     ?let @declaredByteMap declaredByteMap
   )
 #-------------------------------- Build routine map
   var routineMap =@baselineRoutineMap.emptyMap{}
-  for () in  inPiccoloModel.mRoutineDefinitionList do
+  for (mRoutineName mPage mIsNoReturn * *) in  inPiccoloModel.mRoutineDefinitionList do
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mPage]
   end
 #-------------------------------- Print constant map
@@ -164,22 +164,22 @@ proc baseline_analysis
       error page :"the \"main\" should be declared in page 0: \"noreturn main page 0\""
     end
   else
-    error [inPiccoloModel mEndOfProgram]: "the program should declare the \"main\" routine"
+    error inPiccoloModel.mEndOfProgram: "the program should declare the \"main\" routine"
   end
 #-------------------------------- Check page routine specification is compatible with device
-  @bool needsToSavePCLATH = false
-  let @uint totalPageCount = ([piccoloDeviceModel.mRomSize uint] + 511) / 512
-  for () in  [inPiccoloModel mRoutineDefinitionList] do
-    if [mPage uint] > 0 then
+  var @bool needsToSavePCLATH = false
+  let @uint totalPageCount = (piccoloDeviceModel.mRomSize.uint + 511) / 512
+  for (* mPage * * *) in  inPiccoloModel.mRoutineDefinitionList do
+    if mPage.uint > 0 then
       needsToSavePCLATH = true
     end
-    if [mPage uint] >= totalPageCount then
+    if mPage.uint >= totalPageCount then
       error mPage:"invalid value ("+ mPage.uint + "); the device has " + totalPageCount + " 512 word page(s) on rom"
     end
   end
 #-------------------------------- Order routines to place "main" routine first
   var sortedRoutineDefinitionList =@baseline_routineDefinitionList.emptyList{}
-  for () in  inPiccoloModel.mRoutineDefinitionList do
+  for (mRoutineName mPage mIsNoReturn mInstructionList mEndOfRoutineLocation) in  inPiccoloModel.mRoutineDefinitionList do
     if mRoutineName.string == "main" then
       [!?sortedRoutineDefinitionList insertAtIndex 
         !mRoutineName
@@ -201,19 +201,19 @@ proc baseline_analysis
 #-------------------------------- Check and translate routines
   var intermediateInstructionList =@baseline_intermediate_instructionList.emptyList{}
   if @uint. errorCount == 0 then
-    @uint currentPage = 0
-    @uint localLabelIndex = 0
+    var @uint currentPage = 0
+    var @uint localLabelIndex = 0
     loop( totalPageCount) while currentPage < totalPageCount do
-      @bool pseudo_PAGE_generated = false
-      for () in  sortedRoutineDefinitionList do
-        if [mPage uint] == currentPage then
+      var @bool pseudo_PAGE_generated = false
+      for (mRoutineName mPage mIsNoReturn mInstructionList *) in  sortedRoutineDefinitionList do
+        if mPage.uint == currentPage then
         #---
           if not pseudo_PAGE_generated then
             pseudo_PAGE_generated = true
             intermediateInstructionList += !@baseline_intermediate_pseudo_PAGE. new { !currentPage}
           end
         #---
-          @routineKind routineKind
+          var @routineKind routineKind
           if mIsNoReturn then
             routineKind = @routineKind. noReturnRoutine
           #--- Check does not continue in sequence
@@ -266,12 +266,12 @@ proc baseline_analysis
     !inPiccoloModel.mRoutineDefinitionList
   )
   var declaredRoutineMap =@baseline_declaredRoutineMap.emptyMap{}
-  for () in  inPiccoloModel.mRoutineDefinitionList do
+  for (mRoutineName * * * *) in  inPiccoloModel.mRoutineDefinitionList do
     [!?declaredRoutineMap insertKey !mRoutineName]
   end
 #-------------------------------- Check used routines
   var unusedRoutineDeclarationUnicity =@stringset.emptySet{}
-  for () in  inPiccoloModel.mUnusedRoutineList do
+  for (mValue) in  inPiccoloModel.mUnusedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' routine is not declared"
     elsif [unusedRoutineDeclarationUnicity hasKey !mValue.string] then
@@ -281,14 +281,14 @@ proc baseline_analysis
     end
     unusedRoutineDeclarationUnicity += !mValue.string
   end
-  for () in  declaredRoutineMap do
+  for (lkey) in  declaredRoutineMap do
     if (not [usedRoutineSet hasKey !lkey.string]) & (not [unusedRoutineDeclarationUnicity hasKey !lkey.string]) then
       warning lkey : "the '" + lkey + "' routine is unused"
     end
   end
 #----------------------------------------------------------- Check declared bytes are used
   var unusedDeclarationUnicity =@stringset.emptySet{}
-  for () in  inPiccoloModel.mUnusedRegisterList do
+  for (mValue) in  inPiccoloModel.mUnusedRegisterList do
     if not [registerTable hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' byte is not declared"
     elsif [unusedDeclarationUnicity hasKey !mValue.string] then
@@ -298,7 +298,7 @@ proc baseline_analysis
     end
     unusedDeclarationUnicity += !mValue.string
   end
-  for () in  declaredByteMap do
+  for (lkey) in  declaredByteMap do
     if (not [usedRegisters hasKey !lkey.string]) & (not [unusedDeclarationUnicity hasKey !lkey.string]) then
       warning lkey : "the '" + lkey + "' byte is unused"
     end
@@ -310,8 +310,8 @@ proc baseline_analysis
     listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     listFileContents += "Generated intermediate code:\n"
     listFileContents += " Line Length Mnemonic\n"
-    @uint currentAddress = 0
-    for () in  intermediateInstructionList do(idx)
+    var @uint currentAddress = 0
+    for (mInstruction) in  intermediateInstructionList do(idx)
       listFileContents += [[idx string] stringByLeftPadding !5 !' '] + " "
       listFileContents += [[[mInstruction length] string] stringByLeftPadding !6 !' '] + " "
       [mInstruction print !?listFileContents]
@@ -357,14 +357,14 @@ proc baseline_analysis
     listFileContents += "Address Code Mnemonic\n"
     build_baseline_binary_code (
       !assemblyInstructionList
-      ![piccoloDeviceModel.mRomSize uint]
+      !piccoloDeviceModel.mRomSize.uint
       !?listFileContents
       ?var @uint usedROMsize
     )
   end
 #-------------------------------- Listing file
   if [option piccolo_options.ouputListingFile value] then
-    @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
+    var @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]
   end
 #-------------------------------- Code generation
@@ -381,7 +381,7 @@ proc baseline_analysis
 #      ?usedROMsize
 #    ;
     getGeneratedContents ( ?var @string contents )
-    @string destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
+    var @string destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
     [contents writeToFileWhenDifferentContents !destinationFile ?*]
     if [option piccolo_options.output_C_Array value] then
       let @string baseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
@@ -409,31 +409,31 @@ proc baseline_analysis
 #    end if ;
   #--- Generate asm file, if corresponding option enabled
     if [option piccolo_options.generateAssembly value] then
-      @string assemblyCode = "  processor " + inPiccoloModel.mDeviceName + "\n\n"
-      for () in  assemblyInstructionList do
+      var @string assemblyCode = "  processor " + inPiccoloModel.mDeviceName + "\n\n"
+      for (mInstruction) in  assemblyInstructionList do
         [mInstruction print !?assemblyCode]
         assemblyCode += "\n"
       end
       assemblyCode += "\n;--- Registers\n"
-      for () in  registerTable do
+      for (lkey mRegisterAddressList * * * *) in  registerTable do
         [mRegisterAddressList first ?var @uint address]
         assemblyCode += lkey.string + " EQU " + [address hexString] + "\n"
       end
       assemblyCode += "W EQU 0\n\n"
       assemblyCode += ";--- Configuration\n"
-      for () in  actualConfigurationMap do
+      for (* mRegisterAddress mRegisterValue) in  actualConfigurationMap do
         assemblyCode += "  __config " + [mRegisterAddress hexString] + ", " + [mRegisterValue & 255 hexString] + "\n"
       end
       assemblyCode += "\n  END\n"
-      @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
+      var @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
       [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*]
     end
   else # There are errors : delete hex and asm files
-    @string hexDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
+    var @string hexDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
     if [hexDestinationFile fileExists] then
       [@string deleteFile !hexDestinationFile]
     end
-    @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
+    var @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
     if [asmDestinationFile fileExists] then
       [@string deleteFile !asmDestinationFile]
     end

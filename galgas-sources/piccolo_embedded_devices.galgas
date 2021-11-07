@@ -13,10 +13,10 @@ filewrapper embeddedDevices in "../deviceDefinitions" {
 proc parseDeviceDefinition
   ?let @lstring inDeviceName
   !@piccoloDeviceModel outPiccoloDeviceModel {
-  @filewrapper fw = [filewrapper embeddedDevices]
-  @string deviceFullName = [inDeviceName string] + ".piccoloDevice"
+  var @filewrapper fw = [filewrapper embeddedDevices]
+  var @string deviceFullName = inDeviceName.string + ".piccoloDevice"
   if [fw fileExistsAtPath !deviceFullName] then
-    @string definitionString = [fw textFileContentsAtPath !deviceFullName]
+    var @string definitionString = [fw textFileContentsAtPath !deviceFullName]
     grammar piccoloDevice_grammar on (definitionString, deviceFullName) ?outPiccoloDeviceModel
   else
     error

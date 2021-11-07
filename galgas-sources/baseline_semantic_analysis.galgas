@@ -3,8 +3,8 @@
 #----------------------------------------------------------------------------*
 
 map @baselineRoutineMap {
-  @bool mIsNoReturn
-  @luint mPage
+  public var @bool mIsNoReturn
+  public var @luint mPage
   insert insertKey error message "the '%K' routine is already declared in %L"
   search searchKey error message "the '%K' routine is not declared"
 }
@@ -21,7 +21,7 @@ method @registerExpression resolveBaselineAccess
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   ioUsedRegisters += !self.mRegisterName.string
 #--- Build assembly string
-  @string assemblyString = [self.mRegisterName string]
+  var @string assemblyString = self.mRegisterName.string
   if offset > 0LS then
     assemblyString += " + " + [[offset uint] hexString]
   end
@@ -36,10 +36,10 @@ method @registerExpression resolveBaselineAccess
   ]
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:true !protection]
 #--- Accept if one address is <= 0x1F
-  @uint registerAddress = 0
+  var @uint registerAddress = 0
   if [registerAddressList length] > 0 then
-    @bool found = false
-    for () in  registerAddressList while not found do
+    var @bool found = false
+    for (mValue) in  registerAddressList while not found do
       registerAddress = mValue
       found = mValue <= 0x1F
     end
@@ -70,9 +70,9 @@ proc handleBaselineInstructionList
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters {
   outContinuesInSequence = true
-  for () in  inInstructionList do(idx)
+  for (mInstruction) in  inInstructionList do(idx)
     if not outContinuesInSequence then
-      error [mInstruction mInstructionLocation] : "Unreachable code"
+      error mInstruction.mInstructionLocation : "Unreachable code"
       outContinuesInSequence = true
     end
     [mInstruction build_baseline_intermediate_instructionList
@@ -157,8 +157,8 @@ override method @baseline_instruction_TRIS build_baseline_intermediate_instructi
   end
 #---
   if not [acceptableTRISoperand () hasKey !self.mOperand.string] then
-    @string s = ""
-    for () in  acceptableTRISoperand ()
+    var @string s = ""
+    for (key) in  acceptableTRISoperand ()
     do s += key
     between s += ", "    
     end
@@ -480,7 +480,7 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
     ?var @bitSliceTable bitSliceTable
     !?ioUsedRegisters
   ]
-  @uint bitNumber
+  var @uint bitNumber
   [self.mBitNumber getBitNumber
     !inRegisterTable
     !inConstantMap
@@ -494,7 +494,7 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
     !intermediateRegisterDescription
     !bitNumber}
 #--- Append Instruction
-  @bool unusedContinuesInSequence = true
+  var @bool unusedContinuesInSequence = true
   [self.mInstruction build_baseline_intermediate_instructionList
     !inCurrentPage
     !inRoutineMap
@@ -525,7 +525,7 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters {
 #---
-  @baseline_instruction_FD_base_code baseCode
+  var @baseline_instruction_FD_base_code baseCode
   if self.mIncrement then
     baseCode = @baseline_instruction_FD_base_code. INCFSZ
   else
@@ -546,7 +546,7 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
     !intermediateRegisterDescription
     !self.m_W_isDestination}
 #---
-  @bool unusedContinuesInSequence = true
+  var @bool unusedContinuesInSequence = true
   [self.mInstruction build_baseline_intermediate_instructionList
     !inCurrentPage
     !inRoutineMap
@@ -584,7 +584,7 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
     error self.mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction"
   end
 #--- Check instruction list does not change bank
-  @string label0 = ".L" + [ioLocalLabelIndex string] 
+  var @string label0 = ".L" + [ioLocalLabelIndex string] 
   ioLocalLabelIndex ++
   ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label0 !self.mInstructionLocation}}
   handleBaselineInstructionList (
@@ -691,7 +691,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters {
 #--- Generate label
-  @string labelInstructionBegin = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+  var @string labelInstructionBegin = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
 #--- Define label
   ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !labelInstructionBegin !self.mInstructionLocation}}
 #--- Repeated instructions
@@ -710,7 +710,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
     !?ioUsedRegisters
   )
 #--- while parts
-  for () in  self.mWhilePartList do
+  for (mCondition mInstructionList *) in  self.mWhilePartList do
     if [mInstructionList length] == 0 then
       [mCondition build_intermediate_condition_instructions
         !inCurrentPage
@@ -724,7 +724,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
         !?ioUsedRegisters
       ]
     else
-      @string nextBranchLabel = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+      var @string nextBranchLabel = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
       [mCondition build_intermediate_condition_instructions
         !inCurrentPage
         !inRegisterTable
@@ -773,8 +773,8 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters {
 #---
-  @string label_nextCondition = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
-  @string label_endOfIfinstruction = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+  var @string label_nextCondition = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+  var @string label_endOfIfinstruction = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
 #--- Translate condition
   [self.mIfCondition build_intermediate_condition_instructions
     !inCurrentPage
@@ -984,7 +984,7 @@ override method @baseline_bitTest_in_structured_if_condition build_intermediate_
     ?var @bitSliceTable bitSliceTable
     !?ioUsedRegisters
   ]
-  @uint bitNumber
+  var @uint bitNumber
   [self.mBitNumber getBitNumber
     !inRegisterTable
     !inConstantMap

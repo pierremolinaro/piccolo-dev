@@ -3,38 +3,38 @@
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @pic18SimpleConstantCaseItem : @pic18AbstractCaseItem {
-  @immediatExpression mCaseExpression
-  @location mCaseExpressionLocation
+  public var @immediatExpression mCaseExpression
+  public var @location mCaseExpressionLocation
 }
 
 #·······················································································································
 
 refclass @pic18IntervalCaseItem : @pic18AbstractCaseItem {
-  @immediatExpression mMinExpression
-  @immediatExpression mMaxExpression
-  @location mCaseExpressionLocation
+  public var @immediatExpression mMinExpression
+  public var @immediatExpression mMaxExpression
+  public var @location mCaseExpressionLocation
 }
 
 #·······················································································································
 
 list @pic18CaseExpressionList {
-  @pic18AbstractCaseItem mCaseItem
+  public var @pic18AbstractCaseItem mCaseItem
 }
 
 #·······················································································································
 
 list @pic18SwitchInstructionCaseList {
-  @location mStartOfCase
-  @pic18CaseExpressionList mCaseExpressionList
-  @pic18InstructionList mInstructionList
+  public var @location mStartOfCase
+  public var @pic18CaseExpressionList mCaseExpressionList
+  public var @pic18InstructionList mInstructionList
 }
 
 #·······················································································································
 
 refclass @pic18Instruction_switch : @pic18PiccoloInstruction {
-  @pic18SwitchInstructionCaseList mCaseList
-  @location mElseBranchStartLocation
-  @pic18InstructionList mElseInstructionList
+  public var @pic18SwitchInstructionCaseList mCaseList
+  public var @location mElseBranchStartLocation
+  public var @pic18InstructionList mElseInstructionList
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -63,19 +63,19 @@ override method @pic18Instruction_switch analyze
   let exitLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
   ioLocalLabelIndex ++
 #--- Comparison value
-  @sint64 lastComparisonValue = 0LS
+  var @sint64 lastComparisonValue = 0LS
 #--- By default, do not continue in sequence
-  @bool continuesInSequence = false
+  var @bool continuesInSequence = false
 #---
   let initialBankSetting = ioCurrentBank
-  @uint finalBankSetting = .max # Any value
+  var @uint finalBankSetting = .max # Any value
   var finalBankSettingDefined = false
 #---
-  for () in  self.mCaseList do
+  for (mStartOfCase mCaseExpressionList mInstructionList) in  self.mCaseList do
   #--- Label
     let conditionTrueLabel = @lstring.new { !".L.accepted." + [ioLocalLabelIndex string] !self.mInstructionLocation} 
   #--- Generate test blocks
-    for () in mCaseExpressionList do
+    for (mCaseItem) in mCaseExpressionList do
       let conditionLabel = [ioLocalLabelIndex string]
       ioLocalLabelIndex ++
       [mCaseItem analyzeCaseItem
@@ -94,7 +94,7 @@ override method @pic18Instruction_switch analyze
   #--- Analyze instruction list
     let @lstring conditionFalseLabel = ioBlockLabel
     ioBlockLabel = conditionTrueLabel
-    @uint branchFinalBank = initialBankSetting
+    var @uint branchFinalBank = initialBankSetting
     analyzeInstructionList (
       !mInstructionList
       !?ioGeneratedBlockList
@@ -140,7 +140,7 @@ override method @pic18Instruction_switch analyze
     ioBlockLabel = conditionFalseLabel
   end
 #--- "else" instruction list
-  @uint branchFinalBank = initialBankSetting
+  var @uint branchFinalBank = initialBankSetting
   analyzeInstructionList (
     !self.mElseInstructionList
     !?ioGeneratedBlockList
@@ -387,7 +387,7 @@ override method @pic18Instruction_switch addUsedRoutines
   ?let @pic18MacroMap inMacroMap
   ?!@stringset ioUsedRoutines
 {
-  for () in  self.mCaseList do
+  for (* * mInstructionList) in  self.mCaseList do
     addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
   end
   addPic18UsedRoutinesFromInstructionList (!self.mElseInstructionList !inMacroMap !?ioUsedRoutines )

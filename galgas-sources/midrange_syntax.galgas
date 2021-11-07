@@ -40,8 +40,8 @@ rule <start_symbol> {
   var unusedRoutineList =@lstringlist.emptyList{}
   var configDefinitionList =@configDefinitionList.emptyList{}
   var constantDefinitionList =@constantDefinitionList.emptyList{}
-  @bool needsComputedGoto2 = false
-  @bool needsComputedGoto4 = false
+  var @bool needsComputedGoto2 = false
+  var @bool needsComputedGoto4 = false
   repeat
   while
     $unused$
@@ -97,11 +97,11 @@ rule <start_symbol> {
     }
     midrange_analyze ( !piccoloModel !@string. stringWithSourceFilePath )
   else
-    @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
+    var @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
     if [hexDestinationFile fileExists] then
       [@string deleteFile !hexDestinationFile]
     end
-    @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
+    var @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
     if [asmDestinationFile fileExists] then
       [@string deleteFile !asmDestinationFile]
     end
@@ -187,13 +187,13 @@ rule <midrange_interrupt_definition>
   ?!@bool ioNeedsComputedGoto2 
   ?!@bool ioNeedsComputedGoto4 {
   $interrupt$
-  @location interruptionLocation = @location.here
+  var @location interruptionLocation = @location.here
   $contextsave$
   $identifier$ ?var  @lstring firstSaveRegister
   $,$
   $identifier$ ?var  @lstring secondSaveRegister
   ${$
-  @labelMap labelMap = {}
+  var @labelMap labelMap = {}
   <midrange_instruction_list>
     ?let instructionList
     !?ioNeedsComputedGoto2
@@ -215,7 +215,7 @@ rule <midrange_routine_definition>
   ?!@bool ioNeedsComputedGoto2 
   ?!@bool ioNeedsComputedGoto4
 {
-  @bool noreturn
+  var @bool noreturn
   select
     noreturn = false
   or
@@ -225,7 +225,7 @@ rule <midrange_routine_definition>
   $routine$
   $identifier$ ?var  @lstring routineName indexing routineDefinition
 #--- Page
-  @luint page
+  var @luint page
   select
     page = @luint. new { !0 !@location.here}
   or
@@ -233,9 +233,9 @@ rule <midrange_routine_definition>
     $integer$ ? page
   end
 #--- Bank
-  @luint requiredBank
-  @luint returnedBank
-  @bool preservesBank
+  var @luint requiredBank
+  var @luint returnedBank
+  var @bool preservesBank
   select
     requiredBank = @luint. new { !@uint. max !@location.here}
     returnedBank = @luint. new { !@uint. max !@location.here}
@@ -275,7 +275,7 @@ rule <midrange_routine_definition>
     end
   end
   ${$
-  @labelMap labelMap = {}
+  var @labelMap labelMap = {}
   <midrange_instruction_list>
     ?let instructionList
     !?ioNeedsComputedGoto2
@@ -303,7 +303,7 @@ rule <midrange_structured_instruction>
  {
   select
     $do$
-    @lstring doLabel
+    var @lstring doLabel
     select
       doLabel = .new {!"" !.here}
     or
@@ -331,7 +331,7 @@ rule <midrange_structured_instruction>
       !instructionList
       !@location.here}
     $end$
-    @lstring endDoLabel
+    var @lstring endDoLabel
     select
       endDoLabel = .new {!"" !.here}
     or
@@ -350,9 +350,9 @@ rule <midrange_structured_instruction>
     outInstruction = @midrangeInstruction_checknobank. new { !@location.here}
   or
     $banksel$
-    @location instructionLocation = @location.here
+    var @location instructionLocation = @location.here
     <register_parsing> ?var @registerExpression register
-    @bool warningOnUselessBanksel
+    var @bool warningOnUselessBanksel
     select
       warningOnUselessBanksel = true
     or
@@ -363,9 +363,9 @@ rule <midrange_structured_instruction>
     outInstruction = @midrange_instruction_banksel_register. new { !instructionLocation !register !warningOnUselessBanksel}
   or
     $banksel$
-    @location instructionLocation = @location.here
+    var @location instructionLocation = @location.here
     $integer$ ?var  @luint bank
-    @bool warningOnUselessBanksel
+    var @bool warningOnUselessBanksel
     select
       warningOnUselessBanksel = true
     or
@@ -376,9 +376,9 @@ rule <midrange_structured_instruction>
     outInstruction = @midrange_instruction_banksel. new { !instructionLocation !bank !warningOnUselessBanksel}
   or
     $banksave$
-    @location instructionLocation = @location.here
+    var @location instructionLocation = @location.here
     <register_parsing> ?var @registerExpression register
-    @midrange_instructionList instructionList
+    var @midrange_instructionList instructionList
     <midrange_instruction_list>
       ?instructionList
       !?ioNeedsComputedGoto2
@@ -395,21 +395,21 @@ rule <midrange_structured_instruction>
     outInstruction = @midrange_instruction_nobanksel. new { !@location.here}
   or
     $forever$
-    @lstring foreverLabel
+    var @lstring foreverLabel
     select
       foreverLabel = .new {!"" !.here}
     or
       $label$ ?foreverLabel
       [!?ioLabelMap insertKey !foreverLabel]
     end
-    @location instructionLocation = @location.here
+    var @location instructionLocation = @location.here
     <midrange_instruction_list>
       ?let instructionList
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
       !?ioLabelMap
     $end$
-    @lstring endForeverLabel
+    var @lstring endForeverLabel
     select
       endForeverLabel = .new {!"" !.here}
     or
@@ -425,10 +425,10 @@ rule <midrange_structured_instruction>
       !@location.here}
   or
     $if$
-    @location instructionLocation = @location.here
-    @registerExpression registerExpression
-    @bitNumberExpression bitNumberExpression
-    @bool skipIfSet
+    var @location instructionLocation = @location.here
+    var @registerExpression registerExpression
+    var @bitNumberExpression bitNumberExpression
+    var @bool skipIfSet
     select
       $!$
       <register_parsing> ? registerExpression
@@ -442,7 +442,7 @@ rule <midrange_structured_instruction>
       skipIfSet = false
     end
     $:$
-    @midrange_instruction instruction
+    var @midrange_instruction instruction
     <midrange_simple_instruction> ?instruction
     outInstruction = @midrange_instruction_IF_BitTest. new {
       !instructionLocation
@@ -452,28 +452,28 @@ rule <midrange_structured_instruction>
       !bitNumberExpression}
   or
     $if$
-    @location instructionLocation = @location.here
-    @bool increment
+    var @location instructionLocation = @location.here
+    var @bool increment
     select
       $decf$ increment = false
     or
       $incf$ increment = true
     end
-    @registerExpression registerExpression
+    var @registerExpression registerExpression
     <register_parsing> ? registerExpression
-    @bool w_isTarget
+    var @bool w_isTarget
     select
       w_isTarget = false
     or
       $,$ $w$ w_isTarget = true
     end
     $identifier$ ?var  @lstring conditionString
-    @string condition = [[conditionString string] uppercaseString]
+    var @string condition = [conditionString.string uppercaseString]
     if condition != "NZ" then
       error conditionString:"invalid '" + condition + "' condition; it should be 'nz'"
     end
     $:$
-    @midrange_instruction instruction
+    var @midrange_instruction instruction
     <midrange_simple_instruction> ?instruction
     outInstruction = @midrange_instruction_IF_IncDec. new {
       !instructionLocation
@@ -484,7 +484,7 @@ rule <midrange_structured_instruction>
     }
   or
     $if$
-    @lstring ifLabel
+    var @lstring ifLabel
     select
       ifLabel = .new {!"" !.here}
     or
@@ -498,7 +498,7 @@ rule <midrange_structured_instruction>
       !?ioNeedsComputedGoto4
       !?ioLabelMap
     $end$
-    @lstring endIfLabel
+    var @lstring endIfLabel
     select
       endIfLabel = .new {!"" !.here}
     or
@@ -510,25 +510,25 @@ rule <midrange_structured_instruction>
     end 
   or
     $do$
-    @lstring doLabel
+    var @lstring doLabel
     select
       doLabel = .new {!"" !.here}
     or
       $label$ ?doLabel
       [!?ioLabelMap insertKey !doLabel]
     end
-    @location instructionLocation = @location.here
-    @midrange_instructionList repeatedInstructionList
+    var @location instructionLocation = @location.here
+    var @midrange_instructionList repeatedInstructionList
     <midrange_instruction_list>
       ?repeatedInstructionList
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
       !?ioLabelMap
-    @location endOfRepeatedInstructionList = @location.here
+    var @location endOfRepeatedInstructionList = @location.here
     var whilePartList =@midrange_partList.emptyList{}
     repeat
       $while$
-      @lstring whileLabel
+      var @lstring whileLabel
       select
         whileLabel = .new {!"" !.here}
       or
@@ -538,7 +538,7 @@ rule <midrange_structured_instruction>
         error whileLabel : "'while' label does not match 'do' label, it should be "
            + (if doLabel.string != "" then doLabel.string else "empty" end)
       end 
-      @midrange_conditionExpression whileCondition
+      var @midrange_conditionExpression whileCondition
       <midrange_condition_expression> ?whileCondition
       <midrange_instruction_list>
         ?let instructionList
@@ -549,7 +549,7 @@ rule <midrange_structured_instruction>
     while
     end
     $end$
-    @lstring endDoLabel
+    var @lstring endDoLabel
     select
       endDoLabel = .new {!"" !.here}
     or
@@ -566,19 +566,19 @@ rule <midrange_structured_instruction>
       !whilePartList}
   or
     $mnop$
-    @location instructionLocation = @location.here
+    var @location instructionLocation = @location.here
     $integer$ ?var  @luint occurrenceFactor
     outInstruction = @midrange_instruction_MNOP. new { !instructionLocation !occurrenceFactor}
   or
     $jsr$
-    @location instructionLocation = @location.here
+    var @location instructionLocation = @location.here
     $identifier$ ?var  @lstring targetLabelName
     outInstruction = @midrange_instruction_JSR. new {
       !instructionLocation
       !targetLabelName}
   or
     $jump$
-    @location instructionLocation = @location.here
+    var @location instructionLocation = @location.here
     $identifier$ ?var  @lstring targetLabelName
     outInstruction = @midrange_instruction_JUMP. new {
       !instructionLocation
@@ -596,20 +596,20 @@ rule <midrange_structured_if_instruction>
   ?!@labelMap ioLabelMap
 
 {
-  @location instructionLocation = @location.here
-  @midrange_conditionExpression structured_if_condition
+  var @location instructionLocation = @location.here
+  var @midrange_conditionExpression structured_if_condition
   <midrange_condition_expression> ?structured_if_condition
   <midrange_instruction_list>
     ?let thenInstructionList
     !?ioNeedsComputedGoto2
     !?ioNeedsComputedGoto4
     !?ioLabelMap
-  @midrange_instructionList elseInstructionList
+  var @midrange_instructionList elseInstructionList
   select
     elseInstructionList = @midrange_instructionList. emptyList
   or
     $elsif$
-    @lstring elsifIfLabel
+    var @lstring elsifIfLabel
     select
       elsifIfLabel = .new {!"" !.here}
     or
@@ -629,7 +629,7 @@ rule <midrange_structured_if_instruction>
     elseInstructionList += !elsifPartInstruction
   or
     $else$
-    @lstring elseLabel
+    var @lstring elseLabel
     select
       elseLabel = .new {!"" !.here}
     or
@@ -645,7 +645,7 @@ rule <midrange_structured_if_instruction>
       !?ioNeedsComputedGoto4
       !?ioLabelMap
   end
-  @location endOfElsePartLocation = @location.here
+  var @location endOfElsePartLocation = @location.here
   outInstruction = @midrange_instruction_structured_if. new {
     !instructionLocation
     !structured_if_condition
@@ -658,7 +658,7 @@ rule <midrange_structured_if_instruction>
 
 rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
   select
-    @midrange_instruction_FD_base_code baseCode
+    var @midrange_instruction_FD_base_code baseCode
     select
       $addwf$
       baseCode = .ADDWF
@@ -723,7 +723,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
       !false # W is not destination
     }
   or
-    @midrange_F_instruction_base_code FAinstruction
+    var @midrange_F_instruction_base_code FAinstruction
     select
       $clrf$
       FAinstruction = @midrange_F_instruction_base_code. CLRF
@@ -731,25 +731,25 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
       $movwf$
       FAinstruction = @midrange_F_instruction_base_code. MOVWF
     end
-    @location instructionLocation = @location.here
-    @registerExpression registerExpression
+    var @location instructionLocation = @location.here
+    var @registerExpression registerExpression
     <register_parsing> ? registerExpression
     outInstruction = @midrange_instruction_F. new {
       !instructionLocation
       !FAinstruction
       !registerExpression}
   or
-    @midrange_bit_oriented_op bitOrientedOp
+    var @midrange_bit_oriented_op bitOrientedOp
     select
       $bcf$ bitOrientedOp = @midrange_bit_oriented_op. BCF
     or
       $bsf$ bitOrientedOp = @midrange_bit_oriented_op. BSF
     end
-    @location instructionLocation = @location.here
-    @registerExpression registerExpression
+    var @location instructionLocation = @location.here
+    var @registerExpression registerExpression
     <register_parsing> ? registerExpression
     $.$
-    @bitNumberExpression bitNumberExpression
+    var @bitNumberExpression bitNumberExpression
     <bit_number_parsing> ? bitNumberExpression
     outInstruction = @midrange_instruction_FB. new {
       !instructionLocation
@@ -758,7 +758,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
       !bitNumberExpression}
   or
     $goto$
-    @location instructionLocation = @location.here
+    var @location instructionLocation = @location.here
     $identifier$ ?var  @lstring targetLabelName indexing routineCall
     outInstruction = @midrange_instruction_GOTO. new {
       !instructionLocation
@@ -783,7 +783,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
     $sleep$
     outInstruction = @midrange_instruction_SLEEP. new { !@location.here}
   or
-    @midrange_literal_instruction_opcode literalInstruction
+    var @midrange_literal_instruction_opcode literalInstruction
     select
       $addlw$ literalInstruction = @midrange_literal_instruction_opcode. ADDLW
     or
@@ -797,8 +797,8 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
     or
       $xorlw$ literalInstruction = @midrange_literal_instruction_opcode. XORLW
     end
-    @location instructionLocation = @location.here
-    @immediatExpression expression
+    var @location instructionLocation = @location.here
+    var @immediatExpression expression
     <immediate_expression> ?expression
     outInstruction = @midrange_instruction_literalOperation. new {
       !instructionLocation
@@ -812,7 +812,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
 rule <midrange_condition_factor>
   !@midrange_conditionExpression outCondition {
   $!$
-  @midrange_conditionExpression condition
+  var @midrange_conditionExpression condition
   <midrange_condition_factor> ? condition
   outCondition = @midrange_negateCondition. new { !condition}
 }
@@ -829,23 +829,23 @@ rule <midrange_condition_factor>
 rule <midrange_condition_factor>
   !@midrange_conditionExpression outCondition {
   select
-    @bool isIncrement
+    var @bool isIncrement
     select
       $incf$ isIncrement = true
     or
       $decf$ isIncrement = false
     end
-    @registerExpression registerExpression
+    var @registerExpression registerExpression
     <register_parsing> ? registerExpression
-    @bool W_isDestination
+    var @bool W_isDestination
     select
       W_isDestination = false
     or
       $,$ $w$ W_isDestination = true
     end
     $identifier$ ?var  @lstring conditionString
-    @string condition = [[conditionString string] uppercaseString]
-    @bool branchIfZero
+    var @string condition = [conditionString.string uppercaseString]
+    var @bool branchIfZero
     if condition == "Z" then
       branchIfZero = true
     elsif condition == "NZ" then
@@ -861,8 +861,8 @@ rule <midrange_condition_factor>
       !W_isDestination
       !branchIfZero}
   or
-    @registerExpression registerExpression
-    @bitNumberExpression bitNumberExpression
+    var @registerExpression registerExpression
+    var @bitNumberExpression bitNumberExpression
 #    @bool BTFSSinstruction
     <register_parsing> ? registerExpression
     $.$
@@ -911,10 +911,10 @@ rule <midrange_condition_expression>
   repeat
   while
     $|$
-    @midrange_conditionExpression c
+    var @midrange_conditionExpression c
     <midrange_condition_term> ? c
-    @midrange_conditionExpression rc = @midrange_negateCondition. new { !c}
-    @midrange_conditionExpression lc = @midrange_negateCondition. new { !outCondition}
+    var @midrange_conditionExpression rc = @midrange_negateCondition. new { !c}
+    var @midrange_conditionExpression lc = @midrange_negateCondition. new { !outCondition}
     outCondition = @midrange_negateCondition. new { !@midrange_andCondition. new { !lc !rc}}
   end
   $)$
@@ -928,7 +928,7 @@ rule <midrange_condition_term>
   repeat
   while
     $&$
-    @midrange_conditionExpression c
+    var @midrange_conditionExpression c
     <midrange_condition_factor> ? c
     outCondition = @midrange_andCondition. new { !outCondition !c}
   end

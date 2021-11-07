@@ -1,7 +1,7 @@
 
 map @blockDurationMap {
-  @uint mMinDuration
-  @uint mMaxDuration
+  public var @uint mMinDuration
+  public var @uint mMaxDuration
   insert insertKey error message "the '%K' entry is already declared in %L"
   search searchKey error message "the '%K' entry is not declared"
 }
@@ -559,8 +559,8 @@ proc ipic18DurationComputations
   !@blockDurationMap outBlockDurationMap
 {
 #--- Next label list
-  @stringlist nextLabelList = {}
-  for () in ioBlockList do
+  var @stringlist nextLabelList = {}
+  for (mBlock) in ioBlockList do
     nextLabelList += !mBlock.mLabel.string
   end
   nextLabelList += !""
@@ -593,7 +593,7 @@ method @ipic18Block computeDuration
     [self.mTerminator terminatorMinMaxDuration !ioExploredBlockMap !inNextLabel ?let terminatorMin ?let terminatorMax]
     var min = terminatorMin
     var max = terminatorMax
-    @ipic18SequentialInstructionList computedInstructionList = {}
+    var @ipic18SequentialInstructionList computedInstructionList = {}
     var ok = min <= max
     for > (instr * *) in self.mInstructionList  do
       [instr minMaxDuration

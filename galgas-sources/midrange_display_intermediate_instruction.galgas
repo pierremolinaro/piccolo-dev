@@ -29,7 +29,7 @@ method @midrange_intermediate_pseudo_LABEL print ?!@string ioListFileContents {
 
 override
 method @midrange_intermediate_instruction_FD print ?!@string ioListFileContents {
-  ioListFileContents += [self.mInstruction_FD_base_code mnemonic] + " " + [self.mRegisterDescription mAssemblyString]
+  ioListFileContents += [self.mInstruction_FD_base_code mnemonic] + " " + self.mRegisterDescription.mAssemblyString
   if self.m_W_isDestination then
     ioListFileContents += ", W"
   end
@@ -39,14 +39,14 @@ method @midrange_intermediate_instruction_FD print ?!@string ioListFileContents 
 
 override
 method @midrange_intermediate_instruction_F print ?!@string ioListFileContents {
-  ioListFileContents += [self.mFinstruction mnemonic] + " " + [self.mRegisterDescription mAssemblyString]
+  ioListFileContents += [self.mFinstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString
 }
 
 #----------------------------------------------------------------------------*
 
 override
 method @midrange_intermediate_instruction_FB print ?!@string ioListFileContents {
-  ioListFileContents += [self.mBitOrientedOp mnemonic] + " " + [self.mRegisterDescription mAssemblyString] + ", " + [self.mBitNumber string]
+  ioListFileContents += [self.mBitOrientedOp mnemonic] + " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
 }
 
 #----------------------------------------------------------------------------*
@@ -58,7 +58,7 @@ method @midrange_intermediate_instruction_BitTestSkip print ?!@string ioListFile
   else
     ioListFileContents += "BTFSC"
   end
-  ioListFileContents += " " + [self.mRegisterDescription mAssemblyString] + ", " + [self.mBitNumber string]
+  ioListFileContents += " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
 }
 
 #----------------------------------------------------------------------------*
@@ -143,7 +143,7 @@ method @midrange_intermediate_instruction_literalOperation print ?!@string ioLis
 
 override
 method @midrange_intermediate_instruction_MNOP print ?!@string ioListFileContents {
-  ioListFileContents += "MNOP " + [[self.mOccurrenceFactor uint] string]
+  ioListFileContents += "MNOP " + [self.mOccurrenceFactor.uint string]
 }
 
 #----------------------------------------------------------------------------*
@@ -156,7 +156,7 @@ method @midrange_intermediate_incDecRegisterInCondition print ?!@string ioListFi
   else
     ioListFileContents += "DECF "
   end
-  ioListFileContents += [self.mRegisterDescription mAssemblyString]
+  ioListFileContents += self.mRegisterDescription.mAssemblyString
   if self.m_W_isDestination then
     ioListFileContents += ", W"
   end

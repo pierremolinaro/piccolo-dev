@@ -12,15 +12,15 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   $identifier$ ?var  @lstring deviceName
   ${$
   $processor$
-  @processorType processorType
+  var @processorType processorType
   $string$ ?var  @lstring processorName
-  if [processorName string] == "pic18_60" then
+  if processorName.string == "pic18_60" then
     processorType = @processorType. pic18_60
-  elsif [processorName string] == "pic18_80" then
+  elsif processorName.string == "pic18_80" then
     processorType = @processorType. pic18_80
-  elsif [processorName string] == "mid-range" then
+  elsif processorName.string == "mid-range" then
     processorType = @processorType. midrange
-  elsif [processorName string] == "baseline" then
+  elsif processorName.string == "baseline" then
     processorType = @processorType. baseline
   else
     error @location.here : "The '" + processorName + "' processor is not handled" : processorType
@@ -29,18 +29,18 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   $romsize$
   $integer$ ?var  @luint romSize
   $;$
-  @uint eepromSize
-  @uint eepromAddress
+  var @uint eepromSize
+  var @uint eepromAddress
   select
     eepromSize = 0
     eepromAddress = 0
   or
     $eepromsize$
     $integer$ ?var  @luint l_eepromSize
-    eepromSize = [l_eepromSize uint]
+    eepromSize = l_eepromSize.uint
     $at$
     $integer$ ?var  @luint l_eepromAddress
-    eepromAddress = [l_eepromAddress uint]
+    eepromAddress = l_eepromAddress.uint
     $;$
   end
   $bank$
@@ -72,7 +72,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       $mirrorat$
       repeat
         $integer$ ?var  @luint mirrorStartAddress
-        mirrorOffsetList += ![mirrorStartAddress uint] - [ramStart uint]
+        mirrorOffsetList += !mirrorStartAddress.uint - ramStart.uint
       while
         $,$
       end
@@ -80,9 +80,9 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     $;$
     [!?ramBankTable insertKey
       !ramName
-      ![ramStart uint] # Start
-      ![ramStart uint] # First free address (mutable)
-      ![ramEnd uint] + 1
+      !ramStart.uint # Start
+      !ramStart.uint # First free address (mutable)
+      !ramEnd.uint + 1
       !mirrorOffsetList
     ]
   end
@@ -95,36 +95,36 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     var registerAddressList =@uintlist.emptyList{}
     repeat
       $integer$ ?var  @luint registerAddress
-      registerAddressList += ![registerAddress uint]
+      registerAddressList += !registerAddress.uint
     while
       $,$
     end
     $<$
-    @uint sliceIndex = 8
+    var @uint sliceIndex = 8
     var bitSliceTable =@bitSliceTable.emptyMap{}
-    @string bitDefinitionString = " <"
+    var @string bitDefinitionString = " <"
     repeat
       select
-        @uint sliceWidth = 0 # Means undefined
+        var @uint sliceWidth = 0 # Means undefined
         repeat
-          @uint sliceBase = sliceIndex
+          var @uint sliceBase = sliceIndex
           $identifier$ ?var  @lstring sliceName
           select
             if (sliceWidth != 0) & (sliceWidth != 1) then
               error sliceName:"a slice of 1 bit is expected for '" + sliceName + "'" 
             end
             sliceWidth = 1
-            bitDefinitionString += [sliceName string] 
+            bitDefinitionString += sliceName.string 
           or
             $[$
             $integer$ ?var  @luint sliceSize
-            if (sliceWidth != 0) & (sliceWidth != [sliceSize uint]) then
+            if (sliceWidth != 0) & (sliceWidth != sliceSize.uint) then
               error sliceName:"a slice of " + [sliceWidth string] + " bits is expected for '" + sliceName + "'" 
             end
-            sliceWidth = [sliceSize uint]
-            sliceBase = sliceBase + 1 - [sliceSize uint]
+            sliceWidth = sliceSize.uint
+            sliceBase = sliceBase + 1 - sliceSize.uint
             $]$
-            bitDefinitionString += [sliceName string] + "[" + [[sliceSize uint] string] + "]" 
+            bitDefinitionString += sliceName.string + "[" + [sliceSize.uint string] + "]" 
           end
           [!?bitSliceTable insertKey !sliceName !sliceIndex-sliceWidth !sliceWidth]
         while
@@ -175,10 +175,10 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     repeat
     while
       $identifier$ ?var  @lstring maskName
-      if [settingNameSet hasKey ![maskName string]] then
+      if [settingNameSet hasKey !maskName.string] then
         error maskName:"The '" + maskName + "' setting is already defined"
       end
-      settingNameSet += ![maskName string]
+      settingNameSet += !maskName.string
       $mask$
       $integer$ ?var  @luint maskValue
       $description$
@@ -191,7 +191,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
         $integer$ ?var  @luint mask
         $description$
         $string$ ?var  @lstring descriptionString
-        [!?fieldSettingMap insertKey !descriptionString ![value uint] ![mask uint]]
+        [!?fieldSettingMap insertKey !descriptionString !value.uint !mask.uint]
       while
       end
       [!?configRegisterMaskMap insertKey !maskName !maskValue !maskDescriptionString !fieldSettingMap]
@@ -207,22 +207,22 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   end
   $}$
 #--- Check some registers are actual defined
-  if ([processorName string] == "pic18_60") | ([processorName string] == "pic18_80") then
+  if (processorName.string == "pic18_60") | (processorName.string == "pic18_80") then
     [registerTable searchKey !@lstring. new { !"BSR" !@location.here} ?5*]
     [registerTable searchKey !@lstring. new { !"TOSL" !@location.here} ?5*]
     [registerTable searchKey !@lstring. new { !"TOSH" !@location.here} ?5*]
     [registerTable searchKey !@lstring. new { !"TOSU" !@location.here} ?5*]
   end
 #--- Check if controller has a shared bank
-  @string sharedBankName = "" # No shared bank by default
-  if [processorName string] == "mid-range" then
-    for () in  ramBankTable while sharedBankName  == "" do
-      @uint bankAccessibility = 1 << (mFirstFreeAddress >> 7)
-      for () in  mMirrorOffsetList do
+  var @string sharedBankName = "" # No shared bank by default
+  if processorName.string == "mid-range" then
+    for (lkey * mFirstFreeAddress * mMirrorOffsetList) in  ramBankTable while sharedBankName  == "" do
+      var @uint bankAccessibility = 1 << (mFirstFreeAddress >> 7)
+      for (mValue) in  mMirrorOffsetList do
         bankAccessibility = bankAccessibility  | (1 << ((mFirstFreeAddress + mValue) >> 7))
       end
-      if (1 << [bankCount uint]) == (bankAccessibility + 1) then
-        sharedBankName = [lkey string]
+      if (1 << bankCount.uint) == (bankAccessibility + 1) then
+        sharedBankName = lkey.string
       end
     end
   end

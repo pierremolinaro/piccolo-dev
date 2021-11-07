@@ -44,7 +44,7 @@ proc emitNoMidrangeCodeAtWordAddress
 #----------------------------------------------------------------------------*
 
 map @midrange_symbolTable {
-  @uint mRoutineAddress
+  public var @uint mRoutineAddress
   insert insertKey error message "the '%K' label is already declared in %L"
   search searchKey error message "the '%K' label is not declared"
 }
@@ -157,11 +157,11 @@ override method @midrange_intermediate_instruction_FD generateBinaryCodeAtAddres
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 #--- Emit Code
-  @uint code = [self.mInstruction_FD_base_code basecode]
+  var @uint code = [self.mInstruction_FD_base_code basecode]
   if not self.m_W_isDestination then
     code = code | 0x80
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 127)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 127)
   emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
 }
 
@@ -184,8 +184,8 @@ override method @midrange_intermediate_instruction_F generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 #--- Emit Code
-  @uint code = [self.mFinstruction baseCode]
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 127)
+  var @uint code = [self.mFinstruction baseCode]
+  code = code | (self.mRegisterDescription.mRegisterAddress & 127)
   emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
 }
 
@@ -209,8 +209,8 @@ override method @midrange_intermediate_instruction_FB generateBinaryCodeAtAddres
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 #--- Emit Code
-  @uint code = [self.mBitOrientedOp baseCode]
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 127)
+  var @uint code = [self.mBitOrientedOp baseCode]
+  code = code | (self.mRegisterDescription.mRegisterAddress & 127)
   code = code | (self.mBitNumber << 7)
   emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
 }
@@ -225,13 +225,13 @@ override method @midrange_intermediate_instruction_BitTestSkip generateBinaryCod
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 #--- Emit Code
-  @uint code
+  var @uint code
   if self.mSkipIfSet then
     code = 0x1C00 # BTFSS
   else
     code = 0x1800 # BTFSC
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 127)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 127)
   code = code | (self.mBitNumber << 7)
   emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
 }
@@ -297,7 +297,7 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   ?!@uint ioAddress {
 #---
   var usedRegisters =@stringset.emptySet{}
-  @uint targetAddress
+  var @uint targetAddress
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
 #--- Get values for PCLATH register
   let PCLATH_register = @registerExpression.new {
@@ -305,7 +305,7 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
     !@immediatInteger.new {!.new {!0 !@location.here}}
     !.here
   }
-  @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription
+  var @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription
   [PCLATH_register resolveMidrangeAccess
     !inTotalBankCount
     !@uint. max # Means unknown bank
@@ -319,14 +319,14 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   switch self.mBit11 
   case set   :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1400 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1400 | (3 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BSF PCLATH, 3"
       !?ioListFileContents
      )
   case clear :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1000 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1000 | (3 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BCF PCLATH, 3"
       !?ioListFileContents
@@ -336,14 +336,14 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   switch self.mBit12 
   case set   :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1400 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1400 | (4 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BSF PCLATH, 4"
       !?ioListFileContents
      )
   case clear :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1000 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1000 | (4 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BCF PCLATH, 4"
       !?ioListFileContents
@@ -364,7 +364,7 @@ override method @midrange_intermediate_GOTO generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 #---
-  @uint targetAddress
+  var @uint targetAddress
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
 #---
   emit_midrange_GOTOinstruction ( !self.mInstructionLocation !?ioAddress !self.mTargetLabel.string !targetAddress !?ioListFileContents )
@@ -381,7 +381,7 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   ?!@uint ioAddress {
   var usedRegisters =@stringset.emptySet{}
 #---
-  @uint targetAddress
+  var @uint targetAddress
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
 #--- Get values for PCLATH register
   let PCLATH_register = @registerExpression.new{
@@ -389,7 +389,7 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
     !@immediatInteger.new {!.new {!0 !@location.here}}
     !.here
   }
-  @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription
+  var @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription
   [PCLATH_register resolveMidrangeAccess
     !inTotalBankCount
     !@uint. max # Means unknown bank
@@ -403,14 +403,14 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   switch self.mBit11 
   case set :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1400 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1400 | (3 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BSF PCLATH, 3"
       !?ioListFileContents
      )
   case clear :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1000 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1000 | (3 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BCF PCLATH, 3"
       !?ioListFileContents
@@ -420,14 +420,14 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   switch self.mBit12 
   case set :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1400 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1400 | (4 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BSF PCLATH, 4"
       !?ioListFileContents
      )
   case clear :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1000 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1000 | (4 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BCF PCLATH, 4"
       !?ioListFileContents
@@ -438,14 +438,14 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   switch self.mBit11 
   case set :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1000 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1000 | (3 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BCF PCLATH, 3"
       !?ioListFileContents
      )
   case clear :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1400 | (3 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1400 | (3 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BSF PCLATH, 3"
       !?ioListFileContents
@@ -455,14 +455,14 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   switch self.mBit12 
   case set :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1000 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1000 | (4 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BCF PCLATH, 4"
       !?ioListFileContents
      )
   case clear :
     emitMidrangeDirectCodeAtWordAddress (
-      ! 0x1400 | (4 << 7) | ([PCLATH_IPICregisterDescription mRegisterAddress] & 0x7F)
+      ! 0x1400 | (4 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
       !?ioAddress
       !"BSF PCLATH, 4"
       !?ioListFileContents
@@ -481,7 +481,7 @@ override method @midrange_intermediate_CALL generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 #---
-  @uint targetAddress
+  var @uint targetAddress
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
 #---
   emit_midrange_CALLinstruction ( !self.mInstructionLocation !?ioAddress !self.mTargetLabel.string !targetAddress !?ioListFileContents )
@@ -496,8 +496,8 @@ override method @midrange_intermediate_incDecRegisterInCondition generateBinaryC
   ?let @midrange_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioAddress {
-  @uint code
-  @string s
+  var @uint code
+  var @string s
   if self.mIncrement then
     code = 0x0F00 s = "INCFSZ"
   else
@@ -506,15 +506,15 @@ override method @midrange_intermediate_incDecRegisterInCondition generateBinaryC
   if not self.m_W_isDestination then
     code = code | 0x0080
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 127)
-  s += " " + [self.mRegisterDescription mAssemblyString]
+  code = code | (self.mRegisterDescription.mRegisterAddress & 127)
+  s += " " + self.mRegisterDescription.mAssemblyString
   emitMidrangeDirectCodeAtWordAddress ( !code !?ioAddress !s !?ioListFileContents )
 #---
   if self.mBranchIfZero then
     emit_midrange_GOTOinstruction ( !self.mInstructionLocation !?ioAddress !"$ + 2" !ioAddress + 2 !?ioListFileContents )
   end
 #--- Generate GOTO instruction
-  @uint targetAddress
+  var @uint targetAddress
   [inRoutineSymbolTable searchKey !@lstring. new { !self.mTargetLabel !@location.here} ?targetAddress]
   emit_midrange_GOTOinstruction ( !self.mInstructionLocation !?ioAddress !self.mTargetLabel !targetAddress !?ioListFileContents )
 }
@@ -615,7 +615,7 @@ override method @midrange_intermediate_instruction_literalOperation generateBina
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 #--- Emit Code
-  @uint code = [self.mLiteralInstruction baseCode]
+  var @uint code = [self.mLiteralInstruction baseCode]
   code = code | self.mLiteralValue
   emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
 }
@@ -647,12 +647,12 @@ override method @midrange_intermediate_instruction_MNOP generateBinaryCodeAtAddr
   ?let @midrange_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioAddress {
-  if [self.mOccurrenceFactor uint] == 0 then
+  if self.mOccurrenceFactor.uint == 0 then
     warning self.mOccurrenceFactor: "No generated code"
   end
-  @uint idx = 0
-  loop( [self.mOccurrenceFactor uint])
-  while idx < [self.mOccurrenceFactor uint]
+  var @uint idx = 0
+  loop( self.mOccurrenceFactor.uint)
+  while idx < self.mOccurrenceFactor.uint
   do
     emitMidrangeDirectCodeAtWordAddress ( !0x0000 !?ioAddress !"NOP" !?ioListFileContents )
     idx ++
@@ -676,11 +676,11 @@ proc build_midrange_ipic_binary_code
   !@uint outUsedROMsize {
 #-------------------------------- First pass: build label map
   var symbolTable =@midrange_symbolTable.emptyMap{}
-  @uint currentAddress = 0
-  for () in  inGeneratedInstructionList do
+  var @uint currentAddress = 0
+  for (mInstruction) in  inGeneratedInstructionList do
     [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress]
   end
-  @uint lastAddressForFirstPass = currentAddress
+  var @uint lastAddressForFirstPass = currentAddress
   outUsedROMsize = currentAddress
 #-------------------------------- Second pass: generate code
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
@@ -690,7 +690,7 @@ proc build_midrange_ipic_binary_code
   initCodeGenerator ( )
   currentAddress = 0
   setEmitAddress ( !0 )
-  for () in  inGeneratedInstructionList do
+  for (mInstruction) in  inGeneratedInstructionList do
     [mInstruction generateBinaryCodeAtAddress
       !inRegisterTable
       !inConstantMap
@@ -712,7 +712,7 @@ proc build_midrange_ipic_binary_code
     + [inROMsize string] + " bytes)"
   end
 #-------------------------------- Add Configuration
-  for () in  inActualConfigurationMap do
+  for (* mRegisterAddress mRegisterValue) in  inActualConfigurationMap do
     setEmitAddress ( ! mRegisterAddress + mRegisterAddress )
     emitCode ( !mRegisterValue )
   end

@@ -31,7 +31,7 @@ override method @baseline_assembly_pseudo_LABEL print ?!@string ioListFileConten
 #-------------------------------------------------------------------------------*
 
 override method @baseline_assembly_instruction_FD print ?!@string ioListFileContents {
-  ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + [self.mRegisterDescription mAssemblyString]
+  ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString
   if self.m_W_isDestination then
     ioListFileContents += ", W"
   else
@@ -42,13 +42,13 @@ override method @baseline_assembly_instruction_FD print ?!@string ioListFileCont
 #-------------------------------------------------------------------------------*
 
 override method @baseline_assembly_instruction_F print ?!@string ioListFileContents {
-  ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + [self.mRegisterDescription mAssemblyString]
+  ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString
 }
 
 #-------------------------------------------------------------------------------*
 
 override method @baseline_assembly_instruction_FB print ?!@string ioListFileContents {
-  ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + [self.mRegisterDescription mAssemblyString] + ", " + [self.mBitNumber string]
+  ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
 }
 
 #-------------------------------------------------------------------------------*
@@ -59,7 +59,7 @@ override method @baseline_assembly_instruction_BitTestSkip print ?!@string ioLis
   else
     ioListFileContents += "  BTFSC "
   end
-  ioListFileContents += [self.mRegisterDescription mAssemblyString] + ", " + [self.mBitNumber string]
+  ioListFileContents += self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
 }
 
 #-------------------------------------------------------------------------------*
@@ -95,7 +95,7 @@ override method @baseline_assembly_incDecRegisterInCondition print ?!@string ioL
   else
     ioListFileContents += "  DECFSZ "
   end
-  ioListFileContents += [self.mRegisterDescription mAssemblyString]
+  ioListFileContents += self.mRegisterDescription.mAssemblyString
   if self.m_W_isDestination then
     ioListFileContents += ", W"
   else

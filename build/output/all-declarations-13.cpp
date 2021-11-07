@@ -9,1820 +9,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//Overriding extension method '@midrange_andCondition computeInstructionCountForCondition'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_andCondition_computeInstructionCountForCondition (const cPtr_midrange_5F_conditionExpression * inObject,
-                                                                                          const GALGAS_bool constinArgument_inComplementaryBranch,
-                                                                                          GALGAS_uint & outArgument_outInstructionCount,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_andCondition * object = (const cPtr_midrange_5F_andCondition *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_andCondition) ;
-  GALGAS_uint var_countLeft_44490 ;
-  const GALGAS_midrange_5F_andCondition temp_0 = object ;
-  callExtensionMethod_computeInstructionCountForCondition ((const cPtr_midrange_5F_conditionExpression *) temp_0.getter_mLeftExpression (HERE).ptr (), constinArgument_inComplementaryBranch, var_countLeft_44490, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1252)) ;
-  GALGAS_uint var_countRight_44615 ;
-  const GALGAS_midrange_5F_andCondition temp_1 = object ;
-  callExtensionMethod_computeInstructionCountForCondition ((const cPtr_midrange_5F_conditionExpression *) temp_1.getter_mLeftExpression (HERE).ptr (), constinArgument_inComplementaryBranch, var_countRight_44615, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1257)) ;
-  outArgument_outInstructionCount = var_countLeft_44490.add_operation (var_countRight_44615, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1261)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_andCondition_computeInstructionCountForCondition (void) {
-  enterExtensionMethod_computeInstructionCountForCondition (kTypeDescriptor_GALGAS_midrange_5F_andCondition.mSlotID,
-                                                            extensionMethod_midrange_5F_andCondition_computeInstructionCountForCondition) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_andCondition_computeInstructionCountForCondition (defineExtensionMethod_midrange_5F_andCondition_computeInstructionCountForCondition, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_bitTest_in_structured_if_condition buildIPICinstructionForCondition'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_buildIPICinstructionForCondition (const cPtr_midrange_5F_conditionExpression * inObject,
-                                                                                                                         const GALGAS_uint constinArgument_inTotalBankCount,
-                                                                                                                         const GALGAS_uint constinArgument_inCurrentBank,
-                                                                                                                         const GALGAS_registerTable constinArgument_inRegisterTable,
-                                                                                                                         const GALGAS_constantMap constinArgument_inConstantMap,
-                                                                                                                         GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                                                         const GALGAS_bool constinArgument_inComplementaryBranch,
-                                                                                                                         const GALGAS_location constinArgument_inInstructionLocation,
-                                                                                                                         const GALGAS_string constinArgument_inTargetLabel,
-                                                                                                                         GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                                                                                         GALGAS_string & /* ioArgument_ioListFileContents */,
-                                                                                                                         GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                                         C_Compiler * inCompiler
-                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition * object = (const cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition) ;
-  GALGAS_bitSliceTable var_bitSliceTable_45385 ;
-  GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription_45453 ;
-  const GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition temp_0 = object ;
-  callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) temp_0.getter_mRegisterExpression (HERE).ptr (), constinArgument_inTotalBankCount, constinArgument_inCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, var_IPICregisterDescription_45453, var_bitSliceTable_45385, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1280)) ;
-  GALGAS_uint var_bitNumber_45676 ;
-  const GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition temp_1 = object ;
-  callExtensionMethod_getBitNumber ((const cPtr_bitNumberExpression *) temp_1.getter_mBitNumber (HERE).ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioUsedRegisters, var_bitSliceTable_45385, var_bitNumber_45676, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1290)) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::constructor_new (constinArgument_inInstructionLocation, constinArgument_inComplementaryBranch, var_IPICregisterDescription_45453, var_bitNumber_45676  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1297))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1297)) ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_JUMP::constructor_new (constinArgument_inInstructionLocation, GALGAS_lstring::constructor_new (constinArgument_inTargetLabel, constinArgument_inInstructionLocation  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1305)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1306)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1307))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1303))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1303)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_buildIPICinstructionForCondition (void) {
-  enterExtensionMethod_buildIPICinstructionForCondition (kTypeDescriptor_GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition.mSlotID,
-                                                         extensionMethod_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_buildIPICinstructionForCondition) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_buildIPICinstructionForCondition (defineExtensionMethod_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_buildIPICinstructionForCondition, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_bitTest_in_structured_if_condition computeInstructionCountForCondition'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_computeInstructionCountForCondition (const cPtr_midrange_5F_conditionExpression * /* inObject */,
-                                                                                                                            const GALGAS_bool /* constinArgument_inComplementaryBranch */,
-                                                                                                                            GALGAS_uint & outArgument_outInstructionCount,
-                                                                                                                            C_Compiler * /* inCompiler */
-                                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outInstructionCount = GALGAS_uint ((uint32_t) 2U) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_computeInstructionCountForCondition (void) {
-  enterExtensionMethod_computeInstructionCountForCondition (kTypeDescriptor_GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition.mSlotID,
-                                                            extensionMethod_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_computeInstructionCountForCondition) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_computeInstructionCountForCondition (defineExtensionMethod_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_computeInstructionCountForCondition, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_instruction_structured_if build_midrange_ipic_instructionList'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_instruction_5F_structured_5F_if_build_5F_midrange_5F_ipic_5F_instructionList (const cPtr_midrange_5F_instruction * inObject,
-                                                                                                                      const GALGAS_routineMap constinArgument_inRoutineMap,
-                                                                                                                      const GALGAS_registerTable constinArgument_inRegisterTable,
-                                                                                                                      const GALGAS_constantMap constinArgument_inConstantMap,
-                                                                                                                      GALGAS_uint & ioArgument_ioLocalLabelIndex,
-                                                                                                                      GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                                                                                      GALGAS_string & ioArgument_ioListFileContents,
-                                                                                                                      const GALGAS_uint constinArgument_inTotalBankCount,
-                                                                                                                      GALGAS_uint & ioArgument_ioCurrentBank,
-                                                                                                                      const GALGAS_bool constinArgument_inShouldPreserveBank,
-                                                                                                                      GALGAS_bool & ioArgument_ioContinuesInSequence,
-                                                                                                                      const GALGAS_routineKind constinArgument_inRoutineKind,
-                                                                                                                      GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                                      C_Compiler * inCompiler
-                                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_structured_5F_if * object = (const cPtr_midrange_5F_instruction_5F_structured_5F_if *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_structured_5F_if) ;
-  GALGAS_bool var_generateComplementaryCondition_47183 = GALGAS_bool (false) ;
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (gOption_piccolo_5F_options_performOptimizations.getter_value ()).boolEnum () ;
-    if (kBoolTrue == test_0) {
-      GALGAS_uint var_directCount_47310 ;
-      const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_1 = object ;
-      callExtensionMethod_computeInstructionCountForCondition ((const cPtr_midrange_5F_conditionExpression *) temp_1.getter_mIfCondition (HERE).ptr (), GALGAS_bool (true), var_directCount_47310, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1337)) ;
-      enumGalgasBool test_2 = kBoolTrue ;
-      if (kBoolTrue == test_2) {
-        const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_3 = object ;
-        test_2 = GALGAS_bool (kIsStrictSup, temp_3.getter_mElseInstructionList (HERE).getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1338)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-        if (kBoolTrue == test_2) {
-          var_directCount_47310.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1339)) ;
-        }
-      }
-      GALGAS_uint var_complementaryCount_47494 ;
-      const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_4 = object ;
-      callExtensionMethod_computeInstructionCountForCondition ((const cPtr_midrange_5F_conditionExpression *) temp_4.getter_mIfCondition (HERE).ptr (), GALGAS_bool (false), var_complementaryCount_47494, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1341)) ;
-      enumGalgasBool test_5 = kBoolTrue ;
-      if (kBoolTrue == test_5) {
-        const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_6 = object ;
-        test_5 = GALGAS_bool (kIsStrictSup, temp_6.getter_mThenInstructionList (HERE).getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1342)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-        if (kBoolTrue == test_5) {
-          var_complementaryCount_47494.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1343)) ;
-        }
-      }
-      enumGalgasBool test_7 = kBoolTrue ;
-      if (kBoolTrue == test_7) {
-        test_7 = GALGAS_bool (kIsStrictInf, var_complementaryCount_47494.objectCompare (var_directCount_47310)).boolEnum () ;
-        if (kBoolTrue == test_7) {
-          var_generateComplementaryCondition_47183 = GALGAS_bool (true) ;
-          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347)).add_operation (GALGAS_string (": generates complementary test (saves "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347)).add_operation (var_directCount_47310.substract_operation (var_complementaryCount_47494, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1348)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1348)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347)).add_operation (GALGAS_string (" instruction"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1348)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1347)) ;
-          enumGalgasBool test_8 = kBoolTrue ;
-          if (kBoolTrue == test_8) {
-            test_8 = GALGAS_bool (kIsStrictSup, var_directCount_47310.substract_operation (var_complementaryCount_47494, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1349)).objectCompare (GALGAS_uint ((uint32_t) 1U))).boolEnum () ;
-            if (kBoolTrue == test_8) {
-              ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("s"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1350)) ;
-            }
-          }
-          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1352)) ;
-        }
-      }
-    }
-  }
-  GALGAS_uint var_elseBranchFinalBank_48123 = ioArgument_ioCurrentBank ;
-  GALGAS_uint var_thenBranchFinalBank_48167 = ioArgument_ioCurrentBank ;
-  GALGAS_bool var_elseContinuesInSequence_48215 ;
-  GALGAS_bool var_thenContinuesInSequence_48247 ;
-  enumGalgasBool test_9 = kBoolTrue ;
-  if (kBoolTrue == test_9) {
-    test_9 = var_generateComplementaryCondition_47183.boolEnum () ;
-    if (kBoolTrue == test_9) {
-      GALGAS_string var_label_5F_nextCondition_48327 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1361)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1361)) ;
-      ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1361)) ;
-      GALGAS_string var_label_5F_endOfIfinstruction_48421 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1362)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1362)) ;
-      ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1362)) ;
-      const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_10 = object ;
-      const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_11 = object ;
-      callExtensionMethod_buildIPICinstructionForCondition ((const cPtr_midrange_5F_conditionExpression *) temp_10.getter_mIfCondition (HERE).ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (false), temp_11.getter_mInstructionLocation (HERE), var_label_5F_nextCondition_48327, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1364)) ;
-      {
-      const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_12 = object ;
-      routine_handleMidrangeInstructionList (temp_12.getter_mElseInstructionList (HERE), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, var_elseBranchFinalBank_48123, constinArgument_inShouldPreserveBank, var_elseContinuesInSequence_48215, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1378)) ;
-      }
-      enumGalgasBool test_13 = kBoolTrue ;
-      if (kBoolTrue == test_13) {
-        const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_14 = object ;
-        test_13 = GALGAS_bool (kIsStrictSup, temp_14.getter_mThenInstructionList (HERE).getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1394)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-        if (kBoolTrue == test_13) {
-          const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_15 = object ;
-          const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_16 = object ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_GOTO::constructor_new (temp_15.getter_mInstructionLocation (HERE), GALGAS_lstring::constructor_new (var_label_5F_endOfIfinstruction_48421, temp_16.getter_mInstructionLocation (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1395))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1395))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1395)) ;
-        }
-      }
-      const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_17 = object ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_5F_nextCondition_48327, temp_17.getter_mInstructionLocation (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1397)), GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1397))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1397)) ;
-      {
-      const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_18 = object ;
-      routine_handleMidrangeInstructionList (temp_18.getter_mThenInstructionList (HERE), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, var_thenBranchFinalBank_48167, constinArgument_inShouldPreserveBank, var_thenContinuesInSequence_48247, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1398)) ;
-      }
-      enumGalgasBool test_19 = kBoolTrue ;
-      if (kBoolTrue == test_19) {
-        const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_20 = object ;
-        test_19 = GALGAS_bool (kIsStrictSup, temp_20.getter_mThenInstructionList (HERE).getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1413)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-        if (kBoolTrue == test_19) {
-          const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_21 = object ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_5F_endOfIfinstruction_48421, temp_21.getter_mInstructionLocation (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1414)), GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1414))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1414)) ;
-        }
-      }
-    }
-  }
-  if (kBoolFalse == test_9) {
-    GALGAS_string var_label_5F_nextCondition_50307 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1418)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1418)) ;
-    ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1418)) ;
-    GALGAS_string var_label_5F_endOfIfinstruction_50401 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1419)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1419)) ;
-    ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1419)) ;
-    const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_22 = object ;
-    const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_23 = object ;
-    callExtensionMethod_buildIPICinstructionForCondition ((const cPtr_midrange_5F_conditionExpression *) temp_22.getter_mIfCondition (HERE).ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), temp_23.getter_mInstructionLocation (HERE), var_label_5F_nextCondition_50307, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1421)) ;
-    {
-    const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_24 = object ;
-    routine_handleMidrangeInstructionList (temp_24.getter_mThenInstructionList (HERE), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, var_thenBranchFinalBank_48167, constinArgument_inShouldPreserveBank, var_thenContinuesInSequence_48247, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1435)) ;
-    }
-    enumGalgasBool test_25 = kBoolTrue ;
-    if (kBoolTrue == test_25) {
-      const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_26 = object ;
-      test_25 = GALGAS_bool (kIsStrictSup, temp_26.getter_mElseInstructionList (HERE).getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1451)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-      if (kBoolTrue == test_25) {
-        const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_27 = object ;
-        const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_28 = object ;
-        ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_GOTO::constructor_new (temp_27.getter_mInstructionLocation (HERE), GALGAS_lstring::constructor_new (var_label_5F_endOfIfinstruction_50401, temp_28.getter_mInstructionLocation (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1452))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1452))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1452)) ;
-      }
-    }
-    const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_29 = object ;
-    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_5F_nextCondition_50307, temp_29.getter_mInstructionLocation (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1454)), GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1454))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1454)) ;
-    {
-    const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_30 = object ;
-    routine_handleMidrangeInstructionList (temp_30.getter_mElseInstructionList (HERE), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, var_elseBranchFinalBank_48123, constinArgument_inShouldPreserveBank, var_elseContinuesInSequence_48215, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1455)) ;
-    }
-    enumGalgasBool test_31 = kBoolTrue ;
-    if (kBoolTrue == test_31) {
-      const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_32 = object ;
-      test_31 = GALGAS_bool (kIsStrictSup, temp_32.getter_mElseInstructionList (HERE).getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1470)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-      if (kBoolTrue == test_31) {
-        const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_33 = object ;
-        ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_5F_endOfIfinstruction_50401, temp_33.getter_mInstructionLocation (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1471)), GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1471))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1471)) ;
-      }
-    }
-  }
-  enumGalgasBool test_34 = kBoolTrue ;
-  if (kBoolTrue == test_34) {
-    test_34 = GALGAS_bool (kIsEqual, var_elseBranchFinalBank_48123.objectCompare (var_thenBranchFinalBank_48167)).boolEnum () ;
-    if (kBoolTrue == test_34) {
-      ioArgument_ioCurrentBank = var_elseBranchFinalBank_48123 ;
-    }
-  }
-  if (kBoolFalse == test_34) {
-    const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_35 = object ;
-    TC_Array <C_FixItDescription> fixItArray36 ;
-    inCompiler->emitSemanticError (temp_35.getter_mEndOfElsePartLocation (HERE), GALGAS_string ("This branch does not leave bank selection value as the first one does"), fixItArray36  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1477)) ;
-    var_elseBranchFinalBank_48123 = GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1478)) ;
-  }
-  ioArgument_ioContinuesInSequence = var_thenContinuesInSequence_48247.operator_or (var_elseContinuesInSequence_48215 COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1481)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_instruction_5F_structured_5F_if_build_5F_midrange_5F_ipic_5F_instructionList (void) {
-  enterExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_structured_5F_if.mSlotID,
-                                                                     extensionMethod_midrange_5F_instruction_5F_structured_5F_if_build_5F_midrange_5F_ipic_5F_instructionList) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_structured_5F_if_build_5F_midrange_5F_ipic_5F_instructionList (defineExtensionMethod_midrange_5F_instruction_5F_structured_5F_if_build_5F_midrange_5F_ipic_5F_instructionList, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_instruction_do_while build_midrange_ipic_instructionList'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_instruction_5F_do_5F_while_build_5F_midrange_5F_ipic_5F_instructionList (const cPtr_midrange_5F_instruction * inObject,
-                                                                                                                 const GALGAS_routineMap constinArgument_inRoutineMap,
-                                                                                                                 const GALGAS_registerTable constinArgument_inRegisterTable,
-                                                                                                                 const GALGAS_constantMap constinArgument_inConstantMap,
-                                                                                                                 GALGAS_uint & ioArgument_ioLocalLabelIndex,
-                                                                                                                 GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                                                                                 GALGAS_string & ioArgument_ioListFileContents,
-                                                                                                                 const GALGAS_uint constinArgument_inTotalBankCount,
-                                                                                                                 GALGAS_uint & ioArgument_ioCurrentBank,
-                                                                                                                 const GALGAS_bool constinArgument_inShouldPreserveBank,
-                                                                                                                 GALGAS_bool & ioArgument_ioContinuesInSequence,
-                                                                                                                 const GALGAS_routineKind constinArgument_inRoutineKind,
-                                                                                                                 GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                                 C_Compiler * inCompiler
-                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_do_5F_while * object = (const cPtr_midrange_5F_instruction_5F_do_5F_while *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_do_5F_while) ;
-  GALGAS_string var_labelInstructionBegin_53256 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1500)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1500)) ;
-  ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1500)) ;
-  const GALGAS_midrange_5F_instruction_5F_do_5F_while temp_0 = object ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_labelInstructionBegin_53256, temp_0.getter_mInstructionLocation (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1502)), GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1502))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1502)) ;
-  GALGAS_uint var_finalBank_53527 = ioArgument_ioCurrentBank ;
-  {
-  const GALGAS_midrange_5F_instruction_5F_do_5F_while temp_1 = object ;
-  routine_handleMidrangeInstructionList (temp_1.getter_mRepeatedInstructionList (HERE), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, var_finalBank_53527, constinArgument_inShouldPreserveBank, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1505)) ;
-  }
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
-    test_2 = GALGAS_bool (kIsNotEqual, ioArgument_ioCurrentBank.objectCompare (var_finalBank_53527)).boolEnum () ;
-    if (kBoolTrue == test_2) {
-      const GALGAS_midrange_5F_instruction_5F_do_5F_while temp_3 = object ;
-      TC_Array <C_FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (temp_3.getter_mEndOfRepeatedInstructionList (HERE), GALGAS_string ("This branch does not leave bank selection value unchanged"), fixItArray4  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1521)) ;
-    }
-  }
-  const GALGAS_midrange_5F_instruction_5F_do_5F_while temp_5 = object ;
-  cEnumerator_midrange_5F_partList enumerator_54086 (temp_5.getter_mWhilePartList (HERE), kENUMERATION_UP) ;
-  while (enumerator_54086.hasCurrentObject ()) {
-    enumGalgasBool test_6 = kBoolTrue ;
-    if (kBoolTrue == test_6) {
-      test_6 = GALGAS_bool (kIsEqual, enumerator_54086.current_mInstructionList (HERE).getter_length (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1525)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-      if (kBoolTrue == test_6) {
-        const GALGAS_midrange_5F_instruction_5F_do_5F_while temp_7 = object ;
-        callExtensionMethod_buildIPICinstructionForCondition ((const cPtr_midrange_5F_conditionExpression *) enumerator_54086.current_mCondition (HERE).ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (false), temp_7.getter_mInstructionLocation (HERE), var_labelInstructionBegin_53256, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1526)) ;
-      }
-    }
-    if (kBoolFalse == test_6) {
-      GALGAS_string var_nextBranchLabel_54528 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1540)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1540)) ;
-      ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1540)) ;
-      const GALGAS_midrange_5F_instruction_5F_do_5F_while temp_8 = object ;
-      callExtensionMethod_buildIPICinstructionForCondition ((const cPtr_midrange_5F_conditionExpression *) enumerator_54086.current_mCondition (HERE).ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), temp_8.getter_mInstructionLocation (HERE), var_nextBranchLabel_54528, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1541)) ;
-      GALGAS_uint var_bank_54952 = ioArgument_ioCurrentBank ;
-      {
-      routine_handleMidrangeInstructionList (enumerator_54086.current_mInstructionList (HERE), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, var_bank_54952, constinArgument_inShouldPreserveBank, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1555)) ;
-      }
-      enumGalgasBool test_9 = kBoolTrue ;
-      if (kBoolTrue == test_9) {
-        test_9 = GALGAS_bool (kIsNotEqual, ioArgument_ioCurrentBank.objectCompare (var_bank_54952)).boolEnum () ;
-        if (kBoolTrue == test_9) {
-          TC_Array <C_FixItDescription> fixItArray10 ;
-          inCompiler->emitSemanticError (enumerator_54086.current_mEndOfPartLocation (HERE), GALGAS_string ("This branch does not leave bank selection value unchanged"), fixItArray10  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1571)) ;
-        }
-      }
-      const GALGAS_midrange_5F_instruction_5F_do_5F_while temp_11 = object ;
-      const GALGAS_midrange_5F_instruction_5F_do_5F_while temp_12 = object ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_GOTO::constructor_new (temp_11.getter_mInstructionLocation (HERE), GALGAS_lstring::constructor_new (var_labelInstructionBegin_53256, temp_12.getter_mInstructionLocation (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1573))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1573))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1573)) ;
-      const GALGAS_midrange_5F_instruction_5F_do_5F_while temp_13 = object ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_nextBranchLabel_54528, temp_13.getter_mInstructionLocation (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1574)), GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1574))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1574)) ;
-    }
-    enumerator_54086.gotoNextObject () ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_instruction_5F_do_5F_while_build_5F_midrange_5F_ipic_5F_instructionList (void) {
-  enterExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_do_5F_while.mSlotID,
-                                                                     extensionMethod_midrange_5F_instruction_5F_do_5F_while_build_5F_midrange_5F_ipic_5F_instructionList) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_do_5F_while_build_5F_midrange_5F_ipic_5F_instructionList (defineExtensionMethod_midrange_5F_instruction_5F_do_5F_while_build_5F_midrange_5F_ipic_5F_instructionList, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_instruction_IF_IncDec build_midrange_ipic_instructionList'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_instruction_5F_IF_5F_IncDec_build_5F_midrange_5F_ipic_5F_instructionList (const cPtr_midrange_5F_instruction * inObject,
-                                                                                                                  const GALGAS_routineMap constinArgument_inRoutineMap,
-                                                                                                                  const GALGAS_registerTable constinArgument_inRegisterTable,
-                                                                                                                  const GALGAS_constantMap constinArgument_inConstantMap,
-                                                                                                                  GALGAS_uint & ioArgument_ioLocalLabelIndex,
-                                                                                                                  GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                                                                                  GALGAS_string & ioArgument_ioListFileContents,
-                                                                                                                  const GALGAS_uint constinArgument_inTotalBankCount,
-                                                                                                                  GALGAS_uint & ioArgument_ioCurrentBank,
-                                                                                                                  const GALGAS_bool constinArgument_inShouldPreserveBank,
-                                                                                                                  GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
-                                                                                                                  const GALGAS_routineKind constinArgument_inRoutineKind,
-                                                                                                                  GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                                  C_Compiler * inCompiler
-                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_IF_5F_IncDec * object = (const cPtr_midrange_5F_instruction_5F_IF_5F_IncDec *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_IF_5F_IncDec) ;
-  GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code var_baseCode_56470 ;
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
-    const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec temp_1 = object ;
-    test_0 = temp_1.getter_mIncrement (HERE).boolEnum () ;
-    if (kBoolTrue == test_0) {
-      var_baseCode_56470 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_INCFSZ (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1597)) ;
-    }
-  }
-  if (kBoolFalse == test_0) {
-    var_baseCode_56470 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_DECFSZ (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1599)) ;
-  }
-  GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription_56698 ;
-  const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec temp_2 = object ;
-  GALGAS_bitSliceTable joker_56864 ; // Joker input parameter
-  callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) temp_2.getter_mRegisterExpression (HERE).ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, var_IPICregisterDescription_56698, joker_56864, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1603)) ;
-  const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec temp_3 = object ;
-  const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec temp_4 = object ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (temp_3.getter_mInstructionLocation (HERE), var_baseCode_56470, var_IPICregisterDescription_56698, temp_4.getter_m_5F_W_5F_isDestination (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1613))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1613)) ;
-  GALGAS_bool var_unusedContinuesInSequence_57119 = GALGAS_bool (true) ;
-  const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec temp_5 = object ;
-  callExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList ((const cPtr_midrange_5F_instruction *) temp_5.getter_mInstruction (HERE).ptr (), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inShouldPreserveBank, var_unusedContinuesInSequence_57119, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1621)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_instruction_5F_IF_5F_IncDec_build_5F_midrange_5F_ipic_5F_instructionList (void) {
-  enterExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec.mSlotID,
-                                                                     extensionMethod_midrange_5F_instruction_5F_IF_5F_IncDec_build_5F_midrange_5F_ipic_5F_instructionList) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_instruction_5F_IF_5F_IncDec_build_5F_midrange_5F_ipic_5F_instructionList (defineExtensionMethod_midrange_5F_instruction_5F_IF_5F_IncDec_build_5F_midrange_5F_ipic_5F_instructionList, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'build_midrange_assembly_instruction_list'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (const GALGAS_uint constinArgument_inTotalPageCount,
-                                                                   const GALGAS_uint constinArgument_inTotalBankCount,
-                                                                   const GALGAS_constantMap constinArgument_inConstantMap,
-                                                                   const GALGAS_string constinArgument_inSharedRAMBankName,
-                                                                   const GALGAS_registerTable constinArgument_inRegisterTable,
-                                                                   const GALGAS_midrange_5F_model constinArgument_inPiccoloModel,
-                                                                   const GALGAS_bool constinArgument_inHasInterrupt,
-                                                                   GALGAS_midrange_5F_intermediate_5F_instructionList & outArgument_outGeneratedInstructionList,
-                                                                   GALGAS_string & ioArgument_ioListFileContents,
-                                                                   GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                   C_Compiler * inCompiler
-                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outGeneratedInstructionList.drop () ; // Release 'out' argument
-  GALGAS_string var_generationOptimizationMessages_58029 = GALGAS_string::makeEmptyString () ;
-  GALGAS_routineMap var_routineMap_58103 = GALGAS_routineMap::constructor_emptyMap (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1653)) ;
-  cEnumerator_midrange_5F_routineDefinitionList enumerator_58180 (constinArgument_inPiccoloModel.getter_mRoutineDefinitionList (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1654)), kENUMERATION_UP) ;
-  while (enumerator_58180.hasCurrentObject ()) {
-    enumGalgasBool test_0 = kBoolTrue ;
-    if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsNotEqual, enumerator_58180.current_mRequiredBank (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1655)).objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1655)))).operator_and (GALGAS_bool (kIsStrictSup, enumerator_58180.current_mRequiredBank (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1655)).objectCompare (GALGAS_uint ((uint32_t) 15U))) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1655)).boolEnum () ;
-      if (kBoolTrue == test_0) {
-        TC_Array <C_FixItDescription> fixItArray1 ;
-        inCompiler->emitSemanticError (enumerator_58180.current_mRequiredBank (HERE).getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1656)), GALGAS_string ("the required bank value should be lower or equal to 15"), fixItArray1  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1656)) ;
-      }
-    }
-    enumGalgasBool test_2 = kBoolTrue ;
-    if (kBoolTrue == test_2) {
-      test_2 = GALGAS_bool (kIsNotEqual, enumerator_58180.current_mReturnedBank (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1658)).objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1658)))).operator_and (GALGAS_bool (kIsStrictSup, enumerator_58180.current_mReturnedBank (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1658)).objectCompare (GALGAS_uint ((uint32_t) 15U))) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1658)).boolEnum () ;
-      if (kBoolTrue == test_2) {
-        TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (enumerator_58180.current_mReturnedBank (HERE).getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1659)), GALGAS_string ("the returned bank value should be lower or equal to 15"), fixItArray3  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1659)) ;
-      }
-    }
-    {
-    var_routineMap_58103.setter_insertKey (enumerator_58180.current_mRoutineName (HERE), enumerator_58180.current_mIsNoReturn (HERE), enumerator_58180.current_mRequiredBank (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1661)), enumerator_58180.current_mReturnedBank (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1661)), enumerator_58180.current_mPreservesBank (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1661)) ;
-    }
-    enumerator_58180.gotoNextObject () ;
-  }
-  enumGalgasBool test_4 = kBoolTrue ;
-  if (kBoolTrue == test_4) {
-    test_4 = GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.getter_value ()).boolEnum () ;
-    if (kBoolTrue == test_4) {
-      {
-      routine_print_5F_constant_5F_definition (constinArgument_inConstantMap, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1679)) ;
-      }
-    }
-  }
-  enumGalgasBool test_5 = kBoolTrue ;
-  if (kBoolTrue == test_5) {
-    test_5 = var_routineMap_58103.getter_hasKey (GALGAS_string ("main") COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1685)).boolEnum () ;
-    if (kBoolTrue == test_5) {
-      GALGAS_bool var_isNoReturn_59736 ;
-      GALGAS_uint var_requiredBank_59760 ;
-      GALGAS_uint joker_59762 ; // Joker input parameter
-      GALGAS_bool joker_59765 ; // Joker input parameter
-      var_routineMap_58103.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("main"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1686))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1686)), var_isNoReturn_59736, var_requiredBank_59760, joker_59762, joker_59765, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1686)) ;
-      GALGAS_location var_mainDeclarationLocation_59809 = var_routineMap_58103.getter_locationForKey (GALGAS_string ("main"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1687)) ;
-      enumGalgasBool test_6 = kBoolTrue ;
-      if (kBoolTrue == test_6) {
-        test_6 = var_isNoReturn_59736.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1688)).boolEnum () ;
-        if (kBoolTrue == test_6) {
-          TC_Array <C_FixItDescription> fixItArray7 ;
-          inCompiler->emitSemanticError (var_mainDeclarationLocation_59809, GALGAS_string ("the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main bank:requires 0\""), fixItArray7  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1689)) ;
-        }
-      }
-      enumGalgasBool test_8 = kBoolTrue ;
-      if (kBoolTrue == test_8) {
-        test_8 = GALGAS_bool (kIsNotEqual, var_requiredBank_59760.objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-        if (kBoolTrue == test_8) {
-          TC_Array <C_FixItDescription> fixItArray9 ;
-          inCompiler->emitSemanticError (var_mainDeclarationLocation_59809, GALGAS_string ("the \"main\" should be declared with \"requires:bank 0\" qualifier: \"noreturn main bank:requires 0\""), fixItArray9  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1692)) ;
-        }
-      }
-    }
-  }
-  if (kBoolFalse == test_5) {
-    TC_Array <C_FixItDescription> fixItArray10 ;
-    inCompiler->emitSemanticError (constinArgument_inPiccoloModel.getter_mEndOfProgram (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1695)), GALGAS_string ("the program should declare the \"main\" routine"), fixItArray10  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1695)) ;
-  }
-  GALGAS_uint var_localLabelIndex_60382 = GALGAS_uint ((uint32_t) 0U) ;
-  {
-  routine_handleInterruptRoutine (constinArgument_inPiccoloModel, constinArgument_inHasInterrupt, constinArgument_inRegisterTable, constinArgument_inSharedRAMBankName, var_routineMap_58103, constinArgument_inTotalBankCount, constinArgument_inConstantMap, constinArgument_inTotalPageCount, var_generationOptimizationMessages_58029, var_localLabelIndex_60382, ioArgument_ioListFileContents, outArgument_outGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1699)) ;
-  }
-  GALGAS_uint var_currentPage_60804 = GALGAS_uint ((uint32_t) 0U) ;
-  if (constinArgument_inTotalPageCount.isValid ()) {
-    uint32_t variant_60815 = constinArgument_inTotalPageCount.uintValue () ;
-    bool loop_60815 = true ;
-    while (loop_60815) {
-      loop_60815 = GALGAS_bool (kIsStrictInf, var_currentPage_60804.objectCompare (constinArgument_inTotalPageCount)).isValid () ;
-      if (loop_60815) {
-        loop_60815 = GALGAS_bool (kIsStrictInf, var_currentPage_60804.objectCompare (constinArgument_inTotalPageCount)).boolValue () ;
-      }
-      if (loop_60815 && (0 == variant_60815)) {
-        loop_60815 = false ;
-        inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1716)) ;
-      }
-      if (loop_60815) {
-        variant_60815 -- ;
-        GALGAS_bool var_orgGenerated_60897 = GALGAS_bool (kIsEqual, var_currentPage_60804.objectCompare (GALGAS_uint ((uint32_t) 0U))) ;
-        cEnumerator_midrange_5F_routineDefinitionList enumerator_60995 (constinArgument_inPiccoloModel.getter_mRoutineDefinitionList (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1718)), kENUMERATION_UP) ;
-        while (enumerator_60995.hasCurrentObject ()) {
-          enumGalgasBool test_11 = kBoolTrue ;
-          if (kBoolTrue == test_11) {
-            test_11 = GALGAS_bool (kIsEqual, enumerator_60995.current_mPage (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1719)).objectCompare (var_currentPage_60804)).boolEnum () ;
-            if (kBoolTrue == test_11) {
-              enumGalgasBool test_12 = kBoolTrue ;
-              if (kBoolTrue == test_12) {
-                test_12 = var_orgGenerated_60897.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1720)).boolEnum () ;
-                if (kBoolTrue == test_12) {
-                  outArgument_outGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG::constructor_new (var_currentPage_60804.multiply_operation (GALGAS_uint ((uint32_t) 2048U), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1721))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1721))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1721)) ;
-                  var_orgGenerated_60897 = GALGAS_bool (true) ;
-                }
-              }
-              GALGAS_bool var_continuesInSequence_61253 ;
-              GALGAS_uint var_currentBank_61279 = enumerator_60995.current_mRequiredBank (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1725)) ;
-              GALGAS_routineKind var_routineKind_61335 ;
-              enumGalgasBool test_13 = kBoolTrue ;
-              if (kBoolTrue == test_13) {
-                test_13 = enumerator_60995.current_mIsNoReturn (HERE).boolEnum () ;
-                if (kBoolTrue == test_13) {
-                  var_routineKind_61335 = GALGAS_routineKind::constructor_noReturnRoutine (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1728)) ;
-                }
-              }
-              if (kBoolFalse == test_13) {
-                var_routineKind_61335 = GALGAS_routineKind::constructor_regularRoutine (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1730)) ;
-              }
-              outArgument_outGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (enumerator_60995.current_mRoutineName (HERE), GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1732))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1732)) ;
-              {
-              routine_handleMidrangeInstructionList (enumerator_60995.current_mInstructionList (HERE), var_routineMap_58103, constinArgument_inRegisterTable, constinArgument_inConstantMap, var_localLabelIndex_60382, outArgument_outGeneratedInstructionList, var_generationOptimizationMessages_58029, constinArgument_inTotalBankCount, var_currentBank_61279, enumerator_60995.current_mPreservesBank (HERE), var_continuesInSequence_61253, var_routineKind_61335, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1733)) ;
-              }
-              enumGalgasBool test_14 = kBoolTrue ;
-              if (kBoolTrue == test_14) {
-                test_14 = enumerator_60995.current_mIsNoReturn (HERE).operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1748)).operator_and (GALGAS_bool (kIsNotEqual, enumerator_60995.current_mReturnedBank (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1748)).objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1748)))) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1748)).operator_and (GALGAS_bool (kIsNotEqual, var_currentBank_61279.objectCompare (enumerator_60995.current_mReturnedBank (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1748)))) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1748)).boolEnum () ;
-                if (kBoolTrue == test_14) {
-                  TC_Array <C_FixItDescription> fixItArray15 ;
-                  inCompiler->emitSemanticError (enumerator_60995.current_mRoutineName (HERE).getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1749)), GALGAS_string ("execution will not set bank selection to ").add_operation (enumerator_60995.current_mReturnedBank (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1749)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1749)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1749)), fixItArray15  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1749)) ;
-                }
-              }
-              enumGalgasBool test_16 = kBoolTrue ;
-              if (kBoolTrue == test_16) {
-                test_16 = enumerator_60995.current_mIsNoReturn (HERE).operator_and (var_continuesInSequence_61253 COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1751)).boolEnum () ;
-                if (kBoolTrue == test_16) {
-                  TC_Array <C_FixItDescription> fixItArray17 ;
-                  inCompiler->emitSemanticError (enumerator_60995.current_mRoutineName (HERE).getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1752)), GALGAS_string ("execution should not reach the end of a \"noreturn\" routine"), fixItArray17  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1752)) ;
-                }
-              }
-              enumGalgasBool test_18 = kBoolTrue ;
-              if (kBoolTrue == test_18) {
-                test_18 = enumerator_60995.current_mIsNoReturn (HERE).operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1755)).boolEnum () ;
-                if (kBoolTrue == test_18) {
-                  outArgument_outGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETURN::constructor_new (enumerator_60995.current_mRoutineName (HERE).getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1756))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1756))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1756)) ;
-                }
-              }
-            }
-          }
-          enumerator_60995.gotoNextObject () ;
-        }
-        var_currentPage_60804.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1760)) ;
-      }
-    }
-  }
-  enumGalgasBool test_19 = kBoolTrue ;
-  if (kBoolTrue == test_19) {
-    test_19 = GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.getter_value ()).boolEnum () ;
-    if (kBoolTrue == test_19) {
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1764)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1764)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1764)) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("IPIC INSTRUCTION LIST").getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1765)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1765)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1765)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1765)) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1766)).add_operation (GALGAS_string ("\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1766)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1766)) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("Generated intermediate code:\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1767)) ;
-      GALGAS_uint var_idx_63088 = GALGAS_uint ((uint32_t) 0U) ;
-      GALGAS_uint var_currentAddress_63117 = GALGAS_uint ((uint32_t) 0U) ;
-      cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_63164 (outArgument_outGeneratedInstructionList, kENUMERATION_UP) ;
-      while (enumerator_63164.hasCurrentObject ()) {
-        callExtensionMethod_setCurrentAddress ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_63164.current_mInstruction (HERE).ptr (), var_currentAddress_63117, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1771)) ;
-        ioArgument_ioListFileContents.plusAssign_operation(var_idx_63088.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1772)).getter_stringByLeftPadding (GALGAS_uint ((uint32_t) 5U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1772)).add_operation (GALGAS_string (": "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1772)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1772)) ;
-        callExtensionMethod_print ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_63164.current_mInstruction (HERE).ptr (), ioArgument_ioListFileContents, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1773)) ;
-        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1774)) ;
-        var_idx_63088.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1775)) ;
-        enumerator_63164.gotoNextObject () ;
-      }
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1777)) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("Minimum code size without optimization: ").add_operation (var_currentAddress_63117.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1778)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1778)).add_operation (GALGAS_string (" instructions.\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1778)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1778)) ;
-    }
-  }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'interruptRoutineShouldSavePCLATH'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_interruptRoutineShouldSavePCLATH (const GALGAS_midrange_5F_model constinArgument_inPiccoloModel,
-                                               const GALGAS_uint constinArgument_inTotalPageCount,
-                                               GALGAS_string & ioArgument_ioListFileContents,
-                                               GALGAS_bool & outArgument_outShouldSavePCLATH,
-                                               C_Compiler * inCompiler
-                                               COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outShouldSavePCLATH.drop () ; // Release 'out' argument
-  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("PCLATH should be saved \?\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1789)) ;
-  outArgument_outShouldSavePCLATH = GALGAS_bool (false) ;
-  cEnumerator_midrange_5F_routineDefinitionList enumerator_63979 (constinArgument_inPiccoloModel.getter_mRoutineDefinitionList (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1792)), kENUMERATION_UP) ;
-  while (enumerator_63979.hasCurrentObject ()) {
-    enumGalgasBool test_0 = kBoolTrue ;
-    if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsStrictSup, enumerator_63979.current_mPage (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1793)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-      if (kBoolTrue == test_0) {
-        outArgument_outShouldSavePCLATH = GALGAS_bool (true) ;
-      }
-    }
-    enumGalgasBool test_1 = kBoolTrue ;
-    if (kBoolTrue == test_1) {
-      test_1 = GALGAS_bool (kIsSupOrEqual, enumerator_63979.current_mPage (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1796)).objectCompare (constinArgument_inTotalPageCount)).boolEnum () ;
-      if (kBoolTrue == test_1) {
-        TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (enumerator_63979.current_mPage (HERE).getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1797)), GALGAS_string ("invalid value (").add_operation (enumerator_63979.current_mPage (HERE).getter_uint (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1797)).getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1797)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1797)).add_operation (GALGAS_string ("); the device has "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1797)).add_operation (constinArgument_inTotalPageCount.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1797)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1797)).add_operation (GALGAS_string (" 2k page(s) on rom"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1797)), fixItArray2  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1797)) ;
-      }
-    }
-    enumerator_63979.gotoNextObject () ;
-  }
-  enumGalgasBool test_3 = kBoolTrue ;
-  if (kBoolTrue == test_3) {
-    test_3 = outArgument_outShouldSavePCLATH.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1800)).boolEnum () ;
-    if (kBoolTrue == test_3) {
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  No, program uses only page 0.\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1801)) ;
-    }
-  }
-  enumGalgasBool test_4 = kBoolTrue ;
-  if (kBoolTrue == test_4) {
-    test_4 = outArgument_outShouldSavePCLATH.boolEnum () ;
-    if (kBoolTrue == test_4) {
-      outArgument_outShouldSavePCLATH = GALGAS_bool (false) ;
-      cEnumerator_midrange_5F_interruptDefinitionList enumerator_64542 (constinArgument_inPiccoloModel.getter_mInterruptDefinitionList (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1806)), kENUMERATION_UP) ;
-      bool bool_5 = outArgument_outShouldSavePCLATH.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1806)).isValidAndTrue () ;
-      if (enumerator_64542.hasCurrentObject () && bool_5) {
-        while (enumerator_64542.hasCurrentObject () && bool_5) {
-          cEnumerator_midrange_5F_instructionList enumerator_64609 (enumerator_64542.current_mInstructionList (HERE), kENUMERATION_UP) ;
-          bool bool_6 = outArgument_outShouldSavePCLATH.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1807)).isValidAndTrue () ;
-          if (enumerator_64609.hasCurrentObject () && bool_6) {
-            while (enumerator_64609.hasCurrentObject () && bool_6) {
-              callExtensionMethod_instructionUsesGOTOorCALL ((const cPtr_midrange_5F_instruction *) enumerator_64609.current_mInstruction (HERE).ptr (), outArgument_outShouldSavePCLATH, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1808)) ;
-              enumerator_64609.gotoNextObject () ;
-              if (enumerator_64609.hasCurrentObject ()) {
-                bool_6 = outArgument_outShouldSavePCLATH.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1807)).isValidAndTrue () ;
-              }
-            }
-          }
-          enumerator_64542.gotoNextObject () ;
-          if (enumerator_64542.hasCurrentObject ()) {
-            bool_5 = outArgument_outShouldSavePCLATH.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1806)).isValidAndTrue () ;
-          }
-        }
-      }
-      enumGalgasBool test_7 = kBoolTrue ;
-      if (kBoolTrue == test_7) {
-        test_7 = outArgument_outShouldSavePCLATH.boolEnum () ;
-        if (kBoolTrue == test_7) {
-          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  Yes, program uses several pages and interrupt routine use CALL or GOTO instruction.\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1812)) ;
-        }
-      }
-      if (kBoolFalse == test_7) {
-        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  No, program uses several pages, but interrupt routine does not use CALL or GOTO instruction.\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1814)) ;
-      }
-    }
-  }
-  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1817)) ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'handleInterruptRoutine'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_handleInterruptRoutine (const GALGAS_midrange_5F_model constinArgument_inPiccoloModel,
-                                     const GALGAS_bool constinArgument_inHasInterrupt,
-                                     const GALGAS_registerTable constinArgument_inRegisterTable,
-                                     const GALGAS_string constinArgument_inSharedRAMBankName,
-                                     const GALGAS_routineMap constinArgument_inRoutineMap,
-                                     const GALGAS_uint constinArgument_inTotalBankCount,
-                                     const GALGAS_constantMap constinArgument_inConstantMap,
-                                     const GALGAS_uint constinArgument_inTotalPageCount,
-                                     GALGAS_string & ioArgument_ioGenerationOptimizationMessages,
-                                     GALGAS_uint & ioArgument_ioLocalLabelIndex,
-                                     GALGAS_string & ioArgument_ioListFileContents,
-                                     GALGAS_midrange_5F_intermediate_5F_instructionList & outArgument_outGeneratedInstructionList,
-                                     GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                     C_Compiler * inCompiler
-                                     COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outGeneratedInstructionList.drop () ; // Release 'out' argument
-  outArgument_outGeneratedInstructionList = GALGAS_midrange_5F_intermediate_5F_instructionList::constructor_emptyList (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1841)) ;
-  outArgument_outGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_JUMP::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1844)), GALGAS_lstring::constructor_new (GALGAS_string ("main"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1845))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1845)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1846)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1847))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1843))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1843)) ;
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
-    test_0 = constinArgument_inHasInterrupt.boolEnum () ;
-    if (kBoolTrue == test_0) {
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1850)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1850)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1850)) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("INTERRUPT ROUTINE").getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1851)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1851)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1851)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1851)) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1852)).add_operation (GALGAS_string ("\n"
-        "\n"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1852)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1852)) ;
-      GALGAS_bool var_shouldSavePCLATH_66861 ;
-      {
-      routine_interruptRoutineShouldSavePCLATH (constinArgument_inPiccoloModel, constinArgument_inTotalPageCount, ioArgument_ioListFileContents, var_shouldSavePCLATH_66861, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1854)) ;
-      }
-      outArgument_outGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG::constructor_new (GALGAS_uint ((uint32_t) 4U)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1861))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1861)) ;
-      cEnumerator_midrange_5F_interruptDefinitionList enumerator_67014 (constinArgument_inPiccoloModel.getter_mInterruptDefinitionList (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1862)), kENUMERATION_UP) ;
-      while (enumerator_67014.hasCurrentObject ()) {
-        enumGalgasBool test_1 = kBoolTrue ;
-        if (kBoolTrue == test_1) {
-          test_1 = GALGAS_bool (kIsNotEqual, constinArgument_inSharedRAMBankName.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-          if (kBoolTrue == test_1) {
-            {
-            routine_generateInterruptRoutineForControllerWithSharedRAM (constinArgument_inTotalBankCount, constinArgument_inRegisterTable, enumerator_67014.current_mFirstSaveRegister (HERE), enumerator_67014.current_mSecondSaveRegister (HERE), var_shouldSavePCLATH_66861, enumerator_67014.current_mInstructionList (HERE), constinArgument_inRoutineMap, constinArgument_inConstantMap, enumerator_67014.current_mEndOfInterruptLocation (HERE), outArgument_outGeneratedInstructionList, ioArgument_ioLocalLabelIndex, ioArgument_ioGenerationOptimizationMessages, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1864)) ;
-            }
-          }
-        }
-        if (kBoolFalse == test_1) {
-          {
-          routine_generateInterruptRoutineForControllerWithoutSharedRAM (constinArgument_inTotalBankCount, constinArgument_inRegisterTable, enumerator_67014.current_mFirstSaveRegister (HERE), enumerator_67014.current_mSecondSaveRegister (HERE), var_shouldSavePCLATH_66861, enumerator_67014.current_mInstructionList (HERE), constinArgument_inRoutineMap, constinArgument_inConstantMap, enumerator_67014.current_mEndOfInterruptLocation (HERE), outArgument_outGeneratedInstructionList, ioArgument_ioLocalLabelIndex, ioArgument_ioGenerationOptimizationMessages, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1880)) ;
-          }
-        }
-        enumerator_67014.gotoNextObject () ;
-      }
-    }
-  }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'generateInterruptRoutineForControllerWithSharedRAM'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_generateInterruptRoutineForControllerWithSharedRAM (const GALGAS_uint constinArgument_inTotalBankCount,
-                                                                 const GALGAS_registerTable constinArgument_inRegisterTable,
-                                                                 const GALGAS_lstring constinArgument_inFirstSaveRegister,
-                                                                 const GALGAS_lstring constinArgument_inSecondSaveRegister,
-                                                                 const GALGAS_bool constinArgument_inNeedsToSavePCLATH,
-                                                                 const GALGAS_midrange_5F_instructionList constinArgument_inInterruptRoutineInstructionList,
-                                                                 const GALGAS_routineMap constinArgument_inRoutineMap,
-                                                                 const GALGAS_constantMap constinArgument_inConstantMap,
-                                                                 const GALGAS_location constinArgument_inEndOfInterruptLocation,
-                                                                 GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                                 GALGAS_uint & ioArgument_ioLocalLabelIndex,
-                                                                 GALGAS_string & ioArgument_ioGenerationOptimizationMessages,
-                                                                 GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                 C_Compiler * inCompiler
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_uintlist var_registerAddressList_68886 ;
-  GALGAS_uint var_size_68898 ;
-  GALGAS_registerProtection var_firstProtection_68923 ;
-  GALGAS_bitSliceTable joker_68900_2 ; // Joker input parameter
-  GALGAS_string joker_68900_1 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (constinArgument_inFirstSaveRegister, var_registerAddressList_68886, var_size_68898, joker_68900_2, joker_68900_1, var_firstProtection_68923, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1917)) ;
-  extensionMethod_checkPrivateAccess (constinArgument_inRegisterTable, constinArgument_inFirstSaveRegister, GALGAS_bool (true), var_firstProtection_68923, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1918)) ;
-  GALGAS_uint var_bankAccessibility_69039 = GALGAS_uint ((uint32_t) 0U) ;
-  cEnumerator_uintlist enumerator_69076 (var_registerAddressList_68886, kENUMERATION_UP) ;
-  while (enumerator_69076.hasCurrentObject ()) {
-    var_bankAccessibility_69039 = var_bankAccessibility_69039.operator_or (GALGAS_uint ((uint32_t) 1U).left_shift_operation (enumerator_69076.current_mValue (HERE).right_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1921)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1921)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1921)) ;
-    enumerator_69076.gotoNextObject () ;
-  }
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsNotEqual, var_bankAccessibility_69039.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1923)).objectCompare (GALGAS_uint ((uint32_t) 1U).left_shift_operation (constinArgument_inTotalBankCount, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1923)))).boolEnum () ;
-    if (kBoolTrue == test_0) {
-      TC_Array <C_FixItDescription> fixItArray1 ;
-      inCompiler->emitSemanticError (constinArgument_inFirstSaveRegister.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1924)), GALGAS_string ("the '").add_operation (constinArgument_inFirstSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1924)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1924)).add_operation (GALGAS_string ("' variable cannot be accessed from any bank"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1924)), fixItArray1  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1924)) ;
-    }
-  }
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
-    test_2 = GALGAS_bool (kIsNotEqual, var_size_68898.objectCompare (GALGAS_uint ((uint32_t) 1U))).boolEnum () ;
-    if (kBoolTrue == test_2) {
-      TC_Array <C_FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticError (constinArgument_inFirstSaveRegister.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1927)), GALGAS_string ("the '").add_operation (constinArgument_inFirstSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1927)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1927)).add_operation (GALGAS_string ("' variable size is "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1927)).add_operation (var_size_68898.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1927)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1927)).add_operation (GALGAS_string (" (it should be 1)"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1927)), fixItArray3  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1927)) ;
-    }
-  }
-  GALGAS_registerProtection var_secondProtection_69687 ;
-  GALGAS_bitSliceTable joker_69663_2 ; // Joker input parameter
-  GALGAS_string joker_69663_1 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (constinArgument_inSecondSaveRegister, var_registerAddressList_68886, var_size_68898, joker_69663_2, joker_69663_1, var_secondProtection_69687, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1930)) ;
-  extensionMethod_checkPrivateAccess (constinArgument_inRegisterTable, constinArgument_inSecondSaveRegister, GALGAS_bool (true), var_secondProtection_69687, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1931)) ;
-  var_bankAccessibility_69039 = GALGAS_uint ((uint32_t) 0U) ;
-  cEnumerator_uintlist enumerator_69836 (var_registerAddressList_68886, kENUMERATION_UP) ;
-  while (enumerator_69836.hasCurrentObject ()) {
-    var_bankAccessibility_69039 = var_bankAccessibility_69039.operator_or (GALGAS_uint ((uint32_t) 1U).left_shift_operation (enumerator_69836.current_mValue (HERE).right_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1934)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1934)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1934)) ;
-    enumerator_69836.gotoNextObject () ;
-  }
-  enumGalgasBool test_4 = kBoolTrue ;
-  if (kBoolTrue == test_4) {
-    test_4 = GALGAS_bool (kIsEqual, var_bankAccessibility_69039.operator_and (GALGAS_uint ((uint32_t) 1U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1936)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-    if (kBoolTrue == test_4) {
-      TC_Array <C_FixItDescription> fixItArray5 ;
-      inCompiler->emitSemanticError (constinArgument_inSecondSaveRegister.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1937)), GALGAS_string ("the '").add_operation (constinArgument_inSecondSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1937)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1937)).add_operation (GALGAS_string ("' variable cannot be accessed from bank 0"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1937)), fixItArray5  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1937)) ;
-    }
-  }
-  enumGalgasBool test_6 = kBoolTrue ;
-  if (kBoolTrue == test_6) {
-    test_6 = constinArgument_inNeedsToSavePCLATH.operator_and (GALGAS_bool (kIsNotEqual, var_size_68898.objectCompare (GALGAS_uint ((uint32_t) 2U))) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1939)).boolEnum () ;
-    if (kBoolTrue == test_6) {
-      TC_Array <C_FixItDescription> fixItArray7 ;
-      inCompiler->emitSemanticError (constinArgument_inSecondSaveRegister.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1940)), GALGAS_string ("the '").add_operation (constinArgument_inSecondSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1940)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1940)).add_operation (GALGAS_string ("' variable size is "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1940)).add_operation (var_size_68898.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1940)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1940)).add_operation (GALGAS_string (" (it should be 2)"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1940)), fixItArray7  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1940)) ;
-    }
-  }
-  if (kBoolFalse == test_6) {
-    enumGalgasBool test_8 = kBoolTrue ;
-    if (kBoolTrue == test_8) {
-      test_8 = constinArgument_inNeedsToSavePCLATH.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1941)).operator_and (GALGAS_bool (kIsNotEqual, var_size_68898.objectCompare (GALGAS_uint ((uint32_t) 1U))) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1941)).boolEnum () ;
-      if (kBoolTrue == test_8) {
-        TC_Array <C_FixItDescription> fixItArray9 ;
-        inCompiler->emitSemanticError (constinArgument_inSecondSaveRegister.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1942)), GALGAS_string ("the '").add_operation (constinArgument_inSecondSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1942)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1942)).add_operation (GALGAS_string ("' variable size is "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1942)).add_operation (var_size_68898.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1942)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1942)).add_operation (GALGAS_string (" (it should be 1)"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1942)), fixItArray9  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1942)) ;
-      }
-    }
-  }
-  enumGalgasBool test_10 = kBoolTrue ;
-  if (kBoolTrue == test_10) {
-    test_10 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1945)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-    if (kBoolTrue == test_10) {
-      GALGAS_registerExpression var_first_5F_register_70513 = GALGAS_registerExpression::constructor_new (constinArgument_inFirstSaveRegister, GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1948))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1948))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1948)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1949))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1946)) ;
-      GALGAS_midrange_5F_intermediate_5F_registerExpression var_first_5F_IPICregisterDescription_70711 ;
-      GALGAS_bitSliceTable joker_70875 ; // Joker input parameter
-      callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_first_5F_register_70513.ptr (), constinArgument_inTotalBankCount, GALGAS_uint ((uint32_t) 0U), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_first_5F_IPICregisterDescription_70711, joker_70875, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1952)) ;
-      GALGAS_registerExpression var_second_5F_register_70930 = GALGAS_registerExpression::constructor_new (constinArgument_inSecondSaveRegister, GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1963))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1963))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1963)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1964))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1961)) ;
-      GALGAS_midrange_5F_intermediate_5F_registerExpression var_second_5F_IPICregisterDescription_71130 ;
-      GALGAS_bitSliceTable joker_71327 ; // Joker input parameter
-      callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_second_5F_register_70930.ptr (), constinArgument_inTotalBankCount, GALGAS_uint ((uint32_t) 0U), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_second_5F_IPICregisterDescription_71130, joker_71327, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1967)) ;
-      GALGAS_registerExpression var_STATUS_5F_register_71420 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("STATUS"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1978))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1978)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1979))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1979))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1979)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1980))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1977)) ;
-      GALGAS_midrange_5F_intermediate_5F_registerExpression var_STATUS_5F_IPICregisterDescription_71632 ;
-      GALGAS_bitSliceTable joker_71807 ; // Joker input parameter
-      callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_STATUS_5F_register_71420.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1985)), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_STATUS_5F_IPICregisterDescription_71632, joker_71807, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1983)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1992)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1992)), var_first_5F_IPICregisterDescription_70711  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1992))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1992)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1993)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1993)), var_STATUS_5F_IPICregisterDescription_71632, GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1993))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1993)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1994)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_CLRF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1994)), var_STATUS_5F_IPICregisterDescription_71632  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1994))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1994)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1995)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1995)), var_second_5F_IPICregisterDescription_71130  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1995))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1995)) ;
-      enumGalgasBool test_11 = kBoolTrue ;
-      if (kBoolTrue == test_11) {
-        test_11 = constinArgument_inNeedsToSavePCLATH.boolEnum () ;
-        if (kBoolTrue == test_11) {
-          GALGAS_registerExpression var_reg_72570 = GALGAS_registerExpression::constructor_new (constinArgument_inSecondSaveRegister, GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 1U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1999))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1999))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1999)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2000))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1997)) ;
-          GALGAS_midrange_5F_intermediate_5F_registerExpression var_register_5F_for_5F_saving_5F_PCLATH_5F_description_73029 ;
-          GALGAS_bitSliceTable joker_73039 ; // Joker input parameter
-          callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_reg_72570.ptr (), constinArgument_inTotalBankCount, GALGAS_uint ((uint32_t) 0U), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_register_5F_for_5F_saving_5F_PCLATH_5F_description_73029, joker_73039, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2003)) ;
-          GALGAS_registerExpression var_PCLATH_5F_register_73140 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("PCLATH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2014))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2014)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2015))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2015))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2015)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2016))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2013)) ;
-          GALGAS_midrange_5F_intermediate_5F_registerExpression var_PCLATH_5F_IPICregisterDescription_73373 ;
-          GALGAS_bitSliceTable joker_73562 ; // Joker input parameter
-          callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register_73140.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2021)), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_PCLATH_5F_IPICregisterDescription_73373, joker_73562, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2019)) ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2028)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_MOVF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2028)), var_PCLATH_5F_IPICregisterDescription_73373, GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2028))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2028)) ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2029)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2029)), var_register_5F_for_5F_saving_5F_PCLATH_5F_description_73029  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2029))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2029)) ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2030)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_CLRF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2030)), var_PCLATH_5F_IPICregisterDescription_73373  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2030))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2030)) ;
-        }
-      }
-      GALGAS_bool var_continuesInSequence_74195 ;
-      GALGAS_uint var_currentBank_74217 = GALGAS_uint ((uint32_t) 0U) ;
-      {
-      routine_handleMidrangeInstructionList (constinArgument_inInterruptRoutineInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioGenerationOptimizationMessages, constinArgument_inTotalBankCount, var_currentBank_74217, GALGAS_bool (false), var_continuesInSequence_74195, GALGAS_routineKind::constructor_interruptRoutine (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2047)), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2035)) ;
-      }
-      enumGalgasBool test_12 = kBoolTrue ;
-      if (kBoolTrue == test_12) {
-        test_12 = var_continuesInSequence_74195.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2050)).boolEnum () ;
-        if (kBoolTrue == test_12) {
-          TC_Array <C_FixItDescription> fixItArray13 ;
-          inCompiler->emitSemanticError (constinArgument_inEndOfInterruptLocation, GALGAS_string ("execution cannot reach the end of the interrupt routine"), fixItArray13  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2051)) ;
-        }
-      }
-      enumGalgasBool test_14 = kBoolTrue ;
-      if (kBoolTrue == test_14) {
-        test_14 = constinArgument_inNeedsToSavePCLATH.boolEnum () ;
-        if (kBoolTrue == test_14) {
-          GALGAS_registerExpression var_reg_74854 = GALGAS_registerExpression::constructor_new (constinArgument_inSecondSaveRegister, GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 1U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2056))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2056))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2056)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2057))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2054)) ;
-          GALGAS_midrange_5F_intermediate_5F_registerExpression var_register_5F_for_5F_saving_5F_PCLATH_5F_description_75199 ;
-          GALGAS_bitSliceTable joker_75209 ; // Joker input parameter
-          callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_reg_74854.ptr (), constinArgument_inTotalBankCount, GALGAS_uint ((uint32_t) 0U), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_register_5F_for_5F_saving_5F_PCLATH_5F_description_75199, joker_75209, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2059)) ;
-          GALGAS_registerExpression var_PCLATH_5F_register_75310 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("PCLATH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2070))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2070)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2071))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2071))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2071)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2072))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2069)) ;
-          GALGAS_midrange_5F_intermediate_5F_registerExpression var_PCLATH_5F_IPICregisterDescription_75542 ;
-          GALGAS_bitSliceTable joker_75731 ; // Joker input parameter
-          callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register_75310.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2077)), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_PCLATH_5F_IPICregisterDescription_75542, joker_75731, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2075)) ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2084)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_MOVF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2084)), var_register_5F_for_5F_saving_5F_PCLATH_5F_description_75199, GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2084))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2084)) ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2085)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2085)), var_PCLATH_5F_IPICregisterDescription_75542  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2085))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2085)) ;
-        }
-      }
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2088)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2088)), var_second_5F_IPICregisterDescription_71130, GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2088))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2088)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2089)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2089)), var_STATUS_5F_IPICregisterDescription_71632  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2089))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2089)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2090)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2090)), var_first_5F_IPICregisterDescription_70711, GALGAS_bool (false)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2090))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2090)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2091)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2091)), var_first_5F_IPICregisterDescription_70711, GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2091))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2091)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETFIE::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2093))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2093))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2093)) ;
-    }
-  }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'generateInterruptRoutineForControllerWithoutSharedRAM'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_generateInterruptRoutineForControllerWithoutSharedRAM (const GALGAS_uint constinArgument_inTotalBankCount,
-                                                                    const GALGAS_registerTable constinArgument_inRegisterTable,
-                                                                    const GALGAS_lstring constinArgument_inFirstSaveRegister,
-                                                                    const GALGAS_lstring constinArgument_inSecondSaveRegister,
-                                                                    const GALGAS_bool constinArgument_inNeedsToSavePCLATH,
-                                                                    const GALGAS_midrange_5F_instructionList constinArgument_inInterruptRoutineInstructionList,
-                                                                    const GALGAS_routineMap constinArgument_inRoutineMap,
-                                                                    const GALGAS_constantMap constinArgument_inConstantMap,
-                                                                    const GALGAS_location constinArgument_inEndOfInterruptLocation,
-                                                                    GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                                    GALGAS_uint & ioArgument_ioLocalLabelIndex,
-                                                                    GALGAS_string & ioArgument_ioGenerationOptimizationMessages,
-                                                                    GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                    C_Compiler * inCompiler
-                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioUsedRegisters.addAssign_operation (constinArgument_inFirstSaveRegister.getter_string (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2115)) ;
-  GALGAS_uintlist var_registerAddressList_77879 ;
-  GALGAS_uint var_size_77891 ;
-  GALGAS_registerProtection var_firstProtection_77916 ;
-  GALGAS_bitSliceTable joker_77893_2 ; // Joker input parameter
-  GALGAS_string joker_77893_1 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (constinArgument_inFirstSaveRegister, var_registerAddressList_77879, var_size_77891, joker_77893_2, joker_77893_1, var_firstProtection_77916, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2116)) ;
-  extensionMethod_checkPrivateAccess (constinArgument_inRegisterTable, constinArgument_inFirstSaveRegister, GALGAS_bool (true), var_firstProtection_77916, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2117)) ;
-  GALGAS_bool var_accessibleFromBank_30__78034 = GALGAS_bool (false) ;
-  GALGAS_uint var_offset_78057 = GALGAS_uint ((uint32_t) 0U) ;
-  cEnumerator_uintlist enumerator_78106 (var_registerAddressList_77879, kENUMERATION_UP) ;
-  bool bool_0 = var_accessibleFromBank_30__78034.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2120)).isValidAndTrue () ;
-  if (enumerator_78106.hasCurrentObject () && bool_0) {
-    while (enumerator_78106.hasCurrentObject () && bool_0) {
-      var_offset_78057 = enumerator_78106.current_mValue (HERE).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2121)) ;
-      var_accessibleFromBank_30__78034 = GALGAS_bool (kIsEqual, enumerator_78106.current_mValue (HERE).operator_and (GALGAS_uint ((uint32_t) 3968U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2122)).objectCompare (GALGAS_uint ((uint32_t) 0U))) ;
-      enumerator_78106.gotoNextObject () ;
-      if (enumerator_78106.hasCurrentObject ()) {
-        bool_0 = var_accessibleFromBank_30__78034.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2120)).isValidAndTrue () ;
-      }
-    }
-  }
-  enumGalgasBool test_1 = kBoolTrue ;
-  if (kBoolTrue == test_1) {
-    test_1 = var_accessibleFromBank_30__78034.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2124)).boolEnum () ;
-    if (kBoolTrue == test_1) {
-      TC_Array <C_FixItDescription> fixItArray2 ;
-      inCompiler->emitSemanticError (constinArgument_inFirstSaveRegister.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2125)), GALGAS_string ("the '").add_operation (constinArgument_inFirstSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2125)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2125)).add_operation (GALGAS_string ("' variable cannot be accessed from bank 0"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2125)), fixItArray2  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2125)) ;
-    }
-  }
-  enumGalgasBool test_3 = kBoolTrue ;
-  if (kBoolTrue == test_3) {
-    test_3 = constinArgument_inNeedsToSavePCLATH.operator_and (GALGAS_bool (kIsNotEqual, var_size_77891.objectCompare (GALGAS_uint ((uint32_t) 3U))) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2127)).boolEnum () ;
-    if (kBoolTrue == test_3) {
-      TC_Array <C_FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (constinArgument_inFirstSaveRegister.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2128)), GALGAS_string ("the '").add_operation (constinArgument_inFirstSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2128)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2128)).add_operation (GALGAS_string ("' variable size is "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2128)).add_operation (var_size_77891.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2128)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2128)).add_operation (GALGAS_string (" (it should be 3)"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2128)), fixItArray4  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2128)) ;
-    }
-  }
-  if (kBoolFalse == test_3) {
-    enumGalgasBool test_5 = kBoolTrue ;
-    if (kBoolTrue == test_5) {
-      test_5 = constinArgument_inNeedsToSavePCLATH.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2129)).operator_and (GALGAS_bool (kIsNotEqual, var_size_77891.objectCompare (GALGAS_uint ((uint32_t) 2U))) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2129)).boolEnum () ;
-      if (kBoolTrue == test_5) {
-        TC_Array <C_FixItDescription> fixItArray6 ;
-        inCompiler->emitSemanticError (constinArgument_inFirstSaveRegister.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2130)), GALGAS_string ("the '").add_operation (constinArgument_inFirstSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2130)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2130)).add_operation (GALGAS_string ("' variable size is "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2130)).add_operation (var_size_77891.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2130)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2130)).add_operation (GALGAS_string (" (it should be 2)"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2130)), fixItArray6  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2130)) ;
-      }
-    }
-  }
-  GALGAS_uintlist var_saveStatusRegisterAddressList_78863 = var_registerAddressList_77879 ;
-  ioArgument_ioUsedRegisters.addAssign_operation (constinArgument_inSecondSaveRegister.getter_string (HERE)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2134)) ;
-  GALGAS_registerProtection var_secondProtection_79039 ;
-  GALGAS_bitSliceTable joker_79015_2 ; // Joker input parameter
-  GALGAS_string joker_79015_1 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (constinArgument_inSecondSaveRegister, var_registerAddressList_77879, var_size_77891, joker_79015_2, joker_79015_1, var_secondProtection_79039, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2135)) ;
-  extensionMethod_checkPrivateAccess (constinArgument_inRegisterTable, constinArgument_inSecondSaveRegister, GALGAS_bool (true), var_secondProtection_79039, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2136)) ;
-  var_saveStatusRegisterAddressList_78863 = var_saveStatusRegisterAddressList_78863.add_operation (var_registerAddressList_77879, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2137)) ;
-  enumGalgasBool test_7 = kBoolTrue ;
-  if (kBoolTrue == test_7) {
-    test_7 = GALGAS_bool (kIsNotEqual, var_size_77891.objectCompare (GALGAS_uint ((uint32_t) 1U))).boolEnum () ;
-    if (kBoolTrue == test_7) {
-      TC_Array <C_FixItDescription> fixItArray8 ;
-      inCompiler->emitSemanticError (constinArgument_inSecondSaveRegister.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2139)), GALGAS_string ("the '").add_operation (constinArgument_inSecondSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2139)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2139)).add_operation (GALGAS_string ("' variable size is "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2139)).add_operation (var_size_77891.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2139)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2139)).add_operation (GALGAS_string (" (it should be 1)"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2139)), fixItArray8  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2139)) ;
-    }
-  }
-  GALGAS_bool var_accessibleFromBank_31__79446 = GALGAS_bool (false) ;
-  cEnumerator_uintlist enumerator_79487 (var_registerAddressList_77879, kENUMERATION_UP) ;
-  bool bool_9 = var_accessibleFromBank_31__79446.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2143)).isValidAndTrue () ;
-  if (enumerator_79487.hasCurrentObject () && bool_9) {
-    while (enumerator_79487.hasCurrentObject () && bool_9) {
-      var_accessibleFromBank_31__79446 = GALGAS_bool (kIsEqual, enumerator_79487.current_mValue (HERE).operator_and (GALGAS_uint ((uint32_t) 3968U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2144)).objectCompare (GALGAS_uint ((uint32_t) 128U))) ;
-      enumerator_79487.gotoNextObject () ;
-      if (enumerator_79487.hasCurrentObject ()) {
-        bool_9 = var_accessibleFromBank_31__79446.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2143)).isValidAndTrue () ;
-      }
-    }
-  }
-  enumGalgasBool test_10 = kBoolTrue ;
-  if (kBoolTrue == test_10) {
-    test_10 = var_accessibleFromBank_31__79446.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2146)).boolEnum () ;
-    if (kBoolTrue == test_10) {
-      TC_Array <C_FixItDescription> fixItArray11 ;
-      inCompiler->emitSemanticError (constinArgument_inSecondSaveRegister.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2147)), GALGAS_string ("the '").add_operation (constinArgument_inSecondSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2147)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2147)).add_operation (GALGAS_string ("' variable cannot be accessed from bank 1"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2147)), fixItArray11  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2147)) ;
-    }
-  }
-  GALGAS_bool var_offsetOk_79838 = GALGAS_bool (true) ;
-  cEnumerator_uintlist enumerator_79878 (var_registerAddressList_77879, kENUMERATION_UP) ;
-  bool bool_12 = var_offsetOk_79838.isValidAndTrue () ;
-  if (enumerator_79878.hasCurrentObject () && bool_12) {
-    while (enumerator_79878.hasCurrentObject () && bool_12) {
-      var_offsetOk_79838 = GALGAS_bool (kIsEqual, var_offset_78057.objectCompare (enumerator_79878.current_mValue (HERE).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2152)))) ;
-      enumGalgasBool test_13 = kBoolTrue ;
-      if (kBoolTrue == test_13) {
-        test_13 = var_offsetOk_79838.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2153)).boolEnum () ;
-        if (kBoolTrue == test_13) {
-          TC_Array <C_FixItDescription> fixItArray14 ;
-          inCompiler->emitSemanticError (constinArgument_inSecondSaveRegister.getter_location (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2154)), GALGAS_string ("the '").add_operation (constinArgument_inSecondSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2154)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2154)).add_operation (GALGAS_string ("' variable has an offset equal to "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2154)).add_operation (enumerator_79878.current_mValue (HERE).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2155)).getter_hexString (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2155)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2154)).add_operation (GALGAS_string (", while '"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2155)).add_operation (constinArgument_inFirstSaveRegister.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2155)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2155)).add_operation (GALGAS_string ("' has an offset equal to "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2155)).add_operation (var_offset_78057.getter_hexString (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2156)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2155)).add_operation (GALGAS_string (" (tthe two offsets should be equal)"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2156)), fixItArray14  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2154)) ;
-        }
-      }
-      enumerator_79878.gotoNextObject () ;
-      if (enumerator_79878.hasCurrentObject ()) {
-        bool_12 = var_offsetOk_79838.isValidAndTrue () ;
-      }
-    }
-  }
-  enumGalgasBool test_15 = kBoolTrue ;
-  if (kBoolTrue == test_15) {
-    test_15 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2160)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
-    if (kBoolTrue == test_15) {
-      GALGAS_registerExpression var_first_5F_register_80343 = GALGAS_registerExpression::constructor_new (constinArgument_inFirstSaveRegister, GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2163))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2163))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2163)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2164))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2161)) ;
-      GALGAS_midrange_5F_intermediate_5F_registerExpression var_first_5F_IPICregisterDescription_80541 ;
-      GALGAS_bitSliceTable joker_80705 ; // Joker input parameter
-      callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_first_5F_register_80343.ptr (), constinArgument_inTotalBankCount, GALGAS_uint ((uint32_t) 0U), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_first_5F_IPICregisterDescription_80541, joker_80705, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2167)) ;
-      GALGAS_registerExpression var_first_5F_register_5F_second_5F_byte_80771 = GALGAS_registerExpression::constructor_new (constinArgument_inFirstSaveRegister, GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 1U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2178))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2178))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2178)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2179))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2176)) ;
-      GALGAS_midrange_5F_intermediate_5F_registerExpression var_first_5F_reg_5F_second_5F_byte_5F_IPICregisterDescription_80994 ;
-      GALGAS_bitSliceTable joker_81187 ; // Joker input parameter
-      callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_first_5F_register_5F_second_5F_byte_80771.ptr (), constinArgument_inTotalBankCount, GALGAS_uint ((uint32_t) 0U), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_first_5F_reg_5F_second_5F_byte_5F_IPICregisterDescription_80994, joker_81187, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2182)) ;
-      GALGAS_registerExpression var_STATUS_5F_register_81280 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("STATUS"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2193))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2193)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2194))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2194))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2194)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2195))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2192)) ;
-      GALGAS_midrange_5F_intermediate_5F_registerExpression var_STATUS_5F_IPICregisterDescription_81511 ;
-      GALGAS_bitSliceTable joker_81686 ; // Joker input parameter
-      callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_STATUS_5F_register_81280.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2200)), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_STATUS_5F_IPICregisterDescription_81511, joker_81686, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2198)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2207)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2207)), var_first_5F_IPICregisterDescription_80541  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2207))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2207)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2208)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2208)), var_STATUS_5F_IPICregisterDescription_81511, GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2208))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2208)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2209)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_CLRF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2209)), var_STATUS_5F_IPICregisterDescription_81511  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2209))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2209)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2210)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2210)), var_first_5F_reg_5F_second_5F_byte_5F_IPICregisterDescription_80994  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2210))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2210)) ;
-      enumGalgasBool test_16 = kBoolTrue ;
-      if (kBoolTrue == test_16) {
-        test_16 = constinArgument_inNeedsToSavePCLATH.boolEnum () ;
-        if (kBoolTrue == test_16) {
-          GALGAS_registerExpression var_first_5F_register_5F_third_5F_byte_82488 = GALGAS_registerExpression::constructor_new (constinArgument_inFirstSaveRegister, GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2214))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2214))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2214)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2215))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2212)) ;
-          GALGAS_midrange_5F_intermediate_5F_registerExpression var_first_5F_var_5F_third_5F_byte_5F_IPICregisterDescription_82719 ;
-          GALGAS_bitSliceTable joker_82923 ; // Joker input parameter
-          callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_first_5F_register_5F_third_5F_byte_82488.ptr (), constinArgument_inTotalBankCount, GALGAS_uint ((uint32_t) 0U), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_first_5F_var_5F_third_5F_byte_5F_IPICregisterDescription_82719, joker_82923, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2218)) ;
-          GALGAS_registerExpression var_PCLATH_5F_register_83024 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("PCLATH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2229))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2229)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2230))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2230))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2230)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2231))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2228)) ;
-          GALGAS_midrange_5F_intermediate_5F_registerExpression var_PCLATH_5F_IPICregisterDescription_83263 ;
-          GALGAS_bitSliceTable joker_83452 ; // Joker input parameter
-          callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register_83024.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2236)), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_PCLATH_5F_IPICregisterDescription_83263, joker_83452, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2234)) ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2243)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_MOVF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2243)), var_PCLATH_5F_IPICregisterDescription_83263, GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2243))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2243)) ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2244)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2244)), var_first_5F_var_5F_third_5F_byte_5F_IPICregisterDescription_82719  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2244))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2244)) ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2245)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_CLRF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2245)), var_PCLATH_5F_IPICregisterDescription_83263  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2245))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2245)) ;
-        }
-      }
-      GALGAS_bool var_continuesInSequence_84091 ;
-      GALGAS_uint var_currentBank_84113 = GALGAS_uint ((uint32_t) 0U) ;
-      {
-      routine_handleMidrangeInstructionList (constinArgument_inInterruptRoutineInstructionList, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioGenerationOptimizationMessages, constinArgument_inTotalBankCount, var_currentBank_84113, GALGAS_bool (true), var_continuesInSequence_84091, GALGAS_routineKind::constructor_interruptRoutine (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2262)), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2250)) ;
-      }
-      enumGalgasBool test_17 = kBoolTrue ;
-      if (kBoolTrue == test_17) {
-        test_17 = var_continuesInSequence_84091.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2265)).boolEnum () ;
-        if (kBoolTrue == test_17) {
-          TC_Array <C_FixItDescription> fixItArray18 ;
-          inCompiler->emitSemanticError (constinArgument_inEndOfInterruptLocation, GALGAS_string ("execution cannot reach the end of the interrupt routine"), fixItArray18  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2266)) ;
-        }
-      }
-      enumGalgasBool test_19 = kBoolTrue ;
-      if (kBoolTrue == test_19) {
-        test_19 = constinArgument_inNeedsToSavePCLATH.boolEnum () ;
-        if (kBoolTrue == test_19) {
-          GALGAS_registerExpression var_first_5F_register_5F_third_5F_byte_84755 = GALGAS_registerExpression::constructor_new (constinArgument_inFirstSaveRegister, GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 2U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2271))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2271))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2271)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2272))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2269)) ;
-          GALGAS_midrange_5F_intermediate_5F_registerExpression var_first_5F_var_5F_second_5F_byte_5F_IPICregisterDescription_85135 ;
-          GALGAS_bitSliceTable joker_85145 ; // Joker input parameter
-          callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_first_5F_register_5F_third_5F_byte_84755.ptr (), constinArgument_inTotalBankCount, GALGAS_uint ((uint32_t) 0U), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_first_5F_var_5F_second_5F_byte_5F_IPICregisterDescription_85135, joker_85145, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2274)) ;
-          GALGAS_registerExpression var_PCLATH_5F_register_85246 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("PCLATH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2285))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2285)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2286))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2286))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2286)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2287))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2284)) ;
-          GALGAS_midrange_5F_intermediate_5F_registerExpression var_PCLATH_5F_IPICregisterDescription_85486 ;
-          GALGAS_bitSliceTable joker_85675 ; // Joker input parameter
-          callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register_85246.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2292)), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_PCLATH_5F_IPICregisterDescription_85486, joker_85675, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2290)) ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2299)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_MOVF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2299)), var_first_5F_var_5F_second_5F_byte_5F_IPICregisterDescription_85135, GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2299))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2299)) ;
-          ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2300)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2300)), var_PCLATH_5F_IPICregisterDescription_85486  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2300))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2300)) ;
-        }
-      }
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2303)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2303)), var_first_5F_reg_5F_second_5F_byte_5F_IPICregisterDescription_80994, GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2303))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2303)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2304)), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2304)), var_STATUS_5F_IPICregisterDescription_81511  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2304))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2304)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2305)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2305)), var_first_5F_IPICregisterDescription_80541, GALGAS_bool (false)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2305))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2305)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2306)), GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2306)), var_first_5F_IPICregisterDescription_80541, GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2306))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2306)) ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETFIE::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2308))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2308))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2308)) ;
-    }
-  }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@midrange_intermediate_pseudo_ORG isLABELorORG'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_pseudo_5F_ORG_isLABELorORG (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
-                                                                                           C_Compiler * /* inCompiler */
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bool result_outIsLABELorORG ; // Returned variable
-  result_outIsLABELorORG = GALGAS_bool (true) ;
-//---
-  return result_outIsLABELorORG ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionGetter_midrange_5F_intermediate_5F_pseudo_5F_ORG_isLABELorORG (void) {
-  enterExtensionGetter_isLABELorORG (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG.mSlotID,
-                                     extensionGetter_midrange_5F_intermediate_5F_pseudo_5F_ORG_isLABELorORG) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_pseudo_5F_ORG_isLABELorORG (defineExtensionGetter_midrange_5F_intermediate_5F_pseudo_5F_ORG_isLABELorORG, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@midrange_intermediate_pseudo_LABEL isLABELorORG'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_pseudo_5F_LABEL_isLABELorORG (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
-                                                                                             C_Compiler * /* inCompiler */
-                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bool result_outIsLABELorORG ; // Returned variable
-  result_outIsLABELorORG = GALGAS_bool (true) ;
-//---
-  return result_outIsLABELorORG ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionGetter_midrange_5F_intermediate_5F_pseudo_5F_LABEL_isLABELorORG (void) {
-  enterExtensionGetter_isLABELorORG (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL.mSlotID,
-                                     extensionGetter_midrange_5F_intermediate_5F_pseudo_5F_LABEL_isLABELorORG) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_pseudo_5F_LABEL_isLABELorORG (defineExtensionGetter_midrange_5F_intermediate_5F_pseudo_5F_LABEL_isLABELorORG, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@midrange_intermediate_NULL isNULL'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_NULL_isNULL (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
-                                                                            C_Compiler * /* inCompiler */
-                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bool result_outIsNULL ; // Returned variable
-  result_outIsNULL = GALGAS_bool (true) ;
-//---
-  return result_outIsNULL ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionGetter_midrange_5F_intermediate_5F_NULL_isNULL (void) {
-  enterExtensionGetter_isNULL (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_NULL.mSlotID,
-                               extensionGetter_midrange_5F_intermediate_5F_NULL_isNULL) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_NULL_isNULL (defineExtensionGetter_midrange_5F_intermediate_5F_NULL_isNULL, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_intermediate_JUMP enterReferencedLabel'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_intermediate_5F_JUMP_enterReferencedLabel (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                   GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                                   C_Compiler * /* inCompiler */
-                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_intermediate_5F_JUMP * object = (const cPtr_midrange_5F_intermediate_5F_JUMP *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JUMP) ;
-  const GALGAS_midrange_5F_intermediate_5F_JUMP temp_0 = object ;
-  ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.getter_mTargetLabel (HERE).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 53))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 53)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_intermediate_5F_JUMP_enterReferencedLabel (void) {
-  enterExtensionMethod_enterReferencedLabel (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_JUMP.mSlotID,
-                                             extensionMethod_midrange_5F_intermediate_5F_JUMP_enterReferencedLabel) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_JUMP_enterReferencedLabel (defineExtensionMethod_midrange_5F_intermediate_5F_JUMP_enterReferencedLabel, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_intermediate_GOTO enterReferencedLabel'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_intermediate_5F_GOTO_enterReferencedLabel (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                   GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                                   C_Compiler * /* inCompiler */
-                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_intermediate_5F_GOTO * object = (const cPtr_midrange_5F_intermediate_5F_GOTO *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_GOTO) ;
-  const GALGAS_midrange_5F_intermediate_5F_GOTO temp_0 = object ;
-  ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.getter_mTargetLabel (HERE).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 59))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 59)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_intermediate_5F_GOTO_enterReferencedLabel (void) {
-  enterExtensionMethod_enterReferencedLabel (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_GOTO.mSlotID,
-                                             extensionMethod_midrange_5F_intermediate_5F_GOTO_enterReferencedLabel) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_GOTO_enterReferencedLabel (defineExtensionMethod_midrange_5F_intermediate_5F_GOTO_enterReferencedLabel, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_intermediate_CALL enterReferencedLabel'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_intermediate_5F_CALL_enterReferencedLabel (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                   GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                                   C_Compiler * /* inCompiler */
-                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_intermediate_5F_CALL * object = (const cPtr_midrange_5F_intermediate_5F_CALL *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_CALL) ;
-  const GALGAS_midrange_5F_intermediate_5F_CALL temp_0 = object ;
-  ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.getter_mTargetLabel (HERE).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 65))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 65)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_intermediate_5F_CALL_enterReferencedLabel (void) {
-  enterExtensionMethod_enterReferencedLabel (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_CALL.mSlotID,
-                                             extensionMethod_midrange_5F_intermediate_5F_CALL_enterReferencedLabel) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_CALL_enterReferencedLabel (defineExtensionMethod_midrange_5F_intermediate_5F_CALL_enterReferencedLabel, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_intermediate_JSR enterReferencedLabel'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_intermediate_5F_JSR_enterReferencedLabel (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                  GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                                  C_Compiler * /* inCompiler */
-                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_intermediate_5F_JSR * object = (const cPtr_midrange_5F_intermediate_5F_JSR *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JSR) ;
-  const GALGAS_midrange_5F_intermediate_5F_JSR temp_0 = object ;
-  ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.getter_mTargetLabel (HERE).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 71))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 71)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_intermediate_5F_JSR_enterReferencedLabel (void) {
-  enterExtensionMethod_enterReferencedLabel (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_JSR.mSlotID,
-                                             extensionMethod_midrange_5F_intermediate_5F_JSR_enterReferencedLabel) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_JSR_enterReferencedLabel (defineExtensionMethod_midrange_5F_intermediate_5F_JSR_enterReferencedLabel, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_intermediate_incDecRegisterInCondition enterReferencedLabel'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_enterReferencedLabel (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                        GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                                                        C_Compiler * /* inCompiler */
-                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * object = (const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition) ;
-  const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_0 = object ;
-  ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.getter_mTargetLabel (HERE)  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 77)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_enterReferencedLabel (void) {
-  enterExtensionMethod_enterReferencedLabel (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition.mSlotID,
-                                             extensionMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_enterReferencedLabel) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_enterReferencedLabel (defineExtensionMethod_midrange_5F_intermediate_5F_incDecRegisterInCondition_enterReferencedLabel, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@midrange_intermediate_instruction_BitTestSkip isSkippingInstruction'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_isSkippingInstruction (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
-                                                                                                                 C_Compiler * /* inCompiler */
-                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bool result_outIsSkipping ; // Returned variable
-  result_outIsSkipping = GALGAS_bool (true) ;
-//---
-  return result_outIsSkipping ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionGetter_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_isSkippingInstruction (void) {
-  enterExtensionGetter_isSkippingInstruction (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip.mSlotID,
-                                              extensionGetter_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_isSkippingInstruction) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_isSkippingInstruction (defineExtensionGetter_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip_isSkippingInstruction, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@midrange_intermediate_JUMP nextInstructionIsReachable'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_JUMP_nextInstructionIsReachable (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
-                                                                                                C_Compiler * /* inCompiler */
-                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bool result_outIsReachable ; // Returned variable
-  result_outIsReachable = GALGAS_bool (false) ;
-//---
-  return result_outIsReachable ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionGetter_midrange_5F_intermediate_5F_JUMP_nextInstructionIsReachable (void) {
-  enterExtensionGetter_nextInstructionIsReachable (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_JUMP.mSlotID,
-                                                   extensionGetter_midrange_5F_intermediate_5F_JUMP_nextInstructionIsReachable) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_JUMP_nextInstructionIsReachable (defineExtensionGetter_midrange_5F_intermediate_5F_JUMP_nextInstructionIsReachable, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@midrange_intermediate_GOTO nextInstructionIsReachable'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_GOTO_nextInstructionIsReachable (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
-                                                                                                C_Compiler * /* inCompiler */
-                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bool result_outIsReachable ; // Returned variable
-  result_outIsReachable = GALGAS_bool (false) ;
-//---
-  return result_outIsReachable ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionGetter_midrange_5F_intermediate_5F_GOTO_nextInstructionIsReachable (void) {
-  enterExtensionGetter_nextInstructionIsReachable (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_GOTO.mSlotID,
-                                                   extensionGetter_midrange_5F_intermediate_5F_GOTO_nextInstructionIsReachable) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_GOTO_nextInstructionIsReachable (defineExtensionGetter_midrange_5F_intermediate_5F_GOTO_nextInstructionIsReachable, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@midrange_intermediate_instruction_RETURN nextInstructionIsReachable'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_5F_RETURN_nextInstructionIsReachable (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
-                                                                                                                 C_Compiler * /* inCompiler */
-                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bool result_outIsReachable ; // Returned variable
-  result_outIsReachable = GALGAS_bool (false) ;
-//---
-  return result_outIsReachable ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionGetter_midrange_5F_intermediate_5F_instruction_5F_RETURN_nextInstructionIsReachable (void) {
-  enterExtensionGetter_nextInstructionIsReachable (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETURN.mSlotID,
-                                                   extensionGetter_midrange_5F_intermediate_5F_instruction_5F_RETURN_nextInstructionIsReachable) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_5F_RETURN_nextInstructionIsReachable (defineExtensionGetter_midrange_5F_intermediate_5F_instruction_5F_RETURN_nextInstructionIsReachable, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@midrange_intermediate_instruction_RETFIE nextInstructionIsReachable'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_5F_RETFIE_nextInstructionIsReachable (const cPtr_midrange_5F_intermediate_5F_instruction * /* inObject */,
-                                                                                                                 C_Compiler * /* inCompiler */
-                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bool result_outIsReachable ; // Returned variable
-  result_outIsReachable = GALGAS_bool (false) ;
-//---
-  return result_outIsReachable ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionGetter_midrange_5F_intermediate_5F_instruction_5F_RETFIE_nextInstructionIsReachable (void) {
-  enterExtensionGetter_nextInstructionIsReachable (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETFIE.mSlotID,
-                                                   extensionGetter_midrange_5F_intermediate_5F_instruction_5F_RETFIE_nextInstructionIsReachable) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_5F_RETFIE_nextInstructionIsReachable (defineExtensionGetter_midrange_5F_intermediate_5F_instruction_5F_RETFIE_nextInstructionIsReachable, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@midrange_intermediate_instruction_literalOperation nextInstructionIsReachable'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static GALGAS_bool extensionGetter_midrange_5F_intermediate_5F_instruction_5F_literalOperation_nextInstructionIsReachable (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                                                           C_Compiler * /* inCompiler */
-                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bool result_outIsReachable ; // Returned variable
-  const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation) ;
-  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_0 = object ;
-  result_outIsReachable = GALGAS_bool (kIsNotEqual, temp_0.getter_mLiteralInstruction (HERE).objectCompare (GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_RETLW (SOURCE_FILE ("midrange_optimizations.galgas", 135)))) ;
-//---
-  return result_outIsReachable ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionGetter_midrange_5F_intermediate_5F_instruction_5F_literalOperation_nextInstructionIsReachable (void) {
-  enterExtensionGetter_nextInstructionIsReachable (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation.mSlotID,
-                                                   extensionGetter_midrange_5F_intermediate_5F_instruction_5F_literalOperation_nextInstructionIsReachable) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gGetter_midrange_5F_intermediate_5F_instruction_5F_literalOperation_nextInstructionIsReachable (defineExtensionGetter_midrange_5F_intermediate_5F_instruction_5F_literalOperation_nextInstructionIsReachable, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_intermediate_pseudo_LABEL defineLabel'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_defineLabel (const cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                                                     GALGAS_symbolTableForOptimizations & ioArgument_ioRoutineSymbolTable,
-                                                                                     const GALGAS_uint constinArgument_inLineIndex,
-                                                                                     C_Compiler * inCompiler
-                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
-  macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
-  {
-  const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = object ;
-  const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_1 = object ;
-  ioArgument_ioRoutineSymbolTable.setter_insertKey (temp_0.getter_mLabel (HERE), constinArgument_inLineIndex, temp_1.getter_mIsDeletable (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 155)) ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void defineExtensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_defineLabel (void) {
-  enterExtensionMethod_defineLabel (kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL.mSlotID,
-                                    extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_defineLabel) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_defineLabel (defineExtensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_defineLabel, NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'findMidRangeFirstInstructionFromAddress'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_findMidRangeFirstInstructionFromAddress (const GALGAS_uint constinArgument_inLineIndex,
-                                                      const GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
-                                                      GALGAS_midrange_5F_intermediate_5F_instruction & outArgument_outFirstInstruction,
-                                                      C_Compiler * inCompiler
-                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFirstInstruction.drop () ; // Release 'out' argument
-  GALGAS_uint var_currentAddress_6844 = constinArgument_inLineIndex ;
-  outArgument_outFirstInstruction = GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("midrange_optimizations.galgas", 167)) ;
-  GALGAS_bool var_found_6997 = GALGAS_bool (false) ;
-  if (constinArgument_inGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 169)).isValid ()) {
-    uint32_t variant_7012 = constinArgument_inGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 169)).uintValue () ;
-    bool loop_7012 = true ;
-    while (loop_7012) {
-      loop_7012 = GALGAS_bool (kIsStrictInf, var_currentAddress_6844.objectCompare (constinArgument_inGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 170)))).operator_and (var_found_6997.operator_not (SOURCE_FILE ("midrange_optimizations.galgas", 170)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 170)).isValid () ;
-      if (loop_7012) {
-        loop_7012 = GALGAS_bool (kIsStrictInf, var_currentAddress_6844.objectCompare (constinArgument_inGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 170)))).operator_and (var_found_6997.operator_not (SOURCE_FILE ("midrange_optimizations.galgas", 170)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 170)).boolValue () ;
-      }
-      if (loop_7012 && (0 == variant_7012)) {
-        loop_7012 = false ;
-        inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_optimizations.galgas", 169)) ;
-      }
-      if (loop_7012) {
-        variant_7012 -- ;
-        if (constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_6844, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 172)).isValid ()) {
-          if (NULL != dynamic_cast <const cPtr_midrange_5F_intermediate_5F_actualInstruction *> (constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_6844, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 172)).ptr ())) {
-            GALGAS_midrange_5F_intermediate_5F_actualInstruction cast_7263_instr ((cPtr_midrange_5F_intermediate_5F_actualInstruction *) constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_6844, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 172)).ptr ()) ;
-            outArgument_outFirstInstruction = cast_7263_instr ;
-            var_found_6997 = GALGAS_bool (true) ;
-          }else{
-            var_currentAddress_6844.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 177)) ;
-          }
-        }
-      }
-    }
-  }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'findMidRangeFirstInstructionOrLabelFromAddress'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_findMidRangeFirstInstructionOrLabelFromAddress (const GALGAS_uint constinArgument_inLineIndex,
-                                                             const GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
-                                                             GALGAS_midrange_5F_intermediate_5F_instruction & outArgument_outFirstInstruction,
-                                                             GALGAS_stringset & outArgument_outReachedLabelSet,
-                                                             C_Compiler * inCompiler
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outFirstInstruction.drop () ; // Release 'out' argument
-  outArgument_outReachedLabelSet.drop () ; // Release 'out' argument
-  outArgument_outReachedLabelSet = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_optimizations.galgas", 189)) ;
-  GALGAS_uint var_currentAddress_7774 = constinArgument_inLineIndex ;
-  outArgument_outFirstInstruction = GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("midrange_optimizations.galgas", 193)) ;
-  GALGAS_bool var_found_7927 = GALGAS_bool (false) ;
-  if (constinArgument_inGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 195)).isValid ()) {
-    uint32_t variant_7942 = constinArgument_inGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 195)).uintValue () ;
-    bool loop_7942 = true ;
-    while (loop_7942) {
-      loop_7942 = GALGAS_bool (kIsStrictInf, var_currentAddress_7774.objectCompare (constinArgument_inGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 196)))).operator_and (var_found_7927.operator_not (SOURCE_FILE ("midrange_optimizations.galgas", 196)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 196)).isValid () ;
-      if (loop_7942) {
-        loop_7942 = GALGAS_bool (kIsStrictInf, var_currentAddress_7774.objectCompare (constinArgument_inGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 196)))).operator_and (var_found_7927.operator_not (SOURCE_FILE ("midrange_optimizations.galgas", 196)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 196)).boolValue () ;
-      }
-      if (loop_7942 && (0 == variant_7942)) {
-        loop_7942 = false ;
-        inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_optimizations.galgas", 195)) ;
-      }
-      if (loop_7942) {
-        variant_7942 -- ;
-        if (constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_7774, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 198)).isValid ()) {
-          if (NULL != dynamic_cast <const cPtr_midrange_5F_intermediate_5F_actualInstruction *> (constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_7774, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 198)).ptr ())) {
-            GALGAS_midrange_5F_intermediate_5F_actualInstruction cast_8193_instr ((cPtr_midrange_5F_intermediate_5F_actualInstruction *) constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_7774, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 198)).ptr ()) ;
-            outArgument_outFirstInstruction = cast_8193_instr ;
-            var_found_7927 = GALGAS_bool (true) ;
-          }else if (NULL != dynamic_cast <const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *> (constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_7774, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 198)).ptr ())) {
-            GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG cast_8300_instr ((cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *) constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_7774, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 198)).ptr ()) ;
-            outArgument_outFirstInstruction = cast_8300_instr ;
-            var_found_7927 = GALGAS_bool (true) ;
-          }else if (constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_7774, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 198)).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL) {
-            GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL cast_8409_instr ((cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_7774, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 198)).ptr ()) ;
-            outArgument_outFirstInstruction = cast_8409_instr ;
-            outArgument_outReachedLabelSet.addAssign_operation (cast_8409_instr.getter_mLabel (SOURCE_FILE ("midrange_optimizations.galgas", 207)).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 207))  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 207)) ;
-            var_currentAddress_7774.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 208)) ;
-          }else{
-            var_currentAddress_7774.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 210)) ;
-          }
-        }
-      }
-    }
-  }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'perform_midrange_optimizations'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_perform_5F_midrange_5F_optimizations (GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                   GALGAS_string & ioArgument_ioListFileContents,
-                                                   C_Compiler * inCompiler
-                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 531)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 531)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 531)) ;
-  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("CODE OPTIMIZATION").getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 532)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 532)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 532)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 532)) ;
-  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 533)).add_operation (GALGAS_string ("\n"
-    "\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 533)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 533)) ;
-  GALGAS_symbolTableForOptimizations var_symbolTable_22584 = GALGAS_symbolTableForOptimizations::constructor_emptyMap (SOURCE_FILE ("midrange_optimizations.galgas", 535)) ;
-  cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_22665 (ioArgument_ioGeneratedInstructionList, kENUMERATION_UP) ;
-  GALGAS_uint index_22631 ((uint32_t) 0) ;
-  while (enumerator_22665.hasCurrentObject ()) {
-    callExtensionMethod_defineLabel ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_22665.current_mInstruction (HERE).ptr (), var_symbolTable_22584, index_22631, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 537)) ;
-    enumerator_22665.gotoNextObject () ;
-    index_22631.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 536)) ;
-  }
-  GALGAS_bool var_optimizationsDone_22825 = GALGAS_bool (true) ;
-  GALGAS_uint var_iteration_22850 = GALGAS_uint ((uint32_t) 0U) ;
-  if (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 542)).isValid ()) {
-    uint32_t variant_22861 = ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 542)).uintValue () ;
-    bool loop_22861 = true ;
-    while (loop_22861) {
-      loop_22861 = var_optimizationsDone_22825.isValid () ;
-      if (loop_22861) {
-        loop_22861 = var_optimizationsDone_22825.boolValue () ;
-      }
-      if (loop_22861 && (0 == variant_22861)) {
-        loop_22861 = false ;
-        inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_optimizations.galgas", 542)) ;
-      }
-      if (loop_22861) {
-        variant_22861 -- ;
-        var_optimizationsDone_22825 = GALGAS_bool (false) ;
-        var_iteration_22850.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 546)) ;
-        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("Pass ").add_operation (var_iteration_22850.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 547)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 547)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 547)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 547)) ;
-        GALGAS_uint var_idx_23077 = GALGAS_uint ((uint32_t) 0U) ;
-        if (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 550)).isValid ()) {
-          uint32_t variant_23090 = ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 550)).uintValue () ;
-          bool loop_23090 = true ;
-          while (loop_23090) {
-            loop_23090 = GALGAS_bool (kIsStrictInf, var_idx_23077.objectCompare (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 550)))).isValid () ;
-            if (loop_23090) {
-              loop_23090 = GALGAS_bool (kIsStrictInf, var_idx_23077.objectCompare (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_optimizations.galgas", 550)))).boolValue () ;
-            }
-            if (loop_23090 && (0 == variant_23090)) {
-              loop_23090 = false ;
-              inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_optimizations.galgas", 550)) ;
-            }
-            if (loop_23090) {
-              variant_23090 -- ;
-              GALGAS_midrange_5F_intermediate_5F_instruction var_instruction_23252 = ioArgument_ioGeneratedInstructionList.getter_mInstructionAtIndex (var_idx_23077, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 552)) ;
-              if (var_instruction_23252.isValid ()) {
-                if (var_instruction_23252.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_GOTO) {
-                  GALGAS_midrange_5F_intermediate_5F_GOTO cast_23383_ipic_GOTO ((cPtr_midrange_5F_intermediate_5F_GOTO *) var_instruction_23252.ptr ()) ;
-                  callExtensionMethod_optimizeGOTO ((const cPtr_midrange_5F_intermediate_5F_GOTO *) cast_23383_ipic_GOTO.ptr (), var_symbolTable_22584, var_idx_23077, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_optimizationsDone_22825, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 555)) ;
-                }else if (var_instruction_23252.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_JUMP) {
-                  GALGAS_midrange_5F_intermediate_5F_JUMP cast_23558_ipic_JUMP ((cPtr_midrange_5F_intermediate_5F_JUMP *) var_instruction_23252.ptr ()) ;
-                  callExtensionMethod_optimizeJUMP ((const cPtr_midrange_5F_intermediate_5F_JUMP *) cast_23558_ipic_JUMP.ptr (), var_symbolTable_22584, var_idx_23077, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_optimizationsDone_22825, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 557)) ;
-                }else if (var_instruction_23252.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation) {
-                  GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation cast_23926_ipic_literal ((cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *) var_instruction_23252.ptr ()) ;
-                  callExtensionMethod_optimizeMOVLW ((const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *) cast_23926_ipic_literal.ptr (), var_idx_23077, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_optimizationsDone_22825, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 561)) ;
-                }else if (var_instruction_23252.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition) {
-                  GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition cast_24115_ipic_decInc ((cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition *) var_instruction_23252.ptr ()) ;
-                  callExtensionMethod_optimizeTestDecInc ((const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition *) cast_24115_ipic_decInc.ptr (), var_symbolTable_22584, var_idx_23077, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_optimizationsDone_22825, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 563)) ;
-                }else if (var_instruction_23252.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip) {
-                  GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip cast_24324_ipic_bitTestSkip ((cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip *) var_instruction_23252.ptr ()) ;
-                  callExtensionMethod_optimizeBitTestSkip ((const cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip *) cast_24324_ipic_bitTestSkip.ptr (), var_idx_23077, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_optimizationsDone_22825, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 565)) ;
-                }
-              }
-              var_idx_23077 = var_idx_23077.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 568)) ;
-            }
-          }
-        }
-        GALGAS_stringset var_referencedLabels_24558 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_optimizations.galgas", 571)) ;
-        cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_24623 (ioArgument_ioGeneratedInstructionList, kENUMERATION_UP) ;
-        while (enumerator_24623.hasCurrentObject ()) {
-          callExtensionMethod_enterReferencedLabel ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_24623.current_mInstruction (HERE).ptr (), var_referencedLabels_24558, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 573)) ;
-          enumerator_24623.gotoNextObject () ;
-        }
-        cEnumerator_symbolTableForOptimizations enumerator_24722 (var_symbolTable_22584, kENUMERATION_UP) ;
-        while (enumerator_24722.hasCurrentObject ()) {
-          enumGalgasBool test_0 = kBoolTrue ;
-          if (kBoolTrue == test_0) {
-            test_0 = var_referencedLabels_24558.getter_hasKey (enumerator_24722.current_lkey (HERE).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 576)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 576)).operator_not (SOURCE_FILE ("midrange_optimizations.galgas", 576)).boolEnum () ;
-            if (kBoolTrue == test_0) {
-              GALGAS_uint var_definitionLine_24847 ;
-              GALGAS_bool joker_24849 ; // Joker input parameter
-              var_symbolTable_22584.method_searchKey (enumerator_24722.current_lkey (HERE), var_definitionLine_24847, joker_24849, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 577)) ;
-              ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (var_definitionLine_24847.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 578)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 578)).add_operation (GALGAS_string (": unreferenced label '"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 578)).add_operation (enumerator_24722.current_lkey (HERE).getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 578)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 578)).add_operation (GALGAS_string ("' is deleted\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 578)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 578)) ;
-              {
-              ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("midrange_optimizations.galgas", 579)), var_definitionLine_24847, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 579)) ;
-              }
-              {
-              GALGAS_uint joker_25124 ; // Joker input parameter
-              GALGAS_bool joker_25127 ; // Joker input parameter
-              var_symbolTable_22584.setter_removeKey (enumerator_24722.current_lkey (HERE), joker_25124, joker_25127, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 580)) ;
-              }
-            }
-          }
-          enumerator_24722.gotoNextObject () ;
-        }
-        GALGAS_bool var_reachable_25196 = GALGAS_bool (true) ;
-        GALGAS_bool var_skippingInstruction_25233 = GALGAS_bool (false) ;
-        GALGAS_bool var_previousWasSkippingInstruction_25282 = GALGAS_bool (false) ;
-        cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_25332 (ioArgument_ioGeneratedInstructionList, kENUMERATION_UP) ;
-        GALGAS_uint index_25298 ((uint32_t) 0) ;
-        while (enumerator_25332.hasCurrentObject ()) {
-          enumGalgasBool test_1 = kBoolTrue ;
-          if (kBoolTrue == test_1) {
-            test_1 = var_reachable_25196.operator_or (var_previousWasSkippingInstruction_25282 COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 588)).boolEnum () ;
-            if (kBoolTrue == test_1) {
-              var_reachable_25196 = callExtensionGetter_nextInstructionIsReachable ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_25332.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 589)) ;
-              var_previousWasSkippingInstruction_25282 = var_skippingInstruction_25233 ;
-              var_skippingInstruction_25233 = callExtensionGetter_isSkippingInstruction ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_25332.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 591)) ;
-            }
-          }
-          if (kBoolFalse == test_1) {
-            GALGAS_bool var_isLABELorORG_25635 = callExtensionGetter_isLABELorORG ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_25332.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 593)) ;
-            enumGalgasBool test_2 = kBoolTrue ;
-            if (kBoolTrue == test_2) {
-              test_2 = var_isLABELorORG_25635.operator_not (SOURCE_FILE ("midrange_optimizations.galgas", 594)).operator_and (callExtensionGetter_isNULL ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_25332.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 594)).operator_not (SOURCE_FILE ("midrange_optimizations.galgas", 594)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 594)).boolEnum () ;
-              if (kBoolTrue == test_2) {
-                ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (index_25298.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 595)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 595)).add_operation (GALGAS_string (": unreachable instruction is deleted\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 595)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 595)) ;
-                {
-                ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (SOURCE_FILE ("midrange_optimizations.galgas", 596)), index_25298, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 596)) ;
-                }
-              }
-            }
-            if (kBoolFalse == test_2) {
-              enumGalgasBool test_3 = kBoolTrue ;
-              if (kBoolTrue == test_3) {
-                test_3 = var_isLABELorORG_25635.boolEnum () ;
-                if (kBoolTrue == test_3) {
-                  var_reachable_25196 = GALGAS_bool (true) ;
-                  var_previousWasSkippingInstruction_25282 = GALGAS_bool (false) ;
-                  var_skippingInstruction_25233 = GALGAS_bool (false) ;
-                }
-              }
-            }
-          }
-          enumerator_25332.gotoNextObject () ;
-          index_25298.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 587)) ;
-        }
-        enumGalgasBool test_4 = kBoolTrue ;
-        if (kBoolTrue == test_4) {
-          test_4 = var_optimizationsDone_22825.operator_not (SOURCE_FILE ("midrange_optimizations.galgas", 604)).boolEnum () ;
-          if (kBoolTrue == test_4) {
-            ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  No optimization\n"
-              "\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 605)) ;
-            GALGAS_uint var_currentAddress_26258 = GALGAS_uint ((uint32_t) 0U) ;
-            cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_26306 (ioArgument_ioGeneratedInstructionList, kENUMERATION_UP) ;
-            while (enumerator_26306.hasCurrentObject ()) {
-              callExtensionMethod_setCurrentAddress ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_26306.current_mInstruction (HERE).ptr (), var_currentAddress_26258, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 609)) ;
-              enumerator_26306.gotoNextObject () ;
-            }
-            ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("Minimum code size: ").add_operation (var_currentAddress_26258.getter_string (SOURCE_FILE ("midrange_optimizations.galgas", 611)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 611)).add_operation (GALGAS_string (" instructions\n"
-              "\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 611)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 611)) ;
-          }
-        }
-      }
-    }
-  }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@midrange_intermediate_pseudo_LABEL defineLabelAtAddress'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -1836,7 +22,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_defineLa
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
   {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = object ;
-  ioArgument_ioRoutineSymbolTable.setter_insertKey (temp_0.getter_mLabel (HERE), ioArgument_ioAddress, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 28)) ;
+  ioArgument_ioRoutineSymbolTable.setter_insertKey (temp_0.readProperty_mLabel (), ioArgument_ioAddress, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 28)) ;
   }
 }
 
@@ -1867,15 +53,15 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_defineLabe
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_1 = object ;
-    test_0 = GALGAS_bool (kIsStrictSup, ioArgument_ioAddress.objectCompare (temp_1.getter_mOrigin (HERE))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsStrictSup, ioArgument_ioAddress.objectCompare (temp_1.readProperty_mOrigin ())).boolEnum () ;
     if (kBoolTrue == test_0) {
       const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_2 = object ;
       TC_Array <C_FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 38)), GALGAS_string ("internal error: current address (").add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 38)).add_operation (GALGAS_string (") is greater than origin ("), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)).add_operation (temp_2.getter_mOrigin (HERE).getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)), fixItArray3  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 38)) ;
+      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 38)), GALGAS_string ("internal error: current address (").add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 38)).add_operation (GALGAS_string (") is greater than origin ("), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)).add_operation (temp_2.readProperty_mOrigin ().getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)), fixItArray3  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 38)) ;
     }
   }
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_4 = object ;
-  ioArgument_ioAddress = temp_4.getter_mOrigin (HERE) ;
+  ioArgument_ioAddress = temp_4.readProperty_mOrigin () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1903,17 +89,17 @@ static void extensionMethod_midrange_5F_intermediate_5F_actualInstruction_define
   const cPtr_midrange_5F_intermediate_5F_actualInstruction * object = (const cPtr_midrange_5F_intermediate_5F_actualInstruction *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_actualInstruction) ;
   const GALGAS_midrange_5F_intermediate_5F_actualInstruction temp_0 = object ;
-  GALGAS_uint var_nextAddress_1927 = ioArgument_ioAddress.add_operation (callExtensionGetter_instructionLength ((const cPtr_midrange_5F_intermediate_5F_actualInstruction *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 50)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 50)) ;
+  GALGAS_uint var_nextAddress_1942 = ioArgument_ioAddress.add_operation (callExtensionGetter_instructionLength ((const cPtr_midrange_5F_intermediate_5F_actualInstruction *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 50)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 50)) ;
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = GALGAS_bool (kIsNotEqual, var_nextAddress_1927.operator_xor (ioArgument_ioAddress COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 51)).operator_and (GALGAS_uint ((uint32_t) 63488U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 51)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_1 = GALGAS_bool (kIsNotEqual, var_nextAddress_1942.operator_xor (ioArgument_ioAddress COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 51)).operator_and (GALGAS_uint ((uint32_t) 63488U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 51)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_1) {
       const GALGAS_midrange_5F_intermediate_5F_actualInstruction temp_2 = object ;
       TC_Array <C_FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticError (temp_2.getter_mInstructionLocation (HERE), GALGAS_string ("Routine too long, crosses page boundary at this instruction"), fixItArray3  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 52)) ;
+      inCompiler->emitSemanticError (temp_2.readProperty_mInstructionLocation (), GALGAS_string ("Routine too long, crosses page boundary at this instruction"), fixItArray3  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 52)) ;
     }
   }
-  ioArgument_ioAddress = var_nextAddress_1927 ;
+  ioArgument_ioAddress = var_nextAddress_1942 ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2001,7 +187,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_compute (c
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG) ;
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_0 = object ;
-  ioArgument_ioAddress = temp_0.getter_mOrigin (HERE) ;
+  ioArgument_ioAddress = temp_0.readProperty_mOrigin () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2032,61 +218,61 @@ static void extensionMethod_midrange_5F_intermediate_5F_JUMP_compute (const cPtr
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_JUMP * object = (const cPtr_midrange_5F_intermediate_5F_JUMP *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JUMP) ;
-  GALGAS_uint var_targetAddress_4628 ;
+  GALGAS_uint var_targetAddress_4647 ;
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_0 = object ;
-  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.getter_mTargetLabel (HERE), var_targetAddress_4628, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 117)) ;
-  GALGAS_uint var_flags_4735 = ioArgument_ioAddress.operator_xor (var_targetAddress_4628 COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 119)) ;
-  GALGAS_midrange_5F_call_5F_goto_5F_bit var_bit_31__31__4796 ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_targetAddress_4647, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 117)) ;
+  GALGAS_uint var_flags_4758 = ioArgument_ioAddress.operator_xor (var_targetAddress_4647 COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 119)) ;
+  GALGAS_midrange_5F_call_5F_goto_5F_bit var_bit_31__31__4823 ;
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = GALGAS_bool (kIsEqual, var_flags_4735.operator_and (GALGAS_uint ((uint32_t) 2048U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 121)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_1 = GALGAS_bool (kIsEqual, var_flags_4758.operator_and (GALGAS_uint ((uint32_t) 2048U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 121)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_1) {
-      var_bit_31__31__4796 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 122)) ;
+      var_bit_31__31__4823 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 122)) ;
     }
   }
   if (kBoolFalse == test_1) {
     enumGalgasBool test_2 = kBoolTrue ;
     if (kBoolTrue == test_2) {
-      test_2 = GALGAS_bool (kIsEqual, var_targetAddress_4628.operator_and (GALGAS_uint ((uint32_t) 2048U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 123)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      test_2 = GALGAS_bool (kIsEqual, var_targetAddress_4647.operator_and (GALGAS_uint ((uint32_t) 2048U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 123)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_2) {
-        var_bit_31__31__4796 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_clear (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 124)) ;
+        var_bit_31__31__4823 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_clear (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 124)) ;
       }
     }
     if (kBoolFalse == test_2) {
-      var_bit_31__31__4796 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_set (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 126)) ;
+      var_bit_31__31__4823 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_set (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 126)) ;
     }
   }
-  GALGAS_midrange_5F_call_5F_goto_5F_bit var_bit_31__32__5073 ;
+  GALGAS_midrange_5F_call_5F_goto_5F_bit var_bit_31__32__5104 ;
   enumGalgasBool test_3 = kBoolTrue ;
   if (kBoolTrue == test_3) {
-    test_3 = GALGAS_bool (kIsEqual, var_flags_4735.operator_and (GALGAS_uint ((uint32_t) 4096U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 130)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_3 = GALGAS_bool (kIsEqual, var_flags_4758.operator_and (GALGAS_uint ((uint32_t) 4096U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 130)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_3) {
-      var_bit_31__32__5073 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 131)) ;
+      var_bit_31__32__5104 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 131)) ;
     }
   }
   if (kBoolFalse == test_3) {
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (kIsEqual, var_targetAddress_4628.operator_and (GALGAS_uint ((uint32_t) 4096U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 132)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      test_4 = GALGAS_bool (kIsEqual, var_targetAddress_4647.operator_and (GALGAS_uint ((uint32_t) 4096U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 132)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_4) {
-        var_bit_31__32__5073 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_clear (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 133)) ;
+        var_bit_31__32__5104 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_clear (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 133)) ;
       }
     }
     if (kBoolFalse == test_4) {
-      var_bit_31__32__5073 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_set (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 135)) ;
+      var_bit_31__32__5104 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_set (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 135)) ;
     }
   }
   enumGalgasBool test_5 = kBoolTrue ;
   if (kBoolTrue == test_5) {
     const GALGAS_midrange_5F_intermediate_5F_JUMP temp_6 = object ;
     const GALGAS_midrange_5F_intermediate_5F_JUMP temp_7 = object ;
-    test_5 = GALGAS_bool (kIsNotEqual, var_bit_31__31__4796.objectCompare (temp_6.getter_mBit_31__31_ (HERE))).operator_or (GALGAS_bool (kIsNotEqual, var_bit_31__32__5073.objectCompare (temp_7.getter_mBit_31__32_ (HERE))) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 138)).boolEnum () ;
+    test_5 = GALGAS_bool (kIsNotEqual, var_bit_31__31__4823.objectCompare (temp_6.readProperty_mBit_31__31_ ())).operator_or (GALGAS_bool (kIsNotEqual, var_bit_31__32__5104.objectCompare (temp_7.readProperty_mBit_31__32_ ())) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 138)).boolEnum () ;
     if (kBoolTrue == test_5) {
       const GALGAS_midrange_5F_intermediate_5F_JUMP temp_8 = object ;
       const GALGAS_midrange_5F_intermediate_5F_JUMP temp_9 = object ;
-      GALGAS_midrange_5F_intermediate_5F_actualInstruction var_instruction_5427 = GALGAS_midrange_5F_intermediate_5F_JUMP::constructor_new (temp_8.getter_mInstructionLocation (HERE), temp_9.getter_mTargetLabel (HERE), var_bit_31__31__4796, var_bit_31__32__5073  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 139)) ;
+      GALGAS_midrange_5F_intermediate_5F_actualInstruction var_instruction_5462 = GALGAS_midrange_5F_intermediate_5F_JUMP::constructor_new (temp_8.readProperty_mInstructionLocation (), temp_9.readProperty_mTargetLabel (), var_bit_31__31__4823, var_bit_31__32__5104  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 139)) ;
       {
-      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (var_instruction_5427, constinArgument_inIndex, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 144)) ;
+      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (var_instruction_5462, constinArgument_inIndex, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 144)) ;
       }
       ioArgument_ioJUMP_5F_or_5F_JSR_5F_fixed = GALGAS_bool (true) ;
       ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inIndex.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)).add_operation (GALGAS_string (":  JUMP to other page fixed\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 146)) ;
@@ -2122,61 +308,61 @@ static void extensionMethod_midrange_5F_intermediate_5F_JSR_compute (const cPtr_
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_JSR * object = (const cPtr_midrange_5F_intermediate_5F_JSR *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JSR) ;
-  GALGAS_uint var_targetAddress_6183 ;
+  GALGAS_uint var_targetAddress_6222 ;
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_0 = object ;
-  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.getter_mTargetLabel (HERE), var_targetAddress_6183, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 161)) ;
-  GALGAS_uint var_flags_6290 = ioArgument_ioAddress.operator_xor (var_targetAddress_6183 COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 163)) ;
-  GALGAS_midrange_5F_call_5F_goto_5F_bit var_bit_31__31__6351 ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_targetAddress_6222, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 161)) ;
+  GALGAS_uint var_flags_6333 = ioArgument_ioAddress.operator_xor (var_targetAddress_6222 COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 163)) ;
+  GALGAS_midrange_5F_call_5F_goto_5F_bit var_bit_31__31__6398 ;
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = GALGAS_bool (kIsEqual, var_flags_6290.operator_and (GALGAS_uint ((uint32_t) 2048U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 165)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_1 = GALGAS_bool (kIsEqual, var_flags_6333.operator_and (GALGAS_uint ((uint32_t) 2048U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 165)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_1) {
-      var_bit_31__31__6351 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 166)) ;
+      var_bit_31__31__6398 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 166)) ;
     }
   }
   if (kBoolFalse == test_1) {
     enumGalgasBool test_2 = kBoolTrue ;
     if (kBoolTrue == test_2) {
-      test_2 = GALGAS_bool (kIsEqual, var_targetAddress_6183.operator_and (GALGAS_uint ((uint32_t) 2048U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 167)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      test_2 = GALGAS_bool (kIsEqual, var_targetAddress_6222.operator_and (GALGAS_uint ((uint32_t) 2048U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 167)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_2) {
-        var_bit_31__31__6351 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_clear (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 168)) ;
+        var_bit_31__31__6398 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_clear (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 168)) ;
       }
     }
     if (kBoolFalse == test_2) {
-      var_bit_31__31__6351 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_set (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 170)) ;
+      var_bit_31__31__6398 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_set (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 170)) ;
     }
   }
-  GALGAS_midrange_5F_call_5F_goto_5F_bit var_bit_31__32__6628 ;
+  GALGAS_midrange_5F_call_5F_goto_5F_bit var_bit_31__32__6679 ;
   enumGalgasBool test_3 = kBoolTrue ;
   if (kBoolTrue == test_3) {
-    test_3 = GALGAS_bool (kIsEqual, var_flags_6290.operator_and (GALGAS_uint ((uint32_t) 4096U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 174)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_3 = GALGAS_bool (kIsEqual, var_flags_6333.operator_and (GALGAS_uint ((uint32_t) 4096U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 174)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_3) {
-      var_bit_31__32__6628 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 175)) ;
+      var_bit_31__32__6679 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 175)) ;
     }
   }
   if (kBoolFalse == test_3) {
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (kIsEqual, var_targetAddress_6183.operator_and (GALGAS_uint ((uint32_t) 4096U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 176)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+      test_4 = GALGAS_bool (kIsEqual, var_targetAddress_6222.operator_and (GALGAS_uint ((uint32_t) 4096U) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 176)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
       if (kBoolTrue == test_4) {
-        var_bit_31__32__6628 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_clear (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 177)) ;
+        var_bit_31__32__6679 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_clear (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 177)) ;
       }
     }
     if (kBoolFalse == test_4) {
-      var_bit_31__32__6628 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_set (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 179)) ;
+      var_bit_31__32__6679 = GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_set (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 179)) ;
     }
   }
   enumGalgasBool test_5 = kBoolTrue ;
   if (kBoolTrue == test_5) {
     const GALGAS_midrange_5F_intermediate_5F_JSR temp_6 = object ;
     const GALGAS_midrange_5F_intermediate_5F_JSR temp_7 = object ;
-    test_5 = GALGAS_bool (kIsNotEqual, var_bit_31__31__6351.objectCompare (temp_6.getter_mBit_31__31_ (HERE))).operator_or (GALGAS_bool (kIsNotEqual, var_bit_31__32__6628.objectCompare (temp_7.getter_mBit_31__32_ (HERE))) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 182)).boolEnum () ;
+    test_5 = GALGAS_bool (kIsNotEqual, var_bit_31__31__6398.objectCompare (temp_6.readProperty_mBit_31__31_ ())).operator_or (GALGAS_bool (kIsNotEqual, var_bit_31__32__6679.objectCompare (temp_7.readProperty_mBit_31__32_ ())) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 182)).boolEnum () ;
     if (kBoolTrue == test_5) {
       const GALGAS_midrange_5F_intermediate_5F_JSR temp_8 = object ;
       const GALGAS_midrange_5F_intermediate_5F_JSR temp_9 = object ;
-      GALGAS_midrange_5F_intermediate_5F_actualInstruction var_instruction_6982 = GALGAS_midrange_5F_intermediate_5F_JSR::constructor_new (temp_8.getter_mInstructionLocation (HERE), temp_9.getter_mTargetLabel (HERE), var_bit_31__31__6351, var_bit_31__32__6628  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 183)) ;
+      GALGAS_midrange_5F_intermediate_5F_actualInstruction var_instruction_7037 = GALGAS_midrange_5F_intermediate_5F_JSR::constructor_new (temp_8.readProperty_mInstructionLocation (), temp_9.readProperty_mTargetLabel (), var_bit_31__31__6398, var_bit_31__32__6679  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 183)) ;
       {
-      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (var_instruction_6982, constinArgument_inIndex, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 188)) ;
+      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (var_instruction_7037, constinArgument_inIndex, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 188)) ;
       }
       ioArgument_ioJUMP_5F_or_5F_JSR_5F_fixed = GALGAS_bool (true) ;
       ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inIndex.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)).add_operation (GALGAS_string (":  JSR to other page fixed\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 190)) ;
@@ -2212,17 +398,17 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_compute 
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
-  GALGAS_uint var_targetAddress_7747 ;
+  GALGAS_uint var_targetAddress_7806 ;
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = object ;
-  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.getter_mLabel (HERE), var_targetAddress_7747, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 204)) ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.readProperty_mLabel (), var_targetAddress_7806, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 204)) ;
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = GALGAS_bool (kIsNotEqual, var_targetAddress_7747.objectCompare (ioArgument_ioAddress)).boolEnum () ;
+    test_1 = GALGAS_bool (kIsNotEqual, var_targetAddress_7806.objectCompare (ioArgument_ioAddress)).boolEnum () ;
     if (kBoolTrue == test_1) {
       const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_2 = object ;
       const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_3 = object ;
       TC_Array <C_FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (temp_2.getter_mLabel (HERE).getter_location (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)), GALGAS_string ("Internal second pass error: the '").add_operation (temp_3.getter_mLabel (HERE).getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)).add_operation (GALGAS_string ("' label gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)).add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (var_targetAddress_7747.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 208)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (GALGAS_string (" in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 208)), fixItArray4  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)) ;
+      inCompiler->emitSemanticError (temp_2.readProperty_mLabel ().readProperty_location (), GALGAS_string ("Internal second pass error: the '").add_operation (temp_3.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)).add_operation (GALGAS_string ("' label gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)).add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (var_targetAddress_7806.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 208)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 207)).add_operation (GALGAS_string (" in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 208)), fixItArray4  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 206)) ;
     }
   }
 }
@@ -2252,57 +438,57 @@ void routine_midrange_5F_compute_5F_JSR_5F_JUMP (GALGAS_midrange_5F_intermediate
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("COMPUTE JSR and JUMP").getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 319)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 319)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 319)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 319)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 320)).add_operation (GALGAS_string ("\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 320)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 320)) ;
-  GALGAS_bool var_JUMP_5F_or_5F_JSR_5F_fixed_13167 = GALGAS_bool (true) ;
-  GALGAS_uint var_iteration_13192 = GALGAS_uint ((uint32_t) 0U) ;
+  GALGAS_bool var_JUMP_5F_or_5F_JSR_5F_fixed_13230 = GALGAS_bool (true) ;
+  GALGAS_uint var_iteration_13259 = GALGAS_uint ((uint32_t) 0U) ;
   if (ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 323)).isValid ()) {
-    uint32_t variant_13203 = ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 323)).uintValue () ;
-    bool loop_13203 = true ;
-    while (loop_13203) {
-      loop_13203 = var_JUMP_5F_or_5F_JSR_5F_fixed_13167.operator_and (GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 324)).objectCompare (GALGAS_uint ((uint32_t) 0U))) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 324)).isValid () ;
-      if (loop_13203) {
-        loop_13203 = var_JUMP_5F_or_5F_JSR_5F_fixed_13167.operator_and (GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 324)).objectCompare (GALGAS_uint ((uint32_t) 0U))) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 324)).boolValue () ;
+    uint32_t variant_13270 = ioArgument_ioGeneratedInstructionList.getter_length (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 323)).uintValue () ;
+    bool loop_13270 = true ;
+    while (loop_13270) {
+      loop_13270 = var_JUMP_5F_or_5F_JSR_5F_fixed_13230.operator_and (GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 324)).objectCompare (GALGAS_uint ((uint32_t) 0U))) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 324)).isValid () ;
+      if (loop_13270) {
+        loop_13270 = var_JUMP_5F_or_5F_JSR_5F_fixed_13230.operator_and (GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 324)).objectCompare (GALGAS_uint ((uint32_t) 0U))) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 324)).boolValue () ;
       }
-      if (loop_13203 && (0 == variant_13203)) {
-        loop_13203 = false ;
+      if (loop_13270 && (0 == variant_13270)) {
+        loop_13270 = false ;
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 323)) ;
       }
-      if (loop_13203) {
-        variant_13203 -- ;
-        var_JUMP_5F_or_5F_JSR_5F_fixed_13167 = GALGAS_bool (false) ;
-        var_iteration_13192.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 327)) ;
-        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("Pass ").add_operation (var_iteration_13192.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 328)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 328)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 328)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 328)) ;
-        GALGAS_midrange_5F_symbolTableForConvertingRelatives var_symbolTable_13493 = GALGAS_midrange_5F_symbolTableForConvertingRelatives::constructor_emptyMap (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 330)) ;
-        GALGAS_uint var_currentAddress_13574 = GALGAS_uint ((uint32_t) 0U) ;
-        cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_13620 (ioArgument_ioGeneratedInstructionList, kENUMERATION_UP) ;
-        while (enumerator_13620.hasCurrentObject ()) {
-          callExtensionMethod_defineLabelAtAddress ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_13620.current_mInstruction (HERE).ptr (), var_symbolTable_13493, var_currentAddress_13574, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 333)) ;
-          enumerator_13620.gotoNextObject () ;
+      if (loop_13270) {
+        variant_13270 -- ;
+        var_JUMP_5F_or_5F_JSR_5F_fixed_13230 = GALGAS_bool (false) ;
+        var_iteration_13259.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 327)) ;
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("Pass ").add_operation (var_iteration_13259.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 328)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 328)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 328)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 328)) ;
+        GALGAS_midrange_5F_symbolTableForConvertingRelatives var_symbolTable_13560 = GALGAS_midrange_5F_symbolTableForConvertingRelatives::constructor_emptyMap (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 330)) ;
+        GALGAS_uint var_currentAddress_13645 = GALGAS_uint ((uint32_t) 0U) ;
+        cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_13671 (ioArgument_ioGeneratedInstructionList, kENUMERATION_UP) ;
+        while (enumerator_13671.hasCurrentObject ()) {
+          callExtensionMethod_defineLabelAtAddress ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_13671.current_mInstruction (HERE).ptr (), var_symbolTable_13560, var_currentAddress_13645, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 333)) ;
+          enumerator_13671.gotoNextObject () ;
         }
-        GALGAS_uint var_lastAddressForFirstPass_13738 = var_currentAddress_13574 ;
-        var_currentAddress_13574 = GALGAS_uint ((uint32_t) 0U) ;
-        cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_13883 (ioArgument_ioGeneratedInstructionList, kENUMERATION_UP) ;
-        GALGAS_uint index_13849 ((uint32_t) 0) ;
-        while (enumerator_13883.hasCurrentObject ()) {
-          callExtensionMethod_compute ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_13883.current_mInstruction (HERE).ptr (), var_symbolTable_13493, var_currentAddress_13574, var_JUMP_5F_or_5F_JSR_5F_fixed_13167, ioArgument_ioGeneratedInstructionList, index_13849, ioArgument_ioListFileContents, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 339)) ;
-          var_currentAddress_13574 = var_currentAddress_13574.add_operation (callExtensionGetter_instructionLength ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_13883.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 340)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 340)) ;
-          enumerator_13883.gotoNextObject () ;
-          index_13849.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 338)) ;
+        GALGAS_uint var_lastAddressForFirstPass_13825 = var_currentAddress_13645 ;
+        var_currentAddress_13645 = GALGAS_uint ((uint32_t) 0U) ;
+        cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_13950 (ioArgument_ioGeneratedInstructionList, kENUMERATION_UP) ;
+        GALGAS_uint index_13936 ((uint32_t) 0) ;
+        while (enumerator_13950.hasCurrentObject ()) {
+          callExtensionMethod_compute ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_13950.current_mInstruction (HERE).ptr (), var_symbolTable_13560, var_currentAddress_13645, var_JUMP_5F_or_5F_JSR_5F_fixed_13230, ioArgument_ioGeneratedInstructionList, index_13936, ioArgument_ioListFileContents, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 339)) ;
+          var_currentAddress_13645 = var_currentAddress_13645.add_operation (callExtensionGetter_instructionLength ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_13950.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 340)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 340)) ;
+          enumerator_13950.gotoNextObject () ;
+          index_13936.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 338)) ;
         }
         enumGalgasBool test_0 = kBoolTrue ;
         if (kBoolTrue == test_0) {
-          test_0 = GALGAS_bool (kIsNotEqual, var_lastAddressForFirstPass_13738.objectCompare (var_currentAddress_13574)).boolEnum () ;
+          test_0 = GALGAS_bool (kIsNotEqual, var_lastAddressForFirstPass_13825.objectCompare (var_currentAddress_13645)).boolEnum () ;
           if (kBoolTrue == test_0) {
             TC_Array <C_FixItDescription> fixItArray1 ;
-            inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 343)), GALGAS_string ("Internal second pass error: the last address gets ").add_operation (var_currentAddress_13574.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 343)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 343)).add_operation (GALGAS_string (" value when checking relative branches, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 343)).add_operation (var_lastAddressForFirstPass_13738.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 345)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 344)).add_operation (GALGAS_string (" value when computing routine map"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 345)), fixItArray1  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 343)) ;
+            inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 343)), GALGAS_string ("Internal second pass error: the last address gets ").add_operation (var_currentAddress_13645.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 343)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 343)).add_operation (GALGAS_string (" value when checking relative branches, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 343)).add_operation (var_lastAddressForFirstPass_13825.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 345)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 344)).add_operation (GALGAS_string (" value when computing routine map"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 345)), fixItArray1  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 343)) ;
           }
         }
         enumGalgasBool test_2 = kBoolTrue ;
         if (kBoolTrue == test_2) {
-          test_2 = var_JUMP_5F_or_5F_JSR_5F_fixed_13167.operator_not (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 347)).boolEnum () ;
+          test_2 = var_JUMP_5F_or_5F_JSR_5F_fixed_13230.operator_not (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 347)).boolEnum () ;
           if (kBoolTrue == test_2) {
             ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  No JUMP, no JSR to fix\n"
               "\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 348)) ;
-            ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("Program size: ").add_operation (var_currentAddress_13574.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 349)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 349)).add_operation (GALGAS_string (" instructions\n"
+            ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("Program size: ").add_operation (var_currentAddress_13645.getter_string (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 349)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 349)).add_operation (GALGAS_string (" instructions\n"
               "\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 349)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 349)) ;
           }
         }
@@ -2350,7 +536,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_buildAssem
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG) ;
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_0 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ORG ").add_operation (temp_0.getter_mOrigin (HERE).getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ORG ").add_operation (temp_0.readProperty_mOrigin ().getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2378,7 +564,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_buildAss
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = object ;
-  ioArgument_ioString.plusAssign_operation(temp_0.getter_mLabel (HERE).getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)) ;
+  ioArgument_ioString.plusAssign_operation(temp_0.readProperty_mLabel ().readProperty_string ().add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2407,11 +593,11 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_FD_buildA
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_FD) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_0 = object ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_1 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.getter_mInstruction_5F_FD_5F_base_5F_code (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)).add_operation (temp_1.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.readProperty_mInstruction_5F_FD_5F_base_5F_code (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)).add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 39)) ;
   enumGalgasBool test_2 = kBoolTrue ;
   if (kBoolTrue == test_2) {
     const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_3 = object ;
-    test_2 = temp_3.getter_m_5F_W_5F_isDestination (HERE).boolEnum () ;
+    test_2 = temp_3.readProperty_m_5F_W_5F_isDestination ().boolEnum () ;
     if (kBoolTrue == test_2) {
       ioArgument_ioString.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 41)) ;
     }
@@ -2447,11 +633,11 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_FB_buildA
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_FB) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_0 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.getter_mBitOrientedOp (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.readProperty_mBitOrientedOp (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_1 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (temp_1.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 54)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 54)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 54)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 54)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 54)) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_2 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string (", ").add_operation (temp_2.getter_mBitNumber (HERE).getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string (", ").add_operation (temp_2.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)) ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 56)) ;
 }
 
@@ -2483,7 +669,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSk
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_1 = object ;
-    test_0 = temp_1.getter_mSkipIfSet (HERE).boolEnum () ;
+    test_0 = temp_1.readProperty_mSkipIfSet ().boolEnum () ;
     if (kBoolTrue == test_0) {
       ioArgument_ioString.plusAssign_operation(GALGAS_string ("BTFSS"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 66)) ;
     }
@@ -2492,9 +678,9 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSk
     ioArgument_ioString.plusAssign_operation(GALGAS_string ("BTFSC"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 68)) ;
   }
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_2 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (temp_2.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 70)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 70)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (temp_2.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 70)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 70)) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_3 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string (", ").add_operation (temp_3.getter_mBitNumber (HERE).getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string (", ").add_operation (temp_3.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)) ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 72)) ;
 }
 
@@ -2524,7 +710,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_F_buildAs
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F temp_0 = object ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F temp_1 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.getter_mFinstruction (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)).add_operation (temp_1.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.readProperty_mFinstruction (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)).add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)) ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 81)) ;
 }
 
@@ -2555,7 +741,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_incDecRegisterInConditio
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_1 = object ;
-    test_0 = temp_1.getter_mIncrement (HERE).boolEnum () ;
+    test_0 = temp_1.readProperty_mIncrement ().boolEnum () ;
     if (kBoolTrue == test_0) {
       ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (GALGAS_string ("INCFSZ "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 90)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 90)) ;
     }
@@ -2564,11 +750,11 @@ static void extensionMethod_midrange_5F_intermediate_5F_incDecRegisterInConditio
     ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (GALGAS_string ("DECFSZ "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 92)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 92)) ;
   }
   const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_2 = object ;
-  ioArgument_ioString.plusAssign_operation(temp_2.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 94)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 94)) ;
+  ioArgument_ioString.plusAssign_operation(temp_2.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 94)) ;
   enumGalgasBool test_3 = kBoolTrue ;
   if (kBoolTrue == test_3) {
     const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_4 = object ;
-    test_3 = temp_4.getter_m_5F_W_5F_isDestination (HERE).boolEnum () ;
+    test_3 = temp_4.readProperty_m_5F_W_5F_isDestination ().boolEnum () ;
     if (kBoolTrue == test_3) {
       ioArgument_ioString.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 96)) ;
     }
@@ -2580,19 +766,19 @@ static void extensionMethod_midrange_5F_intermediate_5F_incDecRegisterInConditio
   enumGalgasBool test_5 = kBoolTrue ;
   if (kBoolTrue == test_5) {
     const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_6 = object ;
-    test_5 = temp_6.getter_mBranchIfZero (HERE).boolEnum () ;
+    test_5 = temp_6.readProperty_mBranchIfZero ().boolEnum () ;
     if (kBoolTrue == test_5) {
-      GALGAS_string var_localLabel_3005 = GALGAS_string (".LL").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 102)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 102)) ;
+      GALGAS_string var_localLabel_2993 = GALGAS_string (".LL").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 102)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 102)) ;
       ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 102)) ;
-      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (var_localLabel_3005, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (var_localLabel_2993, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 103)) ;
       const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_7 = object ;
-      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (temp_7.getter_mTargetLabel (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104)) ;
-      ioArgument_ioString.plusAssign_operation(var_localLabel_3005.add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 105)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 105)) ;
+      ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (temp_7.readProperty_mTargetLabel (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 104)) ;
+      ioArgument_ioString.plusAssign_operation(var_localLabel_2993.add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 105)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 105)) ;
     }
   }
   if (kBoolFalse == test_5) {
     const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_8 = object ;
-    ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (temp_8.getter_mTargetLabel (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)) ;
+    ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (temp_8.readProperty_mTargetLabel (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)) ;
   }
 }
 
@@ -2621,7 +807,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_JUMP_buildAssemblyCode (
   const cPtr_midrange_5F_intermediate_5F_JUMP * object = (const cPtr_midrange_5F_intermediate_5F_JUMP *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JUMP) ;
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_0 = object ;
-  switch (temp_0.getter_mBit_31__31_ (HERE).enumValue ()) {
+  switch (temp_0.readProperty_mBit_31__31_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
@@ -2640,7 +826,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_JUMP_buildAssemblyCode (
     break ;
   }
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_1 = object ;
-  switch (temp_1.getter_mBit_31__32_ (HERE).enumValue ()) {
+  switch (temp_1.readProperty_mBit_31__32_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
@@ -2659,7 +845,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_JUMP_buildAssemblyCode (
     break ;
   }
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_2 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO   ").add_operation (temp_2.getter_mTargetLabel (HERE).getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO   ").add_operation (temp_2.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2687,7 +873,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_GOTO_buildAssemblyCode (
   const cPtr_midrange_5F_intermediate_5F_GOTO * object = (const cPtr_midrange_5F_intermediate_5F_GOTO *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_GOTO) ;
   const GALGAS_midrange_5F_intermediate_5F_GOTO temp_0 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO   ").add_operation (temp_0.getter_mTargetLabel (HERE).getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO   ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2715,7 +901,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_JSR_buildAssemblyCode (c
   const cPtr_midrange_5F_intermediate_5F_JSR * object = (const cPtr_midrange_5F_intermediate_5F_JSR *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JSR) ;
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_0 = object ;
-  switch (temp_0.getter_mBit_31__31_ (HERE).enumValue ()) {
+  switch (temp_0.readProperty_mBit_31__31_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
@@ -2734,7 +920,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_JSR_buildAssemblyCode (c
     break ;
   }
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_1 = object ;
-  switch (temp_1.getter_mBit_31__32_ (HERE).enumValue ()) {
+  switch (temp_1.readProperty_mBit_31__32_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
@@ -2753,9 +939,9 @@ static void extensionMethod_midrange_5F_intermediate_5F_JSR_buildAssemblyCode (c
     break ;
   }
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_2 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  CALL  ").add_operation (temp_2.getter_mTargetLabel (HERE).getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  CALL  ").add_operation (temp_2.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 152)) ;
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_3 = object ;
-  switch (temp_3.getter_mBit_31__31_ (HERE).enumValue ()) {
+  switch (temp_3.readProperty_mBit_31__31_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
@@ -2774,7 +960,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_JSR_buildAssemblyCode (c
     break ;
   }
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_4 = object ;
-  switch (temp_4.getter_mBit_31__32_ (HERE).enumValue ()) {
+  switch (temp_4.readProperty_mBit_31__32_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
@@ -2819,7 +1005,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_CALL_buildAssemblyCode (
   const cPtr_midrange_5F_intermediate_5F_CALL * object = (const cPtr_midrange_5F_intermediate_5F_CALL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_CALL) ;
   const GALGAS_midrange_5F_intermediate_5F_CALL temp_0 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  CALL  ").add_operation (temp_0.getter_mTargetLabel (HERE).getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  CALL  ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2998,7 +1184,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_literalOp
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_0 = object ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_1 = object ;
-  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.getter_mLiteralInstruction (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (temp_1.getter_mLiteralValue (HERE).getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)) ;
+  ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.readProperty_mLiteralInstruction (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (temp_1.readProperty_mLiteralValue ().getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3028,32 +1214,32 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_MNOP_buil
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_1 = object ;
-    test_0 = GALGAS_bool (kIsEqual, temp_1.getter_mOccurrenceFactor (HERE).getter_uint (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 234)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, temp_1.readProperty_mOccurrenceFactor ().readProperty_uint ().objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
       const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_2 = object ;
       TC_Array <C_FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticWarning (temp_2.getter_mOccurrenceFactor (HERE).getter_location (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 235)), GALGAS_string ("No generated code"), fixItArray3  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 235)) ;
+      inCompiler->emitSemanticWarning (temp_2.readProperty_mOccurrenceFactor ().readProperty_location (), GALGAS_string ("No generated code"), fixItArray3  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 235)) ;
     }
   }
-  GALGAS_uint var_idx_6990 = GALGAS_uint ((uint32_t) 0U) ;
+  GALGAS_uint var_idx_6972 = GALGAS_uint ((uint32_t) 0U) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_4 = object ;
-  if (temp_4.getter_mOccurrenceFactor (HERE).getter_uint (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 238)).isValid ()) {
-    uint32_t variant_7001 = temp_4.getter_mOccurrenceFactor (HERE).getter_uint (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 238)).uintValue () ;
-    bool loop_7001 = true ;
-    while (loop_7001) {
+  if (temp_4.readProperty_mOccurrenceFactor ().readProperty_uint ().isValid ()) {
+    uint32_t variant_6983 = temp_4.readProperty_mOccurrenceFactor ().readProperty_uint ().uintValue () ;
+    bool loop_6983 = true ;
+    while (loop_6983) {
       const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_5 = object ;
-      loop_7001 = GALGAS_bool (kIsStrictInf, var_idx_6990.objectCompare (temp_5.getter_mOccurrenceFactor (HERE).getter_uint (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 239)))).isValid () ;
-      if (loop_7001) {
-        loop_7001 = GALGAS_bool (kIsStrictInf, var_idx_6990.objectCompare (temp_5.getter_mOccurrenceFactor (HERE).getter_uint (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 239)))).boolValue () ;
+      loop_6983 = GALGAS_bool (kIsStrictInf, var_idx_6972.objectCompare (temp_5.readProperty_mOccurrenceFactor ().readProperty_uint ())).isValid () ;
+      if (loop_6983) {
+        loop_6983 = GALGAS_bool (kIsStrictInf, var_idx_6972.objectCompare (temp_5.readProperty_mOccurrenceFactor ().readProperty_uint ())).boolValue () ;
       }
-      if (loop_7001 && (0 == variant_7001)) {
-        loop_7001 = false ;
+      if (loop_6983 && (0 == variant_6983)) {
+        loop_6983 = false ;
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 238)) ;
       }
-      if (loop_7001) {
-        variant_7001 -- ;
+      if (loop_6983) {
+        variant_6983 -- ;
         ioArgument_ioString.plusAssign_operation(GALGAS_string ("  NOP\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 241)) ;
-        var_idx_6990.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 242)) ;
+        var_idx_6972.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 242)) ;
       }
     }
   }
@@ -3092,35 +1278,35 @@ void routine_midrange_5F_build_5F_assembly_5F_code (const GALGAS_string constinA
     "\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 305)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 305)) ;
   outArgument_outAssemblyCode.plusAssign_operation(GALGAS_string (";--- Code\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 307)) ;
   outArgument_outAssemblyCode.plusAssign_operation(GALGAS_string ("  ORG 0\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 308)) ;
-  GALGAS_uint var_bccLabelIndex_9170 = GALGAS_uint ((uint32_t) 0U) ;
-  cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_9205 (constinArgument_inInstructionList, kENUMERATION_UP) ;
-  while (enumerator_9205.hasCurrentObject ()) {
-    callExtensionMethod_buildAssemblyCode ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_9205.current_mInstruction (HERE).ptr (), outArgument_outAssemblyCode, var_bccLabelIndex_9170, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 311)) ;
-    enumerator_9205.gotoNextObject () ;
+  GALGAS_uint var_bccLabelIndex_9152 = GALGAS_uint ((uint32_t) 0U) ;
+  cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_9176 (constinArgument_inInstructionList, kENUMERATION_UP) ;
+  while (enumerator_9176.hasCurrentObject ()) {
+    callExtensionMethod_buildAssemblyCode ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_9176.current_mInstruction (HERE).ptr (), outArgument_outAssemblyCode, var_bccLabelIndex_9152, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 311)) ;
+    enumerator_9176.gotoNextObject () ;
   }
   outArgument_outAssemblyCode.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 313)) ;
   outArgument_outAssemblyCode.plusAssign_operation(GALGAS_string (";--- Prefefined registers\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 315)) ;
   cEnumerator_registerTable enumerator_9421 (constinArgument_inPredefinedRegisters, kENUMERATION_UP) ;
   while (enumerator_9421.hasCurrentObject ()) {
-    GALGAS_uint var_firstRegister_9448 ;
-    enumerator_9421.current_mRegisterAddressList (HERE).method_first (var_firstRegister_9448, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 317)) ;
-    outArgument_outAssemblyCode.plusAssign_operation(enumerator_9421.current_lkey (HERE).getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 318)).add_operation (GALGAS_string (" EQU "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 318)).add_operation (var_firstRegister_9448.getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 318)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 318)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 318)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 318)) ;
+    GALGAS_uint var_firstRegister_9479 ;
+    enumerator_9421.current_mRegisterAddressList (HERE).method_first (var_firstRegister_9479, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 317)) ;
+    outArgument_outAssemblyCode.plusAssign_operation(enumerator_9421.current_lkey (HERE).readProperty_string ().add_operation (GALGAS_string (" EQU "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 318)).add_operation (var_firstRegister_9479.getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 318)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 318)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 318)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 318)) ;
     enumerator_9421.gotoNextObject () ;
   }
   outArgument_outAssemblyCode.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 320)) ;
   outArgument_outAssemblyCode.plusAssign_operation(GALGAS_string (";--- User defined registers (in RAM)\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 322)) ;
-  cEnumerator_registerTable enumerator_9731 (constinArgument_inAllRegisters, kENUMERATION_UP) ;
-  while (enumerator_9731.hasCurrentObject ()) {
+  cEnumerator_registerTable enumerator_9773 (constinArgument_inAllRegisters, kENUMERATION_UP) ;
+  while (enumerator_9773.hasCurrentObject ()) {
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = constinArgument_inPredefinedRegisters.getter_hasKey (enumerator_9731.current_lkey (HERE).getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 324)) COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 324)).operator_not (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 324)).boolEnum () ;
+      test_0 = constinArgument_inPredefinedRegisters.getter_hasKey (enumerator_9773.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 324)).operator_not (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 324)).boolEnum () ;
       if (kBoolTrue == test_0) {
-        GALGAS_uint var_firstRegister_9822 ;
-        enumerator_9731.current_mRegisterAddressList (HERE).method_first (var_firstRegister_9822, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 325)) ;
-        outArgument_outAssemblyCode.plusAssign_operation(enumerator_9731.current_lkey (HERE).getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 326)).add_operation (GALGAS_string (" EQU "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 326)).add_operation (var_firstRegister_9822.getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 326)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 326)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 326)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 326)) ;
+        GALGAS_uint var_firstRegister_9886 ;
+        enumerator_9773.current_mRegisterAddressList (HERE).method_first (var_firstRegister_9886, inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 325)) ;
+        outArgument_outAssemblyCode.plusAssign_operation(enumerator_9773.current_lkey (HERE).readProperty_string ().add_operation (GALGAS_string (" EQU "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 326)).add_operation (var_firstRegister_9886.getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 326)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 326)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 326)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 326)) ;
       }
     }
-    enumerator_9731.gotoNextObject () ;
+    enumerator_9773.gotoNextObject () ;
   }
   outArgument_outAssemblyCode.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 329)) ;
   outArgument_outAssemblyCode.plusAssign_operation(GALGAS_string (";--- Piccolo defined symbol\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 331)) ;
@@ -3132,10 +1318,10 @@ void routine_midrange_5F_build_5F_assembly_5F_code (const GALGAS_string constinA
     if (kBoolTrue == test_1) {
       outArgument_outAssemblyCode.plusAssign_operation(GALGAS_string (";--- Configuration\n"
         "\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 335)) ;
-      cEnumerator_actualConfigurationMap enumerator_10294 (constinArgument_inActualConfigurationMap, kENUMERATION_UP) ;
-      while (enumerator_10294.hasCurrentObject ()) {
-        outArgument_outAssemblyCode.plusAssign_operation(GALGAS_string ("  __config ").add_operation (enumerator_10294.current_mRegisterAddress (HERE).getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)).add_operation (enumerator_10294.current_mRegisterValue (HERE).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)).getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)) ;
-        enumerator_10294.gotoNextObject () ;
+      cEnumerator_actualConfigurationMap enumerator_10359 (constinArgument_inActualConfigurationMap, kENUMERATION_UP) ;
+      while (enumerator_10359.hasCurrentObject ()) {
+        outArgument_outAssemblyCode.plusAssign_operation(GALGAS_string ("  __config ").add_operation (enumerator_10359.current_mRegisterAddress (HERE).getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)).add_operation (enumerator_10359.current_mRegisterValue (HERE).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)).getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 337)) ;
+        enumerator_10359.gotoNextObject () ;
       }
     }
   }
@@ -3224,7 +1410,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_enterLab
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
   {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = object ;
-  ioArgument_ioRoutineSymbolTable.setter_insertKey (temp_0.getter_mLabel (HERE), ioArgument_ioAddress, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 68)) ;
+  ioArgument_ioRoutineSymbolTable.setter_insertKey (temp_0.readProperty_mLabel (), ioArgument_ioAddress, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 68)) ;
   }
 }
 
@@ -3253,7 +1439,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_enterLabel
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG) ;
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_0 = object ;
-  ioArgument_ioAddress = temp_0.getter_mOrigin (HERE) ;
+  ioArgument_ioAddress = temp_0.readProperty_mOrigin () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3341,11 +1527,11 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_ORG_generateBi
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG) ;
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_0 = object ;
-  ioArgument_ioAddress = temp_0.getter_mOrigin (HERE) ;
+  ioArgument_ioAddress = temp_0.readProperty_mOrigin () ;
   {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_1 = object ;
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_2 = object ;
-  routine_setEmitAddress (temp_1.getter_mOrigin (HERE).add_operation (temp_2.getter_mOrigin (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 125)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 125)) ;
+  routine_setEmitAddress (temp_1.readProperty_mOrigin ().add_operation (temp_2.readProperty_mOrigin (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 125)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 125)) ;
   }
   {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_3 = object ;
@@ -3382,20 +1568,20 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_FD_genera
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_FD * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_FD *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_FD) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_0 = object ;
-  GALGAS_uint var_code_5753 = extensionGetter_basecode (temp_0.getter_mInstruction_5F_FD_5F_base_5F_code (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 160)) ;
+  GALGAS_uint var_code_5768 = extensionGetter_basecode (temp_0.readProperty_mInstruction_5F_FD_5F_base_5F_code (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 160)) ;
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
     const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_2 = object ;
-    test_1 = temp_2.getter_m_5F_W_5F_isDestination (HERE).operator_not (SOURCE_FILE ("midrange_build_binary_code.galgas", 161)).boolEnum () ;
+    test_1 = temp_2.readProperty_m_5F_W_5F_isDestination ().operator_not (SOURCE_FILE ("midrange_build_binary_code.galgas", 161)).boolEnum () ;
     if (kBoolTrue == test_1) {
-      var_code_5753 = var_code_5753.operator_or (GALGAS_uint ((uint32_t) 128U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 162)) ;
+      var_code_5768 = var_code_5768.operator_or (GALGAS_uint ((uint32_t) 128U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 162)) ;
     }
   }
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_3 = object ;
-  var_code_5753 = var_code_5753.operator_or (temp_3.getter_mRegisterDescription (HERE).getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 164)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 164)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 164)) ;
+  var_code_5768 = var_code_5768.operator_or (temp_3.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 164)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 164)) ;
   {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_4 = object ;
-  routine_emitMidrangeCodeAtWordAddress (var_code_5753, ioArgument_ioAddress, temp_4, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 165)) ;
+  routine_emitMidrangeCodeAtWordAddress (var_code_5768, ioArgument_ioAddress, temp_4, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 165)) ;
   }
 }
 
@@ -3428,12 +1614,12 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_F_generat
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_F * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_F *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F temp_0 = object ;
-  GALGAS_uint var_code_6664 = extensionGetter_baseCode (temp_0.getter_mFinstruction (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 187)) ;
+  GALGAS_uint var_code_6681 = extensionGetter_baseCode (temp_0.readProperty_mFinstruction (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 187)) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F temp_1 = object ;
-  var_code_6664 = var_code_6664.operator_or (temp_1.getter_mRegisterDescription (HERE).getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 188)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 188)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 188)) ;
+  var_code_6681 = var_code_6681.operator_or (temp_1.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 188)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 188)) ;
   {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F temp_2 = object ;
-  routine_emitMidrangeCodeAtWordAddress (var_code_6664, ioArgument_ioAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 189)) ;
+  routine_emitMidrangeCodeAtWordAddress (var_code_6681, ioArgument_ioAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 189)) ;
   }
 }
 
@@ -3466,14 +1652,14 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_FB_genera
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_FB) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_0 = object ;
-  GALGAS_uint var_code_7485 = extensionGetter_baseCode (temp_0.getter_mBitOrientedOp (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 212)) ;
+  GALGAS_uint var_code_7504 = extensionGetter_baseCode (temp_0.readProperty_mBitOrientedOp (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 212)) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_1 = object ;
-  var_code_7485 = var_code_7485.operator_or (temp_1.getter_mRegisterDescription (HERE).getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 213)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 213)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 213)) ;
+  var_code_7504 = var_code_7504.operator_or (temp_1.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 213)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 213)) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_2 = object ;
-  var_code_7485 = var_code_7485.operator_or (temp_2.getter_mBitNumber (HERE).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 214)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 214)) ;
+  var_code_7504 = var_code_7504.operator_or (temp_2.readProperty_mBitNumber ().left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 214)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 214)) ;
   {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_3 = object ;
-  routine_emitMidrangeCodeAtWordAddress (var_code_7485, ioArgument_ioAddress, temp_3, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 215)) ;
+  routine_emitMidrangeCodeAtWordAddress (var_code_7504, ioArgument_ioAddress, temp_3, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 215)) ;
   }
 }
 
@@ -3505,25 +1691,25 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_BitTestSk
                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
-  GALGAS_uint var_code_8142 ;
+  GALGAS_uint var_code_8163 ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_1 = object ;
-    test_0 = temp_1.getter_mSkipIfSet (HERE).boolEnum () ;
+    test_0 = temp_1.readProperty_mSkipIfSet ().boolEnum () ;
     if (kBoolTrue == test_0) {
-      var_code_8142 = GALGAS_uint ((uint32_t) 7168U) ;
+      var_code_8163 = GALGAS_uint ((uint32_t) 7168U) ;
     }
   }
   if (kBoolFalse == test_0) {
-    var_code_8142 = GALGAS_uint ((uint32_t) 6144U) ;
+    var_code_8163 = GALGAS_uint ((uint32_t) 6144U) ;
   }
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_2 = object ;
-  var_code_8142 = var_code_8142.operator_or (temp_2.getter_mRegisterDescription (HERE).getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 234)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 234)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 234)) ;
+  var_code_8163 = var_code_8163.operator_or (temp_2.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 234)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 234)) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_3 = object ;
-  var_code_8142 = var_code_8142.operator_or (temp_3.getter_mBitNumber (HERE).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 235)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 235)) ;
+  var_code_8163 = var_code_8163.operator_or (temp_3.readProperty_mBitNumber ().left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 235)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 235)) ;
   {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_4 = object ;
-  routine_emitMidrangeCodeAtWordAddress (var_code_8142, ioArgument_ioAddress, temp_4, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 236)) ;
+  routine_emitMidrangeCodeAtWordAddress (var_code_8163, ioArgument_ioAddress, temp_4, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 236)) ;
   }
 }
 
@@ -3550,9 +1736,9 @@ void routine_emit_5F_midrange_5F_GOTOinstruction_5F_nocheck (const GALGAS_string
                                                              GALGAS_string & ioArgument_ioListFileContents,
                                                              C_Compiler * inCompiler
                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_uint var_code_8676 = GALGAS_uint ((uint32_t) 10240U).operator_or (constinArgument_inTargetAddress.operator_and (GALGAS_uint ((uint32_t) 2047U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 246)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 246)) ;
+  GALGAS_uint var_code_8695 = GALGAS_uint ((uint32_t) 10240U).operator_or (constinArgument_inTargetAddress.operator_and (GALGAS_uint ((uint32_t) 2047U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 246)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 246)) ;
   {
-  routine_emitMidrangeDirectCodeAtWordAddress (var_code_8676, ioArgument_ioAddress, GALGAS_string ("GOTO ").add_operation (constinArgument_inTargetLabel, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 247)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 247)) ;
+  routine_emitMidrangeDirectCodeAtWordAddress (var_code_8695, ioArgument_ioAddress, GALGAS_string ("GOTO ").add_operation (constinArgument_inTargetLabel, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 247)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 247)) ;
   }
 }
 
@@ -3596,9 +1782,9 @@ void routine_emit_5F_midrange_5F_CALLinstruction_5F_nocheck (const GALGAS_string
                                                              GALGAS_string & ioArgument_ioListFileContents,
                                                              C_Compiler * inCompiler
                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_uint var_code_9649 = GALGAS_uint ((uint32_t) 8192U).operator_or (constinArgument_inTargetAddress.operator_and (GALGAS_uint ((uint32_t) 2047U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 271)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 271)) ;
+  GALGAS_uint var_code_9668 = GALGAS_uint ((uint32_t) 8192U).operator_or (constinArgument_inTargetAddress.operator_and (GALGAS_uint ((uint32_t) 2047U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 271)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 271)) ;
   {
-  routine_emitMidrangeDirectCodeAtWordAddress (var_code_9649, ioArgument_ioAddress, GALGAS_string ("CALL ").add_operation (constinArgument_inTargetLabel, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 272)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 272)) ;
+  routine_emitMidrangeDirectCodeAtWordAddress (var_code_9668, ioArgument_ioAddress, GALGAS_string ("CALL ").add_operation (constinArgument_inTargetLabel, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 272)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 272)) ;
   }
 }
 
@@ -3647,29 +1833,29 @@ static void extensionMethod_midrange_5F_intermediate_5F_JUMP_generateBinaryCodeA
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_JUMP * object = (const cPtr_midrange_5F_intermediate_5F_JUMP *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JUMP) ;
-  GALGAS_stringset var_usedRegisters_10753 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_build_binary_code.galgas", 299)) ;
-  GALGAS_uint var_targetAddress_10798 ;
+  GALGAS_stringset var_usedRegisters_10772 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_build_binary_code.galgas", 299)) ;
+  GALGAS_uint var_targetAddress_10821 ;
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_0 = object ;
-  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.getter_mTargetLabel (HERE), var_targetAddress_10798, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 301)) ;
-  GALGAS_registerExpression var_PCLATH_5F_register_10925 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("PCLATH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 304))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 304)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 305))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 305))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 305)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 306))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 303)) ;
-  GALGAS_midrange_5F_intermediate_5F_registerExpression var_PCLATH_5F_IPICregisterDescription_11136 ;
-  GALGAS_bitSliceTable joker_11318 ; // Joker input parameter
-  callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register_10925.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_build_binary_code.galgas", 311)), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_PCLATH_5F_IPICregisterDescription_11136, joker_11318, var_usedRegisters_10753, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 309)) ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_targetAddress_10821, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 301)) ;
+  GALGAS_registerExpression var_PCLATH_5F_register_10948 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("PCLATH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 304))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 304)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 305))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 305))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 305)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 306))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 303)) ;
+  GALGAS_midrange_5F_intermediate_5F_registerExpression var_PCLATH_5F_IPICregisterDescription_11163 ;
+  GALGAS_bitSliceTable joker_11345 ; // Joker input parameter
+  callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register_10948.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_build_binary_code.galgas", 311)), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_PCLATH_5F_IPICregisterDescription_11163, joker_11345, var_usedRegisters_10772, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 309)) ;
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_1 = object ;
-  switch (temp_1.getter_mBit_31__31_ (HERE).enumValue ()) {
+  switch (temp_1.readProperty_mBit_31__31_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 322)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 322)).operator_or (var_PCLATH_5F_IPICregisterDescription_11136.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 322)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 322)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 322)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 321)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 322)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 322)).operator_or (var_PCLATH_5F_IPICregisterDescription_11163.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 322)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 322)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 321)) ;
       }
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 329)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 329)).operator_or (var_PCLATH_5F_IPICregisterDescription_11136.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 329)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 329)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 329)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 328)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 329)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 329)).operator_or (var_PCLATH_5F_IPICregisterDescription_11163.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 329)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 329)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 328)) ;
       }
     }
     break ;
@@ -3679,20 +1865,20 @@ static void extensionMethod_midrange_5F_intermediate_5F_JUMP_generateBinaryCodeA
     break ;
   }
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_2 = object ;
-  switch (temp_2.getter_mBit_31__32_ (HERE).enumValue ()) {
+  switch (temp_2.readProperty_mBit_31__32_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 339)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 339)).operator_or (var_PCLATH_5F_IPICregisterDescription_11136.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 339)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 339)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 339)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 338)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 339)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 339)).operator_or (var_PCLATH_5F_IPICregisterDescription_11163.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 339)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 339)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 338)) ;
       }
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 346)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 346)).operator_or (var_PCLATH_5F_IPICregisterDescription_11136.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 346)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 346)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 346)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 345)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 346)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 346)).operator_or (var_PCLATH_5F_IPICregisterDescription_11163.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 346)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 346)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 345)) ;
       }
     }
     break ;
@@ -3703,7 +1889,7 @@ static void extensionMethod_midrange_5F_intermediate_5F_JUMP_generateBinaryCodeA
   }
   {
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_3 = object ;
-  routine_emit_5F_midrange_5F_GOTOinstruction_5F_nocheck (temp_3.getter_mTargetLabel (HERE).getter_string (HERE), var_targetAddress_10798, ioArgument_ioAddress, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 354)) ;
+  routine_emit_5F_midrange_5F_GOTOinstruction_5F_nocheck (temp_3.readProperty_mTargetLabel ().readProperty_string (), var_targetAddress_10821, ioArgument_ioAddress, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 354)) ;
   }
 }
 
@@ -3735,13 +1921,13 @@ static void extensionMethod_midrange_5F_intermediate_5F_GOTO_generateBinaryCodeA
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_GOTO * object = (const cPtr_midrange_5F_intermediate_5F_GOTO *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_GOTO) ;
-  GALGAS_uint var_targetAddress_12847 ;
+  GALGAS_uint var_targetAddress_12870 ;
   const GALGAS_midrange_5F_intermediate_5F_GOTO temp_0 = object ;
-  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.getter_mTargetLabel (HERE), var_targetAddress_12847, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 368)) ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_targetAddress_12870, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 368)) ;
   {
   const GALGAS_midrange_5F_intermediate_5F_GOTO temp_1 = object ;
   const GALGAS_midrange_5F_intermediate_5F_GOTO temp_2 = object ;
-  routine_emit_5F_midrange_5F_GOTOinstruction (temp_1.getter_mInstructionLocation (HERE), ioArgument_ioAddress, temp_2.getter_mTargetLabel (HERE).getter_string (HERE), var_targetAddress_12847, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 370)) ;
+  routine_emit_5F_midrange_5F_GOTOinstruction (temp_1.readProperty_mInstructionLocation (), ioArgument_ioAddress, temp_2.readProperty_mTargetLabel ().readProperty_string (), var_targetAddress_12870, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 370)) ;
   }
 }
 
@@ -3773,29 +1959,29 @@ static void extensionMethod_midrange_5F_intermediate_5F_JSR_generateBinaryCodeAt
                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_JSR * object = (const cPtr_midrange_5F_intermediate_5F_JSR *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_JSR) ;
-  GALGAS_stringset var_usedRegisters_13437 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_build_binary_code.galgas", 382)) ;
-  GALGAS_uint var_targetAddress_13487 ;
+  GALGAS_stringset var_usedRegisters_13460 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_build_binary_code.galgas", 382)) ;
+  GALGAS_uint var_targetAddress_13514 ;
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_0 = object ;
-  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.getter_mTargetLabel (HERE), var_targetAddress_13487, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 385)) ;
-  GALGAS_registerExpression var_PCLATH_5F_register_13614 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("PCLATH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 388))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 388)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 389))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 389))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 389)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 390))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 387)) ;
-  GALGAS_midrange_5F_intermediate_5F_registerExpression var_PCLATH_5F_IPICregisterDescription_13832 ;
-  GALGAS_bitSliceTable joker_14014 ; // Joker input parameter
-  callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register_13614.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_build_binary_code.galgas", 395)), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_PCLATH_5F_IPICregisterDescription_13832, joker_14014, var_usedRegisters_13437, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 393)) ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_targetAddress_13514, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 385)) ;
+  GALGAS_registerExpression var_PCLATH_5F_register_13641 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("PCLATH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 388))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 388)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 389))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 389))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 389)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 390))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 387)) ;
+  GALGAS_midrange_5F_intermediate_5F_registerExpression var_PCLATH_5F_IPICregisterDescription_13863 ;
+  GALGAS_bitSliceTable joker_14045 ; // Joker input parameter
+  callExtensionMethod_resolveMidrangeAccess ((const cPtr_registerExpression *) var_PCLATH_5F_register_13641.ptr (), constinArgument_inTotalBankCount, GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_build_binary_code.galgas", 395)), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_PCLATH_5F_IPICregisterDescription_13863, joker_14045, var_usedRegisters_13460, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 393)) ;
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_1 = object ;
-  switch (temp_1.getter_mBit_31__31_ (HERE).enumValue ()) {
+  switch (temp_1.readProperty_mBit_31__31_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 406)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 406)).operator_or (var_PCLATH_5F_IPICregisterDescription_13832.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 406)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 406)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 406)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 405)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 406)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 406)).operator_or (var_PCLATH_5F_IPICregisterDescription_13863.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 406)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 406)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 405)) ;
       }
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 413)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 413)).operator_or (var_PCLATH_5F_IPICregisterDescription_13832.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 413)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 413)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 413)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 412)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 413)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 413)).operator_or (var_PCLATH_5F_IPICregisterDescription_13863.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 413)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 413)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 412)) ;
       }
     }
     break ;
@@ -3805,20 +1991,20 @@ static void extensionMethod_midrange_5F_intermediate_5F_JSR_generateBinaryCodeAt
     break ;
   }
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_2 = object ;
-  switch (temp_2.getter_mBit_31__32_ (HERE).enumValue ()) {
+  switch (temp_2.readProperty_mBit_31__32_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 423)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 423)).operator_or (var_PCLATH_5F_IPICregisterDescription_13832.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 423)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 423)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 423)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 422)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 423)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 423)).operator_or (var_PCLATH_5F_IPICregisterDescription_13863.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 423)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 423)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 422)) ;
       }
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 430)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 430)).operator_or (var_PCLATH_5F_IPICregisterDescription_13832.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 430)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 430)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 430)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 429)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 430)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 430)).operator_or (var_PCLATH_5F_IPICregisterDescription_13863.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 430)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 430)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 429)) ;
       }
     }
     break ;
@@ -3829,23 +2015,23 @@ static void extensionMethod_midrange_5F_intermediate_5F_JSR_generateBinaryCodeAt
   }
   {
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_3 = object ;
-  routine_emit_5F_midrange_5F_CALLinstruction_5F_nocheck (temp_3.getter_mTargetLabel (HERE).getter_string (HERE), var_targetAddress_13487, ioArgument_ioAddress, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 437)) ;
+  routine_emit_5F_midrange_5F_CALLinstruction_5F_nocheck (temp_3.readProperty_mTargetLabel ().readProperty_string (), var_targetAddress_13514, ioArgument_ioAddress, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 437)) ;
   }
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_4 = object ;
-  switch (temp_4.getter_mBit_31__31_ (HERE).enumValue ()) {
+  switch (temp_4.readProperty_mBit_31__31_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 441)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 441)).operator_or (var_PCLATH_5F_IPICregisterDescription_13832.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 441)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 441)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 441)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 440)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 441)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 441)).operator_or (var_PCLATH_5F_IPICregisterDescription_13863.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 441)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 441)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 440)) ;
       }
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 448)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 448)).operator_or (var_PCLATH_5F_IPICregisterDescription_13832.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 448)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 448)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 448)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 447)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 3U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 448)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 448)).operator_or (var_PCLATH_5F_IPICregisterDescription_13863.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 448)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 448)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 3"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 447)) ;
       }
     }
     break ;
@@ -3855,20 +2041,20 @@ static void extensionMethod_midrange_5F_intermediate_5F_JSR_generateBinaryCodeAt
     break ;
   }
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_5 = object ;
-  switch (temp_5.getter_mBit_31__32_ (HERE).enumValue ()) {
+  switch (temp_5.readProperty_mBit_31__32_ ().enumValue ()) {
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kNotBuilt:
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_set:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 458)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 458)).operator_or (var_PCLATH_5F_IPICregisterDescription_13832.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 458)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 458)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 458)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 457)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 4096U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 458)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 458)).operator_or (var_PCLATH_5F_IPICregisterDescription_13863.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 458)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 458)), ioArgument_ioAddress, GALGAS_string ("BCF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 457)) ;
       }
     }
     break ;
   case GALGAS_midrange_5F_call_5F_goto_5F_bit::kEnum_clear:
     {
       {
-      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 465)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 465)).operator_or (var_PCLATH_5F_IPICregisterDescription_13832.getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 465)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 465)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 465)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 464)) ;
+      routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 5120U).operator_or (GALGAS_uint ((uint32_t) 4U).left_shift_operation (GALGAS_uint ((uint32_t) 7U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 465)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 465)).operator_or (var_PCLATH_5F_IPICregisterDescription_13863.readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 465)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 465)), ioArgument_ioAddress, GALGAS_string ("BSF PCLATH, 4"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 464)) ;
       }
     }
     break ;
@@ -3907,13 +2093,13 @@ static void extensionMethod_midrange_5F_intermediate_5F_CALL_generateBinaryCodeA
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_CALL * object = (const cPtr_midrange_5F_intermediate_5F_CALL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_CALL) ;
-  GALGAS_uint var_targetAddress_16498 ;
+  GALGAS_uint var_targetAddress_16517 ;
   const GALGAS_midrange_5F_intermediate_5F_CALL temp_0 = object ;
-  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.getter_mTargetLabel (HERE), var_targetAddress_16498, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 485)) ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_targetAddress_16517, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 485)) ;
   {
   const GALGAS_midrange_5F_intermediate_5F_CALL temp_1 = object ;
   const GALGAS_midrange_5F_intermediate_5F_CALL temp_2 = object ;
-  routine_emit_5F_midrange_5F_CALLinstruction (temp_1.getter_mInstructionLocation (HERE), ioArgument_ioAddress, temp_2.getter_mTargetLabel (HERE).getter_string (HERE), var_targetAddress_16498, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 487)) ;
+  routine_emit_5F_midrange_5F_CALLinstruction (temp_1.readProperty_mInstructionLocation (), ioArgument_ioAddress, temp_2.readProperty_mTargetLabel ().readProperty_string (), var_targetAddress_16517, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 487)) ;
   }
 }
 
@@ -3945,54 +2131,54 @@ static void extensionMethod_midrange_5F_intermediate_5F_incDecRegisterInConditio
                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * object = (const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition) ;
-  GALGAS_uint var_code_17100 ;
-  GALGAS_string var_s_17112 ;
+  GALGAS_uint var_code_17123 ;
+  GALGAS_string var_s_17139 ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_1 = object ;
-    test_0 = temp_1.getter_mIncrement (HERE).boolEnum () ;
+    test_0 = temp_1.readProperty_mIncrement ().boolEnum () ;
     if (kBoolTrue == test_0) {
-      var_code_17100 = GALGAS_uint ((uint32_t) 3840U) ;
-      var_s_17112 = GALGAS_string ("INCFSZ") ;
+      var_code_17123 = GALGAS_uint ((uint32_t) 3840U) ;
+      var_s_17139 = GALGAS_string ("INCFSZ") ;
     }
   }
   if (kBoolFalse == test_0) {
-    var_code_17100 = GALGAS_uint ((uint32_t) 2816U) ;
-    var_s_17112 = GALGAS_string ("DECFSZ") ;
+    var_code_17123 = GALGAS_uint ((uint32_t) 2816U) ;
+    var_s_17139 = GALGAS_string ("DECFSZ") ;
   }
   enumGalgasBool test_2 = kBoolTrue ;
   if (kBoolTrue == test_2) {
     const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_3 = object ;
-    test_2 = temp_3.getter_m_5F_W_5F_isDestination (HERE).operator_not (SOURCE_FILE ("midrange_build_binary_code.galgas", 506)).boolEnum () ;
+    test_2 = temp_3.readProperty_m_5F_W_5F_isDestination ().operator_not (SOURCE_FILE ("midrange_build_binary_code.galgas", 506)).boolEnum () ;
     if (kBoolTrue == test_2) {
-      var_code_17100 = var_code_17100.operator_or (GALGAS_uint ((uint32_t) 128U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 507)) ;
+      var_code_17123 = var_code_17123.operator_or (GALGAS_uint ((uint32_t) 128U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 507)) ;
     }
   }
   const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_4 = object ;
-  var_code_17100 = var_code_17100.operator_or (temp_4.getter_mRegisterDescription (HERE).getter_mRegisterAddress (SOURCE_FILE ("midrange_build_binary_code.galgas", 509)).operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 509)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 509)) ;
+  var_code_17123 = var_code_17123.operator_or (temp_4.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 127U) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 509)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 509)) ;
   const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_5 = object ;
-  var_s_17112.plusAssign_operation(GALGAS_string (" ").add_operation (temp_5.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("midrange_build_binary_code.galgas", 510)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 510)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 510)) ;
+  var_s_17139.plusAssign_operation(GALGAS_string (" ").add_operation (temp_5.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 510)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 510)) ;
   {
-  routine_emitMidrangeDirectCodeAtWordAddress (var_code_17100, ioArgument_ioAddress, var_s_17112, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 511)) ;
+  routine_emitMidrangeDirectCodeAtWordAddress (var_code_17123, ioArgument_ioAddress, var_s_17139, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 511)) ;
   }
   enumGalgasBool test_6 = kBoolTrue ;
   if (kBoolTrue == test_6) {
     const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_7 = object ;
-    test_6 = temp_7.getter_mBranchIfZero (HERE).boolEnum () ;
+    test_6 = temp_7.readProperty_mBranchIfZero ().boolEnum () ;
     if (kBoolTrue == test_6) {
       {
       const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_8 = object ;
-      routine_emit_5F_midrange_5F_GOTOinstruction (temp_8.getter_mInstructionLocation (HERE), ioArgument_ioAddress, GALGAS_string ("$ + 2"), ioArgument_ioAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 514)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 514)) ;
+      routine_emit_5F_midrange_5F_GOTOinstruction (temp_8.readProperty_mInstructionLocation (), ioArgument_ioAddress, GALGAS_string ("$ + 2"), ioArgument_ioAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 514)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 514)) ;
       }
     }
   }
-  GALGAS_uint var_targetAddress_17706 ;
+  GALGAS_uint var_targetAddress_17733 ;
   const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_9 = object ;
-  constinArgument_inRoutineSymbolTable.method_searchKey (GALGAS_lstring::constructor_new (temp_9.getter_mTargetLabel (HERE), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 518))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 518)), var_targetAddress_17706, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 518)) ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (GALGAS_lstring::constructor_new (temp_9.readProperty_mTargetLabel (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 518))  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 518)), var_targetAddress_17733, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 518)) ;
   {
   const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_10 = object ;
   const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_11 = object ;
-  routine_emit_5F_midrange_5F_GOTOinstruction (temp_10.getter_mInstructionLocation (HERE), ioArgument_ioAddress, temp_11.getter_mTargetLabel (HERE), var_targetAddress_17706, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 519)) ;
+  routine_emit_5F_midrange_5F_GOTOinstruction (temp_10.readProperty_mInstructionLocation (), ioArgument_ioAddress, temp_11.readProperty_mTargetLabel (), var_targetAddress_17733, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 519)) ;
   }
 }
 
@@ -4229,12 +2415,12 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_literalOp
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * object = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_0 = object ;
-  GALGAS_uint var_code_21690 = extensionGetter_baseCode (temp_0.getter_mLiteralInstruction (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 618)) ;
+  GALGAS_uint var_code_21721 = extensionGetter_baseCode (temp_0.readProperty_mLiteralInstruction (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 618)) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_1 = object ;
-  var_code_21690 = var_code_21690.operator_or (temp_1.getter_mLiteralValue (HERE) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 619)) ;
+  var_code_21721 = var_code_21721.operator_or (temp_1.readProperty_mLiteralValue () COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 619)) ;
   {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_2 = object ;
-  routine_emitMidrangeCodeAtWordAddress (var_code_21690, ioArgument_ioAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 620)) ;
+  routine_emitMidrangeCodeAtWordAddress (var_code_21721, ioArgument_ioAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 620)) ;
   }
 }
 
@@ -4266,17 +2452,17 @@ static void extensionMethod_midrange_5F_intermediate_5F_pseudo_5F_LABEL_generate
                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * object = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject ;
   macroValidSharedObject (object, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
-  GALGAS_uint var_targetAddress_22305 ;
+  GALGAS_uint var_targetAddress_22336 ;
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = object ;
-  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.getter_mLabel (HERE), var_targetAddress_22305, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 632)) ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.readProperty_mLabel (), var_targetAddress_22336, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 632)) ;
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = GALGAS_bool (kIsNotEqual, var_targetAddress_22305.objectCompare (ioArgument_ioAddress)).boolEnum () ;
+    test_1 = GALGAS_bool (kIsNotEqual, var_targetAddress_22336.objectCompare (ioArgument_ioAddress)).boolEnum () ;
     if (kBoolTrue == test_1) {
       const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_2 = object ;
       const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_3 = object ;
       TC_Array <C_FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (temp_2.getter_mLabel (HERE).getter_location (SOURCE_FILE ("midrange_build_binary_code.galgas", 634)), GALGAS_string ("Internal second pass error: the '").add_operation (temp_3.getter_mLabel (HERE).getter_string (SOURCE_FILE ("midrange_build_binary_code.galgas", 634)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 634)).add_operation (GALGAS_string ("' label gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 634)).add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 635)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 635)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 635)).add_operation (var_targetAddress_22305.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 636)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 635)).add_operation (GALGAS_string (" in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 636)), fixItArray4  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 634)) ;
+      inCompiler->emitSemanticError (temp_2.readProperty_mLabel ().readProperty_location (), GALGAS_string ("Internal second pass error: the '").add_operation (temp_3.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 634)).add_operation (GALGAS_string ("' label gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 634)).add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 635)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 635)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 635)).add_operation (var_targetAddress_22336.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 636)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 635)).add_operation (GALGAS_string (" in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 636)), fixItArray4  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 634)) ;
     }
   }
   {
@@ -4316,34 +2502,34 @@ static void extensionMethod_midrange_5F_intermediate_5F_instruction_5F_MNOP_gene
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_1 = object ;
-    test_0 = GALGAS_bool (kIsEqual, temp_1.getter_mOccurrenceFactor (HERE).getter_uint (SOURCE_FILE ("midrange_build_binary_code.galgas", 650)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, temp_1.readProperty_mOccurrenceFactor ().readProperty_uint ().objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
       const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_2 = object ;
       TC_Array <C_FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticWarning (temp_2.getter_mOccurrenceFactor (HERE).getter_location (SOURCE_FILE ("midrange_build_binary_code.galgas", 651)), GALGAS_string ("No generated code"), fixItArray3  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 651)) ;
+      inCompiler->emitSemanticWarning (temp_2.readProperty_mOccurrenceFactor ().readProperty_location (), GALGAS_string ("No generated code"), fixItArray3  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 651)) ;
     }
   }
-  GALGAS_uint var_idx_23158 = GALGAS_uint ((uint32_t) 0U) ;
+  GALGAS_uint var_idx_23191 = GALGAS_uint ((uint32_t) 0U) ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_4 = object ;
-  if (temp_4.getter_mOccurrenceFactor (HERE).getter_uint (SOURCE_FILE ("midrange_build_binary_code.galgas", 654)).isValid ()) {
-    uint32_t variant_23169 = temp_4.getter_mOccurrenceFactor (HERE).getter_uint (SOURCE_FILE ("midrange_build_binary_code.galgas", 654)).uintValue () ;
-    bool loop_23169 = true ;
-    while (loop_23169) {
+  if (temp_4.readProperty_mOccurrenceFactor ().readProperty_uint ().isValid ()) {
+    uint32_t variant_23202 = temp_4.readProperty_mOccurrenceFactor ().readProperty_uint ().uintValue () ;
+    bool loop_23202 = true ;
+    while (loop_23202) {
       const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_5 = object ;
-      loop_23169 = GALGAS_bool (kIsStrictInf, var_idx_23158.objectCompare (temp_5.getter_mOccurrenceFactor (HERE).getter_uint (SOURCE_FILE ("midrange_build_binary_code.galgas", 655)))).isValid () ;
-      if (loop_23169) {
-        loop_23169 = GALGAS_bool (kIsStrictInf, var_idx_23158.objectCompare (temp_5.getter_mOccurrenceFactor (HERE).getter_uint (SOURCE_FILE ("midrange_build_binary_code.galgas", 655)))).boolValue () ;
+      loop_23202 = GALGAS_bool (kIsStrictInf, var_idx_23191.objectCompare (temp_5.readProperty_mOccurrenceFactor ().readProperty_uint ())).isValid () ;
+      if (loop_23202) {
+        loop_23202 = GALGAS_bool (kIsStrictInf, var_idx_23191.objectCompare (temp_5.readProperty_mOccurrenceFactor ().readProperty_uint ())).boolValue () ;
       }
-      if (loop_23169 && (0 == variant_23169)) {
-        loop_23169 = false ;
+      if (loop_23202 && (0 == variant_23202)) {
+        loop_23202 = false ;
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_build_binary_code.galgas", 654)) ;
       }
-      if (loop_23169) {
-        variant_23169 -- ;
+      if (loop_23202) {
+        variant_23202 -- ;
         {
         routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint ((uint32_t) 0U), ioArgument_ioAddress, GALGAS_string ("NOP"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 657)) ;
         }
-        var_idx_23158.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 658)) ;
+        var_idx_23191.increment_operation (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 658)) ;
       }
     }
   }
@@ -4377,15 +2563,15 @@ void routine_build_5F_midrange_5F_ipic_5F_binary_5F_code (const GALGAS_registerT
                                                           C_Compiler * inCompiler
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outUsedROMsize.drop () ; // Release 'out' argument
-  GALGAS_midrange_5F_symbolTable var_symbolTable_24186 = GALGAS_midrange_5F_symbolTable::constructor_emptyMap (SOURCE_FILE ("midrange_build_binary_code.galgas", 678)) ;
-  GALGAS_uint var_currentAddress_24243 = GALGAS_uint ((uint32_t) 0U) ;
-  cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_24287 (constinArgument_inGeneratedInstructionList, kENUMERATION_UP) ;
-  while (enumerator_24287.hasCurrentObject ()) {
-    callExtensionMethod_enterLabelAtAddress ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_24287.current_mInstruction (HERE).ptr (), var_symbolTable_24186, var_currentAddress_24243, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 681)) ;
-    enumerator_24287.gotoNextObject () ;
+  GALGAS_midrange_5F_symbolTable var_symbolTable_24215 = GALGAS_midrange_5F_symbolTable::constructor_emptyMap (SOURCE_FILE ("midrange_build_binary_code.galgas", 678)) ;
+  GALGAS_uint var_currentAddress_24276 = GALGAS_uint ((uint32_t) 0U) ;
+  cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_24300 (constinArgument_inGeneratedInstructionList, kENUMERATION_UP) ;
+  while (enumerator_24300.hasCurrentObject ()) {
+    callExtensionMethod_enterLabelAtAddress ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_24300.current_mInstruction (HERE).ptr (), var_symbolTable_24215, var_currentAddress_24276, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 681)) ;
+    enumerator_24300.gotoNextObject () ;
   }
-  GALGAS_uint var_lastAddressForFirstPass_24398 = var_currentAddress_24243 ;
-  outArgument_outUsedROMsize = var_currentAddress_24243 ;
+  GALGAS_uint var_lastAddressForFirstPass_24447 = var_currentAddress_24276 ;
+  outArgument_outUsedROMsize = var_currentAddress_24276 ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 686)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 686)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 686)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("GENERATED CODE").getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 687)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 687)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 687)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 687)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 688)).add_operation (GALGAS_string ("\n"
@@ -4394,45 +2580,45 @@ void routine_build_5F_midrange_5F_ipic_5F_binary_5F_code (const GALGAS_registerT
   {
   routine_initCodeGenerator (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 690)) ;
   }
-  var_currentAddress_24243 = GALGAS_uint ((uint32_t) 0U) ;
+  var_currentAddress_24276 = GALGAS_uint ((uint32_t) 0U) ;
   {
   routine_setEmitAddress (GALGAS_uint ((uint32_t) 0U), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 692)) ;
   }
-  cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_24914 (constinArgument_inGeneratedInstructionList, kENUMERATION_UP) ;
-  while (enumerator_24914.hasCurrentObject ()) {
-    callExtensionMethod_generateBinaryCodeAtAddress ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_24914.current_mInstruction (HERE).ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, constinArgument_inTotalBankCount, var_symbolTable_24186, ioArgument_ioListFileContents, var_currentAddress_24243, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 694)) ;
+  cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_24943 (constinArgument_inGeneratedInstructionList, kENUMERATION_UP) ;
+  while (enumerator_24943.hasCurrentObject ()) {
+    callExtensionMethod_generateBinaryCodeAtAddress ((const cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_24943.current_mInstruction (HERE).ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, constinArgument_inTotalBankCount, var_symbolTable_24215, ioArgument_ioListFileContents, var_currentAddress_24276, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 694)) ;
     {
-    routine_checkCurrentEmitAddress (var_currentAddress_24243.multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)) ;
+    routine_checkCurrentEmitAddress (var_currentAddress_24276.multiply_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)) ;
     }
-    enumerator_24914.gotoNextObject () ;
+    enumerator_24943.gotoNextObject () ;
   }
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsNotEqual, var_lastAddressForFirstPass_24398.objectCompare (var_currentAddress_24243)).boolEnum () ;
+    test_0 = GALGAS_bool (kIsNotEqual, var_lastAddressForFirstPass_24447.objectCompare (var_currentAddress_24276)).boolEnum () ;
     if (kBoolTrue == test_0) {
       TC_Array <C_FixItDescription> fixItArray1 ;
-      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 706)), GALGAS_string ("Internal second pass error: the last address gets ").add_operation (var_currentAddress_24243.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 706)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 706)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 706)).add_operation (var_lastAddressForFirstPass_24398.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 708)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 707)).add_operation (GALGAS_string (" value in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 708)), fixItArray1  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 706)) ;
+      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 706)), GALGAS_string ("Internal second pass error: the last address gets ").add_operation (var_currentAddress_24276.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 706)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 706)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 706)).add_operation (var_lastAddressForFirstPass_24447.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 708)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 707)).add_operation (GALGAS_string (" value in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 708)), fixItArray1  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 706)) ;
     }
   }
   if (kBoolFalse == test_0) {
     enumGalgasBool test_2 = kBoolTrue ;
     if (kBoolTrue == test_2) {
-      test_2 = GALGAS_bool (kIsStrictSup, var_lastAddressForFirstPass_24398.objectCompare (constinArgument_inROMsize)).boolEnum () ;
+      test_2 = GALGAS_bool (kIsStrictSup, var_lastAddressForFirstPass_24447.objectCompare (constinArgument_inROMsize)).boolEnum () ;
       if (kBoolTrue == test_2) {
         TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 710)), GALGAS_string ("Program too large: ").add_operation (var_lastAddressForFirstPass_24398.getter_string (SOURCE_FILE ("midrange_build_binary_code.galgas", 710)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 710)).add_operation (GALGAS_string (" bytes (rom size is "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 710)).add_operation (constinArgument_inROMsize.getter_string (SOURCE_FILE ("midrange_build_binary_code.galgas", 712)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 711)).add_operation (GALGAS_string (" bytes)"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 712)), fixItArray3  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 710)) ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 710)), GALGAS_string ("Program too large: ").add_operation (var_lastAddressForFirstPass_24447.getter_string (SOURCE_FILE ("midrange_build_binary_code.galgas", 710)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 710)).add_operation (GALGAS_string (" bytes (rom size is "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 710)).add_operation (constinArgument_inROMsize.getter_string (SOURCE_FILE ("midrange_build_binary_code.galgas", 712)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 711)).add_operation (GALGAS_string (" bytes)"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 712)), fixItArray3  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 710)) ;
       }
     }
   }
-  cEnumerator_actualConfigurationMap enumerator_25807 (constinArgument_inActualConfigurationMap, kENUMERATION_UP) ;
-  while (enumerator_25807.hasCurrentObject ()) {
+  cEnumerator_actualConfigurationMap enumerator_25871 (constinArgument_inActualConfigurationMap, kENUMERATION_UP) ;
+  while (enumerator_25871.hasCurrentObject ()) {
     {
-    routine_setEmitAddress (enumerator_25807.current_mRegisterAddress (HERE).add_operation (enumerator_25807.current_mRegisterAddress (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 716)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 716)) ;
+    routine_setEmitAddress (enumerator_25871.current_mRegisterAddress (HERE).add_operation (enumerator_25871.current_mRegisterAddress (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 716)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 716)) ;
     }
     {
-    routine_emitCode (enumerator_25807.current_mRegisterValue (HERE), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 717)) ;
+    routine_emitCode (enumerator_25871.current_mRegisterValue (HERE), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 717)) ;
     }
-    enumerator_25807.gotoNextObject () ;
+    enumerator_25871.gotoNextObject () ;
   }
 }
 
@@ -4447,21 +2633,21 @@ void routine_midrange_5F_analyze (const GALGAS_midrange_5F_model constinArgument
                                   const GALGAS_string constinArgument_inSourceFileName,
                                   C_Compiler * inCompiler
                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_sourceFileBaseName_773 = constinArgument_inSourceFileName.getter_lastPathComponent (SOURCE_FILE ("midrange_semantics.galgas", 17)).getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 17)) ;
+  GALGAS_string var_sourceFileBaseName_777 = constinArgument_inSourceFileName.getter_lastPathComponent (SOURCE_FILE ("midrange_semantics.galgas", 17)).getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 17)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsNotEqual, var_sourceFileBaseName_773.objectCompare (constinArgument_inPiccoloModel.getter_mProgramName (SOURCE_FILE ("midrange_semantics.galgas", 18)).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 18)))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsNotEqual, var_sourceFileBaseName_777.objectCompare (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_string ())).boolEnum () ;
     if (kBoolTrue == test_0) {
       TC_Array <C_FixItDescription> fixItArray1 ;
-      inCompiler->emitSemanticError (constinArgument_inPiccoloModel.getter_mProgramName (SOURCE_FILE ("midrange_semantics.galgas", 19)).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 19)), GALGAS_string ("the program name ('").add_operation (constinArgument_inPiccoloModel.getter_mProgramName (SOURCE_FILE ("midrange_semantics.galgas", 19)).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 19)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 19)).add_operation (GALGAS_string ("') should be identical to the file base name '"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 19)).add_operation (var_sourceFileBaseName_773, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 20)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 20)), fixItArray1  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 19)) ;
+      inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_location (), GALGAS_string ("the program name ('").add_operation (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 19)).add_operation (GALGAS_string ("') should be identical to the file base name '"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 19)).add_operation (var_sourceFileBaseName_777, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 20)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 20)), fixItArray1  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 19)) ;
     }
   }
   GALGAS_string var_listFileContents_1125 = GALGAS_string::makeEmptyString () ;
-  GALGAS_piccoloDeviceModel var_piccoloDeviceModel_1220 ;
+  GALGAS_piccoloDeviceModel var_piccoloDeviceModel_1224 ;
   {
-  routine_parseDeviceDefinition (constinArgument_inPiccoloModel.getter_mDeviceName (SOURCE_FILE ("midrange_semantics.galgas", 25)), var_piccoloDeviceModel_1220, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 25)) ;
+  routine_parseDeviceDefinition (constinArgument_inPiccoloModel.readProperty_mDeviceName (), var_piccoloDeviceModel_1224, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 25)) ;
   }
-  switch (var_piccoloDeviceModel_1220.getter_mProcessorType (SOURCE_FILE ("midrange_semantics.galgas", 26)).enumValue ()) {
+  switch (var_piccoloDeviceModel_1224.readProperty_mProcessorType ().enumValue ()) {
   case GALGAS_processorType::kNotBuilt:
     break ;
   case GALGAS_processorType::kEnum_midrange:
@@ -4472,176 +2658,176 @@ void routine_midrange_5F_analyze (const GALGAS_midrange_5F_model constinArgument
   case GALGAS_processorType::kEnum_pic_31__38__5F__38__30_:
     {
       TC_Array <C_FixItDescription> fixItArray2 ;
-      inCompiler->emitSemanticError (constinArgument_inPiccoloModel.getter_mDeviceName (SOURCE_FILE ("midrange_semantics.galgas", 28)).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 28)), GALGAS_string ("a pic18 device is not accepted here : only a mid-range device"), fixItArray2  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 28)) ;
+      inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mDeviceName ().readProperty_location (), GALGAS_string ("a pic18 device is not accepted here : only a mid-range device"), fixItArray2  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 28)) ;
     }
     break ;
   case GALGAS_processorType::kEnum_baseline:
     {
       TC_Array <C_FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticError (constinArgument_inPiccoloModel.getter_mDeviceName (SOURCE_FILE ("midrange_semantics.galgas", 29)).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 29)), GALGAS_string ("a baseline device is not accepted here : only a mid-range device"), fixItArray3  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 29)) ;
+      inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mDeviceName ().readProperty_location (), GALGAS_string ("a baseline device is not accepted here : only a mid-range device"), fixItArray3  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 29)) ;
     }
     break ;
   }
   GALGAS_bool var_hasInterrupt_1690 = GALGAS_bool (false) ;
-  cEnumerator_midrange_5F_interruptDefinitionList enumerator_1753 (constinArgument_inPiccoloModel.getter_mInterruptDefinitionList (SOURCE_FILE ("midrange_semantics.galgas", 33)), kENUMERATION_UP) ;
-  while (enumerator_1753.hasCurrentObject ()) {
+  cEnumerator_midrange_5F_interruptDefinitionList enumerator_1732 (constinArgument_inPiccoloModel.readProperty_mInterruptDefinitionList (), kENUMERATION_UP) ;
+  while (enumerator_1732.hasCurrentObject ()) {
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
       test_4 = var_hasInterrupt_1690.boolEnum () ;
       if (kBoolTrue == test_4) {
         TC_Array <C_FixItDescription> fixItArray5 ;
-        inCompiler->emitSemanticError (enumerator_1753.current_mInterruptLocation (HERE), GALGAS_string ("only one interrupt routine can be defined"), fixItArray5  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 35)) ;
+        inCompiler->emitSemanticError (enumerator_1732.current_mInterruptLocation (HERE), GALGAS_string ("only one interrupt routine can be defined"), fixItArray5  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 35)) ;
       }
     }
     var_hasInterrupt_1690 = GALGAS_bool (true) ;
-    enumerator_1753.gotoNextObject () ;
+    enumerator_1732.gotoNextObject () ;
   }
-  GALGAS_actualConfigurationMap var_actualConfigurationMap_1995 ;
+  GALGAS_actualConfigurationMap var_actualConfigurationMap_2023 ;
   {
-  routine_buildConfig (var_piccoloDeviceModel_1220.getter_mConfigRegisterMap (SOURCE_FILE ("midrange_semantics.galgas", 42)), constinArgument_inPiccoloModel.getter_mConfigDefinitionList (SOURCE_FILE ("midrange_semantics.galgas", 43)), var_listFileContents_1125, var_actualConfigurationMap_1995, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 41)) ;
+  routine_buildConfig (var_piccoloDeviceModel_1224.readProperty_mConfigRegisterMap (), constinArgument_inPiccoloModel.readProperty_mConfigDefinitionList (), var_listFileContents_1125, var_actualConfigurationMap_2023, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 41)) ;
   }
-  GALGAS_constantMap var_constantMap_2235 = GALGAS_constantMap::constructor_emptyMap (SOURCE_FILE ("midrange_semantics.galgas", 48)) ;
-  GALGAS_stringset var_usedRegisters_2267 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_semantics.galgas", 49)) ;
-  GALGAS_registerTable var_registerTable_2303 = var_piccoloDeviceModel_1220.getter_mRegisterTable (SOURCE_FILE ("midrange_semantics.galgas", 50)) ;
-  GALGAS_lstring var_romSizeString_2390 = GALGAS_lstring::constructor_new (GALGAS_string ("ROM_SIZE"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 52))  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 52)) ;
+  GALGAS_constantMap var_constantMap_2263 = GALGAS_constantMap::constructor_emptyMap (SOURCE_FILE ("midrange_semantics.galgas", 48)) ;
+  GALGAS_stringset var_usedRegisters_2299 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_semantics.galgas", 49)) ;
+  GALGAS_registerTable var_registerTable_2339 = var_piccoloDeviceModel_1224.readProperty_mRegisterTable () ;
+  GALGAS_lstring var_romSizeString_2424 = GALGAS_lstring::constructor_new (GALGAS_string ("ROM_SIZE"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 52))  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 52)) ;
   {
-  var_constantMap_2235.setter_insertKey (var_romSizeString_2390, var_piccoloDeviceModel_1220.getter_mRomSize (HERE).getter_uint (HERE).getter_sint_36__34_ (SOURCE_FILE ("midrange_semantics.galgas", 53)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 53)) ;
+  var_constantMap_2263.setter_insertKey (var_romSizeString_2424, var_piccoloDeviceModel_1224.readProperty_mRomSize ().readProperty_uint ().getter_sint_36__34_ (SOURCE_FILE ("midrange_semantics.galgas", 53)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 53)) ;
   }
-  cEnumerator_constantDefinitionList enumerator_2589 (constinArgument_inPiccoloModel.getter_mConstantDefinitionList (SOURCE_FILE ("midrange_semantics.galgas", 55)), kENUMERATION_UP) ;
-  while (enumerator_2589.hasCurrentObject ()) {
-    GALGAS_sint_36__34_ var_result_2662 ;
-    callExtensionMethod_eval ((const cPtr_immediatExpression *) enumerator_2589.current_mExpression (HERE).ptr (), var_registerTable_2303, var_constantMap_2235, var_result_2662, var_usedRegisters_2267, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 56)) ;
+  cEnumerator_constantDefinitionList enumerator_2602 (constinArgument_inPiccoloModel.readProperty_mConstantDefinitionList (), kENUMERATION_UP) ;
+  while (enumerator_2602.hasCurrentObject ()) {
+    GALGAS_sint_36__34_ var_result_2719 ;
+    callExtensionMethod_eval ((const cPtr_immediatExpression *) enumerator_2602.current_mExpression (HERE).ptr (), var_registerTable_2339, var_constantMap_2263, var_result_2719, var_usedRegisters_2299, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 56)) ;
     enumGalgasBool test_6 = kBoolTrue ;
     if (kBoolTrue == test_6) {
-      test_6 = var_registerTable_2303.getter_hasKey (enumerator_2589.current_mConstantName (HERE).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 57)) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 57)).boolEnum () ;
+      test_6 = var_registerTable_2339.getter_hasKey (enumerator_2602.current_mConstantName (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 57)).boolEnum () ;
       if (kBoolTrue == test_6) {
         TC_Array <C_FixItDescription> fixItArray7 ;
-        inCompiler->emitSemanticError (enumerator_2589.current_mConstantName (HERE).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 58)), GALGAS_string ("'").add_operation (enumerator_2589.current_mConstantName (HERE).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 58)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 58)).add_operation (GALGAS_string ("' is already declared as ram register or special register"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 58)), fixItArray7  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 58)) ;
+        inCompiler->emitSemanticError (enumerator_2602.current_mConstantName (HERE).readProperty_location (), GALGAS_string ("'").add_operation (enumerator_2602.current_mConstantName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 58)).add_operation (GALGAS_string ("' is already declared as ram register or special register"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 58)), fixItArray7  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 58)) ;
       }
     }
     if (kBoolFalse == test_6) {
       {
-      var_constantMap_2235.setter_insertKey (enumerator_2589.current_mConstantName (HERE), var_result_2662, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 60)) ;
+      var_constantMap_2263.setter_insertKey (enumerator_2602.current_mConstantName (HERE), var_result_2719, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 60)) ;
       }
     }
-    enumerator_2589.gotoNextObject () ;
+    enumerator_2602.gotoNextObject () ;
   }
-  GALGAS_ramBankTable var_ramBank_2998 = var_piccoloDeviceModel_1220.getter_mRamBankTable (SOURCE_FILE ("midrange_semantics.galgas", 64)) ;
-  GALGAS_declaredByteMap var_declaredByteMap_3304 ;
+  GALGAS_ramBankTable var_ramBank_3057 = var_piccoloDeviceModel_1224.readProperty_mRamBankTable () ;
+  GALGAS_declaredByteMap var_declaredByteMap_3357 ;
   {
-  routine_analyze_5F_ram_5F_sections (GALGAS_string ("DECLARED VARIABLES"), constinArgument_inPiccoloModel.getter_mRamDefinitionList (SOURCE_FILE ("midrange_semantics.galgas", 67)), var_constantMap_2235, var_usedRegisters_2267, var_ramBank_2998, var_piccoloDeviceModel_1220.getter_mRegisterTable (SOURCE_FILE ("midrange_semantics.galgas", 71)), var_listFileContents_1125, var_registerTable_2303, var_declaredByteMap_3304, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 65)) ;
+  routine_analyze_5F_ram_5F_sections (GALGAS_string ("DECLARED VARIABLES"), constinArgument_inPiccoloModel.readProperty_mRamDefinitionList (), var_constantMap_2263, var_usedRegisters_2299, var_ramBank_3057, var_piccoloDeviceModel_1224.readProperty_mRegisterTable (), var_listFileContents_1125, var_registerTable_2339, var_declaredByteMap_3357, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 65)) ;
   }
-  GALGAS_midrange_5F_intermediate_5F_instructionList var_generatedInstructionList_3759 ;
+  GALGAS_midrange_5F_intermediate_5F_instructionList var_generatedInstructionList_3806 ;
   {
-  routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (var_piccoloDeviceModel_1220.getter_mRomSize (HERE).getter_uint (SOURCE_FILE ("midrange_semantics.galgas", 78)).add_operation (GALGAS_uint ((uint32_t) 2047U), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 78)).divide_operation (GALGAS_uint ((uint32_t) 2048U), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 78)), var_piccoloDeviceModel_1220.getter_mBankCount (SOURCE_FILE ("midrange_semantics.galgas", 79)).getter_uint (SOURCE_FILE ("midrange_semantics.galgas", 79)), var_constantMap_2235, var_piccoloDeviceModel_1220.getter_mSharedBankName (HERE), var_registerTable_2303, constinArgument_inPiccoloModel, var_hasInterrupt_1690, var_generatedInstructionList_3759, var_listFileContents_1125, var_usedRegisters_2267, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 77)) ;
+  routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (var_piccoloDeviceModel_1224.readProperty_mRomSize ().readProperty_uint ().add_operation (GALGAS_uint ((uint32_t) 2047U), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 78)).divide_operation (GALGAS_uint ((uint32_t) 2048U), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 78)), var_piccoloDeviceModel_1224.readProperty_mBankCount ().readProperty_uint (), var_constantMap_2263, var_piccoloDeviceModel_1224.readProperty_mSharedBankName (), var_registerTable_2339, constinArgument_inPiccoloModel, var_hasInterrupt_1690, var_generatedInstructionList_3806, var_listFileContents_1125, var_usedRegisters_2299, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 77)) ;
   }
-  GALGAS_stringset var_usedRoutineSet_3897 = function_midrange_5F_computeUsedRoutines (constinArgument_inPiccoloModel.getter_mInterruptDefinitionList (HERE), constinArgument_inPiccoloModel.getter_mRoutineDefinitionList (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 91)) ;
-  GALGAS_midrange_5F_declaredRoutineMap var_declaredRoutineMap_4047 = GALGAS_midrange_5F_declaredRoutineMap::constructor_emptyMap (SOURCE_FILE ("midrange_semantics.galgas", 95)) ;
-  cEnumerator_midrange_5F_routineDefinitionList enumerator_4139 (constinArgument_inPiccoloModel.getter_mRoutineDefinitionList (HERE), kENUMERATION_UP) ;
-  while (enumerator_4139.hasCurrentObject ()) {
+  GALGAS_stringset var_usedRoutineSet_3944 = function_midrange_5F_computeUsedRoutines (constinArgument_inPiccoloModel.readProperty_mInterruptDefinitionList (), constinArgument_inPiccoloModel.readProperty_mRoutineDefinitionList (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 91)) ;
+  GALGAS_midrange_5F_declaredRoutineMap var_declaredRoutineMap_4094 = GALGAS_midrange_5F_declaredRoutineMap::constructor_emptyMap (SOURCE_FILE ("midrange_semantics.galgas", 95)) ;
+  cEnumerator_midrange_5F_routineDefinitionList enumerator_4169 (constinArgument_inPiccoloModel.readProperty_mRoutineDefinitionList (), kENUMERATION_UP) ;
+  while (enumerator_4169.hasCurrentObject ()) {
     {
-    var_declaredRoutineMap_4047.setter_insertKey (enumerator_4139.current_mRoutineName (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 97)) ;
+    var_declaredRoutineMap_4094.setter_insertKey (enumerator_4169.current_mRoutineName (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 97)) ;
     }
-    enumerator_4139.gotoNextObject () ;
+    enumerator_4169.gotoNextObject () ;
   }
-  GALGAS_stringset var_unusedRoutineDeclarationUnicity_4291 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_semantics.galgas", 100)) ;
-  cEnumerator_lstringlist enumerator_4361 (constinArgument_inPiccoloModel.getter_mUnusedRoutineList (HERE), kENUMERATION_UP) ;
-  while (enumerator_4361.hasCurrentObject ()) {
+  GALGAS_stringset var_unusedRoutineDeclarationUnicity_4364 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_semantics.galgas", 100)) ;
+  cEnumerator_lstringlist enumerator_4401 (constinArgument_inPiccoloModel.readProperty_mUnusedRoutineList (), kENUMERATION_UP) ;
+  while (enumerator_4401.hasCurrentObject ()) {
     enumGalgasBool test_8 = kBoolTrue ;
     if (kBoolTrue == test_8) {
-      test_8 = var_declaredRoutineMap_4047.getter_hasKey (enumerator_4361.current_mValue (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 102)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 102)).boolEnum () ;
+      test_8 = var_declaredRoutineMap_4094.getter_hasKey (enumerator_4401.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 102)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 102)).boolEnum () ;
       if (kBoolTrue == test_8) {
         TC_Array <C_FixItDescription> fixItArray9 ;
-        inCompiler->emitSemanticError (enumerator_4361.current_mValue (HERE).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 103)), GALGAS_string ("the '").add_operation (enumerator_4361.current_mValue (HERE).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 103)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 103)).add_operation (GALGAS_string ("' routine is not declared"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 103)), fixItArray9  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 103)) ;
+        inCompiler->emitSemanticError (enumerator_4401.current_mValue (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_4401.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 103)).add_operation (GALGAS_string ("' routine is not declared"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 103)), fixItArray9  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 103)) ;
       }
     }
     if (kBoolFalse == test_8) {
       enumGalgasBool test_10 = kBoolTrue ;
       if (kBoolTrue == test_10) {
-        test_10 = var_unusedRoutineDeclarationUnicity_4291.getter_hasKey (enumerator_4361.current_mValue (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 104)).boolEnum () ;
+        test_10 = var_unusedRoutineDeclarationUnicity_4364.getter_hasKey (enumerator_4401.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 104)).boolEnum () ;
         if (kBoolTrue == test_10) {
           TC_Array <C_FixItDescription> fixItArray11 ;
-          inCompiler->emitSemanticWarning (enumerator_4361.current_mValue (HERE).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 105)), GALGAS_string ("the '").add_operation (enumerator_4361.current_mValue (HERE).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 105)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 105)).add_operation (GALGAS_string ("' routine is already declared as unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 105)), fixItArray11  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 105)) ;
+          inCompiler->emitSemanticWarning (enumerator_4401.current_mValue (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_4401.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 105)).add_operation (GALGAS_string ("' routine is already declared as unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 105)), fixItArray11  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 105)) ;
         }
       }
       if (kBoolFalse == test_10) {
         enumGalgasBool test_12 = kBoolTrue ;
         if (kBoolTrue == test_12) {
-          test_12 = var_usedRoutineSet_3897.getter_hasKey (enumerator_4361.current_mValue (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 106)).boolEnum () ;
+          test_12 = var_usedRoutineSet_3944.getter_hasKey (enumerator_4401.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 106)).boolEnum () ;
           if (kBoolTrue == test_12) {
             TC_Array <C_FixItDescription> fixItArray13 ;
-            inCompiler->emitSemanticWarning (enumerator_4361.current_mValue (HERE).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 107)), GALGAS_string ("the '").add_operation (enumerator_4361.current_mValue (HERE).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 107)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 107)).add_operation (GALGAS_string ("' routine is declared as unused, but is used"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 107)), fixItArray13  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 107)) ;
+            inCompiler->emitSemanticWarning (enumerator_4401.current_mValue (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_4401.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 107)).add_operation (GALGAS_string ("' routine is declared as unused, but is used"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 107)), fixItArray13  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 107)) ;
           }
         }
       }
     }
-    var_unusedRoutineDeclarationUnicity_4291.addAssign_operation (enumerator_4361.current_mValue (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 109)) ;
-    enumerator_4361.gotoNextObject () ;
+    var_unusedRoutineDeclarationUnicity_4364.addAssign_operation (enumerator_4401.current_mValue (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 109)) ;
+    enumerator_4401.gotoNextObject () ;
   }
-  cEnumerator_midrange_5F_declaredRoutineMap enumerator_4889 (var_declaredRoutineMap_4047, kENUMERATION_UP) ;
-  while (enumerator_4889.hasCurrentObject ()) {
+  cEnumerator_midrange_5F_declaredRoutineMap enumerator_4948 (var_declaredRoutineMap_4094, kENUMERATION_UP) ;
+  while (enumerator_4948.hasCurrentObject ()) {
     enumGalgasBool test_14 = kBoolTrue ;
     if (kBoolTrue == test_14) {
-      test_14 = var_usedRoutineSet_3897.getter_hasKey (enumerator_4889.current_lkey (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 112)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 112)).operator_and (var_unusedRoutineDeclarationUnicity_4291.getter_hasKey (enumerator_4889.current_lkey (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 112)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 112)) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 112)).boolEnum () ;
+      test_14 = var_usedRoutineSet_3944.getter_hasKey (enumerator_4948.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 112)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 112)).operator_and (var_unusedRoutineDeclarationUnicity_4364.getter_hasKey (enumerator_4948.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 112)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 112)) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 112)).boolEnum () ;
       if (kBoolTrue == test_14) {
         TC_Array <C_FixItDescription> fixItArray15 ;
-        inCompiler->emitSemanticWarning (enumerator_4889.current_lkey (HERE).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 113)), GALGAS_string ("the '").add_operation (enumerator_4889.current_lkey (HERE).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 113)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 113)).add_operation (GALGAS_string ("' routine is unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 113)), fixItArray15  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 113)) ;
+        inCompiler->emitSemanticWarning (enumerator_4948.current_lkey (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_4948.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 113)).add_operation (GALGAS_string ("' routine is unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 113)), fixItArray15  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 113)) ;
       }
     }
-    enumerator_4889.gotoNextObject () ;
+    enumerator_4948.gotoNextObject () ;
   }
-  GALGAS_stringset var_unusedByteDeclarationUnicity_5209 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_semantics.galgas", 117)) ;
-  cEnumerator_lstringlist enumerator_5280 (constinArgument_inPiccoloModel.getter_mUnusedRegisterList (HERE), kENUMERATION_UP) ;
-  while (enumerator_5280.hasCurrentObject ()) {
+  GALGAS_stringset var_unusedByteDeclarationUnicity_5292 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_semantics.galgas", 117)) ;
+  cEnumerator_lstringlist enumerator_5329 (constinArgument_inPiccoloModel.readProperty_mUnusedRegisterList (), kENUMERATION_UP) ;
+  while (enumerator_5329.hasCurrentObject ()) {
     enumGalgasBool test_16 = kBoolTrue ;
     if (kBoolTrue == test_16) {
-      test_16 = var_registerTable_2303.getter_hasKey (enumerator_5280.current_mValue (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 119)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 119)).boolEnum () ;
+      test_16 = var_registerTable_2339.getter_hasKey (enumerator_5329.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 119)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 119)).boolEnum () ;
       if (kBoolTrue == test_16) {
         TC_Array <C_FixItDescription> fixItArray17 ;
-        inCompiler->emitSemanticError (enumerator_5280.current_mValue (HERE).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 120)), GALGAS_string ("the '").add_operation (enumerator_5280.current_mValue (HERE).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 120)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 120)).add_operation (GALGAS_string ("' byte is not declared"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 120)), fixItArray17  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 120)) ;
+        inCompiler->emitSemanticError (enumerator_5329.current_mValue (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_5329.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 120)).add_operation (GALGAS_string ("' byte is not declared"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 120)), fixItArray17  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 120)) ;
       }
     }
     if (kBoolFalse == test_16) {
       enumGalgasBool test_18 = kBoolTrue ;
       if (kBoolTrue == test_18) {
-        test_18 = var_unusedByteDeclarationUnicity_5209.getter_hasKey (enumerator_5280.current_mValue (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 121)).boolEnum () ;
+        test_18 = var_unusedByteDeclarationUnicity_5292.getter_hasKey (enumerator_5329.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 121)).boolEnum () ;
         if (kBoolTrue == test_18) {
           TC_Array <C_FixItDescription> fixItArray19 ;
-          inCompiler->emitSemanticWarning (enumerator_5280.current_mValue (HERE).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 122)), GALGAS_string ("the '").add_operation (enumerator_5280.current_mValue (HERE).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 122)).add_operation (GALGAS_string ("' byte is already declared as unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 122)), fixItArray19  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 122)) ;
+          inCompiler->emitSemanticWarning (enumerator_5329.current_mValue (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_5329.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 122)).add_operation (GALGAS_string ("' byte is already declared as unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 122)), fixItArray19  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 122)) ;
         }
       }
       if (kBoolFalse == test_18) {
         enumGalgasBool test_20 = kBoolTrue ;
         if (kBoolTrue == test_20) {
-          test_20 = var_usedRegisters_2267.getter_hasKey (enumerator_5280.current_mValue (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 123)).boolEnum () ;
+          test_20 = var_usedRegisters_2299.getter_hasKey (enumerator_5329.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 123)).boolEnum () ;
           if (kBoolTrue == test_20) {
             TC_Array <C_FixItDescription> fixItArray21 ;
-            inCompiler->emitSemanticWarning (enumerator_5280.current_mValue (HERE).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 124)), GALGAS_string ("the '").add_operation (enumerator_5280.current_mValue (HERE).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 124)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 124)).add_operation (GALGAS_string ("' byte is declared as unused, but is used"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 124)), fixItArray21  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 124)) ;
+            inCompiler->emitSemanticWarning (enumerator_5329.current_mValue (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_5329.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 124)).add_operation (GALGAS_string ("' byte is declared as unused, but is used"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 124)), fixItArray21  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 124)) ;
           }
         }
       }
     }
-    var_unusedByteDeclarationUnicity_5209.addAssign_operation (enumerator_5280.current_mValue (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 126)) ;
-    enumerator_5280.gotoNextObject () ;
+    var_unusedByteDeclarationUnicity_5292.addAssign_operation (enumerator_5329.current_mValue (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 126)) ;
+    enumerator_5329.gotoNextObject () ;
   }
-  cEnumerator_declaredByteMap enumerator_5784 (var_declaredByteMap_3304, kENUMERATION_UP) ;
-  while (enumerator_5784.hasCurrentObject ()) {
+  cEnumerator_declaredByteMap enumerator_5856 (var_declaredByteMap_3357, kENUMERATION_UP) ;
+  while (enumerator_5856.hasCurrentObject ()) {
     enumGalgasBool test_22 = kBoolTrue ;
     if (kBoolTrue == test_22) {
-      test_22 = var_usedRegisters_2267.getter_hasKey (enumerator_5784.current_lkey (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 129)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 129)).operator_and (var_unusedByteDeclarationUnicity_5209.getter_hasKey (enumerator_5784.current_lkey (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 129)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 129)) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 129)).boolEnum () ;
+      test_22 = var_usedRegisters_2299.getter_hasKey (enumerator_5856.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 129)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 129)).operator_and (var_unusedByteDeclarationUnicity_5292.getter_hasKey (enumerator_5856.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 129)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 129)) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 129)).boolEnum () ;
       if (kBoolTrue == test_22) {
         TC_Array <C_FixItDescription> fixItArray23 ;
-        inCompiler->emitSemanticWarning (enumerator_5784.current_lkey (HERE).getter_location (SOURCE_FILE ("midrange_semantics.galgas", 130)), GALGAS_string ("the '").add_operation (enumerator_5784.current_lkey (HERE).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 130)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 130)).add_operation (GALGAS_string ("' byte is unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 130)), fixItArray23  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 130)) ;
+        inCompiler->emitSemanticWarning (enumerator_5856.current_lkey (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_5856.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 130)).add_operation (GALGAS_string ("' byte is unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 130)), fixItArray23  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 130)) ;
       }
     }
-    enumerator_5784.gotoNextObject () ;
+    enumerator_5856.gotoNextObject () ;
   }
   enumGalgasBool test_24 = kBoolTrue ;
   if (kBoolTrue == test_24) {
-    test_24 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_semantics.galgas", 134)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_performOptimizations.getter_value ()) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 134)).boolEnum () ;
+    test_24 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_semantics.galgas", 134)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_performOptimizations.readProperty_value ()) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 134)).boolEnum () ;
     if (kBoolTrue == test_24) {
       {
-      routine_perform_5F_midrange_5F_optimizations (var_generatedInstructionList_3759, var_listFileContents_1125, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 135)) ;
+      routine_perform_5F_midrange_5F_optimizations (var_generatedInstructionList_3806, var_listFileContents_1125, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 135)) ;
       }
     }
   }
@@ -4650,7 +2836,7 @@ void routine_midrange_5F_analyze (const GALGAS_midrange_5F_model constinArgument
     test_25 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_semantics.galgas", 138)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_25) {
       {
-      routine_midrange_5F_compute_5F_JSR_5F_JUMP (var_generatedInstructionList_3759, var_listFileContents_1125, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 139)) ;
+      routine_midrange_5F_compute_5F_JSR_5F_JUMP (var_generatedInstructionList_3806, var_listFileContents_1125, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 139)) ;
       }
     }
   }
@@ -4658,100 +2844,100 @@ void routine_midrange_5F_analyze (const GALGAS_midrange_5F_model constinArgument
   if (kBoolTrue == test_26) {
     test_26 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_semantics.galgas", 143)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_26) {
-      GALGAS_uint var_usedROMsize_6569 ;
+      GALGAS_uint var_usedROMsize_6666 ;
       {
-      routine_build_5F_midrange_5F_ipic_5F_binary_5F_code (var_registerTable_2303, GALGAS_constantMap::constructor_emptyMap (SOURCE_FILE ("midrange_semantics.galgas", 148)), var_piccoloDeviceModel_1220.getter_mBankCount (SOURCE_FILE ("midrange_semantics.galgas", 149)).getter_uint (SOURCE_FILE ("midrange_semantics.galgas", 149)), var_generatedInstructionList_3759, var_piccoloDeviceModel_1220.getter_mRomSize (HERE).getter_uint (SOURCE_FILE ("midrange_semantics.galgas", 151)), var_actualConfigurationMap_1995, var_listFileContents_1125, var_usedROMsize_6569, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 146)) ;
+      routine_build_5F_midrange_5F_ipic_5F_binary_5F_code (var_registerTable_2339, GALGAS_constantMap::constructor_emptyMap (SOURCE_FILE ("midrange_semantics.galgas", 148)), var_piccoloDeviceModel_1224.readProperty_mBankCount ().readProperty_uint (), var_generatedInstructionList_3806, var_piccoloDeviceModel_1224.readProperty_mRomSize ().readProperty_uint (), var_actualConfigurationMap_2023, var_listFileContents_1125, var_usedROMsize_6666, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 146)) ;
       }
-      GALGAS_string var_contents_6859 ;
+      GALGAS_string var_contents_6954 ;
       {
-      routine_getGeneratedContents (var_contents_6859, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 157)) ;
+      routine_getGeneratedContents (var_contents_6954, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 157)) ;
       }
-      GALGAS_string var_destinationFile_6926 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 158)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 158)) ;
-      GALGAS_bool joker_7052 ; // Joker input parameter
-      var_contents_6859.method_writeToFileWhenDifferentContents (var_destinationFile_6926, joker_7052, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 159)) ;
+      GALGAS_string var_destinationFile_7025 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 158)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 158)) ;
+      GALGAS_bool joker_7151 ; // Joker input parameter
+      var_contents_6954.method_writeToFileWhenDifferentContents (var_destinationFile_7025, joker_7151, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 159)) ;
       enumGalgasBool test_27 = kBoolTrue ;
       if (kBoolTrue == test_27) {
-        test_27 = GALGAS_bool (gOption_piccolo_5F_options_output_5F_C_5F_Array.getter_value ()).boolEnum () ;
+        test_27 = GALGAS_bool (gOption_piccolo_5F_options_output_5F_C_5F_Array.readProperty_value ()).boolEnum () ;
         if (kBoolTrue == test_27) {
-          GALGAS_string var_baseName_7139 = constinArgument_inSourceFileName.getter_lastPathComponent (SOURCE_FILE ("midrange_semantics.galgas", 161)).getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 161)) ;
+          GALGAS_string var_baseName_7238 = constinArgument_inSourceFileName.getter_lastPathComponent (SOURCE_FILE ("midrange_semantics.galgas", 161)).getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 161)) ;
           {
-          routine_get_5F_C_5F_ArrayImplementation (var_baseName_7139, var_contents_6859, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 162)) ;
+          routine_get_5F_C_5F_ArrayImplementation (var_baseName_7238, var_contents_6954, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 162)) ;
           }
-          var_destinationFile_6926 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 163)).add_operation (GALGAS_string (".c"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 163)) ;
-          GALGAS_bool joker_7414 ; // Joker input parameter
-          var_contents_6859.method_writeToFileWhenDifferentContents (var_destinationFile_6926, joker_7414, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 164)) ;
+          var_destinationFile_7025 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 163)).add_operation (GALGAS_string (".c"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 163)) ;
+          GALGAS_bool joker_7513 ; // Joker input parameter
+          var_contents_6954.method_writeToFileWhenDifferentContents (var_destinationFile_7025, joker_7513, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 164)) ;
           {
-          routine_get_5F_C_5F_ArrayHeader (var_baseName_7139, var_contents_6859, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 165)) ;
+          routine_get_5F_C_5F_ArrayHeader (var_baseName_7238, var_contents_6954, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 165)) ;
           }
-          var_destinationFile_6926 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 166)).add_operation (GALGAS_string (".h"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 166)) ;
-          GALGAS_bool joker_7612 ; // Joker input parameter
-          var_contents_6859.method_writeToFileWhenDifferentContents (var_destinationFile_6926, joker_7612, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 167)) ;
+          var_destinationFile_7025 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 166)).add_operation (GALGAS_string (".h"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 166)) ;
+          GALGAS_bool joker_7711 ; // Joker input parameter
+          var_contents_6954.method_writeToFileWhenDifferentContents (var_destinationFile_7025, joker_7711, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 167)) ;
         }
       }
       enumGalgasBool test_28 = kBoolTrue ;
       if (kBoolTrue == test_28) {
         test_28 = GALGAS_application::constructor_verboseOutput (SOURCE_FILE ("midrange_semantics.galgas", 170)).boolEnum () ;
         if (kBoolTrue == test_28) {
-          GALGAS_string var_verboseMessage_7727 = GALGAS_string ("  ROM size: ").add_operation (var_piccoloDeviceModel_1220.getter_mRomSize (HERE).getter_uint (SOURCE_FILE ("midrange_semantics.galgas", 171)).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 171)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 171)).add_operation (GALGAS_string (" words;"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 171)) ;
-          var_verboseMessage_7727.plusAssign_operation(GALGAS_string (" used: ").add_operation (var_usedROMsize_6569.getter_string (SOURCE_FILE ("midrange_semantics.galgas", 172)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 172)).add_operation (GALGAS_string (" words ("), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 172)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 172)) ;
-          var_verboseMessage_7727.plusAssign_operation(var_usedROMsize_6569.multiply_operation (GALGAS_uint ((uint32_t) 100U), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 173)).divide_operation (var_piccoloDeviceModel_1220.getter_mRomSize (HERE).getter_uint (SOURCE_FILE ("midrange_semantics.galgas", 173)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 173)).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 173)).add_operation (GALGAS_string ("%).\n"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 173)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 173)) ;
-          cEnumerator_ramBankTable enumerator_7997 (var_ramBank_2998, kENUMERATION_UP) ;
-          while (enumerator_7997.hasCurrentObject ()) {
-            GALGAS_uint var_bankSize_8023 = enumerator_7997.current_mLastAddressPlusOne (HERE).substract_operation (enumerator_7997.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 175)) ;
-            GALGAS_uint var_usedSize_8084 = enumerator_7997.current_mFirstFreeAddress (HERE).substract_operation (enumerator_7997.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 176)) ;
-            var_verboseMessage_7727.plusAssign_operation(GALGAS_string ("  Bank '").add_operation (enumerator_7997.current_lkey (HERE).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 177)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 177)).add_operation (GALGAS_string ("': used "), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 177)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 177)) ;
-            var_verboseMessage_7727.plusAssign_operation(var_usedSize_8084.getter_string (SOURCE_FILE ("midrange_semantics.galgas", 178)).add_operation (GALGAS_string (" / "), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 178)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 178)) ;
-            var_verboseMessage_7727.plusAssign_operation(var_bankSize_8023.getter_string (SOURCE_FILE ("midrange_semantics.galgas", 179)).add_operation (GALGAS_string (" bytes ("), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 179)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 179)) ;
-            var_verboseMessage_7727.plusAssign_operation(var_usedSize_8084.multiply_operation (GALGAS_uint ((uint32_t) 100U), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 180)).divide_operation (var_bankSize_8023, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 180)).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 180)).add_operation (GALGAS_string ("%).\n"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 180)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 180)) ;
-            enumerator_7997.gotoNextObject () ;
+          GALGAS_string var_verboseMessage_7830 = GALGAS_string ("  ROM size: ").add_operation (var_piccoloDeviceModel_1224.readProperty_mRomSize ().readProperty_uint ().getter_string (SOURCE_FILE ("midrange_semantics.galgas", 171)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 171)).add_operation (GALGAS_string (" words;"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 171)) ;
+          var_verboseMessage_7830.plusAssign_operation(GALGAS_string (" used: ").add_operation (var_usedROMsize_6666.getter_string (SOURCE_FILE ("midrange_semantics.galgas", 172)), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 172)).add_operation (GALGAS_string (" words ("), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 172)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 172)) ;
+          var_verboseMessage_7830.plusAssign_operation(var_usedROMsize_6666.multiply_operation (GALGAS_uint ((uint32_t) 100U), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 173)).divide_operation (var_piccoloDeviceModel_1224.readProperty_mRomSize ().readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 173)).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 173)).add_operation (GALGAS_string ("%).\n"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 173)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 173)) ;
+          cEnumerator_ramBankTable enumerator_8141 (var_ramBank_3057, kENUMERATION_UP) ;
+          while (enumerator_8141.hasCurrentObject ()) {
+            GALGAS_uint var_bankSize_8184 = enumerator_8141.current_mLastAddressPlusOne (HERE).substract_operation (enumerator_8141.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 175)) ;
+            GALGAS_uint var_usedSize_8249 = enumerator_8141.current_mFirstFreeAddress (HERE).substract_operation (enumerator_8141.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 176)) ;
+            var_verboseMessage_7830.plusAssign_operation(GALGAS_string ("  Bank '").add_operation (enumerator_8141.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 177)).add_operation (GALGAS_string ("': used "), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 177)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 177)) ;
+            var_verboseMessage_7830.plusAssign_operation(var_usedSize_8249.getter_string (SOURCE_FILE ("midrange_semantics.galgas", 178)).add_operation (GALGAS_string (" / "), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 178)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 178)) ;
+            var_verboseMessage_7830.plusAssign_operation(var_bankSize_8184.getter_string (SOURCE_FILE ("midrange_semantics.galgas", 179)).add_operation (GALGAS_string (" bytes ("), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 179)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 179)) ;
+            var_verboseMessage_7830.plusAssign_operation(var_usedSize_8249.multiply_operation (GALGAS_uint ((uint32_t) 100U), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 180)).divide_operation (var_bankSize_8184, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 180)).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 180)).add_operation (GALGAS_string ("%).\n"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 180)), inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 180)) ;
+            enumerator_8141.gotoNextObject () ;
           }
-          inCompiler->printMessage (var_verboseMessage_7727  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 182)) ;
+          inCompiler->printMessage (var_verboseMessage_7830  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 182)) ;
         }
       }
       enumGalgasBool test_29 = kBoolTrue ;
       if (kBoolTrue == test_29) {
-        test_29 = GALGAS_bool (gOption_piccolo_5F_options_generateAssembly.getter_value ()).boolEnum () ;
+        test_29 = GALGAS_bool (gOption_piccolo_5F_options_generateAssembly.readProperty_value ()).boolEnum () ;
         if (kBoolTrue == test_29) {
-          GALGAS_string var_assemblyCode_8551 ;
+          GALGAS_string var_assemblyCode_8720 ;
           {
-          routine_midrange_5F_build_5F_assembly_5F_code (var_piccoloDeviceModel_1220.getter_mDeviceName (SOURCE_FILE ("midrange_semantics.galgas", 188)).getter_string (SOURCE_FILE ("midrange_semantics.galgas", 188)), var_piccoloDeviceModel_1220.getter_mRegisterTable (SOURCE_FILE ("midrange_semantics.galgas", 189)), var_registerTable_2303, var_generatedInstructionList_3759, var_actualConfigurationMap_1995, var_assemblyCode_8551, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 187)) ;
+          routine_midrange_5F_build_5F_assembly_5F_code (var_piccoloDeviceModel_1224.readProperty_mDeviceName ().readProperty_string (), var_piccoloDeviceModel_1224.readProperty_mRegisterTable (), var_registerTable_2339, var_generatedInstructionList_3806, var_actualConfigurationMap_2023, var_assemblyCode_8720, inCompiler  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 187)) ;
           }
-          GALGAS_string var_asmDestinationFile_8836 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 195)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 195)) ;
-          GALGAS_bool joker_8971 ; // Joker input parameter
-          var_assemblyCode_8551.method_writeToFileWhenDifferentContents (var_asmDestinationFile_8836, joker_8971, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 196)) ;
+          GALGAS_string var_asmDestinationFile_9003 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 195)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 195)) ;
+          GALGAS_bool joker_9138 ; // Joker input parameter
+          var_assemblyCode_8720.method_writeToFileWhenDifferentContents (var_asmDestinationFile_9003, joker_9138, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 196)) ;
         }
       }
     }
   }
   if (kBoolFalse == test_26) {
-    GALGAS_string var_hexDestinationFile_9065 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 199)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 199)) ;
+    GALGAS_string var_hexDestinationFile_9236 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 199)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 199)) ;
     enumGalgasBool test_30 = kBoolTrue ;
     if (kBoolTrue == test_30) {
-      test_30 = var_hexDestinationFile_9065.getter_fileExists (SOURCE_FILE ("midrange_semantics.galgas", 200)).boolEnum () ;
+      test_30 = var_hexDestinationFile_9236.getter_fileExists (SOURCE_FILE ("midrange_semantics.galgas", 200)).boolEnum () ;
       if (kBoolTrue == test_30) {
         {
-        GALGAS_string::class_method_deleteFile (var_hexDestinationFile_9065, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 201)) ;
+        GALGAS_string::class_method_deleteFile (var_hexDestinationFile_9236, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 201)) ;
         }
       }
     }
-    GALGAS_string var_asmDestinationFile_9255 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 203)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 203)) ;
+    GALGAS_string var_asmDestinationFile_9430 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 203)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 203)) ;
     enumGalgasBool test_31 = kBoolTrue ;
     if (kBoolTrue == test_31) {
-      test_31 = var_asmDestinationFile_9255.getter_fileExists (SOURCE_FILE ("midrange_semantics.galgas", 204)).boolEnum () ;
+      test_31 = var_asmDestinationFile_9430.getter_fileExists (SOURCE_FILE ("midrange_semantics.galgas", 204)).boolEnum () ;
       if (kBoolTrue == test_31) {
         {
-        GALGAS_string::class_method_deleteFile (var_asmDestinationFile_9255, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 205)) ;
+        GALGAS_string::class_method_deleteFile (var_asmDestinationFile_9430, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 205)) ;
         }
       }
     }
   }
   enumGalgasBool test_32 = kBoolTrue ;
   if (kBoolTrue == test_32) {
-    test_32 = GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.getter_value ()).boolEnum () ;
+    test_32 = GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.readProperty_value ()).boolEnum () ;
     if (kBoolTrue == test_32) {
-      GALGAS_string var_listFile_9546 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 210)).add_operation (GALGAS_string (".list"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 210)) ;
-      GALGAS_bool joker_9674 ; // Joker input parameter
-      var_listFileContents_1125.method_writeToFileWhenDifferentContents (var_listFile_9546, joker_9674, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 211)) ;
+      GALGAS_string var_listFile_9725 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_semantics.galgas", 210)).add_operation (GALGAS_string (".list"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 210)) ;
+      GALGAS_bool joker_9853 ; // Joker input parameter
+      var_listFileContents_1125.method_writeToFileWhenDifferentContents (var_listFile_9725, joker_9853, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 211)) ;
     }
   }
 }
@@ -4767,384 +2953,384 @@ void routine_pic_31__38__5F_analyze (const GALGAS_pic_31__38_AST constinArgument
                                      const GALGAS_string constinArgument_inSourceFileName,
                                      C_Compiler * inCompiler
                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_sourceFileBaseName_567 = constinArgument_inSourceFileName.getter_lastPathComponent (SOURCE_FILE ("pic18_semantics.galgas", 14)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_semantics.galgas", 14)) ;
+  GALGAS_string var_sourceFileBaseName_571 = constinArgument_inSourceFileName.getter_lastPathComponent (SOURCE_FILE ("pic18_semantics.galgas", 14)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_semantics.galgas", 14)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsNotEqual, var_sourceFileBaseName_567.objectCompare (constinArgument_inPiccoloModel.getter_mProgramName (SOURCE_FILE ("pic18_semantics.galgas", 15)).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 15)))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsNotEqual, var_sourceFileBaseName_571.objectCompare (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_string ())).boolEnum () ;
     if (kBoolTrue == test_0) {
       TC_Array <C_FixItDescription> fixItArray1 ;
-      inCompiler->emitSemanticError (constinArgument_inPiccoloModel.getter_mProgramName (SOURCE_FILE ("pic18_semantics.galgas", 16)).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 16)), GALGAS_string ("the program name ('").add_operation (constinArgument_inPiccoloModel.getter_mProgramName (SOURCE_FILE ("pic18_semantics.galgas", 16)).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 16)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 16)).add_operation (GALGAS_string ("') should be identical to the file base name '"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 16)).add_operation (var_sourceFileBaseName_567, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 17)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 17)), fixItArray1  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 16)) ;
+      inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_location (), GALGAS_string ("the program name ('").add_operation (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 16)).add_operation (GALGAS_string ("') should be identical to the file base name '"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 16)).add_operation (var_sourceFileBaseName_571, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 17)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 17)), fixItArray1  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 16)) ;
     }
   }
   GALGAS_string var_listFileContents_919 = GALGAS_string::makeEmptyString () ;
-  GALGAS_piccoloDeviceModel var_piccoloDeviceModel_1014 ;
-  GALGAS_uint var_accessBankSplitOffset_1044 ;
-  GALGAS_ramBankTable var_ramBank_1068 ;
-  GALGAS_bootloaderReservedRAMmap var_bootloaderReservedRAMmap_1121 ;
-  GALGAS_routineDeclarationList var_bootloaderRoutineDeclarationListForBootloaderImplementation_1249 ;
-  GALGAS_routineDeclarationList var_userRoutineDeclarationListForBootloaderImplementation_1329 ;
-  GALGAS_routineDeclarationList var_bootloaderRoutineDeclarationListForUserProgramImplementation_1416 ;
-  GALGAS_routineDeclarationList var_userRoutineDeclarationListForUserProgramImplementation_1497 ;
-  GALGAS_luint var_bootloaderReservedROMsize_1532 ;
-  GALGAS_registerTable var_registerTable_1662 ;
-  GALGAS_string var_piccoloDeviceName_1690 ;
-  switch (constinArgument_inPiccoloModel.getter_mProgramKind (HERE).enumValue ()) {
+  GALGAS_piccoloDeviceModel var_piccoloDeviceModel_1018 ;
+  GALGAS_uint var_accessBankSplitOffset_1052 ;
+  GALGAS_ramBankTable var_ramBank_1080 ;
+  GALGAS_bootloaderReservedRAMmap var_bootloaderReservedRAMmap_1137 ;
+  GALGAS_routineDeclarationList var_bootloaderRoutineDeclarationListForBootloaderImplementation_1269 ;
+  GALGAS_routineDeclarationList var_userRoutineDeclarationListForBootloaderImplementation_1353 ;
+  GALGAS_routineDeclarationList var_bootloaderRoutineDeclarationListForUserProgramImplementation_1444 ;
+  GALGAS_routineDeclarationList var_userRoutineDeclarationListForUserProgramImplementation_1529 ;
+  GALGAS_luint var_bootloaderReservedROMsize_1568 ;
+  GALGAS_registerTable var_registerTable_1702 ;
+  GALGAS_string var_piccoloDeviceName_1734 ;
+  switch (constinArgument_inPiccoloModel.readProperty_mProgramKind ().enumValue ()) {
   case GALGAS_programKind::kNotBuilt:
     break ;
   case GALGAS_programKind::kEnum_regularProgram:
     {
-      var_piccoloDeviceName_1690 = constinArgument_inPiccoloModel.getter_mDeviceNameOrBootLoaderReference (HERE).getter_string (HERE) ;
+      var_piccoloDeviceName_1734 = constinArgument_inPiccoloModel.readProperty_mDeviceNameOrBootLoaderReference ().readProperty_string () ;
       {
-      routine_parseDeviceDefinition (constinArgument_inPiccoloModel.getter_mDeviceNameOrBootLoaderReference (SOURCE_FILE ("pic18_semantics.galgas", 35)), var_piccoloDeviceModel_1014, inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 35)) ;
+      routine_parseDeviceDefinition (constinArgument_inPiccoloModel.readProperty_mDeviceNameOrBootLoaderReference (), var_piccoloDeviceModel_1018, inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 35)) ;
       }
-      switch (var_piccoloDeviceModel_1014.getter_mProcessorType (SOURCE_FILE ("pic18_semantics.galgas", 36)).enumValue ()) {
+      switch (var_piccoloDeviceModel_1018.readProperty_mProcessorType ().enumValue ()) {
       case GALGAS_processorType::kNotBuilt:
         break ;
       case GALGAS_processorType::kEnum_pic_31__38__5F__36__30_:
         {
-          var_accessBankSplitOffset_1044 = GALGAS_uint ((uint32_t) 96U) ;
+          var_accessBankSplitOffset_1052 = GALGAS_uint ((uint32_t) 96U) ;
         }
         break ;
       case GALGAS_processorType::kEnum_pic_31__38__5F__38__30_:
         {
-          var_accessBankSplitOffset_1044 = GALGAS_uint ((uint32_t) 128U) ;
+          var_accessBankSplitOffset_1052 = GALGAS_uint ((uint32_t) 128U) ;
         }
         break ;
       case GALGAS_processorType::kEnum_midrange:
         {
           TC_Array <C_FixItDescription> fixItArray2 ;
-          inCompiler->emitSemanticError (constinArgument_inPiccoloModel.getter_mDeviceNameOrBootLoaderReference (SOURCE_FILE ("pic18_semantics.galgas", 39)).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 39)), GALGAS_string ("a midrange device is not accepted here"), fixItArray2  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 39)) ;
-          var_accessBankSplitOffset_1044.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mDeviceNameOrBootLoaderReference ().readProperty_location (), GALGAS_string ("a midrange device is not accepted here"), fixItArray2  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 39)) ;
+          var_accessBankSplitOffset_1052.drop () ; // Release error dropped variable
         }
         break ;
       case GALGAS_processorType::kEnum_baseline:
         {
           TC_Array <C_FixItDescription> fixItArray3 ;
-          inCompiler->emitSemanticError (constinArgument_inPiccoloModel.getter_mDeviceNameOrBootLoaderReference (SOURCE_FILE ("pic18_semantics.galgas", 40)).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 40)), GALGAS_string ("a baseline device is not accepted here"), fixItArray3  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 40)) ;
-          var_accessBankSplitOffset_1044.drop () ; // Release error dropped variable
+          inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mDeviceNameOrBootLoaderReference ().readProperty_location (), GALGAS_string ("a baseline device is not accepted here"), fixItArray3  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 40)) ;
+          var_accessBankSplitOffset_1052.drop () ; // Release error dropped variable
         }
         break ;
       }
-      var_ramBank_1068 = var_piccoloDeviceModel_1014.getter_mRamBankTable (SOURCE_FILE ("pic18_semantics.galgas", 42)) ;
-      var_bootloaderReservedRAMmap_1121 = GALGAS_bootloaderReservedRAMmap::constructor_emptyMap (SOURCE_FILE ("pic18_semantics.galgas", 43)) ;
-      var_registerTable_1662 = var_piccoloDeviceModel_1014.getter_mRegisterTable (HERE) ;
-      var_bootloaderRoutineDeclarationListForBootloaderImplementation_1249 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 45)) ;
-      var_userRoutineDeclarationListForBootloaderImplementation_1329 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 46)) ;
-      var_bootloaderRoutineDeclarationListForUserProgramImplementation_1416 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 47)) ;
-      var_userRoutineDeclarationListForUserProgramImplementation_1497 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 48)) ;
-      var_bootloaderReservedROMsize_1532 = GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 49))  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 49)) ;
+      var_ramBank_1080 = var_piccoloDeviceModel_1018.readProperty_mRamBankTable () ;
+      var_bootloaderReservedRAMmap_1137 = GALGAS_bootloaderReservedRAMmap::constructor_emptyMap (SOURCE_FILE ("pic18_semantics.galgas", 43)) ;
+      var_registerTable_1702 = var_piccoloDeviceModel_1018.readProperty_mRegisterTable () ;
+      var_bootloaderRoutineDeclarationListForBootloaderImplementation_1269 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 45)) ;
+      var_userRoutineDeclarationListForBootloaderImplementation_1353 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 46)) ;
+      var_bootloaderRoutineDeclarationListForUserProgramImplementation_1444 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 47)) ;
+      var_userRoutineDeclarationListForUserProgramImplementation_1529 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 48)) ;
+      var_bootloaderReservedROMsize_1568 = GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 49))  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 49)) ;
     }
     break ;
   case GALGAS_programKind::kEnum_bootloaderProgram:
     {
-      var_bootloaderRoutineDeclarationListForUserProgramImplementation_1416 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 51)) ;
-      var_userRoutineDeclarationListForUserProgramImplementation_1497 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 52)) ;
-      var_piccoloDeviceModel_1014.drop () ;
-      var_piccoloDeviceName_1690.drop () ;
-      var_accessBankSplitOffset_1044.drop () ;
-      var_ramBank_1068.drop () ;
-      var_registerTable_1662.drop () ;
-      var_bootloaderReservedRAMmap_1121.drop () ;
-      var_bootloaderRoutineDeclarationListForBootloaderImplementation_1249.drop () ;
-      var_userRoutineDeclarationListForBootloaderImplementation_1329.drop () ;
-      var_bootloaderReservedROMsize_1532.drop () ;
-      cGrammar_pic_31__38__5F_grammar::_performSourceFileParsing_importBootloaderSpecification (inCompiler, constinArgument_inPiccoloModel.getter_mDeviceNameOrBootLoaderReference (SOURCE_FILE ("pic18_semantics.galgas", 53)), var_piccoloDeviceModel_1014, var_piccoloDeviceName_1690, var_accessBankSplitOffset_1044, var_ramBank_1068, var_registerTable_1662, var_bootloaderReservedRAMmap_1121, var_bootloaderRoutineDeclarationListForBootloaderImplementation_1249, var_userRoutineDeclarationListForBootloaderImplementation_1329, var_bootloaderReservedROMsize_1532  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 53)) ;
-      cEnumerator_ramBankTable enumerator_3678 (var_ramBank_1068, kENUMERATION_UP) ;
-      while (enumerator_3678.hasCurrentObject ()) {
+      var_bootloaderRoutineDeclarationListForUserProgramImplementation_1444 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 51)) ;
+      var_userRoutineDeclarationListForUserProgramImplementation_1529 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 52)) ;
+      var_piccoloDeviceModel_1018.drop () ;
+      var_piccoloDeviceName_1734.drop () ;
+      var_accessBankSplitOffset_1052.drop () ;
+      var_ramBank_1080.drop () ;
+      var_registerTable_1702.drop () ;
+      var_bootloaderReservedRAMmap_1137.drop () ;
+      var_bootloaderRoutineDeclarationListForBootloaderImplementation_1269.drop () ;
+      var_userRoutineDeclarationListForBootloaderImplementation_1353.drop () ;
+      var_bootloaderReservedROMsize_1568.drop () ;
+      cGrammar_pic_31__38__5F_grammar::_performSourceFileParsing_importBootloaderSpecification (inCompiler, constinArgument_inPiccoloModel.readProperty_mDeviceNameOrBootLoaderReference (), var_piccoloDeviceModel_1018, var_piccoloDeviceName_1734, var_accessBankSplitOffset_1052, var_ramBank_1080, var_registerTable_1702, var_bootloaderReservedRAMmap_1137, var_bootloaderRoutineDeclarationListForBootloaderImplementation_1269, var_userRoutineDeclarationListForBootloaderImplementation_1353, var_bootloaderReservedROMsize_1568  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 53)) ;
+      cEnumerator_ramBankTable enumerator_3721 (var_ramBank_1080, kENUMERATION_UP) ;
+      while (enumerator_3721.hasCurrentObject ()) {
         {
-        var_ramBank_1068.setter_setMFirstFreeAddressForKey (enumerator_3678.current_mFirstAddress (HERE), enumerator_3678.current_lkey (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 64)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 64)) ;
+        var_ramBank_1080.setter_setMFirstFreeAddressForKey (enumerator_3721.current_mFirstAddress (HERE), enumerator_3721.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 64)) ;
         }
-        enumerator_3678.gotoNextObject () ;
+        enumerator_3721.gotoNextObject () ;
       }
     }
     break ;
   case GALGAS_programKind::kEnum_userProgram:
     {
-      var_piccoloDeviceModel_1014.drop () ;
-      var_piccoloDeviceName_1690.drop () ;
-      var_accessBankSplitOffset_1044.drop () ;
-      var_ramBank_1068.drop () ;
-      var_registerTable_1662.drop () ;
-      var_bootloaderReservedRAMmap_1121.drop () ;
-      var_bootloaderRoutineDeclarationListForUserProgramImplementation_1416.drop () ;
-      var_userRoutineDeclarationListForUserProgramImplementation_1497.drop () ;
-      var_bootloaderReservedROMsize_1532.drop () ;
-      cGrammar_pic_31__38__5F_grammar::_performSourceFileParsing_importBootloaderSpecification (inCompiler, constinArgument_inPiccoloModel.getter_mDeviceNameOrBootLoaderReference (SOURCE_FILE ("pic18_semantics.galgas", 67)), var_piccoloDeviceModel_1014, var_piccoloDeviceName_1690, var_accessBankSplitOffset_1044, var_ramBank_1068, var_registerTable_1662, var_bootloaderReservedRAMmap_1121, var_bootloaderRoutineDeclarationListForUserProgramImplementation_1416, var_userRoutineDeclarationListForUserProgramImplementation_1497, var_bootloaderReservedROMsize_1532  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 67)) ;
-      var_bootloaderRoutineDeclarationListForBootloaderImplementation_1249 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 77)) ;
-      var_userRoutineDeclarationListForBootloaderImplementation_1329 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 78)) ;
+      var_piccoloDeviceModel_1018.drop () ;
+      var_piccoloDeviceName_1734.drop () ;
+      var_accessBankSplitOffset_1052.drop () ;
+      var_ramBank_1080.drop () ;
+      var_registerTable_1702.drop () ;
+      var_bootloaderReservedRAMmap_1137.drop () ;
+      var_bootloaderRoutineDeclarationListForUserProgramImplementation_1444.drop () ;
+      var_userRoutineDeclarationListForUserProgramImplementation_1529.drop () ;
+      var_bootloaderReservedROMsize_1568.drop () ;
+      cGrammar_pic_31__38__5F_grammar::_performSourceFileParsing_importBootloaderSpecification (inCompiler, constinArgument_inPiccoloModel.readProperty_mDeviceNameOrBootLoaderReference (), var_piccoloDeviceModel_1018, var_piccoloDeviceName_1734, var_accessBankSplitOffset_1052, var_ramBank_1080, var_registerTable_1702, var_bootloaderReservedRAMmap_1137, var_bootloaderRoutineDeclarationListForUserProgramImplementation_1444, var_userRoutineDeclarationListForUserProgramImplementation_1529, var_bootloaderReservedROMsize_1568  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 67)) ;
+      var_bootloaderRoutineDeclarationListForBootloaderImplementation_1269 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 77)) ;
+      var_userRoutineDeclarationListForBootloaderImplementation_1353 = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_semantics.galgas", 78)) ;
     }
     break ;
   }
-  GALGAS_pic_31__38_MacroMap var_macroMap_4535 = GALGAS_pic_31__38_MacroMap::constructor_emptyMap (SOURCE_FILE ("pic18_semantics.galgas", 81)) ;
-  cEnumerator_pic_31__38_MacroDefinitionList enumerator_4588 (constinArgument_inPiccoloModel.getter_mMacroDefinitionList (HERE), kENUMERATION_UP) ;
-  while (enumerator_4588.hasCurrentObject ()) {
+  GALGAS_pic_31__38_MacroMap var_macroMap_4591 = GALGAS_pic_31__38_MacroMap::constructor_emptyMap (SOURCE_FILE ("pic18_semantics.galgas", 81)) ;
+  cEnumerator_pic_31__38_MacroDefinitionList enumerator_4649 (constinArgument_inPiccoloModel.readProperty_mMacroDefinitionList (), kENUMERATION_UP) ;
+  while (enumerator_4649.hasCurrentObject ()) {
     {
-    var_macroMap_4535.setter_insertKey (enumerator_4588.current_mMacroName (HERE), enumerator_4588.current_mConstantNameList (HERE), enumerator_4588.current_mInstructionList (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 83)) ;
+    var_macroMap_4591.setter_insertKey (enumerator_4649.current_mMacroName (HERE), enumerator_4649.current_mConstantNameList (HERE), enumerator_4649.current_mInstructionList (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 83)) ;
     }
-    enumerator_4588.gotoNextObject () ;
+    enumerator_4649.gotoNextObject () ;
   }
-  GALGAS_stringset var_usedRoutineSet_4764 = function_pic_31__38__5F_computeUsedRoutines (constinArgument_inPiccoloModel.getter_mInterruptDefinitionList (HERE), constinArgument_inPiccoloModel.getter_mRoutineDefinitionList (HERE), var_macroMap_4535, var_bootloaderRoutineDeclarationListForBootloaderImplementation_1249, var_userRoutineDeclarationListForUserProgramImplementation_1497, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 86)) ;
-  GALGAS_declaredRoutineMap var_declaredRoutineMap_5050 = GALGAS_declaredRoutineMap::constructor_emptyMap (SOURCE_FILE ("pic18_semantics.galgas", 93)) ;
-  cEnumerator_pic_31__38_RoutineDefinitionList enumerator_5133 (constinArgument_inPiccoloModel.getter_mRoutineDefinitionList (HERE), kENUMERATION_UP) ;
-  while (enumerator_5133.hasCurrentObject ()) {
+  GALGAS_stringset var_usedRoutineSet_4865 = function_pic_31__38__5F_computeUsedRoutines (constinArgument_inPiccoloModel.readProperty_mInterruptDefinitionList (), constinArgument_inPiccoloModel.readProperty_mRoutineDefinitionList (), var_macroMap_4591, var_bootloaderRoutineDeclarationListForBootloaderImplementation_1269, var_userRoutineDeclarationListForUserProgramImplementation_1529, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 86)) ;
+  GALGAS_declaredRoutineMap var_declaredRoutineMap_5151 = GALGAS_declaredRoutineMap::constructor_emptyMap (SOURCE_FILE ("pic18_semantics.galgas", 93)) ;
+  cEnumerator_pic_31__38_RoutineDefinitionList enumerator_5277 (constinArgument_inPiccoloModel.readProperty_mRoutineDefinitionList (), kENUMERATION_UP) ;
+  while (enumerator_5277.hasCurrentObject ()) {
     {
-    var_declaredRoutineMap_5050.setter_insertKey (enumerator_5133.current_mRoutineName (HERE), enumerator_5133.current_mRequiredBank (HERE), enumerator_5133.current_mReturnedBank (HERE), enumerator_5133.current_mPreservesBank (HERE), enumerator_5133.current_mIsNoReturn (HERE), enumerator_5133.current_mInstructionList (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 95)) ;
+    var_declaredRoutineMap_5151.setter_insertKey (enumerator_5277.current_mRoutineName (HERE), enumerator_5277.current_mRequiredBank (HERE), enumerator_5277.current_mReturnedBank (HERE), enumerator_5277.current_mPreservesBank (HERE), enumerator_5277.current_mIsNoReturn (HERE), enumerator_5277.current_mInstructionList (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 95)) ;
     }
-    enumerator_5133.gotoNextObject () ;
+    enumerator_5277.gotoNextObject () ;
   }
-  GALGAS_stringset var_unusedDeclarationUnicity_5396 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("pic18_semantics.galgas", 105)) ;
-  cEnumerator_lstringlist enumerator_5466 (constinArgument_inPiccoloModel.getter_mUnusedRoutineList (HERE), kENUMERATION_UP) ;
-  while (enumerator_5466.hasCurrentObject ()) {
+  GALGAS_stringset var_unusedDeclarationUnicity_5583 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("pic18_semantics.galgas", 105)) ;
+  cEnumerator_lstringlist enumerator_5620 (constinArgument_inPiccoloModel.readProperty_mUnusedRoutineList (), kENUMERATION_UP) ;
+  while (enumerator_5620.hasCurrentObject ()) {
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = var_declaredRoutineMap_5050.getter_hasKey (enumerator_5466.current_mValue (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 107)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 107)).boolEnum () ;
+      test_4 = var_declaredRoutineMap_5151.getter_hasKey (enumerator_5620.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 107)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 107)).boolEnum () ;
       if (kBoolTrue == test_4) {
         TC_Array <C_FixItDescription> fixItArray5 ;
-        inCompiler->emitSemanticError (enumerator_5466.current_mValue (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 108)), GALGAS_string ("the '").add_operation (enumerator_5466.current_mValue (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 108)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 108)).add_operation (GALGAS_string ("' routine is not declared"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 108)), fixItArray5  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 108)) ;
+        inCompiler->emitSemanticError (enumerator_5620.current_mValue (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_5620.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 108)).add_operation (GALGAS_string ("' routine is not declared"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 108)), fixItArray5  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 108)) ;
       }
     }
     if (kBoolFalse == test_4) {
       enumGalgasBool test_6 = kBoolTrue ;
       if (kBoolTrue == test_6) {
-        test_6 = var_unusedDeclarationUnicity_5396.getter_hasKey (enumerator_5466.current_mValue (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 109)).boolEnum () ;
+        test_6 = var_unusedDeclarationUnicity_5583.getter_hasKey (enumerator_5620.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 109)).boolEnum () ;
         if (kBoolTrue == test_6) {
           TC_Array <C_FixItDescription> fixItArray7 ;
-          inCompiler->emitSemanticWarning (enumerator_5466.current_mValue (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 110)), GALGAS_string ("the '").add_operation (enumerator_5466.current_mValue (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 110)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 110)).add_operation (GALGAS_string ("' routine is already declared as unused"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 110)), fixItArray7  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 110)) ;
+          inCompiler->emitSemanticWarning (enumerator_5620.current_mValue (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_5620.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 110)).add_operation (GALGAS_string ("' routine is already declared as unused"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 110)), fixItArray7  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 110)) ;
         }
       }
       if (kBoolFalse == test_6) {
         enumGalgasBool test_8 = kBoolTrue ;
         if (kBoolTrue == test_8) {
-          test_8 = var_usedRoutineSet_4764.getter_hasKey (enumerator_5466.current_mValue (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 111)).boolEnum () ;
+          test_8 = var_usedRoutineSet_4865.getter_hasKey (enumerator_5620.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 111)).boolEnum () ;
           if (kBoolTrue == test_8) {
             TC_Array <C_FixItDescription> fixItArray9 ;
-            inCompiler->emitSemanticWarning (enumerator_5466.current_mValue (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 112)), GALGAS_string ("the '").add_operation (enumerator_5466.current_mValue (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 112)).add_operation (GALGAS_string ("' routine is declared as unused, but is used"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 112)), fixItArray9  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 112)) ;
+            inCompiler->emitSemanticWarning (enumerator_5620.current_mValue (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_5620.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 112)).add_operation (GALGAS_string ("' routine is declared as unused, but is used"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 112)), fixItArray9  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 112)) ;
           }
         }
       }
     }
-    var_unusedDeclarationUnicity_5396.addAssign_operation (enumerator_5466.current_mValue (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 114)) ;
-    enumerator_5466.gotoNextObject () ;
+    var_unusedDeclarationUnicity_5583.addAssign_operation (enumerator_5620.current_mValue (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 114)) ;
+    enumerator_5620.gotoNextObject () ;
   }
-  cEnumerator_declaredRoutineMap enumerator_5980 (var_declaredRoutineMap_5050, kENUMERATION_UP) ;
-  while (enumerator_5980.hasCurrentObject ()) {
+  cEnumerator_declaredRoutineMap enumerator_6163 (var_declaredRoutineMap_5151, kENUMERATION_UP) ;
+  while (enumerator_6163.hasCurrentObject ()) {
     enumGalgasBool test_10 = kBoolTrue ;
     if (kBoolTrue == test_10) {
-      test_10 = var_usedRoutineSet_4764.getter_hasKey (enumerator_5980.current_lkey (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 117)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 117)).operator_and (var_unusedDeclarationUnicity_5396.getter_hasKey (enumerator_5980.current_lkey (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 117)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 117)) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 117)).boolEnum () ;
+      test_10 = var_usedRoutineSet_4865.getter_hasKey (enumerator_6163.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 117)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 117)).operator_and (var_unusedDeclarationUnicity_5583.getter_hasKey (enumerator_6163.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 117)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 117)) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 117)).boolEnum () ;
       if (kBoolTrue == test_10) {
         TC_Array <C_FixItDescription> fixItArray11 ;
-        inCompiler->emitSemanticWarning (enumerator_5980.current_lkey (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 118)), GALGAS_string ("the '").add_operation (enumerator_5980.current_lkey (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 118)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 118)).add_operation (GALGAS_string ("' routine is unused"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 118)), fixItArray11  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 118)) ;
+        inCompiler->emitSemanticWarning (enumerator_6163.current_lkey (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_6163.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 118)).add_operation (GALGAS_string ("' routine is unused"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 118)), fixItArray11  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 118)) ;
       }
     }
-    enumerator_5980.gotoNextObject () ;
+    enumerator_6163.gotoNextObject () ;
   }
-  GALGAS_stringset var_inlinedRoutineSet_6241 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("pic18_semantics.galgas", 122)) ;
-  cEnumerator_lstringlist enumerator_6312 (constinArgument_inPiccoloModel.getter_mInlinedRoutineList (HERE), kENUMERATION_UP) ;
-  while (enumerator_6312.hasCurrentObject ()) {
+  GALGAS_stringset var_inlinedRoutineSet_6448 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("pic18_semantics.galgas", 122)) ;
+  cEnumerator_lstringlist enumerator_6485 (constinArgument_inPiccoloModel.readProperty_mInlinedRoutineList (), kENUMERATION_UP) ;
+  while (enumerator_6485.hasCurrentObject ()) {
     enumGalgasBool test_12 = kBoolTrue ;
     if (kBoolTrue == test_12) {
-      test_12 = var_declaredRoutineMap_5050.getter_hasKey (enumerator_6312.current_mValue (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 124)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 124)).boolEnum () ;
+      test_12 = var_declaredRoutineMap_5151.getter_hasKey (enumerator_6485.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 124)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 124)).boolEnum () ;
       if (kBoolTrue == test_12) {
         TC_Array <C_FixItDescription> fixItArray13 ;
-        inCompiler->emitSemanticError (enumerator_6312.current_mValue (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 125)), GALGAS_string ("the '").add_operation (enumerator_6312.current_mValue (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 125)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 125)).add_operation (GALGAS_string ("' routine is not declared"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 125)), fixItArray13  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 125)) ;
+        inCompiler->emitSemanticError (enumerator_6485.current_mValue (HERE).readProperty_location (), GALGAS_string ("the '").add_operation (enumerator_6485.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 125)).add_operation (GALGAS_string ("' routine is not declared"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 125)), fixItArray13  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 125)) ;
       }
     }
     if (kBoolFalse == test_12) {
       enumGalgasBool test_14 = kBoolTrue ;
       if (kBoolTrue == test_14) {
-        test_14 = var_usedRoutineSet_4764.getter_hasKey (enumerator_6312.current_mValue (HERE).getter_string (HERE) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 126)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 126)).boolEnum () ;
+        test_14 = var_usedRoutineSet_4865.getter_hasKey (enumerator_6485.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 126)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 126)).boolEnum () ;
         if (kBoolTrue == test_14) {
           TC_Array <C_FixItDescription> fixItArray15 ;
-          inCompiler->emitSemanticWarning (enumerator_6312.current_mValue (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 127)), GALGAS_string ("useless declaration, the '").add_operation (enumerator_6312.current_mValue (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 127)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 127)).add_operation (GALGAS_string ("' routine is unused"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 127)), fixItArray15  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 127)) ;
+          inCompiler->emitSemanticWarning (enumerator_6485.current_mValue (HERE).readProperty_location (), GALGAS_string ("useless declaration, the '").add_operation (enumerator_6485.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 127)).add_operation (GALGAS_string ("' routine is unused"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 127)), fixItArray15  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 127)) ;
         }
       }
       if (kBoolFalse == test_14) {
-        var_inlinedRoutineSet_6241.addAssign_operation (enumerator_6312.current_mValue (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 129)) ;
+        var_inlinedRoutineSet_6448.addAssign_operation (enumerator_6485.current_mValue (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 129)) ;
       }
     }
-    enumerator_6312.gotoNextObject () ;
+    enumerator_6485.gotoNextObject () ;
   }
-  GALGAS_pic_31__38_InterruptDefinitionList var_interruptDefinitionList_6706 = constinArgument_inPiccoloModel.getter_mInterruptDefinitionList (HERE) ;
-  GALGAS_pic_31__38_RoutineDefinitionList var_routineDefinitionList_6800 = constinArgument_inPiccoloModel.getter_mRoutineDefinitionList (HERE) ;
+  GALGAS_pic_31__38_InterruptDefinitionList var_interruptDefinitionList_6923 = constinArgument_inPiccoloModel.readProperty_mInterruptDefinitionList () ;
+  GALGAS_pic_31__38_RoutineDefinitionList var_routineDefinitionList_7021 = constinArgument_inPiccoloModel.readProperty_mRoutineDefinitionList () ;
   {
-  routine_pic_31__38_PerformRoutineInline (var_inlinedRoutineSet_6241, var_declaredRoutineMap_5050, var_interruptDefinitionList_6706, var_routineDefinitionList_6800, inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 134)) ;
+  routine_pic_31__38_PerformRoutineInline (var_inlinedRoutineSet_6448, var_declaredRoutineMap_5151, var_interruptDefinitionList_6923, var_routineDefinitionList_7021, inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 134)) ;
   }
-  cEnumerator_checkpicList enumerator_7085 (constinArgument_inPiccoloModel.getter_mCheckpicList (HERE), kENUMERATION_UP) ;
-  while (enumerator_7085.hasCurrentObject ()) {
-    GALGAS_bool var_found_7104 = GALGAS_bool (false) ;
-    cEnumerator_lstringlist enumerator_7138 (enumerator_7085.current_mValueList (HERE), kENUMERATION_UP) ;
-    bool bool_16 = var_found_7104.operator_not (SOURCE_FILE ("pic18_semantics.galgas", 143)).isValidAndTrue () ;
-    if (enumerator_7138.hasCurrentObject () && bool_16) {
-      while (enumerator_7138.hasCurrentObject () && bool_16) {
-        var_found_7104 = GALGAS_bool (kIsEqual, enumerator_7138.current_mValue (HERE).getter_string (HERE).objectCompare (var_piccoloDeviceName_1690)) ;
-        enumerator_7138.gotoNextObject () ;
-        if (enumerator_7138.hasCurrentObject ()) {
-          bool_16 = var_found_7104.operator_not (SOURCE_FILE ("pic18_semantics.galgas", 143)).isValidAndTrue () ;
+  cEnumerator_checkpicList enumerator_7297 (constinArgument_inPiccoloModel.readProperty_mCheckpicList (), kENUMERATION_UP) ;
+  while (enumerator_7297.hasCurrentObject ()) {
+    GALGAS_bool var_found_7354 = GALGAS_bool (false) ;
+    cEnumerator_lstringlist enumerator_7378 (enumerator_7297.current_mValueList (HERE), kENUMERATION_UP) ;
+    bool bool_16 = var_found_7354.operator_not (SOURCE_FILE ("pic18_semantics.galgas", 143)).isValidAndTrue () ;
+    if (enumerator_7378.hasCurrentObject () && bool_16) {
+      while (enumerator_7378.hasCurrentObject () && bool_16) {
+        var_found_7354 = GALGAS_bool (kIsEqual, enumerator_7378.current_mValue (HERE).readProperty_string ().objectCompare (var_piccoloDeviceName_1734)) ;
+        enumerator_7378.gotoNextObject () ;
+        if (enumerator_7378.hasCurrentObject ()) {
+          bool_16 = var_found_7354.operator_not (SOURCE_FILE ("pic18_semantics.galgas", 143)).isValidAndTrue () ;
         }
       }
     }
     enumGalgasBool test_17 = kBoolTrue ;
     if (kBoolTrue == test_17) {
-      test_17 = var_found_7104.operator_not (SOURCE_FILE ("pic18_semantics.galgas", 146)).boolEnum () ;
+      test_17 = var_found_7354.operator_not (SOURCE_FILE ("pic18_semantics.galgas", 146)).boolEnum () ;
       if (kBoolTrue == test_17) {
         TC_Array <C_FixItDescription> fixItArray18 ;
-        inCompiler->emitSemanticError (enumerator_7085.current_mErrorLocation (HERE), GALGAS_string ("this code is not available for '").add_operation (var_piccoloDeviceName_1690, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 147)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 147)), fixItArray18  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 147)) ;
+        inCompiler->emitSemanticError (enumerator_7297.current_mErrorLocation (HERE), GALGAS_string ("this code is not available for '").add_operation (var_piccoloDeviceName_1734, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 147)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 147)), fixItArray18  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 147)) ;
       }
     }
-    enumerator_7085.gotoNextObject () ;
+    enumerator_7297.gotoNextObject () ;
   }
-  GALGAS_bool var_hasHighInterrupt_7411 = GALGAS_bool (false) ;
-  GALGAS_bool var_highInterruptIsFast_7447 = GALGAS_bool (false) ;
-  GALGAS_bool var_hasLowInterrupt_7479 = GALGAS_bool (false) ;
-  GALGAS_bool var_lowInterruptIsFast_7514 = GALGAS_bool (false) ;
-  cEnumerator_pic_31__38_InterruptDefinitionList enumerator_7559 (var_interruptDefinitionList_6706, kENUMERATION_UP) ;
-  while (enumerator_7559.hasCurrentObject ()) {
+  GALGAS_bool var_hasHighInterrupt_7671 = GALGAS_bool (false) ;
+  GALGAS_bool var_highInterruptIsFast_7711 = GALGAS_bool (false) ;
+  GALGAS_bool var_hasLowInterrupt_7747 = GALGAS_bool (false) ;
+  GALGAS_bool var_lowInterruptIsFast_7786 = GALGAS_bool (false) ;
+  cEnumerator_pic_31__38_InterruptDefinitionList enumerator_7832 (var_interruptDefinitionList_6923, kENUMERATION_UP) ;
+  while (enumerator_7832.hasCurrentObject ()) {
     enumGalgasBool test_19 = kBoolTrue ;
     if (kBoolTrue == test_19) {
-      test_19 = GALGAS_bool (kIsEqual, constinArgument_inPiccoloModel.getter_mProgramKind (SOURCE_FILE ("pic18_semantics.galgas", 156)).objectCompare (GALGAS_programKind::constructor_userProgram (SOURCE_FILE ("pic18_semantics.galgas", 156)))).boolEnum () ;
+      test_19 = GALGAS_bool (kIsEqual, constinArgument_inPiccoloModel.readProperty_mProgramKind ().objectCompare (GALGAS_programKind::constructor_userProgram (SOURCE_FILE ("pic18_semantics.galgas", 156)))).boolEnum () ;
       if (kBoolTrue == test_19) {
         TC_Array <C_FixItDescription> fixItArray20 ;
-        inCompiler->emitSemanticError (enumerator_7559.current_mInterruptName (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 157)), GALGAS_string ("interrupt routine is not allowed for a bootloader user program"), fixItArray20  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 157)) ;
+        inCompiler->emitSemanticError (enumerator_7832.current_mInterruptName (HERE).readProperty_location (), GALGAS_string ("interrupt routine is not allowed for a bootloader user program"), fixItArray20  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 157)) ;
       }
     }
     enumGalgasBool test_21 = kBoolTrue ;
     if (kBoolTrue == test_21) {
-      test_21 = GALGAS_bool (kIsEqual, enumerator_7559.current_mInterruptName (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 159)).objectCompare (GALGAS_string ("high"))).boolEnum () ;
+      test_21 = GALGAS_bool (kIsEqual, enumerator_7832.current_mInterruptName (HERE).readProperty_string ().objectCompare (GALGAS_string ("high"))).boolEnum () ;
       if (kBoolTrue == test_21) {
-        var_highInterruptIsFast_7447 = enumerator_7559.current_mFastReturn (HERE) ;
+        var_highInterruptIsFast_7711 = enumerator_7832.current_mFastReturn (HERE) ;
         enumGalgasBool test_22 = kBoolTrue ;
         if (kBoolTrue == test_22) {
-          test_22 = var_hasHighInterrupt_7411.boolEnum () ;
+          test_22 = var_hasHighInterrupt_7671.boolEnum () ;
           if (kBoolTrue == test_22) {
             TC_Array <C_FixItDescription> fixItArray23 ;
-            inCompiler->emitSemanticError (enumerator_7559.current_mInterruptName (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 162)), GALGAS_string ("Only one 'high' interrupt routine is allowed"), fixItArray23  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 162)) ;
+            inCompiler->emitSemanticError (enumerator_7832.current_mInterruptName (HERE).readProperty_location (), GALGAS_string ("Only one 'high' interrupt routine is allowed"), fixItArray23  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 162)) ;
           }
         }
-        var_hasHighInterrupt_7411 = GALGAS_bool (true) ;
+        var_hasHighInterrupt_7671 = GALGAS_bool (true) ;
       }
     }
     if (kBoolFalse == test_21) {
       enumGalgasBool test_24 = kBoolTrue ;
       if (kBoolTrue == test_24) {
-        test_24 = GALGAS_bool (kIsEqual, enumerator_7559.current_mInterruptName (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 165)).objectCompare (GALGAS_string ("low"))).boolEnum () ;
+        test_24 = GALGAS_bool (kIsEqual, enumerator_7832.current_mInterruptName (HERE).readProperty_string ().objectCompare (GALGAS_string ("low"))).boolEnum () ;
         if (kBoolTrue == test_24) {
-          var_lowInterruptIsFast_7514 = enumerator_7559.current_mFastReturn (HERE) ;
+          var_lowInterruptIsFast_7786 = enumerator_7832.current_mFastReturn (HERE) ;
           enumGalgasBool test_25 = kBoolTrue ;
           if (kBoolTrue == test_25) {
-            test_25 = var_hasLowInterrupt_7479.boolEnum () ;
+            test_25 = var_hasLowInterrupt_7747.boolEnum () ;
             if (kBoolTrue == test_25) {
               TC_Array <C_FixItDescription> fixItArray26 ;
-              inCompiler->emitSemanticError (enumerator_7559.current_mInterruptName (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 168)), GALGAS_string ("Only one 'low' interrupt routine is allowed"), fixItArray26  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 168)) ;
+              inCompiler->emitSemanticError (enumerator_7832.current_mInterruptName (HERE).readProperty_location (), GALGAS_string ("Only one 'low' interrupt routine is allowed"), fixItArray26  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 168)) ;
             }
           }
-          var_hasLowInterrupt_7479 = GALGAS_bool (true) ;
+          var_hasLowInterrupt_7747 = GALGAS_bool (true) ;
         }
       }
       if (kBoolFalse == test_24) {
         TC_Array <C_FixItDescription> fixItArray27 ;
-        inCompiler->emitSemanticError (enumerator_7559.current_mInterruptName (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 172)), GALGAS_string ("An interrupt routine should be named 'low' or 'high'"), fixItArray27  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 172)) ;
+        inCompiler->emitSemanticError (enumerator_7832.current_mInterruptName (HERE).readProperty_location (), GALGAS_string ("An interrupt routine should be named 'low' or 'high'"), fixItArray27  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 172)) ;
       }
     }
     enumGalgasBool test_28 = kBoolTrue ;
     if (kBoolTrue == test_28) {
-      test_28 = var_highInterruptIsFast_7447.operator_and (var_lowInterruptIsFast_7514 COMMA_SOURCE_FILE ("pic18_semantics.galgas", 174)).boolEnum () ;
+      test_28 = var_highInterruptIsFast_7711.operator_and (var_lowInterruptIsFast_7786 COMMA_SOURCE_FILE ("pic18_semantics.galgas", 174)).boolEnum () ;
       if (kBoolTrue == test_28) {
         TC_Array <C_FixItDescription> fixItArray29 ;
-        inCompiler->emitSemanticError (enumerator_7559.current_mInterruptName (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 175)), GALGAS_string ("either low interrupt or high interrupt can be \"fast\", not both"), fixItArray29  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 175)) ;
+        inCompiler->emitSemanticError (enumerator_7832.current_mInterruptName (HERE).readProperty_location (), GALGAS_string ("either low interrupt or high interrupt can be \"fast\", not both"), fixItArray29  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 175)) ;
       }
     }
-    enumerator_7559.gotoNextObject () ;
+    enumerator_7832.gotoNextObject () ;
   }
-  GALGAS_actualConfigurationMap var_actualConfigurationMap_8562 ;
+  GALGAS_actualConfigurationMap var_actualConfigurationMap_8862 ;
   enumGalgasBool test_30 = kBoolTrue ;
   if (kBoolTrue == test_30) {
-    test_30 = GALGAS_bool (kIsEqual, constinArgument_inPiccoloModel.getter_mProgramKind (SOURCE_FILE ("pic18_semantics.galgas", 180)).objectCompare (GALGAS_programKind::constructor_userProgram (SOURCE_FILE ("pic18_semantics.galgas", 180)))).boolEnum () ;
+    test_30 = GALGAS_bool (kIsEqual, constinArgument_inPiccoloModel.readProperty_mProgramKind ().objectCompare (GALGAS_programKind::constructor_userProgram (SOURCE_FILE ("pic18_semantics.galgas", 180)))).boolEnum () ;
     if (kBoolTrue == test_30) {
-      cEnumerator_configDefinitionList enumerator_8685 (constinArgument_inPiccoloModel.getter_mConfigDefinitionList (SOURCE_FILE ("pic18_semantics.galgas", 181)), kENUMERATION_UP) ;
-      while (enumerator_8685.hasCurrentObject ()) {
+      cEnumerator_configDefinitionList enumerator_8960 (constinArgument_inPiccoloModel.readProperty_mConfigDefinitionList (), kENUMERATION_UP) ;
+      while (enumerator_8960.hasCurrentObject ()) {
         TC_Array <C_FixItDescription> fixItArray31 ;
-        inCompiler->emitSemanticError (enumerator_8685.current_mDefinitionLocation (HERE), GALGAS_string ("configuration is not allowed for a bootloader user program"), fixItArray31  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 182)) ;
-        enumerator_8685.gotoNextObject () ;
+        inCompiler->emitSemanticError (enumerator_8960.current_mDefinitionLocation (HERE), GALGAS_string ("configuration is not allowed for a bootloader user program"), fixItArray31  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 182)) ;
+        enumerator_8960.gotoNextObject () ;
       }
-      var_actualConfigurationMap_8562 = GALGAS_actualConfigurationMap::constructor_emptyMap (SOURCE_FILE ("pic18_semantics.galgas", 184)) ;
+      var_actualConfigurationMap_8862 = GALGAS_actualConfigurationMap::constructor_emptyMap (SOURCE_FILE ("pic18_semantics.galgas", 184)) ;
     }
   }
   if (kBoolFalse == test_30) {
     {
-    routine_buildConfig (var_piccoloDeviceModel_1014.getter_mConfigRegisterMap (SOURCE_FILE ("pic18_semantics.galgas", 187)), constinArgument_inPiccoloModel.getter_mConfigDefinitionList (SOURCE_FILE ("pic18_semantics.galgas", 188)), var_listFileContents_919, var_actualConfigurationMap_8562, inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 186)) ;
+    routine_buildConfig (var_piccoloDeviceModel_1018.readProperty_mConfigRegisterMap (), constinArgument_inPiccoloModel.readProperty_mConfigDefinitionList (), var_listFileContents_919, var_actualConfigurationMap_8862, inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 186)) ;
     }
   }
-  GALGAS_uint var_RAMsize_9105 = GALGAS_uint ((uint32_t) 0U) ;
-  cEnumerator_ramBankTable enumerator_9129 (var_ramBank_1068, kENUMERATION_UP) ;
-  while (enumerator_9129.hasCurrentObject ()) {
+  GALGAS_uint var_RAMsize_9422 = GALGAS_uint ((uint32_t) 0U) ;
+  cEnumerator_ramBankTable enumerator_9461 (var_ramBank_1080, kENUMERATION_UP) ;
+  while (enumerator_9461.hasCurrentObject ()) {
     enumGalgasBool test_32 = kBoolTrue ;
     if (kBoolTrue == test_32) {
-      test_32 = GALGAS_bool (kIsStrictSup, enumerator_9129.current_mLastAddressPlusOne (HERE).objectCompare (var_RAMsize_9105)).boolEnum () ;
+      test_32 = GALGAS_bool (kIsStrictSup, enumerator_9461.current_mLastAddressPlusOne (HERE).objectCompare (var_RAMsize_9422)).boolEnum () ;
       if (kBoolTrue == test_32) {
-        var_RAMsize_9105 = enumerator_9129.current_mLastAddressPlusOne (HERE) ;
+        var_RAMsize_9422 = enumerator_9461.current_mLastAddressPlusOne (HERE) ;
       }
     }
-    enumerator_9129.gotoNextObject () ;
+    enumerator_9461.gotoNextObject () ;
   }
-  GALGAS_constantMap var_constantMap_9304 = GALGAS_constantMap::constructor_emptyMap (SOURCE_FILE ("pic18_semantics.galgas", 201)) ;
+  GALGAS_constantMap var_constantMap_9652 = GALGAS_constantMap::constructor_emptyMap (SOURCE_FILE ("pic18_semantics.galgas", 201)) ;
   {
-  var_constantMap_9304.setter_insertKey (GALGAS_lstring::constructor_new (GALGAS_string ("ROM_SIZE"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 203))  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 203)), var_piccoloDeviceModel_1014.getter_mRomSize (HERE).getter_uint (HERE).getter_sint_36__34_ (SOURCE_FILE ("pic18_semantics.galgas", 203)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 203)) ;
+  var_constantMap_9652.setter_insertKey (GALGAS_lstring::constructor_new (GALGAS_string ("ROM_SIZE"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 203))  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 203)), var_piccoloDeviceModel_1018.readProperty_mRomSize ().readProperty_uint ().getter_sint_36__34_ (SOURCE_FILE ("pic18_semantics.galgas", 203)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 203)) ;
   }
   {
-  var_constantMap_9304.setter_insertKey (GALGAS_lstring::constructor_new (GALGAS_string ("RAM_SIZE"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 204))  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 204)), var_RAMsize_9105.getter_sint_36__34_ (SOURCE_FILE ("pic18_semantics.galgas", 204)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 204)) ;
+  var_constantMap_9652.setter_insertKey (GALGAS_lstring::constructor_new (GALGAS_string ("RAM_SIZE"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 204))  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 204)), var_RAMsize_9422.getter_sint_36__34_ (SOURCE_FILE ("pic18_semantics.galgas", 204)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 204)) ;
   }
   enumGalgasBool test_33 = kBoolTrue ;
   if (kBoolTrue == test_33) {
-    test_33 = GALGAS_bool (kIsNotEqual, constinArgument_inPiccoloModel.getter_mProgramKind (HERE).objectCompare (GALGAS_programKind::constructor_regularProgram (SOURCE_FILE ("pic18_semantics.galgas", 206)))).boolEnum () ;
+    test_33 = GALGAS_bool (kIsNotEqual, constinArgument_inPiccoloModel.readProperty_mProgramKind ().objectCompare (GALGAS_programKind::constructor_regularProgram (SOURCE_FILE ("pic18_semantics.galgas", 206)))).boolEnum () ;
     if (kBoolTrue == test_33) {
-      GALGAS_lstring var_bootloaderSizeString_9707 = GALGAS_lstring::constructor_new (GALGAS_string ("BOOTLOADER_RESERVED_SIZE"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 207))  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 207)) ;
+      GALGAS_lstring var_bootloaderSizeString_10055 = GALGAS_lstring::constructor_new (GALGAS_string ("BOOTLOADER_RESERVED_SIZE"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 207))  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 207)) ;
       {
-      var_constantMap_9304.setter_insertKey (var_bootloaderSizeString_9707, var_bootloaderReservedROMsize_1532.getter_uint (SOURCE_FILE ("pic18_semantics.galgas", 208)).getter_sint_36__34_ (SOURCE_FILE ("pic18_semantics.galgas", 208)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 208)) ;
+      var_constantMap_9652.setter_insertKey (var_bootloaderSizeString_10055, var_bootloaderReservedROMsize_1568.readProperty_uint ().getter_sint_36__34_ (SOURCE_FILE ("pic18_semantics.galgas", 208)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 208)) ;
       }
     }
   }
-  GALGAS_stringset var_usedRegisters_9916 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("pic18_semantics.galgas", 211)) ;
-  cEnumerator_constantDefinitionList enumerator_9992 (constinArgument_inPiccoloModel.getter_mConstantDefinitionList (HERE), kENUMERATION_UP) ;
-  while (enumerator_9992.hasCurrentObject ()) {
-    GALGAS_sint_36__34_ var_result_10085 ;
-    callExtensionMethod_eval ((const cPtr_immediatExpression *) enumerator_9992.current_mExpression (HERE).ptr (), var_piccoloDeviceModel_1014.getter_mRegisterTable (HERE), var_constantMap_9304, var_result_10085, var_usedRegisters_9916, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 213)) ;
+  GALGAS_stringset var_usedRegisters_10262 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("pic18_semantics.galgas", 211)) ;
+  cEnumerator_constantDefinitionList enumerator_10319 (constinArgument_inPiccoloModel.readProperty_mConstantDefinitionList (), kENUMERATION_UP) ;
+  while (enumerator_10319.hasCurrentObject ()) {
+    GALGAS_sint_36__34_ var_result_10456 ;
+    callExtensionMethod_eval ((const cPtr_immediatExpression *) enumerator_10319.current_mExpression (HERE).ptr (), var_piccoloDeviceModel_1018.readProperty_mRegisterTable (), var_constantMap_9652, var_result_10456, var_usedRegisters_10262, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 213)) ;
     enumGalgasBool test_34 = kBoolTrue ;
     if (kBoolTrue == test_34) {
-      test_34 = var_piccoloDeviceModel_1014.getter_mRegisterTable (HERE).getter_hasKey (enumerator_9992.current_mConstantName (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 214)) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 214)).boolEnum () ;
+      test_34 = var_piccoloDeviceModel_1018.readProperty_mRegisterTable ().getter_hasKey (enumerator_10319.current_mConstantName (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 214)).boolEnum () ;
       if (kBoolTrue == test_34) {
         TC_Array <C_FixItDescription> fixItArray35 ;
-        inCompiler->emitSemanticError (enumerator_9992.current_mConstantName (HERE).getter_location (SOURCE_FILE ("pic18_semantics.galgas", 215)), GALGAS_string ("'").add_operation (enumerator_9992.current_mConstantName (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 215)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 215)).add_operation (GALGAS_string ("' is already declared as ram register or special register"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 215)), fixItArray35  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 215)) ;
+        inCompiler->emitSemanticError (enumerator_10319.current_mConstantName (HERE).readProperty_location (), GALGAS_string ("'").add_operation (enumerator_10319.current_mConstantName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 215)).add_operation (GALGAS_string ("' is already declared as ram register or special register"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 215)), fixItArray35  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 215)) ;
       }
     }
     if (kBoolFalse == test_34) {
       {
-      var_constantMap_9304.setter_insertKey (enumerator_9992.current_mConstantName (HERE), var_result_10085, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 217)) ;
+      var_constantMap_9652.setter_insertKey (enumerator_10319.current_mConstantName (HERE), var_result_10456, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 217)) ;
       }
     }
-    enumerator_9992.gotoNextObject () ;
+    enumerator_10319.gotoNextObject () ;
   }
-  GALGAS_declaredByteMap var_declaredByteMap_10684 ;
+  GALGAS_declaredByteMap var_declaredByteMap_11051 ;
   {
-  routine_analyze_5F_ram_5F_sections (GALGAS_string ("DECLARED VARIABLES"), constinArgument_inPiccoloModel.getter_mRamDefinitionList (SOURCE_FILE ("pic18_semantics.galgas", 223)), var_constantMap_9304, var_usedRegisters_9916, var_ramBank_1068, var_piccoloDeviceModel_1014.getter_mRegisterTable (HERE), var_listFileContents_919, var_registerTable_1662, var_declaredByteMap_10684, inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 221)) ;
+  routine_analyze_5F_ram_5F_sections (GALGAS_string ("DECLARED VARIABLES"), constinArgument_inPiccoloModel.readProperty_mRamDefinitionList (), var_constantMap_9652, var_usedRegisters_10262, var_ramBank_1080, var_piccoloDeviceModel_1018.readProperty_mRegisterTable (), var_listFileContents_919, var_registerTable_1702, var_declaredByteMap_11051, inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 221)) ;
   }
   enumGalgasBool test_36 = kBoolTrue ;
   if (kBoolTrue == test_36) {
-    test_36 = GALGAS_bool (kIsEqual, constinArgument_inPiccoloModel.getter_mProgramKind (SOURCE_FILE ("pic18_semantics.galgas", 233)).objectCompare (GALGAS_programKind::constructor_bootloaderProgram (SOURCE_FILE ("pic18_semantics.galgas", 233)))).boolEnum () ;
+    test_36 = GALGAS_bool (kIsEqual, constinArgument_inPiccoloModel.readProperty_mProgramKind ().objectCompare (GALGAS_programKind::constructor_bootloaderProgram (SOURCE_FILE ("pic18_semantics.galgas", 233)))).boolEnum () ;
     if (kBoolTrue == test_36) {
-      cEnumerator_ramBankTable enumerator_10904 (var_ramBank_1068, kENUMERATION_UP) ;
-      while (enumerator_10904.hasCurrentObject ()) {
+      cEnumerator_ramBankTable enumerator_11297 (var_ramBank_1080, kENUMERATION_UP) ;
+      while (enumerator_11297.hasCurrentObject ()) {
         enumGalgasBool test_37 = kBoolTrue ;
         if (kBoolTrue == test_37) {
-          test_37 = var_bootloaderReservedRAMmap_1121.getter_hasKey (enumerator_10904.current_lkey (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 235)) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 235)).boolEnum () ;
+          test_37 = var_bootloaderReservedRAMmap_1137.getter_hasKey (enumerator_11297.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 235)).boolEnum () ;
           if (kBoolTrue == test_37) {
-            GALGAS_luint var_bootloaderReservedSize_11008 ;
-            var_bootloaderReservedRAMmap_1121.method_searchKey (enumerator_10904.current_lkey (HERE), var_bootloaderReservedSize_11008, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 237)) ;
+            GALGAS_luint var_bootloaderReservedSize_11415 ;
+            var_bootloaderReservedRAMmap_1137.method_searchKey (enumerator_11297.current_lkey (HERE), var_bootloaderReservedSize_11415, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 237)) ;
             enumGalgasBool test_38 = kBoolTrue ;
             if (kBoolTrue == test_38) {
-              test_38 = GALGAS_bool (kIsStrictSup, enumerator_10904.current_mFirstFreeAddress (HERE).substract_operation (enumerator_10904.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 238)).objectCompare (var_bootloaderReservedSize_11008.getter_uint (SOURCE_FILE ("pic18_semantics.galgas", 238)))).boolEnum () ;
+              test_38 = GALGAS_bool (kIsStrictSup, enumerator_11297.current_mFirstFreeAddress (HERE).substract_operation (enumerator_11297.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 238)).objectCompare (var_bootloaderReservedSize_11415.readProperty_uint ())).boolEnum () ;
               if (kBoolTrue == test_38) {
                 TC_Array <C_FixItDescription> fixItArray39 ;
-                inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 239)), GALGAS_string ("for '").add_operation (enumerator_10904.current_lkey (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 239)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 239)).add_operation (GALGAS_string ("' RAM bank, the bootloader implementation declares "), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 239)).add_operation (enumerator_10904.current_mFirstFreeAddress (HERE).substract_operation (enumerator_10904.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 240)).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 240)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 239)).add_operation (GALGAS_string (" byte(s), althought the bootloader specification reserves "), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 240)).add_operation (var_bootloaderReservedSize_11008.getter_uint (SOURCE_FILE ("pic18_semantics.galgas", 242)).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 242)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 241)).add_operation (GALGAS_string (" byte(s)"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 242)), fixItArray39  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 239)) ;
+                inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 239)), GALGAS_string ("for '").add_operation (enumerator_11297.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 239)).add_operation (GALGAS_string ("' RAM bank, the bootloader implementation declares "), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 239)).add_operation (enumerator_11297.current_mFirstFreeAddress (HERE).substract_operation (enumerator_11297.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 240)).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 240)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 239)).add_operation (GALGAS_string (" byte(s), althought the bootloader specification reserves "), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 240)).add_operation (var_bootloaderReservedSize_11415.readProperty_uint ().getter_string (SOURCE_FILE ("pic18_semantics.galgas", 242)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 241)).add_operation (GALGAS_string (" byte(s)"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 242)), fixItArray39  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 239)) ;
               }
             }
           }
@@ -5152,29 +3338,29 @@ void routine_pic_31__38__5F_analyze (const GALGAS_pic_31__38_AST constinArgument
         if (kBoolFalse == test_37) {
           enumGalgasBool test_40 = kBoolTrue ;
           if (kBoolTrue == test_40) {
-            test_40 = GALGAS_bool (kIsStrictSup, enumerator_10904.current_mFirstFreeAddress (HERE).objectCompare (enumerator_10904.current_mFirstAddress (HERE))).boolEnum () ;
+            test_40 = GALGAS_bool (kIsStrictSup, enumerator_11297.current_mFirstFreeAddress (HERE).objectCompare (enumerator_11297.current_mFirstAddress (HERE))).boolEnum () ;
             if (kBoolTrue == test_40) {
               TC_Array <C_FixItDescription> fixItArray41 ;
-              inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 246)), GALGAS_string ("for '").add_operation (enumerator_10904.current_lkey (HERE).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 246)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 246)).add_operation (GALGAS_string ("' RAM bank, the bootloader implementation declares "), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 246)).add_operation (enumerator_10904.current_mFirstFreeAddress (HERE).substract_operation (enumerator_10904.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 247)).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 247)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 246)).add_operation (GALGAS_string (" byte(s), althought the bootloader specification reserves no space"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 247)), fixItArray41  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 246)) ;
+              inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 246)), GALGAS_string ("for '").add_operation (enumerator_11297.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 246)).add_operation (GALGAS_string ("' RAM bank, the bootloader implementation declares "), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 246)).add_operation (enumerator_11297.current_mFirstFreeAddress (HERE).substract_operation (enumerator_11297.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 247)).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 247)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 246)).add_operation (GALGAS_string (" byte(s), althought the bootloader specification reserves no space"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 247)), fixItArray41  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 246)) ;
             }
           }
         }
-        enumerator_10904.gotoNextObject () ;
+        enumerator_11297.gotoNextObject () ;
       }
     }
   }
   {
-  routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list (constinArgument_inSourceFileName, var_piccoloDeviceModel_1014.getter_mRomSize (HERE).getter_uint (HERE).getter_sint_36__34_ (SOURCE_FILE ("pic18_semantics.galgas", 255)), var_macroMap_4535, var_bootloaderRoutineDeclarationListForBootloaderImplementation_1249, var_userRoutineDeclarationListForBootloaderImplementation_1329, var_bootloaderReservedROMsize_1532, var_bootloaderRoutineDeclarationListForUserProgramImplementation_1416, var_userRoutineDeclarationListForUserProgramImplementation_1497, var_accessBankSplitOffset_1044, var_registerTable_1662, var_declaredByteMap_10684, var_routineDefinitionList_6800, constinArgument_inPiccoloModel.getter_mProgramKind (HERE), var_constantMap_9304, var_usedRegisters_9916, constinArgument_inPiccoloModel.getter_mDataList (HERE), var_interruptDefinitionList_6706, constinArgument_inPiccoloModel.getter_mUnusedRegisterList (HERE), var_ramBank_1068, var_hasHighInterrupt_7411, var_hasLowInterrupt_7479, var_piccoloDeviceModel_1014.getter_mDeviceName (HERE).getter_string (HERE), var_piccoloDeviceModel_1014.getter_mRegisterTable (HERE), var_actualConfigurationMap_8562, constinArgument_inPiccoloModel.getter_mEndOfProgram (HERE), var_listFileContents_919, inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 253)) ;
+  routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list (constinArgument_inSourceFileName, var_piccoloDeviceModel_1018.readProperty_mRomSize ().readProperty_uint ().getter_sint_36__34_ (SOURCE_FILE ("pic18_semantics.galgas", 255)), var_macroMap_4591, var_bootloaderRoutineDeclarationListForBootloaderImplementation_1269, var_userRoutineDeclarationListForBootloaderImplementation_1353, var_bootloaderReservedROMsize_1568, var_bootloaderRoutineDeclarationListForUserProgramImplementation_1444, var_userRoutineDeclarationListForUserProgramImplementation_1529, var_accessBankSplitOffset_1052, var_registerTable_1702, var_declaredByteMap_11051, var_routineDefinitionList_7021, constinArgument_inPiccoloModel.readProperty_mProgramKind (), var_constantMap_9652, var_usedRegisters_10262, constinArgument_inPiccoloModel.readProperty_mDataList (), var_interruptDefinitionList_6923, constinArgument_inPiccoloModel.readProperty_mUnusedRegisterList (), var_ramBank_1080, var_hasHighInterrupt_7671, var_hasLowInterrupt_7747, var_piccoloDeviceModel_1018.readProperty_mDeviceName ().readProperty_string (), var_piccoloDeviceModel_1018.readProperty_mRegisterTable (), var_actualConfigurationMap_8862, constinArgument_inPiccoloModel.readProperty_mEndOfProgram (), var_listFileContents_919, inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 253)) ;
   }
   enumGalgasBool test_42 = kBoolTrue ;
   if (kBoolTrue == test_42) {
-    test_42 = GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.getter_value ()).boolEnum () ;
+    test_42 = GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.readProperty_value ()).boolEnum () ;
     if (kBoolTrue == test_42) {
       var_listFileContents_919.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 283)).add_operation (GALGAS_string ("\n"
         "\n"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 283)), inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 283)) ;
-      GALGAS_string var_listFile_13013 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_semantics.galgas", 284)).add_operation (GALGAS_string (".list"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 284)) ;
-      GALGAS_bool joker_13141 ; // Joker input parameter
-      var_listFileContents_919.method_writeToFileWhenDifferentContents (var_listFile_13013, joker_13141, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 285)) ;
+      GALGAS_string var_listFile_13420 = constinArgument_inSourceFileName.getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_semantics.galgas", 284)).add_operation (GALGAS_string (".list"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 284)) ;
+      GALGAS_bool joker_13548 ; // Joker input parameter
+      var_listFileContents_919.method_writeToFileWhenDifferentContents (var_listFile_13420, joker_13548, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 285)) ;
     }
   }
 }
@@ -5206,20 +3392,20 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis (const GALGAS_string con
   outArgument_outAccessBankSplitOffset.drop () ; // Release 'out' argument
   outArgument_outRamBank.drop () ; // Release 'out' argument
   outArgument_outRegisterTable.drop () ; // Release 'out' argument
-  GALGAS_string var_sourceFileBaseName_747 = constinArgument_inSourceFileName.getter_lastPathComponent (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 20)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 20)) ;
+  GALGAS_string var_sourceFileBaseName_751 = constinArgument_inSourceFileName.getter_lastPathComponent (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 20)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 20)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsNotEqual, var_sourceFileBaseName_747.objectCompare (constinArgument_inBootloaderName.getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 21)))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsNotEqual, var_sourceFileBaseName_751.objectCompare (constinArgument_inBootloaderName.readProperty_string ())).boolEnum () ;
     if (kBoolTrue == test_0) {
       TC_Array <C_FixItDescription> fixItArray1 ;
-      inCompiler->emitSemanticError (constinArgument_inBootloaderName.getter_location (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 22)), GALGAS_string ("the bootloader name ('").add_operation (constinArgument_inBootloaderName.getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 22)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 22)).add_operation (GALGAS_string ("') should be identical to the file base name '"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 22)).add_operation (var_sourceFileBaseName_747, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 23)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 23)), fixItArray1  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 22)) ;
+      inCompiler->emitSemanticError (constinArgument_inBootloaderName.readProperty_location (), GALGAS_string ("the bootloader name ('").add_operation (constinArgument_inBootloaderName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 22)).add_operation (GALGAS_string ("') should be identical to the file base name '"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 22)).add_operation (var_sourceFileBaseName_751, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 23)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 23)), fixItArray1  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 22)) ;
     }
   }
   outArgument_outListFileContents = GALGAS_string::makeEmptyString () ;
   {
   routine_parseDeviceDefinition (constinArgument_inDeviceName, outArgument_outPiccoloDeviceModel, inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 27)) ;
   }
-  switch (outArgument_outPiccoloDeviceModel.getter_mProcessorType (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 28)).enumValue ()) {
+  switch (outArgument_outPiccoloDeviceModel.readProperty_mProcessorType ().enumValue ()) {
   case GALGAS_processorType::kNotBuilt:
     break ;
   case GALGAS_processorType::kEnum_pic_31__38__5F__36__30_:
@@ -5235,14 +3421,14 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis (const GALGAS_string con
   case GALGAS_processorType::kEnum_midrange:
     {
       TC_Array <C_FixItDescription> fixItArray2 ;
-      inCompiler->emitSemanticError (constinArgument_inDeviceName.getter_location (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 31)), GALGAS_string ("a midrange device is not accepted here"), fixItArray2  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 31)) ;
+      inCompiler->emitSemanticError (constinArgument_inDeviceName.readProperty_location (), GALGAS_string ("a midrange device is not accepted here"), fixItArray2  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 31)) ;
       outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
     }
     break ;
   case GALGAS_processorType::kEnum_baseline:
     {
       TC_Array <C_FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticError (constinArgument_inDeviceName.getter_location (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 32)), GALGAS_string ("a baseline device is not accepted here"), fixItArray3  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 32)) ;
+      inCompiler->emitSemanticError (constinArgument_inDeviceName.readProperty_location (), GALGAS_string ("a baseline device is not accepted here"), fixItArray3  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 32)) ;
       outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
     }
     break ;
@@ -5253,77 +3439,77 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis (const GALGAS_string con
     "\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 37)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 37)) ;
   enumGalgasBool test_4 = kBoolTrue ;
   if (kBoolTrue == test_4) {
-    test_4 = GALGAS_bool (kIsSupOrEqual, constinArgument_inReservedRomSize.getter_uint (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 38)).objectCompare (outArgument_outPiccoloDeviceModel.getter_mRomSize (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 38)).getter_uint (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 38)))).boolEnum () ;
+    test_4 = GALGAS_bool (kIsSupOrEqual, constinArgument_inReservedRomSize.readProperty_uint ().objectCompare (outArgument_outPiccoloDeviceModel.readProperty_mRomSize ().readProperty_uint ())).boolEnum () ;
     if (kBoolTrue == test_4) {
       TC_Array <C_FixItDescription> fixItArray5 ;
-      inCompiler->emitSemanticError (constinArgument_inReservedRomSize.getter_location (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 39)), GALGAS_string ("reserved size for bootloader (").add_operation (constinArgument_inReservedRomSize.getter_uint (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 40)).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 40)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 39)).add_operation (GALGAS_string (" bytes) is greater than ROM size ("), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 40)).add_operation (outArgument_outPiccoloDeviceModel.getter_mRomSize (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)).getter_uint (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 40)).add_operation (GALGAS_string (" bytes) of "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)).add_operation (constinArgument_inDeviceName.getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)).add_operation (GALGAS_string (" micro controller"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 42)), fixItArray5  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 39)) ;
+      inCompiler->emitSemanticError (constinArgument_inReservedRomSize.readProperty_location (), GALGAS_string ("reserved size for bootloader (").add_operation (constinArgument_inReservedRomSize.readProperty_uint ().getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 40)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 39)).add_operation (GALGAS_string (" bytes) is greater than ROM size ("), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 40)).add_operation (outArgument_outPiccoloDeviceModel.readProperty_mRomSize ().readProperty_uint ().getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 40)).add_operation (GALGAS_string (" bytes) of "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)).add_operation (constinArgument_inDeviceName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)).add_operation (GALGAS_string (" micro controller"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 42)), fixItArray5  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 39)) ;
     }
   }
-  outArgument_outListFileContents.plusAssign_operation(GALGAS_string ("ROM size : ").add_operation (constinArgument_inReservedRomSize.getter_uint (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 44)).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 44)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 44)).add_operation (GALGAS_string (" bytes.\n"
+  outArgument_outListFileContents.plusAssign_operation(GALGAS_string ("ROM size : ").add_operation (constinArgument_inReservedRomSize.readProperty_uint ().getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 44)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 44)).add_operation (GALGAS_string (" bytes.\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 44)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 44)) ;
-  outArgument_outRamBank = outArgument_outPiccoloDeviceModel.getter_mRamBankTable (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 46)) ;
-  cEnumerator_bootloaderReservedRAMmap enumerator_2515 (constinArgument_inBootloaderReservedRAMmap, kENUMERATION_UP) ;
-  while (enumerator_2515.hasCurrentObject ()) {
-    GALGAS_uint var_firstAddress_2541 ;
-    GALGAS_uint var_firstFreeAddress_2568 ;
-    GALGAS_uint var_lastAddressPlusOne_2607 ;
-    GALGAS_uintlist var_mirrorOffsetList_2638 ;
-    outArgument_outRamBank.method_searchKey (enumerator_2515.current_lkey (HERE), var_firstAddress_2541, var_firstFreeAddress_2568, var_lastAddressPlusOne_2607, var_mirrorOffsetList_2638, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 52)) ;
-    var_firstFreeAddress_2568 = var_firstFreeAddress_2568.add_operation (enumerator_2515.current_mReservedSize (HERE).getter_uint (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 53)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 53)) ;
+  outArgument_outRamBank = outArgument_outPiccoloDeviceModel.readProperty_mRamBankTable () ;
+  cEnumerator_bootloaderReservedRAMmap enumerator_2485 (constinArgument_inBootloaderReservedRAMmap, kENUMERATION_UP) ;
+  while (enumerator_2485.hasCurrentObject ()) {
+    GALGAS_uint var_firstAddress_2547 ;
+    GALGAS_uint var_firstFreeAddress_2578 ;
+    GALGAS_uint var_lastAddressPlusOne_2621 ;
+    GALGAS_uintlist var_mirrorOffsetList_2656 ;
+    outArgument_outRamBank.method_searchKey (enumerator_2485.current_lkey (HERE), var_firstAddress_2547, var_firstFreeAddress_2578, var_lastAddressPlusOne_2621, var_mirrorOffsetList_2656, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 52)) ;
+    var_firstFreeAddress_2578 = var_firstFreeAddress_2578.add_operation (enumerator_2485.current_mReservedSize (HERE).readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 53)) ;
     enumGalgasBool test_6 = kBoolTrue ;
     if (kBoolTrue == test_6) {
-      test_6 = GALGAS_bool (kIsStrictSup, var_firstFreeAddress_2568.objectCompare (var_lastAddressPlusOne_2607)).boolEnum () ;
+      test_6 = GALGAS_bool (kIsStrictSup, var_firstFreeAddress_2578.objectCompare (var_lastAddressPlusOne_2621)).boolEnum () ;
       if (kBoolTrue == test_6) {
         TC_Array <C_FixItDescription> fixItArray7 ;
-        inCompiler->emitSemanticError (enumerator_2515.current_mReservedSize (HERE).getter_location (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 55)), GALGAS_string ("reserved size is greater than size of '").add_operation (enumerator_2515.current_lkey (HERE).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 55)).add_operation (GALGAS_string ("' bank ("), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 55)).add_operation (var_lastAddressPlusOne_2607.substract_operation (var_firstAddress_2541, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 56)).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 56)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 55)).add_operation (GALGAS_string (" bytes)"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 56)), fixItArray7  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 55)) ;
+        inCompiler->emitSemanticError (enumerator_2485.current_mReservedSize (HERE).readProperty_location (), GALGAS_string ("reserved size is greater than size of '").add_operation (enumerator_2485.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 55)).add_operation (GALGAS_string ("' bank ("), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 55)).add_operation (var_lastAddressPlusOne_2621.substract_operation (var_firstAddress_2547, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 56)).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 56)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 55)).add_operation (GALGAS_string (" bytes)"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 56)), fixItArray7  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 55)) ;
       }
     }
     if (kBoolFalse == test_6) {
       {
-      outArgument_outRamBank.setter_setMFirstFreeAddressForKey (var_firstFreeAddress_2568, enumerator_2515.current_lkey (HERE).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 58)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 58)) ;
+      outArgument_outRamBank.setter_setMFirstFreeAddressForKey (var_firstFreeAddress_2578, enumerator_2485.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 58)) ;
       }
-      outArgument_outListFileContents.plusAssign_operation(GALGAS_string ("'").add_operation (enumerator_2515.current_lkey (HERE).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)).add_operation (GALGAS_string ("' RAM size : "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)).add_operation (enumerator_2515.current_mReservedSize (HERE).getter_uint (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)).add_operation (GALGAS_string (" bytes (from "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)).add_operation (var_firstAddress_2541.getter_hexString (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 60)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)).add_operation (GALGAS_string (" to "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 60)).add_operation (var_firstFreeAddress_2568.substract_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 60)).getter_hexString (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 60)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 60)).add_operation (GALGAS_string (").\n"
+      outArgument_outListFileContents.plusAssign_operation(GALGAS_string ("'").add_operation (enumerator_2485.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)).add_operation (GALGAS_string ("' RAM size : "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)).add_operation (enumerator_2485.current_mReservedSize (HERE).readProperty_uint ().getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)).add_operation (GALGAS_string (" bytes (from "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)).add_operation (var_firstAddress_2547.getter_hexString (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 60)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)).add_operation (GALGAS_string (" to "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 60)).add_operation (var_firstFreeAddress_2578.substract_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 60)).getter_hexString (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 60)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 60)).add_operation (GALGAS_string (").\n"
         "\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 60)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 59)) ;
     }
-    enumerator_2515.gotoNextObject () ;
+    enumerator_2485.gotoNextObject () ;
   }
   outArgument_outListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 64)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 64)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 64)) ;
   outArgument_outListFileContents.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("BOOTLOADER ROUTINES").getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 117U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 65)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 65)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 65)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 65)) ;
   outArgument_outListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 66)).add_operation (GALGAS_string ("\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 66)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 66)) ;
   outArgument_outListFileContents.plusAssign_operation(GALGAS_string ("Routine").getter_stringByLeftPadding (GALGAS_uint ((uint32_t) 40U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 67)).add_operation (GALGAS_string (" Entry point address\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 67)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 67)) ;
-  GALGAS_stringset var_routineNameSet_3735 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 68)) ;
-  GALGAS_uint var_entryPointAddress_3784 = GALGAS_uint ((uint32_t) 4U) ;
-  cEnumerator_routineDeclarationList enumerator_3838 (constinArgument_inBootloaderRoutineDeclarationList, kENUMERATION_UP) ;
-  while (enumerator_3838.hasCurrentObject ()) {
+  GALGAS_stringset var_routineNameSet_3747 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 68)) ;
+  GALGAS_uint var_entryPointAddress_3800 = GALGAS_uint ((uint32_t) 4U) ;
+  cEnumerator_routineDeclarationList enumerator_3834 (constinArgument_inBootloaderRoutineDeclarationList, kENUMERATION_UP) ;
+  while (enumerator_3834.hasCurrentObject ()) {
     enumGalgasBool test_8 = kBoolTrue ;
     if (kBoolTrue == test_8) {
-      test_8 = var_routineNameSet_3735.getter_hasKey (enumerator_3838.current_mRoutineName (HERE).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 71)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 71)).boolEnum () ;
+      test_8 = var_routineNameSet_3747.getter_hasKey (enumerator_3834.current_mRoutineName (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 71)).boolEnum () ;
       if (kBoolTrue == test_8) {
         TC_Array <C_FixItDescription> fixItArray9 ;
-        inCompiler->emitSemanticError (enumerator_3838.current_mRoutineName (HERE).getter_location (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 72)), GALGAS_string ("This routine is already declared"), fixItArray9  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 72)) ;
+        inCompiler->emitSemanticError (enumerator_3834.current_mRoutineName (HERE).readProperty_location (), GALGAS_string ("This routine is already declared"), fixItArray9  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 72)) ;
       }
     }
-    var_routineNameSet_3735.addAssign_operation (enumerator_3838.current_mRoutineName (HERE).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 74))  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 74)) ;
-    outArgument_outListFileContents.plusAssign_operation(enumerator_3838.current_mRoutineName (HERE).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)).getter_stringByLeftPadding (GALGAS_uint ((uint32_t) 40U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)).add_operation (var_entryPointAddress_3784.getter_hexString (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)) ;
-    var_entryPointAddress_3784 = var_entryPointAddress_3784.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 76)) ;
+    var_routineNameSet_3747.addAssign_operation (enumerator_3834.current_mRoutineName (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 74)) ;
+    outArgument_outListFileContents.plusAssign_operation(enumerator_3834.current_mRoutineName (HERE).readProperty_string ().getter_stringByLeftPadding (GALGAS_uint ((uint32_t) 40U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)).add_operation (var_entryPointAddress_3800.getter_hexString (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 75)) ;
+    var_entryPointAddress_3800 = var_entryPointAddress_3800.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 76)) ;
     enumGalgasBool test_10 = kBoolTrue ;
     if (kBoolTrue == test_10) {
-      test_10 = GALGAS_bool (kIsEqual, var_entryPointAddress_3784.objectCompare (GALGAS_uint ((uint32_t) 8U))).boolEnum () ;
+      test_10 = GALGAS_bool (kIsEqual, var_entryPointAddress_3800.objectCompare (GALGAS_uint ((uint32_t) 8U))).boolEnum () ;
       if (kBoolTrue == test_10) {
-        var_entryPointAddress_3784 = GALGAS_uint ((uint32_t) 12U) ;
+        var_entryPointAddress_3800 = GALGAS_uint ((uint32_t) 12U) ;
       }
     }
     if (kBoolFalse == test_10) {
       enumGalgasBool test_11 = kBoolTrue ;
       if (kBoolTrue == test_11) {
-        test_11 = GALGAS_bool (kIsEqual, var_entryPointAddress_3784.objectCompare (GALGAS_uint ((uint32_t) 24U))).boolEnum () ;
+        test_11 = GALGAS_bool (kIsEqual, var_entryPointAddress_3800.objectCompare (GALGAS_uint ((uint32_t) 24U))).boolEnum () ;
         if (kBoolTrue == test_11) {
-          var_entryPointAddress_3784 = GALGAS_uint ((uint32_t) 28U) ;
+          var_entryPointAddress_3800 = GALGAS_uint ((uint32_t) 28U) ;
         }
       }
     }
-    enumerator_3838.gotoNextObject () ;
+    enumerator_3834.gotoNextObject () ;
   }
   outArgument_outListFileContents.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 83)) ;
   outArgument_outListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 85)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 85)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 85)) ;
@@ -5331,28 +3517,28 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis (const GALGAS_string con
   outArgument_outListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 87)).add_operation (GALGAS_string ("\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 87)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 87)) ;
   outArgument_outListFileContents.plusAssign_operation(GALGAS_string ("Routine").getter_stringByLeftPadding (GALGAS_uint ((uint32_t) 40U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 88)).add_operation (GALGAS_string (" Entry point address\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 88)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 88)) ;
-  var_entryPointAddress_3784 = constinArgument_inReservedRomSize.getter_uint (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 89)) ;
-  cEnumerator_routineDeclarationList enumerator_4868 (constinArgument_inUserRoutineDeclarationList, kENUMERATION_UP) ;
-  while (enumerator_4868.hasCurrentObject ()) {
+  var_entryPointAddress_3800 = constinArgument_inReservedRomSize.readProperty_uint () ;
+  cEnumerator_routineDeclarationList enumerator_4882 (constinArgument_inUserRoutineDeclarationList, kENUMERATION_UP) ;
+  while (enumerator_4882.hasCurrentObject ()) {
     enumGalgasBool test_12 = kBoolTrue ;
     if (kBoolTrue == test_12) {
-      test_12 = var_routineNameSet_3735.getter_hasKey (enumerator_4868.current_mRoutineName (HERE).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 91)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 91)).boolEnum () ;
+      test_12 = var_routineNameSet_3747.getter_hasKey (enumerator_4882.current_mRoutineName (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 91)).boolEnum () ;
       if (kBoolTrue == test_12) {
         TC_Array <C_FixItDescription> fixItArray13 ;
-        inCompiler->emitSemanticError (enumerator_4868.current_mRoutineName (HERE).getter_location (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 92)), GALGAS_string ("This routine is already declared"), fixItArray13  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 92)) ;
+        inCompiler->emitSemanticError (enumerator_4882.current_mRoutineName (HERE).readProperty_location (), GALGAS_string ("This routine is already declared"), fixItArray13  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 92)) ;
       }
     }
-    var_routineNameSet_3735.addAssign_operation (enumerator_4868.current_mRoutineName (HERE).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 94))  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 94)) ;
-    outArgument_outListFileContents.plusAssign_operation(enumerator_4868.current_mRoutineName (HERE).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)).getter_stringByLeftPadding (GALGAS_uint ((uint32_t) 40U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)).add_operation (var_entryPointAddress_3784.getter_hexString (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)) ;
-    var_entryPointAddress_3784 = var_entryPointAddress_3784.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 96)) ;
-    enumerator_4868.gotoNextObject () ;
+    var_routineNameSet_3747.addAssign_operation (enumerator_4882.current_mRoutineName (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 94)) ;
+    outArgument_outListFileContents.plusAssign_operation(enumerator_4882.current_mRoutineName (HERE).readProperty_string ().getter_stringByLeftPadding (GALGAS_uint ((uint32_t) 40U), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)).add_operation (var_entryPointAddress_3800.getter_hexString (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 95)) ;
+    var_entryPointAddress_3800 = var_entryPointAddress_3800.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 96)) ;
+    enumerator_4882.gotoNextObject () ;
   }
   outArgument_outListFileContents.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 98)) ;
-  outArgument_outRegisterTable = outArgument_outPiccoloDeviceModel.getter_mRegisterTable (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 100)) ;
-  GALGAS_stringset joker_5456 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 105)) ;
+  outArgument_outRegisterTable = outArgument_outPiccoloDeviceModel.readProperty_mRegisterTable () ;
+  GALGAS_stringset joker_5496 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 105)) ;
   {
-  GALGAS_declaredByteMap joker_5573 ; // Joker input parameter
-  routine_analyze_5F_ram_5F_sections (GALGAS_string ("SHARED VARIABLES"), constinArgument_inSharedRamDefinitionList, GALGAS_constantMap::constructor_emptyMap (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 104)), joker_5456, outArgument_outRamBank, outArgument_outPiccoloDeviceModel.getter_mRegisterTable (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 107)), outArgument_outListFileContents, outArgument_outRegisterTable, joker_5573, inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 101)) ;
+  GALGAS_declaredByteMap joker_5611 ; // Joker input parameter
+  routine_analyze_5F_ram_5F_sections (GALGAS_string ("SHARED VARIABLES"), constinArgument_inSharedRamDefinitionList, GALGAS_constantMap::constructor_emptyMap (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 104)), joker_5496, outArgument_outRamBank, outArgument_outPiccoloDeviceModel.readProperty_mRegisterTable (), outArgument_outListFileContents, outArgument_outRegisterTable, joker_5611, inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 101)) ;
   }
   outArgument_outListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint ((uint32_t) 119U), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 112)).add_operation (GALGAS_string ("\n"
     "\n"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 112)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 112)) ;
@@ -5385,122 +3571,122 @@ static void extensionMethod_pic_31__38_Instruction_5F_switch_analyze (const cPtr
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_Instruction_5F_switch * object = (const cPtr_pic_31__38_Instruction_5F_switch *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_switch) ;
-  GALGAS_caseConstantMap var_caseConstantMap_2313 = GALGAS_caseConstantMap::constructor_emptyMap (SOURCE_FILE ("ipic18-switch-instruction.galgas", 61)) ;
+  GALGAS_caseConstantMap var_caseConstantMap_2445 = GALGAS_caseConstantMap::constructor_emptyMap (SOURCE_FILE ("ipic18-switch-instruction.galgas", 61)) ;
   const GALGAS_pic_31__38_Instruction_5F_switch temp_0 = object ;
-  GALGAS_lstring var_exitLabel_2370 = GALGAS_lstring::constructor_new (GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 63)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 63)), temp_0.getter_mInstructionLocation (HERE)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 63)) ;
+  GALGAS_lstring var_exitLabel_2502 = GALGAS_lstring::constructor_new (GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 63)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 63)), temp_0.readProperty_mInstructionLocation ()  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 63)) ;
   ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 64)) ;
-  GALGAS_sint_36__34_ var_lastComparisonValue_2526 = GALGAS_sint_36__34_ ((int64_t) 0LL) ;
-  GALGAS_bool var_continuesInSequence_2605 = GALGAS_bool (false) ;
-  GALGAS_uint var_initialBankSetting_2643 = ioArgument_ioCurrentBank ;
-  GALGAS_uint var_finalBankSetting_2684 = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 71)) ;
-  GALGAS_bool var_finalBankSettingDefined_2733 = GALGAS_bool (false) ;
+  GALGAS_sint_36__34_ var_lastComparisonValue_2662 = GALGAS_sint_36__34_ ((int64_t) 0LL) ;
+  GALGAS_bool var_continuesInSequence_2745 = GALGAS_bool (false) ;
+  GALGAS_uint var_initialBankSetting_2783 = ioArgument_ioCurrentBank ;
+  GALGAS_uint var_finalBankSetting_2828 = GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 71)) ;
+  GALGAS_bool var_finalBankSettingDefined_2877 = GALGAS_bool (false) ;
   const GALGAS_pic_31__38_Instruction_5F_switch temp_1 = object ;
-  cEnumerator_pic_31__38_SwitchInstructionCaseList enumerator_2774 (temp_1.getter_mCaseList (HERE), kENUMERATION_UP) ;
-  while (enumerator_2774.hasCurrentObject ()) {
+  cEnumerator_pic_31__38_SwitchInstructionCaseList enumerator_2947 (temp_1.readProperty_mCaseList (), kENUMERATION_UP) ;
+  while (enumerator_2947.hasCurrentObject ()) {
     const GALGAS_pic_31__38_Instruction_5F_switch temp_2 = object ;
-    GALGAS_lstring var_conditionTrueLabel_2817 = GALGAS_lstring::constructor_new (GALGAS_string (".L.accepted.").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 76)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 76)), temp_2.getter_mInstructionLocation (HERE)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 76)) ;
-    cEnumerator_pic_31__38_CaseExpressionList enumerator_2970 (enumerator_2774.current_mCaseExpressionList (HERE), kENUMERATION_UP) ;
-    while (enumerator_2970.hasCurrentObject ()) {
-      GALGAS_string var_conditionLabel_2998 = ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 79)) ;
+    GALGAS_lstring var_conditionTrueLabel_3010 = GALGAS_lstring::constructor_new (GALGAS_string (".L.accepted.").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 76)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 76)), temp_2.readProperty_mInstructionLocation ()  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 76)) ;
+    cEnumerator_pic_31__38_CaseExpressionList enumerator_3148 (enumerator_2947.current_mCaseExpressionList (HERE), kENUMERATION_UP) ;
+    while (enumerator_3148.hasCurrentObject ()) {
+      GALGAS_string var_conditionLabel_3200 = ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 79)) ;
       ioArgument_ioLocalLabelIndex.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 80)) ;
-      callExtensionMethod_analyzeCaseItem ((const cPtr_pic_31__38_AbstractCaseItem *) enumerator_2970.current_mCaseItem (HERE).ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_conditionTrueLabel_2817, var_conditionLabel_2998, ioArgument_ioUsedRegisters, var_caseConstantMap_2313, ioArgument_ioGeneratedInstructionList, ioArgument_ioGeneratedBlockList, ioArgument_ioBlockLabel, var_lastComparisonValue_2526, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 81)) ;
-      enumerator_2970.gotoNextObject () ;
+      callExtensionMethod_analyzeCaseItem ((const cPtr_pic_31__38_AbstractCaseItem *) enumerator_3148.current_mCaseItem (HERE).ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_conditionTrueLabel_3010, var_conditionLabel_3200, ioArgument_ioUsedRegisters, var_caseConstantMap_2445, ioArgument_ioGeneratedInstructionList, ioArgument_ioGeneratedBlockList, ioArgument_ioBlockLabel, var_lastComparisonValue_2662, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 81)) ;
+      enumerator_3148.gotoNextObject () ;
     }
-    GALGAS_lstring var_conditionFalseLabel_3445 = ioArgument_ioBlockLabel ;
-    ioArgument_ioBlockLabel = var_conditionTrueLabel_2817 ;
-    GALGAS_uint var_branchFinalBank_3524 = var_initialBankSetting_2643 ;
+    GALGAS_lstring var_conditionFalseLabel_3647 = ioArgument_ioBlockLabel ;
+    ioArgument_ioBlockLabel = var_conditionTrueLabel_3010 ;
+    GALGAS_uint var_branchFinalBank_3730 = var_initialBankSetting_2783 ;
     {
-    routine_analyzeInstructionList (enumerator_2774.current_mInstructionList (HERE), ioArgument_ioGeneratedBlockList, constinArgument_inAccessBankSplitOffset, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inDataMap, constinArgument_inConstantMap, constinArgument_inMacroMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioBlockLabel, ioArgument_ioListFileContents, var_branchFinalBank_3524, constinArgument_inShouldPreserveBSR, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 98)) ;
+    routine_analyzeInstructionList (enumerator_2947.current_mInstructionList (HERE), ioArgument_ioGeneratedBlockList, constinArgument_inAccessBankSplitOffset, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inDataMap, constinArgument_inConstantMap, constinArgument_inMacroMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioBlockLabel, ioArgument_ioListFileContents, var_branchFinalBank_3730, constinArgument_inShouldPreserveBSR, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 98)) ;
     }
     enumGalgasBool test_3 = kBoolTrue ;
     if (kBoolTrue == test_3) {
-      test_3 = GALGAS_bool (kIsNotEqual, ioArgument_ioBlockLabel.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+      test_3 = GALGAS_bool (kIsNotEqual, ioArgument_ioBlockLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       if (kBoolTrue == test_3) {
-        var_continuesInSequence_2605 = GALGAS_bool (true) ;
+        var_continuesInSequence_2745 = GALGAS_bool (true) ;
         const GALGAS_pic_31__38_Instruction_5F_switch temp_4 = object ;
-        ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 119)), ioArgument_ioBlockLabel, ioArgument_ioGeneratedInstructionList, GALGAS_ipic_31__38_JumpTerminator::constructor_new (temp_4.getter_mInstructionLocation (HERE), var_exitLabel_2370, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18-switch-instruction.galgas", 122))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 122)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 123)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 118))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 118)) ;
+        ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 119)), ioArgument_ioBlockLabel, ioArgument_ioGeneratedInstructionList, GALGAS_ipic_31__38_JumpTerminator::constructor_new (temp_4.readProperty_mInstructionLocation (), var_exitLabel_2502, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18-switch-instruction.galgas", 122))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 122)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 123)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 118))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 118)) ;
       }
     }
     enumGalgasBool test_5 = kBoolTrue ;
     if (kBoolTrue == test_5) {
-      test_5 = var_finalBankSettingDefined_2733.boolEnum () ;
+      test_5 = var_finalBankSettingDefined_2877.boolEnum () ;
       if (kBoolTrue == test_5) {
         enumGalgasBool test_6 = kBoolTrue ;
         if (kBoolTrue == test_6) {
-          test_6 = GALGAS_bool (kIsNotEqual, var_finalBankSetting_2684.objectCompare (var_branchFinalBank_3524)).boolEnum () ;
+          test_6 = GALGAS_bool (kIsNotEqual, var_finalBankSetting_2828.objectCompare (var_branchFinalBank_3730)).boolEnum () ;
           if (kBoolTrue == test_6) {
             GALGAS_string temp_7 ;
-            const enumGalgasBool test_8 = GALGAS_bool (kIsEqual, var_branchFinalBank_3524.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 130)))).boolEnum () ;
+            const enumGalgasBool test_8 = GALGAS_bool (kIsEqual, var_branchFinalBank_3730.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 130)))).boolEnum () ;
             if (kBoolTrue == test_8) {
               temp_7 = GALGAS_string ("'no selection'") ;
             }else if (kBoolFalse == test_8) {
-              temp_7 = var_branchFinalBank_3524.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 130)) ;
+              temp_7 = var_branchFinalBank_3730.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 130)) ;
             }
             GALGAS_string temp_9 ;
-            const enumGalgasBool test_10 = GALGAS_bool (kIsEqual, var_finalBankSetting_2684.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 132)))).boolEnum () ;
+            const enumGalgasBool test_10 = GALGAS_bool (kIsEqual, var_finalBankSetting_2828.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 132)))).boolEnum () ;
             if (kBoolTrue == test_10) {
               temp_9 = GALGAS_string ("'no selection'") ;
             }else if (kBoolFalse == test_10) {
-              temp_9 = var_finalBankSetting_2684.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 132)) ;
+              temp_9 = var_finalBankSetting_2828.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 132)) ;
             }
             TC_Array <C_FixItDescription> fixItArray11 ;
-            inCompiler->emitSemanticError (enumerator_2774.current_mStartOfCase (HERE), GALGAS_string ("this branch leaves bank setting to ").add_operation (temp_7, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 129)).add_operation (GALGAS_string (", but first branch leaves bank setting to "), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 130)).add_operation (temp_9, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 131)).add_operation (GALGAS_string (" (should be the same setting)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 132)), fixItArray11  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 129)) ;
+            inCompiler->emitSemanticError (enumerator_2947.current_mStartOfCase (HERE), GALGAS_string ("this branch leaves bank setting to ").add_operation (temp_7, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 129)).add_operation (GALGAS_string (", but first branch leaves bank setting to "), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 130)).add_operation (temp_9, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 131)).add_operation (GALGAS_string (" (should be the same setting)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 132)), fixItArray11  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 129)) ;
           }
         }
       }
     }
     if (kBoolFalse == test_5) {
-      var_finalBankSettingDefined_2733 = GALGAS_bool (true) ;
-      var_finalBankSetting_2684 = var_branchFinalBank_3524 ;
+      var_finalBankSettingDefined_2877 = GALGAS_bool (true) ;
+      var_finalBankSetting_2828 = var_branchFinalBank_3730 ;
     }
     ioArgument_ioGeneratedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18-switch-instruction.galgas", 139)) ;
-    ioArgument_ioBlockLabel = var_conditionFalseLabel_3445 ;
-    enumerator_2774.gotoNextObject () ;
+    ioArgument_ioBlockLabel = var_conditionFalseLabel_3647 ;
+    enumerator_2947.gotoNextObject () ;
   }
-  GALGAS_uint var_branchFinalBank_5069 = var_initialBankSetting_2643 ;
+  GALGAS_uint var_branchFinalBank_5279 = var_initialBankSetting_2783 ;
   {
   const GALGAS_pic_31__38_Instruction_5F_switch temp_12 = object ;
-  routine_analyzeInstructionList (temp_12.getter_mElseInstructionList (HERE), ioArgument_ioGeneratedBlockList, constinArgument_inAccessBankSplitOffset, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inDataMap, constinArgument_inConstantMap, constinArgument_inMacroMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioBlockLabel, ioArgument_ioListFileContents, var_branchFinalBank_5069, constinArgument_inShouldPreserveBSR, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 144)) ;
+  routine_analyzeInstructionList (temp_12.readProperty_mElseInstructionList (), ioArgument_ioGeneratedBlockList, constinArgument_inAccessBankSplitOffset, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inDataMap, constinArgument_inConstantMap, constinArgument_inMacroMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioBlockLabel, ioArgument_ioListFileContents, var_branchFinalBank_5279, constinArgument_inShouldPreserveBSR, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 144)) ;
   }
-  GALGAS_bool var_thenContinuesInSequence_5522 = GALGAS_bool (kIsNotEqual, ioArgument_ioBlockLabel.getter_string (HERE).objectCompare (GALGAS_string::makeEmptyString ())) ;
+  GALGAS_bool var_thenContinuesInSequence_5732 = GALGAS_bool (kIsNotEqual, ioArgument_ioBlockLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())) ;
   enumGalgasBool test_13 = kBoolTrue ;
   if (kBoolTrue == test_13) {
-    test_13 = var_thenContinuesInSequence_5522.boolEnum () ;
+    test_13 = var_thenContinuesInSequence_5732.boolEnum () ;
     if (kBoolTrue == test_13) {
       const GALGAS_pic_31__38_Instruction_5F_switch temp_14 = object ;
-      ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 165)), ioArgument_ioBlockLabel, ioArgument_ioGeneratedInstructionList, GALGAS_ipic_31__38_JumpTerminator::constructor_new (temp_14.getter_mInstructionLocation (HERE), var_exitLabel_2370, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18-switch-instruction.galgas", 168))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 168)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 169)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 164))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 164)) ;
+      ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 165)), ioArgument_ioBlockLabel, ioArgument_ioGeneratedInstructionList, GALGAS_ipic_31__38_JumpTerminator::constructor_new (temp_14.readProperty_mInstructionLocation (), var_exitLabel_2502, GALGAS_jumpInstructionKind::constructor_ipicRelative (SOURCE_FILE ("ipic18-switch-instruction.galgas", 168))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 168)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 169)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 164))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 164)) ;
     }
   }
   ioArgument_ioGeneratedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18-switch-instruction.galgas", 173)) ;
   enumGalgasBool test_15 = kBoolTrue ;
   if (kBoolTrue == test_15) {
-    test_15 = GALGAS_bool (kIsNotEqual, var_finalBankSetting_2684.objectCompare (var_branchFinalBank_5069)).boolEnum () ;
+    test_15 = GALGAS_bool (kIsNotEqual, var_finalBankSetting_2828.objectCompare (var_branchFinalBank_5279)).boolEnum () ;
     if (kBoolTrue == test_15) {
       const GALGAS_pic_31__38_Instruction_5F_switch temp_16 = object ;
       GALGAS_string temp_17 ;
-      const enumGalgasBool test_18 = GALGAS_bool (kIsEqual, var_branchFinalBank_5069.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 177)))).boolEnum () ;
+      const enumGalgasBool test_18 = GALGAS_bool (kIsEqual, var_branchFinalBank_5279.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 177)))).boolEnum () ;
       if (kBoolTrue == test_18) {
         temp_17 = GALGAS_string ("'no selection'") ;
       }else if (kBoolFalse == test_18) {
-        temp_17 = var_branchFinalBank_5069.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 177)) ;
+        temp_17 = var_branchFinalBank_5279.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 177)) ;
       }
       GALGAS_string temp_19 ;
-      const enumGalgasBool test_20 = GALGAS_bool (kIsEqual, var_finalBankSetting_2684.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 179)))).boolEnum () ;
+      const enumGalgasBool test_20 = GALGAS_bool (kIsEqual, var_finalBankSetting_2828.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 179)))).boolEnum () ;
       if (kBoolTrue == test_20) {
         temp_19 = GALGAS_string ("'no selection'") ;
       }else if (kBoolFalse == test_20) {
-        temp_19 = var_finalBankSetting_2684.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 179)) ;
+        temp_19 = var_finalBankSetting_2828.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 179)) ;
       }
       TC_Array <C_FixItDescription> fixItArray21 ;
-      inCompiler->emitSemanticError (temp_16.getter_mElseBranchStartLocation (HERE), GALGAS_string ("the 'else' branch leaves bank setting to ").add_operation (temp_17, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 176)).add_operation (GALGAS_string (", but first branch leaves bank setting to "), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 177)).add_operation (temp_19, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 178)).add_operation (GALGAS_string (" (should be the same setting)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 179)), fixItArray21  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 176)) ;
+      inCompiler->emitSemanticError (temp_16.readProperty_mElseBranchStartLocation (), GALGAS_string ("the 'else' branch leaves bank setting to ").add_operation (temp_17, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 176)).add_operation (GALGAS_string (", but first branch leaves bank setting to "), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 177)).add_operation (temp_19, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 178)).add_operation (GALGAS_string (" (should be the same setting)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 179)), fixItArray21  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 176)) ;
     }
   }
-  ioArgument_ioCurrentBank = var_finalBankSetting_2684 ;
+  ioArgument_ioCurrentBank = var_finalBankSetting_2828 ;
   enumGalgasBool test_22 = kBoolTrue ;
   if (kBoolTrue == test_22) {
-    test_22 = var_continuesInSequence_2605.boolEnum () ;
+    test_22 = var_continuesInSequence_2745.boolEnum () ;
     if (kBoolTrue == test_22) {
-      ioArgument_ioBlockLabel = var_exitLabel_2370 ;
+      ioArgument_ioBlockLabel = var_exitLabel_2502 ;
     }
   }
   if (kBoolFalse == test_22) {
@@ -5540,45 +3726,45 @@ static void extensionMethod_pic_31__38_SimpleConstantCaseItem_analyzeCaseItem (c
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_SimpleConstantCaseItem * object = (const cPtr_pic_31__38_SimpleConstantCaseItem *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_SimpleConstantCaseItem) ;
-  GALGAS_sint_36__34_ var_result_7887 ;
+  GALGAS_sint_36__34_ var_result_8097 ;
   const GALGAS_pic_31__38_SimpleConstantCaseItem temp_0 = object ;
-  callExtensionMethod_eval ((const cPtr_immediatExpression *) temp_0.getter_mCaseExpression (HERE).ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_result_7887, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 225)) ;
+  callExtensionMethod_eval ((const cPtr_immediatExpression *) temp_0.readProperty_mCaseExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_result_8097, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 225)) ;
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = GALGAS_bool (kIsStrictSup, var_result_7887.objectCompare (GALGAS_sint_36__34_ ((int64_t) 255LL))).operator_or (GALGAS_bool (kIsStrictInf, var_result_7887.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 227)).boolEnum () ;
+    test_1 = GALGAS_bool (kIsStrictSup, var_result_8097.objectCompare (GALGAS_sint_36__34_ ((int64_t) 255LL))).operator_or (GALGAS_bool (kIsStrictInf, var_result_8097.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 227)).boolEnum () ;
     if (kBoolTrue == test_1) {
       const GALGAS_pic_31__38_SimpleConstantCaseItem temp_2 = object ;
       TC_Array <C_FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticError (temp_2.getter_mCaseExpressionLocation (HERE), GALGAS_string ("case value is evaluated as ").add_operation (var_result_7887.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)).add_operation (GALGAS_string (" (should be between 0 and 255)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)), fixItArray3  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)) ;
+      inCompiler->emitSemanticError (temp_2.readProperty_mCaseExpressionLocation (), GALGAS_string ("case value is evaluated as ").add_operation (var_result_8097.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)).add_operation (GALGAS_string (" (should be between 0 and 255)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)), fixItArray3  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)) ;
     }
   }
   enumGalgasBool test_4 = kBoolTrue ;
   if (kBoolTrue == test_4) {
-    test_4 = ioArgument_ioCaseConstantMap.getter_hasKey (var_result_7887.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 231)) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 231)).boolEnum () ;
+    test_4 = ioArgument_ioCaseConstantMap.getter_hasKey (var_result_8097.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 231)) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 231)).boolEnum () ;
     if (kBoolTrue == test_4) {
       const GALGAS_pic_31__38_SimpleConstantCaseItem temp_5 = object ;
       TC_Array <C_FixItDescription> fixItArray6 ;
-      inCompiler->emitSemanticError (temp_5.getter_mCaseExpressionLocation (HERE), GALGAS_string ("the '").add_operation (var_result_7887.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)).add_operation (GALGAS_string ("' constant is already used in switch instruction"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)), fixItArray6  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)) ;
+      inCompiler->emitSemanticError (temp_5.readProperty_mCaseExpressionLocation (), GALGAS_string ("the '").add_operation (var_result_8097.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)).add_operation (GALGAS_string ("' constant is already used in switch instruction"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)), fixItArray6  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)) ;
       TC_Array <C_FixItDescription> fixItArray7 ;
-      inCompiler->emitSemanticError (ioArgument_ioCaseConstantMap.getter_locationForKey (var_result_7887.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), GALGAS_string ("the '").add_operation (var_result_7887.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)).add_operation (GALGAS_string ("' constant is used here"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), fixItArray7  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)) ;
+      inCompiler->emitSemanticError (ioArgument_ioCaseConstantMap.getter_locationForKey (var_result_8097.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), GALGAS_string ("the '").add_operation (var_result_8097.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)).add_operation (GALGAS_string ("' constant is used here"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), fixItArray7  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)) ;
     }
   }
   if (kBoolFalse == test_4) {
     {
     const GALGAS_pic_31__38_SimpleConstantCaseItem temp_8 = object ;
-    ioArgument_ioCaseConstantMap.setter_insertKey (GALGAS_lstring::constructor_new (var_result_7887.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 235)), temp_8.getter_mCaseExpressionLocation (HERE)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 235)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 235)) ;
+    ioArgument_ioCaseConstantMap.setter_insertKey (GALGAS_lstring::constructor_new (var_result_8097.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 235)), temp_8.readProperty_mCaseExpressionLocation ()  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 235)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 235)) ;
     }
   }
   const GALGAS_pic_31__38_SimpleConstantCaseItem temp_9 = object ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (temp_9.getter_mCaseExpressionLocation (HERE), GALGAS_literal_5F_instruction_5F_opcode::constructor_ADDLW (SOURCE_FILE ("ipic18-switch-instruction.galgas", 240)), ioArgument_ioLastComparisonValue.substract_operation (var_result_7887, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 241)).operator_and (GALGAS_sint_36__34_ ((int64_t) 255LL) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 241)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 241))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 238)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 243)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 238)) ;
-  ioArgument_ioLastComparisonValue = var_result_7887 ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (temp_9.readProperty_mCaseExpressionLocation (), GALGAS_literal_5F_instruction_5F_opcode::constructor_ADDLW (SOURCE_FILE ("ipic18-switch-instruction.galgas", 240)), ioArgument_ioLastComparisonValue.substract_operation (var_result_8097, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 241)).operator_and (GALGAS_sint_36__34_ ((int64_t) 255LL) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 241)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 241))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 238)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 243)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 238)) ;
+  ioArgument_ioLastComparisonValue = var_result_8097 ;
   const GALGAS_pic_31__38_SimpleConstantCaseItem temp_10 = object ;
-  GALGAS_lstring var_conditionFalseLabel_8844 = GALGAS_lstring::constructor_new (GALGAS_string (".L.value.rejected.").add_operation (constinArgument_inIndexForLabels, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 248)), temp_10.getter_mCaseExpressionLocation (HERE)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 248)) ;
+  GALGAS_lstring var_conditionFalseLabel_9054 = GALGAS_lstring::constructor_new (GALGAS_string (".L.value.rejected.").add_operation (constinArgument_inIndexForLabels, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 248)), temp_10.readProperty_mCaseExpressionLocation ()  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 248)) ;
   const GALGAS_pic_31__38_SimpleConstantCaseItem temp_11 = object ;
-  GALGAS_ipic_31__38_AbstractBlockTerminator var_t_9024 = GALGAS_ipic_31__38_ConditionalJumpTerminator::constructor_new (temp_11.getter_mCaseExpressionLocation (HERE), GALGAS_conditional_5F_branch::constructor_bz (SOURCE_FILE ("ipic18-switch-instruction.galgas", 252)), constinArgument_inConditionTrueLabel, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 254)), var_conditionFalseLabel_8844, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 256))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 250)) ;
-  ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 259)), ioArgument_ioBlockLabel, ioArgument_ioGeneratedInstructionList, var_t_9024, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 263)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 258))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 258)) ;
+  GALGAS_ipic_31__38_AbstractBlockTerminator var_t_9234 = GALGAS_ipic_31__38_ConditionalJumpTerminator::constructor_new (temp_11.readProperty_mCaseExpressionLocation (), GALGAS_conditional_5F_branch::constructor_bz (SOURCE_FILE ("ipic18-switch-instruction.galgas", 252)), constinArgument_inConditionTrueLabel, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 254)), var_conditionFalseLabel_9054, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 256))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 250)) ;
+  ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 259)), ioArgument_ioBlockLabel, ioArgument_ioGeneratedInstructionList, var_t_9234, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 263)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 258))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 258)) ;
   ioArgument_ioGeneratedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18-switch-instruction.galgas", 266)) ;
-  ioArgument_ioBlockLabel = var_conditionFalseLabel_8844 ;
+  ioArgument_ioBlockLabel = var_conditionFalseLabel_9054 ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5613,105 +3799,105 @@ static void extensionMethod_pic_31__38_IntervalCaseItem_analyzeCaseItem (const c
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_IntervalCaseItem * object = (const cPtr_pic_31__38_IntervalCaseItem *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_IntervalCaseItem) ;
-  GALGAS_sint_36__34_ var_minBound_10130 ;
+  GALGAS_sint_36__34_ var_minBound_10340 ;
   const GALGAS_pic_31__38_IntervalCaseItem temp_0 = object ;
-  callExtensionMethod_eval ((const cPtr_immediatExpression *) temp_0.getter_mMinExpression (HERE).ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_minBound_10130, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 284)) ;
-  GALGAS_sint_36__34_ var_maxBound_10231 ;
+  callExtensionMethod_eval ((const cPtr_immediatExpression *) temp_0.readProperty_mMinExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_minBound_10340, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 284)) ;
+  GALGAS_sint_36__34_ var_maxBound_10441 ;
   const GALGAS_pic_31__38_IntervalCaseItem temp_1 = object ;
-  callExtensionMethod_eval ((const cPtr_immediatExpression *) temp_1.getter_mMaxExpression (HERE).ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_maxBound_10231, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 285)) ;
-  GALGAS_bool var_ok_10264 = GALGAS_bool (true) ;
+  callExtensionMethod_eval ((const cPtr_immediatExpression *) temp_1.readProperty_mMaxExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_maxBound_10441, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 285)) ;
+  GALGAS_bool var_ok_10474 = GALGAS_bool (true) ;
   enumGalgasBool test_2 = kBoolTrue ;
   if (kBoolTrue == test_2) {
-    test_2 = GALGAS_bool (kIsStrictSup, var_minBound_10130.objectCompare (GALGAS_sint_36__34_ ((int64_t) 255LL))).operator_or (GALGAS_bool (kIsStrictInf, var_minBound_10130.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 288)).boolEnum () ;
+    test_2 = GALGAS_bool (kIsStrictSup, var_minBound_10340.objectCompare (GALGAS_sint_36__34_ ((int64_t) 255LL))).operator_or (GALGAS_bool (kIsStrictInf, var_minBound_10340.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 288)).boolEnum () ;
     if (kBoolTrue == test_2) {
       const GALGAS_pic_31__38_IntervalCaseItem temp_3 = object ;
       TC_Array <C_FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (temp_3.getter_mCaseExpressionLocation (HERE), GALGAS_string ("min bound is evaluated as ").add_operation (var_minBound_10130.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)).add_operation (GALGAS_string (" (should be between 0 and 255)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)), fixItArray4  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)) ;
-      var_ok_10264 = GALGAS_bool (false) ;
+      inCompiler->emitSemanticError (temp_3.readProperty_mCaseExpressionLocation (), GALGAS_string ("min bound is evaluated as ").add_operation (var_minBound_10340.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)).add_operation (GALGAS_string (" (should be between 0 and 255)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)), fixItArray4  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)) ;
+      var_ok_10474 = GALGAS_bool (false) ;
     }
   }
   enumGalgasBool test_5 = kBoolTrue ;
   if (kBoolTrue == test_5) {
-    test_5 = GALGAS_bool (kIsStrictSup, var_maxBound_10231.objectCompare (GALGAS_sint_36__34_ ((int64_t) 255LL))).operator_or (GALGAS_bool (kIsStrictInf, var_maxBound_10231.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 292)).boolEnum () ;
+    test_5 = GALGAS_bool (kIsStrictSup, var_maxBound_10441.objectCompare (GALGAS_sint_36__34_ ((int64_t) 255LL))).operator_or (GALGAS_bool (kIsStrictInf, var_maxBound_10441.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 292)).boolEnum () ;
     if (kBoolTrue == test_5) {
       const GALGAS_pic_31__38_IntervalCaseItem temp_6 = object ;
       TC_Array <C_FixItDescription> fixItArray7 ;
-      inCompiler->emitSemanticError (temp_6.getter_mCaseExpressionLocation (HERE), GALGAS_string ("max bound is evaluated as ").add_operation (var_maxBound_10231.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)).add_operation (GALGAS_string (" (should be between 0 and 255)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)), fixItArray7  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)) ;
-      var_ok_10264 = GALGAS_bool (false) ;
+      inCompiler->emitSemanticError (temp_6.readProperty_mCaseExpressionLocation (), GALGAS_string ("max bound is evaluated as ").add_operation (var_maxBound_10441.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)).add_operation (GALGAS_string (" (should be between 0 and 255)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)), fixItArray7  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)) ;
+      var_ok_10474 = GALGAS_bool (false) ;
     }
   }
   enumGalgasBool test_8 = kBoolTrue ;
   if (kBoolTrue == test_8) {
-    test_8 = GALGAS_bool (kIsInfOrEqual, var_maxBound_10231.objectCompare (var_minBound_10130)).boolEnum () ;
+    test_8 = GALGAS_bool (kIsInfOrEqual, var_maxBound_10441.objectCompare (var_minBound_10340)).boolEnum () ;
     if (kBoolTrue == test_8) {
       const GALGAS_pic_31__38_IntervalCaseItem temp_9 = object ;
       TC_Array <C_FixItDescription> fixItArray10 ;
-      inCompiler->emitSemanticError (temp_9.getter_mCaseExpressionLocation (HERE), GALGAS_string ("max bound (").add_operation (var_maxBound_10231.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)).add_operation (GALGAS_string (") should be greater than low bound ("), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)).add_operation (var_minBound_10130.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)), fixItArray10  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)) ;
-      var_ok_10264 = GALGAS_bool (false) ;
+      inCompiler->emitSemanticError (temp_9.readProperty_mCaseExpressionLocation (), GALGAS_string ("max bound (").add_operation (var_maxBound_10441.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)).add_operation (GALGAS_string (") should be greater than low bound ("), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)).add_operation (var_minBound_10340.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)), fixItArray10  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)) ;
+      var_ok_10474 = GALGAS_bool (false) ;
     }
   }
   if (kBoolFalse == test_8) {
     enumGalgasBool test_11 = kBoolTrue ;
     if (kBoolTrue == test_11) {
-      test_11 = GALGAS_bool (kIsEqual, var_maxBound_10231.objectCompare (GALGAS_sint_36__34_ ((int64_t) 255LL))).operator_and (GALGAS_bool (kIsEqual, var_minBound_10130.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 299)).boolEnum () ;
+      test_11 = GALGAS_bool (kIsEqual, var_maxBound_10441.objectCompare (GALGAS_sint_36__34_ ((int64_t) 255LL))).operator_and (GALGAS_bool (kIsEqual, var_minBound_10340.objectCompare (GALGAS_sint_36__34_ ((int64_t) 0LL))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 299)).boolEnum () ;
       if (kBoolTrue == test_11) {
         const GALGAS_pic_31__38_IntervalCaseItem temp_12 = object ;
         TC_Array <C_FixItDescription> fixItArray13 ;
-        inCompiler->emitSemanticError (temp_12.getter_mCaseExpressionLocation (HERE), GALGAS_string ("condition is always true"), fixItArray13  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 300)) ;
-        var_ok_10264 = GALGAS_bool (false) ;
+        inCompiler->emitSemanticError (temp_12.readProperty_mCaseExpressionLocation (), GALGAS_string ("condition is always true"), fixItArray13  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 300)) ;
+        var_ok_10474 = GALGAS_bool (false) ;
       }
     }
   }
   enumGalgasBool test_14 = kBoolTrue ;
   if (kBoolTrue == test_14) {
-    test_14 = var_ok_10264.boolEnum () ;
+    test_14 = var_ok_10474.boolEnum () ;
     if (kBoolTrue == test_14) {
-      cEnumerator_range enumerator_11069 (GALGAS_range::constructor_new (var_minBound_10130.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 305)), var_maxBound_10231.substract_operation (var_minBound_10130, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 305)).add_operation (GALGAS_sint_36__34_ ((int64_t) 1LL), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 305)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 305))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 305)), kENUMERATION_UP) ;
-      while (enumerator_11069.hasCurrentObject ()) {
+      cEnumerator_range enumerator_11279 (GALGAS_range::constructor_new (var_minBound_10340.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 305)), var_maxBound_10441.substract_operation (var_minBound_10340, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 305)).add_operation (GALGAS_sint_36__34_ ((int64_t) 1LL), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 305)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 305))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 305)), kENUMERATION_UP) ;
+      while (enumerator_11279.hasCurrentObject ()) {
         enumGalgasBool test_15 = kBoolTrue ;
         if (kBoolTrue == test_15) {
-          test_15 = ioArgument_ioCaseConstantMap.getter_hasKey (enumerator_11069.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 306)) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 306)).boolEnum () ;
+          test_15 = ioArgument_ioCaseConstantMap.getter_hasKey (enumerator_11279.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 306)) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 306)).boolEnum () ;
           if (kBoolTrue == test_15) {
             const GALGAS_pic_31__38_IntervalCaseItem temp_16 = object ;
             TC_Array <C_FixItDescription> fixItArray17 ;
-            inCompiler->emitSemanticError (temp_16.getter_mCaseExpressionLocation (HERE), GALGAS_string ("the '").add_operation (enumerator_11069.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)).add_operation (GALGAS_string ("' constant is already used in switch instruction"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)), fixItArray17  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)) ;
+            inCompiler->emitSemanticError (temp_16.readProperty_mCaseExpressionLocation (), GALGAS_string ("the '").add_operation (enumerator_11279.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)).add_operation (GALGAS_string ("' constant is already used in switch instruction"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)), fixItArray17  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)) ;
             TC_Array <C_FixItDescription> fixItArray18 ;
-            inCompiler->emitSemanticError (ioArgument_ioCaseConstantMap.getter_locationForKey (enumerator_11069.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), GALGAS_string ("the '").add_operation (enumerator_11069.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)).add_operation (GALGAS_string ("' constant is used here"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), fixItArray18  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)) ;
+            inCompiler->emitSemanticError (ioArgument_ioCaseConstantMap.getter_locationForKey (enumerator_11279.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), GALGAS_string ("the '").add_operation (enumerator_11279.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)).add_operation (GALGAS_string ("' constant is used here"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), fixItArray18  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)) ;
           }
         }
         if (kBoolFalse == test_15) {
           {
           const GALGAS_pic_31__38_IntervalCaseItem temp_19 = object ;
-          ioArgument_ioCaseConstantMap.setter_insertKey (GALGAS_lstring::constructor_new (enumerator_11069.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 310)), temp_19.getter_mCaseExpressionLocation (HERE)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 310)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 310)) ;
+          ioArgument_ioCaseConstantMap.setter_insertKey (GALGAS_lstring::constructor_new (enumerator_11279.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 310)), temp_19.readProperty_mCaseExpressionLocation ()  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 310)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 310)) ;
           }
         }
-        enumerator_11069.gotoNextObject () ;
+        enumerator_11279.gotoNextObject () ;
       }
       const GALGAS_pic_31__38_IntervalCaseItem temp_20 = object ;
-      GALGAS_lstring var_firstConditionAcceptedLabel_11517 = GALGAS_lstring::constructor_new (GALGAS_string (".L.first.accepted.").add_operation (constinArgument_inIndexForLabels, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 314)), temp_20.getter_mCaseExpressionLocation (HERE)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 314)) ;
+      GALGAS_lstring var_firstConditionAcceptedLabel_11727 = GALGAS_lstring::constructor_new (GALGAS_string (".L.first.accepted.").add_operation (constinArgument_inIndexForLabels, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 314)), temp_20.readProperty_mCaseExpressionLocation ()  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 314)) ;
       const GALGAS_pic_31__38_IntervalCaseItem temp_21 = object ;
-      GALGAS_lstring var_firstConditionRejectedLabel_11643 = GALGAS_lstring::constructor_new (GALGAS_string (".L.first.rejected.").add_operation (constinArgument_inIndexForLabels, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 315)), temp_21.getter_mCaseExpressionLocation (HERE)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 315)) ;
+      GALGAS_lstring var_firstConditionRejectedLabel_11853 = GALGAS_lstring::constructor_new (GALGAS_string (".L.first.rejected.").add_operation (constinArgument_inIndexForLabels, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 315)), temp_21.readProperty_mCaseExpressionLocation ()  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 315)) ;
       const GALGAS_pic_31__38_IntervalCaseItem temp_22 = object ;
-      GALGAS_lstring var_intervalRejectedLabel_11763 = GALGAS_lstring::constructor_new (GALGAS_string (".L.interval.rejected.").add_operation (constinArgument_inIndexForLabels, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 316)), temp_22.getter_mCaseExpressionLocation (HERE)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 316)) ;
+      GALGAS_lstring var_intervalRejectedLabel_11973 = GALGAS_lstring::constructor_new (GALGAS_string (".L.interval.rejected.").add_operation (constinArgument_inIndexForLabels, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 316)), temp_22.readProperty_mCaseExpressionLocation ()  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 316)) ;
       const GALGAS_pic_31__38_IntervalCaseItem temp_23 = object ;
-      GALGAS_ipic_31__38_SequentialInstruction var_secondTestInstruction_11949 = GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (temp_23.getter_mCaseExpressionLocation (HERE), GALGAS_literal_5F_instruction_5F_opcode::constructor_ADDLW (SOURCE_FILE ("ipic18-switch-instruction.galgas", 320)), var_maxBound_10231.substract_operation (var_minBound_10130, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 321)).add_operation (GALGAS_sint_36__34_ ((int64_t) 1LL), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 321)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 321))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 318)) ;
+      GALGAS_ipic_31__38_SequentialInstruction var_secondTestInstruction_12159 = GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (temp_23.readProperty_mCaseExpressionLocation (), GALGAS_literal_5F_instruction_5F_opcode::constructor_ADDLW (SOURCE_FILE ("ipic18-switch-instruction.galgas", 320)), var_maxBound_10441.substract_operation (var_minBound_10340, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 321)).add_operation (GALGAS_sint_36__34_ ((int64_t) 1LL), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 321)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 321))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 318)) ;
       const GALGAS_pic_31__38_IntervalCaseItem temp_24 = object ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (temp_24.getter_mCaseExpressionLocation (HERE), GALGAS_literal_5F_instruction_5F_opcode::constructor_ADDLW (SOURCE_FILE ("ipic18-switch-instruction.galgas", 326)), ioArgument_ioLastComparisonValue.add_operation (GALGAS_sint_36__34_ ((int64_t) 255LL), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 327)).substract_operation (var_maxBound_10231, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 327)).operator_and (GALGAS_sint_36__34_ ((int64_t) 255LL) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 327)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 327))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 324)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 329)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 324)) ;
+      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (temp_24.readProperty_mCaseExpressionLocation (), GALGAS_literal_5F_instruction_5F_opcode::constructor_ADDLW (SOURCE_FILE ("ipic18-switch-instruction.galgas", 326)), ioArgument_ioLastComparisonValue.add_operation (GALGAS_sint_36__34_ ((int64_t) 255LL), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 327)).substract_operation (var_maxBound_10441, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 327)).operator_and (GALGAS_sint_36__34_ ((int64_t) 255LL) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 327)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 327))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 324)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 329)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 324)) ;
       const GALGAS_pic_31__38_IntervalCaseItem temp_25 = object ;
-      GALGAS_ipic_31__38_AbstractBlockTerminator var_t_12478 = GALGAS_ipic_31__38_ConditionalJumpTerminator::constructor_new (temp_25.getter_mCaseExpressionLocation (HERE), GALGAS_conditional_5F_branch::constructor_bnc (SOURCE_FILE ("ipic18-switch-instruction.galgas", 334)), var_firstConditionAcceptedLabel_11517, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 336)), var_firstConditionRejectedLabel_11643, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 338))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 332)) ;
-      ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 342)), ioArgument_ioBlockLabel, ioArgument_ioGeneratedInstructionList, var_t_12478, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 346)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 341))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 341)) ;
+      GALGAS_ipic_31__38_AbstractBlockTerminator var_t_12688 = GALGAS_ipic_31__38_ConditionalJumpTerminator::constructor_new (temp_25.readProperty_mCaseExpressionLocation (), GALGAS_conditional_5F_branch::constructor_bnc (SOURCE_FILE ("ipic18-switch-instruction.galgas", 334)), var_firstConditionAcceptedLabel_11727, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 336)), var_firstConditionRejectedLabel_11853, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 338))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 332)) ;
+      ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 342)), ioArgument_ioBlockLabel, ioArgument_ioGeneratedInstructionList, var_t_12688, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 346)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 341))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 341)) ;
       GALGAS_ipic_31__38_SequentialInstructionList temp_26 = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18-switch-instruction.galgas", 353)) ;
-      temp_26.addAssign_operation (var_secondTestInstruction_11949, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 353)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 353)) ;
+      temp_26.addAssign_operation (var_secondTestInstruction_12159, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 353)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 353)) ;
       const GALGAS_pic_31__38_IntervalCaseItem temp_27 = object ;
-      ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 351)), var_firstConditionRejectedLabel_11643, temp_26, GALGAS_ipic_31__38_JumpTerminator::constructor_new (temp_27.getter_mCaseExpressionLocation (HERE), var_intervalRejectedLabel_11763, GALGAS_jumpInstructionKind::constructor_relative (SOURCE_FILE ("ipic18-switch-instruction.galgas", 354))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 354)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 355)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 350))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 350)) ;
+      ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 351)), var_firstConditionRejectedLabel_11853, temp_26, GALGAS_ipic_31__38_JumpTerminator::constructor_new (temp_27.readProperty_mCaseExpressionLocation (), var_intervalRejectedLabel_11973, GALGAS_jumpInstructionKind::constructor_relative (SOURCE_FILE ("ipic18-switch-instruction.galgas", 354))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 354)), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 355)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 350))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 350)) ;
       const GALGAS_pic_31__38_IntervalCaseItem temp_28 = object ;
-      GALGAS_ipic_31__38_AbstractBlockTerminator var_t_32__13278 = GALGAS_ipic_31__38_ConditionalJumpTerminator::constructor_new (temp_28.getter_mCaseExpressionLocation (HERE), GALGAS_conditional_5F_branch::constructor_bc (SOURCE_FILE ("ipic18-switch-instruction.galgas", 361)), constinArgument_inConditionTrueLabel, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 363)), var_intervalRejectedLabel_11763, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 365))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 359)) ;
+      GALGAS_ipic_31__38_AbstractBlockTerminator var_t_32__13488 = GALGAS_ipic_31__38_ConditionalJumpTerminator::constructor_new (temp_28.readProperty_mCaseExpressionLocation (), GALGAS_conditional_5F_branch::constructor_bc (SOURCE_FILE ("ipic18-switch-instruction.galgas", 361)), constinArgument_inConditionTrueLabel, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 363)), var_intervalRejectedLabel_11973, GALGAS_conditionalBranchMode::constructor_native (SOURCE_FILE ("ipic18-switch-instruction.galgas", 365))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 359)) ;
       GALGAS_ipic_31__38_SequentialInstructionList temp_29 = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18-switch-instruction.galgas", 371)) ;
-      temp_29.addAssign_operation (var_secondTestInstruction_11949, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 371)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 371)) ;
-      ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 369)), var_firstConditionAcceptedLabel_11517, temp_29, var_t_32__13278, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 373)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 368))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 368)) ;
+      temp_29.addAssign_operation (var_secondTestInstruction_12159, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 371)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 371)) ;
+      ioArgument_ioGeneratedBlockList.addAssign_operation (GALGAS_ipic_31__38_Block::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 369)), var_firstConditionAcceptedLabel_11727, temp_29, var_t_32__13488, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18-switch-instruction.galgas", 373)), GALGAS_uint ((uint32_t) 0U)  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 368))  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 368)) ;
       ioArgument_ioGeneratedInstructionList = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18-switch-instruction.galgas", 377)) ;
-      ioArgument_ioBlockLabel = var_intervalRejectedLabel_11763 ;
-      ioArgument_ioLastComparisonValue = var_minBound_10130 ;
+      ioArgument_ioBlockLabel = var_intervalRejectedLabel_11973 ;
+      ioArgument_ioLastComparisonValue = var_minBound_10340 ;
     }
   }
 }
@@ -5741,16 +3927,16 @@ static void extensionMethod_pic_31__38_Instruction_5F_switch_addUsedRoutines (co
   const cPtr_pic_31__38_Instruction_5F_switch * object = (const cPtr_pic_31__38_Instruction_5F_switch *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_Instruction_5F_switch) ;
   const GALGAS_pic_31__38_Instruction_5F_switch temp_0 = object ;
-  cEnumerator_pic_31__38_SwitchInstructionCaseList enumerator_14125 (temp_0.getter_mCaseList (HERE), kENUMERATION_UP) ;
-  while (enumerator_14125.hasCurrentObject ()) {
+  cEnumerator_pic_31__38_SwitchInstructionCaseList enumerator_14335 (temp_0.readProperty_mCaseList (), kENUMERATION_UP) ;
+  while (enumerator_14335.hasCurrentObject ()) {
     {
-    routine_addPic_31__38_UsedRoutinesFromInstructionList (enumerator_14125.current_mInstructionList (HERE), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 391)) ;
+    routine_addPic_31__38_UsedRoutinesFromInstructionList (enumerator_14335.current_mInstructionList (HERE), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 391)) ;
     }
-    enumerator_14125.gotoNextObject () ;
+    enumerator_14335.gotoNextObject () ;
   }
   {
   const GALGAS_pic_31__38_Instruction_5F_switch temp_1 = object ;
-  routine_addPic_31__38_UsedRoutinesFromInstructionList (temp_1.getter_mElseInstructionList (HERE), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 393)) ;
+  routine_addPic_31__38_UsedRoutinesFromInstructionList (temp_1.readProperty_mElseInstructionList (), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 393)) ;
   }
 }
 
@@ -5777,10 +3963,10 @@ GALGAS_bool function_pic_31__38__5F_checkBCC (const GALGAS_symbolTableForRelativ
                                               C_Compiler * inCompiler
                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bool result_outDisplacementOK ; // Returned variable
-  GALGAS_uint var_targetAddress_15522 ;
-  constinArgument_inSymbolTable.method_searchKey (constinArgument_inTargetLabel, var_targetAddress_15522, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 477)) ;
-  GALGAS_sint var_displacement_15548 = var_targetAddress_15522.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 478)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 478)).substract_operation (constinArgument_inCurrentAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 478)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 478)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 478)) ;
-  result_outDisplacementOK = GALGAS_bool (kIsInfOrEqual, var_displacement_15548.objectCompare (GALGAS_sint ((int32_t) 127L))).operator_and (GALGAS_bool (kIsSupOrEqual, var_displacement_15548.objectCompare (GALGAS_sint ((int32_t) 128L).operator_unary_minus (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 479)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 479)) ;
+  GALGAS_uint var_targetAddress_16490 ;
+  constinArgument_inSymbolTable.method_searchKey (constinArgument_inTargetLabel, var_targetAddress_16490, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 477)) ;
+  GALGAS_sint var_displacement_16516 = var_targetAddress_16490.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 478)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 478)).substract_operation (constinArgument_inCurrentAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 478)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 478)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 478)) ;
+  result_outDisplacementOK = GALGAS_bool (kIsInfOrEqual, var_displacement_16516.objectCompare (GALGAS_sint ((int32_t) 127L))).operator_and (GALGAS_bool (kIsSupOrEqual, var_displacement_16516.objectCompare (GALGAS_sint ((int32_t) 128L).operator_unary_minus (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 479)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 479)) ;
 //---
   return result_outDisplacementOK ;
 }
@@ -5839,10 +4025,10 @@ GALGAS_bool function_pic_31__38__5F_checkBRA_5F_RCALL (const GALGAS_symbolTableF
                                                        C_Compiler * inCompiler
                                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bool result_outDisplacementOK ; // Returned variable
-  GALGAS_uint var_targetAddress_16045 ;
-  constinArgument_inSymbolTable.method_searchKey (constinArgument_inTargetLabel, var_targetAddress_16045, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 490)) ;
-  GALGAS_sint var_displacement_16071 = var_targetAddress_16045.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 491)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 491)).substract_operation (constinArgument_inCurrentAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 491)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 491)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 491)) ;
-  result_outDisplacementOK = GALGAS_bool (kIsInfOrEqual, var_displacement_16071.objectCompare (GALGAS_sint ((int32_t) 1023L))).operator_and (GALGAS_bool (kIsSupOrEqual, var_displacement_16071.objectCompare (GALGAS_sint ((int32_t) 1024L).operator_unary_minus (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 492)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 492)) ;
+  GALGAS_uint var_targetAddress_17013 ;
+  constinArgument_inSymbolTable.method_searchKey (constinArgument_inTargetLabel, var_targetAddress_17013, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 490)) ;
+  GALGAS_sint var_displacement_17039 = var_targetAddress_17013.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 491)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 491)).substract_operation (constinArgument_inCurrentAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 491)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 491)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 491)) ;
+  result_outDisplacementOK = GALGAS_bool (kIsInfOrEqual, var_displacement_17039.objectCompare (GALGAS_sint ((int32_t) 1023L))).operator_and (GALGAS_bool (kIsSupOrEqual, var_displacement_17039.objectCompare (GALGAS_sint ((int32_t) 1024L).operator_unary_minus (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 492)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 492)) ;
 //---
   return result_outDisplacementOK ;
 }
@@ -5901,9 +4087,9 @@ GALGAS_sint function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (const GALGAS_s
                                                                   C_Compiler * inCompiler
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_sint result_outDisplacement ; // Returned variable
-  GALGAS_uint var_targetAddress_16535 ;
-  constinArgument_inSymbolTable.method_searchKey (constinArgument_inTargetLabel, var_targetAddress_16535, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 502)) ;
-  result_outDisplacement = var_targetAddress_16535.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 503)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 503)).substract_operation (constinArgument_inCurrentAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 503)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 503)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 503)) ;
+  GALGAS_uint var_targetAddress_17503 ;
+  constinArgument_inSymbolTable.method_searchKey (constinArgument_inTargetLabel, var_targetAddress_17503, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 502)) ;
+  result_outDisplacement = var_targetAddress_17503.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 503)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 503)).substract_operation (constinArgument_inCurrentAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 503)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 503)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 503)) ;
 //---
   return result_outDisplacement ;
 }
@@ -5964,16 +4150,16 @@ GALGAS_codeList function_pic_31__38__5F_Bcc_5F_instruction_5F_code (const GALGAS
                                                                     C_Compiler * inCompiler
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_codeList result_outCode ; // Returned variable
-  GALGAS_sint var_displacement_17078 = constinArgument_inTargetAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 519)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 519)).substract_operation (constinArgument_inConditionalBranchInstructionAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 519)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 519)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 519)) ;
+  GALGAS_sint var_displacement_18046 = constinArgument_inTargetAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 519)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 519)).substract_operation (constinArgument_inConditionalBranchInstructionAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 519)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 519)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 519)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsStrictSup, var_displacement_17078.objectCompare (GALGAS_sint ((int32_t) 127L))).operator_or (GALGAS_bool (kIsStrictInf, var_displacement_17078.objectCompare (GALGAS_sint ((int32_t) 128L).operator_unary_minus (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 520)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 520)).boolEnum () ;
+    test_0 = GALGAS_bool (kIsStrictSup, var_displacement_18046.objectCompare (GALGAS_sint ((int32_t) 127L))).operator_or (GALGAS_bool (kIsStrictInf, var_displacement_18046.objectCompare (GALGAS_sint ((int32_t) 128L).operator_unary_minus (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 520)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 520)).boolEnum () ;
     if (kBoolTrue == test_0) {
       TC_Array <C_FixItDescription> fixItArray1 ;
-      inCompiler->emitSemanticError (constinArgument_inTargetLabel.getter_location (SOURCE_FILE ("ipic18_block_representation.galgas", 521)), GALGAS_string ("** INTERNAL ERROR ** displacement too large for conditional branch instruction"), fixItArray1  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 521)) ;
+      inCompiler->emitSemanticError (constinArgument_inTargetLabel.readProperty_location (), GALGAS_string ("** INTERNAL ERROR ** displacement too large for conditional branch instruction"), fixItArray1  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 521)) ;
     }
   }
-  GALGAS_conditional_5F_branch var_conditionalBranch_17373 ;
+  GALGAS_conditional_5F_branch var_conditionalBranch_18345 ;
   enumGalgasBool test_2 = kBoolTrue ;
   if (kBoolTrue == test_2) {
     test_2 = constinArgument_inComplemented.boolEnum () ;
@@ -5983,105 +4169,105 @@ GALGAS_codeList function_pic_31__38__5F_Bcc_5F_instruction_5F_code (const GALGAS
         break ;
       case GALGAS_conditional_5F_branch::kEnum_bz:
         {
-          var_conditionalBranch_17373 = GALGAS_conditional_5F_branch::constructor_bnz (SOURCE_FILE ("ipic18_block_representation.galgas", 527)) ;
+          var_conditionalBranch_18345 = GALGAS_conditional_5F_branch::constructor_bnz (SOURCE_FILE ("ipic18_block_representation.galgas", 527)) ;
         }
         break ;
       case GALGAS_conditional_5F_branch::kEnum_bnz:
         {
-          var_conditionalBranch_17373 = GALGAS_conditional_5F_branch::constructor_bz (SOURCE_FILE ("ipic18_block_representation.galgas", 528)) ;
+          var_conditionalBranch_18345 = GALGAS_conditional_5F_branch::constructor_bz (SOURCE_FILE ("ipic18_block_representation.galgas", 528)) ;
         }
         break ;
       case GALGAS_conditional_5F_branch::kEnum_bn:
         {
-          var_conditionalBranch_17373 = GALGAS_conditional_5F_branch::constructor_bnn (SOURCE_FILE ("ipic18_block_representation.galgas", 529)) ;
+          var_conditionalBranch_18345 = GALGAS_conditional_5F_branch::constructor_bnn (SOURCE_FILE ("ipic18_block_representation.galgas", 529)) ;
         }
         break ;
       case GALGAS_conditional_5F_branch::kEnum_bnn:
         {
-          var_conditionalBranch_17373 = GALGAS_conditional_5F_branch::constructor_bn (SOURCE_FILE ("ipic18_block_representation.galgas", 530)) ;
+          var_conditionalBranch_18345 = GALGAS_conditional_5F_branch::constructor_bn (SOURCE_FILE ("ipic18_block_representation.galgas", 530)) ;
         }
         break ;
       case GALGAS_conditional_5F_branch::kEnum_bc:
         {
-          var_conditionalBranch_17373 = GALGAS_conditional_5F_branch::constructor_bnc (SOURCE_FILE ("ipic18_block_representation.galgas", 531)) ;
+          var_conditionalBranch_18345 = GALGAS_conditional_5F_branch::constructor_bnc (SOURCE_FILE ("ipic18_block_representation.galgas", 531)) ;
         }
         break ;
       case GALGAS_conditional_5F_branch::kEnum_bnc:
         {
-          var_conditionalBranch_17373 = GALGAS_conditional_5F_branch::constructor_bc (SOURCE_FILE ("ipic18_block_representation.galgas", 532)) ;
+          var_conditionalBranch_18345 = GALGAS_conditional_5F_branch::constructor_bc (SOURCE_FILE ("ipic18_block_representation.galgas", 532)) ;
         }
         break ;
       case GALGAS_conditional_5F_branch::kEnum_bov:
         {
-          var_conditionalBranch_17373 = GALGAS_conditional_5F_branch::constructor_bnov (SOURCE_FILE ("ipic18_block_representation.galgas", 533)) ;
+          var_conditionalBranch_18345 = GALGAS_conditional_5F_branch::constructor_bnov (SOURCE_FILE ("ipic18_block_representation.galgas", 533)) ;
         }
         break ;
       case GALGAS_conditional_5F_branch::kEnum_bnov:
         {
-          var_conditionalBranch_17373 = GALGAS_conditional_5F_branch::constructor_bov (SOURCE_FILE ("ipic18_block_representation.galgas", 534)) ;
+          var_conditionalBranch_18345 = GALGAS_conditional_5F_branch::constructor_bov (SOURCE_FILE ("ipic18_block_representation.galgas", 534)) ;
         }
         break ;
       }
     }
   }
   if (kBoolFalse == test_2) {
-    var_conditionalBranch_17373 = constinArgument_inConditionalBranch ;
+    var_conditionalBranch_18345 = constinArgument_inConditionalBranch ;
   }
-  GALGAS_uint var_baseCode_17998 ;
-  GALGAS_string var_mnemonic_18017 ;
-  switch (var_conditionalBranch_17373.enumValue ()) {
+  GALGAS_uint var_baseCode_18974 ;
+  GALGAS_string var_mnemonic_18997 ;
+  switch (var_conditionalBranch_18345.enumValue ()) {
   case GALGAS_conditional_5F_branch::kNotBuilt:
     break ;
   case GALGAS_conditional_5F_branch::kEnum_bz:
     {
-      var_baseCode_17998 = GALGAS_uint ((uint32_t) 57344U) ;
-      var_mnemonic_18017 = GALGAS_string ("BZ") ;
+      var_baseCode_18974 = GALGAS_uint ((uint32_t) 57344U) ;
+      var_mnemonic_18997 = GALGAS_string ("BZ") ;
     }
     break ;
   case GALGAS_conditional_5F_branch::kEnum_bnz:
     {
-      var_baseCode_17998 = GALGAS_uint ((uint32_t) 57600U) ;
-      var_mnemonic_18017 = GALGAS_string ("BNZ") ;
+      var_baseCode_18974 = GALGAS_uint ((uint32_t) 57600U) ;
+      var_mnemonic_18997 = GALGAS_string ("BNZ") ;
     }
     break ;
   case GALGAS_conditional_5F_branch::kEnum_bn:
     {
-      var_baseCode_17998 = GALGAS_uint ((uint32_t) 58880U) ;
-      var_mnemonic_18017 = GALGAS_string ("BN") ;
+      var_baseCode_18974 = GALGAS_uint ((uint32_t) 58880U) ;
+      var_mnemonic_18997 = GALGAS_string ("BN") ;
     }
     break ;
   case GALGAS_conditional_5F_branch::kEnum_bnn:
     {
-      var_baseCode_17998 = GALGAS_uint ((uint32_t) 59136U) ;
-      var_mnemonic_18017 = GALGAS_string ("BNN") ;
+      var_baseCode_18974 = GALGAS_uint ((uint32_t) 59136U) ;
+      var_mnemonic_18997 = GALGAS_string ("BNN") ;
     }
     break ;
   case GALGAS_conditional_5F_branch::kEnum_bc:
     {
-      var_baseCode_17998 = GALGAS_uint ((uint32_t) 57856U) ;
-      var_mnemonic_18017 = GALGAS_string ("BC") ;
+      var_baseCode_18974 = GALGAS_uint ((uint32_t) 57856U) ;
+      var_mnemonic_18997 = GALGAS_string ("BC") ;
     }
     break ;
   case GALGAS_conditional_5F_branch::kEnum_bnc:
     {
-      var_baseCode_17998 = GALGAS_uint ((uint32_t) 58112U) ;
-      var_mnemonic_18017 = GALGAS_string ("BNC") ;
+      var_baseCode_18974 = GALGAS_uint ((uint32_t) 58112U) ;
+      var_mnemonic_18997 = GALGAS_string ("BNC") ;
     }
     break ;
   case GALGAS_conditional_5F_branch::kEnum_bov:
     {
-      var_baseCode_17998 = GALGAS_uint ((uint32_t) 58368U) ;
-      var_mnemonic_18017 = GALGAS_string ("BOV") ;
+      var_baseCode_18974 = GALGAS_uint ((uint32_t) 58368U) ;
+      var_mnemonic_18997 = GALGAS_string ("BOV") ;
     }
     break ;
   case GALGAS_conditional_5F_branch::kEnum_bnov:
     {
-      var_baseCode_17998 = GALGAS_uint ((uint32_t) 58624U) ;
-      var_mnemonic_18017 = GALGAS_string ("BNOV") ;
+      var_baseCode_18974 = GALGAS_uint ((uint32_t) 58624U) ;
+      var_mnemonic_18997 = GALGAS_string ("BNOV") ;
     }
     break ;
   }
-  result_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (var_mnemonic_18017, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 553)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 553)).add_operation (constinArgument_inTargetLabel.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 553)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 553)), GALGAS_uintlist::constructor_listWithValue (var_baseCode_17998.operator_or (var_displacement_17078.operator_and (GALGAS_sint ((int32_t) 255L) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 554)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 554)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 554))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 554))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 552)) ;
+  result_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (var_mnemonic_18997, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 553)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 553)).add_operation (constinArgument_inTargetLabel.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 553)), GALGAS_uintlist::constructor_listWithValue (var_baseCode_18974.operator_or (var_displacement_18046.operator_and (GALGAS_sint ((int32_t) 255L) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 554)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 554)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 554))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 554))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 552)) ;
 //---
   return result_outCode ;
 }
@@ -6150,16 +4336,16 @@ GALGAS_codeList function_pic_31__38__5F_RCALL_5F_instruction_5F_code (const GALG
                                                                       C_Compiler * inCompiler
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_codeList result_outCode ; // Returned variable
-  GALGAS_sint var_displacement_18863 = constinArgument_inTargetAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 564)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 564)).substract_operation (constinArgument_inRCALLinstructionAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 564)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 564)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 564)) ;
+  GALGAS_sint var_displacement_19843 = constinArgument_inTargetAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 564)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 564)).substract_operation (constinArgument_inRCALLinstructionAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 564)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 564)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 564)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsStrictSup, var_displacement_18863.objectCompare (GALGAS_sint ((int32_t) 1023L))).operator_or (GALGAS_bool (kIsStrictInf, var_displacement_18863.objectCompare (GALGAS_sint ((int32_t) 1024L).operator_unary_minus (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 565)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 565)).boolEnum () ;
+    test_0 = GALGAS_bool (kIsStrictSup, var_displacement_19843.objectCompare (GALGAS_sint ((int32_t) 1023L))).operator_or (GALGAS_bool (kIsStrictInf, var_displacement_19843.objectCompare (GALGAS_sint ((int32_t) 1024L).operator_unary_minus (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 565)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 565)).boolEnum () ;
     if (kBoolTrue == test_0) {
       TC_Array <C_FixItDescription> fixItArray1 ;
-      inCompiler->emitSemanticError (constinArgument_inTargetLabel.getter_location (SOURCE_FILE ("ipic18_block_representation.galgas", 566)), GALGAS_string ("** INTERNAL ERROR ** displacement too large (").add_operation (var_displacement_18863.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 566)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 566)).add_operation (GALGAS_string (") for RCALL instruction to '"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 566)).add_operation (constinArgument_inTargetLabel.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 567)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 567)).add_operation (GALGAS_string ("' (should be between -1024 and 1023)"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 567)), fixItArray1  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 566)) ;
+      inCompiler->emitSemanticError (constinArgument_inTargetLabel.readProperty_location (), GALGAS_string ("** INTERNAL ERROR ** displacement too large (").add_operation (var_displacement_19843.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 566)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 566)).add_operation (GALGAS_string (") for RCALL instruction to '"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 566)).add_operation (constinArgument_inTargetLabel.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 567)).add_operation (GALGAS_string ("' (should be between -1024 and 1023)"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 567)), fixItArray1  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 566)) ;
     }
   }
-  result_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    RCALL ").add_operation (constinArgument_inTargetLabel.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 570)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 570)), GALGAS_uintlist::constructor_listWithValue (GALGAS_uint ((uint32_t) 55296U).operator_or (var_displacement_18863.operator_and (GALGAS_sint ((int32_t) 2047L) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 571)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 571)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 571))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 571))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 569)) ;
+  result_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    RCALL ").add_operation (constinArgument_inTargetLabel.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 570)), GALGAS_uintlist::constructor_listWithValue (GALGAS_uint ((uint32_t) 55296U).operator_or (var_displacement_19843.operator_and (GALGAS_sint ((int32_t) 2047L) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 571)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 571)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 571))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 571))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 569)) ;
 //---
   return result_outCode ;
 }
@@ -6218,16 +4404,16 @@ GALGAS_codeList function_pic_31__38__5F_BRA_5F_instruction_5F_code (const GALGAS
                                                                     C_Compiler * inCompiler
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_codeList result_outCode ; // Returned variable
-  GALGAS_sint var_displacement_19601 = constinArgument_inTargetAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 581)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 581)).substract_operation (constinArgument_inRCALLinstructionAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 581)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 581)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 581)) ;
+  GALGAS_sint var_displacement_20581 = constinArgument_inTargetAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 581)).substract_operation (GALGAS_sint ((int32_t) 2L), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 581)).substract_operation (constinArgument_inRCALLinstructionAddress.getter_sint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 581)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 581)).right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 581)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsStrictSup, var_displacement_19601.objectCompare (GALGAS_sint ((int32_t) 1023L))).operator_or (GALGAS_bool (kIsStrictInf, var_displacement_19601.objectCompare (GALGAS_sint ((int32_t) 1024L).operator_unary_minus (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 582)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 582)).boolEnum () ;
+    test_0 = GALGAS_bool (kIsStrictSup, var_displacement_20581.objectCompare (GALGAS_sint ((int32_t) 1023L))).operator_or (GALGAS_bool (kIsStrictInf, var_displacement_20581.objectCompare (GALGAS_sint ((int32_t) 1024L).operator_unary_minus (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 582)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 582)).boolEnum () ;
     if (kBoolTrue == test_0) {
       TC_Array <C_FixItDescription> fixItArray1 ;
-      inCompiler->emitSemanticError (constinArgument_inTargetLabel.getter_location (SOURCE_FILE ("ipic18_block_representation.galgas", 583)), GALGAS_string ("** INTERNAL ERROR ** displacement too large (").add_operation (var_displacement_19601.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 583)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 583)).add_operation (GALGAS_string (") for BRA instruction to '"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 583)).add_operation (constinArgument_inTargetLabel.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 584)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 584)).add_operation (GALGAS_string ("' (should be between -1024 and 1023)"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 584)), fixItArray1  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 583)) ;
+      inCompiler->emitSemanticError (constinArgument_inTargetLabel.readProperty_location (), GALGAS_string ("** INTERNAL ERROR ** displacement too large (").add_operation (var_displacement_20581.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 583)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 583)).add_operation (GALGAS_string (") for BRA instruction to '"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 583)).add_operation (constinArgument_inTargetLabel.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 584)).add_operation (GALGAS_string ("' (should be between -1024 and 1023)"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 584)), fixItArray1  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 583)) ;
     }
   }
-  result_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    BRA ").add_operation (constinArgument_inTargetLabel.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 587)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 587)), GALGAS_uintlist::constructor_listWithValue (GALGAS_uint ((uint32_t) 53248U).operator_or (var_displacement_19601.operator_and (GALGAS_sint ((int32_t) 2047L) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 588)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 588)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 588))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 588))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 586)) ;
+  result_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    BRA ").add_operation (constinArgument_inTargetLabel.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 587)), GALGAS_uintlist::constructor_listWithValue (GALGAS_uint ((uint32_t) 53248U).operator_or (var_displacement_20581.operator_and (GALGAS_sint ((int32_t) 2047L) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 588)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 588)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 588))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 588))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 586)) ;
 //---
   return result_outCode ;
 }
@@ -6285,10 +4471,10 @@ GALGAS_codeList function_pic_31__38__5F_CALL_5F_instruction_5F_code (const GALGA
                                                                      C_Compiler * inCompiler
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_codeList result_outCode ; // Returned variable
-  GALGAS_uintlist var_binaryCode_20289 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_block_representation.galgas", 597)) ;
-  var_binaryCode_20289.addAssign_operation (GALGAS_uint ((uint32_t) 60416U).operator_or (constinArgument_inTargetAddress.right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 598)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 598)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 598))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 598)) ;
-  var_binaryCode_20289.addAssign_operation (GALGAS_uint ((uint32_t) 61440U).operator_or (constinArgument_inTargetAddress.right_shift_operation (GALGAS_uint ((uint32_t) 9U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 599)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 599))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 599)) ;
-  result_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    CALL ").add_operation (constinArgument_inTargetLabel.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 601)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 601)), var_binaryCode_20289  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 600)) ;
+  GALGAS_uintlist var_binaryCode_21269 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_block_representation.galgas", 597)) ;
+  var_binaryCode_21269.addAssign_operation (GALGAS_uint ((uint32_t) 60416U).operator_or (constinArgument_inTargetAddress.right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 598)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 598)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 598))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 598)) ;
+  var_binaryCode_21269.addAssign_operation (GALGAS_uint ((uint32_t) 61440U).operator_or (constinArgument_inTargetAddress.right_shift_operation (GALGAS_uint ((uint32_t) 9U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 599)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 599))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 599)) ;
+  result_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    CALL ").add_operation (constinArgument_inTargetLabel.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 601)), var_binaryCode_21269  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 600)) ;
 //---
   return result_outCode ;
 }
@@ -6341,10 +4527,10 @@ GALGAS_codeList function_pic_31__38__5F_GOTO_5F_instruction_5F_code (const GALGA
                                                                      C_Compiler * inCompiler
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_codeList result_outCode ; // Returned variable
-  GALGAS_uintlist var_binaryCode_20723 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_block_representation.galgas", 611)) ;
-  var_binaryCode_20723.addAssign_operation (GALGAS_uint ((uint32_t) 61184U).operator_or (constinArgument_inTargetAddress.right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 612)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 612)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 612))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 612)) ;
-  var_binaryCode_20723.addAssign_operation (GALGAS_uint ((uint32_t) 61440U).operator_or (constinArgument_inTargetAddress.right_shift_operation (GALGAS_uint ((uint32_t) 9U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 613)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 613))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 613)) ;
-  result_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    GOTO ").add_operation (constinArgument_inTargetLabel.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 615)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 615)), var_binaryCode_20723  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 614)) ;
+  GALGAS_uintlist var_binaryCode_21703 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_block_representation.galgas", 611)) ;
+  var_binaryCode_21703.addAssign_operation (GALGAS_uint ((uint32_t) 61184U).operator_or (constinArgument_inTargetAddress.right_shift_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 612)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 612)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 612))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 612)) ;
+  var_binaryCode_21703.addAssign_operation (GALGAS_uint ((uint32_t) 61440U).operator_or (constinArgument_inTargetAddress.right_shift_operation (GALGAS_uint ((uint32_t) 9U), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 613)) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 613))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 613)) ;
+  result_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    GOTO ").add_operation (constinArgument_inTargetLabel.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 615)), var_binaryCode_21703  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 614)) ;
 //---
   return result_outCode ;
 }
@@ -6396,7 +4582,7 @@ GALGAS_codeList function_pic_31__38__5F_definition_5F_label (const GALGAS_lstrin
                                                              C_Compiler * inCompiler
                                                              COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_codeList result_outCode ; // Returned variable
-  result_outCode = GALGAS_codeList::constructor_listWithValue (constinArgument_inTargetLabel.getter_string (HERE).add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 625)), GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_block_representation.galgas", 626))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 624)) ;
+  result_outCode = GALGAS_codeList::constructor_listWithValue (constinArgument_inTargetLabel.readProperty_string ().add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 625)), GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_block_representation.galgas", 626))  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 624)) ;
 //---
   return result_outCode ;
 }
@@ -6561,7 +4747,7 @@ static GALGAS_string extensionGetter_ipic_31__38_RetfieTerminator_terminatorDisp
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_ipic_31__38_RetfieTerminator temp_1 = object ;
-    test_0 = temp_1.getter_mFastReturn (HERE).boolEnum () ;
+    test_0 = temp_1.readProperty_mFastReturn ().boolEnum () ;
     if (kBoolTrue == test_0) {
       result_outResult.plusAssign_operation(GALGAS_string (" FAST"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 70)) ;
     }
@@ -6628,7 +4814,7 @@ static void extensionMethod_ipic_31__38_RetfieTerminator_generateTerminatorCode 
   const GALGAS_ipic_31__38_RetfieTerminator temp_0 = object ;
   const GALGAS_ipic_31__38_RetfieTerminator temp_1 = object ;
   GALGAS_uint temp_2 ;
-  const enumGalgasBool test_3 = temp_1.getter_mFastReturn (HERE).boolEnum () ;
+  const enumGalgasBool test_3 = temp_1.readProperty_mFastReturn ().boolEnum () ;
   if (kBoolTrue == test_3) {
     temp_2 = GALGAS_uint ((uint32_t) 17U) ;
   }else if (kBoolFalse == test_3) {
@@ -6690,7 +4876,7 @@ static GALGAS_string extensionGetter_ipic_31__38_RetlwTerminator_terminatorDispl
   const cPtr_ipic_31__38_RetlwTerminator * object = (const cPtr_ipic_31__38_RetlwTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_RetlwTerminator) ;
   const GALGAS_ipic_31__38_RetlwTerminator temp_0 = object ;
-  result_outResult = GALGAS_string ("RETLW ").add_operation (temp_0.getter_mLiteralValue (HERE).getter_hexString (SOURCE_FILE ("ipic18_terminators.galgas", 111)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 111)) ;
+  result_outResult = GALGAS_string ("RETLW ").add_operation (temp_0.readProperty_mLiteralValue ().getter_hexString (SOURCE_FILE ("ipic18_terminators.galgas", 111)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 111)) ;
 //---
   return result_outResult ;
 }
@@ -6752,7 +4938,7 @@ static void extensionMethod_ipic_31__38_RetlwTerminator_generateTerminatorCode (
   macroValidSharedObject (object, cPtr_ipic_31__38_RetlwTerminator) ;
   const GALGAS_ipic_31__38_RetlwTerminator temp_0 = object ;
   const GALGAS_ipic_31__38_RetlwTerminator temp_1 = object ;
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_RetlwTerminator *) temp_0.ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 130)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 130)), GALGAS_uintlist::constructor_listWithValue (GALGAS_uint ((uint32_t) 3072U).operator_or (temp_1.getter_mLiteralValue (HERE) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 131))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 131))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 129)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_RetlwTerminator *) temp_0.ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 130)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 130)), GALGAS_uintlist::constructor_listWithValue (GALGAS_uint ((uint32_t) 3072U).operator_or (temp_1.readProperty_mLiteralValue () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 131))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 131))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 129)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6787,7 +4973,7 @@ static GALGAS_bool extensionGetter_ipic_31__38_RetlwTerminator_isEqualToTerminat
     }
     if (kBoolTrue == test_0) {
       const GALGAS_ipic_31__38_RetlwTerminator temp_1 = object ;
-      result_outResult = GALGAS_bool (kIsEqual, temp_1.getter_mLiteralValue (HERE).objectCompare (var_t_4553.getter_mLiteralValue (SOURCE_FILE ("ipic18_terminators.galgas", 146)))) ;
+      result_outResult = GALGAS_bool (kIsEqual, temp_1.readProperty_mLiteralValue ().objectCompare (var_t_4553.readProperty_mLiteralValue ())) ;
     }
   }
   if (kBoolFalse == test_0) {
@@ -6825,14 +5011,14 @@ static GALGAS_uint extensionGetter_ipic_31__38_JumpTerminator_terminatorSize (co
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_ipic_31__38_JumpTerminator temp_1 = object ;
-    test_0 = GALGAS_bool (kIsEqual, temp_1.getter_mLabel (HERE).getter_string (HERE).objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, temp_1.readProperty_mLabel ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
     if (kBoolTrue == test_0) {
       result_outSize = GALGAS_uint ((uint32_t) 0U) ;
     }
   }
   if (kBoolFalse == test_0) {
     const GALGAS_ipic_31__38_JumpTerminator temp_2 = object ;
-    switch (temp_2.getter_mKind (HERE).enumValue ()) {
+    switch (temp_2.readProperty_mKind ().enumValue ()) {
     case GALGAS_jumpInstructionKind::kNotBuilt:
       break ;
     case GALGAS_jumpInstructionKind::kEnum_ipicRelative:
@@ -6883,10 +5069,10 @@ static void extensionMethod_ipic_31__38_JumpTerminator_terminatorRelativeBranchO
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_ipic_31__38_JumpTerminator temp_1 = object ;
-    test_0 = GALGAS_bool (kIsNotEqual, temp_1.getter_mLabel (HERE).getter_string (HERE).objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+    test_0 = GALGAS_bool (kIsNotEqual, temp_1.readProperty_mLabel ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
     if (kBoolTrue == test_0) {
       const GALGAS_ipic_31__38_JumpTerminator temp_2 = object ;
-      switch (temp_2.getter_mKind (HERE).enumValue ()) {
+      switch (temp_2.readProperty_mKind ().enumValue ()) {
       case GALGAS_jumpInstructionKind::kNotBuilt:
         break ;
       case GALGAS_jumpInstructionKind::kEnum_ipicRelative:
@@ -6895,10 +5081,10 @@ static void extensionMethod_ipic_31__38_JumpTerminator_terminatorRelativeBranchO
           enumGalgasBool test_3 = kBoolTrue ;
           if (kBoolTrue == test_3) {
             const GALGAS_ipic_31__38_JumpTerminator temp_4 = object ;
-            test_3 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_4.getter_mLabel (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 185)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 185)).boolEnum () ;
+            test_3 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_4.readProperty_mLabel (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 185)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 185)).boolEnum () ;
             if (kBoolTrue == test_3) {
               const GALGAS_ipic_31__38_JumpTerminator temp_5 = object ;
-              ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_5.getter_mLabel (HERE).getter_string (HERE)  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 186)) ;
+              ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_5.readProperty_mLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 186)) ;
             }
           }
         }
@@ -6946,10 +5132,10 @@ static void extensionMethod_ipic_31__38_JumpTerminator_performTerminatorRelative
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
     const GALGAS_ipic_31__38_JumpTerminator temp_2 = object ;
-    test_1 = GALGAS_bool (kIsNotEqual, constinArgument_inNextBlockLabel.objectCompare (temp_2.getter_mLabel (HERE).getter_string (HERE))).boolEnum () ;
+    test_1 = GALGAS_bool (kIsNotEqual, constinArgument_inNextBlockLabel.objectCompare (temp_2.readProperty_mLabel ().readProperty_string ())).boolEnum () ;
     if (kBoolTrue == test_1) {
       const GALGAS_ipic_31__38_JumpTerminator temp_3 = object ;
-      switch (temp_3.getter_mKind (HERE).enumValue ()) {
+      switch (temp_3.readProperty_mKind ().enumValue ()) {
       case GALGAS_jumpInstructionKind::kNotBuilt:
         break ;
       case GALGAS_jumpInstructionKind::kEnum_ipicRelative:
@@ -6957,15 +5143,15 @@ static void extensionMethod_ipic_31__38_JumpTerminator_performTerminatorRelative
           enumGalgasBool test_4 = kBoolTrue ;
           if (kBoolTrue == test_4) {
             const GALGAS_ipic_31__38_JumpTerminator temp_5 = object ;
-            test_4 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_5.getter_mLabel (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 207)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 207)).boolEnum () ;
+            test_4 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_5.readProperty_mLabel (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 207)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 207)).boolEnum () ;
             if (kBoolTrue == test_4) {
               ioArgument_ioConversionCount.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 208)) ;
               const GALGAS_ipic_31__38_JumpTerminator temp_6 = object ;
               const GALGAS_ipic_31__38_JumpTerminator temp_7 = object ;
-              ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)).add_operation (GALGAS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)).add_operation (temp_6.getter_mLabel (HERE).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 209)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)).add_operation (GALGAS_string (" --> GOTO "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)).add_operation (temp_7.getter_mLabel (HERE).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 209)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)) ;
+              ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)).add_operation (GALGAS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)).add_operation (temp_6.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)).add_operation (GALGAS_string (" --> GOTO "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)).add_operation (temp_7.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 209)) ;
               const GALGAS_ipic_31__38_JumpTerminator temp_8 = object ;
               const GALGAS_ipic_31__38_JumpTerminator temp_9 = object ;
-              outArgument_outModifiedTerminator = GALGAS_ipic_31__38_JumpTerminator::constructor_new (temp_8.getter_mInstructionLocation (HERE), temp_9.getter_mLabel (HERE), GALGAS_jumpInstructionKind::constructor_absolute (SOURCE_FILE ("ipic18_terminators.galgas", 210))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 210)) ;
+              outArgument_outModifiedTerminator = GALGAS_ipic_31__38_JumpTerminator::constructor_new (temp_8.readProperty_mInstructionLocation (), temp_9.readProperty_mLabel (), GALGAS_jumpInstructionKind::constructor_absolute (SOURCE_FILE ("ipic18_terminators.galgas", 210))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 210)) ;
             }
           }
         }
@@ -6975,13 +5161,13 @@ static void extensionMethod_ipic_31__38_JumpTerminator_performTerminatorRelative
           enumGalgasBool test_10 = kBoolTrue ;
           if (kBoolTrue == test_10) {
             const GALGAS_ipic_31__38_JumpTerminator temp_11 = object ;
-            test_10 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_11.getter_mLabel (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 213)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 213)).boolEnum () ;
+            test_10 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_11.readProperty_mLabel (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 213)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 213)).boolEnum () ;
             if (kBoolTrue == test_10) {
               const GALGAS_ipic_31__38_JumpTerminator temp_12 = object ;
               const GALGAS_ipic_31__38_JumpTerminator temp_13 = object ;
               const GALGAS_ipic_31__38_JumpTerminator temp_14 = object ;
               TC_Array <C_FixItDescription> fixItArray15 ;
-              inCompiler->emitSemanticError (temp_12.getter_mInstructionLocation (HERE), GALGAS_string ("displacement (").add_operation (function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (constinArgument_inSymbolTable, temp_13.getter_mLabel (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 215)).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 214)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 214)).add_operation (GALGAS_string (") too large for BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 215)).add_operation (temp_14.getter_mLabel (HERE).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 215)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 215)).add_operation (GALGAS_string (" instruction (limited to [-1024, 1023])"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 216)), fixItArray15  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 214)) ;
+              inCompiler->emitSemanticError (temp_12.readProperty_mInstructionLocation (), GALGAS_string ("displacement (").add_operation (function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (constinArgument_inSymbolTable, temp_13.readProperty_mLabel (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 215)).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 214)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 214)).add_operation (GALGAS_string (") too large for BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 215)).add_operation (temp_14.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 215)).add_operation (GALGAS_string (" instruction (limited to [-1024, 1023])"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 216)), fixItArray15  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 214)) ;
             }
           }
         }
@@ -7019,39 +5205,39 @@ static GALGAS_string extensionGetter_ipic_31__38_JumpTerminator_terminatorDispla
   GALGAS_string result_outResult ; // Returned variable
   const cPtr_ipic_31__38_JumpTerminator * object = (const cPtr_ipic_31__38_JumpTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_JumpTerminator) ;
-  GALGAS_string var_name_7312 ;
+  GALGAS_string var_name_7314 ;
   const GALGAS_ipic_31__38_JumpTerminator temp_0 = object ;
-  switch (temp_0.getter_mKind (HERE).enumValue ()) {
+  switch (temp_0.readProperty_mKind ().enumValue ()) {
   case GALGAS_jumpInstructionKind::kNotBuilt:
     break ;
   case GALGAS_jumpInstructionKind::kEnum_ipicRelative:
     {
-      var_name_7312 = GALGAS_string ("JUMP ") ;
+      var_name_7314 = GALGAS_string ("JUMP ") ;
     }
     break ;
   case GALGAS_jumpInstructionKind::kEnum_relative:
     {
-      var_name_7312 = GALGAS_string ("BRA ") ;
+      var_name_7314 = GALGAS_string ("BRA ") ;
     }
     break ;
   case GALGAS_jumpInstructionKind::kEnum_absolute:
     {
-      var_name_7312 = GALGAS_string ("GOTO ") ;
+      var_name_7314 = GALGAS_string ("GOTO ") ;
     }
     break ;
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
     const GALGAS_ipic_31__38_JumpTerminator temp_2 = object ;
-    test_1 = GALGAS_bool (kIsEqual, constinArgument_inNextBlockLabel.objectCompare (temp_2.getter_mLabel (HERE).getter_string (HERE))).boolEnum () ;
+    test_1 = GALGAS_bool (kIsEqual, constinArgument_inNextBlockLabel.objectCompare (temp_2.readProperty_mLabel ().readProperty_string ())).boolEnum () ;
     if (kBoolTrue == test_1) {
       const GALGAS_ipic_31__38_JumpTerminator temp_3 = object ;
-      result_outResult = GALGAS_string ("(").add_operation (var_name_7312, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 235)).add_operation (temp_3.getter_mLabel (HERE).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 235)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 235)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 235)) ;
+      result_outResult = GALGAS_string ("(").add_operation (var_name_7314, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 235)).add_operation (temp_3.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 235)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 235)) ;
     }
   }
   if (kBoolFalse == test_1) {
     const GALGAS_ipic_31__38_JumpTerminator temp_4 = object ;
-    result_outResult = var_name_7312.add_operation (temp_4.getter_mLabel (HERE).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 237)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 237)) ;
+    result_outResult = var_name_7314.add_operation (temp_4.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 237)) ;
   }
 //---
   return result_outResult ;
@@ -7087,30 +5273,30 @@ static void extensionMethod_ipic_31__38_JumpTerminator_generateTerminatorCode (c
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_ipic_31__38_JumpTerminator temp_1 = object ;
-    test_0 = GALGAS_bool (kIsEqual, temp_1.getter_mLabel (HERE).getter_string (HERE).objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, temp_1.readProperty_mLabel ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
     if (kBoolTrue == test_0) {
       outArgument_outCode = GALGAS_codeList::constructor_emptyList (SOURCE_FILE ("ipic18_terminators.galgas", 249)) ;
     }
   }
   if (kBoolFalse == test_0) {
-    GALGAS_uint var_targetAddress_8034 ;
+    GALGAS_uint var_targetAddress_8036 ;
     const GALGAS_ipic_31__38_JumpTerminator temp_2 = object ;
-    constinArgument_inSymbolTable.method_searchKey (temp_2.getter_mLabel (HERE), var_targetAddress_8034, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 251)) ;
+    constinArgument_inSymbolTable.method_searchKey (temp_2.readProperty_mLabel (), var_targetAddress_8036, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 251)) ;
     const GALGAS_ipic_31__38_JumpTerminator temp_3 = object ;
-    switch (temp_3.getter_mKind (HERE).enumValue ()) {
+    switch (temp_3.readProperty_mKind ().enumValue ()) {
     case GALGAS_jumpInstructionKind::kNotBuilt:
       break ;
     case GALGAS_jumpInstructionKind::kEnum_ipicRelative:
     case GALGAS_jumpInstructionKind::kEnum_relative:
       {
         const GALGAS_ipic_31__38_JumpTerminator temp_4 = object ;
-        outArgument_outCode = function_pic_31__38__5F_BRA_5F_instruction_5F_code (constinArgument_inAddress, var_targetAddress_8034, temp_4.getter_mLabel (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 254)) ;
+        outArgument_outCode = function_pic_31__38__5F_BRA_5F_instruction_5F_code (constinArgument_inAddress, var_targetAddress_8036, temp_4.readProperty_mLabel (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 254)) ;
       }
       break ;
     case GALGAS_jumpInstructionKind::kEnum_absolute:
       {
         const GALGAS_ipic_31__38_JumpTerminator temp_5 = object ;
-        outArgument_outCode = function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_targetAddress_8034, temp_5.getter_mLabel (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 256)) ;
+        outArgument_outCode = function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_targetAddress_8036, temp_5.readProperty_mLabel (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 256)) ;
       }
       break ;
     }
@@ -7143,14 +5329,14 @@ static GALGAS_bool extensionGetter_ipic_31__38_JumpTerminator_isEqualToTerminato
   macroValidSharedObject (object, cPtr_ipic_31__38_JumpTerminator) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    GALGAS_ipic_31__38_JumpTerminator var_t_8751 (dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (constinArgument_inTerminator.ptr ())) ;
-    if (NULL == var_t_8751.ptr ()) {
+    GALGAS_ipic_31__38_JumpTerminator var_t_8753 (dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (constinArgument_inTerminator.ptr ())) ;
+    if (NULL == var_t_8753.ptr ()) {
       test_0 = kBoolFalse ;
     }
     if (kBoolTrue == test_0) {
       const GALGAS_ipic_31__38_JumpTerminator temp_1 = object ;
       const GALGAS_ipic_31__38_JumpTerminator temp_2 = object ;
-      result_outResult = GALGAS_bool (kIsEqual, temp_1.getter_mLabel (HERE).getter_string (HERE).objectCompare (var_t_8751.getter_mLabel (SOURCE_FILE ("ipic18_terminators.galgas", 273)).getter_string (HERE))).operator_and (GALGAS_bool (kIsEqual, temp_2.getter_mKind (HERE).objectCompare (var_t_8751.getter_mKind (SOURCE_FILE ("ipic18_terminators.galgas", 273)))) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 273)) ;
+      result_outResult = GALGAS_bool (kIsEqual, temp_1.readProperty_mLabel ().readProperty_string ().objectCompare (var_t_8753.readProperty_mLabel ().readProperty_string ())).operator_and (GALGAS_bool (kIsEqual, temp_2.readProperty_mKind ().objectCompare (var_t_8753.readProperty_mKind ())) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 273)) ;
     }
   }
   if (kBoolFalse == test_0) {
@@ -7187,7 +5373,7 @@ static GALGAS_uint extensionGetter_ipic_31__38_AbstractConditionTerminator_termi
   macroValidSharedObject (object, cPtr_ipic_31__38_AbstractConditionTerminator) ;
   const GALGAS_ipic_31__38_AbstractConditionTerminator temp_0 = object ;
   const GALGAS_ipic_31__38_AbstractConditionTerminator temp_1 = object ;
-  result_outSize = GALGAS_uint ((uint32_t) 2U).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 289)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 288)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 290)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 289)) ;
+  result_outSize = GALGAS_uint ((uint32_t) 2U).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 289)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 288)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 290)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 289)) ;
 //---
   return result_outSize ;
 }
@@ -7221,9 +5407,9 @@ static void extensionMethod_ipic_31__38_AbstractConditionTerminator_terminatorRe
   const cPtr_ipic_31__38_AbstractConditionTerminator * object = (const cPtr_ipic_31__38_AbstractConditionTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_AbstractConditionTerminator) ;
   const GALGAS_ipic_31__38_AbstractConditionTerminator temp_0 = object ;
-  callExtensionMethod_terminatorRelativeBranchOverflow ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioOverflowMap, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 301)) ;
+  callExtensionMethod_terminatorRelativeBranchOverflow ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioOverflowMap, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 301)) ;
   const GALGAS_ipic_31__38_AbstractConditionTerminator temp_1 = object ;
-  callExtensionMethod_terminatorRelativeBranchOverflow ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioOverflowMap, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 308)) ;
+  callExtensionMethod_terminatorRelativeBranchOverflow ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioOverflowMap, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 308)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7252,7 +5438,7 @@ static GALGAS_uint extensionGetter_pic_31__38_RegisterComparisonTerminator_termi
   macroValidSharedObject (object, cPtr_pic_31__38_RegisterComparisonTerminator) ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_0 = object ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_1 = object ;
-  result_outSize = GALGAS_uint ((uint32_t) 2U).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 327)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 326)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 328)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 327)) ;
+  result_outSize = GALGAS_uint ((uint32_t) 2U).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 327)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 326)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 328)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 327)) ;
 //---
   return result_outSize ;
 }
@@ -7283,9 +5469,9 @@ static GALGAS_string extensionGetter_pic_31__38_RegisterComparisonTerminator_ter
   const cPtr_pic_31__38_RegisterComparisonTerminator * object = (const cPtr_pic_31__38_RegisterComparisonTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_RegisterComparisonTerminator) ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_0 = object ;
-  result_outResult = temp_0.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("ipic18_terminators.galgas", 336)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 336)) ;
+  result_outResult = temp_0.readProperty_mRegisterDescription ().readProperty_mAssemblyString ().add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 336)) ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_1 = object ;
-  switch (temp_1.getter_mComparison (HERE).enumValue ()) {
+  switch (temp_1.readProperty_mComparison ().enumValue ()) {
   case GALGAS_ipic_31__38_RegisterComparison::kNotBuilt:
     break ;
   case GALGAS_ipic_31__38_RegisterComparison::kEnum_registerEqualsToW:
@@ -7306,10 +5492,10 @@ static GALGAS_string extensionGetter_pic_31__38_RegisterComparisonTerminator_ter
   }
   result_outResult.plusAssign_operation(GALGAS_string (" W \? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 345)) ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_2 = object ;
-  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 346)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 346)) ;
+  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 346)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 346)) ;
   result_outResult.plusAssign_operation(GALGAS_string (" : "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 347)) ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_3 = object ;
-  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_3.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 348)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 348)) ;
+  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_3.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 348)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 348)) ;
 //---
   return result_outResult ;
 }
@@ -7344,16 +5530,16 @@ static void extensionMethod_pic_31__38_RegisterComparisonTerminator_performTermi
                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_RegisterComparisonTerminator * object = (const cPtr_pic_31__38_RegisterComparisonTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_RegisterComparisonTerminator) ;
-  GALGAS_uint var_n_11798 = ioArgument_ioConversionCount ;
-  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedTrueTerminator_12101 ;
+  GALGAS_uint var_n_11794 = ioArgument_ioConversionCount ;
+  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedTrueTerminator_12097 ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_0 = object ;
-  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedTrueTerminator_12101, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 362)) ;
-  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedFalseTerminator_12390 ;
+  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedTrueTerminator_12097, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 362)) ;
+  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedFalseTerminator_12386 ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_1 = object ;
-  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedFalseTerminator_12390, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 371)) ;
+  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedFalseTerminator_12386, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 371)) ;
   enumGalgasBool test_2 = kBoolTrue ;
   if (kBoolTrue == test_2) {
-    test_2 = GALGAS_bool (kIsEqual, ioArgument_ioConversionCount.objectCompare (var_n_11798)).boolEnum () ;
+    test_2 = GALGAS_bool (kIsEqual, ioArgument_ioConversionCount.objectCompare (var_n_11794)).boolEnum () ;
     if (kBoolTrue == test_2) {
       const GALGAS_pic_31__38_RegisterComparisonTerminator temp_3 = object ;
       outArgument_outModifiedTerminator = temp_3 ;
@@ -7362,24 +5548,24 @@ static void extensionMethod_pic_31__38_RegisterComparisonTerminator_performTermi
   if (kBoolFalse == test_2) {
     const GALGAS_pic_31__38_RegisterComparisonTerminator temp_4 = object ;
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_5 ;
-    if (var_outModifiedTrueTerminator_12101.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_12101.ptr ())) {
-        temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_12101.ptr () ;
+    if (var_outModifiedTrueTerminator_12097.isValid ()) {
+      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_12097.ptr ())) {
+        temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_12097.ptr () ;
       }else{
-        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_12101.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 385)) ;
+        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_12097.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 385)) ;
       }
     }
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_6 ;
-    if (var_outModifiedFalseTerminator_12390.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_12390.ptr ())) {
-        temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_12390.ptr () ;
+    if (var_outModifiedFalseTerminator_12386.isValid ()) {
+      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_12386.ptr ())) {
+        temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_12386.ptr () ;
       }else{
-        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_12390.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 386)) ;
+        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_12386.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 386)) ;
       }
     }
     const GALGAS_pic_31__38_RegisterComparisonTerminator temp_7 = object ;
     const GALGAS_pic_31__38_RegisterComparisonTerminator temp_8 = object ;
-    outArgument_outModifiedTerminator = GALGAS_pic_31__38_RegisterComparisonTerminator::constructor_new (temp_4.getter_mInstructionLocation (HERE), temp_5, temp_6, temp_7.getter_mRegisterDescription (HERE), temp_8.getter_mComparison (HERE)  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 383)) ;
+    outArgument_outModifiedTerminator = GALGAS_pic_31__38_RegisterComparisonTerminator::constructor_new (temp_4.readProperty_mInstructionLocation (), temp_5, temp_6, temp_7.readProperty_mRegisterDescription (), temp_8.readProperty_mComparison ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 383)) ;
   }
 }
 
@@ -7410,53 +5596,53 @@ static void extensionMethod_pic_31__38_RegisterComparisonTerminator_generateTerm
   const cPtr_pic_31__38_RegisterComparisonTerminator * object = (const cPtr_pic_31__38_RegisterComparisonTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_RegisterComparisonTerminator) ;
   GALGAS_uint var_binCode_13090 ;
-  GALGAS_string var_assemblyCode_13113 ;
+  GALGAS_string var_assemblyCode_13117 ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_0 = object ;
-  switch (temp_0.getter_mComparison (HERE).enumValue ()) {
+  switch (temp_0.readProperty_mComparison ().enumValue ()) {
   case GALGAS_ipic_31__38_RegisterComparison::kNotBuilt:
     break ;
   case GALGAS_ipic_31__38_RegisterComparison::kEnum_registerEqualsToW:
     {
       var_binCode_13090 = GALGAS_uint ((uint32_t) 25088U) ;
-      var_assemblyCode_13113 = GALGAS_string ("    CPFSEQ") ;
+      var_assemblyCode_13117 = GALGAS_string ("    CPFSEQ") ;
     }
     break ;
   case GALGAS_ipic_31__38_RegisterComparison::kEnum_registerGreaterThanW:
     {
       var_binCode_13090 = GALGAS_uint ((uint32_t) 25600U) ;
-      var_assemblyCode_13113 = GALGAS_string ("    CPFSGT") ;
+      var_assemblyCode_13117 = GALGAS_string ("    CPFSGT") ;
     }
     break ;
   case GALGAS_ipic_31__38_RegisterComparison::kEnum_registerLowerThanW:
     {
       var_binCode_13090 = GALGAS_uint ((uint32_t) 24576U) ;
-      var_assemblyCode_13113 = GALGAS_string ("    CPFSLT") ;
+      var_assemblyCode_13117 = GALGAS_string ("    CPFSLT") ;
     }
     break ;
   }
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_1 = object ;
-  var_assemblyCode_13113.plusAssign_operation(GALGAS_string (" ").add_operation (temp_1.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("ipic18_terminators.galgas", 413)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 413)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 413)) ;
+  var_assemblyCode_13117.plusAssign_operation(GALGAS_string (" ").add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 413)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 413)) ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_2 = object ;
-  var_binCode_13090 = var_binCode_13090.operator_or (temp_2.getter_mRegisterDescription (HERE).getter_mRegisterAddress (SOURCE_FILE ("ipic18_terminators.galgas", 414)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 414)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 414)) ;
+  var_binCode_13090 = var_binCode_13090.operator_or (temp_2.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 414)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 414)) ;
   enumGalgasBool test_3 = kBoolTrue ;
   if (kBoolTrue == test_3) {
     const GALGAS_pic_31__38_RegisterComparisonTerminator temp_4 = object ;
-    test_3 = temp_4.getter_mRegisterDescription (HERE).getter_mNeedsBSR (SOURCE_FILE ("ipic18_terminators.galgas", 415)).boolEnum () ;
+    test_3 = temp_4.readProperty_mRegisterDescription ().readProperty_mNeedsBSR ().boolEnum () ;
     if (kBoolTrue == test_3) {
       var_binCode_13090 = var_binCode_13090.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 416)) ;
-      var_assemblyCode_13113.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 417)) ;
+      var_assemblyCode_13117.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 417)) ;
     }
   }
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_13113, GALGAS_uintlist::constructor_listWithValue (var_binCode_13090  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 421))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 419)) ;
-  GALGAS_codeList var_falseTerminatorCode_13913 ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_13117, GALGAS_uintlist::constructor_listWithValue (var_binCode_13090  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 421))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 419)) ;
+  GALGAS_codeList var_falseTerminatorCode_13911 ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_5 = object ;
-  callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_5.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 424)), constinArgument_inSymbolTable, GALGAS_string::makeEmptyString (), var_falseTerminatorCode_13913, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 423)) ;
-  outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_13913, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 429)) ;
-  GALGAS_codeList var_trueTerminatorCode_14198 ;
+  callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_5.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 424)), constinArgument_inSymbolTable, GALGAS_string::makeEmptyString (), var_falseTerminatorCode_13911, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 423)) ;
+  outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_13911, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 429)) ;
+  GALGAS_codeList var_trueTerminatorCode_14196 ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_6 = object ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_7 = object ;
-  callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_6.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 431)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_7.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 431)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 431)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_trueTerminatorCode_14198, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 430)) ;
-  outArgument_outCode.plusAssign_operation(var_trueTerminatorCode_14198, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 436)) ;
+  callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_6.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 431)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_7.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 431)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 431)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_trueTerminatorCode_14196, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 430)) ;
+  outArgument_outCode.plusAssign_operation(var_trueTerminatorCode_14196, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 436)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7496,15 +5682,15 @@ static GALGAS_bool extensionGetter_pic_31__38_RegisterComparisonTerminator_isEqu
           inCompiler->castError ("pic_31__38_RegisterComparisonTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 446)) ;
         }
       }
-      GALGAS_pic_31__38_RegisterComparisonTerminator var_t_14599 = temp_1 ;
+      GALGAS_pic_31__38_RegisterComparisonTerminator var_t_14597 = temp_1 ;
       const GALGAS_pic_31__38_RegisterComparisonTerminator temp_2 = object ;
-      result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), var_t_14599.getter_mSingleInstructionTerminatorIfConditionTrue (SOURCE_FILE ("ipic18_terminators.galgas", 447)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 447)) ;
+      result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), var_t_14597.readProperty_mSingleInstructionTerminatorIfConditionTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 447)) ;
       enumGalgasBool test_3 = kBoolTrue ;
       if (kBoolTrue == test_3) {
         test_3 = result_outResult.boolEnum () ;
         if (kBoolTrue == test_3) {
           const GALGAS_pic_31__38_RegisterComparisonTerminator temp_4 = object ;
-          result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_4.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), var_t_14599.getter_mSingleInstructionTerminatorIfConditionFalse (SOURCE_FILE ("ipic18_terminators.galgas", 449)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 449)) ;
+          result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_4.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), var_t_14597.readProperty_mSingleInstructionTerminatorIfConditionFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 449)) ;
         }
       }
       enumGalgasBool test_5 = kBoolTrue ;
@@ -7512,7 +5698,7 @@ static GALGAS_bool extensionGetter_pic_31__38_RegisterComparisonTerminator_isEqu
         test_5 = result_outResult.boolEnum () ;
         if (kBoolTrue == test_5) {
           const GALGAS_pic_31__38_RegisterComparisonTerminator temp_6 = object ;
-          result_outResult = GALGAS_bool (kIsEqual, temp_6.getter_mComparison (HERE).objectCompare (var_t_14599.getter_mComparison (SOURCE_FILE ("ipic18_terminators.galgas", 452)))) ;
+          result_outResult = GALGAS_bool (kIsEqual, temp_6.readProperty_mComparison ().objectCompare (var_t_14597.readProperty_mComparison ())) ;
         }
       }
       enumGalgasBool test_7 = kBoolTrue ;
@@ -7520,7 +5706,7 @@ static GALGAS_bool extensionGetter_pic_31__38_RegisterComparisonTerminator_isEqu
         test_7 = result_outResult.boolEnum () ;
         if (kBoolTrue == test_7) {
           const GALGAS_pic_31__38_RegisterComparisonTerminator temp_8 = object ;
-          result_outResult = extensionGetter_isEqualToRegister (temp_8.getter_mRegisterDescription (HERE), var_t_14599.getter_mRegisterDescription (SOURCE_FILE ("ipic18_terminators.galgas", 455)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 455)) ;
+          result_outResult = extensionGetter_isEqualToRegister (temp_8.readProperty_mRegisterDescription (), var_t_14597.readProperty_mRegisterDescription (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 455)) ;
         }
       }
     }
@@ -7556,7 +5742,7 @@ static GALGAS_uint extensionGetter_pic_31__38_TestRegisterTerminator_terminatorS
   macroValidSharedObject (object, cPtr_pic_31__38_TestRegisterTerminator) ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_0 = object ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_1 = object ;
-  result_outSize = GALGAS_uint ((uint32_t) 2U).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 470)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 469)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 471)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 470)) ;
+  result_outSize = GALGAS_uint ((uint32_t) 2U).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 470)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 469)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 471)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 470)) ;
 //---
   return result_outSize ;
 }
@@ -7587,13 +5773,13 @@ static GALGAS_string extensionGetter_pic_31__38_TestRegisterTerminator_terminato
   const cPtr_pic_31__38_TestRegisterTerminator * object = (const cPtr_pic_31__38_TestRegisterTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_TestRegisterTerminator) ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_0 = object ;
-  result_outResult = temp_0.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("ipic18_terminators.galgas", 479)) ;
+  result_outResult = temp_0.readProperty_mRegisterDescription ().readProperty_mAssemblyString () ;
   result_outResult.plusAssign_operation(GALGAS_string (" Z \? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 480)) ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_1 = object ;
-  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 481)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 481)) ;
+  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 481)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 481)) ;
   result_outResult.plusAssign_operation(GALGAS_string (" : "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 482)) ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_2 = object ;
-  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 483)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 483)) ;
+  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 483)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 483)) ;
 //---
   return result_outResult ;
 }
@@ -7628,16 +5814,16 @@ static void extensionMethod_pic_31__38_TestRegisterTerminator_performTerminatorR
                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_TestRegisterTerminator * object = (const cPtr_pic_31__38_TestRegisterTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_TestRegisterTerminator) ;
-  GALGAS_uint var_n_16610 = ioArgument_ioConversionCount ;
-  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedTrueTerminator_16913 ;
+  GALGAS_uint var_n_16598 = ioArgument_ioConversionCount ;
+  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedTrueTerminator_16901 ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_0 = object ;
-  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedTrueTerminator_16913, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 497)) ;
-  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedFalseTerminator_17202 ;
+  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedTrueTerminator_16901, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 497)) ;
+  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedFalseTerminator_17190 ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_1 = object ;
-  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedFalseTerminator_17202, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 506)) ;
+  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedFalseTerminator_17190, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 506)) ;
   enumGalgasBool test_2 = kBoolTrue ;
   if (kBoolTrue == test_2) {
-    test_2 = GALGAS_bool (kIsEqual, ioArgument_ioConversionCount.objectCompare (var_n_16610)).boolEnum () ;
+    test_2 = GALGAS_bool (kIsEqual, ioArgument_ioConversionCount.objectCompare (var_n_16598)).boolEnum () ;
     if (kBoolTrue == test_2) {
       const GALGAS_pic_31__38_TestRegisterTerminator temp_3 = object ;
       outArgument_outModifiedTerminator = temp_3 ;
@@ -7646,23 +5832,23 @@ static void extensionMethod_pic_31__38_TestRegisterTerminator_performTerminatorR
   if (kBoolFalse == test_2) {
     const GALGAS_pic_31__38_TestRegisterTerminator temp_4 = object ;
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_5 ;
-    if (var_outModifiedTrueTerminator_16913.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_16913.ptr ())) {
-        temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_16913.ptr () ;
+    if (var_outModifiedTrueTerminator_16901.isValid ()) {
+      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_16901.ptr ())) {
+        temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_16901.ptr () ;
       }else{
-        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_16913.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 520)) ;
+        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_16901.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 520)) ;
       }
     }
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_6 ;
-    if (var_outModifiedFalseTerminator_17202.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_17202.ptr ())) {
-        temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_17202.ptr () ;
+    if (var_outModifiedFalseTerminator_17190.isValid ()) {
+      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_17190.ptr ())) {
+        temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_17190.ptr () ;
       }else{
-        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_17202.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 521)) ;
+        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_17190.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 521)) ;
       }
     }
     const GALGAS_pic_31__38_TestRegisterTerminator temp_7 = object ;
-    outArgument_outModifiedTerminator = GALGAS_pic_31__38_TestRegisterTerminator::constructor_new (temp_4.getter_mInstructionLocation (HERE), temp_5, temp_6, temp_7.getter_mRegisterDescription (HERE)  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 518)) ;
+    outArgument_outModifiedTerminator = GALGAS_pic_31__38_TestRegisterTerminator::constructor_new (temp_4.readProperty_mInstructionLocation (), temp_5, temp_6, temp_7.readProperty_mRegisterDescription ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 518)) ;
   }
 }
 
@@ -7692,30 +5878,30 @@ static void extensionMethod_pic_31__38_TestRegisterTerminator_generateTerminator
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_TestRegisterTerminator * object = (const cPtr_pic_31__38_TestRegisterTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_TestRegisterTerminator) ;
-  GALGAS_uint var_binCode_17866 = GALGAS_uint ((uint32_t) 26112U) ;
+  GALGAS_uint var_binCode_17858 = GALGAS_uint ((uint32_t) 26112U) ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_0 = object ;
-  GALGAS_string var_assemblyCode_17898 = GALGAS_string ("    TSTFSZ ").add_operation (temp_0.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("ipic18_terminators.galgas", 534)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 534)) ;
+  GALGAS_string var_assemblyCode_17894 = GALGAS_string ("    TSTFSZ ").add_operation (temp_0.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 534)) ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_1 = object ;
-  var_binCode_17866 = var_binCode_17866.operator_or (temp_1.getter_mRegisterDescription (HERE).getter_mRegisterAddress (SOURCE_FILE ("ipic18_terminators.galgas", 535)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 535)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 535)) ;
+  var_binCode_17858 = var_binCode_17858.operator_or (temp_1.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 535)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 535)) ;
   enumGalgasBool test_2 = kBoolTrue ;
   if (kBoolTrue == test_2) {
     const GALGAS_pic_31__38_TestRegisterTerminator temp_3 = object ;
-    test_2 = temp_3.getter_mRegisterDescription (HERE).getter_mNeedsBSR (SOURCE_FILE ("ipic18_terminators.galgas", 536)).boolEnum () ;
+    test_2 = temp_3.readProperty_mRegisterDescription ().readProperty_mNeedsBSR ().boolEnum () ;
     if (kBoolTrue == test_2) {
-      var_binCode_17866 = var_binCode_17866.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 537)) ;
-      var_assemblyCode_17898.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 538)) ;
+      var_binCode_17858 = var_binCode_17858.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 537)) ;
+      var_assemblyCode_17894.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 538)) ;
     }
   }
-  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_17898, GALGAS_uintlist::constructor_listWithValue (var_binCode_17866  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 542))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 540)) ;
-  GALGAS_codeList var_falseTerminatorCode_18484 ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_17894, GALGAS_uintlist::constructor_listWithValue (var_binCode_17858  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 542))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 540)) ;
+  GALGAS_codeList var_falseTerminatorCode_18474 ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_4 = object ;
-  callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_4.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 545)), constinArgument_inSymbolTable, GALGAS_string::makeEmptyString (), var_falseTerminatorCode_18484, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 544)) ;
-  outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_18484, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 550)) ;
-  GALGAS_codeList var_trueTerminatorCode_18769 ;
+  callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_4.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 545)), constinArgument_inSymbolTable, GALGAS_string::makeEmptyString (), var_falseTerminatorCode_18474, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 544)) ;
+  outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_18474, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 550)) ;
+  GALGAS_codeList var_trueTerminatorCode_18759 ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_5 = object ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_6 = object ;
-  callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_5.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 552)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_6.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 552)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 552)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_trueTerminatorCode_18769, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 551)) ;
-  outArgument_outCode.plusAssign_operation(var_trueTerminatorCode_18769, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 557)) ;
+  callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_5.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 552)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_6.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), GALGAS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 552)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 552)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_trueTerminatorCode_18759, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 551)) ;
+  outArgument_outCode.plusAssign_operation(var_trueTerminatorCode_18759, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 557)) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7755,15 +5941,15 @@ static GALGAS_bool extensionGetter_pic_31__38_TestRegisterTerminator_isEqualToTe
           inCompiler->castError ("pic_31__38_TestRegisterTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 567)) ;
         }
       }
-      GALGAS_pic_31__38_TestRegisterTerminator var_t_19152 = temp_1 ;
+      GALGAS_pic_31__38_TestRegisterTerminator var_t_19142 = temp_1 ;
       const GALGAS_pic_31__38_TestRegisterTerminator temp_2 = object ;
-      result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), var_t_19152.getter_mSingleInstructionTerminatorIfConditionTrue (SOURCE_FILE ("ipic18_terminators.galgas", 568)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 568)) ;
+      result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), var_t_19142.readProperty_mSingleInstructionTerminatorIfConditionTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 568)) ;
       enumGalgasBool test_3 = kBoolTrue ;
       if (kBoolTrue == test_3) {
         test_3 = result_outResult.boolEnum () ;
         if (kBoolTrue == test_3) {
           const GALGAS_pic_31__38_TestRegisterTerminator temp_4 = object ;
-          result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_4.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), var_t_19152.getter_mSingleInstructionTerminatorIfConditionFalse (SOURCE_FILE ("ipic18_terminators.galgas", 570)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 570)) ;
+          result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_4.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), var_t_19142.readProperty_mSingleInstructionTerminatorIfConditionFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 570)) ;
         }
       }
       enumGalgasBool test_5 = kBoolTrue ;
@@ -7771,7 +5957,7 @@ static GALGAS_bool extensionGetter_pic_31__38_TestRegisterTerminator_isEqualToTe
         test_5 = result_outResult.boolEnum () ;
         if (kBoolTrue == test_5) {
           const GALGAS_pic_31__38_TestRegisterTerminator temp_6 = object ;
-          result_outResult = extensionGetter_isEqualToRegister (temp_6.getter_mRegisterDescription (HERE), var_t_19152.getter_mRegisterDescription (SOURCE_FILE ("ipic18_terminators.galgas", 573)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 573)) ;
+          result_outResult = extensionGetter_isEqualToRegister (temp_6.readProperty_mRegisterDescription (), var_t_19142.readProperty_mRegisterDescription (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 573)) ;
         }
       }
     }
@@ -7807,12 +5993,12 @@ static GALGAS_string extensionGetter_pic_31__38_BitTestTerminator_terminatorDisp
   macroValidSharedObject (object, cPtr_pic_31__38_BitTestTerminator) ;
   const GALGAS_pic_31__38_BitTestTerminator temp_0 = object ;
   const GALGAS_pic_31__38_BitTestTerminator temp_1 = object ;
-  result_outResult = temp_0.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("ipic18_terminators.galgas", 587)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)).add_operation (temp_1.getter_mBitNumber (HERE).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 587)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)).add_operation (GALGAS_string (" \? "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)) ;
+  result_outResult = temp_0.readProperty_mRegisterDescription ().readProperty_mAssemblyString ().add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)).add_operation (temp_1.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 587)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)).add_operation (GALGAS_string (" \? "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)) ;
   const GALGAS_pic_31__38_BitTestTerminator temp_2 = object ;
-  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 588)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 588)) ;
+  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 588)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 588)) ;
   result_outResult.plusAssign_operation(GALGAS_string (" : "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 589)) ;
   const GALGAS_pic_31__38_BitTestTerminator temp_3 = object ;
-  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_3.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 590)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 590)) ;
+  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_3.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 590)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 590)) ;
 //---
   return result_outResult ;
 }
@@ -7847,16 +6033,16 @@ static void extensionMethod_pic_31__38_BitTestTerminator_performTerminatorRelati
                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_pic_31__38_BitTestTerminator * object = (const cPtr_pic_31__38_BitTestTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_pic_31__38_BitTestTerminator) ;
-  GALGAS_uint var_n_20709 = ioArgument_ioConversionCount ;
-  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedTrueTerminator_21012 ;
+  GALGAS_uint var_n_20691 = ioArgument_ioConversionCount ;
+  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedTrueTerminator_20994 ;
   const GALGAS_pic_31__38_BitTestTerminator temp_0 = object ;
-  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedTrueTerminator_21012, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 604)) ;
-  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedFalseTerminator_21301 ;
+  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedTrueTerminator_20994, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 604)) ;
+  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedFalseTerminator_21283 ;
   const GALGAS_pic_31__38_BitTestTerminator temp_1 = object ;
-  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedFalseTerminator_21301, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 613)) ;
+  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedFalseTerminator_21283, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 613)) ;
   enumGalgasBool test_2 = kBoolTrue ;
   if (kBoolTrue == test_2) {
-    test_2 = GALGAS_bool (kIsEqual, ioArgument_ioConversionCount.objectCompare (var_n_20709)).boolEnum () ;
+    test_2 = GALGAS_bool (kIsEqual, ioArgument_ioConversionCount.objectCompare (var_n_20691)).boolEnum () ;
     if (kBoolTrue == test_2) {
       const GALGAS_pic_31__38_BitTestTerminator temp_3 = object ;
       outArgument_outModifiedTerminator = temp_3 ;
@@ -7865,24 +6051,24 @@ static void extensionMethod_pic_31__38_BitTestTerminator_performTerminatorRelati
   if (kBoolFalse == test_2) {
     const GALGAS_pic_31__38_BitTestTerminator temp_4 = object ;
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_5 ;
-    if (var_outModifiedTrueTerminator_21012.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_21012.ptr ())) {
-        temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_21012.ptr () ;
+    if (var_outModifiedTrueTerminator_20994.isValid ()) {
+      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_20994.ptr ())) {
+        temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_20994.ptr () ;
       }else{
-        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_21012.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 627)) ;
+        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_20994.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 627)) ;
       }
     }
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_6 ;
-    if (var_outModifiedFalseTerminator_21301.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_21301.ptr ())) {
-        temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_21301.ptr () ;
+    if (var_outModifiedFalseTerminator_21283.isValid ()) {
+      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_21283.ptr ())) {
+        temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_21283.ptr () ;
       }else{
-        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_21301.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 628)) ;
+        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_21283.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 628)) ;
       }
     }
     const GALGAS_pic_31__38_BitTestTerminator temp_7 = object ;
     const GALGAS_pic_31__38_BitTestTerminator temp_8 = object ;
-    outArgument_outModifiedTerminator = GALGAS_pic_31__38_BitTestTerminator::constructor_new (temp_4.getter_mInstructionLocation (HERE), temp_5, temp_6, temp_7.getter_mRegisterDescription (HERE), temp_8.getter_mBitNumber (HERE)  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 625)) ;
+    outArgument_outModifiedTerminator = GALGAS_pic_31__38_BitTestTerminator::constructor_new (temp_4.readProperty_mInstructionLocation (), temp_5, temp_6, temp_7.readProperty_mRegisterDescription (), temp_8.readProperty_mBitNumber ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 625)) ;
   }
 }
 
@@ -7915,60 +6101,60 @@ static void extensionMethod_pic_31__38_BitTestTerminator_generateTerminatorCode 
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_pic_31__38_BitTestTerminator temp_1 = object ;
-    test_0 = GALGAS_bool (kIsEqual, callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 642)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 642)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_uint var_binCode_22137 = GALGAS_uint ((uint32_t) 45056U) ;
+      GALGAS_uint var_binCode_22123 = GALGAS_uint ((uint32_t) 45056U) ;
       const GALGAS_pic_31__38_BitTestTerminator temp_2 = object ;
       const GALGAS_pic_31__38_BitTestTerminator temp_3 = object ;
-      GALGAS_string var_assemblyCode_22171 = GALGAS_string ("    BTFSC ").add_operation (temp_2.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("ipic18_terminators.galgas", 645)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 645)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 645)).add_operation (temp_3.getter_mBitNumber (HERE).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 645)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 645)) ;
+      GALGAS_string var_assemblyCode_22161 = GALGAS_string ("    BTFSC ").add_operation (temp_2.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 645)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 645)).add_operation (temp_3.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 645)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 645)) ;
       const GALGAS_pic_31__38_BitTestTerminator temp_4 = object ;
-      var_binCode_22137 = var_binCode_22137.operator_or (temp_4.getter_mRegisterDescription (HERE).getter_mRegisterAddress (SOURCE_FILE ("ipic18_terminators.galgas", 646)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 646)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 646)) ;
+      var_binCode_22123 = var_binCode_22123.operator_or (temp_4.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 646)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 646)) ;
       const GALGAS_pic_31__38_BitTestTerminator temp_5 = object ;
-      var_binCode_22137 = var_binCode_22137.operator_or (temp_5.getter_mBitNumber (HERE).left_shift_operation (GALGAS_uint ((uint32_t) 9U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 647)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 647)) ;
+      var_binCode_22123 = var_binCode_22123.operator_or (temp_5.readProperty_mBitNumber ().left_shift_operation (GALGAS_uint ((uint32_t) 9U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 647)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 647)) ;
       enumGalgasBool test_6 = kBoolTrue ;
       if (kBoolTrue == test_6) {
         const GALGAS_pic_31__38_BitTestTerminator temp_7 = object ;
-        test_6 = temp_7.getter_mRegisterDescription (HERE).getter_mNeedsBSR (SOURCE_FILE ("ipic18_terminators.galgas", 648)).boolEnum () ;
+        test_6 = temp_7.readProperty_mRegisterDescription ().readProperty_mNeedsBSR ().boolEnum () ;
         if (kBoolTrue == test_6) {
-          var_binCode_22137 = var_binCode_22137.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 649)) ;
-          var_assemblyCode_22171.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 650)) ;
+          var_binCode_22123 = var_binCode_22123.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 649)) ;
+          var_assemblyCode_22161.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 650)) ;
         }
       }
-      outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_22171, GALGAS_uintlist::constructor_listWithValue (var_binCode_22137  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 654))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 652)) ;
-      GALGAS_codeList var_falseTerminatorCode_22800 ;
+      outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_22161, GALGAS_uintlist::constructor_listWithValue (var_binCode_22123  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 654))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 652)) ;
+      GALGAS_codeList var_falseTerminatorCode_22784 ;
       const GALGAS_pic_31__38_BitTestTerminator temp_8 = object ;
-      callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_8.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 656)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_falseTerminatorCode_22800, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 655)) ;
-      outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_22800, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 661)) ;
+      callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_8.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 656)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_falseTerminatorCode_22784, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 655)) ;
+      outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_22784, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 661)) ;
     }
   }
   if (kBoolFalse == test_0) {
-    GALGAS_uint var_binCode_22938 = GALGAS_uint ((uint32_t) 40960U) ;
+    GALGAS_uint var_binCode_22926 = GALGAS_uint ((uint32_t) 40960U) ;
     const GALGAS_pic_31__38_BitTestTerminator temp_9 = object ;
     const GALGAS_pic_31__38_BitTestTerminator temp_10 = object ;
-    GALGAS_string var_assemblyCode_22972 = GALGAS_string ("    BTFSS ").add_operation (temp_9.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("ipic18_terminators.galgas", 665)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 665)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 665)).add_operation (temp_10.getter_mBitNumber (HERE).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 665)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 665)) ;
+    GALGAS_string var_assemblyCode_22964 = GALGAS_string ("    BTFSS ").add_operation (temp_9.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 665)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 665)).add_operation (temp_10.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 665)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 665)) ;
     const GALGAS_pic_31__38_BitTestTerminator temp_11 = object ;
-    var_binCode_22938 = var_binCode_22938.operator_or (temp_11.getter_mRegisterDescription (HERE).getter_mRegisterAddress (SOURCE_FILE ("ipic18_terminators.galgas", 666)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 666)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 666)) ;
+    var_binCode_22926 = var_binCode_22926.operator_or (temp_11.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 666)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 666)) ;
     const GALGAS_pic_31__38_BitTestTerminator temp_12 = object ;
-    var_binCode_22938 = var_binCode_22938.operator_or (temp_12.getter_mBitNumber (HERE).left_shift_operation (GALGAS_uint ((uint32_t) 9U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 667)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 667)) ;
+    var_binCode_22926 = var_binCode_22926.operator_or (temp_12.readProperty_mBitNumber ().left_shift_operation (GALGAS_uint ((uint32_t) 9U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 667)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 667)) ;
     enumGalgasBool test_13 = kBoolTrue ;
     if (kBoolTrue == test_13) {
       const GALGAS_pic_31__38_BitTestTerminator temp_14 = object ;
-      test_13 = temp_14.getter_mRegisterDescription (HERE).getter_mNeedsBSR (SOURCE_FILE ("ipic18_terminators.galgas", 668)).boolEnum () ;
+      test_13 = temp_14.readProperty_mRegisterDescription ().readProperty_mNeedsBSR ().boolEnum () ;
       if (kBoolTrue == test_13) {
-        var_binCode_22938 = var_binCode_22938.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 669)) ;
-        var_assemblyCode_22972.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 670)) ;
+        var_binCode_22926 = var_binCode_22926.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 669)) ;
+        var_assemblyCode_22964.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 670)) ;
       }
     }
-    outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_22972, GALGAS_uintlist::constructor_listWithValue (var_binCode_22938  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 674))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 672)) ;
-    GALGAS_codeList var_trueTerminatorCode_23585 ;
+    outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_22964, GALGAS_uintlist::constructor_listWithValue (var_binCode_22926  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 674))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 672)) ;
+    GALGAS_codeList var_trueTerminatorCode_23571 ;
     const GALGAS_pic_31__38_BitTestTerminator temp_15 = object ;
-    callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_15.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 676)), constinArgument_inSymbolTable, GALGAS_string::makeEmptyString (), var_trueTerminatorCode_23585, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 675)) ;
-    outArgument_outCode.plusAssign_operation(var_trueTerminatorCode_23585, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 681)) ;
-    GALGAS_codeList var_falseTerminatorCode_23898 ;
+    callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_15.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 676)), constinArgument_inSymbolTable, GALGAS_string::makeEmptyString (), var_trueTerminatorCode_23571, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 675)) ;
+    outArgument_outCode.plusAssign_operation(var_trueTerminatorCode_23571, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 681)) ;
+    GALGAS_codeList var_falseTerminatorCode_23884 ;
     const GALGAS_pic_31__38_BitTestTerminator temp_16 = object ;
     const GALGAS_pic_31__38_BitTestTerminator temp_17 = object ;
-    callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_16.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 683)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_17.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 683)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 683)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_falseTerminatorCode_23898, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 682)) ;
-    outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_23898, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 688)) ;
+    callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_16.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 683)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_17.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 683)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 683)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_falseTerminatorCode_23884, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 682)) ;
+    outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_23884, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 688)) ;
   }
 }
 
@@ -8009,15 +6195,15 @@ static GALGAS_bool extensionGetter_pic_31__38_BitTestTerminator_isEqualToTermina
           inCompiler->castError ("pic_31__38_BitTestTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 699)) ;
         }
       }
-      GALGAS_pic_31__38_BitTestTerminator var_t_24277 = temp_1 ;
+      GALGAS_pic_31__38_BitTestTerminator var_t_24263 = temp_1 ;
       const GALGAS_pic_31__38_BitTestTerminator temp_2 = object ;
-      result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), var_t_24277.getter_mSingleInstructionTerminatorIfConditionTrue (SOURCE_FILE ("ipic18_terminators.galgas", 700)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 700)) ;
+      result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), var_t_24263.readProperty_mSingleInstructionTerminatorIfConditionTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 700)) ;
       enumGalgasBool test_3 = kBoolTrue ;
       if (kBoolTrue == test_3) {
         test_3 = result_outResult.boolEnum () ;
         if (kBoolTrue == test_3) {
           const GALGAS_pic_31__38_BitTestTerminator temp_4 = object ;
-          result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_4.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), var_t_24277.getter_mSingleInstructionTerminatorIfConditionFalse (SOURCE_FILE ("ipic18_terminators.galgas", 702)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 702)) ;
+          result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_4.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), var_t_24263.readProperty_mSingleInstructionTerminatorIfConditionFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 702)) ;
         }
       }
       enumGalgasBool test_5 = kBoolTrue ;
@@ -8025,7 +6211,7 @@ static GALGAS_bool extensionGetter_pic_31__38_BitTestTerminator_isEqualToTermina
         test_5 = result_outResult.boolEnum () ;
         if (kBoolTrue == test_5) {
           const GALGAS_pic_31__38_BitTestTerminator temp_6 = object ;
-          result_outResult = GALGAS_bool (kIsEqual, temp_6.getter_mBitNumber (HERE).objectCompare (var_t_24277.getter_mBitNumber (SOURCE_FILE ("ipic18_terminators.galgas", 705)))) ;
+          result_outResult = GALGAS_bool (kIsEqual, temp_6.readProperty_mBitNumber ().objectCompare (var_t_24263.readProperty_mBitNumber ())) ;
         }
       }
       enumGalgasBool test_7 = kBoolTrue ;
@@ -8033,7 +6219,7 @@ static GALGAS_bool extensionGetter_pic_31__38_BitTestTerminator_isEqualToTermina
         test_7 = result_outResult.boolEnum () ;
         if (kBoolTrue == test_7) {
           const GALGAS_pic_31__38_BitTestTerminator temp_8 = object ;
-          result_outResult = extensionGetter_isEqualToRegister (temp_8.getter_mRegisterDescription (HERE), var_t_24277.getter_mRegisterDescription (SOURCE_FILE ("ipic18_terminators.galgas", 708)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 708)) ;
+          result_outResult = extensionGetter_isEqualToRegister (temp_8.readProperty_mRegisterDescription (), var_t_24263.readProperty_mRegisterDescription (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 708)) ;
         }
       }
     }
@@ -8070,7 +6256,7 @@ static GALGAS_string extensionGetter_ipic_31__38_IncDecRegisterTerminator_termin
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_1 = object ;
-    test_0 = temp_1.getter_mIncrement (HERE).boolEnum () ;
+    test_0 = temp_1.readProperty_mIncrement ().boolEnum () ;
     if (kBoolTrue == test_0) {
       result_outResult = GALGAS_string ("INCF ") ;
     }
@@ -8079,11 +6265,11 @@ static GALGAS_string extensionGetter_ipic_31__38_IncDecRegisterTerminator_termin
     result_outResult = GALGAS_string ("DECF ") ;
   }
   const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_2 = object ;
-  result_outResult.plusAssign_operation(temp_2.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("ipic18_terminators.galgas", 727)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 727)) ;
+  result_outResult.plusAssign_operation(temp_2.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 727)) ;
   enumGalgasBool test_3 = kBoolTrue ;
   if (kBoolTrue == test_3) {
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_4 = object ;
-    test_3 = temp_4.getter_m_5F_W_5F_isDestination (HERE).boolEnum () ;
+    test_3 = temp_4.readProperty_m_5F_W_5F_isDestination ().boolEnum () ;
     if (kBoolTrue == test_3) {
       result_outResult.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 729)) ;
     }
@@ -8093,10 +6279,10 @@ static GALGAS_string extensionGetter_ipic_31__38_IncDecRegisterTerminator_termin
   }
   result_outResult.plusAssign_operation(GALGAS_string (" Z \? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 733)) ;
   const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_5 = object ;
-  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_5.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 734)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 734)) ;
+  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_5.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 734)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 734)) ;
   result_outResult.plusAssign_operation(GALGAS_string (" : "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 735)) ;
   const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_6 = object ;
-  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_6.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 736)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 736)) ;
+  result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_6.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 736)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 736)) ;
 //---
   return result_outResult ;
 }
@@ -8131,16 +6317,16 @@ static void extensionMethod_ipic_31__38_IncDecRegisterTerminator_performTerminat
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const cPtr_ipic_31__38_IncDecRegisterTerminator * object = (const cPtr_ipic_31__38_IncDecRegisterTerminator *) inObject ;
   macroValidSharedObject (object, cPtr_ipic_31__38_IncDecRegisterTerminator) ;
-  GALGAS_uint var_n_26097 = ioArgument_ioConversionCount ;
-  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedTrueTerminator_26400 ;
+  GALGAS_uint var_n_26073 = ioArgument_ioConversionCount ;
+  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedTrueTerminator_26376 ;
   const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_0 = object ;
-  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedTrueTerminator_26400, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 750)) ;
-  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedFalseTerminator_26689 ;
+  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedTrueTerminator_26376, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 750)) ;
+  GALGAS_ipic_31__38_AbstractBlockTerminator var_outModifiedFalseTerminator_26665 ;
   const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_1 = object ;
-  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedFalseTerminator_26689, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 759)) ;
+  callExtensionMethod_performTerminatorRelativeBranchResolution ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inAddress, constinArgument_inBlockLabel, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_outModifiedFalseTerminator_26665, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 759)) ;
   enumGalgasBool test_2 = kBoolTrue ;
   if (kBoolTrue == test_2) {
-    test_2 = GALGAS_bool (kIsEqual, ioArgument_ioConversionCount.objectCompare (var_n_26097)).boolEnum () ;
+    test_2 = GALGAS_bool (kIsEqual, ioArgument_ioConversionCount.objectCompare (var_n_26073)).boolEnum () ;
     if (kBoolTrue == test_2) {
       const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_3 = object ;
       outArgument_outModifiedTerminator = temp_3 ;
@@ -8149,25 +6335,25 @@ static void extensionMethod_ipic_31__38_IncDecRegisterTerminator_performTerminat
   if (kBoolFalse == test_2) {
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_4 = object ;
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_5 ;
-    if (var_outModifiedTrueTerminator_26400.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_26400.ptr ())) {
-        temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_26400.ptr () ;
+    if (var_outModifiedTrueTerminator_26376.isValid ()) {
+      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_26376.ptr ())) {
+        temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_26376.ptr () ;
       }else{
-        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_26400.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 773)) ;
+        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_26376.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 773)) ;
       }
     }
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_6 ;
-    if (var_outModifiedFalseTerminator_26689.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_26689.ptr ())) {
-        temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_26689.ptr () ;
+    if (var_outModifiedFalseTerminator_26665.isValid ()) {
+      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_26665.ptr ())) {
+        temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_26665.ptr () ;
       }else{
-        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_26689.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 774)) ;
+        inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_26665.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 774)) ;
       }
     }
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_7 = object ;
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_8 = object ;
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_9 = object ;
-    outArgument_outModifiedTerminator = GALGAS_ipic_31__38_IncDecRegisterTerminator::constructor_new (temp_4.getter_mInstructionLocation (HERE), temp_5, temp_6, temp_7.getter_mRegisterDescription (HERE), temp_8.getter_mIncrement (HERE), temp_9.getter_m_5F_W_5F_isDestination (HERE)  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 771)) ;
+    outArgument_outModifiedTerminator = GALGAS_ipic_31__38_IncDecRegisterTerminator::constructor_new (temp_4.readProperty_mInstructionLocation (), temp_5, temp_6, temp_7.readProperty_mRegisterDescription (), temp_8.readProperty_mIncrement (), temp_9.readProperty_m_5F_W_5F_isDestination ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 771)) ;
   }
 }
 
@@ -8200,112 +6386,112 @@ static void extensionMethod_ipic_31__38_IncDecRegisterTerminator_generateTermina
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_1 = object ;
-    test_0 = GALGAS_bool (kIsEqual, callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 788)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 788)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
     if (kBoolTrue == test_0) {
       const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_2 = object ;
       GALGAS_uint temp_3 ;
-      const enumGalgasBool test_4 = temp_2.getter_mIncrement (HERE).boolEnum () ;
+      const enumGalgasBool test_4 = temp_2.readProperty_mIncrement ().boolEnum () ;
       if (kBoolTrue == test_4) {
         temp_3 = GALGAS_uint ((uint32_t) 15360U) ;
       }else if (kBoolFalse == test_4) {
         temp_3 = GALGAS_uint ((uint32_t) 11264U) ;
       }
-      GALGAS_uint var_binCode_27571 = temp_3 ;
+      GALGAS_uint var_binCode_27551 = temp_3 ;
       const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_5 = object ;
       GALGAS_string temp_6 ;
-      const enumGalgasBool test_7 = temp_5.getter_mIncrement (HERE).boolEnum () ;
+      const enumGalgasBool test_7 = temp_5.readProperty_mIncrement ().boolEnum () ;
       if (kBoolTrue == test_7) {
         temp_6 = GALGAS_string ("    INCFSZ") ;
       }else if (kBoolFalse == test_7) {
         temp_6 = GALGAS_string ("    DECFSZ") ;
       }
-      GALGAS_string var_assemblyCode_27654 = temp_6 ;
+      GALGAS_string var_assemblyCode_27638 = temp_6 ;
       const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_8 = object ;
-      var_assemblyCode_27654.plusAssign_operation(GALGAS_string (" ").add_operation (temp_8.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("ipic18_terminators.galgas", 792)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 792)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 792)) ;
+      var_assemblyCode_27638.plusAssign_operation(GALGAS_string (" ").add_operation (temp_8.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 792)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 792)) ;
       const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_9 = object ;
-      var_binCode_27571 = var_binCode_27571.operator_or (temp_9.getter_mRegisterDescription (HERE).getter_mRegisterAddress (SOURCE_FILE ("ipic18_terminators.galgas", 793)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 793)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 793)) ;
+      var_binCode_27551 = var_binCode_27551.operator_or (temp_9.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 793)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 793)) ;
       enumGalgasBool test_10 = kBoolTrue ;
       if (kBoolTrue == test_10) {
         const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_11 = object ;
-        test_10 = temp_11.getter_m_5F_W_5F_isDestination (HERE).boolEnum () ;
+        test_10 = temp_11.readProperty_m_5F_W_5F_isDestination ().boolEnum () ;
         if (kBoolTrue == test_10) {
-          var_assemblyCode_27654.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 795)) ;
+          var_assemblyCode_27638.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 795)) ;
         }
       }
       if (kBoolFalse == test_10) {
-        var_binCode_27571 = var_binCode_27571.operator_or (GALGAS_uint ((uint32_t) 512U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 797)) ;
-        var_assemblyCode_27654.plusAssign_operation(GALGAS_string (", F"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 798)) ;
+        var_binCode_27551 = var_binCode_27551.operator_or (GALGAS_uint ((uint32_t) 512U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 797)) ;
+        var_assemblyCode_27638.plusAssign_operation(GALGAS_string (", F"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 798)) ;
       }
       enumGalgasBool test_12 = kBoolTrue ;
       if (kBoolTrue == test_12) {
         const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_13 = object ;
-        test_12 = temp_13.getter_mRegisterDescription (HERE).getter_mNeedsBSR (SOURCE_FILE ("ipic18_terminators.galgas", 800)).boolEnum () ;
+        test_12 = temp_13.readProperty_mRegisterDescription ().readProperty_mNeedsBSR ().boolEnum () ;
         if (kBoolTrue == test_12) {
-          var_binCode_27571 = var_binCode_27571.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 801)) ;
-          var_assemblyCode_27654.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 802)) ;
+          var_binCode_27551 = var_binCode_27551.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 801)) ;
+          var_assemblyCode_27638.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 802)) ;
         }
       }
-      outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_27654, GALGAS_uintlist::constructor_listWithValue (var_binCode_27571  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 806))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 804)) ;
-      GALGAS_codeList var_falseTerminatorCode_28422 ;
+      outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_27638, GALGAS_uintlist::constructor_listWithValue (var_binCode_27551  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 806))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 804)) ;
+      GALGAS_codeList var_falseTerminatorCode_28400 ;
       const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_14 = object ;
-      callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_14.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 808)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_falseTerminatorCode_28422, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 807)) ;
-      outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_28422, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 813)) ;
+      callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_14.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 808)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_falseTerminatorCode_28400, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 807)) ;
+      outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_28400, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 813)) ;
     }
   }
   if (kBoolFalse == test_0) {
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_15 = object ;
     GALGAS_uint temp_16 ;
-    const enumGalgasBool test_17 = temp_15.getter_mIncrement (HERE).boolEnum () ;
+    const enumGalgasBool test_17 = temp_15.readProperty_mIncrement ().boolEnum () ;
     if (kBoolTrue == test_17) {
       temp_16 = GALGAS_uint ((uint32_t) 18432U) ;
     }else if (kBoolFalse == test_17) {
       temp_16 = GALGAS_uint ((uint32_t) 19456U) ;
     }
-    GALGAS_uint var_binCode_28560 = temp_16 ;
+    GALGAS_uint var_binCode_28542 = temp_16 ;
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_18 = object ;
     GALGAS_string temp_19 ;
-    const enumGalgasBool test_20 = temp_18.getter_mIncrement (HERE).boolEnum () ;
+    const enumGalgasBool test_20 = temp_18.readProperty_mIncrement ().boolEnum () ;
     if (kBoolTrue == test_20) {
       temp_19 = GALGAS_string ("    INFSNZ") ;
     }else if (kBoolFalse == test_20) {
       temp_19 = GALGAS_string ("    DCFSNZ") ;
     }
-    GALGAS_string var_assemblyCode_28643 = temp_19 ;
+    GALGAS_string var_assemblyCode_28629 = temp_19 ;
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_21 = object ;
-    var_assemblyCode_28643.plusAssign_operation(GALGAS_string (" ").add_operation (temp_21.getter_mRegisterDescription (HERE).getter_mAssemblyString (SOURCE_FILE ("ipic18_terminators.galgas", 818)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 818)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 818)) ;
+    var_assemblyCode_28629.plusAssign_operation(GALGAS_string (" ").add_operation (temp_21.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 818)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 818)) ;
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_22 = object ;
-    var_binCode_28560 = var_binCode_28560.operator_or (temp_22.getter_mRegisterDescription (HERE).getter_mRegisterAddress (SOURCE_FILE ("ipic18_terminators.galgas", 819)).operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 819)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 819)) ;
+    var_binCode_28542 = var_binCode_28542.operator_or (temp_22.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 819)) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 819)) ;
     enumGalgasBool test_23 = kBoolTrue ;
     if (kBoolTrue == test_23) {
       const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_24 = object ;
-      test_23 = temp_24.getter_m_5F_W_5F_isDestination (HERE).boolEnum () ;
+      test_23 = temp_24.readProperty_m_5F_W_5F_isDestination ().boolEnum () ;
       if (kBoolTrue == test_23) {
-        var_assemblyCode_28643.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 821)) ;
+        var_assemblyCode_28629.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 821)) ;
       }
     }
     if (kBoolFalse == test_23) {
-      var_binCode_28560 = var_binCode_28560.operator_or (GALGAS_uint ((uint32_t) 512U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 823)) ;
-      var_assemblyCode_28643.plusAssign_operation(GALGAS_string (", F"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 824)) ;
+      var_binCode_28542 = var_binCode_28542.operator_or (GALGAS_uint ((uint32_t) 512U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 823)) ;
+      var_assemblyCode_28629.plusAssign_operation(GALGAS_string (", F"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 824)) ;
     }
     enumGalgasBool test_25 = kBoolTrue ;
     if (kBoolTrue == test_25) {
       const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_26 = object ;
-      test_25 = temp_26.getter_mRegisterDescription (HERE).getter_mNeedsBSR (SOURCE_FILE ("ipic18_terminators.galgas", 826)).boolEnum () ;
+      test_25 = temp_26.readProperty_mRegisterDescription ().readProperty_mNeedsBSR ().boolEnum () ;
       if (kBoolTrue == test_25) {
-        var_binCode_28560 = var_binCode_28560.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 827)) ;
-        var_assemblyCode_28643.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 828)) ;
+        var_binCode_28542 = var_binCode_28542.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 827)) ;
+        var_assemblyCode_28629.plusAssign_operation(GALGAS_string (", BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 828)) ;
       }
     }
-    outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_28643, GALGAS_uintlist::constructor_listWithValue (var_binCode_28560  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 832))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 830)) ;
-    GALGAS_codeList var_trueTerminatorCode_29395 ;
+    outArgument_outCode = GALGAS_codeList::constructor_listWithValue (var_assemblyCode_28629, GALGAS_uintlist::constructor_listWithValue (var_binCode_28542  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 832))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 830)) ;
+    GALGAS_codeList var_trueTerminatorCode_29375 ;
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_27 = object ;
-    callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_27.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 834)), constinArgument_inSymbolTable, GALGAS_string::makeEmptyString (), var_trueTerminatorCode_29395, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 833)) ;
-    outArgument_outCode.plusAssign_operation(var_trueTerminatorCode_29395, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 839)) ;
-    GALGAS_codeList var_falseTerminatorCode_29708 ;
+    callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_27.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 834)), constinArgument_inSymbolTable, GALGAS_string::makeEmptyString (), var_trueTerminatorCode_29375, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 833)) ;
+    outArgument_outCode.plusAssign_operation(var_trueTerminatorCode_29375, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 839)) ;
+    GALGAS_codeList var_falseTerminatorCode_29688 ;
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_28 = object ;
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_29 = object ;
-    callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_28.getter_mSingleInstructionTerminatorIfConditionFalse (HERE).ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 841)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_29.getter_mSingleInstructionTerminatorIfConditionTrue (HERE).ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 841)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 841)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_falseTerminatorCode_29708, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 840)) ;
-    outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_29708, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 846)) ;
+    callExtensionMethod_generateTerminatorCode ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_28.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 841)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_29.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 841)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 841)), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_falseTerminatorCode_29688, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 840)) ;
+    outArgument_outCode.plusAssign_operation(var_falseTerminatorCode_29688, inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 846)) ;
   }
 }
 
@@ -8319,4 +6505,2905 @@ static void defineExtensionMethod_ipic_31__38_IncDecRegisterTerminator_generateT
 //----------------------------------------------------------------------------------------------------------------------
 
 C_PrologueEpilogue gMethod_ipic_31__38_IncDecRegisterTerminator_generateTerminatorCode (defineExtensionMethod_ipic_31__38_IncDecRegisterTerminator_generateTerminatorCode, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18IncDecRegisterTerminator isEqualToTerminator'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_bool extensionGetter_ipic_31__38_IncDecRegisterTerminator_isEqualToTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                             const GALGAS_ipic_31__38_AbstractBlockTerminator constinArgument_inTerminator,
+                                                                                             C_Compiler * inCompiler
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_bool result_outResult ; // Returned variable
+  const cPtr_ipic_31__38_IncDecRegisterTerminator * object = (const cPtr_ipic_31__38_IncDecRegisterTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_IncDecRegisterTerminator) ;
+  result_outResult = GALGAS_bool (constinArgument_inTerminator.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_ipic_31__38_IncDecRegisterTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    test_0 = result_outResult.boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_ipic_31__38_IncDecRegisterTerminator temp_1 ;
+      if (constinArgument_inTerminator.isValid ()) {
+        if (NULL != dynamic_cast <const cPtr_ipic_31__38_IncDecRegisterTerminator *> (constinArgument_inTerminator.ptr ())) {
+          temp_1 = (cPtr_ipic_31__38_IncDecRegisterTerminator *) constinArgument_inTerminator.ptr () ;
+        }else{
+          inCompiler->castError ("ipic_31__38_IncDecRegisterTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 857)) ;
+        }
+      }
+      GALGAS_ipic_31__38_IncDecRegisterTerminator var_t_30091 = temp_1 ;
+      const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_2 = object ;
+      result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), var_t_30091.readProperty_mSingleInstructionTerminatorIfConditionTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 858)) ;
+      enumGalgasBool test_3 = kBoolTrue ;
+      if (kBoolTrue == test_3) {
+        test_3 = result_outResult.boolEnum () ;
+        if (kBoolTrue == test_3) {
+          const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_4 = object ;
+          result_outResult = callExtensionGetter_isEqualToTerminator ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_4.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), var_t_30091.readProperty_mSingleInstructionTerminatorIfConditionFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 860)) ;
+        }
+      }
+      enumGalgasBool test_5 = kBoolTrue ;
+      if (kBoolTrue == test_5) {
+        test_5 = result_outResult.boolEnum () ;
+        if (kBoolTrue == test_5) {
+          const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_6 = object ;
+          result_outResult = GALGAS_bool (kIsEqual, temp_6.readProperty_mIncrement ().objectCompare (var_t_30091.readProperty_mIncrement ())) ;
+        }
+      }
+      enumGalgasBool test_7 = kBoolTrue ;
+      if (kBoolTrue == test_7) {
+        test_7 = result_outResult.boolEnum () ;
+        if (kBoolTrue == test_7) {
+          const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_8 = object ;
+          result_outResult = GALGAS_bool (kIsEqual, temp_8.readProperty_m_5F_W_5F_isDestination ().objectCompare (var_t_30091.readProperty_m_5F_W_5F_isDestination ())) ;
+        }
+      }
+      enumGalgasBool test_9 = kBoolTrue ;
+      if (kBoolTrue == test_9) {
+        test_9 = result_outResult.boolEnum () ;
+        if (kBoolTrue == test_9) {
+          const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_10 = object ;
+          result_outResult = extensionGetter_isEqualToRegister (temp_10.readProperty_mRegisterDescription (), var_t_30091.readProperty_mRegisterDescription (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 869)) ;
+        }
+      }
+    }
+  }
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_IncDecRegisterTerminator_isEqualToTerminator (void) {
+  enterExtensionGetter_isEqualToTerminator (kTypeDescriptor_GALGAS_ipic_31__38_IncDecRegisterTerminator.mSlotID,
+                                            extensionGetter_ipic_31__38_IncDecRegisterTerminator_isEqualToTerminator) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_IncDecRegisterTerminator_isEqualToTerminator (defineExtensionGetter_ipic_31__38_IncDecRegisterTerminator_isEqualToTerminator, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ComputedRETLWTerminator terminatorSize'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_uint extensionGetter_ipic_31__38_ComputedRETLWTerminator_terminatorSize (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                       const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                       C_Compiler * inCompiler
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_uint result_outSize ; // Returned variable
+  const cPtr_ipic_31__38_ComputedRETLWTerminator * object = (const cPtr_ipic_31__38_ComputedRETLWTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_1 = object ;
+    test_0 = temp_1.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_0) {
+      result_outSize = GALGAS_uint ((uint32_t) 2U) ;
+    }
+  }
+  if (kBoolFalse == test_0) {
+    result_outSize = GALGAS_uint ((uint32_t) 4U) ;
+  }
+  const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_2 = object ;
+  result_outSize = result_outSize.add_operation (GALGAS_uint ((uint32_t) 2U).multiply_operation (temp_2.readProperty_mLiteralValues ().getter_length (SOURCE_FILE ("ipic18_terminators.galgas", 888)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 888)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 888)) ;
+//---
+  return result_outSize ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ComputedRETLWTerminator_terminatorSize (void) {
+  enterExtensionGetter_terminatorSize (kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator.mSlotID,
+                                       extensionGetter_ipic_31__38_ComputedRETLWTerminator_terminatorSize) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ComputedRETLWTerminator_terminatorSize (defineExtensionGetter_ipic_31__38_ComputedRETLWTerminator_terminatorSize, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ComputedRETLWTerminator terminatorDisplay'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_string extensionGetter_ipic_31__38_ComputedRETLWTerminator_terminatorDisplay (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                            const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_outResult ; // Returned variable
+  const cPtr_ipic_31__38_ComputedRETLWTerminator * object = (const cPtr_ipic_31__38_ComputedRETLWTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
+  result_outResult = GALGAS_string ("COMPUTED RETLW") ;
+  const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_0 = object ;
+  cEnumerator_uintlist enumerator_31456 (temp_0.readProperty_mLiteralValues (), kENUMERATION_UP) ;
+  while (enumerator_31456.hasCurrentObject ()) {
+    result_outResult.plusAssign_operation(GALGAS_string (" ").add_operation (enumerator_31456.current_mValue (HERE).getter_hexString (SOURCE_FILE ("ipic18_terminators.galgas", 898)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 898)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 898)) ;
+    enumerator_31456.gotoNextObject () ;
+  }
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ComputedRETLWTerminator_terminatorDisplay (void) {
+  enterExtensionGetter_terminatorDisplay (kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator.mSlotID,
+                                          extensionGetter_ipic_31__38_ComputedRETLWTerminator_terminatorDisplay) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ComputedRETLWTerminator_terminatorDisplay (defineExtensionGetter_ipic_31__38_ComputedRETLWTerminator_terminatorDisplay, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ComputedRETLWTerminator performTerminatorRelativeBranchResolution'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ComputedRETLWTerminator_performTerminatorRelativeBranchResolution (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                           const GALGAS_uint constinArgument_inAddress,
+                                                                                                           const GALGAS_string constinArgument_inBlockLabel,
+                                                                                                           const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                                           const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                                           GALGAS_uint & ioArgument_ioConversionCount,
+                                                                                                           GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                           GALGAS_ipic_31__38_AbstractBlockTerminator & outArgument_outModifiedTerminator,
+                                                                                                           C_Compiler * inCompiler
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ComputedRETLWTerminator * object = (const cPtr_ipic_31__38_ComputedRETLWTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
+  const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_0 = object ;
+  outArgument_outModifiedTerminator = temp_0 ;
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_2 = object ;
+    test_1 = temp_2.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_1) {
+      enumGalgasBool test_3 = kBoolTrue ;
+      if (kBoolTrue == test_3) {
+        test_3 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, GALGAS_string ("_computed_goto_2").getter_nowhere (SOURCE_FILE ("ipic18_terminators.galgas", 914)), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 914)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 914)).boolEnum () ;
+        if (kBoolTrue == test_3) {
+          ioArgument_ioConversionCount.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 915)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 916)).add_operation (GALGAS_string (": computed RETLW needs CALL _computed_goto_2\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 916)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 916)) ;
+          const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_4 = object ;
+          const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_5 = object ;
+          outArgument_outModifiedTerminator = GALGAS_ipic_31__38_ComputedRETLWTerminator::constructor_new (temp_4.readProperty_mInstructionLocation (), temp_5.readProperty_mLiteralValues (), GALGAS_bool (false)  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 917)) ;
+        }
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ComputedRETLWTerminator_performTerminatorRelativeBranchResolution (void) {
+  enterExtensionMethod_performTerminatorRelativeBranchResolution (kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator.mSlotID,
+                                                                  extensionMethod_ipic_31__38_ComputedRETLWTerminator_performTerminatorRelativeBranchResolution) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ComputedRETLWTerminator_performTerminatorRelativeBranchResolution (defineExtensionMethod_ipic_31__38_ComputedRETLWTerminator_performTerminatorRelativeBranchResolution, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ComputedRETLWTerminator terminatorRelativeBranchOverflow'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ComputedRETLWTerminator_terminatorRelativeBranchOverflow (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                  const GALGAS_uint constinArgument_inAddress,
+                                                                                                  const GALGAS_string constinArgument_inBlockLabel,
+                                                                                                  const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                                  const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                                  GALGAS_branchOverflowMap & ioArgument_ioOverflowMap,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ComputedRETLWTerminator * object = (const cPtr_ipic_31__38_ComputedRETLWTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_1 = object ;
+    test_0 = temp_1.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_0) {
+      enumGalgasBool test_2 = kBoolTrue ;
+      if (kBoolTrue == test_2) {
+        test_2 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, GALGAS_string ("_computed_goto_2").getter_nowhere (SOURCE_FILE ("ipic18_terminators.galgas", 931)), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 931)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 931)).boolEnum () ;
+        if (kBoolTrue == test_2) {
+          ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, GALGAS_string ("_computed_goto_2")  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 932)) ;
+        }
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ComputedRETLWTerminator_terminatorRelativeBranchOverflow (void) {
+  enterExtensionMethod_terminatorRelativeBranchOverflow (kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator.mSlotID,
+                                                         extensionMethod_ipic_31__38_ComputedRETLWTerminator_terminatorRelativeBranchOverflow) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ComputedRETLWTerminator_terminatorRelativeBranchOverflow (defineExtensionMethod_ipic_31__38_ComputedRETLWTerminator_terminatorRelativeBranchOverflow, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ComputedRETLWTerminator generateTerminatorCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ComputedRETLWTerminator_generateTerminatorCode (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                        const GALGAS_uint constinArgument_inAddress,
+                                                                                        const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                        const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                        GALGAS_codeList & outArgument_outCode,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ComputedRETLWTerminator * object = (const cPtr_ipic_31__38_ComputedRETLWTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
+  GALGAS_lstring var_goto_32_label_33245 = GALGAS_string ("_computed_goto_2").getter_nowhere (SOURCE_FILE ("ipic18_terminators.galgas", 944)) ;
+  GALGAS_uint var_targetAddress_33340 ;
+  constinArgument_inSymbolTable.method_searchKey (var_goto_32_label_33245, var_targetAddress_33340, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 945)) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_1 = object ;
+    test_0 = temp_1.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_0) {
+      outArgument_outCode = function_pic_31__38__5F_RCALL_5F_instruction_5F_code (constinArgument_inAddress, var_targetAddress_33340, var_goto_32_label_33245, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 947)) ;
+    }
+  }
+  if (kBoolFalse == test_0) {
+    outArgument_outCode = function_pic_31__38__5F_CALL_5F_instruction_5F_code (var_targetAddress_33340, var_goto_32_label_33245, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 949)) ;
+  }
+  const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_2 = object ;
+  cEnumerator_uintlist enumerator_33548 (temp_2.readProperty_mLiteralValues (), kENUMERATION_UP) ;
+  while (enumerator_33548.hasCurrentObject ()) {
+    outArgument_outCode.addAssign_operation (GALGAS_string ("    RETLW ").add_operation (enumerator_33548.current_mValue (HERE).getter_hexString (SOURCE_FILE ("ipic18_terminators.galgas", 953)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 953)), GALGAS_uintlist::constructor_listWithValue (GALGAS_uint ((uint32_t) 3072U).operator_or (enumerator_33548.current_mValue (HERE) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 954))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 954))  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 952)) ;
+    enumerator_33548.gotoNextObject () ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ComputedRETLWTerminator_generateTerminatorCode (void) {
+  enterExtensionMethod_generateTerminatorCode (kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator.mSlotID,
+                                               extensionMethod_ipic_31__38_ComputedRETLWTerminator_generateTerminatorCode) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ComputedRETLWTerminator_generateTerminatorCode (defineExtensionMethod_ipic_31__38_ComputedRETLWTerminator_generateTerminatorCode, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ComputedRETLWTerminator isEqualToTerminator'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_bool extensionGetter_ipic_31__38_ComputedRETLWTerminator_isEqualToTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                            const GALGAS_ipic_31__38_AbstractBlockTerminator constinArgument_inTerminator,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_bool result_outResult ; // Returned variable
+  const cPtr_ipic_31__38_ComputedRETLWTerminator * object = (const cPtr_ipic_31__38_ComputedRETLWTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
+  result_outResult = GALGAS_bool (constinArgument_inTerminator.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    test_0 = result_outResult.boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_ipic_31__38_ComputedRETLWTerminator temp_1 ;
+      if (constinArgument_inTerminator.isValid ()) {
+        if (NULL != dynamic_cast <const cPtr_ipic_31__38_ComputedRETLWTerminator *> (constinArgument_inTerminator.ptr ())) {
+          temp_1 = (cPtr_ipic_31__38_ComputedRETLWTerminator *) constinArgument_inTerminator.ptr () ;
+        }else{
+          inCompiler->castError ("ipic_31__38_ComputedRETLWTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 965)) ;
+        }
+      }
+      GALGAS_ipic_31__38_ComputedRETLWTerminator var_t_34041 = temp_1 ;
+      const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_2 = object ;
+      result_outResult = GALGAS_bool (kIsEqual, temp_2.readProperty_mLiteralValues ().getter_length (SOURCE_FILE ("ipic18_terminators.galgas", 966)).objectCompare (var_t_34041.readProperty_mLiteralValues ().getter_length (SOURCE_FILE ("ipic18_terminators.galgas", 966)))) ;
+      const GALGAS_ipic_31__38_ComputedRETLWTerminator temp_3 = object ;
+      cEnumerator_uintlist enumerator_34183 (temp_3.readProperty_mLiteralValues (), kENUMERATION_UP) ;
+      cEnumerator_uintlist enumerator_34219 (var_t_34041.readProperty_mLiteralValues (), kENUMERATION_UP) ;
+      bool bool_4 = result_outResult.isValidAndTrue () ;
+      if (enumerator_34183.hasCurrentObject () && enumerator_34219.hasCurrentObject () && bool_4) {
+        while (enumerator_34183.hasCurrentObject () && enumerator_34219.hasCurrentObject () && bool_4) {
+          result_outResult = GALGAS_bool (kIsEqual, enumerator_34183.current_mValue (HERE).objectCompare (enumerator_34219.current_mValue (HERE))) ;
+          enumerator_34183.gotoNextObject () ;
+          enumerator_34219.gotoNextObject () ;
+          if (enumerator_34183.hasCurrentObject () && enumerator_34219.hasCurrentObject ()) {
+            bool_4 = result_outResult.isValidAndTrue () ;
+          }
+        }
+      }
+    }
+  }
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ComputedRETLWTerminator_isEqualToTerminator (void) {
+  enterExtensionGetter_isEqualToTerminator (kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator.mSlotID,
+                                            extensionGetter_ipic_31__38_ComputedRETLWTerminator_isEqualToTerminator) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ComputedRETLWTerminator_isEqualToTerminator (defineExtensionGetter_ipic_31__38_ComputedRETLWTerminator_isEqualToTerminator, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ComputedGotoTerminator terminatorDisplay'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_string extensionGetter_ipic_31__38_ComputedGotoTerminator_terminatorDisplay (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                           const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                           C_Compiler * inCompiler
+                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_outResult ; // Returned variable
+  const cPtr_ipic_31__38_ComputedGotoTerminator * object = (const cPtr_ipic_31__38_ComputedGotoTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedGotoTerminator) ;
+  result_outResult = GALGAS_string ("COMPUTED GOTO ") ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ComputedGotoTerminator temp_1 = object ;
+    test_0 = temp_1.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_0) {
+      result_outResult.plusAssign_operation(GALGAS_string (" (uses RCALL)"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 984)) ;
+    }
+  }
+  if (kBoolFalse == test_0) {
+    result_outResult.plusAssign_operation(GALGAS_string (" (uses CALL)"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 986)) ;
+  }
+  const GALGAS_ipic_31__38_ComputedGotoTerminator temp_2 = object ;
+  cEnumerator_lstringlist enumerator_34794 (temp_2.readProperty_mTargetLabels (), kENUMERATION_UP) ;
+  while (enumerator_34794.hasCurrentObject ()) {
+    result_outResult.plusAssign_operation(GALGAS_string (" ").add_operation (enumerator_34794.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 989)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 989)) ;
+    enumerator_34794.gotoNextObject () ;
+  }
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ComputedGotoTerminator_terminatorDisplay (void) {
+  enterExtensionGetter_terminatorDisplay (kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator.mSlotID,
+                                          extensionGetter_ipic_31__38_ComputedGotoTerminator_terminatorDisplay) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ComputedGotoTerminator_terminatorDisplay (defineExtensionGetter_ipic_31__38_ComputedGotoTerminator_terminatorDisplay, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ComputedGotoTerminator terminatorSize'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_uint extensionGetter_ipic_31__38_ComputedGotoTerminator_terminatorSize (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                      const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_uint result_outSize ; // Returned variable
+  const cPtr_ipic_31__38_ComputedGotoTerminator * object = (const cPtr_ipic_31__38_ComputedGotoTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedGotoTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ComputedGotoTerminator temp_1 = object ;
+    test_0 = temp_1.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_0) {
+      result_outSize = GALGAS_uint ((uint32_t) 2U) ;
+    }
+  }
+  if (kBoolFalse == test_0) {
+    result_outSize = GALGAS_uint ((uint32_t) 4U) ;
+  }
+  const GALGAS_ipic_31__38_ComputedGotoTerminator temp_2 = object ;
+  result_outSize = result_outSize.add_operation (GALGAS_uint ((uint32_t) 4U).multiply_operation (temp_2.readProperty_mTargetLabels ().getter_length (SOURCE_FILE ("ipic18_terminators.galgas", 1003)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1003)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1003)) ;
+//---
+  return result_outSize ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ComputedGotoTerminator_terminatorSize (void) {
+  enterExtensionGetter_terminatorSize (kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator.mSlotID,
+                                       extensionGetter_ipic_31__38_ComputedGotoTerminator_terminatorSize) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ComputedGotoTerminator_terminatorSize (defineExtensionGetter_ipic_31__38_ComputedGotoTerminator_terminatorSize, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ComputedGotoTerminator performTerminatorRelativeBranchResolution'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ComputedGotoTerminator_performTerminatorRelativeBranchResolution (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                          const GALGAS_uint constinArgument_inAddress,
+                                                                                                          const GALGAS_string constinArgument_inBlockLabel,
+                                                                                                          const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                                          const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                                          GALGAS_uint & ioArgument_ioConversionCount,
+                                                                                                          GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                          GALGAS_ipic_31__38_AbstractBlockTerminator & outArgument_outModifiedTerminator,
+                                                                                                          C_Compiler * inCompiler
+                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ComputedGotoTerminator * object = (const cPtr_ipic_31__38_ComputedGotoTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedGotoTerminator) ;
+  const GALGAS_ipic_31__38_ComputedGotoTerminator temp_0 = object ;
+  outArgument_outModifiedTerminator = temp_0 ;
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    const GALGAS_ipic_31__38_ComputedGotoTerminator temp_2 = object ;
+    test_1 = temp_2.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_1) {
+      enumGalgasBool test_3 = kBoolTrue ;
+      if (kBoolTrue == test_3) {
+        test_3 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, GALGAS_string ("_computed_goto_2").getter_nowhere (SOURCE_FILE ("ipic18_terminators.galgas", 1018)), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1018)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1018)).boolEnum () ;
+        if (kBoolTrue == test_3) {
+          ioArgument_ioConversionCount.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1019)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1020)).add_operation (GALGAS_string (": computed GOTO needs CALL _computed_goto_4\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1020)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1020)) ;
+          const GALGAS_ipic_31__38_ComputedGotoTerminator temp_4 = object ;
+          const GALGAS_ipic_31__38_ComputedGotoTerminator temp_5 = object ;
+          outArgument_outModifiedTerminator = GALGAS_ipic_31__38_ComputedGotoTerminator::constructor_new (temp_4.readProperty_mInstructionLocation (), temp_5.readProperty_mTargetLabels (), GALGAS_bool (false)  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1021)) ;
+        }
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ComputedGotoTerminator_performTerminatorRelativeBranchResolution (void) {
+  enterExtensionMethod_performTerminatorRelativeBranchResolution (kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator.mSlotID,
+                                                                  extensionMethod_ipic_31__38_ComputedGotoTerminator_performTerminatorRelativeBranchResolution) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ComputedGotoTerminator_performTerminatorRelativeBranchResolution (defineExtensionMethod_ipic_31__38_ComputedGotoTerminator_performTerminatorRelativeBranchResolution, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ComputedGotoTerminator terminatorRelativeBranchOverflow'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ComputedGotoTerminator_terminatorRelativeBranchOverflow (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                 const GALGAS_uint constinArgument_inAddress,
+                                                                                                 const GALGAS_string constinArgument_inBlockLabel,
+                                                                                                 const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                                 const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                                 GALGAS_branchOverflowMap & ioArgument_ioOverflowMap,
+                                                                                                 C_Compiler * inCompiler
+                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ComputedGotoTerminator * object = (const cPtr_ipic_31__38_ComputedGotoTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedGotoTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ComputedGotoTerminator temp_1 = object ;
+    test_0 = temp_1.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_0) {
+      enumGalgasBool test_2 = kBoolTrue ;
+      if (kBoolTrue == test_2) {
+        test_2 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, GALGAS_string ("_computed_goto_4").getter_nowhere (SOURCE_FILE ("ipic18_terminators.galgas", 1035)), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1035)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1035)).boolEnum () ;
+        if (kBoolTrue == test_2) {
+          ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, GALGAS_string ("_computed_goto_4")  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1036)) ;
+        }
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ComputedGotoTerminator_terminatorRelativeBranchOverflow (void) {
+  enterExtensionMethod_terminatorRelativeBranchOverflow (kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator.mSlotID,
+                                                         extensionMethod_ipic_31__38_ComputedGotoTerminator_terminatorRelativeBranchOverflow) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ComputedGotoTerminator_terminatorRelativeBranchOverflow (defineExtensionMethod_ipic_31__38_ComputedGotoTerminator_terminatorRelativeBranchOverflow, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ComputedGotoTerminator generateTerminatorCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ComputedGotoTerminator_generateTerminatorCode (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                       const GALGAS_uint constinArgument_inAddress,
+                                                                                       const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                       const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                       GALGAS_codeList & outArgument_outCode,
+                                                                                       C_Compiler * inCompiler
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ComputedGotoTerminator * object = (const cPtr_ipic_31__38_ComputedGotoTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedGotoTerminator) ;
+  GALGAS_lstring var_goto_34_label_36893 = GALGAS_string ("_computed_goto_4").getter_nowhere (SOURCE_FILE ("ipic18_terminators.galgas", 1048)) ;
+  GALGAS_uint var_targetAddress_36988 ;
+  constinArgument_inSymbolTable.method_searchKey (var_goto_34_label_36893, var_targetAddress_36988, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1049)) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ComputedGotoTerminator temp_1 = object ;
+    test_0 = temp_1.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_0) {
+      outArgument_outCode = function_pic_31__38__5F_RCALL_5F_instruction_5F_code (constinArgument_inAddress, var_targetAddress_36988, var_goto_34_label_36893, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1051)) ;
+    }
+  }
+  if (kBoolFalse == test_0) {
+    outArgument_outCode = function_pic_31__38__5F_CALL_5F_instruction_5F_code (var_targetAddress_36988, var_goto_34_label_36893, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1053)) ;
+  }
+  const GALGAS_ipic_31__38_ComputedGotoTerminator temp_2 = object ;
+  cEnumerator_lstringlist enumerator_37196 (temp_2.readProperty_mTargetLabels (), kENUMERATION_UP) ;
+  while (enumerator_37196.hasCurrentObject ()) {
+    GALGAS_uint var_targetLabelAddress_37290 ;
+    constinArgument_inSymbolTable.method_searchKey (enumerator_37196.current_mValue (HERE), var_targetLabelAddress_37290, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1056)) ;
+    outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_targetLabelAddress_37290, enumerator_37196.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1057)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1057)) ;
+    enumerator_37196.gotoNextObject () ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ComputedGotoTerminator_generateTerminatorCode (void) {
+  enterExtensionMethod_generateTerminatorCode (kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator.mSlotID,
+                                               extensionMethod_ipic_31__38_ComputedGotoTerminator_generateTerminatorCode) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ComputedGotoTerminator_generateTerminatorCode (defineExtensionMethod_ipic_31__38_ComputedGotoTerminator_generateTerminatorCode, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ComputedGotoTerminator isEqualToTerminator'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_bool extensionGetter_ipic_31__38_ComputedGotoTerminator_isEqualToTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                           const GALGAS_ipic_31__38_AbstractBlockTerminator constinArgument_inTerminator,
+                                                                                           C_Compiler * inCompiler
+                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_bool result_outResult ; // Returned variable
+  const cPtr_ipic_31__38_ComputedGotoTerminator * object = (const cPtr_ipic_31__38_ComputedGotoTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedGotoTerminator) ;
+  result_outResult = GALGAS_bool (constinArgument_inTerminator.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    test_0 = result_outResult.boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_ipic_31__38_ComputedGotoTerminator temp_1 ;
+      if (constinArgument_inTerminator.isValid ()) {
+        if (NULL != dynamic_cast <const cPtr_ipic_31__38_ComputedGotoTerminator *> (constinArgument_inTerminator.ptr ())) {
+          temp_1 = (cPtr_ipic_31__38_ComputedGotoTerminator *) constinArgument_inTerminator.ptr () ;
+        }else{
+          inCompiler->castError ("ipic_31__38_ComputedGotoTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1068)) ;
+        }
+      }
+      GALGAS_ipic_31__38_ComputedGotoTerminator var_t_37718 = temp_1 ;
+      const GALGAS_ipic_31__38_ComputedGotoTerminator temp_2 = object ;
+      result_outResult = GALGAS_bool (kIsEqual, temp_2.readProperty_mTargetLabels ().getter_length (SOURCE_FILE ("ipic18_terminators.galgas", 1069)).objectCompare (var_t_37718.readProperty_mTargetLabels ().getter_length (SOURCE_FILE ("ipic18_terminators.galgas", 1069)))) ;
+      const GALGAS_ipic_31__38_ComputedGotoTerminator temp_3 = object ;
+      cEnumerator_lstringlist enumerator_37857 (temp_3.readProperty_mTargetLabels (), kENUMERATION_UP) ;
+      cEnumerator_lstringlist enumerator_37892 (var_t_37718.readProperty_mTargetLabels (), kENUMERATION_UP) ;
+      bool bool_4 = result_outResult.isValidAndTrue () ;
+      if (enumerator_37857.hasCurrentObject () && enumerator_37892.hasCurrentObject () && bool_4) {
+        while (enumerator_37857.hasCurrentObject () && enumerator_37892.hasCurrentObject () && bool_4) {
+          result_outResult = GALGAS_bool (kIsEqual, enumerator_37857.current_mValue (HERE).readProperty_string ().objectCompare (enumerator_37892.current_mValue (HERE).readProperty_string ())) ;
+          enumerator_37857.gotoNextObject () ;
+          enumerator_37892.gotoNextObject () ;
+          if (enumerator_37857.hasCurrentObject () && enumerator_37892.hasCurrentObject ()) {
+            bool_4 = result_outResult.isValidAndTrue () ;
+          }
+        }
+      }
+    }
+  }
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ComputedGotoTerminator_isEqualToTerminator (void) {
+  enterExtensionGetter_isEqualToTerminator (kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator.mSlotID,
+                                            extensionGetter_ipic_31__38_ComputedGotoTerminator_isEqualToTerminator) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ComputedGotoTerminator_isEqualToTerminator (defineExtensionGetter_ipic_31__38_ComputedGotoTerminator_isEqualToTerminator, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ComputedBraTerminator terminatorSize'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_uint extensionGetter_ipic_31__38_ComputedBraTerminator_terminatorSize (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                     const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                     C_Compiler * inCompiler
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_uint result_outSize ; // Returned variable
+  const cPtr_ipic_31__38_ComputedBraTerminator * object = (const cPtr_ipic_31__38_ComputedBraTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedBraTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ComputedBraTerminator temp_1 = object ;
+    test_0 = temp_1.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_0) {
+      result_outSize = GALGAS_uint ((uint32_t) 2U) ;
+    }
+  }
+  if (kBoolFalse == test_0) {
+    result_outSize = GALGAS_uint ((uint32_t) 4U) ;
+  }
+  const GALGAS_ipic_31__38_ComputedBraTerminator temp_2 = object ;
+  result_outSize = result_outSize.add_operation (GALGAS_uint ((uint32_t) 2U).multiply_operation (temp_2.readProperty_mTargetLabels ().getter_length (SOURCE_FILE ("ipic18_terminators.galgas", 1090)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1090)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1090)) ;
+//---
+  return result_outSize ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ComputedBraTerminator_terminatorSize (void) {
+  enterExtensionGetter_terminatorSize (kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator.mSlotID,
+                                       extensionGetter_ipic_31__38_ComputedBraTerminator_terminatorSize) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ComputedBraTerminator_terminatorSize (defineExtensionGetter_ipic_31__38_ComputedBraTerminator_terminatorSize, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ComputedBraTerminator terminatorDisplay'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_string extensionGetter_ipic_31__38_ComputedBraTerminator_terminatorDisplay (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                          const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_outResult ; // Returned variable
+  const cPtr_ipic_31__38_ComputedBraTerminator * object = (const cPtr_ipic_31__38_ComputedBraTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedBraTerminator) ;
+  result_outResult = GALGAS_string ("COMPUTED BRA") ;
+  const GALGAS_ipic_31__38_ComputedBraTerminator temp_0 = object ;
+  cEnumerator_lstringlist enumerator_38700 (temp_0.readProperty_mTargetLabels (), kENUMERATION_UP) ;
+  while (enumerator_38700.hasCurrentObject ()) {
+    result_outResult.plusAssign_operation(GALGAS_string (" ").add_operation (enumerator_38700.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1100)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1100)) ;
+    enumerator_38700.gotoNextObject () ;
+  }
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ComputedBraTerminator_terminatorDisplay (void) {
+  enterExtensionGetter_terminatorDisplay (kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator.mSlotID,
+                                          extensionGetter_ipic_31__38_ComputedBraTerminator_terminatorDisplay) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ComputedBraTerminator_terminatorDisplay (defineExtensionGetter_ipic_31__38_ComputedBraTerminator_terminatorDisplay, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ComputedBraTerminator performTerminatorRelativeBranchResolution'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ComputedBraTerminator_performTerminatorRelativeBranchResolution (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                         const GALGAS_uint constinArgument_inAddress,
+                                                                                                         const GALGAS_string constinArgument_inBlockLabel,
+                                                                                                         const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                                         const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                                         GALGAS_uint & ioArgument_ioConversionCount,
+                                                                                                         GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                         GALGAS_ipic_31__38_AbstractBlockTerminator & outArgument_outModifiedTerminator,
+                                                                                                         C_Compiler * inCompiler
+                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ComputedBraTerminator * object = (const cPtr_ipic_31__38_ComputedBraTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedBraTerminator) ;
+  const GALGAS_ipic_31__38_ComputedBraTerminator temp_0 = object ;
+  cEnumerator_lstringlist enumerator_39210 (temp_0.readProperty_mTargetLabels (), kENUMERATION_UP) ;
+  while (enumerator_39210.hasCurrentObject ()) {
+    enumGalgasBool test_1 = kBoolTrue ;
+    if (kBoolTrue == test_1) {
+      test_1 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, enumerator_39210.current_mValue (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1115)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1115)).boolEnum () ;
+      if (kBoolTrue == test_1) {
+        const GALGAS_ipic_31__38_ComputedBraTerminator temp_2 = object ;
+        TC_Array <C_FixItDescription> fixItArray3 ;
+        inCompiler->emitSemanticError (temp_2.readProperty_mInstructionLocation (), GALGAS_string ("displacement (").add_operation (function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (constinArgument_inSymbolTable, enumerator_39210.current_mValue (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1117)).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 1116)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1116)).add_operation (GALGAS_string (") too large for rcall "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1117)).add_operation (enumerator_39210.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1117)).add_operation (GALGAS_string (" instruction (limited to [-1024, 1023])"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1118)), fixItArray3  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1116)) ;
+      }
+    }
+    enumerator_39210.gotoNextObject () ;
+  }
+  const GALGAS_ipic_31__38_ComputedBraTerminator temp_4 = object ;
+  outArgument_outModifiedTerminator = temp_4 ;
+  enumGalgasBool test_5 = kBoolTrue ;
+  if (kBoolTrue == test_5) {
+    const GALGAS_ipic_31__38_ComputedBraTerminator temp_6 = object ;
+    test_5 = temp_6.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_5) {
+      enumGalgasBool test_7 = kBoolTrue ;
+      if (kBoolTrue == test_7) {
+        test_7 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, GALGAS_string ("_computed_goto_2").getter_nowhere (SOURCE_FILE ("ipic18_terminators.galgas", 1123)), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1123)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1123)).boolEnum () ;
+        if (kBoolTrue == test_7) {
+          ioArgument_ioConversionCount.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1124)) ;
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1125)).add_operation (GALGAS_string (": computed RETLW needs CALL _computed_goto_2\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1125)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1125)) ;
+          const GALGAS_ipic_31__38_ComputedBraTerminator temp_8 = object ;
+          const GALGAS_ipic_31__38_ComputedBraTerminator temp_9 = object ;
+          outArgument_outModifiedTerminator = GALGAS_ipic_31__38_ComputedBraTerminator::constructor_new (temp_8.readProperty_mInstructionLocation (), temp_9.readProperty_mTargetLabels (), GALGAS_bool (false)  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1126)) ;
+        }
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ComputedBraTerminator_performTerminatorRelativeBranchResolution (void) {
+  enterExtensionMethod_performTerminatorRelativeBranchResolution (kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator.mSlotID,
+                                                                  extensionMethod_ipic_31__38_ComputedBraTerminator_performTerminatorRelativeBranchResolution) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ComputedBraTerminator_performTerminatorRelativeBranchResolution (defineExtensionMethod_ipic_31__38_ComputedBraTerminator_performTerminatorRelativeBranchResolution, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ComputedBraTerminator terminatorRelativeBranchOverflow'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ComputedBraTerminator_terminatorRelativeBranchOverflow (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                const GALGAS_uint constinArgument_inAddress,
+                                                                                                const GALGAS_string constinArgument_inBlockLabel,
+                                                                                                const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                                const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                                GALGAS_branchOverflowMap & ioArgument_ioOverflowMap,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ComputedBraTerminator * object = (const cPtr_ipic_31__38_ComputedBraTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedBraTerminator) ;
+  GALGAS_uint var_address_40319 ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ComputedBraTerminator temp_1 = object ;
+    test_0 = temp_1.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_0) {
+      enumGalgasBool test_2 = kBoolTrue ;
+      if (kBoolTrue == test_2) {
+        test_2 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, GALGAS_string ("_computed_goto_2").getter_nowhere (SOURCE_FILE ("ipic18_terminators.galgas", 1141)), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1141)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1141)).boolEnum () ;
+        if (kBoolTrue == test_2) {
+          ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, GALGAS_string ("_computed_goto_2")  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1142)) ;
+        }
+      }
+      var_address_40319 = constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1144)) ;
+    }
+  }
+  if (kBoolFalse == test_0) {
+    var_address_40319 = constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1146)) ;
+  }
+  const GALGAS_ipic_31__38_ComputedBraTerminator temp_3 = object ;
+  cEnumerator_lstringlist enumerator_40590 (temp_3.readProperty_mTargetLabels (), kENUMERATION_UP) ;
+  while (enumerator_40590.hasCurrentObject ()) {
+    enumGalgasBool test_4 = kBoolTrue ;
+    if (kBoolTrue == test_4) {
+      test_4 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, enumerator_40590.current_mValue (HERE), var_address_40319, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1149)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1149)).boolEnum () ;
+      if (kBoolTrue == test_4) {
+        ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, enumerator_40590.current_mValue (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1150)) ;
+      }
+    }
+    var_address_40319 = var_address_40319.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1152)) ;
+    enumerator_40590.gotoNextObject () ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ComputedBraTerminator_terminatorRelativeBranchOverflow (void) {
+  enterExtensionMethod_terminatorRelativeBranchOverflow (kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator.mSlotID,
+                                                         extensionMethod_ipic_31__38_ComputedBraTerminator_terminatorRelativeBranchOverflow) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ComputedBraTerminator_terminatorRelativeBranchOverflow (defineExtensionMethod_ipic_31__38_ComputedBraTerminator_terminatorRelativeBranchOverflow, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ComputedBraTerminator generateTerminatorCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ComputedBraTerminator_generateTerminatorCode (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                      const GALGAS_uint constinArgument_inAddress,
+                                                                                      const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                      const GALGAS_string /* constinArgument_inNextBlockLabel */,
+                                                                                      GALGAS_codeList & outArgument_outCode,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ComputedBraTerminator * object = (const cPtr_ipic_31__38_ComputedBraTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedBraTerminator) ;
+  GALGAS_lstring var_goto_32_label_41098 = GALGAS_string ("_computed_goto_2").getter_nowhere (SOURCE_FILE ("ipic18_terminators.galgas", 1163)) ;
+  GALGAS_uint var_targetAddress_41193 ;
+  constinArgument_inSymbolTable.method_searchKey (var_goto_32_label_41098, var_targetAddress_41193, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1164)) ;
+  GALGAS_uint var_address_41214 ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ComputedBraTerminator temp_1 = object ;
+    test_0 = temp_1.readProperty_mUsesRCALL ().boolEnum () ;
+    if (kBoolTrue == test_0) {
+      outArgument_outCode = function_pic_31__38__5F_RCALL_5F_instruction_5F_code (constinArgument_inAddress, var_targetAddress_41193, var_goto_32_label_41098, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1167)) ;
+      var_address_41214 = constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1168)) ;
+    }
+  }
+  if (kBoolFalse == test_0) {
+    outArgument_outCode = function_pic_31__38__5F_CALL_5F_instruction_5F_code (var_targetAddress_41193, var_goto_32_label_41098, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1170)) ;
+    var_address_41214 = constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1171)) ;
+  }
+  const GALGAS_ipic_31__38_ComputedBraTerminator temp_2 = object ;
+  cEnumerator_lstringlist enumerator_41477 (temp_2.readProperty_mTargetLabels (), kENUMERATION_UP) ;
+  while (enumerator_41477.hasCurrentObject ()) {
+    GALGAS_uint var_labelAddress_41565 ;
+    constinArgument_inSymbolTable.method_searchKey (enumerator_41477.current_mValue (HERE), var_labelAddress_41565, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1174)) ;
+    outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_BRA_5F_instruction_5F_code (var_address_41214, var_labelAddress_41565, enumerator_41477.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1175)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1175)) ;
+    var_address_41214 = var_address_41214.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1176)) ;
+    enumerator_41477.gotoNextObject () ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ComputedBraTerminator_generateTerminatorCode (void) {
+  enterExtensionMethod_generateTerminatorCode (kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator.mSlotID,
+                                               extensionMethod_ipic_31__38_ComputedBraTerminator_generateTerminatorCode) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ComputedBraTerminator_generateTerminatorCode (defineExtensionMethod_ipic_31__38_ComputedBraTerminator_generateTerminatorCode, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ComputedBraTerminator isEqualToTerminator'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_bool extensionGetter_ipic_31__38_ComputedBraTerminator_isEqualToTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                          const GALGAS_ipic_31__38_AbstractBlockTerminator constinArgument_inTerminator,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_bool result_outResult ; // Returned variable
+  const cPtr_ipic_31__38_ComputedBraTerminator * object = (const cPtr_ipic_31__38_ComputedBraTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ComputedBraTerminator) ;
+  result_outResult = GALGAS_bool (constinArgument_inTerminator.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    test_0 = result_outResult.boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_ipic_31__38_ComputedBraTerminator temp_1 ;
+      if (constinArgument_inTerminator.isValid ()) {
+        if (NULL != dynamic_cast <const cPtr_ipic_31__38_ComputedBraTerminator *> (constinArgument_inTerminator.ptr ())) {
+          temp_1 = (cPtr_ipic_31__38_ComputedBraTerminator *) constinArgument_inTerminator.ptr () ;
+        }else{
+          inCompiler->castError ("ipic_31__38_ComputedBraTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1187)) ;
+        }
+      }
+      GALGAS_ipic_31__38_ComputedBraTerminator var_t_42018 = temp_1 ;
+      const GALGAS_ipic_31__38_ComputedBraTerminator temp_2 = object ;
+      result_outResult = GALGAS_bool (kIsEqual, temp_2.readProperty_mTargetLabels ().getter_length (SOURCE_FILE ("ipic18_terminators.galgas", 1188)).objectCompare (var_t_42018.readProperty_mTargetLabels ().getter_length (SOURCE_FILE ("ipic18_terminators.galgas", 1188)))) ;
+      const GALGAS_ipic_31__38_ComputedBraTerminator temp_3 = object ;
+      cEnumerator_lstringlist enumerator_42156 (temp_3.readProperty_mTargetLabels (), kENUMERATION_UP) ;
+      cEnumerator_lstringlist enumerator_42191 (var_t_42018.readProperty_mTargetLabels (), kENUMERATION_UP) ;
+      bool bool_4 = result_outResult.isValidAndTrue () ;
+      if (enumerator_42156.hasCurrentObject () && enumerator_42191.hasCurrentObject () && bool_4) {
+        while (enumerator_42156.hasCurrentObject () && enumerator_42191.hasCurrentObject () && bool_4) {
+          result_outResult = GALGAS_bool (kIsEqual, enumerator_42156.current_mValue (HERE).readProperty_string ().objectCompare (enumerator_42191.current_mValue (HERE).readProperty_string ())) ;
+          enumerator_42156.gotoNextObject () ;
+          enumerator_42191.gotoNextObject () ;
+          if (enumerator_42156.hasCurrentObject () && enumerator_42191.hasCurrentObject ()) {
+            bool_4 = result_outResult.isValidAndTrue () ;
+          }
+        }
+      }
+    }
+  }
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ComputedBraTerminator_isEqualToTerminator (void) {
+  enterExtensionGetter_isEqualToTerminator (kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator.mSlotID,
+                                            extensionGetter_ipic_31__38_ComputedBraTerminator_isEqualToTerminator) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ComputedBraTerminator_isEqualToTerminator (defineExtensionGetter_ipic_31__38_ComputedBraTerminator_isEqualToTerminator, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ConditionalJumpTerminator terminatorDisplay'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_string extensionGetter_ipic_31__38_ConditionalJumpTerminator_terminatorDisplay (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                              const GALGAS_string constinArgument_inNextBlockLabel,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_string result_outResult ; // Returned variable
+  const cPtr_ipic_31__38_ConditionalJumpTerminator * object = (const cPtr_ipic_31__38_ConditionalJumpTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
+  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_0 = object ;
+  switch (temp_0.readProperty_mConditionalBranch ().enumValue ()) {
+  case GALGAS_conditional_5F_branch::kNotBuilt:
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bz:
+    {
+      result_outResult = GALGAS_string ("Z") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bn:
+    {
+      result_outResult = GALGAS_string ("N") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bc:
+    {
+      result_outResult = GALGAS_string ("C") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bov:
+    {
+      result_outResult = GALGAS_string ("OV") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnz:
+    {
+      result_outResult = GALGAS_string ("NZ") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnn:
+    {
+      result_outResult = GALGAS_string ("NN") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnc:
+    {
+      result_outResult = GALGAS_string ("NC") ;
+    }
+    break ;
+  case GALGAS_conditional_5F_branch::kEnum_bnov:
+    {
+      result_outResult = GALGAS_string ("NOV") ;
+    }
+    break ;
+  }
+  result_outResult.plusAssign_operation(GALGAS_string (" \? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1300)) ;
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_2 = object ;
+    test_1 = GALGAS_bool (kIsEqual, temp_2.readProperty_mTargetLabelWhenTrue ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_3 = object ;
+      result_outResult.plusAssign_operation(GALGAS_string ("(").add_operation (temp_3.readProperty_mTargetLabelWhenTrue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1302)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1302)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1302)) ;
+    }
+  }
+  if (kBoolFalse == test_1) {
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_4 = object ;
+    result_outResult.plusAssign_operation(temp_4.readProperty_mTargetLabelWhenTrue ().readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1304)) ;
+  }
+  result_outResult.plusAssign_operation(GALGAS_string (" : "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1306)) ;
+  enumGalgasBool test_5 = kBoolTrue ;
+  if (kBoolTrue == test_5) {
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_6 = object ;
+    test_5 = GALGAS_bool (kIsEqual, temp_6.readProperty_mTargetLabelWhenFalse ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+    if (kBoolTrue == test_5) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_7 = object ;
+      result_outResult.plusAssign_operation(GALGAS_string ("(").add_operation (temp_7.readProperty_mTargetLabelWhenFalse ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1308)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1308)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1308)) ;
+    }
+  }
+  if (kBoolFalse == test_5) {
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_8 = object ;
+    result_outResult.plusAssign_operation(temp_8.readProperty_mTargetLabelWhenFalse ().readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1310)) ;
+  }
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ConditionalJumpTerminator_terminatorDisplay (void) {
+  enterExtensionGetter_terminatorDisplay (kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator.mSlotID,
+                                          extensionGetter_ipic_31__38_ConditionalJumpTerminator_terminatorDisplay) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ConditionalJumpTerminator_terminatorDisplay (defineExtensionGetter_ipic_31__38_ConditionalJumpTerminator_terminatorDisplay, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ConditionalJumpTerminator performTerminatorRelativeBranchResolution'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ConditionalJumpTerminator_performTerminatorRelativeBranchResolution (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                             const GALGAS_uint constinArgument_inAddress,
+                                                                                                             const GALGAS_string constinArgument_inBlockLabel,
+                                                                                                             const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                                             const GALGAS_string constinArgument_inNextBlockLabel,
+                                                                                                             GALGAS_uint & ioArgument_ioConversionCount,
+                                                                                                             GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                             GALGAS_ipic_31__38_AbstractBlockTerminator & outArgument_outModifiedTerminator,
+                                                                                                             C_Compiler * inCompiler
+                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ConditionalJumpTerminator * object = (const cPtr_ipic_31__38_ConditionalJumpTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
+  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_0 = object ;
+  GALGAS_conditionalBranchMode var_branchModeOnFalseLabel_48066 = temp_0.readProperty_mBranchModeOnFalseLabel () ;
+  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_1 = object ;
+  GALGAS_conditionalBranchMode var_branchModeOnTrueLabel_48148 = temp_1.readProperty_mBranchModeOnTrueLabel () ;
+  enumGalgasBool test_2 = kBoolTrue ;
+  if (kBoolTrue == test_2) {
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_3 = object ;
+    test_2 = GALGAS_bool (kIsEqual, temp_3.readProperty_mTargetLabelWhenTrue ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+    if (kBoolTrue == test_2) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_4 = object ;
+      switch (temp_4.readProperty_mBranchModeOnFalseLabel ().enumValue ()) {
+      case GALGAS_conditionalBranchMode::kNotBuilt:
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_native:
+        {
+          enumGalgasBool test_5 = kBoolTrue ;
+          if (kBoolTrue == test_5) {
+            const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_6 = object ;
+            test_5 = function_pic_31__38__5F_checkBCC (constinArgument_inSymbolTable, temp_6.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1329)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1329)).boolEnum () ;
+            if (kBoolTrue == test_5) {
+              var_branchModeOnFalseLabel_48066 = GALGAS_conditionalBranchMode::constructor_ipicBRA (SOURCE_FILE ("ipic18_terminators.galgas", 1330)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_7 = object ;
+              ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1331)).add_operation (GALGAS_string (", terminator will use BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1331)).add_operation (temp_7.readProperty_mTargetLabelWhenFalse ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1331)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1331)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1331)) ;
+            }
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+        {
+          enumGalgasBool test_8 = kBoolTrue ;
+          if (kBoolTrue == test_8) {
+            const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_9 = object ;
+            test_8 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_9.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1334)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1334)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1334)).boolEnum () ;
+            if (kBoolTrue == test_8) {
+              var_branchModeOnFalseLabel_48066 = GALGAS_conditionalBranchMode::constructor_ipicGOTO (SOURCE_FILE ("ipic18_terminators.galgas", 1335)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_10 = object ;
+              ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1336)).add_operation (GALGAS_string (", terminator will use GOTO "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1336)).add_operation (temp_10.readProperty_mTargetLabelWhenFalse ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1336)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1336)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1336)) ;
+            }
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+        {
+        }
+        break ;
+      }
+    }
+  }
+  if (kBoolFalse == test_2) {
+    enumGalgasBool test_11 = kBoolTrue ;
+    if (kBoolTrue == test_11) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_12 = object ;
+      test_11 = GALGAS_bool (kIsEqual, temp_12.readProperty_mTargetLabelWhenFalse ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+      if (kBoolTrue == test_11) {
+        const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_13 = object ;
+        switch (temp_13.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+        case GALGAS_conditionalBranchMode::kNotBuilt:
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_native:
+          {
+            enumGalgasBool test_14 = kBoolTrue ;
+            if (kBoolTrue == test_14) {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_15 = object ;
+              test_14 = function_pic_31__38__5F_checkBCC (constinArgument_inSymbolTable, temp_15.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1343)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1343)).boolEnum () ;
+              if (kBoolTrue == test_14) {
+                var_branchModeOnTrueLabel_48148 = GALGAS_conditionalBranchMode::constructor_ipicBRA (SOURCE_FILE ("ipic18_terminators.galgas", 1344)) ;
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_16 = object ;
+                ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1345)).add_operation (GALGAS_string (", terminator will use BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1345)).add_operation (temp_16.readProperty_mTargetLabelWhenFalse ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1345)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1345)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1345)) ;
+              }
+            }
+          }
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+          {
+            enumGalgasBool test_17 = kBoolTrue ;
+            if (kBoolTrue == test_17) {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_18 = object ;
+              test_17 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_18.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1348)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1348)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1348)).boolEnum () ;
+              if (kBoolTrue == test_17) {
+                var_branchModeOnTrueLabel_48148 = GALGAS_conditionalBranchMode::constructor_ipicGOTO (SOURCE_FILE ("ipic18_terminators.galgas", 1349)) ;
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_19 = object ;
+                ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1350)).add_operation (GALGAS_string (", terminator will use GOTO "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1350)).add_operation (temp_19.readProperty_mTargetLabelWhenTrue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1350)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1350)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1350)) ;
+              }
+            }
+          }
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+          {
+          }
+          break ;
+        }
+      }
+    }
+    if (kBoolFalse == test_11) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_20 = object ;
+      switch (temp_20.readProperty_mBranchModeOnFalseLabel ().enumValue ()) {
+      case GALGAS_conditionalBranchMode::kNotBuilt:
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_native:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_21 = object ;
+          switch (temp_21.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              enumGalgasBool test_22 = kBoolTrue ;
+              if (kBoolTrue == test_22) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_23 = object ;
+                test_22 = function_pic_31__38__5F_checkBCC (constinArgument_inSymbolTable, temp_23.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1359)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1359)).boolEnum () ;
+                if (kBoolTrue == test_22) {
+                  var_branchModeOnFalseLabel_48066 = GALGAS_conditionalBranchMode::constructor_ipicBRA (SOURCE_FILE ("ipic18_terminators.galgas", 1360)) ;
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_24 = object ;
+                  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1361)).add_operation (GALGAS_string (", terminator will use BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1361)).add_operation (temp_24.readProperty_mTargetLabelWhenFalse ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1361)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1361)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1361)) ;
+                }
+              }
+              enumGalgasBool test_25 = kBoolTrue ;
+              if (kBoolTrue == test_25) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_26 = object ;
+                test_25 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_26.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1363)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1363)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1363)).boolEnum () ;
+                if (kBoolTrue == test_25) {
+                  var_branchModeOnTrueLabel_48148 = GALGAS_conditionalBranchMode::constructor_ipicBRA (SOURCE_FILE ("ipic18_terminators.galgas", 1364)) ;
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_27 = object ;
+                  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1365)).add_operation (GALGAS_string (", terminator will use BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1365)).add_operation (temp_27.readProperty_mTargetLabelWhenTrue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1365)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1365)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1365)) ;
+                }
+              }
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+            }
+            break ;
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_28 = object ;
+          switch (temp_28.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+            {
+              enumGalgasBool test_29 = kBoolTrue ;
+              if (kBoolTrue == test_29) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_30 = object ;
+                test_29 = function_pic_31__38__5F_checkBCC (constinArgument_inSymbolTable, temp_30.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1372)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1372)).boolEnum () ;
+                if (kBoolTrue == test_29) {
+                  var_branchModeOnTrueLabel_48148 = GALGAS_conditionalBranchMode::constructor_ipicBRA (SOURCE_FILE ("ipic18_terminators.galgas", 1373)) ;
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_31 = object ;
+                  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1374)).add_operation (GALGAS_string (", terminator will use BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1374)).add_operation (temp_31.readProperty_mTargetLabelWhenTrue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1374)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1374)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1374)) ;
+                }
+              }
+              enumGalgasBool test_32 = kBoolTrue ;
+              if (kBoolTrue == test_32) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_33 = object ;
+                test_32 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_33.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1376)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1376)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1376)).boolEnum () ;
+                if (kBoolTrue == test_32) {
+                  var_branchModeOnFalseLabel_48066 = GALGAS_conditionalBranchMode::constructor_ipicBRA (SOURCE_FILE ("ipic18_terminators.galgas", 1377)) ;
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_34 = object ;
+                  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1378)).add_operation (GALGAS_string (", terminator will use BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1378)).add_operation (temp_34.readProperty_mTargetLabelWhenFalse ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1378)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1378)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1378)) ;
+                }
+              }
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              enumGalgasBool test_35 = kBoolTrue ;
+              if (kBoolTrue == test_35) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_36 = object ;
+                test_35 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_36.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1381)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1381)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1381)).boolEnum () ;
+                if (kBoolTrue == test_35) {
+                  var_branchModeOnFalseLabel_48066 = GALGAS_conditionalBranchMode::constructor_ipicBRA (SOURCE_FILE ("ipic18_terminators.galgas", 1382)) ;
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_37 = object ;
+                  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1383)).add_operation (GALGAS_string (", terminator will use BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1383)).add_operation (temp_37.readProperty_mTargetLabelWhenFalse ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1383)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1383)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1383)) ;
+                }
+              }
+              enumGalgasBool test_38 = kBoolTrue ;
+              if (kBoolTrue == test_38) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_39 = object ;
+                test_38 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_39.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1385)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1385)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1385)).boolEnum () ;
+                if (kBoolTrue == test_38) {
+                  var_branchModeOnTrueLabel_48148 = GALGAS_conditionalBranchMode::constructor_ipicBRA (SOURCE_FILE ("ipic18_terminators.galgas", 1386)) ;
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_40 = object ;
+                  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1387)).add_operation (GALGAS_string (", terminator will use BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1387)).add_operation (temp_40.readProperty_mTargetLabelWhenTrue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1387)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1387)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1387)) ;
+                }
+              }
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+              enumGalgasBool test_41 = kBoolTrue ;
+              if (kBoolTrue == test_41) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_42 = object ;
+                test_41 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_42.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1390)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1390)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1390)).boolEnum () ;
+                if (kBoolTrue == test_41) {
+                  var_branchModeOnFalseLabel_48066 = GALGAS_conditionalBranchMode::constructor_ipicBRA (SOURCE_FILE ("ipic18_terminators.galgas", 1391)) ;
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_43 = object ;
+                  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1392)).add_operation (GALGAS_string (", terminator will use BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1392)).add_operation (temp_43.readProperty_mTargetLabelWhenFalse ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1392)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1392)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1392)) ;
+                }
+              }
+            }
+            break ;
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_44 = object ;
+          switch (temp_44.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+            {
+              enumGalgasBool test_45 = kBoolTrue ;
+              if (kBoolTrue == test_45) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_46 = object ;
+                test_45 = function_pic_31__38__5F_checkBCC (constinArgument_inSymbolTable, temp_46.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1398)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1398)).boolEnum () ;
+                if (kBoolTrue == test_45) {
+                  var_branchModeOnTrueLabel_48148 = GALGAS_conditionalBranchMode::constructor_ipicBRA (SOURCE_FILE ("ipic18_terminators.galgas", 1399)) ;
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_47 = object ;
+                  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1400)).add_operation (GALGAS_string (", terminator will use BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1400)).add_operation (temp_47.readProperty_mTargetLabelWhenTrue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1400)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1400)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1400)) ;
+                }
+              }
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              enumGalgasBool test_48 = kBoolTrue ;
+              if (kBoolTrue == test_48) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_49 = object ;
+                test_48 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_49.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 6U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1403)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1403)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1403)).boolEnum () ;
+                if (kBoolTrue == test_48) {
+                  var_branchModeOnTrueLabel_48148 = GALGAS_conditionalBranchMode::constructor_ipicBRA (SOURCE_FILE ("ipic18_terminators.galgas", 1404)) ;
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_50 = object ;
+                  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (constinArgument_inBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1405)).add_operation (GALGAS_string (", terminator will use BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1405)).add_operation (temp_50.readProperty_mTargetLabelWhenTrue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1405)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1405)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1405)) ;
+                }
+              }
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+            }
+            break ;
+          }
+        }
+        break ;
+      }
+    }
+  }
+  enumGalgasBool test_51 = kBoolTrue ;
+  if (kBoolTrue == test_51) {
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_52 = object ;
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_53 = object ;
+    test_51 = GALGAS_bool (kIsEqual, var_branchModeOnFalseLabel_48066.objectCompare (temp_52.readProperty_mBranchModeOnFalseLabel ())).operator_and (GALGAS_bool (kIsEqual, var_branchModeOnTrueLabel_48148.objectCompare (temp_53.readProperty_mBranchModeOnTrueLabel ())) COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1411)).boolEnum () ;
+    if (kBoolTrue == test_51) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_54 = object ;
+      outArgument_outModifiedTerminator = temp_54 ;
+    }
+  }
+  if (kBoolFalse == test_51) {
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_55 = object ;
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_56 = object ;
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_57 = object ;
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_58 = object ;
+    outArgument_outModifiedTerminator = GALGAS_ipic_31__38_ConditionalJumpTerminator::constructor_new (temp_55.readProperty_mInstructionLocation (), temp_56.readProperty_mConditionalBranch (), temp_57.readProperty_mTargetLabelWhenTrue (), var_branchModeOnTrueLabel_48148, temp_58.readProperty_mTargetLabelWhenFalse (), var_branchModeOnFalseLabel_48066  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1414)) ;
+    ioArgument_ioConversionCount.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1421)) ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ConditionalJumpTerminator_performTerminatorRelativeBranchResolution (void) {
+  enterExtensionMethod_performTerminatorRelativeBranchResolution (kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator.mSlotID,
+                                                                  extensionMethod_ipic_31__38_ConditionalJumpTerminator_performTerminatorRelativeBranchResolution) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ConditionalJumpTerminator_performTerminatorRelativeBranchResolution (defineExtensionMethod_ipic_31__38_ConditionalJumpTerminator_performTerminatorRelativeBranchResolution, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ConditionalJumpTerminator terminatorRelativeBranchOverflow'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ConditionalJumpTerminator_terminatorRelativeBranchOverflow (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                                    const GALGAS_uint constinArgument_inAddress,
+                                                                                                    const GALGAS_string constinArgument_inBlockLabel,
+                                                                                                    const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                                    const GALGAS_string constinArgument_inNextBlockLabel,
+                                                                                                    GALGAS_branchOverflowMap & ioArgument_ioOverflowMap,
+                                                                                                    C_Compiler * inCompiler
+                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ConditionalJumpTerminator * object = (const cPtr_ipic_31__38_ConditionalJumpTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_1 = object ;
+    test_0 = GALGAS_bool (kIsEqual, temp_1.readProperty_mTargetLabelWhenTrue ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_2 = object ;
+      switch (temp_2.readProperty_mBranchModeOnFalseLabel ().enumValue ()) {
+      case GALGAS_conditionalBranchMode::kNotBuilt:
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_native:
+        {
+          enumGalgasBool test_3 = kBoolTrue ;
+          if (kBoolTrue == test_3) {
+            const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_4 = object ;
+            test_3 = function_pic_31__38__5F_checkBCC (constinArgument_inSymbolTable, temp_4.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1436)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1436)).boolEnum () ;
+            if (kBoolTrue == test_3) {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_5 = object ;
+              ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_5.readProperty_mTargetLabelWhenFalse ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1437)) ;
+            }
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+        {
+          enumGalgasBool test_6 = kBoolTrue ;
+          if (kBoolTrue == test_6) {
+            const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_7 = object ;
+            test_6 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_7.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1440)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1440)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1440)).boolEnum () ;
+            if (kBoolTrue == test_6) {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_8 = object ;
+              ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_8.readProperty_mTargetLabelWhenFalse ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1441)) ;
+            }
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+        {
+        }
+        break ;
+      }
+    }
+  }
+  if (kBoolFalse == test_0) {
+    enumGalgasBool test_9 = kBoolTrue ;
+    if (kBoolTrue == test_9) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_10 = object ;
+      test_9 = GALGAS_bool (kIsEqual, temp_10.readProperty_mTargetLabelWhenFalse ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+      if (kBoolTrue == test_9) {
+        const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_11 = object ;
+        switch (temp_11.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+        case GALGAS_conditionalBranchMode::kNotBuilt:
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_native:
+          {
+            enumGalgasBool test_12 = kBoolTrue ;
+            if (kBoolTrue == test_12) {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_13 = object ;
+              test_12 = function_pic_31__38__5F_checkBCC (constinArgument_inSymbolTable, temp_13.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1448)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1448)).boolEnum () ;
+              if (kBoolTrue == test_12) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_14 = object ;
+                ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_14.readProperty_mTargetLabelWhenTrue ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1449)) ;
+              }
+            }
+          }
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+          {
+            enumGalgasBool test_15 = kBoolTrue ;
+            if (kBoolTrue == test_15) {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_16 = object ;
+              test_15 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_16.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1452)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1452)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1452)).boolEnum () ;
+              if (kBoolTrue == test_15) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_17 = object ;
+                ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_17.readProperty_mTargetLabelWhenTrue ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1453)) ;
+              }
+            }
+          }
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+          {
+          }
+          break ;
+        }
+      }
+    }
+    if (kBoolFalse == test_9) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_18 = object ;
+      switch (temp_18.readProperty_mBranchModeOnFalseLabel ().enumValue ()) {
+      case GALGAS_conditionalBranchMode::kNotBuilt:
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_native:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_19 = object ;
+          switch (temp_19.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              enumGalgasBool test_20 = kBoolTrue ;
+              if (kBoolTrue == test_20) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_21 = object ;
+                test_20 = function_pic_31__38__5F_checkBCC (constinArgument_inSymbolTable, temp_21.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1462)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1462)).boolEnum () ;
+                if (kBoolTrue == test_20) {
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_22 = object ;
+                  ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_22.readProperty_mTargetLabelWhenFalse ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1463)) ;
+                }
+              }
+              enumGalgasBool test_23 = kBoolTrue ;
+              if (kBoolTrue == test_23) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_24 = object ;
+                test_23 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_24.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1465)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1465)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1465)).boolEnum () ;
+                if (kBoolTrue == test_23) {
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_25 = object ;
+                  ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_25.readProperty_mTargetLabelWhenTrue ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1466)) ;
+                }
+              }
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+            }
+            break ;
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_26 = object ;
+          switch (temp_26.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+            {
+              enumGalgasBool test_27 = kBoolTrue ;
+              if (kBoolTrue == test_27) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_28 = object ;
+                test_27 = function_pic_31__38__5F_checkBCC (constinArgument_inSymbolTable, temp_28.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1473)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1473)).boolEnum () ;
+                if (kBoolTrue == test_27) {
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_29 = object ;
+                  ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_29.readProperty_mTargetLabelWhenTrue ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1474)) ;
+                }
+              }
+              enumGalgasBool test_30 = kBoolTrue ;
+              if (kBoolTrue == test_30) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_31 = object ;
+                test_30 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_31.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1476)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1476)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1476)).boolEnum () ;
+                if (kBoolTrue == test_30) {
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_32 = object ;
+                  ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_32.readProperty_mTargetLabelWhenFalse ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1477)) ;
+                }
+              }
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              enumGalgasBool test_33 = kBoolTrue ;
+              if (kBoolTrue == test_33) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_34 = object ;
+                test_33 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_34.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1480)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1480)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1480)).boolEnum () ;
+                if (kBoolTrue == test_33) {
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_35 = object ;
+                  ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_35.readProperty_mTargetLabelWhenFalse ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1481)) ;
+                }
+              }
+              enumGalgasBool test_36 = kBoolTrue ;
+              if (kBoolTrue == test_36) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_37 = object ;
+                test_36 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_37.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1483)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1483)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1483)).boolEnum () ;
+                if (kBoolTrue == test_36) {
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_38 = object ;
+                  ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_38.readProperty_mTargetLabelWhenTrue ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1484)) ;
+                }
+              }
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+              enumGalgasBool test_39 = kBoolTrue ;
+              if (kBoolTrue == test_39) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_40 = object ;
+                test_39 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_40.readProperty_mTargetLabelWhenFalse (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1487)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1487)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1487)).boolEnum () ;
+                if (kBoolTrue == test_39) {
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_41 = object ;
+                  ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_41.readProperty_mTargetLabelWhenFalse ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1488)) ;
+                }
+              }
+            }
+            break ;
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_42 = object ;
+          switch (temp_42.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+            {
+              enumGalgasBool test_43 = kBoolTrue ;
+              if (kBoolTrue == test_43) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_44 = object ;
+                test_43 = function_pic_31__38__5F_checkBCC (constinArgument_inSymbolTable, temp_44.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1494)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1494)).boolEnum () ;
+                if (kBoolTrue == test_43) {
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_45 = object ;
+                  ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_45.readProperty_mTargetLabelWhenTrue ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1495)) ;
+                }
+              }
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              enumGalgasBool test_46 = kBoolTrue ;
+              if (kBoolTrue == test_46) {
+                const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_47 = object ;
+                test_46 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, temp_47.readProperty_mTargetLabelWhenTrue (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 6U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1498)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1498)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1498)).boolEnum () ;
+                if (kBoolTrue == test_46) {
+                  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_48 = object ;
+                  ioArgument_ioOverflowMap.addAssign_operation (constinArgument_inBlockLabel, temp_48.readProperty_mTargetLabelWhenTrue ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1499)) ;
+                }
+              }
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+            }
+            break ;
+          }
+        }
+        break ;
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ConditionalJumpTerminator_terminatorRelativeBranchOverflow (void) {
+  enterExtensionMethod_terminatorRelativeBranchOverflow (kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator.mSlotID,
+                                                         extensionMethod_ipic_31__38_ConditionalJumpTerminator_terminatorRelativeBranchOverflow) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ConditionalJumpTerminator_terminatorRelativeBranchOverflow (defineExtensionMethod_ipic_31__38_ConditionalJumpTerminator_terminatorRelativeBranchOverflow, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ConditionalJumpTerminator terminatorSize'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_uint extensionGetter_ipic_31__38_ConditionalJumpTerminator_terminatorSize (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                         const GALGAS_string constinArgument_inNextBlockLabel,
+                                                                                         C_Compiler * /* inCompiler */
+                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_uint result_outSize ; // Returned variable
+  const cPtr_ipic_31__38_ConditionalJumpTerminator * object = (const cPtr_ipic_31__38_ConditionalJumpTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_1 = object ;
+    test_0 = GALGAS_bool (kIsEqual, temp_1.readProperty_mTargetLabelWhenTrue ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_2 = object ;
+      switch (temp_2.readProperty_mBranchModeOnFalseLabel ().enumValue ()) {
+      case GALGAS_conditionalBranchMode::kNotBuilt:
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_native:
+        {
+          result_outSize = GALGAS_uint ((uint32_t) 2U) ;
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+        {
+          result_outSize = GALGAS_uint ((uint32_t) 4U) ;
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+        {
+          result_outSize = GALGAS_uint ((uint32_t) 6U) ;
+        }
+        break ;
+      }
+    }
+  }
+  if (kBoolFalse == test_0) {
+    enumGalgasBool test_3 = kBoolTrue ;
+    if (kBoolTrue == test_3) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_4 = object ;
+      test_3 = GALGAS_bool (kIsEqual, temp_4.readProperty_mTargetLabelWhenFalse ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+      if (kBoolTrue == test_3) {
+        const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_5 = object ;
+        switch (temp_5.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+        case GALGAS_conditionalBranchMode::kNotBuilt:
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_native:
+          {
+            result_outSize = GALGAS_uint ((uint32_t) 2U) ;
+          }
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+          {
+            result_outSize = GALGAS_uint ((uint32_t) 4U) ;
+          }
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+          {
+            result_outSize = GALGAS_uint ((uint32_t) 6U) ;
+          }
+          break ;
+        }
+      }
+    }
+    if (kBoolFalse == test_3) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_6 = object ;
+      switch (temp_6.readProperty_mBranchModeOnFalseLabel ().enumValue ()) {
+      case GALGAS_conditionalBranchMode::kNotBuilt:
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_native:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_7 = object ;
+          switch (temp_7.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              result_outSize = GALGAS_uint ((uint32_t) 4U) ;
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+              result_outSize = GALGAS_uint ((uint32_t) 6U) ;
+            }
+            break ;
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_8 = object ;
+          switch (temp_8.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+            {
+              result_outSize = GALGAS_uint ((uint32_t) 4U) ;
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              result_outSize = GALGAS_uint ((uint32_t) 6U) ;
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+              result_outSize = GALGAS_uint ((uint32_t) 8U) ;
+            }
+            break ;
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_9 = object ;
+          switch (temp_9.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+            {
+              result_outSize = GALGAS_uint ((uint32_t) 6U) ;
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              result_outSize = GALGAS_uint ((uint32_t) 8U) ;
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+              result_outSize = GALGAS_uint ((uint32_t) 10U) ;
+            }
+            break ;
+          }
+        }
+        break ;
+      }
+    }
+  }
+//---
+  return result_outSize ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ConditionalJumpTerminator_terminatorSize (void) {
+  enterExtensionGetter_terminatorSize (kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator.mSlotID,
+                                       extensionGetter_ipic_31__38_ConditionalJumpTerminator_terminatorSize) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ConditionalJumpTerminator_terminatorSize (defineExtensionGetter_ipic_31__38_ConditionalJumpTerminator_terminatorSize, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18ConditionalJumpTerminator generateTerminatorCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_ConditionalJumpTerminator_generateTerminatorCode (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                          const GALGAS_uint constinArgument_inAddress,
+                                                                                          const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                          const GALGAS_string constinArgument_inNextBlockLabel,
+                                                                                          GALGAS_codeList & outArgument_outCode,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_ConditionalJumpTerminator * object = (const cPtr_ipic_31__38_ConditionalJumpTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
+  GALGAS_uint var_trueTargetAddress_59085 ;
+  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_0 = object ;
+  constinArgument_inSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabelWhenTrue (), var_trueTargetAddress_59085, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1554)) ;
+  GALGAS_uint var_falseTargetAddress_59171 ;
+  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_1 = object ;
+  constinArgument_inSymbolTable.method_searchKey (temp_1.readProperty_mTargetLabelWhenFalse (), var_falseTargetAddress_59171, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1555)) ;
+  const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_2 = object ;
+  GALGAS_lstring var_Zlabel_59185 = GALGAS_lstring::constructor_new (GALGAS_string ("_Bcc_").add_operation (constinArgument_inAddress.getter_xString (SOURCE_FILE ("ipic18_terminators.galgas", 1556)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1556)), temp_2.readProperty_mInstructionLocation ()  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1556)) ;
+  enumGalgasBool test_3 = kBoolTrue ;
+  if (kBoolTrue == test_3) {
+    const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_4 = object ;
+    test_3 = GALGAS_bool (kIsEqual, temp_4.readProperty_mTargetLabelWhenTrue ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+    if (kBoolTrue == test_3) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_5 = object ;
+      switch (temp_5.readProperty_mBranchModeOnFalseLabel ().enumValue ()) {
+      case GALGAS_conditionalBranchMode::kNotBuilt:
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_native:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_6 = object ;
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_7 = object ;
+          outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, var_falseTargetAddress_59171, temp_6.readProperty_mTargetLabelWhenFalse (), temp_7.readProperty_mConditionalBranch (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1560)) ;
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_8 = object ;
+          outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1562)), var_Zlabel_59185, temp_8.readProperty_mConditionalBranch (), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1562)) ;
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_9 = object ;
+          outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_BRA_5F_instruction_5F_code (constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1563)), var_falseTargetAddress_59171, temp_9.readProperty_mTargetLabelWhenFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1563)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1563)) ;
+          outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_definition_5F_label (var_Zlabel_59185, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1564)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1564)) ;
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_10 = object ;
+          outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 6U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1566)), var_Zlabel_59185, temp_10.readProperty_mConditionalBranch (), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1566)) ;
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_11 = object ;
+          outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_falseTargetAddress_59171, temp_11.readProperty_mTargetLabelWhenFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1567)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1567)) ;
+          outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_definition_5F_label (var_Zlabel_59185, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1568)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1568)) ;
+        }
+        break ;
+      }
+    }
+  }
+  if (kBoolFalse == test_3) {
+    enumGalgasBool test_12 = kBoolTrue ;
+    if (kBoolTrue == test_12) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_13 = object ;
+      test_12 = GALGAS_bool (kIsEqual, temp_13.readProperty_mTargetLabelWhenFalse ().readProperty_string ().objectCompare (constinArgument_inNextBlockLabel)).boolEnum () ;
+      if (kBoolTrue == test_12) {
+        const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_14 = object ;
+        switch (temp_14.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+        case GALGAS_conditionalBranchMode::kNotBuilt:
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_native:
+          {
+            const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_15 = object ;
+            const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_16 = object ;
+            outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, var_trueTargetAddress_59085, temp_15.readProperty_mTargetLabelWhenTrue (), temp_16.readProperty_mConditionalBranch (), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1573)) ;
+          }
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+          {
+            const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_17 = object ;
+            outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1575)), var_Zlabel_59185, temp_17.readProperty_mConditionalBranch (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1575)) ;
+            const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_18 = object ;
+            outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_BRA_5F_instruction_5F_code (constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1576)), var_trueTargetAddress_59085, temp_18.readProperty_mTargetLabelWhenTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1576)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1576)) ;
+            outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_definition_5F_label (var_Zlabel_59185, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1577)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1577)) ;
+          }
+          break ;
+        case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+          {
+            const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_19 = object ;
+            outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 6U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1579)), var_Zlabel_59185, temp_19.readProperty_mConditionalBranch (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1579)) ;
+            const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_20 = object ;
+            outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_trueTargetAddress_59085, temp_20.readProperty_mTargetLabelWhenTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1580)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1580)) ;
+            outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_definition_5F_label (var_Zlabel_59185, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1581)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1581)) ;
+          }
+          break ;
+        }
+      }
+    }
+    if (kBoolFalse == test_12) {
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_21 = object ;
+      switch (temp_21.readProperty_mBranchModeOnFalseLabel ().enumValue ()) {
+      case GALGAS_conditionalBranchMode::kNotBuilt:
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_native:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_22 = object ;
+          switch (temp_22.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_23 = object ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_24 = object ;
+              outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, var_falseTargetAddress_59171, temp_23.readProperty_mTargetLabelWhenFalse (), temp_24.readProperty_mConditionalBranch (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1588)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_25 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_BRA_5F_instruction_5F_code (constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1589)), var_trueTargetAddress_59085, temp_25.readProperty_mTargetLabelWhenTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1589)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1589)) ;
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_26 = object ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_27 = object ;
+              outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, var_falseTargetAddress_59171, temp_26.readProperty_mTargetLabelWhenFalse (), temp_27.readProperty_mConditionalBranch (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1591)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_28 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_trueTargetAddress_59085, temp_28.readProperty_mTargetLabelWhenTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1592)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1592)) ;
+            }
+            break ;
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_29 = object ;
+          switch (temp_29.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+            {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_30 = object ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_31 = object ;
+              outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, var_trueTargetAddress_59085, temp_30.readProperty_mTargetLabelWhenTrue (), temp_31.readProperty_mConditionalBranch (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1597)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_32 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_BRA_5F_instruction_5F_code (constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1598)), var_falseTargetAddress_59171, temp_32.readProperty_mTargetLabelWhenFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1598)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1598)) ;
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_33 = object ;
+              outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1600)), var_Zlabel_59185, temp_33.readProperty_mConditionalBranch (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1600)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_34 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_BRA_5F_instruction_5F_code (constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1601)), var_falseTargetAddress_59171, temp_34.readProperty_mTargetLabelWhenFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1601)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1601)) ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_definition_5F_label (var_Zlabel_59185, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1602)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1602)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_35 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_BRA_5F_instruction_5F_code (constinArgument_inAddress, var_trueTargetAddress_59085, temp_35.readProperty_mTargetLabelWhenTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1603)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1603)) ;
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_36 = object ;
+              outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1605)), var_Zlabel_59185, temp_36.readProperty_mConditionalBranch (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1605)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_37 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_BRA_5F_instruction_5F_code (constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1606)), var_falseTargetAddress_59171, temp_37.readProperty_mTargetLabelWhenFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1606)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1606)) ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_definition_5F_label (var_Zlabel_59185, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1607)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1607)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_38 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_trueTargetAddress_59085, temp_38.readProperty_mTargetLabelWhenTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1608)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1608)) ;
+            }
+            break ;
+          }
+        }
+        break ;
+      case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+        {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_39 = object ;
+          switch (temp_39.readProperty_mBranchModeOnTrueLabel ().enumValue ()) {
+          case GALGAS_conditionalBranchMode::kNotBuilt:
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_native:
+            {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_40 = object ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_41 = object ;
+              outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, var_trueTargetAddress_59085, temp_40.readProperty_mTargetLabelWhenTrue (), temp_41.readProperty_mConditionalBranch (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1613)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_42 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_falseTargetAddress_59171, temp_42.readProperty_mTargetLabelWhenFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1614)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1614)) ;
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicBRA:
+            {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_43 = object ;
+              outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 6U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1616)), var_Zlabel_59185, temp_43.readProperty_mConditionalBranch (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1616)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_44 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_falseTargetAddress_59171, temp_44.readProperty_mTargetLabelWhenFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1617)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1617)) ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_definition_5F_label (var_Zlabel_59185, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1618)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1618)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_45 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_BRA_5F_instruction_5F_code (constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 6U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1619)), var_trueTargetAddress_59085, temp_45.readProperty_mTargetLabelWhenTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1619)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1619)) ;
+            }
+            break ;
+          case GALGAS_conditionalBranchMode::kEnum_ipicGOTO:
+            {
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_46 = object ;
+              outArgument_outCode = function_pic_31__38__5F_Bcc_5F_instruction_5F_code (constinArgument_inAddress, constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 6U), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1621)), var_Zlabel_59185, temp_46.readProperty_mConditionalBranch (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1621)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_47 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_falseTargetAddress_59171, temp_47.readProperty_mTargetLabelWhenFalse (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1622)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1622)) ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_definition_5F_label (var_Zlabel_59185, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1623)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1623)) ;
+              const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_48 = object ;
+              outArgument_outCode.plusAssign_operation(function_pic_31__38__5F_GOTO_5F_instruction_5F_code (var_trueTargetAddress_59085, temp_48.readProperty_mTargetLabelWhenTrue (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1624)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1624)) ;
+            }
+            break ;
+          }
+        }
+        break ;
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_ConditionalJumpTerminator_generateTerminatorCode (void) {
+  enterExtensionMethod_generateTerminatorCode (kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator.mSlotID,
+                                               extensionMethod_ipic_31__38_ConditionalJumpTerminator_generateTerminatorCode) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_ConditionalJumpTerminator_generateTerminatorCode (defineExtensionMethod_ipic_31__38_ConditionalJumpTerminator_generateTerminatorCode, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18ConditionalJumpTerminator isEqualToTerminator'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_bool extensionGetter_ipic_31__38_ConditionalJumpTerminator_isEqualToTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                                                              const GALGAS_ipic_31__38_AbstractBlockTerminator constinArgument_inTerminator,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_bool result_outResult ; // Returned variable
+  const cPtr_ipic_31__38_ConditionalJumpTerminator * object = (const cPtr_ipic_31__38_ConditionalJumpTerminator *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
+  result_outResult = GALGAS_bool (constinArgument_inTerminator.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    test_0 = result_outResult.boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_ipic_31__38_ConditionalJumpTerminator temp_1 ;
+      if (constinArgument_inTerminator.isValid ()) {
+        if (NULL != dynamic_cast <const cPtr_ipic_31__38_ConditionalJumpTerminator *> (constinArgument_inTerminator.ptr ())) {
+          temp_1 = (cPtr_ipic_31__38_ConditionalJumpTerminator *) constinArgument_inTerminator.ptr () ;
+        }else{
+          inCompiler->castError ("ipic_31__38_ConditionalJumpTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1637)) ;
+        }
+      }
+      GALGAS_ipic_31__38_ConditionalJumpTerminator var_t_64429 = temp_1 ;
+      const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_2 = object ;
+      result_outResult = GALGAS_bool (kIsEqual, temp_2.readProperty_mConditionalBranch ().objectCompare (var_t_64429.readProperty_mConditionalBranch ())) ;
+      enumGalgasBool test_3 = kBoolTrue ;
+      if (kBoolTrue == test_3) {
+        test_3 = result_outResult.boolEnum () ;
+        if (kBoolTrue == test_3) {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_4 = object ;
+          result_outResult = GALGAS_bool (kIsEqual, temp_4.readProperty_mTargetLabelWhenTrue ().readProperty_string ().objectCompare (var_t_64429.readProperty_mTargetLabelWhenTrue ().readProperty_string ())) ;
+        }
+      }
+      enumGalgasBool test_5 = kBoolTrue ;
+      if (kBoolTrue == test_5) {
+        test_5 = result_outResult.boolEnum () ;
+        if (kBoolTrue == test_5) {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_6 = object ;
+          result_outResult = GALGAS_bool (kIsEqual, temp_6.readProperty_mBranchModeOnTrueLabel ().objectCompare (var_t_64429.readProperty_mBranchModeOnTrueLabel ())) ;
+        }
+      }
+      enumGalgasBool test_7 = kBoolTrue ;
+      if (kBoolTrue == test_7) {
+        test_7 = result_outResult.boolEnum () ;
+        if (kBoolTrue == test_7) {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_8 = object ;
+          result_outResult = GALGAS_bool (kIsEqual, temp_8.readProperty_mTargetLabelWhenFalse ().readProperty_string ().objectCompare (var_t_64429.readProperty_mTargetLabelWhenFalse ().readProperty_string ())) ;
+        }
+      }
+      enumGalgasBool test_9 = kBoolTrue ;
+      if (kBoolTrue == test_9) {
+        test_9 = result_outResult.boolEnum () ;
+        if (kBoolTrue == test_9) {
+          const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_10 = object ;
+          result_outResult = GALGAS_bool (kIsEqual, temp_10.readProperty_mBranchModeOnFalseLabel ().objectCompare (var_t_64429.readProperty_mBranchModeOnFalseLabel ())) ;
+        }
+      }
+    }
+  }
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_ConditionalJumpTerminator_isEqualToTerminator (void) {
+  enterExtensionGetter_isEqualToTerminator (kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator.mSlotID,
+                                            extensionGetter_ipic_31__38_ConditionalJumpTerminator_isEqualToTerminator) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_ConditionalJumpTerminator_isEqualToTerminator (defineExtensionGetter_ipic_31__38_ConditionalJumpTerminator_isEqualToTerminator, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18_condition_skip_instruction instructionSize'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_uint extensionGetter_ipic_31__38__5F_condition_5F_skip_5F_instruction_instructionSize (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                     C_Compiler * inCompiler
+                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_uint result_outSize ; // Returned variable
+  const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * object = (const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
+  const GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction temp_0 = object ;
+  result_outSize = GALGAS_uint ((uint32_t) 2U).add_operation (callExtensionGetter_instructionSize ((const cPtr_ipic_31__38_SequentialInstruction *) temp_0.readProperty_mEmbeddedInstruction ().ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 18)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 18)) ;
+//---
+  return result_outSize ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38__5F_condition_5F_skip_5F_instruction_instructionSize (void) {
+  enterExtensionGetter_instructionSize (kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction.mSlotID,
+                                        extensionGetter_ipic_31__38__5F_condition_5F_skip_5F_instruction_instructionSize) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38__5F_condition_5F_skip_5F_instruction_instructionSize (defineExtensionGetter_ipic_31__38__5F_condition_5F_skip_5F_instruction_instructionSize, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18_condition_skip_instruction instructionRelativeBranchOverflow'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_instructionRelativeBranchOverflow (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                                const GALGAS_uint constinArgument_inAddress,
+                                                                                                                const GALGAS_string constinArgument_inBlockLabel,
+                                                                                                                const GALGAS_symbolTableForRelativesResolution constinArgument_inSymbolTable,
+                                                                                                                GALGAS_branchOverflowMap & ioArgument_ioOverflowMap,
+                                                                                                                C_Compiler * inCompiler
+                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * object = (const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
+  const GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction temp_0 = object ;
+  callExtensionMethod_instructionRelativeBranchOverflow ((const cPtr_ipic_31__38_SequentialInstruction *) temp_0.readProperty_mEmbeddedInstruction ().ptr (), constinArgument_inAddress.add_operation (GALGAS_uint ((uint32_t) 2U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 45)), constinArgument_inBlockLabel, constinArgument_inSymbolTable, ioArgument_ioOverflowMap, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 44)) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_instructionRelativeBranchOverflow (void) {
+  enterExtensionMethod_instructionRelativeBranchOverflow (kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction.mSlotID,
+                                                          extensionMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_instructionRelativeBranchOverflow) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_instructionRelativeBranchOverflow (defineExtensionMethod_ipic_31__38__5F_condition_5F_skip_5F_instruction_instructionRelativeBranchOverflow, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18InstructionWithNoOperand instructionDisplay'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_stringlist extensionGetter_ipic_31__38_InstructionWithNoOperand_instructionDisplay (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_stringlist result_outResult ; // Returned variable
+  const cPtr_ipic_31__38_InstructionWithNoOperand * object = (const cPtr_ipic_31__38_InstructionWithNoOperand *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_InstructionWithNoOperand) ;
+  const GALGAS_ipic_31__38_InstructionWithNoOperand temp_0 = object ;
+  result_outResult = GALGAS_stringlist::constructor_listWithValue (extensionGetter_mnemonic (temp_0.readProperty_mKind (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 84))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 84)) ;
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38_InstructionWithNoOperand_instructionDisplay (void) {
+  enterExtensionGetter_instructionDisplay (kTypeDescriptor_GALGAS_ipic_31__38_InstructionWithNoOperand.mSlotID,
+                                           extensionGetter_ipic_31__38_InstructionWithNoOperand_instructionDisplay) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38_InstructionWithNoOperand_instructionDisplay (defineExtensionGetter_ipic_31__38_InstructionWithNoOperand_instructionDisplay, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18InstructionWithNoOperand generateCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38_InstructionWithNoOperand_generateCode (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                               const GALGAS_uint /* constinArgument_inAddress */,
+                                                                               const GALGAS_symbolTableForRelativesResolution /* constinArgument_inSymbolTable */,
+                                                                               const GALGAS_pic_31__38__5F_dataAddressMap /* constinArgument_inDataAddressMap */,
+                                                                               GALGAS_codeList & outArgument_outCode,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38_InstructionWithNoOperand * object = (const cPtr_ipic_31__38_InstructionWithNoOperand *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38_InstructionWithNoOperand) ;
+  GALGAS_uint var_c_2918 ;
+  const GALGAS_ipic_31__38_InstructionWithNoOperand temp_0 = object ;
+  switch (temp_0.readProperty_mKind ().enumValue ()) {
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kNotBuilt:
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_CLRWDT:
+    {
+      var_c_2918 = GALGAS_uint ((uint32_t) 4U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_DAW:
+    {
+      var_c_2918 = GALGAS_uint ((uint32_t) 7U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_NOP:
+    {
+      var_c_2918 = GALGAS_uint ((uint32_t) 0U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_POP:
+    {
+      var_c_2918 = GALGAS_uint ((uint32_t) 6U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_PUSH:
+    {
+      var_c_2918 = GALGAS_uint ((uint32_t) 5U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_RESET:
+    {
+      var_c_2918 = GALGAS_uint ((uint32_t) 255U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_SLEEP:
+    {
+      var_c_2918 = GALGAS_uint ((uint32_t) 3U) ;
+    }
+    break ;
+  }
+  const GALGAS_ipic_31__38_InstructionWithNoOperand temp_1 = object ;
+  GALGAS_uintlist temp_2 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 113)) ;
+  temp_2.addAssign_operation (var_c_2918  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 113)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (extensionGetter_mnemonic (temp_1.readProperty_mKind (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 112)), temp_2  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 111)) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38_InstructionWithNoOperand_generateCode (void) {
+  enterExtensionMethod_generateCode (kTypeDescriptor_GALGAS_ipic_31__38_InstructionWithNoOperand.mSlotID,
+                                     extensionMethod_ipic_31__38_InstructionWithNoOperand_generateCode) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38_InstructionWithNoOperand_generateCode (defineExtensionMethod_ipic_31__38_InstructionWithNoOperand_generateCode, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18_intermediate_instruction_FDA instructionDisplay'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_stringlist extensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_instructionDisplay (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                                C_Compiler * inCompiler
+                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_stringlist result_outResult ; // Returned variable
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA) ;
+  GALGAS_string var_s_3566 ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_0 = object ;
+  switch (temp_0.readProperty_mInstruction_5F_FDA_5F_base_5F_code ().enumValue ()) {
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kNotBuilt:
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_ADDWF:
+    {
+      var_s_3566 = GALGAS_string ("ADDWF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_ADDWFC:
+    {
+      var_s_3566 = GALGAS_string ("ADDWFC") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_ANDWF:
+    {
+      var_s_3566 = GALGAS_string ("ANDWF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_COMF:
+    {
+      var_s_3566 = GALGAS_string ("COMF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_DECF:
+    {
+      var_s_3566 = GALGAS_string ("DECF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_INCF:
+    {
+      var_s_3566 = GALGAS_string ("INCF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_IORWF:
+    {
+      var_s_3566 = GALGAS_string ("IORWF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_MOVF:
+    {
+      var_s_3566 = GALGAS_string ("MOVF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_RLCF:
+    {
+      var_s_3566 = GALGAS_string ("RLCF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_RLNCF:
+    {
+      var_s_3566 = GALGAS_string ("RLNCF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_RRCF:
+    {
+      var_s_3566 = GALGAS_string ("RRCF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_RRNCF:
+    {
+      var_s_3566 = GALGAS_string ("RRNCF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_SUBFWB:
+    {
+      var_s_3566 = GALGAS_string ("SUBFWB") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_SUBWF:
+    {
+      var_s_3566 = GALGAS_string ("SUBWF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_SUBWFB:
+    {
+      var_s_3566 = GALGAS_string ("SUBWFB") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_SWAPF:
+    {
+      var_s_3566 = GALGAS_string ("SWAPF") ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_XORWF:
+    {
+      var_s_3566 = GALGAS_string ("XORWF") ;
+    }
+    break ;
+  }
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_1 = object ;
+  var_s_3566.plusAssign_operation(GALGAS_string (" ").add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 144)), inCompiler  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 144)) ;
+  enumGalgasBool test_2 = kBoolTrue ;
+  if (kBoolTrue == test_2) {
+    const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_3 = object ;
+    const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_4 = object ;
+    test_2 = temp_3.readProperty_m_5F_W_5F_isDestination ().operator_and (temp_4.readProperty_mRegisterDescription ().readProperty_mNeedsBSR () COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 145)).boolEnum () ;
+    if (kBoolTrue == test_2) {
+      var_s_3566.plusAssign_operation(GALGAS_string (", W, BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 146)) ;
+    }
+  }
+  if (kBoolFalse == test_2) {
+    enumGalgasBool test_5 = kBoolTrue ;
+    if (kBoolTrue == test_5) {
+      const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_6 = object ;
+      test_5 = temp_6.readProperty_mRegisterDescription ().readProperty_mNeedsBSR ().boolEnum () ;
+      if (kBoolTrue == test_5) {
+        var_s_3566.plusAssign_operation(GALGAS_string (", F, BSR_ACCESS"), inCompiler  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 148)) ;
+      }
+    }
+    if (kBoolFalse == test_5) {
+      enumGalgasBool test_7 = kBoolTrue ;
+      if (kBoolTrue == test_7) {
+        const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_8 = object ;
+        test_7 = temp_8.readProperty_m_5F_W_5F_isDestination ().boolEnum () ;
+        if (kBoolTrue == test_7) {
+          var_s_3566.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 150)) ;
+        }
+      }
+      if (kBoolFalse == test_7) {
+        var_s_3566.plusAssign_operation(GALGAS_string (", F"), inCompiler  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 152)) ;
+      }
+    }
+  }
+  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s_3566  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 154)) ;
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_instructionDisplay (void) {
+  enterExtensionGetter_instructionDisplay (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA.mSlotID,
+                                           extensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_instructionDisplay) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_instructionDisplay (defineExtensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_instructionDisplay, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18_intermediate_instruction_FDA generateCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_generateCode (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                             const GALGAS_uint /* constinArgument_inAddress */,
+                                                                                             const GALGAS_symbolTableForRelativesResolution /* constinArgument_inSymbolTable */,
+                                                                                             const GALGAS_pic_31__38__5F_dataAddressMap /* constinArgument_inDataAddressMap */,
+                                                                                             GALGAS_codeList & outArgument_outCode,
+                                                                                             C_Compiler * inCompiler
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA) ;
+  GALGAS_uint var_code_4790 ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_0 = object ;
+  switch (temp_0.readProperty_mInstruction_5F_FDA_5F_base_5F_code ().enumValue ()) {
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kNotBuilt:
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_ADDWF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 9216U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_ADDWFC:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 8192U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_ANDWF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 5120U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_COMF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 7168U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_DECF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 1024U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_INCF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 10240U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_IORWF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 4096U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_MOVF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 20480U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_RLCF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 13312U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_RLNCF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 17408U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_RRCF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 12288U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_RRNCF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 16384U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_SUBFWB:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 21504U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_SUBWF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 23552U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_SUBWFB:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 22528U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_SWAPF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 14336U) ;
+    }
+    break ;
+  case GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST::kEnum_XORWF:
+    {
+      var_code_4790 = GALGAS_uint ((uint32_t) 6144U) ;
+    }
+    break ;
+  }
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_2 = object ;
+    test_1 = temp_2.readProperty_mRegisterDescription ().readProperty_mNeedsBSR ().boolEnum () ;
+    if (kBoolTrue == test_1) {
+      var_code_4790 = var_code_4790.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 186)) ;
+    }
+  }
+  enumGalgasBool test_3 = kBoolTrue ;
+  if (kBoolTrue == test_3) {
+    const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_4 = object ;
+    test_3 = temp_4.readProperty_m_5F_W_5F_isDestination ().operator_not (SOURCE_FILE ("ipic18_regular_instructions.galgas", 188)).boolEnum () ;
+    if (kBoolTrue == test_3) {
+      var_code_4790 = var_code_4790.operator_or (GALGAS_uint ((uint32_t) 512U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 189)) ;
+    }
+  }
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_5 = object ;
+  var_code_4790 = var_code_4790.operator_or (temp_5.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 191)) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 191)) ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA temp_6 = object ;
+  GALGAS_uintlist temp_7 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 194)) ;
+  temp_7.addAssign_operation (var_code_4790  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 194)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callExtensionGetter_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) temp_6.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 193)).getter_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 193)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 193)), temp_7  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 192)) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_generateCode (void) {
+  enterExtensionMethod_generateCode (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA.mSlotID,
+                                     extensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_generateCode) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_generateCode (defineExtensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_generateCode, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18_intermediate_instruction_FA instructionDisplay'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_stringlist extensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_instructionDisplay (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                               C_Compiler * inCompiler
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_stringlist result_outResult ; // Returned variable
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA) ;
+  GALGAS_string var_s_5982 ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA temp_0 = object ;
+  switch (temp_0.readProperty_mFAinstruction ().enumValue ()) {
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kEnum_CLRF:
+    {
+      var_s_5982 = GALGAS_string ("CLRF") ;
+    }
+    break ;
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kEnum_MOVWF:
+    {
+      var_s_5982 = GALGAS_string ("MOVWF") ;
+    }
+    break ;
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kEnum_MULWF:
+    {
+      var_s_5982 = GALGAS_string ("MULWF") ;
+    }
+    break ;
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kEnum_NEGF:
+    {
+      var_s_5982 = GALGAS_string ("NEGF") ;
+    }
+    break ;
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kEnum_SETF:
+    {
+      var_s_5982 = GALGAS_string ("SETF") ;
+    }
+    break ;
+  }
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA temp_1 = object ;
+  var_s_5982.plusAssign_operation(GALGAS_string (" ").add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 213)), inCompiler  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 213)) ;
+  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s_5982  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 214)) ;
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_instructionDisplay (void) {
+  enterExtensionGetter_instructionDisplay (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA.mSlotID,
+                                           extensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_instructionDisplay) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_instructionDisplay (defineExtensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_instructionDisplay, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18_intermediate_instruction_FA generateCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_generateCode (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                            const GALGAS_uint /* constinArgument_inAddress */,
+                                                                                            const GALGAS_symbolTableForRelativesResolution /* constinArgument_inSymbolTable */,
+                                                                                            const GALGAS_pic_31__38__5F_dataAddressMap /* constinArgument_inDataAddressMap */,
+                                                                                            GALGAS_codeList & outArgument_outCode,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA) ;
+  GALGAS_uint var_code_6591 ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA temp_0 = object ;
+  switch (temp_0.readProperty_mFAinstruction ().enumValue ()) {
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kNotBuilt:
+    break ;
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kEnum_CLRF:
+    {
+      var_code_6591 = GALGAS_uint ((uint32_t) 27136U) ;
+    }
+    break ;
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kEnum_MOVWF:
+    {
+      var_code_6591 = GALGAS_uint ((uint32_t) 28160U) ;
+    }
+    break ;
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kEnum_MULWF:
+    {
+      var_code_6591 = GALGAS_uint ((uint32_t) 512U) ;
+    }
+    break ;
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kEnum_NEGF:
+    {
+      var_code_6591 = GALGAS_uint ((uint32_t) 27648U) ;
+    }
+    break ;
+  case GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::kEnum_SETF:
+    {
+      var_code_6591 = GALGAS_uint ((uint32_t) 26624U) ;
+    }
+    break ;
+  }
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA temp_2 = object ;
+    test_1 = temp_2.readProperty_mRegisterDescription ().readProperty_mNeedsBSR ().boolEnum () ;
+    if (kBoolTrue == test_1) {
+      var_code_6591 = var_code_6591.operator_or (GALGAS_uint ((uint32_t) 256U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 234)) ;
+    }
+  }
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA temp_3 = object ;
+  var_code_6591 = var_code_6591.operator_or (temp_3.readProperty_mRegisterDescription ().readProperty_mRegisterAddress ().operator_and (GALGAS_uint ((uint32_t) 255U) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 236)) COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 236)) ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA temp_4 = object ;
+  GALGAS_uintlist temp_5 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 239)) ;
+  temp_5.addAssign_operation (var_code_6591  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 239)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callExtensionGetter_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA *) temp_4.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 238)).getter_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 238)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 238)), temp_5  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 237)) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_generateCode (void) {
+  enterExtensionMethod_generateCode (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA.mSlotID,
+                                     extensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_generateCode) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_generateCode (defineExtensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_generateCode, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18_intermediate_instruction_MOVFF instructionSize'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_uint extensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_instructionSize (const cPtr_ipic_31__38_SequentialInstruction * /* inObject */,
+                                                                                                         C_Compiler * /* inCompiler */
+                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_uint result_outSize ; // Returned variable
+  result_outSize = GALGAS_uint ((uint32_t) 4U) ;
+//---
+  return result_outSize ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_instructionSize (void) {
+  enterExtensionGetter_instructionSize (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF.mSlotID,
+                                        extensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_instructionSize) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_instructionSize (defineExtensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_instructionSize, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18_intermediate_instruction_MOVFF instructionDisplay'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_stringlist extensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_instructionDisplay (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                                  C_Compiler * inCompiler
+                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_stringlist result_outResult ; // Returned variable
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF) ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF temp_0 = object ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF temp_1 = object ;
+  GALGAS_string var_s_7556 = GALGAS_string ("MOVFF ").add_operation (temp_0.readProperty_mSourceRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 256)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 256)).add_operation (temp_1.readProperty_mDestinationRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 257)) ;
+  result_outResult = GALGAS_stringlist::constructor_listWithValue (var_s_7556  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 258)) ;
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_instructionDisplay (void) {
+  enterExtensionGetter_instructionDisplay (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF.mSlotID,
+                                           extensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_instructionDisplay) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_instructionDisplay (defineExtensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_instructionDisplay, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18_intermediate_instruction_MOVFF generateCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_generateCode (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                               const GALGAS_uint /* constinArgument_inAddress */,
+                                                                                               const GALGAS_symbolTableForRelativesResolution /* constinArgument_inSymbolTable */,
+                                                                                               const GALGAS_pic_31__38__5F_dataAddressMap /* constinArgument_inDataAddressMap */,
+                                                                                               GALGAS_codeList & outArgument_outCode,
+                                                                                               C_Compiler * inCompiler
+                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF) ;
+  GALGAS_uintlist var_code_8059 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 268)) ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF temp_0 = object ;
+  var_code_8059.addAssign_operation (GALGAS_uint ((uint32_t) 49152U).operator_or (temp_0.readProperty_mSourceRegisterDescription ().readProperty_mRegisterAddress () COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 269))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 269)) ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF temp_1 = object ;
+  var_code_8059.addAssign_operation (GALGAS_uint ((uint32_t) 61440U).operator_or (temp_1.readProperty_mDestinationRegisterDescription ().readProperty_mRegisterAddress () COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 270))  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 270)) ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF temp_2 = object ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callExtensionGetter_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF *) temp_2.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 272)).getter_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 272)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 272)), var_code_8059  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 271)) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_generateCode (void) {
+  enterExtensionMethod_generateCode (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF.mSlotID,
+                                     extensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_generateCode) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_generateCode (defineExtensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_generateCode, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@ipic18_intermediate_instruction_literalOperation instructionDisplay'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static GALGAS_stringlist extensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_instructionDisplay (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                                             C_Compiler * inCompiler
+                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_stringlist result_outResult ; // Returned variable
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation) ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation temp_0 = object ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation temp_1 = object ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation temp_2 = object ;
+  GALGAS_string var_s_8690 = extensionGetter_mnemonic (temp_0.readProperty_mLiteralInstruction (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 283)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 283)).add_operation (temp_1.readProperty_mLiteralValue ().getter_hexString (SOURCE_FILE ("ipic18_regular_instructions.galgas", 283)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 283)).add_operation (GALGAS_string (" ; "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 283)).add_operation (temp_2.readProperty_mLiteralValue ().getter_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 283)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 283)) ;
+  GALGAS_stringlist temp_3 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 284)) ;
+  temp_3.addAssign_operation (var_s_8690  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 284)) ;
+  result_outResult = temp_3 ;
+//---
+  return result_outResult ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_instructionDisplay (void) {
+  enterExtensionGetter_instructionDisplay (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation.mSlotID,
+                                           extensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_instructionDisplay) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_instructionDisplay (defineExtensionGetter_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_instructionDisplay, NULL) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@ipic18_intermediate_instruction_literalOperation generateCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+static void extensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_generateCode (const cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                                                                                          const GALGAS_uint /* constinArgument_inAddress */,
+                                                                                                          const GALGAS_symbolTableForRelativesResolution /* constinArgument_inSymbolTable */,
+                                                                                                          const GALGAS_pic_31__38__5F_dataAddressMap /* constinArgument_inDataAddressMap */,
+                                                                                                          GALGAS_codeList & outArgument_outCode,
+                                                                                                          C_Compiler * inCompiler
+                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation * object = (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation *) inObject ;
+  macroValidSharedObject (object, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation) ;
+  GALGAS_uint var_code_9163 ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation temp_0 = object ;
+  switch (temp_0.readProperty_mLiteralInstruction ().enumValue ()) {
+  case GALGAS_literal_5F_instruction_5F_opcode::kNotBuilt:
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_ADDLW:
+    {
+      var_code_9163 = GALGAS_uint ((uint32_t) 3840U) ;
+    }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_ANDLW:
+    {
+      var_code_9163 = GALGAS_uint ((uint32_t) 2816U) ;
+    }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_IORLW:
+    {
+      var_code_9163 = GALGAS_uint ((uint32_t) 2304U) ;
+    }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_MOVLW:
+    {
+      var_code_9163 = GALGAS_uint ((uint32_t) 3584U) ;
+    }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_MULLW:
+    {
+      var_code_9163 = GALGAS_uint ((uint32_t) 3328U) ;
+    }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_SUBLW:
+    {
+      var_code_9163 = GALGAS_uint ((uint32_t) 2048U) ;
+    }
+    break ;
+  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_XORLW:
+    {
+      var_code_9163 = GALGAS_uint ((uint32_t) 2560U) ;
+    }
+    break ;
+  }
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation temp_1 = object ;
+  var_code_9163 = var_code_9163.operator_or (temp_1.readProperty_mLiteralValue () COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 304)) ;
+  const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation temp_2 = object ;
+  GALGAS_uintlist temp_3 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_regular_instructions.galgas", 307)) ;
+  temp_3.addAssign_operation (var_code_9163  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 307)) ;
+  outArgument_outCode = GALGAS_codeList::constructor_listWithValue (GALGAS_string ("    ").add_operation (callExtensionGetter_instructionDisplay ((const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation *) temp_2.ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 306)).getter_mValueAtIndex (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 306)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 306)), temp_3  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 305)) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void defineExtensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_generateCode (void) {
+  enterExtensionMethod_generateCode (kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation.mSlotID,
+                                     extensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_generateCode) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+C_PrologueEpilogue gMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_generateCode (defineExtensionMethod_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_generateCode, NULL) ;
 

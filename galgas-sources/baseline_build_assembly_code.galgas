@@ -148,12 +148,12 @@ override method @baseline_intermediate_instruction_MNOP generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
-  if [self.mOccurrenceFactor uint] == 0 then
+  if self.mOccurrenceFactor.uint == 0 then
     warning self.mOccurrenceFactor: "No generated code"
   end
-  @uint idx = 0
-  loop( [self.mOccurrenceFactor uint])
-  while idx < [self.mOccurrenceFactor uint]
+  var @uint idx = 0
+  loop( self.mOccurrenceFactor.uint)
+  while idx < self.mOccurrenceFactor.uint
   do
     ioAssemblyInstructionList += !@baseline_assembly_WO_OPERAND. new {
       !self.mInstructionLocation
@@ -180,12 +180,12 @@ override method @baseline_intermediate_JUMP generateAssemblyCode
   ?let @bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
 #---
-  @uint pageChangeFlags = self.mCurrentPage ^ self.mTargetPage
-  @uint targetPageFlags = self.mTargetPage
-  @uint idx = 0
+  var @uint pageChangeFlags = self.mCurrentPage ^ self.mTargetPage
+  var @uint targetPageFlags = self.mTargetPage
+  var @uint idx = 0
   loop( 8) while pageChangeFlags != 0 do
     if (pageChangeFlags & 1) != 0 then
-      @uint bitIndex
+      var @uint bitIndex
       if [inStatusRegisterBitSliceTable hasKey !"PA"] then
         [inStatusRegisterBitSliceTable searchKey 
           !@lstring. new { !"PA" !self.mInstructionLocation}
@@ -242,13 +242,13 @@ override method @baseline_intermediate_JSR generateAssemblyCode
   ?let @bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
 #---
-  @uint pageChangeFlags = self.mCurrentPage ^ self.mTargetPage
-  @uint targetPageFlags = self.mTargetPage
-  @uint idx = 0
+  var @uint pageChangeFlags = self.mCurrentPage ^ self.mTargetPage
+  var @uint targetPageFlags = self.mTargetPage
+  var @uint idx = 0
   var pageRestoreInstructions =@baseline_assembly_instructionList.emptyList{}
   loop( 8) while pageChangeFlags != 0 do
     if (pageChangeFlags & 1) != 0 then
-      @uint bitIndex
+      var @uint bitIndex
       if [inStatusRegisterBitSliceTable hasKey !"PA"] then
         [inStatusRegisterBitSliceTable searchKey 
           !@lstring. new { !"PA" !self.mInstructionLocation}
@@ -290,7 +290,7 @@ override method @baseline_intermediate_JSR generateAssemblyCode
   ioAssemblyInstructionList += !@baseline_assembly_CALL. new {
     !self.mInstructionLocation
     !self.mTargetLabel}
-  for () in  pageRestoreInstructions do
+  for (mInstruction) in  pageRestoreInstructions do
     ioAssemblyInstructionList += !mInstruction
   end
 }
@@ -329,11 +329,11 @@ proc build_baseline_assembly_code
   ?let @bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
 #-------------------------------- Build assembly code
-  for () in  inGeneratedInstructionList do
+  for (mInstruction) in  inGeneratedInstructionList do
     [mInstruction generateAssemblyCode !inSTATUSregister !inStatusRegisterBitSliceTable !?ioAssemblyInstructionList]
   end
 #-------------------------------- Add Configuration
-  for () in  inActualConfigurationMap do
+  for (* mRegisterAddress mRegisterValue) in  inActualConfigurationMap do
     setEmitAddress ( ! mRegisterAddress + mRegisterAddress )
     emitCode ( !mRegisterValue )
   end

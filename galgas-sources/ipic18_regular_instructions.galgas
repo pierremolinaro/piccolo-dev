@@ -91,7 +91,7 @@ override method @ipic18InstructionWithNoOperand generateCode
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
-  @uint c
+  var @uint c
   switch self.mKind
   case CLRWDT :
     c = 0x0004
@@ -121,7 +121,7 @@ override method @ipic18InstructionWithNoOperand generateCode
 
 override getter @ipic18_intermediate_instruction_FDA instructionDisplay
   ->@stringlist outResult {
-  @string s
+  var @string s
   switch self.mInstruction_FDA_base_code
     case ADDWF : s = "ADDWF"
     case ADDWFC : s = "ADDWFC"
@@ -141,10 +141,10 @@ override getter @ipic18_intermediate_instruction_FDA instructionDisplay
     case SWAPF : s = "SWAPF"
     case XORWF : s = "XORWF"
   end
-  s += " " + [self.mRegisterDescription mAssemblyString]
-  if self.m_W_isDestination & [self.mRegisterDescription mNeedsBSR] then
+  s += " " + self.mRegisterDescription.mAssemblyString
+  if self.m_W_isDestination & self.mRegisterDescription.mNeedsBSR then
     s += ", W, BSR_ACCESS"
-  elsif [self.mRegisterDescription mNeedsBSR] then
+  elsif self.mRegisterDescription.mNeedsBSR then
     s += ", F, BSR_ACCESS"
   elsif self.m_W_isDestination then
     s += ", W"
@@ -161,7 +161,7 @@ override method @ipic18_intermediate_instruction_FDA generateCode
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
-  @uint code
+  var @uint code
   switch self.mInstruction_FDA_base_code
   case ADDWF : code = 0x2400
   case ADDWFC : code = 0x2000
@@ -182,13 +182,13 @@ override method @ipic18_intermediate_instruction_FDA generateCode
   case XORWF : code = 0x1800
   end
 
-  if [self.mRegisterDescription mNeedsBSR] then
+  if self.mRegisterDescription.mNeedsBSR then
     code = code | 0x0100
   end
   if not self.m_W_isDestination then
     code = code | 0x0200
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 255)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 255)
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
     !{!code}}
@@ -201,7 +201,7 @@ override method @ipic18_intermediate_instruction_FDA generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_FA instructionDisplay ->@stringlist outResult {
-  @string s
+  var @string s
   switch self.mFAinstruction
   case CLRF   : s = "CLRF"
   case MOVWF  : s = "MOVWF"
@@ -210,7 +210,7 @@ override getter @ipic18_intermediate_instruction_FA instructionDisplay ->@string
   case SETF   : s = "SETF"
   end
 
-  s += " " + [self.mRegisterDescription mAssemblyString]
+  s += " " + self.mRegisterDescription.mAssemblyString
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -221,7 +221,7 @@ override method @ipic18_intermediate_instruction_FA generateCode
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
-  @uint code
+  var @uint code
   switch self.mFAinstruction
   case CLRF   : code = 0x6A00
   case MOVWF  : code = 0x6E00
@@ -230,10 +230,10 @@ override method @ipic18_intermediate_instruction_FA generateCode
   case SETF   : code = 0x6800
   end
 
-  if [self.mRegisterDescription mNeedsBSR] then
+  if self.mRegisterDescription.mNeedsBSR then
     code = code | 0x0100
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 255)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 255)
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
     !{!code}}
@@ -253,8 +253,8 @@ override getter @ipic18_intermediate_instruction_MOVFF instructionSize
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MOVFF instructionDisplay ->@stringlist outResult {
-  @string s = "MOVFF " + [self.mSourceRegisterDescription mAssemblyString]
-  + ", " + [self.mDestinationRegisterDescription mAssemblyString]
+  var @string s = "MOVFF " + self.mSourceRegisterDescription.mAssemblyString
+  + ", " + self.mDestinationRegisterDescription.mAssemblyString
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -266,8 +266,8 @@ override method @ipic18_intermediate_instruction_MOVFF generateCode
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
   var code =@uintlist.emptyList{}
-  code += !0xC000 | [self.mSourceRegisterDescription mRegisterAddress]
-  code += !0xF000 | [self.mDestinationRegisterDescription mRegisterAddress]
+  code += !0xC000 | self.mSourceRegisterDescription.mRegisterAddress
+  code += !0xF000 | self.mDestinationRegisterDescription.mRegisterAddress
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
     !code}
@@ -280,7 +280,7 @@ override method @ipic18_intermediate_instruction_MOVFF generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_literalOperation instructionDisplay ->@stringlist outResult {
-  @string s = [self.mLiteralInstruction mnemonic] + " " + [self.mLiteralValue hexString] + " ; " + self.mLiteralValue
+  var @string s = [self.mLiteralInstruction mnemonic] + " " + [self.mLiteralValue hexString] + " ; " + self.mLiteralValue
   outResult = {!s}
 }
 
@@ -291,7 +291,7 @@ override method @ipic18_intermediate_instruction_literalOperation generateCode
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
-  @uint code
+  var @uint code
   switch self.mLiteralInstruction
   case ADDLW : code = 0x0F00
   case ANDLW : code = 0x0B00
@@ -321,7 +321,7 @@ override getter @ipic18_intermediate_instruction_LFSR instructionSize
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_LFSR instructionDisplay ->@stringlist outResult {
-  @string s = "LFSR " + [[self.mFSRindex uint] string] + ", " + [self.mValue hexString]
+  var @string s = "LFSR " + [self.mFSRindex.uint string] + ", " + [self.mValue hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -333,7 +333,7 @@ override method @ipic18_intermediate_instruction_LFSR generateCode
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
   var code =@uintlist.emptyList{}
-  code += !0xEE00 | ([self.mFSRindex uint] << 4) | (self.mValue >> 8)
+  code += !0xEE00 | (self.mFSRindex.uint << 4) | (self.mValue >> 8)
   code += !0xF000 | (self.mValue & 255)
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
@@ -347,7 +347,7 @@ override method @ipic18_intermediate_instruction_LFSR generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_FBA instructionDisplay ->@stringlist outResult {
-  @string s = [self.mBitOrientedOp mnemonic] + " " + [self.mRegisterDescription mAssemblyString] + ", " + [self.mBitNumber string]
+  var @string s = [self.mBitOrientedOp mnemonic] + " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -358,16 +358,16 @@ override method @ipic18_intermediate_instruction_FBA generateCode
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
-  @uint code
+  var @uint code
   switch self.mBitOrientedOp
   case BCF : code = 0x9000
   case BSF : code = 0x8000
   case BTG : code = 0x7000
   end
-  if [self.mRegisterDescription mNeedsBSR] then
+  if self.mRegisterDescription.mNeedsBSR then
     code = code | 0x0100
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 255)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 255)
   code = code | (self.mBitNumber << 9)
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
@@ -381,7 +381,7 @@ override method @ipic18_intermediate_instruction_FBA generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MOVLB instructionDisplay ->@stringlist outResult {
-  @string s = "MOVLB " + [[self.mBankIndex uint] hexString]
+  var @string s = "MOVLB " + [self.mBankIndex.uint hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -392,7 +392,7 @@ override method @ipic18_intermediate_instruction_MOVLB generateCode
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
-  let @uint code = 0x0100 | [self.mBankIndex uint]
+  let @uint code = 0x0100 | self.mBankIndex.uint
   outCode = @codeList. listWithValue {
     !"    " + [[self instructionDisplay] mValueAtIndex !0]
     !{!code}}
@@ -405,7 +405,7 @@ override method @ipic18_intermediate_instruction_MOVLB generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_TBLRD instructionDisplay ->@stringlist outResult {
-  @string s = "TBLRD " + [self.mOption mnemonic]
+  var @string s = "TBLRD " + [self.mOption mnemonic]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -416,7 +416,7 @@ override method @ipic18_intermediate_instruction_TBLRD generateCode
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
-  @uint code
+  var @uint code
   switch self.mOption
   case simpleAccess  : code = 0x0008
   case postIncrement : code = 0x0009
@@ -435,7 +435,7 @@ override method @ipic18_intermediate_instruction_TBLRD generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_TBLWT instructionDisplay ->@stringlist outResult {
-  @string s = "TBLWT " + [self.mOption mnemonic]
+  var @string s = "TBLWT " + [self.mOption mnemonic]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -446,7 +446,7 @@ override method @ipic18_intermediate_instruction_TBLWT generateCode
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
-  @uint code
+  var @uint code
   switch self.mOption
   case simpleAccess  : code = 0x000C
   case postIncrement : code = 0x000D
@@ -473,7 +473,7 @@ override getter @ipic18_intermediate_instruction_MNOP instructionSize
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MNOP instructionDisplay ->@stringlist outResult {
-  let s = "MNOP " + [self.mOccurrenceFactor uint]
+  let s = "MNOP " + self.mOccurrenceFactor.uint
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -486,9 +486,9 @@ override method @ipic18_intermediate_instruction_MNOP generateCode
   !@codeList outCode
 {
   outCode = @codeList. emptyList
-  @uint idx = 0
-  loop( [self.mOccurrenceFactor uint])
-  while idx < [self.mOccurrenceFactor uint]
+  var @uint idx = 0
+  loop( self.mOccurrenceFactor.uint)
+  while idx < self.mOccurrenceFactor.uint
   do
     outCode += !"    NOP" !{!0x0000}
     idx ++
@@ -509,7 +509,7 @@ override getter @ipic18_intermediate_instruction_NOPBRA instructionSize
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_NOPBRA instructionDisplay ->@stringlist outResult {
-  let s = "NOPBRA " + [self.mOccurrenceFactor uint]
+  let s = "NOPBRA " + self.mOccurrenceFactor.uint
   outResult = {!s}
 }
 
@@ -522,9 +522,9 @@ override method @ipic18_intermediate_instruction_NOPBRA generateCode
   !@codeList outCode
  {
   outCode = {}
-  @uint idx = 0
-  loop ([self.mOccurrenceFactor uint])
-  while idx < [self.mOccurrenceFactor uint]
+  var @uint idx = 0
+  loop (self.mOccurrenceFactor.uint)
+  while idx < self.mOccurrenceFactor.uint
   do
     outCode += !"    BRA $+2" !{!0xD000}
     idx ++
@@ -538,7 +538,7 @@ override method @ipic18_intermediate_instruction_NOPBRA generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_MOV_LABEL_W instructionDisplay ->@stringlist outResult {
-  @string s = "MOVLW ((" + self.mLabel + " + " + self.mOffset + ") >> " + self.mRightShift + ") & 0xFF"
+  var @string s = "MOVLW ((" + self.mLabel + " + " + self.mOffset + ") >> " + self.mRightShift + ") & 0xFF"
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -564,7 +564,7 @@ override method @ipic18_intermediate_MOV_LABEL_W generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_BLANK instructionDisplay ->@stringlist outResult {
-  @string s = "BLANK " + [self.mBlankValue hexString]
+  var @string s = "BLANK " + [self.mBlankValue hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -588,7 +588,7 @@ override method @ipic18_intermediate_instruction_BLANK generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_FNOP instructionDisplay ->@stringlist outResult {
-  @string s = "FNOP " + [self.mBlankValue hexString]
+  var @string s = "FNOP " + [self.mBlankValue hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -612,7 +612,7 @@ override method @ipic18_intermediate_instruction_FNOP generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_skip_instruction_compare_register instructionDisplay ->@stringlist outResult {
-  @string s = [self.mRegisterDescription mAssemblyString] + " "
+  var @string s = self.mRegisterDescription.mAssemblyString + " "
   switch self.mCompareInstruction
   case CPFSEQ : s += "!= W"
   case CPFSGT : s += "<= W"
@@ -630,7 +630,7 @@ override method @ipic18_skip_instruction_compare_register generateCode
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @pic18_dataAddressMap inDataAddressMap
   !@codeList outCode {
-  @uint code
+  var @uint code
   switch self.mCompareInstruction
   case CPFSEQ : code = 0x6200
   case CPFSGT : code = 0x6400
@@ -638,20 +638,20 @@ override method @ipic18_skip_instruction_compare_register generateCode
   case TSTFSZ : code = 0x6600
   end
 
-  if [self.mRegisterDescription mNeedsBSR] then
+  if self.mRegisterDescription.mNeedsBSR then
     code = code | 0x0100
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 255)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 255)
 #--- Assembly string
-  @string s = "    "
+  var @string s = "    "
   switch self.mCompareInstruction
   case CPFSEQ : s += "CPFSEQ"
   case CPFSGT : s += "CPFSGT"
   case CPFSLT : s += "CPFSLT"
   case TSTFSZ : s += "TSTFSZ"
   end
-  s += " " + [self.mRegisterDescription mAssemblyString]
-  if [self.mRegisterDescription mNeedsBSR] then
+  s += " " + self.mRegisterDescription.mAssemblyString
+  if self.mRegisterDescription.mNeedsBSR then
     s += ", BSR_ACCESS"
   end
 #---
@@ -702,11 +702,11 @@ override method @ipic18_skip_instruction_compare_register performInstructionRela
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_skip_instruction_BitTestSkip instructionDisplay ->@stringlist outResult {
-  @string s = ""
+  var @string s = ""
   if self.mSkipIfSet then
     s += "!"
   end
-  s += [self.mRegisterDescription mAssemblyString] + "." + [self.mBitNumber string]
+  s += self.mRegisterDescription.mAssemblyString + "." + [self.mBitNumber string]
   + " ? "
   let @stringlist x = [self.mEmbeddedInstruction instructionDisplay]
   s += [x mValueAtIndex !0]
@@ -720,25 +720,25 @@ override method @ipic18_skip_instruction_BitTestSkip generateCode
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @pic18_dataAddressMap inDataAddressMap
   !@codeList outCode {
-  @uint code
+  var @uint code
   if self.mSkipIfSet then
     code = 0xA000 # BTFSS
   else
     code = 0xB000 # BTFSC
   end
-  if [self.mRegisterDescription mNeedsBSR] then
+  if self.mRegisterDescription.mNeedsBSR then
     code = code | 0x0100
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 255)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 255)
   code = code | (self.mBitNumber << 9)
 #--- Assembly string
-  @string s = "    "
+  var @string s = "    "
   if self.mSkipIfSet then
     s += "BTFSS"
   else
     s += "BTFSC"
   end
-  s += " " + [self.mRegisterDescription mAssemblyString] + ", " + [self.mBitNumber string]
+  s += " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
 #---
   outCode = @codeList. listWithValue {
     !s
@@ -788,14 +788,14 @@ override method @ipic18_skip_instruction_BitTestSkip performInstructionRelativeB
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_skip_instruction_FDA instructionDisplay ->@stringlist outResult {
-  @string s
+  var @string s
   switch self.mInstruction_FDA_base_code
   case DECFSZ : s = "DECFSZ"
   case DCFSNZ : s = "DCFSNZ"
   case INCFSZ : s = "INCFSZ"
   case INFSNZ : s = "INFSNZ"
   end
-  s += " " + [self.mRegisterDescription mAssemblyString]
+  s += " " + self.mRegisterDescription.mAssemblyString
   if self.m_W_isDestination then
     s += ", W"
   end
@@ -812,33 +812,33 @@ override method @ipic18_skip_instruction_FDA generateCode
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @pic18_dataAddressMap inDataAddressMap
   !@codeList outCode {
-  @uint binCode
+  var @uint binCode
   switch self.mInstruction_FDA_base_code
   case DECFSZ : binCode = 0x2C00
   case DCFSNZ : binCode = 0x4C00
   case INCFSZ : binCode = 0x3C00
   case INFSNZ : binCode = 0x4800
   end
-  if [self.mRegisterDescription mNeedsBSR] then
+  if self.mRegisterDescription.mNeedsBSR then
     binCode = binCode | 0x0100
   end
-  binCode = binCode | ([self.mRegisterDescription mRegisterAddress] & 255)
+  binCode = binCode | (self.mRegisterDescription.mRegisterAddress & 255)
 #--- Assembly string
-  @string assemblyCode = "    "
+  var @string assemblyCode = "    "
   switch self.mInstruction_FDA_base_code
   case DECFSZ : assemblyCode += "DECFSZ"
   case DCFSNZ : assemblyCode += "DCFSNZ"
   case INCFSZ : assemblyCode += "INCFSZ"
   case INFSNZ : assemblyCode += "INFSNZ"
   end
-  assemblyCode += " " + [self.mRegisterDescription mAssemblyString]
+  assemblyCode += " " + self.mRegisterDescription.mAssemblyString
   if self.m_W_isDestination then
     assemblyCode += ", W"
   else
     binCode = binCode | 0x0200
     assemblyCode += ", F"
   end
-  if [self.mRegisterDescription mNeedsBSR] then
+  if self.mRegisterDescription.mNeedsBSR then
     binCode = binCode | 0x0100
     assemblyCode += ", BSR_ACCESS"
   end
@@ -946,7 +946,7 @@ override method @ipic18_intermediate_JSR performInstructionRelativeBranchResolut
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_JSR instructionDisplay ->@stringlist outResult {
-    @string s
+    var @string s
     switch self.mKind
     case ipicRelative : s = "JSR " + self.mTargetLabel
     case relative     : s = "RCALL " + self.mTargetLabel
@@ -990,13 +990,13 @@ override getter @ipic18_intermediate_instruction_computed_rcall instructionSize
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_computed_rcall instructionDisplay ->@stringlist outResult {
-  @string s = "COMPUTED "
+  var @string s = "COMPUTED "
   if not self.mUsesRCALL then
     s += "(uses CALL)"
   end
   outResult = @stringlist. listWithValue { !s}
-  for () in  self.mTargetInstructions do
-    for () in  [mInstruction instructionDisplay] do
+  for (mInstruction * *) in  self.mTargetInstructions do
+    for (mValue) in  [mInstruction instructionDisplay] do
       outResult += !"   " + mValue
     end
   end
@@ -1009,8 +1009,8 @@ override method @ipic18_intermediate_instruction_computed_rcall instructionRelat
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?!@branchOverflowMap ioOverflowMap {
-  @uint address = inAddress + if self.mUsesRCALL then 2 else 4 end
-  for () in  self.mTargetInstructions do
+  var @uint address = inAddress + if self.mUsesRCALL then 2 else 4 end
+  for (mInstruction * *) in  self.mTargetInstructions do
     [mInstruction instructionRelativeBranchOverflow
       !address
       !inBlockLabel
@@ -1036,10 +1036,10 @@ override method @ipic18_intermediate_instruction_computed_rcall performInstructi
   ?!@string ioListFileContents
   !@ipic18SequentialInstruction outModifiedInstruction {
   outModifiedInstruction = self
-  @uint unusedConversionCount = 0
-  @string unusedListing = ""
-  @uint address = inAddress + if self.mUsesRCALL then 2 else 4 end
-  for () in  self.mTargetInstructions do
+  var @uint unusedConversionCount = 0
+  var @string unusedListing = ""
+  var @uint address = inAddress + if self.mUsesRCALL then 2 else 4 end
+  for (mInstruction * *) in  self.mTargetInstructions do
     #--- NEVER CONVERT: ONLY PERFORM CHECKING
     [mInstruction performInstructionRelativeBranchResolution
       !address
@@ -1074,7 +1074,7 @@ override method @ipic18_intermediate_instruction_computed_rcall generateCode
 
   [inSymbolTable searchKey !target ?let @uint computetedGoto4Address]
 
-  @uint currentInstructionAddress
+  var @uint currentInstructionAddress
   if self.mUsesRCALL then
     currentInstructionAddress = inAddress + 2
     outCode = pic18_RCALL_instruction_code (!inAddress !computetedGoto4Address !target)
@@ -1084,8 +1084,8 @@ override method @ipic18_intermediate_instruction_computed_rcall generateCode
   end
   let @uint instructionFollowingComputedRcallAddress = currentInstructionAddress + [self.mTargetInstructions length] * 4 - 1
   let nextInstructionLabel = @lstring.new { !"_computed_" + [inAddress xString] !self.mInstructionLocation}
-  @uint idx = 0
-  for () in  self.mTargetInstructions do
+  var @uint idx = 0
+  for (mInstruction * *) in  self.mTargetInstructions do
     idx ++
     [mInstruction generateCode
       !currentInstructionAddress

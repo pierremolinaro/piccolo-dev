@@ -24,9 +24,9 @@ override method @byteDeclarationInRam handleDeclaration
   ?let @lstring inCurrentRamBank
   ?!@declaredByteMap ioDeclaredByteMap
 {
-  @uint lastAddressPlusOne
-  @uint firstFreeAddress
-  @uintlist mirrorOffsetList
+  var @uint lastAddressPlusOne
+  var @uint firstFreeAddress
+  var @uintlist mirrorOffsetList
   [ioRamBank searchKey !inCurrentRamBank ?* ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList]
   [self.mSizeExpression eval !ioRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
   if size <= 0S then
@@ -34,8 +34,8 @@ override method @byteDeclarationInRam handleDeclaration
   elsif size > 4096S then
     error self.mName: "size expression should be < 4096"
   else
-    @uintlist addressList = {!firstFreeAddress}
-    for () in  mirrorOffsetList do
+    var @uintlist addressList = {!firstFreeAddress}
+    for (mValue) in  mirrorOffsetList do
       addressList += !firstFreeAddress + mValue
     end
     if not [ioDeclaredByteMap hasKey !self.mName.string] then
@@ -43,7 +43,7 @@ override method @byteDeclarationInRam handleDeclaration
     end
     [!?ioRegisterTable insertKey !self.mName !addressList ![size uint] !self.mBitSliceTable !self.mBitDefinitionString !self.mProtection]
     firstFreeAddress = firstFreeAddress + [size uint]
-    [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress ![inCurrentRamBank string]]
+    [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress !inCurrentRamBank.string]
     if firstFreeAddress > lastAddressPlusOne then
       error self.mName: "overflow in '" + inCurrentRamBank + "' ram bank for '" + self.mName + "' declaration"
     end
@@ -68,8 +68,8 @@ proc analyze_ram_sections
   !@declaredByteMap outDeclaredByteMap
 {
   outDeclaredByteMap = {}
-  for () in  inRamDefinitionList do
-    for () in  mDeclaration do
+  for (mBankName mDeclaration) in  inRamDefinitionList do
+    for (mDeclarationInRAM) in  mDeclaration do
       [mDeclarationInRAM handleDeclaration
         !inConstantMap
         !?ioUsedRegisters
@@ -85,10 +85,10 @@ proc analyze_ram_sections
     ioListFileContents += "*" + [inListingTitle stringByLeftAndRightPadding !117 !' '] + "*\n"
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     ioListFileContents += ["Variable" stringByLeftPadding !40 !' '] + " Address\n"
-    for () in  ioAllRegisters do
-      if not [inSpecialRegisterTable hasKey ![lkey string]] then
-        ioListFileContents += [[lkey string] stringByLeftPadding !40 !' '] + " "
-        for () in  mRegisterAddressList
+    for (lkey mRegisterAddressList * * mBitDefinitionString *) in  ioAllRegisters do
+      if not [inSpecialRegisterTable hasKey !lkey.string] then
+        ioListFileContents += [lkey.string stringByLeftPadding !40 !' '] + " "
+        for (mValue) in  mRegisterAddressList
         do ioListFileContents += [mValue hexString]
         between ioListFileContents += ", "
         end

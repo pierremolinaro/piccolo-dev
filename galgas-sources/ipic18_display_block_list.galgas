@@ -15,9 +15,9 @@ method @ipic18Block display
   end
   ioListFileContents += ":\n"
 #--- Instruction list
-  for () in  self.mInstructionList do
+  for (mInstruction * *) in  self.mInstructionList do
     let @stringlist d = [mInstruction instructionDisplay]
-    for () in  d do 
+    for (mValue) in  d do 
       ioListFileContents += "  " + mValue + "\n"
     end
   end
@@ -40,8 +40,8 @@ proc displayBlockList
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
   ioListFileContents += "*" + [inTitle stringByLeftAndRightPadding !117 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-  for () in  inGeneratedBlockList do(blockIndex)
-    @string nextBlockLabel
+  for (mBlock) in  inGeneratedBlockList do(blockIndex)
+    var @string nextBlockLabel
     if (blockIndex+1) < [inGeneratedBlockList length] then
       nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else

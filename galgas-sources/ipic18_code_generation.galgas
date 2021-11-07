@@ -1,8 +1,8 @@
 #----------------------------------------------------------------------------------------------------------------------*
 
 map @generatedCodeMap { # Key is code address (decimal representation)
-  @codeList mCode
-  @ipic18SequentialInstruction mInstruction
+  public var @codeList mCode
+  public var @ipic18SequentialInstruction mInstruction
   insert insertKey error message "the '%K' entry is already declared in %L"
   search searchKey error message "the '%K' entry is not declared"
 }
@@ -37,19 +37,19 @@ proc generateLineWithCode
   ?!@string ioListFileContents
  {
 #--- Complete text with empty lines
-  @stringlist ipicText = inIpicText
+  var @stringlist ipicText = inIpicText
   loop( [inCode length] + 1)
   while [ipicText length] < [inCode length] do
     ipicText += !""
   end
 #---
-  @uint address = inAddress
+  var @uint address = inAddress
   var first = true
-  for () in  ipicText, () in  inCode do
+  for (mValue) in  ipicText, (mAssemblyCode mBinaryCode) in  inCode do
     ioListFileContents += [address x6string]
     address = address + 2 * [mBinaryCode length]
-    @string s = " "
-    for () bin_ in  mBinaryCode do
+    var @string s = " "
+    for (bin_mValue) in  mBinaryCode do
       s += " " + [bin_mValue x4string]
     end
     ioListFileContents += [s stringByRightPadding !13 !' ']
@@ -76,7 +76,7 @@ proc generateLineWithCode
     first = false 
   end
 #--- Display supplementary text
-  for () in  [ipicText subListFromIndex ![inCode length]] do
+  for (mValue) in  [ipicText subListFromIndex ![inCode length]] do
     ioListFileContents += [address x6string]
     ioListFileContents += ["" stringByRightPadding !76 !' ']
     ioListFileContents += mValue
@@ -108,7 +108,7 @@ method @ipic18Block generateCodeForBlock
     )
     ioAssemblyString += self.mLabel.string + ":\n"
   else
-    @codeList cd = {}
+    var @codeList cd = {}
     cd += !"ORG " + [inBlockAddress hexString] !{}
     cd += !self.mLabel.string + ":" !{}
     generateLineWithCode (
@@ -124,7 +124,7 @@ method @ipic18Block generateCodeForBlock
   end
 #--- Generate regular instructions
   var address = inBlockAddress
-  for () in self.mInstructionList do
+  for (mInstruction mMin mMax) in self.mInstructionList do
     [mInstruction generateCode
       !address
       !inSymbolTable
@@ -140,16 +140,16 @@ method @ipic18Block generateCodeForBlock
       !mMax
       !?ioListFileContents
     )
-    for () in code do
-      for () in mBinaryCode do
+    for (mAssemblyCode mBinaryCode) in code do
+      for (mValue) in mBinaryCode do
         emitCode (!mValue)
       end
       ioAssemblyString += mAssemblyCode + "\n"
     end
     address = address + [mInstruction instructionSize]
   #--- Check instruction size corresponds generated code size
-    @uint generatedCodeSize = 0
-    for () in code do
+    var @uint generatedCodeSize = 0
+    for (* mBinaryCode) in code do
       generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode length]
     end
     if generatedCodeSize != [mInstruction instructionSize] then
@@ -174,15 +174,15 @@ method @ipic18Block generateCodeForBlock
     !self.mTerminatorMax
     !?ioListFileContents
   )
-  for () in code do
-    for () in mBinaryCode do
+  for (mAssemblyCode mBinaryCode) in code do
+    for (mValue) in mBinaryCode do
       emitCode (!mValue)
     end
     ioAssemblyString += mAssemblyCode + "\n"
   end
   #--- Check terminator size corresponds generated code size
     var generatedCodeSize = 0
-    for () in code do
+    for (* mBinaryCode) in code do
       generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode length]
     end
     if generatedCodeSize != [self.mTerminator terminatorSize !inNextBlockLabel] then
@@ -230,9 +230,9 @@ proc ipic18GenerateCode
     ?let @uint firstDataAddress
   )
 #--------------------------------- Build Data Address Map
-  @uint dataAddress = firstDataAddress
-  @pic18_dataAddressMap dataAddressMap = {}
-  for () in  inDataMap do
+  var @uint dataAddress = firstDataAddress
+  var @pic18_dataAddressMap dataAddressMap = {}
+  for (lkey mData *) in  inDataMap do
     [!?dataAddressMap insertKey !lkey !dataAddress]
     dataAddress = dataAddress + [mData length] * 2
   end 
@@ -242,8 +242,8 @@ proc ipic18GenerateCode
   var relocatableCodeSize = 0
   var blockStartAddress = 0
   outGeneratedCodeMap = {}
-  for () in  inGeneratedBlockList do(blockIndex)
-    @string nextBlockLabel
+  for (mBlock) in  inGeneratedBlockList do(blockIndex)
+    var @string nextBlockLabel
     if (blockIndex+1) < [inGeneratedBlockList length] then
       nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
@@ -324,7 +324,7 @@ proc ipic18GenerateCode
   end
 #----------------------------- Generate HEX file
 #--- Add Configuration
-  for () in  inActualConfigurationMap do
+  for (* mRegisterAddress mRegisterValue) in  inActualConfigurationMap do
     setEmitAddress (!mRegisterAddress)
     emitByte (!mRegisterValue)
   end
@@ -368,23 +368,23 @@ proc pic18GenerateAssemblyFile
   ?let @registerTable inAllRegisters
   ?let @actualConfigurationMap inActualConfigurationMap
   ?let @string inAssemblyCode {
-  @string assemblyString = "  PROCESSOR " + inProcessorName + "\n"
+  var @string assemblyString = "  PROCESSOR " + inProcessorName + "\n"
 #--- Code
   assemblyString += ";--- Code\n"
   assemblyString += inAssemblyCode
 #--- Prefined registers
   assemblyString += ";--- Prefefined registers\n"
-  for () in  inPredefinedRegisters do
+  for (lkey mRegisterAddressList * * * *) in  inPredefinedRegisters do
     [mRegisterAddressList first ?let @uint firstRegister]
-    assemblyString += [lkey string] + " EQU " + [firstRegister hexString] + "\n"
+    assemblyString += lkey.string + " EQU " + [firstRegister hexString] + "\n"
   end
   assemblyString += "\n\n"
 #--- User defined registers in ram
   assemblyString += ";--- User defined registers (in RAM)\n"
-  for () in  inAllRegisters do
-    if not [inPredefinedRegisters hasKey ![lkey string]] then
+  for (lkey mRegisterAddressList * * * *) in  inAllRegisters do
+    if not [inPredefinedRegisters hasKey !lkey.string] then
       [mRegisterAddressList first ?let @uint firstRegister]
-      assemblyString += [lkey string] + " EQU " + [firstRegister hexString] + "\n"
+      assemblyString += lkey.string + " EQU " + [firstRegister hexString] + "\n"
     end
   end
   assemblyString += "\n\n"
@@ -396,7 +396,7 @@ proc pic18GenerateAssemblyFile
 #-------------------------------- Add Configuration
   if [inActualConfigurationMap count] > 0 then
     assemblyString += ";--- Configuration\n\n"
-    for () in  inActualConfigurationMap do
+    for (* mRegisterAddress mRegisterValue) in  inActualConfigurationMap do
       assemblyString += "  __config " + [mRegisterAddress hexString] + ", " + [mRegisterValue & 255 hexString] + "\n"
     end
   end

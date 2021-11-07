@@ -3,10 +3,10 @@
 #----------------------------------------------------------------------------*
 
 map @configFieldMap {
-  @lstring mRegisterName
-  @luint mMaskValue
-  @lstring mDescription
-  @fieldSettingMap mFieldSettingMap
+  public var @lstring mRegisterName
+  public var @luint mMaskValue
+  public var @lstring mDescription
+  public var @fieldSettingMap mFieldSettingMap
   insert insertKey error message "the '%K' configuration field is already declared in %L"
   search searchKey error message "the '%K' configuration field is not declared"
 }
@@ -23,40 +23,40 @@ proc actualBuildConfig
 # checked when parsing device definition string.
   outActualConfigurationMap = @actualConfigurationMap. emptyMap
   var configFieldMap =@configFieldMap.emptyMap{}
-  for () in  inConfigRegisterMap do
-    @uint defaultValue = (1 << [mRegisterWidth uint]) - 1
-    [!? outActualConfigurationMap insertKey !lkey ![mRegisterAddress uint] !defaultValue]
-    @lstring registerName = lkey
-    for () other_ in  mConfigRegisterMaskMap do
+  for (lkey mRegisterAddress mRegisterWidth mConfigRegisterMaskMap *) in  inConfigRegisterMap do
+    var @uint defaultValue = (1 << mRegisterWidth.uint) - 1
+    [!? outActualConfigurationMap insertKey !lkey !mRegisterAddress.uint !defaultValue]
+    var @lstring registerName = lkey
+    for (other_lkey other_mMaskValue other_mDescription other_mFieldSettingMap) in  mConfigRegisterMaskMap do
       [!?configFieldMap insertKey !other_lkey !registerName !other_mMaskValue !other_mDescription !other_mFieldSettingMap]
     end
   end
 #--- Analyze config parts
   var actualSettingNameSet =@stringset.emptySet{}
-  for () in  inConfigDefinitionList do
-    for () in  mSettingList do
-      if [actualSettingNameSet hasKey ![mSettingName string]] then
+  for (* mSettingList) in  inConfigDefinitionList do
+    for (mSettingName mSettingValue) in  mSettingList do
+      if [actualSettingNameSet hasKey !mSettingName.string] then
         error mSettingName: "the '" + mSettingName + "' setting is already defined"
       end
-      actualSettingNameSet += ![mSettingName string]
-      @lstring registerName
-      @luint maskValue
-      @lstring settingDescription
-      @fieldSettingMap fieldSettingMap
+      actualSettingNameSet += !mSettingName.string
+      var @lstring registerName
+      var @luint maskValue
+      var @lstring settingDescription
+      var @fieldSettingMap fieldSettingMap
       [configFieldMap searchKey !mSettingName ?registerName ?maskValue ?settingDescription ?fieldSettingMap]
-      if [fieldSettingMap hasKey ![mSettingValue string]] then
-        @uint settingValue
-        @uint settingMask
+      if [fieldSettingMap hasKey !mSettingValue.string] then
+        var @uint settingValue
+        var @uint settingMask
         [fieldSettingMap searchKey !mSettingValue ?settingValue ?settingMask]
-        @uint registerValue
+        var @uint registerValue
         [outActualConfigurationMap searchKey !registerName ?* ?registerValue]
         registerValue = (registerValue & ~ settingMask) | settingValue
-        [!?outActualConfigurationMap setMRegisterValueForKey !registerValue ![registerName string]]
+        [!?outActualConfigurationMap setMRegisterValueForKey !registerValue !registerName.string]
       elsif [fieldSettingMap count] > 0 then
         let errorMessage = "the '" + mSettingValue + "' value is not defined for configuration setting '"
         + mSettingName + "'"
-        @stringlist replacementSuggestions = {}
-        for () in  fieldSettingMap do
+        var @stringlist replacementSuggestions = {}
+        for (lkey * *) in  fieldSettingMap do
           replacementSuggestions += !"\"" + lkey + "\""
         end
         error mSettingValue: errorMessage fixit { replace replacementSuggestions }
@@ -66,21 +66,21 @@ proc actualBuildConfig
 #--- Check if all settings are actually defined
   let @stringset notDefinedSetting = [configFieldMap keySet] - actualSettingNameSet
   if [notDefinedSetting count] > 0 then
-    @string errorMessage = "the following configuration settings are not defined:"
-    for () in  notDefinedSetting do
+    var @string errorMessage = "the following configuration settings are not defined:"
+    for (key) in  notDefinedSetting do
       errorMessage += "\n-  " + key
     end
     error @location.here : errorMessage
   end
 #--- Display conguration information in log file
-  for () in  outActualConfigurationMap do
+  for (lkey mRegisterAddress mRegisterValue) in  outActualConfigurationMap do
     ioListFileContents += "Register '" + lkey + "' at " + [mRegisterAddress hexString] + " set to " + [mRegisterValue hexString] + "\n"
-    @configRegisterMaskMap configRegisterMaskMap
+    var @configRegisterMaskMap configRegisterMaskMap
     [inConfigRegisterMap searchKey !lkey ?* ?* ?configRegisterMaskMap ?*]
-    for () others_ in  configRegisterMaskMap do
-      @lstring settingName = others_lkey
-      for () second_ in  others_mFieldSettingMap do
-        if (mRegisterValue & [others_mMaskValue uint]) == second_mValue then
+    for (others_lkey others_mMaskValue * others_mFieldSettingMap) in  configRegisterMaskMap do
+      var @lstring settingName = others_lkey
+      for (second_lkey second_mValue *) in  others_mFieldSettingMap do
+        if (mRegisterValue & others_mMaskValue.uint) == second_mValue then
           ioListFileContents += "  setting '" + settingName + "' set to " + [second_mValue hexString] + " (\"" + second_lkey + "\")\n"
         end
       end
@@ -88,11 +88,11 @@ proc actualBuildConfig
     ioListFileContents += "\n"
   end
 #--- Detect illegal configurations
-  for () in  outActualConfigurationMap do
-    @illegalMaskList illegalMaskList
+  for (lkey * mRegisterValue) in  outActualConfigurationMap do
+    var @illegalMaskList illegalMaskList
     [inConfigRegisterMap searchKey !lkey ?* ?* ?* ?illegalMaskList]
-     for () in  illegalMaskList do
-      if (mRegisterValue & [mIllegalMask uint]) == [mIllegalValue uint] then
+     for (mIllegalValue mIllegalMask mDescription) in  illegalMaskList do
+      if (mRegisterValue & mIllegalMask.uint) == mIllegalValue.uint then
         error @location.here:"illegal setting for '" + lkey + "' register: " + mDescription
         ioListFileContents += "*** ILLEGAL SETTING for register '" + lkey + "' ***\n"
         ioListFileContents += "  message: " + mDescription + "\n\n"

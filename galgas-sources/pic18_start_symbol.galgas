@@ -22,8 +22,8 @@ rule <body>
 rule <start_symbol> {
   $pic18$
   $identifier$ ?var  @lstring programName
-  @lstring deviceNameOrBootloaderReference
-  @programKind programKind
+  var @lstring deviceNameOrBootloaderReference
+  var @programKind programKind
   select
     programKind = @programKind. regularProgram
   or
@@ -39,7 +39,7 @@ rule <start_symbol> {
   $:$
   var interruptDefinitionList =@pic18InterruptDefinitionList.emptyList{}
   var routineDefinitionList =@pic18RoutineDefinitionList.emptyList{}
-  @pic18MacroDefinitionList macroDefinitionList = {}
+  var @pic18MacroDefinitionList macroDefinitionList = {}
   var unusedRoutineList =@lstringlist.emptyList{}
   var ramDefinitionList =@ramDefinitionList.emptyList{}
   var unusedRegisterList =@lstringlist.emptyList{}
@@ -48,8 +48,8 @@ rule <start_symbol> {
   var dataList =@dataList.emptyList{}
   var checkpicList =@checkpicList.emptyList{}
   var inlinedRoutineList =@lstringlist.emptyList{}
-  @bool needsComputedGoto2 = false
-  @bool needsComputedGoto4 = false
+  var @bool needsComputedGoto2 = false
+  var @bool needsComputedGoto4 = false
   <body>
     !?interruptDefinitionList
     !?routineDefinitionList
@@ -88,11 +88,11 @@ rule <start_symbol> {
     }
     pic18_analyze (!piccoloModel !@string.stringWithSourceFilePath)
   else
-    @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
+    var @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
     if [hexDestinationFile fileExists] then
       [@string deleteFile !hexDestinationFile]
     end
-    @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
+    var @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
     if [asmDestinationFile fileExists] then
       [@string deleteFile !asmDestinationFile]
     end

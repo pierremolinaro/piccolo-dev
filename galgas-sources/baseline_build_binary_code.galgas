@@ -30,7 +30,7 @@ proc emitNoBaselineCodeAtWordAddress
 #----------------------------------------------------------------------------*
 
 map @baseline_symbolTable {
-  @uint mRoutineAddress
+  public var @uint mRoutineAddress
   insert insertKey error message "the '%K' label is already declared in %L"
   search searchKey error message "the '%K' label is not declared"
 }
@@ -123,7 +123,7 @@ override method @baseline_assembly_instruction_FD generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
 #--- Emit Code
-  @uint code
+  var @uint code
   switch self.mInstruction
   case ADDWF  : code = 0x01C0
   case ANDWF  : code = 0x0140
@@ -143,7 +143,7 @@ override method @baseline_assembly_instruction_FD generateBinaryCodeAtAddress
   if not self.m_W_isDestination then
     code = code | 0x20
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 0x1F)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 0x1F)
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
@@ -153,12 +153,12 @@ override method @baseline_assembly_instruction_F generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  @uint code
+  var @uint code
   switch self.mInstruction
     case CLRF   : code = 0x0060
     case MOVWF  : code = 0x0020
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 0x1F)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 0x1F)
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
@@ -168,12 +168,12 @@ override method @baseline_assembly_instruction_FB generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  @uint code
+  var @uint code
   switch self.mInstruction
     case BCF : code = 0x0400
     case BSF : code = 0x0500
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 0x1F)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 0x1F)
   code = code | (self.mBitNumber << 5)
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
@@ -185,13 +185,13 @@ override method @baseline_assembly_instruction_BitTestSkip generateBinaryCodeAtA
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
 #--- Emit Code
-  @uint code
+  var @uint code
   if self.mSkipIfSet then
     code = 0x0700 # "BTFSS"
   else
     code = 0x0600 # BTFSC
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 0x1F)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 0x1F)
   code = code | (self.mBitNumber << 5)
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
@@ -224,7 +224,7 @@ override method @baseline_assembly_CALL generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
 #---
-  @uint targetAddress
+  var @uint targetAddress
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
 #---
   emitBaselineCodeAtWordAddress ( !0x0900 | (targetAddress & 0xFF) !?ioWordAddress !self !?ioListFileContents )
@@ -236,7 +236,7 @@ override method @baseline_assembly_incDecRegisterInCondition generateBinaryCodeA
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  @uint code
+  var @uint code
   if self.mIncrement then
     code = 0x03C0 # INCFSZ
   else
@@ -245,7 +245,7 @@ override method @baseline_assembly_incDecRegisterInCondition generateBinaryCodeA
   if not self.m_W_isDestination then
     code = code | 0x0020
   end
-  code = code | ([self.mRegisterDescription mRegisterAddress] & 0x1F)
+  code = code | (self.mRegisterDescription.mRegisterAddress & 0x1F)
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
@@ -255,7 +255,7 @@ override method @baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  @uint code
+  var @uint code
   switch self.mInstruction
   case CLRW    : code = 0x0040
   case NOP     : code = 0x0000
@@ -281,7 +281,7 @@ override method @baseline_assembly_instruction_literalOperation generateBinaryCo
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  @uint code
+  var @uint code
   switch self.mInstruction
   case ANDLW : code = 0x0E00
   case IORLW : code = 0x0D00
@@ -299,7 +299,7 @@ override method @baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress
   ?let @baseline_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  @uint targetAddress
+  var @uint targetAddress
   [inRoutineSymbolTable searchKey !self.mLabel ?targetAddress]
   if (targetAddress != ioWordAddress) then
     error self.mLabel: "Internal second pass error: the '" + self.mLabel
@@ -322,16 +322,16 @@ proc build_baseline_binary_code
   !@uint outUsedROMsize {
 #-------------------------------- First pass: build label map
   var symbolTable =@baseline_symbolTable.emptyMap{}
-  @uint currentWordAddress = 0
-  for () in  inAssemblyInstructionList do
+  var @uint currentWordAddress = 0
+  for (mInstruction) in  inAssemblyInstructionList do
     [mInstruction enterLabelAtAddress !?symbolTable !?currentWordAddress]
   end
-  @uint lastAddressForFirstPass = currentWordAddress
+  var @uint lastAddressForFirstPass = currentWordAddress
   outUsedROMsize = currentWordAddress
 #-------------------------------- Second pass: generate code
   currentWordAddress = 0
   setEmitAddress ( !0 )
-  for () in  inAssemblyInstructionList do
+  for (mInstruction) in  inAssemblyInstructionList do
     [mInstruction generateBinaryCodeAtAddress
       !symbolTable
       !?ioListFileContents

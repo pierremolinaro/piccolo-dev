@@ -132,7 +132,7 @@ override method @midrange_instruction_banksel_register addUsedRoutines
 override method @midrange_instruction_do_while addUsedRoutines
   ?!@stringset ioUsedRoutines {
   addMidRangeUsedRoutinesFromInstructionList ( !self.mRepeatedInstructionList !?ioUsedRoutines )
-  for () in  self.mWhilePartList do
+  for (* mInstructionList *) in  self.mWhilePartList do
     addMidRangeUsedRoutinesFromInstructionList ( !mInstructionList !?ioUsedRoutines )
   end
 }
@@ -182,7 +182,7 @@ override method @midrange_instruction_literalOperation addUsedRoutines
 proc addMidRangeUsedRoutinesFromInstructionList
   ?let @midrange_instructionList inInstructionList
   ?!@stringset ioUsedRoutines {
-  for () in  inInstructionList do
+  for (mInstruction) in  inInstructionList do
     [mInstruction addUsedRoutines !?ioUsedRoutines]
   end
 }
@@ -196,7 +196,7 @@ func midrange_computeUsedRoutines
 #--- Main routine is used
   outUsedRoutineSet = @stringset. setWithString { !"main"}
 #--- Routines called by interrupt routines are used
-  for () in  inInterruptDefinitionList do
+  for (* mInstructionList * * *) in  inInterruptDefinitionList do
     addMidRangeUsedRoutinesFromInstructionList (
       !mInstructionList
       !?outUsedRoutineSet
@@ -207,7 +207,7 @@ func midrange_computeUsedRoutines
   loop( [inRoutineDefinitionList length])
   while s != outUsedRoutineSet do
     s = outUsedRoutineSet
-    for () in  inRoutineDefinitionList do
+    for (mRoutineName * * * * * mInstructionList *) in  inRoutineDefinitionList do
       if [outUsedRoutineSet hasKey !mRoutineName.string] then
         addMidRangeUsedRoutinesFromInstructionList ( !mInstructionList !?outUsedRoutineSet )
       end

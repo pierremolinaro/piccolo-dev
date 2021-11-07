@@ -12,8 +12,8 @@ method @ipic18Block performRelativesResolution
 {
 #--- Instruction
   var modifiedInstructionList =@ipic18SequentialInstructionList.emptyList{}
-  @uint address = inBlockStartAddress
-  for () in  self.mInstructionList do
+  var @uint address = inBlockStartAddress
+  for (mInstruction * *) in  self.mInstructionList do
     [mInstruction performInstructionRelativeBranchResolution
       !address
       !self.mLabel.string
@@ -54,9 +54,9 @@ proc performRelativesResolution
   ?!@uint ioConversionCount
   ?!@string ioListFileContents {
   var modifiedBlockList =@ipic18BlockList.emptyList{}
-  @uint blockStartAddress = 0
-  for () in  ioBlockList do(blockIndex)
-    @string nextBlockLabel
+  var @uint blockStartAddress = 0
+  for (mBlock) in  ioBlockList do(blockIndex)
+    var @string nextBlockLabel
     if (blockIndex+1) < [ioBlockList length] then
       nextBlockLabel = [ioBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
@@ -90,7 +90,7 @@ getter @ipic18Block blockSize
   ?let @string inNextBlockLabel
   ->@uint outResult {
   outResult = [self.mTerminator terminatorSize !inNextBlockLabel]
-  for () in  self.mInstructionList do
+  for (mInstruction * *) in  self.mInstructionList do
     outResult = outResult + [mInstruction instructionSize]  
   end
 }
@@ -105,9 +105,9 @@ proc computeLabelAbsoluteAddressMap
   outSymbolTable = @symbolTableForRelativesResolution. emptyMap
   outFreeAddress = @uint. max
 #--- Pass first absolute blocks
-  @uint blockStartAddress = 0
-  for () in  inGeneratedBlockList do(blockIndex)
-    @string nextBlockLabel
+  var @uint blockStartAddress = 0
+  for (mBlock) in  inGeneratedBlockList do(blockIndex)
+    var @string nextBlockLabel
     if (blockIndex+1) < [inGeneratedBlockList length] then
       nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
@@ -124,7 +124,7 @@ proc computeLabelAbsoluteAddressMap
     end
   end
 #---
-  for () in  inInitialBlockList do
+  for (mBlock) in  inInitialBlockList do
     if mBlock.mAddress != @uint. max then # Absolute block
       if not [outSymbolTable hasKey !mBlock.mLabel.string] then
         [!?outSymbolTable insertKey !mBlock.mLabel !mBlock.mAddress]
@@ -146,8 +146,8 @@ proc ipic18RelativesResolution
   ioListFileContents += "*" + ["RELATIVES RESOLUTION" stringByLeftAndRightPadding !117 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
 #---
-  @bool resolutionDone = false
-  @uint pass = 0
+  var @bool resolutionDone = false
+  var @uint pass = 0
   loop( [ioGeneratedBlockList length] + 1)
   while (not resolutionDone) & (@uint. errorCount == 0) do
     pass ++
@@ -158,7 +158,7 @@ proc ipic18RelativesResolution
       ?*
     )
     ioListFileContents += "\nPass " + pass + ":\n"
-    @uint conversionCount = 0
+    var @uint conversionCount = 0
     performRelativesResolution (
       !symbolTable
       !?ioGeneratedBlockList
@@ -167,7 +167,7 @@ proc ipic18RelativesResolution
     )
     resolutionDone = conversionCount == 0
     if @application.verboseOutput then
-      @string s = "  Pass " + pass + ": "
+      var @string s = "  Pass " + pass + ": "
       if conversionCount == 0 then
         s += "none."
       elsif conversionCount == 1 then
@@ -196,8 +196,8 @@ method @ipic18Block relativeBranchOverflow
   ?let @uint inBlockStartAddress
   ?!@branchOverflowMap ioOverflowMap {
 #--- Instruction
-  @uint address = inBlockStartAddress
-  for () in  self.mInstructionList do
+  var @uint address = inBlockStartAddress
+  for (mInstruction * *) in  self.mInstructionList do
     [mInstruction instructionRelativeBranchOverflow
       !address
       !self.mLabel.string
@@ -231,9 +231,9 @@ proc ipic18RelativeBranchOverflow
   )
 #---
   outOverflowMap = @branchOverflowMap. emptyMap
-  @uint blockStartAddress = 0
-  for () in  inBlockList do(blockIndex)
-    @string nextBlockLabel
+  var @uint blockStartAddress = 0
+  for (mBlock) in  inBlockList do(blockIndex)
+    var @string nextBlockLabel
     if (blockIndex+1) < [inBlockList length] then
       nextBlockLabel = [inBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else

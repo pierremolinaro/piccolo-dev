@@ -3,11 +3,11 @@
 #----------------------------------------------------------------------------*
 
 map @declaredRoutineMap {
-  @luint mRequiredBank
-  @luint mReturnedBank
-  @bool mPreservesBank
-  @bool mIsNoReturn
-  @pic18InstructionList mInstructionList
+  public var @luint mRequiredBank
+  public var @luint mReturnedBank
+  public var @bool mPreservesBank
+  public var @bool mIsNoReturn
+  public var @pic18InstructionList mInstructionList
   insert insertKey error message "the '%K' routine is already declared"
   search searchKey error message "the '%K' routine is not declared"
 }
@@ -30,8 +30,8 @@ override method @pic18Instruction_block performInlining
   ?let @stringset inCurrentlyInlinedRoutineSet
   ?!@pic18InstructionList ioInstructionList
 {
-  @pic18BlockInstructionBlockList inlinedBlockList = {}
-  for () in self.mBlockList do
+  var @pic18BlockInstructionBlockList inlinedBlockList = {}
+  for (mBlockName mInstructionList mBlockTerminaisonForBlockInstruction mEndOfBlock) in self.mBlockList do
     performInlineFromInstructionList (
       !mInstructionList
       !inInlinedRoutineSet
@@ -89,7 +89,7 @@ override method @pic18Instruction_do_while performInlining
     ?let @pic18InstructionList repeatedInstructionList
   )
   var whilePartList =@pic18DoWhilePartList.emptyList{}
-  for () in  self.mWhilePartList do
+  for (mCondition mInstructionList mEndOfPartLocation) in  self.mWhilePartList do
     performInlineFromInstructionList (
       !mInstructionList
       !inInlinedRoutineSet
@@ -163,7 +163,7 @@ override method @pic18Instruction_JSR performInlining
   ?let @declaredRoutineMap inDeclaredRoutineMap
   ?let @stringset inCurrentlyInlinedRoutineSet
   ?!@pic18InstructionList ioInstructionList {
-  @bool inlineDone
+  var @bool inlineDone
   if [inDeclaredRoutineMap hasKey !self.mTargetLabel.string]
    & [inInlinedRoutineSet hasKey !self.mTargetLabel.string]
    & not [inCurrentlyInlinedRoutineSet hasKey !self.mTargetLabel.string] then
@@ -181,10 +181,10 @@ override method @pic18Instruction_JSR performInlining
       if requiredBank.uint != @uint. max then
         ioInstructionList += !@pic18Instruction_checkbank. new { !self.mInstructionLocation !requiredBank.uint}
       end
-      @stringset currentlyInlinedRoutineSet = inCurrentlyInlinedRoutineSet
+      var @stringset currentlyInlinedRoutineSet = inCurrentlyInlinedRoutineSet
       currentlyInlinedRoutineSet += !self.mTargetLabel.string
       #ioInstructionList .= instructionList ;
-      for () in  instructionList do
+      for (mInstruction) in  instructionList do
         [mInstruction performInlining
           !inInlinedRoutineSet
           !inDeclaredRoutineMap
@@ -211,7 +211,7 @@ proc performInlineFromInstructionList
   ?let @stringset inCurrentlyInlinedRoutineSet
   !@pic18InstructionList outInstructionList {
   outInstructionList = @pic18InstructionList. emptyList
-  for () in  inInstructionList do
+  for (mInstruction) in  inInstructionList do
     [mInstruction performInlining
       !inInlinedRoutineSet
       !inDeclaredRoutineMap
@@ -231,7 +231,7 @@ proc pic18PerformRoutineInline
 {
 #--- Interrupt routines
   var interruptDefinitionList =@pic18InterruptDefinitionList.emptyList{}
-  for () in  ioInterruptDefinitionList do
+  for (mInterruptName mFastReturn mInstructionList mEndOfInterruptLocation) in  ioInterruptDefinitionList do
     performInlineFromInstructionList (
       !mInstructionList
       !inInlinedRoutineSet
@@ -248,7 +248,7 @@ proc pic18PerformRoutineInline
   ioInterruptDefinitionList = interruptDefinitionList
 #--- Regular routines
   var routineDefinitionList =@pic18RoutineDefinitionList.emptyList{}
-  for () in  ioRoutineDefinitionList do
+  for (mRoutineName mRequiredBank mReturnedBank mPreservesBank mIsNoReturn mInstructionList mEndOfRoutineLocation) in  ioRoutineDefinitionList do
     performInlineFromInstructionList (
       !mInstructionList
       !inInlinedRoutineSet

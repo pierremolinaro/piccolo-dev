@@ -56,7 +56,7 @@ override getter @baseline_intermediate_JSR length -> @uint outLength {
 
 override
 getter @baseline_intermediate_instruction_MNOP length -> @uint outLength {
-  outLength = [self.mOccurrenceFactor uint]
+  outLength = self.mOccurrenceFactor.uint
 }
 
 #-------------------------------------------------------------------------------*
