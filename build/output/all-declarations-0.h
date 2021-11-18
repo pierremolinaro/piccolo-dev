@@ -589,6 +589,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatExpression 
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatExpression : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -663,6 +666,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationInRam ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_declarationInRam : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -2093,6 +2099,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatAdd ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatAdd : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -2245,6 +2254,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatSub ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatSub : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -2397,6 +2409,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatMul ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatMul : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -2549,6 +2564,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatDiv ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatDiv : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -2701,6 +2719,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatMod ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatMod : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -2853,6 +2874,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatOr ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatOr : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -3005,6 +3029,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatAnd ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatAnd : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -3157,6 +3184,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatXor ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatXor : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -3309,6 +3339,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatLeftShift ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatLeftShift : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -3461,6 +3494,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatRightShift 
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatRightShift : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -3613,6 +3649,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatEqualTest ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatEqualTest : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -3765,6 +3804,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatNotEqualTes
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatNotEqualTest : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -3917,6 +3959,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatGreaterTest
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatGreaterTest : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -4069,6 +4114,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatGreaterOrEq
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatGreaterOrEqualTest : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -4221,6 +4269,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatLowerTest ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatLowerTest : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -4373,6 +4424,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatLowerOrEqua
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatLowerOrEqualTest : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mLeftExpression ;
   public: GALGAS_immediatExpression mProperty_mRightExpression ;
@@ -4519,6 +4573,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatNegate ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatNegate : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mExpression ;
 
@@ -4663,6 +4720,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatComplement 
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatComplement : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mExpression ;
 
@@ -5514,6 +5574,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberExpression
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_bitNumberExpression : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -5659,6 +5722,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberLiteralExp
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_bitNumberLiteralExpression : public cPtr_bitNumberExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mBitNumberLiteralExpression ;
   public: GALGAS_location mProperty_mEndOfExpression ;
@@ -5808,6 +5874,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberLiteralVal
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_bitNumberLiteralValue : public cPtr_bitNumberExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mBitNumberLiteralValue ;
 

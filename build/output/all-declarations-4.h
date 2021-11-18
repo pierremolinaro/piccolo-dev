@@ -137,6 +137,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_AndCondi
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_AndCondition : public cPtr_pic_31__38_ConditionExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_ConditionExpression mProperty_mLeftExpression ;
   public: GALGAS_pic_31__38_ConditionExpression mProperty_mRightExpression ;
@@ -302,6 +305,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_structured_5F_if : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_ConditionExpression mProperty_mIfCondition ;
   public: GALGAS_pic_31__38_InstructionList mProperty_mThenInstructionList ;
@@ -733,6 +739,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_do_5F_while : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_InstructionList mProperty_mRepeatedInstructionList ;
   public: GALGAS_location mProperty_mEndOfRepeatedInstructionList ;
@@ -3542,6 +3551,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_gotoTerminationForB
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_gotoTerminationForBlockInstruction : public cPtr_abstractBlockTerminationForBlockInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mNextBlock ;
 
@@ -3708,6 +3720,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_registerExpression 
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_registerExpression : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mRegisterName ;
   public: GALGAS_immediatExpression mProperty_mOffset ;
@@ -3740,6 +3755,9 @@ class cPtr_registerExpression : public acStrongPtr_class {
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_BitTestInStructuredCondition : public cPtr_pic_31__38_ConditionExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
   public: GALGAS_bitNumberExpression mProperty_mBitNumber ;
@@ -3848,6 +3866,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_IncDecRe
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_IncDecRegisterInCondition : public cPtr_pic_31__38_ConditionExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
   public: GALGAS_bool mProperty_mIncrement ;
@@ -3949,6 +3970,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_FA : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_FA_5F_instruction_5F_base_5F_code mProperty_mFAinstruction ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -4053,6 +4077,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_FBA : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bit_5F_oriented_5F_op mProperty_mBitOrientedOp ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -4159,6 +4186,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_FDA : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -4266,6 +4296,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest : public cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mSkipIfSet ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -4368,6 +4401,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_if_5F_semi_5F_colon_5F_op mProperty_mOpCode ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -4480,6 +4516,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec : public cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mIncrement ;
   public: GALGAS_bool mProperty_mSkipIfZero ;
@@ -4583,6 +4622,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_JSR : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
   public: GALGAS_jumpInstructionKind mProperty_mKind ;
@@ -4681,6 +4723,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_JUMP : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
   public: GALGAS_jumpInstructionKind mProperty_mKind ;
@@ -4785,6 +4830,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_JUMPCC : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
   public: GALGAS_conditional_5F_branch mProperty_mConditionalBranch ;
@@ -4888,6 +4936,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mDataName ;
   public: GALGAS_luint mProperty_mDataIndex ;
@@ -4989,6 +5040,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mDataName ;
   public: GALGAS_luint mProperty_mDataIndex ;
@@ -5087,6 +5141,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_MOVFF : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mSourceRegisterName ;
   public: GALGAS_registerExpression mProperty_mDestinationRegisterName ;
@@ -5185,6 +5242,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_banksel_5F_register : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
   public: GALGAS_bool mProperty_mWarningOnUselessBanksel ;
@@ -5292,6 +5352,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_block : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mStartBlockName ;
   public: GALGAS_pic_31__38_BlockInstructionBlockList mProperty_mBlockList ;
@@ -5395,6 +5458,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_macro : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mMacroName ;
   public: GALGAS_immediatExpressionList mProperty_mExpressionList ;
@@ -5511,6 +5577,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_repetitionStatique : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mConstantName ;
   public: GALGAS_immediatExpression mProperty_mLowerBoundExpression ;
@@ -5621,6 +5690,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_savebank : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegister ;
   public: GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
@@ -5902,6 +5974,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SwitchIn
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_switch : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_SwitchInstructionCaseList mProperty_mCaseList ;
   public: GALGAS_location mProperty_mElseBranchStartLocation ;
@@ -6007,6 +6082,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Interval
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_IntervalCaseItem : public cPtr_pic_31__38_AbstractCaseItem {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mMinExpression ;
   public: GALGAS_immediatExpression mProperty_mMaxExpression ;
@@ -6105,6 +6183,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Register
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_RegisterComparisonCondition : public cPtr_pic_31__38_ConditionExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
   public: GALGAS_pic_31__38_RegisterComparison mProperty_mComparison ;
@@ -6201,6 +6282,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Register
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_RegisterTestCondition : public cPtr_pic_31__38_ConditionExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
   public: GALGAS_bool mProperty_mBranchIfZero ;
@@ -6297,6 +6381,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SimpleCo
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_SimpleConstantCaseItem : public cPtr_pic_31__38_AbstractCaseItem {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mCaseExpression ;
   public: GALGAS_location mProperty_mCaseExpressionLocation ;
@@ -6405,6 +6492,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_testTerminationForB
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_testTerminationForBlockInstruction : public cPtr_abstractBlockTerminationForBlockInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_ConditionExpression mProperty_mCondition ;
   public: GALGAS_abstractBlockTerminationForBlockInstruction mProperty_mTrueTermination ;
@@ -8712,6 +8802,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_bitTest
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public cPtr_midrange_5F_conditionExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
   public: GALGAS_bitNumberExpression mProperty_mBitNumber ;
@@ -8820,6 +8913,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_incDecR
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_incDecRegisterInCondition : public cPtr_midrange_5F_conditionExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
   public: GALGAS_bool mProperty_mIncrement ;
@@ -8918,6 +9014,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_CALL : public cPtr_midrange_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -9014,6 +9113,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_F : public cPtr_midrange_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code mProperty_mFAinstruction ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -9118,6 +9220,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_FB : public cPtr_midrange_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_midrange_5F_bit_5F_oriented_5F_op mProperty_mBitOrientedOp ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -9224,6 +9329,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_FD : public cPtr_midrange_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code mProperty_mInstruction_5F_FD_5F_base_5F_code ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -9321,6 +9429,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_GOTO : public cPtr_midrange_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -9424,6 +9535,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest : public cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mSkipIfSet ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -9532,6 +9646,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_IF_5F_IncDec : public cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mIncrement ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -9630,6 +9747,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_JSR : public cPtr_midrange_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -9723,6 +9843,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_JUMP : public cPtr_midrange_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -9837,6 +9960,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_midrange_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mConstantName ;
   public: GALGAS_immediatExpression mProperty_mLowerBoundExpression ;
@@ -9941,6 +10067,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_banksel_5F_register : public cPtr_midrange_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegister ;
   public: GALGAS_bool mProperty_mWarningOnUselessBanksel ;
@@ -10045,6 +10174,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_instruction_5F_savebank : public cPtr_midrange_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegister ;
   public: GALGAS_midrange_5F_instructionList mProperty_mInstructionList ;
@@ -10641,6 +10773,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_bitTest
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public cPtr_baseline_5F_conditionExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
   public: GALGAS_bitNumberExpression mProperty_mBitNumber ;
@@ -10749,6 +10884,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_incDecR
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_incDecRegisterInCondition : public cPtr_baseline_5F_conditionExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
   public: GALGAS_bool mProperty_mIncrement ;
@@ -10847,6 +10985,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_CALL : public cPtr_baseline_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -10943,6 +11084,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_F : public cPtr_baseline_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code mProperty_mFAinstruction ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -11047,6 +11191,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_FB : public cPtr_baseline_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_baseline_5F_bit_5F_oriented_5F_op mProperty_mBitOrientedOp ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -11153,6 +11300,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_FD : public cPtr_baseline_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code mProperty_mInstruction_5F_FD_5F_base_5F_code ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -11250,6 +11400,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_GOTO : public cPtr_baseline_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -11353,6 +11506,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest : public cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mSkipIfSet ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -11461,6 +11617,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_IF_5F_IncDec : public cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mIncrement ;
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -11559,6 +11718,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_JSR : public cPtr_baseline_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -11652,6 +11814,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_JUMP : public cPtr_baseline_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -11766,6 +11931,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_baseline_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mConstantName ;
   public: GALGAS_immediatExpression mProperty_mLowerBoundExpression ;
@@ -11867,6 +12035,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_TRIS : public cPtr_baseline_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mOperand ;
 

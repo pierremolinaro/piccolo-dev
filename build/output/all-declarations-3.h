@@ -138,6 +138,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_midrange_5F_literal_5F_instruction_5F_opcode mProperty_mLiteralInstruction ;
   public: GALGAS_uint mProperty_mLiteralValue ;
@@ -289,6 +292,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mOccurrenceFactor ;
 
@@ -462,6 +468,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_midrange_5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
   public: GALGAS_string mProperty_mTargetLabel ;
@@ -1049,6 +1058,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_intermediate_5F_GOTO : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -1151,6 +1163,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_intermediate_5F_JUMP : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
   public: GALGAS_midrange_5F_call_5F_goto_5F_bit mProperty_mBit_31__31_ ;
@@ -2320,6 +2335,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_PiccoloI
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_PiccoloInstruction : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_location mProperty_mInstructionLocation ;
 
@@ -2663,6 +2681,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_nobanksel : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -2804,6 +2825,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_checknobank : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -2951,6 +2975,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_checkbank : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_uint mProperty_mBankIndex ;
 
@@ -3087,6 +3114,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_PiccoloS
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_PiccoloSimpleInstruction : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -3237,6 +3267,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_banksel : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mBankIndex ;
   public: GALGAS_bool mProperty_mWarningOnUselessBanksel ;
@@ -3375,6 +3408,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractBlockTermin
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_abstractBlockTerminationForBlockInstruction : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -3517,6 +3553,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_exitBlockTerminatio
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_exitBlockTerminationForBlockInstruction : public cPtr_abstractBlockTerminationForBlockInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_location mProperty_mLocation ;
 
@@ -3652,6 +3691,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Conditio
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_ConditionExpression : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -4020,6 +4062,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Abstract
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_AbstractCaseItem : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -4843,6 +4888,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_withNoOperand : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_InstructionWithNoOperandKind mProperty_mKind ;
 
@@ -5103,6 +5151,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_literalOperation : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_literal_5F_instruction_5F_opcode mProperty_mLiteralInstruction ;
   public: GALGAS_immediatExpression mProperty_mImmediatExpression ;
@@ -5251,6 +5302,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_fnop : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mImmediatExpression ;
 
@@ -5403,6 +5457,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_LFSR : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mFSRindex ;
   public: GALGAS_immediatExpression mProperty_mImmediatExpression ;
@@ -5551,6 +5608,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_LTBLPTR : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mImmediatExpression ;
 
@@ -5784,6 +5844,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_TBLRD : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_tableAccessOption mProperty_mOption ;
 
@@ -5930,6 +5993,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_TBLWT : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_tableAccessOption mProperty_mOption ;
 
@@ -6079,6 +6145,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_MNOP : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mOccurrenceFactor ;
 
@@ -6228,6 +6297,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_NOPBRA : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mOccurrenceFactor ;
 
@@ -6383,6 +6455,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_FOREVER : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
   public: GALGAS_location mProperty_mEndOfInstructionList ;
@@ -6613,6 +6688,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_PiccoloSimpleInstruction mProperty_mEmbeddedInstruction ;
 
@@ -6768,6 +6846,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_computed_5F_retlw : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mSizeExpression ;
   public: GALGAS_immediatExpressionList mProperty_mImmediateExpressionList ;
@@ -6930,6 +7011,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_computed_5F_bra : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mSizeExpression ;
   public: GALGAS_lstringlist mProperty_mTargetLabels ;
@@ -7092,6 +7176,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_computed_5F_goto : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mSizeExpression ;
   public: GALGAS_lstringlist mProperty_mTargetLabels ;
@@ -7254,6 +7341,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_computed_5F_rcall : public cPtr_pic_31__38_PiccoloInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mSizeExpression ;
   public: GALGAS_lstringlist mProperty_mTargetLabels ;
@@ -7566,6 +7656,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BccInStr
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_BccInStructuredCondition : public cPtr_pic_31__38_ConditionExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_location mProperty_mConditionLocation ;
   public: GALGAS_conditional_5F_branch mProperty_mCondition ;
@@ -7712,6 +7805,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_NegateCo
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_NegateCondition : public cPtr_pic_31__38_ConditionExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_ConditionExpression mProperty_mCondition ;
 

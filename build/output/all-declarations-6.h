@@ -1185,6 +1185,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Sequent
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_SequentialInstruction : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
+/* § public: virtual GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_uint getter_instructionSize (C_Compiler * COMMA_LOCATION_ARGS) const ; */
 //--- Properties
   public: GALGAS_location mProperty_mInstructionLocation ;
 
@@ -1414,6 +1419,17 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Abstrac
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_AbstractBlockTerminator : public acStrongPtr_class {
+
+//----------------------------------------------------------------------------------------------------------------------
+
+/* § public: virtual GALGAS_bool getter_isEqualToTerminator (const GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_bool getter_needToInsertJumpInstruction (const GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_string getter_terminatorDisplay (const GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const ; */
+/* § public: virtual GALGAS_uint getter_terminatorSize (const GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const ; */
 //--- Properties
   public: GALGAS_location mProperty_mInstructionLocation ;
 
@@ -1741,6 +1757,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SingleI
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_SingleInstructionTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -1879,6 +1898,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ReturnT
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_ReturnTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
 
 //--- Constructor
@@ -2026,6 +2048,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetlwTe
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_RetlwTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_uint mProperty_mLiteralValue ;
 
@@ -2175,6 +2200,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetfieT
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_RetfieTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mFastReturn ;
 
@@ -2330,6 +2358,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Compute
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_ComputedGotoTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstringlist mProperty_mTargetLabels ;
   public: GALGAS_bool mProperty_mUsesRCALL ;
@@ -2487,6 +2518,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Compute
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_ComputedRETLWTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_uintlist mProperty_mLiteralValues ;
   public: GALGAS_bool mProperty_mUsesRCALL ;
@@ -2724,6 +2758,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Compute
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_ComputedBraTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstringlist mProperty_mTargetLabels ;
   public: GALGAS_bool mProperty_mUsesRCALL ;
@@ -2952,6 +2989,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Abstrac
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_ipic_31__38_SingleInstructionTerminator mProperty_mSingleInstructionTerminatorIfConditionTrue ;
   public: GALGAS_ipic_31__38_SingleInstructionTerminator mProperty_mSingleInstructionTerminatorIfConditionFalse ;
@@ -3206,6 +3246,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_IncDecR
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_IncDecRegisterTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
   public: GALGAS_bool mProperty_mIncrement ;
@@ -3360,6 +3403,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_TestRegi
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_TestRegisterTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
 
@@ -3516,6 +3562,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestT
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_BitTestTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
   public: GALGAS_uint mProperty_mBitNumber ;
@@ -3666,6 +3715,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_InstructionWithNoOperand : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_InstructionWithNoOperandKind mProperty_mKind ;
 
@@ -3835,6 +3887,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
@@ -4085,6 +4140,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code mProperty_mFAinstruction ;
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
@@ -4326,6 +4384,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication mProperty_mSourceRegisterDescription ;
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication mProperty_mDestinationRegisterDescription ;
@@ -4480,6 +4541,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_literal_5F_instruction_5F_opcode mProperty_mLiteralInstruction ;
   public: GALGAS_uint mProperty_mLiteralValue ;
@@ -4637,6 +4701,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mFSRindex ;
   public: GALGAS_uint mProperty_mValue ;
@@ -4797,6 +4864,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bit_5F_oriented_5F_op mProperty_mBitOrientedOp ;
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
@@ -4950,6 +5020,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mBankIndex ;
 
@@ -5099,6 +5172,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_uint mProperty_mBlankValue ;
 
@@ -5248,6 +5324,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_uint mProperty_mBlankValue ;
 
@@ -5394,6 +5473,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_tableAccessOption mProperty_mOption ;
 
@@ -5540,6 +5622,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_tableAccessOption mProperty_mOption ;
 
@@ -5689,6 +5774,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mOccurrenceFactor ;
 
@@ -5838,6 +5926,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mOccurrenceFactor ;
 
@@ -5993,6 +6084,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_ipic_31__38_SequentialInstructionList mProperty_mTargetInstructions ;
   public: GALGAS_bool mProperty_mUsesRCALL ;
@@ -6136,6 +6230,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_con
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction : public cPtr_ipic_31__38_SequentialInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_ipic_31__38_SequentialInstruction mProperty_mEmbeddedInstruction ;
 
@@ -6292,6 +6389,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_ski
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_bool mProperty_mSkipIfSet ;
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
@@ -6537,6 +6637,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_ski
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code mProperty_mCompareInstruction ;
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
@@ -6786,6 +6889,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_ski
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;

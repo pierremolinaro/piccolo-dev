@@ -2677,6 +2677,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_JumpTer
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_ipic_31__38_JumpTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mLabel ;
   public: GALGAS_jumpInstructionKind mProperty_mKind ;

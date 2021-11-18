@@ -510,6 +510,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberLabelValue
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_bitNumberLabelValue : public cPtr_bitNumberExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mBitNumberLabelValue ;
   public: GALGAS_luint mProperty_mBitNumberIndexValue ;
@@ -624,6 +627,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_byteDeclarationInRa
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_byteDeclarationInRam : public cPtr_declarationInRam {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mName ;
   public: GALGAS_immediatExpression mProperty_mSizeExpression ;
@@ -723,6 +729,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatInteger ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatInteger : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_luint mProperty_mValue ;
 
@@ -811,6 +820,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatRegister ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatRegister : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegister ;
 
@@ -908,6 +920,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatSlice ;
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_immediatSlice : public cPtr_immediatExpression {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mRegisterName ;
   public: GALGAS_immediatSliceExpressionList mProperty_mSliceExpressionList ;

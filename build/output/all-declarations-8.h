@@ -638,6 +638,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public cPtr_baseline_5F_intermediate_5F_pseudo {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mLabel ;
 
@@ -791,6 +794,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public cPtr_baseline_5F_intermediate_5F_pseudo {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mRoutineName ;
   public: GALGAS_bool mProperty_mIsRegular ;
@@ -946,6 +952,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public cPtr_baseline_5F_intermediate_5F_pseudo {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mRoutineName ;
   public: GALGAS_uint mProperty_mPage ;
@@ -1164,6 +1173,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_JUMP : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
   public: GALGAS_uint mProperty_mCurrentPage ;
@@ -1317,6 +1329,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_CALL : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -1478,6 +1493,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_JSR : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
   public: GALGAS_uint mProperty_mCurrentPage ;
@@ -1637,6 +1655,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_TRIS : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mOperand ;
   public: GALGAS_uint mProperty_mOpcode ;
@@ -1959,6 +1980,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembl
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE : public cPtr_baseline_5F_assembly_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mRoutineName ;
   public: GALGAS_bool mProperty_mIsRegular ;
@@ -2114,6 +2138,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembl
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE : public cPtr_baseline_5F_assembly_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mRoutineName ;
   public: GALGAS_uint mProperty_mPage ;
@@ -2263,6 +2290,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembl
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL : public cPtr_baseline_5F_assembly_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mLabel ;
 
@@ -2411,6 +2441,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembl
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_assembly_5F_GOTO : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -2560,6 +2593,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembl
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_assembly_5F_CALL : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -2715,6 +2751,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembl
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_assembly_5F_TRIS : public cPtr_baseline_5F_assembly_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mOperand ;
   public: GALGAS_uint mProperty_mOpcode ;
@@ -3151,6 +3190,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL : public cPtr_midrange_5F_intermediate_5F_instruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mLabel ;
   public: GALGAS_bool mProperty_mIsDeletable ;
@@ -3413,6 +3455,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_intermediate_5F_CALL : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
 
@@ -3571,6 +3616,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 class cPtr_midrange_5F_intermediate_5F_JSR : public cPtr_midrange_5F_intermediate_5F_actualInstruction {
+
+//----------------------------------------------------------------------------------------------------------------------
+
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
   public: GALGAS_midrange_5F_call_5F_goto_5F_bit mProperty_mBit_31__31_ ;
