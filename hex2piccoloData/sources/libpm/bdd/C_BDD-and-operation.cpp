@@ -43,7 +43,7 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-typedef struct {
+typedef struct tStructANDOperationCacheEntry {
   public : uint64_t mOperands ;
   public : uint32_t mResult ;
 } tStructANDOperationCacheEntry ;
