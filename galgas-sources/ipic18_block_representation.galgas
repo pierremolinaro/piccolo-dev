@@ -521,7 +521,7 @@ func pic18_Bcc_instruction_code
     error inTargetLabel: "** INTERNAL ERROR ** displacement too large for conditional branch instruction"
   end
 
-  var @conditional_branch conditionalBranch
+  let @conditional_branch conditionalBranch
   if inComplemented then
     switch inConditionalBranch
     case bz   : conditionalBranch = @conditional_branch. bnz
@@ -537,8 +537,8 @@ func pic18_Bcc_instruction_code
     conditionalBranch = inConditionalBranch
   end
   
-  var @uint baseCode
-  var @string mnemonic
+  let @uint baseCode
+  let @string mnemonic
   switch conditionalBranch
   case bz   : baseCode = 0xE000 mnemonic = "BZ"
   case bnz  : baseCode = 0xE100 mnemonic = "BNZ"

@@ -546,13 +546,11 @@ proc buildInvocationGraph
 
 #----------------------------------------------------------------------------*
 
-func blockDiscontinuityCount
-  ?let @ipic18BlockList inBlockList
-  ->@uint outResult {
+func blockDiscontinuityCount ?let @ipic18BlockList inBlockList -> @uint outResult {
   outResult = 0
   for (mBlock) in  inBlockList do(blockIndex)
     if mBlock.mAddress == @uint. max then # Only relocatable block
-      var @string nextBlockLabel
+      let @string nextBlockLabel
       if (blockIndex+1) < [inBlockList length] then
         nextBlockLabel = [inBlockList mBlockAtIndex !blockIndex+1].mLabel.string
       else

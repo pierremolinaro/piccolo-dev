@@ -257,17 +257,15 @@ method @baseline_intermediate_GOTO optimizeGOTO
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone {
 #--- The GOTO goes to the next instruction ?
-  var @stringset reachedLabelSet
-  findBaselineFirstInstructionOrLabelFromAddress ( !inLineIndex+1 !ioGeneratedInstructionList ?* ?reachedLabelSet )
+  findBaselineFirstInstructionOrLabelFromAddress ( !inLineIndex+1 !ioGeneratedInstructionList ?* ?let reachedLabelSet )
   if [reachedLabelSet hasKey !self.mTargetLabel.string] then
     [!?ioGeneratedInstructionList setMInstructionAtIndex !@baseline_intermediate_NULL. new !inLineIndex]
     ioListFileContents += "  line " + [inLineIndex string] + ": GOTO branching to next instruction deleted\n"
   else      
   #--- Find destination label definition line
-    [inSymbolTable searchKey !self.mTargetLabel ?var @uint line]
+    [inSymbolTable searchKey !self.mTargetLabel ?let @uint line]
   #--- Find first executable instruction
-    var @baseline_intermediate_instruction firstInstruction
-    findBaselineFirstInstructionFromAddress ( !line + 1 !ioGeneratedInstructionList ?firstInstruction )
+    findBaselineFirstInstructionFromAddress ( !line + 1 !ioGeneratedInstructionList ?let firstInstruction )
   #--- Optimization from found first instruction
     cast firstInstruction
     case == @baseline_intermediate_instruction_literalOperation literalOp :
@@ -304,12 +302,12 @@ method @baseline_intermediate_JUMP optimizeJUMP
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone {
 #--- Find destination label definition line
-  [inSymbolTable searchKey !self.mTargetLabel ?var @uint line]
+  [inSymbolTable searchKey !self.mTargetLabel ?let @uint line]
 #--- Find first executable instruction
   findBaselineFirstInstructionFromAddress (
     !line + 1
     !ioGeneratedInstructionList
-    ?var @baseline_intermediate_instruction firstInstruction
+    ?let @baseline_intermediate_instruction firstInstruction
   )
 #--- Optimization from found first instruction
   cast firstInstruction
@@ -365,12 +363,12 @@ method @baseline_intermediate_CALL optimizeCALL
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone {
 #--- Find destination label definition line
-  [inSymbolTable searchKey !self.mTargetLabel ?var @uint line]
+  [inSymbolTable searchKey !self.mTargetLabel ?let @uint line]
 #--- Find first executable instruction
   findBaselineFirstInstructionFromAddress (
     !line + 1
     !ioGeneratedInstructionList
-    ?var @baseline_intermediate_instruction firstInstruction
+    ?let @baseline_intermediate_instruction firstInstruction
   )
 #--- Optimization from found first instruction
   cast firstInstruction
@@ -401,12 +399,12 @@ method @baseline_intermediate_JSR optimizeJSR
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone {
 #--- Find destination label definition line
-  [inSymbolTable searchKey !self.mTargetLabel ?var @uint line]
+  [inSymbolTable searchKey !self.mTargetLabel ?let @uint line]
 #--- Find first executable instruction
   findBaselineFirstInstructionFromAddress (
     !line + 1
     !ioGeneratedInstructionList
-    ?var @baseline_intermediate_instruction firstInstruction
+    ?let @baseline_intermediate_instruction firstInstruction
   )
 #--- Optimization from found first instruction
   cast firstInstruction
@@ -438,7 +436,7 @@ method @baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE
 #--- If next instruction is not a label definition,
 #    the routine is not reachable and should be deleted (until END_ROUTINE)
 #--- Get next instruction
-  var @baseline_intermediate_instruction nextInstruction = [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 1]
+  let @baseline_intermediate_instruction nextInstruction = [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 1]
 #--- Next instruction is a label ?
   var @bool reachable = false
   cast nextInstruction
@@ -466,12 +464,12 @@ method @baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc
   ?!@string ioListFileContents
   ?!@bool ioOptimizationsDone {
 #--- Find destination label definition line
-  [inSymbolTable searchKey !@lstring. new { !self.mTargetLabel !@location.here} ?var @uint line]
+  [inSymbolTable searchKey !@lstring. new { !self.mTargetLabel !@location.here} ?let @uint line]
 #--- Find first executable instruction
   findBaselineFirstInstructionFromAddress (
     !line + 1
     !ioGeneratedInstructionList
-    ?var @baseline_intermediate_instruction firstInstruction
+    ?let @baseline_intermediate_instruction firstInstruction
   )
 #--- Optimization from found first instruction
   cast firstInstruction
@@ -560,7 +558,7 @@ proc perform_baseline_optimizations
     end
     for (lkey *) in  symbolTable do
       if not [referencedLabels hasKey !lkey.string] then
-        [symbolTable searchKey !lkey ?var @uint definitionLine]
+        [symbolTable searchKey !lkey ?let @uint definitionLine]
         ioListFileContents += "  line " + [definitionLine  string] + ": unreferenced label '" + lkey + "' is deleted\n"
         [!?ioGeneratedInstructionList setMInstructionAtIndex !@baseline_intermediate_NULL. new !definitionLine]
         [!?symbolTable removeKey !lkey ?*]

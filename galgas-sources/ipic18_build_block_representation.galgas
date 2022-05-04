@@ -28,7 +28,7 @@ method @registerExpression analyzeRegisterExpression
   [inRegisterTable searchKey
     !self.mRegisterName
     ?let registerAddressList
-    ?@uint size
+    ?let @uint size
     ?outBitSliceTable
     ?*
     ?let protection
@@ -50,7 +50,7 @@ method @registerExpression analyzeRegisterExpression
   if not found then
     needsBSRaccess = true
     [registerAddressList first ?registerAddress]
-    var @uint neededBank = registerAddress >> 8
+    let @uint neededBank = registerAddress >> 8
     if (neededBank != inCurrentBank) then
       var @string errorMessage = "Accessing the '" + self.mRegisterName + "' needs the bank selection set to " + [neededBank string]
       if inCurrentBank == @uint. max then
@@ -86,9 +86,9 @@ method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
     assemblyString += " + " + [[offset uint] hexString]
   end
 #--- 
-  [inRegisterTable searchKey !self.mRegisterName ?var @uintlist registerAddressList ?var @uint size ?2* ?let protection]
+  [inRegisterTable searchKey !self.mRegisterName ?let @uintlist registerAddressList ?let @uint size ?2* ?let protection]
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:inWriteAccess !protection]
-  [registerAddressList first ?var @uint registerAddress]
+  [registerAddressList first ?let @uint registerAddress]
 #---
   if [offset uint] >= size then
     error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string]
@@ -109,7 +109,7 @@ method @registerExpression getRegisterAddress
   ?!@stringset ioUsedRegisters
   !@uint outRegisterAddress
 {
-  [inRegisterTable searchKey !self.mRegisterName ?var @uintlist registerAddressList ?var @uint size ?2* ?let protection]
+  [inRegisterTable searchKey !self.mRegisterName ?let @uintlist registerAddressList ?let @uint size ?2* ?let protection]
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:inWriteAccess !protection]
 #---
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
@@ -176,7 +176,7 @@ override method @pic18Instruction_FDA analyzeSimpleInstruction
     !inRegisterTable
     !inConstantMap
     !writeAccess:not self.m_W_isDestination
-    ?var @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
   ]
@@ -206,11 +206,11 @@ override method @pic18Instruction_FA analyzeSimpleInstruction
     !inRegisterTable
     !inConstantMap
     !writeAccess:true
-    ?var @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?let @ipic18_intermediate_registerExpression IPICregisterDescription
     ?*
     !?ioUsedRegisters
   ]
-  var @FA_sequential_instruction_base_code code
+  let @FA_sequential_instruction_base_code code
   switch self.mFAinstruction
   case CLRF : code = @FA_sequential_instruction_base_code. CLRF
   case MOVWF : code = @FA_sequential_instruction_base_code. MOVWF
@@ -242,14 +242,14 @@ override method @pic18Instruction_MOVFF analyzeSimpleInstruction
     !inRegisterTable
     !inConstantMap
     !writeAccess:false
-    ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication sourceIPICregisterDescription
+    ?let @ipic18_intermediate_registerExpressionWithoutBSRIndication sourceIPICregisterDescription
     !?ioUsedRegisters
   ]
   [self.mDestinationRegisterName analyzeRegisterExpressionWithoutCheckingBank
     !inRegisterTable
     !inConstantMap
     !writeAccess:true
-    ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication destinationIPICregisterDescription
+    ?let @ipic18_intermediate_registerExpressionWithoutBSRIndication destinationIPICregisterDescription
     !?ioUsedRegisters
   ]
   outInstruction = @ipic18_intermediate_instruction_MOVFF. new {
@@ -276,8 +276,8 @@ override method @pic18Instruction_FBA analyzeSimpleInstruction
     !inRegisterTable
     !inConstantMap
     !writeAccess:true
-    ?var @ipic18_intermediate_registerExpression IPICregisterDescription
-    ?var @bitSliceTable bitSliceTable
+    ?let @ipic18_intermediate_registerExpression IPICregisterDescription
+    ?let @bitSliceTable bitSliceTable
     !?ioUsedRegisters
   ]
   [self.mBitNumber getBitNumber
@@ -285,7 +285,7 @@ override method @pic18Instruction_FBA analyzeSimpleInstruction
     !inConstantMap
     !?ioUsedRegisters
     !bitSliceTable
-    ?var @uint bitNumber
+    ?let @uint bitNumber
   ]
   outInstruction = @ipic18_intermediate_instruction_FBA. new {
     !self.mInstructionLocation
@@ -651,7 +651,7 @@ override method @pic18Instruction_savebank analyze
     !inRegisterTable
     !inConstantMap
     !writeAccess:true
-    ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication BSR_IPICregisterDescription
+    ?let @ipic18_intermediate_registerExpressionWithoutBSRIndication BSR_IPICregisterDescription
     !?ioUsedRegisters
   ]
 #--- Get values for register used for saving
@@ -659,7 +659,7 @@ override method @pic18Instruction_savebank analyze
     !inRegisterTable
     !inConstantMap
     !writeAccess:true
-    ?var @ipic18_intermediate_registerExpressionWithoutBSRIndication save_IPICregisterDescription
+    ?let @ipic18_intermediate_registerExpressionWithoutBSRIndication save_IPICregisterDescription
     !?ioUsedRegisters
   ]
 #--- Generate "MOVFF BSR, save_register" instruction
@@ -1442,7 +1442,6 @@ override method @pic18Instruction_computed_rcall analyze
   ?let @routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters {
 #---
-  var @bool allPreserveBank = true
   var @bool someReturnsBank = false
   var @uint returnedBankSelection = ioCurrentBank
   for (mValue) in  self.mTargetLabels do
@@ -1762,7 +1761,7 @@ override method @pic18Instruction_JUMPCC analyze
     error self.mTargetLabel:"a regular routine should be called with a RCALL, CALL or JSR instruction"
   end
 #---
-  var @conditionalBranchMode mode
+  let @conditionalBranchMode mode
   if self.mIsBcc then
     mode = @conditionalBranchMode. native
   else
@@ -1874,7 +1873,7 @@ override method @pic18Instruction_IF_FA_SEMI_COLON analyze
   ?let @bool inShouldPreserveBSR
   ?let @routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters {
-  var @ipic18_compare_register_instruction_base_code baseCode
+  let @ipic18_compare_register_instruction_base_code baseCode
   switch self.mOpCode
     case CPFSEQ : baseCode = @ipic18_compare_register_instruction_base_code. CPFSEQ
     case CPFSGT : baseCode = @ipic18_compare_register_instruction_base_code. CPFSGT
@@ -1938,7 +1937,7 @@ override method @pic18Instruction_IF_IncDec analyze
   ?let @routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters {
 #---
-  var @skip_instruction_FDA_base_code baseCode
+  let @skip_instruction_FDA_base_code baseCode
   if self.mIncrement & self.mSkipIfZero then
     baseCode = @skip_instruction_FDA_base_code. INCFSZ
   elsif self.mIncrement & not self.mSkipIfZero then
@@ -2027,7 +2026,7 @@ override method @pic18Instruction_structured_if analyze
     !conditionTrueLabel
     !conditionFalseLabel
     !?ioUsedRegisters
-    ?var @ipic18AbstractBlockTerminator testTerminator
+    ?let @ipic18AbstractBlockTerminator testTerminator
   ]
 #--- Save current block block
   ioGeneratedBlockList += !@ipic18Block. new {
@@ -2245,7 +2244,7 @@ override method @pic18Instruction_do_while analyze
       !conditionTrueLabel
       !conditionFalseLabel
       !?ioUsedRegisters
-      ?var @ipic18AbstractBlockTerminator testTerminator
+      ?let @ipic18AbstractBlockTerminator testTerminator
     ]
     ioGeneratedBlockList += !@ipic18Block. new {
       !@uint. max # relocatable
@@ -2722,8 +2721,8 @@ override method @pic18RegisterComparisonCondition analyzeCondition
     !?ioUsedRegisters
   ]
 #--- Handle comparison
-  var @ipic18RegisterComparison ipicComparison
-  var @bool complementaryBranch
+  let @ipic18RegisterComparison ipicComparison
+  let @bool complementaryBranch
   switch self.mComparison
   case equal :
     ipicComparison = @ipic18RegisterComparison. registerEqualsToW
@@ -2955,7 +2954,7 @@ override method @pic18AndCondition analyzeCondition
     !inConditionTrueLabel
     !inConditionFalseLabel
     !?ioUsedRegisters
-    ?var @ipic18AbstractBlockTerminator secondTestBlockTerminator
+    ?let @ipic18AbstractBlockTerminator secondTestBlockTerminator
   ]
 #--- Create a new block
   ioGeneratedBlockList += !@ipic18Block. new {
@@ -3165,9 +3164,7 @@ proc build_ipic18_block_representation_list
 #-------------------------------- Check the "main" routine is declared
   if inProgramKind != @programKind. userProgram then
     if [routineMap hasKey !"main"] then
-      var @bool isNoReturn
-      var @uint requiredBank
-      [routineMap searchKey !@lstring. new { !"main" !@location.here} ?isNoReturn ?requiredBank ?* ?*]
+      [routineMap searchKey !@lstring. new { !"main" !@location.here} ?let isNoReturn ?let requiredBank ?* ?*]
       if not isNoReturn then
         error @location.here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main requiresbank 0\""
       end
@@ -3224,7 +3221,7 @@ proc build_ipic18_block_representation_list
 #-------------------------------- At 0x04, generate the first bootloader entry point (if any)
   var @routineDeclarationList tempBootloaderRoutineDeclarationList = inBootloaderRoutineDeclarationListForBootloaderImplementation
   if [tempBootloaderRoutineDeclarationList length] > 0 then
-    [!?tempBootloaderRoutineDeclarationList popFirst ?var @lstring routineName ?* ?* ?* ?*]
+    [!?tempBootloaderRoutineDeclarationList popFirst ?let @lstring routineName ?* ?* ?* ?*]
     generatedBlockList += !@ipic18Block. new {
       !0x04
       !["_entry_bootloader_04" nowhere]
@@ -3250,7 +3247,7 @@ proc build_ipic18_block_representation_list
   loop( [tempBootloaderRoutineDeclarationList length])
   while ([tempBootloaderRoutineDeclarationList length] > 0) & (entryPoint < 0x18) 
   do
-    [!?tempBootloaderRoutineDeclarationList popFirst ?var @lstring routineName ?* ?* ?* ?*]
+    [!?tempBootloaderRoutineDeclarationList popFirst ?let @lstring routineName ?* ?* ?* ?*]
     generatedBlockList += !@ipic18Block. new {
       !entryPoint
       !["_entry_bootloader_" + [entryPoint xString] nowhere]
@@ -3370,7 +3367,7 @@ proc build_ipic18_block_representation_list
 #-------------------------------- Generate routines
   for (mRoutineName mRequiredBank mReturnedBank mPreservesBank mIsNoReturn mInstructionList *) in  inRoutineDefinitionList do
     var @uint currentBank = mRequiredBank.uint
-    var @routineKind routineKind
+    let @routineKind routineKind
     if mIsNoReturn then
       routineKind = @routineKind. noReturnRoutine
     else
@@ -3637,8 +3634,8 @@ proc build_ipic18_block_representation_list
       verboseMessage += " / " + inROMSize + " bytes ("
       verboseMessage += [(usedROMsize * 100) / inROMSize string] + "%)\n"
       for (lkey mFirstAddress mFirstFreeAddress mLastAddressPlusOne *) in inRamBank do
-        var @uint bankSize = mLastAddressPlusOne - mFirstAddress
-        var @uint usedSize = mFirstFreeAddress - mFirstAddress
+        let @uint bankSize = mLastAddressPlusOne - mFirstAddress
+        let @uint usedSize = mFirstFreeAddress - mFirstAddress
         verboseMessage += "  Bank '" + lkey + "': "
         verboseMessage += [usedSize string] + " / "
         verboseMessage += [bankSize string] + " bytes ("

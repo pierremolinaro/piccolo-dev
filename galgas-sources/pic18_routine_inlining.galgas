@@ -159,11 +159,11 @@ override method @pic18Instruction_structured_if performInlining
 #---------------------------------------------------------------------------*
 
 override method @pic18Instruction_JSR performInlining
-  ?let @stringset inInlinedRoutineSet
-  ?let @declaredRoutineMap inDeclaredRoutineMap
-  ?let @stringset inCurrentlyInlinedRoutineSet
-  ?!@pic18InstructionList ioInstructionList {
-  var @bool inlineDone
+                      ?let @stringset inInlinedRoutineSet
+                      ?let @declaredRoutineMap inDeclaredRoutineMap
+                      ?let @stringset inCurrentlyInlinedRoutineSet
+                      ?!@pic18InstructionList ioInstructionList {
+  let @bool inlineDone
   if [inDeclaredRoutineMap hasKey !self.mTargetLabel.string]
    & [inInlinedRoutineSet hasKey !self.mTargetLabel.string]
    & not [inCurrentlyInlinedRoutineSet hasKey !self.mTargetLabel.string] then

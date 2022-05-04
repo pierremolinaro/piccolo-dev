@@ -56,7 +56,7 @@ proc performRelativesResolution
   var modifiedBlockList =@ipic18BlockList.emptyList{}
   var @uint blockStartAddress = 0
   for (mBlock) in  ioBlockList do(blockIndex)
-    var @string nextBlockLabel
+    let @string nextBlockLabel
     if (blockIndex+1) < [ioBlockList length] then
       nextBlockLabel = [ioBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
@@ -107,7 +107,7 @@ proc computeLabelAbsoluteAddressMap
 #--- Pass first absolute blocks
   var @uint blockStartAddress = 0
   for (mBlock) in  inGeneratedBlockList do(blockIndex)
-    var @string nextBlockLabel
+    let @string nextBlockLabel
     if (blockIndex+1) < [inGeneratedBlockList length] then
       nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
@@ -233,7 +233,7 @@ proc ipic18RelativeBranchOverflow
   outOverflowMap = @branchOverflowMap. emptyMap
   var @uint blockStartAddress = 0
   for (mBlock) in  inBlockList do(blockIndex)
-    var @string nextBlockLabel
+    let @string nextBlockLabel
     if (blockIndex+1) < [inBlockList length] then
       nextBlockLabel = [inBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else

@@ -314,7 +314,7 @@ proc midrange_build_assembly_code
 #--- Prefined registers
   outAssemblyCode += ";--- Prefefined registers\n"
   for (lkey mRegisterAddressList * * * *) in  inPredefinedRegisters do
-    var @uint firstRegister [mRegisterAddressList first ?firstRegister]
+    let @uint firstRegister [mRegisterAddressList first ?firstRegister]
     outAssemblyCode += lkey.string + " EQU " + [firstRegister hexString] + "\n"
   end
   outAssemblyCode += "\n"
@@ -322,7 +322,7 @@ proc midrange_build_assembly_code
   outAssemblyCode += ";--- User defined registers (in RAM)\n"
   for (lkey mRegisterAddressList * * * *) in  inAllRegisters do
     if not [inPredefinedRegisters hasKey !lkey.string] then
-      var @uint firstRegister [mRegisterAddressList first ?firstRegister]
+      let @uint firstRegister [mRegisterAddressList first ?firstRegister]
       outAssemblyCode += lkey.string + " EQU " + [firstRegister hexString] + "\n"
     end
   end

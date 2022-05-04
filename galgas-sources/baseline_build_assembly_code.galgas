@@ -185,12 +185,12 @@ override method @baseline_intermediate_JUMP generateAssemblyCode
   var @uint idx = 0
   loop( 8) while pageChangeFlags != 0 do
     if (pageChangeFlags & 1) != 0 then
-      var @uint bitIndex
+      let @uint bitIndex
       if [inStatusRegisterBitSliceTable hasKey !"PA"] then
         [inStatusRegisterBitSliceTable searchKey 
           !@lstring. new { !"PA" !self.mInstructionLocation}
-          ?var @uint sliceIndex
-          ?var @uint sliceSize
+          ?let @uint sliceIndex
+          ?let @uint sliceSize
         ]
         if idx >= sliceSize then
           error self.mInstructionLocation : "internal error, idx (" + idx + ") >= sliceSize (" + sliceSize + ")"
@@ -199,8 +199,8 @@ override method @baseline_intermediate_JUMP generateAssemblyCode
       elsif [inStatusRegisterBitSliceTable hasKey !"PA"+ idx] then
         [inStatusRegisterBitSliceTable searchKey 
           !@lstring. new { !"PA"+ idx !self.mInstructionLocation}
-          ?var @uint sliceIndex
-          ?var @uint sliceSize
+          ?let @uint sliceIndex
+          ?let @uint sliceSize
         ]
         if sliceSize != 1 then
           error self.mInstructionLocation : "internal error: sliceSize (" + sliceSize + ") != 1"
@@ -248,12 +248,12 @@ override method @baseline_intermediate_JSR generateAssemblyCode
   var pageRestoreInstructions =@baseline_assembly_instructionList.emptyList{}
   loop( 8) while pageChangeFlags != 0 do
     if (pageChangeFlags & 1) != 0 then
-      var @uint bitIndex
+      let @uint bitIndex
       if [inStatusRegisterBitSliceTable hasKey !"PA"] then
         [inStatusRegisterBitSliceTable searchKey 
           !@lstring. new { !"PA" !self.mInstructionLocation}
-          ?var @uint sliceIndex
-          ?var @uint sliceSize
+          ?let @uint sliceIndex
+          ?let @uint sliceSize
         ]
         if idx >= sliceSize then
           error self.mInstructionLocation : "internal error, idx (" + idx + ") >= sliceSize (" + sliceSize + ")"
@@ -262,8 +262,8 @@ override method @baseline_intermediate_JSR generateAssemblyCode
       elsif [inStatusRegisterBitSliceTable hasKey !"PA"+ idx] then
         [inStatusRegisterBitSliceTable searchKey 
           !@lstring. new { !"PA"+ idx !self.mInstructionLocation}
-          ?var @uint sliceIndex
-          ?var @uint sliceSize
+          ?let @uint sliceIndex
+          ?let @uint sliceSize
         ]
         if sliceSize != 1 then
           error self.mInstructionLocation : "internal error: sliceSize (" + sliceSize + ") != 1"

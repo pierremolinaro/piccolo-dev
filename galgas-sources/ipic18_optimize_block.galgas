@@ -55,7 +55,7 @@ override method @ipic18JumpTerminator optimizeTerminator
     if (targetBlock.mAddress == @uint. max) # Relocatable
      & ([targetBlock.mInstructionList length] == 0) # Empty block
      & (targetBlock.mTerminator is >= @ipic18SingleInstructionTerminator) then
-      var @bool optimize
+      let @bool optimize
       if (targetBlock.mTerminator is >= @ipic18JumpTerminator) then
         let @ipic18JumpTerminator candidate = ( targetBlock.mTerminator as @ipic18JumpTerminator)
         optimize = self.mLabel.string != candidate.mLabel.string
@@ -173,7 +173,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
     !inBlockLabel
     !?ioOptimizationDone
     !?ioListFileContents
-    ?var @ipic18AbstractBlockTerminator optimizedTrueTerminator
+    ?let @ipic18AbstractBlockTerminator optimizedTrueTerminator
   ]
   outOptimizedTrueTerminator = ( optimizedTrueTerminator as @ipic18SingleInstructionTerminator)
 #---
@@ -184,7 +184,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
     !inBlockLabel
     !?ioOptimizationDone
     !?ioListFileContents
-    ?var @ipic18AbstractBlockTerminator optimizedFalseTerminator
+    ?let @ipic18AbstractBlockTerminator optimizedFalseTerminator
   ]
   outOptimizedFalseTerminator = ( optimizedFalseTerminator as @ipic18SingleInstructionTerminator)
 #---- Useless condition ?
@@ -808,7 +808,7 @@ override method @ipic18_skip_instruction_BitTestSkip optimizeInstruction
     !inBlockLabel
     ?outOptimizationDone
     !?ioListFileContents
-    ?var @ipic18SequentialInstruction optimizedEmbeddedInstruction
+    ?let @ipic18SequentialInstruction optimizedEmbeddedInstruction
     ?*
   ]
   if outOptimizationDone then
@@ -843,7 +843,7 @@ override method @ipic18_skip_instruction_compare_register optimizeInstruction
     !inBlockLabel
     ?outOptimizationDone
     !?ioListFileContents
-    ?var @ipic18SequentialInstruction optimizedEmbeddedInstruction
+    ?let @ipic18SequentialInstruction optimizedEmbeddedInstruction
     ?*
   ]
   if outOptimizationDone then
@@ -877,7 +877,7 @@ override method @ipic18_skip_instruction_FDA optimizeInstruction
     !inBlockLabel
     ?outOptimizationDone
     !?ioListFileContents
-    ?var @ipic18SequentialInstruction optimizedEmbeddedInstruction
+    ?let @ipic18SequentialInstruction optimizedEmbeddedInstruction
     ?*
   ]
   if outOptimizationDone then
@@ -1146,7 +1146,7 @@ proc ipic18OptimizeBlocks
           !ioGeneratedBlockList
           !?optimizationDone
           !?ioListFileContents
-          ?var @ipic18Block optimizedBlock
+          ?let @ipic18Block optimizedBlock
         ]
         optimizedBlockList += !optimizedBlock
       else

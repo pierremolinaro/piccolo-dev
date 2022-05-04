@@ -38,7 +38,7 @@ getter @uint x4String ->@string outResult {
 #----------------------------------------------------------------------------*
 
 proc checkCurrentEmitAddress ?let @uint inCurrentAddress {
-  var @uint addr currentEmitAddress ( ? addr )
+  currentEmitAddress (?let addr)
   if (@uint. errorCount == 0) & (addr != inCurrentAddress) then
     error @location.here:"internal error: current emit address is " + [addr hexString]
     + "; it should be " + [inCurrentAddress hexString]
@@ -109,7 +109,7 @@ override method @immediatRegister eval
     ioUsedRegisters += !self.mRegister.mRegisterName.string
     [inRegisterTable searchKey !self.mRegister.mRegisterName ?let registerAddressList ?let size ?2* ?let protection]
     [inRegisterTable checkPrivateAccess !self.mRegister.mRegisterName !write:false !protection]
-    [registerAddressList first ?@uint registerAddress]
+    [registerAddressList first ?let @uint registerAddress]
     [self.mRegister.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
     if offset < 0LS then
       error self.mRegister.mEndOfOffsetExpression
@@ -377,7 +377,7 @@ override method @immediatSlice eval
   !@sint64 outResult
   ?!@stringset ioUsedRegisters
 {
-  var @bitSliceTable bitSliceTable
+  let @bitSliceTable bitSliceTable
   outResult = 0LS
   ioUsedRegisters += !self.mRegisterName.string
   [inRegisterTable searchKey !self.mRegisterName ?* ?* ? bitSliceTable ?* ?let protection]
@@ -388,9 +388,7 @@ override method @immediatSlice eval
       error mSliceName:"the '" + mSliceName + "' bit field has been already defined"
     else
       sliceNameSet += !mSliceName.string
-      var @uint sliceIndex
-      var @uint sliceSize
-      [bitSliceTable searchKey !mSliceName ?sliceIndex ?sliceSize]
+      [bitSliceTable searchKey !mSliceName ?let sliceIndex ?let sliceSize]
       [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
       if (result < 0LS) | (result > ((1LS << sliceSize) - 1LS)) then
         error mSliceName:"invalid immediat value associated to the '" + mSliceName + "' bit field, evaluated as " + [result string]

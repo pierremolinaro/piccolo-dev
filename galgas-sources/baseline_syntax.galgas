@@ -37,7 +37,7 @@ rule <section_list>
     $unused$
     $byte$
     repeat
-      $identifier$ ?var @lstring unusedRegister
+      $identifier$ ?let @lstring unusedRegister
       unusedRegisterList += !unusedRegister
     while 
       $,$
@@ -46,7 +46,7 @@ rule <section_list>
     $unused$
     $routine$
     repeat
-      $identifier$ ?var @lstring unusedRoutine
+      $identifier$ ?let @lstring unusedRoutine
       ioUnusedRoutineList += !unusedRoutine
     while 
       $,$
@@ -71,13 +71,11 @@ rule <baseline_instruction_list>
   outInstructionList = @baseline_instructionList. emptyList
   repeat
   while
-    var @baseline_instruction instruction
-    <baseline_simple_instruction> ?instruction
+    <baseline_simple_instruction> ?let instruction
     outInstructionList += !instruction
   while
-    var @baseline_instruction instruction
     <baseline_structured_instruction>
-      ?instruction
+      ?let instruction
       !?ioLabelMap
     outInstructionList += !instruction
   end
@@ -87,7 +85,7 @@ rule <baseline_instruction_list>
 
 rule <baseline_routine_definition>
   ?!@baseline_routineDefinitionList ioRoutineDefinitionList {
-  var @bool noreturn
+  let @bool noreturn
   select
     noreturn = false
   or
@@ -95,9 +93,9 @@ rule <baseline_routine_definition>
     noreturn = true
   end
   $routine$
-  $identifier$ ?var  @lstring routineName indexing routineDefinition
+  $identifier$ ?let @lstring routineName indexing routineDefinition
 #--- Page
-  var @luint page
+  let @luint page
   select
     page = @luint. new { !0 !@location.here}
   or
@@ -127,7 +125,7 @@ rule <baseline_structured_instruction>
 {
   select
     $do$
-    var @lstring doLabel
+    let @lstring doLabel
     select
       doLabel = .new {!"" !.here}
     or
@@ -152,7 +150,7 @@ rule <baseline_structured_instruction>
       !.here
     }
     $end$
-    var @lstring endDoLabel
+    let @lstring endDoLabel
     select
       endDoLabel = .new {!"" !.here}
     or
@@ -164,21 +162,21 @@ rule <baseline_structured_instruction>
     end 
   or
     $jump$
-    var @location instructionLocation = @location.here
-    $identifier$ ?var  @lstring targetLabelName
+    let @location instructionLocation = @location.here
+    $identifier$ ?let @lstring targetLabelName
     outInstruction = @baseline_instruction_JUMP. new {
       !instructionLocation
       !targetLabelName}
   or
     $jsr$
-    var @location instructionLocation = @location.here
-    $identifier$ ?var  @lstring targetLabelName
+    let @location instructionLocation = @location.here
+    $identifier$ ?let @lstring targetLabelName
     outInstruction = @baseline_instruction_JSR. new {
       !instructionLocation
       !targetLabelName}
   or
     $forever$
-    var @lstring foreverLabel
+    let @lstring foreverLabel
     select
       foreverLabel = .new {!"" !.here}
     or
@@ -188,7 +186,7 @@ rule <baseline_structured_instruction>
     let instructionLocation = @location.here
     <baseline_instruction_list> ?let instructionList !?ioLabelMap
     $end$
-    var @lstring endForeverLabel
+    let @lstring endForeverLabel
     select
       endForeverLabel = .new {!"" !.here}
     or
@@ -205,10 +203,10 @@ rule <baseline_structured_instruction>
     }
   or
     $if$
-    var @location instructionLocation = @location.here
-    var @registerExpression registerExpression
-    var @bitNumberExpression bitNumberExpression
-    var @bool skipIfSet
+    let @location instructionLocation = @location.here
+    let @registerExpression registerExpression
+    let @bitNumberExpression bitNumberExpression
+    let @bool skipIfSet
     select
       $!$
       <register_parsing> ? registerExpression
@@ -222,8 +220,7 @@ rule <baseline_structured_instruction>
       skipIfSet = false
     end
     $:$
-    var @baseline_instruction instruction
-    <baseline_simple_instruction> ?instruction
+    <baseline_simple_instruction> ?let instruction
     outInstruction = @baseline_instruction_IF_BitTest. new {
       !instructionLocation
       !instruction
@@ -232,29 +229,27 @@ rule <baseline_structured_instruction>
       !bitNumberExpression}
   or
     $if$
-    var @location instructionLocation = @location.here
-    var @bool increment
+    let @location instructionLocation = @location.here
+    let @bool increment
     select
       $decf$ increment = false
     or
       $incf$ increment = true
     end
-    var @registerExpression registerExpression
-    <register_parsing> ? registerExpression
-    var @bool w_isTarget
+    <register_parsing> ?let registerExpression
+    let @bool w_isTarget
     select
       w_isTarget = false
     or
       $,$ $w$ w_isTarget = true
     end
-    $identifier$ ?var  @lstring conditionString
-    var @string condition = [conditionString.string uppercaseString]
+    $identifier$ ?let @lstring conditionString
+    let @string condition = [conditionString.string uppercaseString]
     if condition != "NZ" then
       error conditionString:"invalid '" + condition + "' condition; it should be 'nz'"
     end
     $:$
-    var @baseline_instruction instruction
-    <baseline_simple_instruction> ?instruction
+    <baseline_simple_instruction> ?let instruction
     outInstruction = @baseline_instruction_IF_IncDec. new {
       !instructionLocation
       !instruction
@@ -264,7 +259,7 @@ rule <baseline_structured_instruction>
     }
   or
     $if$
-    var @lstring ifLabel
+    let @lstring ifLabel
     select
       ifLabel = .new {!"" !.here}
     or
@@ -273,7 +268,7 @@ rule <baseline_structured_instruction>
     end
     <baseline_structured_if_instruction> !ifLabel ?outInstruction !?ioLabelMap
     $end$
-    var @lstring endIfLabel
+    let @lstring endIfLabel
     select
       endIfLabel = .new {!"" !.here}
     or
@@ -285,7 +280,7 @@ rule <baseline_structured_instruction>
     end 
   or
     $do$
-    var @lstring doLabel
+    let @lstring doLabel
     select
       doLabel = .new {!"" !.here}
     or
@@ -298,7 +293,7 @@ rule <baseline_structured_instruction>
     var whilePartList = @baseline_partList.emptyList{}
     repeat
       $while$
-      var @lstring whileLabel
+      let @lstring whileLabel
       select
         whileLabel = .new {!"" !.here}
       or
@@ -314,7 +309,7 @@ rule <baseline_structured_instruction>
     while
     end
     $end$
-    var @lstring endDoLabel
+    let @lstring endDoLabel
     select
       endDoLabel = .new {!"" !.here}
     or
@@ -331,8 +326,8 @@ rule <baseline_structured_instruction>
       !whilePartList}
   or
     $mnop$
-    var @location instructionLocation = @location.here
-    $integer$ ?var  @luint occurrenceFactor
+    let @location instructionLocation = @location.here
+    $integer$ ?let @luint occurrenceFactor
     outInstruction = @baseline_instruction_MNOP. new { !instructionLocation !occurrenceFactor}
   end
 }
@@ -344,16 +339,15 @@ rule <baseline_structured_if_instruction>
   !@baseline_instruction outInstruction
   ?!@labelMap ioLabelMap
  {
-  var @location instructionLocation = @location.here
-  var @baseline_conditionExpression structured_if_condition
-  <baseline_condition_expression> ?structured_if_condition
+  let @location instructionLocation = @location.here
+  <baseline_condition_expression> ?let structured_if_condition
   <baseline_instruction_list> ?let thenInstructionList !?ioLabelMap
   var @baseline_instructionList elseInstructionList
   select
     elseInstructionList = @baseline_instructionList. emptyList
   or
     $elsif$
-    var @lstring elsifIfLabel
+    let @lstring elsifIfLabel
     select
       elsifIfLabel = .new {!"" !.here}
     or
@@ -368,7 +362,7 @@ rule <baseline_structured_if_instruction>
     elseInstructionList += !elsifPartInstruction
   or
     $else$
-    var @lstring elseLabel
+    let @lstring elseLabel
     select
       elseLabel = .new {!"" !.here}
     or
@@ -380,7 +374,7 @@ rule <baseline_structured_if_instruction>
     end 
     <baseline_instruction_list> ?elseInstructionList !?ioLabelMap
   end
-  var @location endOfElsePartLocation = @location.here
+  let @location endOfElsePartLocation = @location.here
   outInstruction = @baseline_instruction_structured_if. new {
     !instructionLocation
     !structured_if_condition
@@ -393,7 +387,7 @@ rule <baseline_structured_if_instruction>
 
 rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
   select
-    var @baseline_instruction_FD_base_code baseCode
+    let @baseline_instruction_FD_base_code baseCode
     select
       $addwf$
       baseCode = .ADDWF
@@ -458,7 +452,7 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
       !false # W is not destination
     }
   or
-    var @baseline_F_instruction_base_code FAinstruction
+    let @baseline_F_instruction_base_code FAinstruction
     select
       $clrf$
       FAinstruction = @baseline_F_instruction_base_code. CLRF
@@ -466,26 +460,23 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
       $movwf$
       FAinstruction = @baseline_F_instruction_base_code. MOVWF
     end
-    var @location instructionLocation = @location.here
-    var @registerExpression registerExpression
-    <register_parsing> ? registerExpression
+    let @location instructionLocation = @location.here
+    <register_parsing> ?let registerExpression
     outInstruction = @baseline_instruction_F. new {
       !instructionLocation
       !FAinstruction
       !registerExpression}
   or
-    var @baseline_bit_oriented_op bitOrientedOp
+    let @baseline_bit_oriented_op bitOrientedOp
     select
       $bcf$ bitOrientedOp = @baseline_bit_oriented_op. BCF
     or
       $bsf$ bitOrientedOp = @baseline_bit_oriented_op. BSF
     end
-    var @location instructionLocation = @location.here
-    var @registerExpression registerExpression
-    <register_parsing> ? registerExpression
+    let @location instructionLocation = @location.here
+    <register_parsing> ?let registerExpression
     $.$
-    var @bitNumberExpression bitNumberExpression
-    <bit_number_parsing> ? bitNumberExpression
+    <bit_number_parsing> ?let bitNumberExpression
     outInstruction = @baseline_instruction_FB. new {
       !instructionLocation
       !bitOrientedOp
@@ -493,15 +484,15 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
       !bitNumberExpression}
   or
     $goto$
-    var @location instructionLocation = @location.here
-    $identifier$ ?var  @lstring targetLabelName indexing routineCall
+    let @location instructionLocation = @location.here
+    $identifier$ ?let @lstring targetLabelName indexing routineCall
     outInstruction = @baseline_instruction_GOTO. new {
       !instructionLocation
       !targetLabelName}
   or
     $call$
     let @location instructionLocation = @location.here
-    $identifier$ ?var  @lstring targetLabelName indexing routineCall
+    $identifier$ ?let @lstring targetLabelName indexing routineCall
     outInstruction = @baseline_instruction_CALL. new {
       !instructionLocation
       !targetLabelName}
@@ -522,10 +513,10 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
     outInstruction = @baseline_instruction_WO_OPERAND. new { !@location.here !@baseline_WO_OPERAND_group. SLEEP}
   or
     $tris$
-    $identifier$ ?var  @lstring operand
+    $identifier$ ?let @lstring operand
     outInstruction = @baseline_instruction_TRIS. new { !@location.here !operand}
   or
-    var @baseline_literal_instruction_opcode literalInstruction
+    let @baseline_literal_instruction_opcode literalInstruction
     select
       $andlw$ literalInstruction = @baseline_literal_instruction_opcode. ANDLW
     or
@@ -535,9 +526,8 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
     or
       $xorlw$ literalInstruction = @baseline_literal_instruction_opcode. XORLW
     end
-    var @location instructionLocation = @location.here
-    var @immediatExpression expression
-    <immediate_expression> ?expression
+    let @location instructionLocation = @location.here
+    <immediate_expression> ?let expression
     outInstruction = @baseline_instruction_literalOperation. new {
       !instructionLocation
       !literalInstruction
@@ -550,8 +540,7 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
 rule <baseline_condition_factor>
   !@baseline_conditionExpression outCondition {
   $!$
-  var @baseline_conditionExpression condition
-  <baseline_condition_factor> ? condition
+  <baseline_condition_factor> ?let condition
   outCondition = @baseline_negateCondition. new { !condition}
 }
 
@@ -567,23 +556,22 @@ rule <baseline_condition_factor>
 rule <baseline_condition_factor>
   !@baseline_conditionExpression outCondition {
   select
-    var @bool isIncrement
+    let @bool isIncrement
     select
       $incf$ isIncrement = true
     or
       $decf$ isIncrement = false
     end
-    var @registerExpression registerExpression
-    <register_parsing> ? registerExpression
-    var @bool W_isDestination
+    <register_parsing> ?let registerExpression
+    let @bool W_isDestination
     select
       W_isDestination = false
     or
       $,$ $w$ W_isDestination = true
     end
-    $identifier$ ?var  @lstring conditionString
-    var @string condition = [conditionString.string uppercaseString]
-    var @bool branchIfZero
+    $identifier$ ?let @lstring conditionString
+    let @string condition = [conditionString.string uppercaseString]
+    let @bool branchIfZero
     if condition == "Z" then
       branchIfZero = true
     elsif condition == "NZ" then
@@ -599,43 +587,12 @@ rule <baseline_condition_factor>
       !W_isDestination
       !branchIfZero}
   or
-    var @registerExpression registerExpression
-    var @bitNumberExpression bitNumberExpression
-#    @bool BTFSSinstruction
-    <register_parsing> ? registerExpression
+    <register_parsing> ?let registerExpression
     $.$
-    <bit_number_parsing> ?bitNumberExpression
-#    select
-#      BTFSSinstruction = false
-#    or
-#      $identifier$ ?var  @lstring conditionString
-#      @string condition = [[conditionString string] uppercaseString]
-#      if condition == "Z" then
-#        BTFSSinstruction = true
-#        @string s = "! " + [[registerExpression mRegisterName] string]
-#        if [[registerExpression mOffset] uint] > 0 then
-#          s += " [" + [[[registerExpression mOffset] uint] string] + "]"
-#        end
-#        s += "." [bitNumberExpression display !?s]
-#        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" + s + "' instead" 
-#      elsif condition == "NZ" then
-#        BTFSSinstruction = false
-#        @string s = [[registerExpression mRegisterName] string]
-#        if [[registerExpression mOffset] uint] > 0 then
-#          s += " [" + [[[registerExpression mOffset] uint] string] + "]"
-#        end
-#        s += "." [bitNumberExpression display !?s]
-#        warning conditionString: "In Piccolo 1.2.0 and later, this construction is deprecated; use '" + s + "' instead" 
-#      else
-#        error conditionString: "invalid '" + conditionString
-#        + "' condition; valid ones are: 'z' and 'nz'"
-#        : BTFSSinstruction
-#      end
-#    end
+    <bit_number_parsing> ?let bitNumberExpression
     outCondition = @baseline_bitTest_in_structured_if_condition. new {
       !registerExpression
       !bitNumberExpression
-#      !false
     }
   end
 }
@@ -649,10 +606,9 @@ rule <baseline_condition_expression>
   repeat
   while
     $|$
-    var @baseline_conditionExpression c
-    <baseline_condition_term> ? c
-    var @baseline_conditionExpression rc = @baseline_negateCondition. new { !c}
-    var @baseline_conditionExpression lc = @baseline_negateCondition. new { !outCondition}
+    <baseline_condition_term> ?let c
+    let @baseline_conditionExpression rc = @baseline_negateCondition. new { !c}
+    let @baseline_conditionExpression lc = @baseline_negateCondition. new { !outCondition}
     outCondition = @baseline_negateCondition. new { !@baseline_andCondition. new { !lc !rc}}
   end
   $)$
@@ -666,8 +622,7 @@ rule <baseline_condition_term>
   repeat
   while
     $&$
-    var @baseline_conditionExpression c
-    <baseline_condition_factor> ? c
+    <baseline_condition_factor> ?let c
     outCondition = @baseline_andCondition. new { !outCondition !c}
   end
 }

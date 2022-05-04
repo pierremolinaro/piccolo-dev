@@ -49,7 +49,7 @@ rule <parse_bootloader>
   while
     $rom$
     $=$
-    $integer$ ?var  @luint rs
+    $integer$ ?let @luint rs
     if outReservedRomSize.uint != 0 then
       error rs : "ROM size already defined"
     elsif rs.uint == 0 then
@@ -61,9 +61,9 @@ rule <parse_bootloader>
     end
   while
     $ram$
-    $identifier$ ?var  @lstring bankName
+    $identifier$ ?let @lstring bankName
     $=$
-    $integer$ ?var  @luint rs
+    $integer$ ?let @luint rs
     if [outBootloaderReservedRAMmap hasKey !bankName.string] then
       error rs : "RAM size already defined for '" + bankName + "' bank"
     elsif rs.uint == 0 then
@@ -110,33 +110,21 @@ rule <parse_bootloader>
 #----------------------------------------------------*
 
 rule <start_symbol> {
-  var @lstring bootloaderName
-  var @lstring deviceName
-  var @routineDeclarationList bootloaderRoutineDeclarationList
-  var @bootloaderReservedRAMmap bootloaderReservedRAMmap
-  var @luint reservedRomSize
-  var @routineDeclarationList userRoutineDeclarationList
-  var @ramDefinitionList sharedRamDefinitionList
-  var @string listFileContents
-  var @piccoloDeviceModel piccoloDeviceModel
-  var @uint accessBankSplitOffset
-  var @ramBankTable ramBank
-  var @registerTable registerTable
   <parse_bootloader>
-    ?bootloaderName
-    ?deviceName
-    ?bootloaderRoutineDeclarationList
-    ?bootloaderReservedRAMmap
-    ?reservedRomSize
-    ?userRoutineDeclarationList
-    ?sharedRamDefinitionList
-    ?listFileContents
-    ?piccoloDeviceModel
-    ?accessBankSplitOffset
-    ?ramBank
-    ?registerTable
+    ?let bootloaderName
+    ?let deviceName
+    ?let bootloaderRoutineDeclarationList
+    ?let bootloaderReservedRAMmap
+    ?let reservedRomSize
+    ?let userRoutineDeclarationList
+    ?let sharedRamDefinitionList
+    ?let listFileContents
+    ?let piccoloDeviceModel
+    ?let accessBankSplitOffset
+    ?let ramBank
+    ?let registerTable
 #--- Semantic analysis
-  var @string listingFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".list"
+  let @string listingFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".list"
   if (@uint. errorCount == 0) & [option piccolo_options.ouputListingFile value] then
     [listFileContents writeToFileWhenDifferentContents !listingFile ?*]
   end
@@ -154,18 +142,15 @@ label importBootloaderSpecification
   !@routineDeclarationList outBootloaderRoutineDeclarationList
   !@routineDeclarationList outUserRoutineDeclarationList
   !@luint outBootloaderReservedROMsize {
-  var @lstring bootloaderName
-  var @ramDefinitionList sharedRamDefinitionList
-  var @string listFileContents
   <parse_bootloader>
-    ?bootloaderName
-    ?var @lstring deviceName
+    ?let bootloaderName
+    ?let @lstring deviceName
     ?outBootloaderRoutineDeclarationList
     ?outBootloaderReservedRAMmap
     ?outBootloaderReservedROMsize
     ?outUserRoutineDeclarationList
-    ?sharedRamDefinitionList
-    ?listFileContents
+    ?let sharedRamDefinitionList
+    ?let listFileContents
     ?outPiccoloDeviceModel
     ?outAccessBankSplitOffset
     ?outRamBank
@@ -177,7 +162,7 @@ label importBootloaderSpecification
 
 rule <routine_declaration>
   ?!@routineDeclarationList ioRoutineDefinitionList {
-  var @bool noreturn
+  let @bool noreturn
   select
     noreturn = false
   or
@@ -185,10 +170,10 @@ rule <routine_declaration>
     noreturn = true
   end
   $routine$
-  $identifier$ ?var  @lstring routineName
-  var @luint requiredBank
-  var @luint returnedBank
-  var @bool preservesBank
+  $identifier$ ?let @lstring routineName
+  let @luint requiredBank
+  let @luint returnedBank
+  let @bool preservesBank
   select
     requiredBank = @luint. new { !@uint. max !@location.here}
     returnedBank = @luint. new { !@uint. max !@location.here}

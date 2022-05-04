@@ -11,9 +11,9 @@ rule <configuration_definition>
   ${$
   repeat
   while
-    $identifier$ ?var  @lstring settingName
+    $identifier$ ?let @lstring settingName
     $:$
-    var @lstring settingValue
+    let @lstring settingValue
     select
       $identifier$ ? settingValue
     or
@@ -28,7 +28,7 @@ rule <configuration_definition>
 #----------------------------------------------------*
 
 rule <declaration_in_ram> !@declarationInRam outDeclaration {
-  var @registerProtection protection
+  let @registerProtection protection
   select
     protection = .publicRegister
   or
@@ -39,8 +39,8 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
     protection = .privateRegister
   end
   $byte$
-  $identifier$ ?var  @lstring name indexing variableDeclaration
-  var @immediatExpression sizeExpression
+  $identifier$ ?let @lstring name indexing variableDeclaration
+  let @immediatExpression sizeExpression
   select
     sizeExpression = @immediatInteger. new {!.new {!1 !.here}}
   or
@@ -64,7 +64,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
           if sliceIndex >= 0S then
             sliceBase = [sliceIndex uint]
           end
-          $identifier$ ?var  @lstring sliceName
+          $identifier$ ?let @lstring sliceName
           select
             if (sliceWidth != 0) & (sliceWidth != 1) then
               error sliceName:"a slice of 1 bit is expected for '" + sliceName + "'" 
@@ -73,7 +73,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
             bitDefinitionString += sliceName.string 
           or
             $[$
-            $integer$ ?var  @luint sliceSize
+            $integer$ ?let @luint sliceSize
             if (sliceWidth != 0) & (sliceWidth != sliceSize.uint) then
               error sliceName:"a slice of " + [sliceWidth string] + " bits is expected for '" + sliceName + "'" 
             end
@@ -126,12 +126,12 @@ rule <ram_definition>
   ?!@ramDefinitionList ioRamDefinitionList
 {
   $ram$
-  $identifier$ ?var  @lstring bankName
+  $identifier$ ?let @lstring bankName
   ${$
   var declarationInRamList =@declarationInRamList.emptyList{}
   repeat
   while
-    <declaration_in_ram> ?var @declarationInRam declaration
+    <declaration_in_ram> ?let @declarationInRam declaration
     declarationInRamList += !declaration
   end
   ioRamDefinitionList += !bankName !declarationInRamList
@@ -143,9 +143,9 @@ rule <ram_definition>
 rule <constant_definition>
   ?!@constantDefinitionList ioConstantDefinitionList {
   $const$
-  $identifier$ ?var  @lstring constantName indexing constantDeclaration
+  $identifier$ ?let @lstring constantName indexing constantDeclaration
   $=$
-  <immediate_expression> ?var @immediatExpression expression
+  <immediate_expression> ?let @immediatExpression expression
   ioConstantDefinitionList += !constantName !expression
 }
 
@@ -156,11 +156,11 @@ rule <immediate_expression> !@immediatExpression outExpression {
   repeat
   while
     $|$
-    <immediate_bitwise_term> ?var @immediatExpression rightExpression
+    <immediate_bitwise_term> ?let @immediatExpression rightExpression
     outExpression = @immediatOr. new { !outExpression! rightExpression}
   while
     $^$
-    <immediate_bitwise_term> ?var @immediatExpression rightExpression
+    <immediate_bitwise_term> ?let @immediatExpression rightExpression
     outExpression = @immediatXor. new { !outExpression! rightExpression}
   end
 }
@@ -172,8 +172,7 @@ rule  <immediate_bitwise_term> !@immediatExpression outExpression {
   repeat
   while
     $&$
-    var @immediatExpression rightExpression
-    <immediate_bitwise_factor> ?rightExpression
+    <immediate_bitwise_factor> ?let rightExpression
     outExpression = @immediatAnd. new { !outExpression! rightExpression}
   end
 }
@@ -185,33 +184,27 @@ rule <immediate_bitwise_factor> !@immediatExpression outExpression {
   select
   or
     $==$ 
-    var @immediatExpression rightExpression
-    <immediate_term> ?rightExpression
+    <immediate_term> ?let rightExpression
     outExpression = @immediatEqualTest. new { !outExpression! rightExpression}
   or
     $!=$ 
-    var @immediatExpression rightExpression
-    <immediate_term> ?rightExpression
+    <immediate_term> ?let rightExpression
     outExpression = @immediatNotEqualTest. new { !outExpression! rightExpression}
   or
     $>=$ 
-    var @immediatExpression rightExpression
-    <immediate_term> ?rightExpression
+    <immediate_term> ?let rightExpression
     outExpression = @immediatGreaterOrEqualTest. new { !outExpression! rightExpression}
   or
     $<=$ 
-    var @immediatExpression rightExpression
-    <immediate_term> ?rightExpression
+    <immediate_term> ?let rightExpression
     outExpression = @immediatLowerOrEqualTest. new { !outExpression! rightExpression}
   or
     $>$ 
-    var @immediatExpression rightExpression
-    <immediate_term> ?rightExpression
+    <immediate_term> ?let rightExpression
     outExpression = @immediatGreaterTest. new { !outExpression! rightExpression}
   or
     $<$ 
-    var @immediatExpression rightExpression
-    <immediate_term> ?rightExpression
+    <immediate_term> ?let rightExpression
     outExpression = @immediatLowerTest. new { !outExpression! rightExpression}
   end
 }
@@ -223,23 +216,19 @@ rule <immediate_term> !@immediatExpression outExpression {
   repeat
   while
     $+$
-    var @immediatExpression rightExpression
-    <immediate_factor> ?rightExpression
+    <immediate_factor> ?let rightExpression
     outExpression = @immediatAdd. new { !outExpression! rightExpression}
   while
     $-$
-    var @immediatExpression rightExpression
-    <immediate_factor> ?rightExpression
+    <immediate_factor> ?let rightExpression
     outExpression = @immediatSub. new { !outExpression! rightExpression}
   while
     $<<$
-    var @immediatExpression rightExpression
-    <immediate_factor> ?rightExpression
+    <immediate_factor> ?let rightExpression
     outExpression = @immediatLeftShift. new { !outExpression! rightExpression}
   while
     $>>$
-    var @immediatExpression rightExpression
-    <immediate_factor> ?rightExpression
+    <immediate_factor> ?let rightExpression
     outExpression = @immediatRightShift. new { !outExpression! rightExpression}
   end
 }
@@ -251,18 +240,15 @@ rule <immediate_factor> !@immediatExpression outExpression {
   repeat
   while
     $*$
-    var @immediatExpression rightExpression
-    <immediate_primary> ?rightExpression
+    <immediate_primary> ?let rightExpression
     outExpression = @immediatMul. new { !outExpression! rightExpression}
   while
     $%$
-    var @immediatExpression rightExpression
-    <immediate_primary> ?rightExpression
+    <immediate_primary> ?let rightExpression
     outExpression = @immediatMod. new { !outExpression! rightExpression}
   while
     $/$
-    var @immediatExpression rightExpression
-    <immediate_primary> ?rightExpression
+    <immediate_primary> ?let rightExpression
     outExpression = @immediatDiv. new { !outExpression! rightExpression}
   end
 }
@@ -273,24 +259,22 @@ rule <immediate_factor> !@immediatExpression outExpression {
 rule <immediate_primary> !@immediatExpression outExpression {
   select
     $-$
-    var @immediatExpression expression
-    <immediate_primary> ?expression
+    <immediate_primary> ?let expression
     outExpression = @immediatNegate. new { !expression}
   or
     $~$
-    var @immediatExpression expression
-    <immediate_primary> ?expression
+    <immediate_primary> ?let expression
     outExpression = @immediatComplement. new { !expression}
   or
-    $integer$ ?var  @luint constant
+    $integer$ ?let @luint constant
     outExpression = @immediatInteger. new { !constant}
   or
-    $literal_char$ ?var  @lchar literalCharValue
+    $literal_char$ ?let @lchar literalCharValue
     outExpression = @immediatInteger. new { !@luint. new { ![literalCharValue.char uint] !literalCharValue.location}}
   or
-    $identifier$ ?var @lstring registerName indexing variableUse
-    var @immediatExpression offset
-    var @location endOfOffsetExpression
+    $identifier$ ?let @lstring registerName indexing variableUse
+    let @immediatExpression offset
+    let @location endOfOffsetExpression
     select
       offset = @immediatInteger.new {!.new {!0 !.here}}
       endOfOffsetExpression = .here
@@ -300,7 +284,7 @@ rule <immediate_primary> !@immediatExpression outExpression {
       endOfOffsetExpression = .here
       $]$
     end
-    var registerExpression =@registerExpression.new{
+    let registerExpression = @registerExpression.new{
       !registerName
       !offset
       !endOfOffsetExpression
@@ -315,10 +299,9 @@ rule <immediate_primary> !@immediatExpression outExpression {
     $($
     var sliceExpressionList =@immediatSliceExpressionList.emptyList{}
     repeat
-      $identifier$ ?var  @lstring sliceName
+      $identifier$ ?let @lstring sliceName
       $:$
-      var @immediatExpression expression
-      <immediate_expression> ?expression
+      <immediate_expression> ?let expression
       sliceExpressionList += !sliceName !expression
     while
       $,$
@@ -331,9 +314,9 @@ rule <immediate_primary> !@immediatExpression outExpression {
 #----------------------------------------------------*
 
 rule <register_parsing> !@registerExpression outRegisterExpression {
-  $identifier$ ?var @lstring registerName indexing variableUse
-  var @immediatExpression offset
-  var @location endOfOffsetExpression
+  $identifier$ ?let @lstring registerName indexing variableUse
+  let @immediatExpression offset
+  let @location endOfOffsetExpression
   select
     offset = @immediatInteger.new {!.new {!0 !.here}}
     endOfOffsetExpression = .here
@@ -353,8 +336,8 @@ rule <register_parsing> !@registerExpression outRegisterExpression {
 #----------------------------------------------------*
 
 rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
-  $identifier$ ?var @lstring bitNumberLabel
-  var @luint bitIndex
+  $identifier$ ?let @lstring bitNumberLabel
+  let @luint bitIndex
   select
     bitIndex = @luint. new { !0 !@location.here}
   or

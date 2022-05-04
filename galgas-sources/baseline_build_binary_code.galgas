@@ -203,7 +203,7 @@ override method @baseline_assembly_GOTO generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
 #---
-  [inRoutineSymbolTable searchKey !self.mTargetLabel ?var @uint targetAddress]
+  [inRoutineSymbolTable searchKey !self.mTargetLabel ?let @uint targetAddress]
 #---
   emitBaselineCodeAtWordAddress ( !0x0A00 | (targetAddress & 0x1FF) !?ioWordAddress !self !?ioListFileContents )
 }
@@ -224,8 +224,7 @@ override method @baseline_assembly_CALL generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
 #---
-  var @uint targetAddress
-  [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
+  [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #---
   emitBaselineCodeAtWordAddress ( !0x0900 | (targetAddress & 0xFF) !?ioWordAddress !self !?ioListFileContents )
 }
@@ -255,7 +254,7 @@ override method @baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  var @uint code
+  let @uint code
   switch self.mInstruction
   case CLRW    : code = 0x0040
   case NOP     : code = 0x0000
@@ -299,8 +298,7 @@ override method @baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress
   ?let @baseline_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-  var @uint targetAddress
-  [inRoutineSymbolTable searchKey !self.mLabel ?targetAddress]
+  [inRoutineSymbolTable searchKey !self.mLabel ?let targetAddress]
   if (targetAddress != ioWordAddress) then
     error self.mLabel: "Internal second pass error: the '" + self.mLabel
     + "' label gets " + [ioWordAddress hexString] + " value in second pass, while it gets "
@@ -326,7 +324,7 @@ proc build_baseline_binary_code
   for (mInstruction) in  inAssemblyInstructionList do
     [mInstruction enterLabelAtAddress !?symbolTable !?currentWordAddress]
   end
-  var @uint lastAddressForFirstPass = currentWordAddress
+  let @uint lastAddressForFirstPass = currentWordAddress
   outUsedROMsize = currentWordAddress
 #-------------------------------- Second pass: generate code
   currentWordAddress = 0

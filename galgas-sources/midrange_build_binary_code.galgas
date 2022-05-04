@@ -297,21 +297,19 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   ?!@uint ioAddress {
 #---
   var usedRegisters =@stringset.emptySet{}
-  var @uint targetAddress
-  [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
+  [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #--- Get values for PCLATH register
   let PCLATH_register = @registerExpression.new {
     !@lstring. new {!"PCLATH" !.here}
     !@immediatInteger.new {!.new {!0 !@location.here}}
     !.here
   }
-  var @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription
   [PCLATH_register resolveMidrangeAccess
     !inTotalBankCount
     !@uint. max # Means unknown bank
     !inRegisterTable
     !inConstantMap
-    ?PCLATH_IPICregisterDescription
+    ?let PCLATH_IPICregisterDescription
     ?*
     !?usedRegisters
   ]
@@ -364,8 +362,7 @@ override method @midrange_intermediate_GOTO generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 #---
-  var @uint targetAddress
-  [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
+  [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #---
   emit_midrange_GOTOinstruction ( !self.mInstructionLocation !?ioAddress !self.mTargetLabel.string !targetAddress !?ioListFileContents )
 }
@@ -381,21 +378,19 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   ?!@uint ioAddress {
   var usedRegisters =@stringset.emptySet{}
 #---
-  var @uint targetAddress
-  [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
+  [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #--- Get values for PCLATH register
   let PCLATH_register = @registerExpression.new{
     !@lstring.new {!"PCLATH" !@location.here}
     !@immediatInteger.new {!.new {!0 !@location.here}}
     !.here
   }
-  var @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription
   [PCLATH_register resolveMidrangeAccess
     !inTotalBankCount
     !@uint. max # Means unknown bank
     !inRegisterTable
     !inConstantMap
-    ?PCLATH_IPICregisterDescription
+    ?let PCLATH_IPICregisterDescription
     ?*
     !?usedRegisters
   ]
@@ -481,8 +476,7 @@ override method @midrange_intermediate_CALL generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 #---
-  var @uint targetAddress
-  [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
+  [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #---
   emit_midrange_CALLinstruction ( !self.mInstructionLocation !?ioAddress !self.mTargetLabel.string !targetAddress !?ioListFileContents )
 }
@@ -514,8 +508,7 @@ override method @midrange_intermediate_incDecRegisterInCondition generateBinaryC
     emit_midrange_GOTOinstruction ( !self.mInstructionLocation !?ioAddress !"$ + 2" !ioAddress + 2 !?ioListFileContents )
   end
 #--- Generate GOTO instruction
-  var @uint targetAddress
-  [inRoutineSymbolTable searchKey !@lstring. new { !self.mTargetLabel !@location.here} ?targetAddress]
+  [inRoutineSymbolTable searchKey !@lstring. new { !self.mTargetLabel !@location.here} ?let targetAddress]
   emit_midrange_GOTOinstruction ( !self.mInstructionLocation !?ioAddress !self.mTargetLabel !targetAddress !?ioListFileContents )
 }
 
@@ -629,7 +622,7 @@ override method @midrange_intermediate_pseudo_LABEL generateBinaryCodeAtAddress
   ?let @midrange_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioAddress {
-  [inRoutineSymbolTable searchKey !self.mLabel ?var @uint targetAddress]
+  [inRoutineSymbolTable searchKey !self.mLabel ?let @uint targetAddress]
   if (targetAddress != ioAddress) then
     error self.mLabel: "Internal second pass error: the '" + self.mLabel
     + "' label gets " + [ioAddress hexString] + " value in second pass, while it gets "
@@ -680,7 +673,7 @@ proc build_midrange_ipic_binary_code
   for (mInstruction) in  inGeneratedInstructionList do
     [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress]
   end
-  var @uint lastAddressForFirstPass = currentAddress
+  let @uint lastAddressForFirstPass = currentAddress
   outUsedROMsize = currentAddress
 #-------------------------------- Second pass: generate code
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"

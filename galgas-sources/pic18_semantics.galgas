@@ -11,24 +11,24 @@ proc pic18_analyze
   ?let @string inSourceFileName
 {
 #-------------------------------- Check source file name
-  var @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+  let @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
   if sourceFileBaseName != inPiccoloModel.mProgramName.string then
     error inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
     + "') should be identical to the file base name '" + sourceFileBaseName + "'"
   end
   var @string listFileContents = ""
 #-------------------------------- Analyze Device
-  var @piccoloDeviceModel piccoloDeviceModel
-  var @uint accessBankSplitOffset
+  let @piccoloDeviceModel piccoloDeviceModel
+  let @uint accessBankSplitOffset
   var @ramBankTable ramBank
-  var @bootloaderReservedRAMmap bootloaderReservedRAMmap # Used only for bootloader implementation
-  var @routineDeclarationList bootloaderRoutineDeclarationListForBootloaderImplementation
-  var @routineDeclarationList userRoutineDeclarationListForBootloaderImplementation
-  var @routineDeclarationList bootloaderRoutineDeclarationListForUserProgramImplementation
-  var @routineDeclarationList userRoutineDeclarationListForUserProgramImplementation
-  var @luint bootloaderReservedROMsize # Used only for bootloader implementation or user program implementation, zero for regular program
+  let @bootloaderReservedRAMmap bootloaderReservedRAMmap # Used only for bootloader implementation
+  let @routineDeclarationList bootloaderRoutineDeclarationListForBootloaderImplementation
+  let @routineDeclarationList userRoutineDeclarationListForBootloaderImplementation
+  let @routineDeclarationList bootloaderRoutineDeclarationListForUserProgramImplementation
+  let @routineDeclarationList userRoutineDeclarationListForUserProgramImplementation
+  let @luint bootloaderReservedROMsize # Used only for bootloader implementation or user program implementation, zero for regular program
   var @registerTable registerTable
-  var @string piccoloDeviceName
+  let @string piccoloDeviceName
   switch inPiccoloModel.mProgramKind
   case regularProgram :
     piccoloDeviceName = inPiccoloModel.mDeviceNameOrBootLoaderReference.string
@@ -176,7 +176,7 @@ proc pic18_analyze
     end
   end
 #-------------------------------- Config definition
-  var @actualConfigurationMap actualConfigurationMap
+  let @actualConfigurationMap actualConfigurationMap
   if inPiccoloModel.mProgramKind == @programKind. userProgram then
     for (mDefinitionLocation *) in  inPiccoloModel.mConfigDefinitionList do
       error mDefinitionLocation: "configuration is not allowed for a bootloader user program"
@@ -204,7 +204,7 @@ proc pic18_analyze
   [!?constantMap insertKey !@lstring. new { !"RAM_SIZE" !@location.here} ![RAMsize sint64]]
 #--- Add "BOOTLOADER_RESERVED_SIZE" constant
   if inPiccoloModel.mProgramKind != @programKind. regularProgram then
-    var bootloaderSizeString =@lstring.new{ !"BOOTLOADER_RESERVED_SIZE" !@location.here}
+    let bootloaderSizeString = @lstring.new{ !"BOOTLOADER_RESERVED_SIZE" !@location.here}
     [!?constantMap insertKey !bootloaderSizeString ![bootloaderReservedROMsize.uint sint64]]
   end
 #--- Add declared constants
@@ -233,7 +233,7 @@ proc pic18_analyze
   if inPiccoloModel.mProgramKind == @programKind. bootloaderProgram then
     for (lkey mFirstAddress mFirstFreeAddress * *) in ramBank do
       if [bootloaderReservedRAMmap hasKey !lkey.string] then
-        var @luint bootloaderReservedSize
+        let @luint bootloaderReservedSize
         [bootloaderReservedRAMmap searchKey !lkey ?bootloaderReservedSize]
         if (mFirstFreeAddress - mFirstAddress) > bootloaderReservedSize.uint then
           error @location.here: "for '" + lkey + "' RAM bank, the bootloader implementation declares "
@@ -281,7 +281,7 @@ proc pic18_analyze
 #-------------------------------- Write listing file
   if [option piccolo_options.ouputListingFile value] then
     listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-    var @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
+    let @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]
   end
 }

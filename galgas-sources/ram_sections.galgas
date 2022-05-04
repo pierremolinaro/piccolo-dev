@@ -24,9 +24,9 @@ override method @byteDeclarationInRam handleDeclaration
   ?let @lstring inCurrentRamBank
   ?!@declaredByteMap ioDeclaredByteMap
 {
-  var @uint lastAddressPlusOne
+  let @uint lastAddressPlusOne
   var @uint firstFreeAddress
-  var @uintlist mirrorOffsetList
+  let @uintlist mirrorOffsetList
   [ioRamBank searchKey !inCurrentRamBank ?* ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList]
   [self.mSizeExpression eval !ioRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
   if size <= 0S then

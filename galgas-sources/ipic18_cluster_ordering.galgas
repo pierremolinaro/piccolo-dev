@@ -42,7 +42,7 @@ proc perform_cluster_ordering
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
     ioListFileContents += "*" + ["CLUSTER ORDERING OPTIMIZATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-    var @string s = "Cluster ordering optimization (" + clusterCount + " cluster" + if clusterCount > 1 then "s" else "" end + "):\n"
+    let @string s = "Cluster ordering optimization (" + clusterCount + " cluster" + if clusterCount > 1 then "s" else "" end + "):\n"
     ioListFileContents += s + "\n"
   #---
     if @application.verboseOutput then

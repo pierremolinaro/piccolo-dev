@@ -24,9 +24,9 @@ proc actualBuildConfig
   outActualConfigurationMap = @actualConfigurationMap. emptyMap
   var configFieldMap =@configFieldMap.emptyMap{}
   for (lkey mRegisterAddress mRegisterWidth mConfigRegisterMaskMap *) in  inConfigRegisterMap do
-    var @uint defaultValue = (1 << mRegisterWidth.uint) - 1
+    let @uint defaultValue = (1 << mRegisterWidth.uint) - 1
     [!? outActualConfigurationMap insertKey !lkey !mRegisterAddress.uint !defaultValue]
-    var @lstring registerName = lkey
+    let @lstring registerName = lkey
     for (other_lkey other_mMaskValue other_mDescription other_mFieldSettingMap) in  mConfigRegisterMaskMap do
       [!?configFieldMap insertKey !other_lkey !registerName !other_mMaskValue !other_mDescription !other_mFieldSettingMap]
     end
@@ -39,15 +39,9 @@ proc actualBuildConfig
         error mSettingName: "the '" + mSettingName + "' setting is already defined"
       end
       actualSettingNameSet += !mSettingName.string
-      var @lstring registerName
-      var @luint maskValue
-      var @lstring settingDescription
-      var @fieldSettingMap fieldSettingMap
-      [configFieldMap searchKey !mSettingName ?registerName ?maskValue ?settingDescription ?fieldSettingMap]
+      [configFieldMap searchKey !mSettingName ?let registerName ?let maskValue ?let settingDescription ?let fieldSettingMap]
       if [fieldSettingMap hasKey !mSettingValue.string] then
-        var @uint settingValue
-        var @uint settingMask
-        [fieldSettingMap searchKey !mSettingValue ?settingValue ?settingMask]
+        [fieldSettingMap searchKey !mSettingValue ?let settingValue ?let settingMask]
         var @uint registerValue
         [outActualConfigurationMap searchKey !registerName ?* ?registerValue]
         registerValue = (registerValue & ~ settingMask) | settingValue
@@ -75,10 +69,9 @@ proc actualBuildConfig
 #--- Display conguration information in log file
   for (lkey mRegisterAddress mRegisterValue) in  outActualConfigurationMap do
     ioListFileContents += "Register '" + lkey + "' at " + [mRegisterAddress hexString] + " set to " + [mRegisterValue hexString] + "\n"
-    var @configRegisterMaskMap configRegisterMaskMap
-    [inConfigRegisterMap searchKey !lkey ?* ?* ?configRegisterMaskMap ?*]
+    [inConfigRegisterMap searchKey !lkey ?* ?* ?let configRegisterMaskMap ?*]
     for (others_lkey others_mMaskValue * others_mFieldSettingMap) in  configRegisterMaskMap do
-      var @lstring settingName = others_lkey
+      let @lstring settingName = others_lkey
       for (second_lkey second_mValue *) in  others_mFieldSettingMap do
         if (mRegisterValue & others_mMaskValue.uint) == second_mValue then
           ioListFileContents += "  setting '" + settingName + "' set to " + [second_mValue hexString] + " (\"" + second_lkey + "\")\n"
@@ -89,8 +82,7 @@ proc actualBuildConfig
   end
 #--- Detect illegal configurations
   for (lkey * mRegisterValue) in  outActualConfigurationMap do
-    var @illegalMaskList illegalMaskList
-    [inConfigRegisterMap searchKey !lkey ?* ?* ?* ?illegalMaskList]
+    [inConfigRegisterMap searchKey !lkey ?* ?* ?* ?let illegalMaskList]
      for (mIllegalValue mIllegalMask mDescription) in  illegalMaskList do
       if (mRegisterValue & mIllegalMask.uint) == mIllegalValue.uint then
         error @location.here:"illegal setting for '" + lkey + "' register: " + mDescription

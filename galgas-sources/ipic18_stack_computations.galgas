@@ -253,7 +253,7 @@ proc ipic18StackComputations
   while progress
   do
     progress = false
-    var @routineCallMap tempRoutineCallMap = routineCallMap
+    let @routineCallMap tempRoutineCallMap = routineCallMap
     routineCallMap = {}
     for (lkey mCalledRoutineSet mTerminatorStackNeeds) in  tempRoutineCallMap do
       var @uint levels = mTerminatorStackNeeds

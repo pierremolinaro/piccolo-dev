@@ -28,8 +28,8 @@ method @registerExpression resolveMidrangeAccess
 #--- 
   [inRegisterTable searchKey
     !self.mRegisterName
-    ?var @uintlist registerAddressList
-    ?var @uint size
+    ?let @uintlist registerAddressList
+    ?let @uint size
     ?outBitSliceTable
     ?*
     ?let protection

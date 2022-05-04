@@ -225,7 +225,7 @@ override method @ipic18JumpTerminator performTerminatorRelativeBranchResolution
 override getter @ipic18JumpTerminator terminatorDisplay
   ?let @string inNextBlockLabel
   ->@string outResult {
-  var @string name
+  let @string name
   switch self.mKind
     case ipicRelative : name = "JUMP "
     case relative     : name = "BRA "
@@ -366,7 +366,7 @@ override method @pic18RegisterComparisonTerminator performTerminatorRelativeBran
     !inNextBlockLabel
     !?ioConversionCount
     !?ioListFileContents
-    ?var @ipic18AbstractBlockTerminator outModifiedTrueTerminator
+    ?let @ipic18AbstractBlockTerminator outModifiedTrueTerminator
   ]
   [self.mSingleInstructionTerminatorIfConditionFalse performTerminatorRelativeBranchResolution
     !inAddress
@@ -375,7 +375,7 @@ override method @pic18RegisterComparisonTerminator performTerminatorRelativeBran
     !inNextBlockLabel
     !?ioConversionCount
     !?ioListFileContents
-    ?var @ipic18AbstractBlockTerminator outModifiedFalseTerminator
+    ?let @ipic18AbstractBlockTerminator outModifiedFalseTerminator
   ]
   if ioConversionCount == n then
     outModifiedTerminator = self
@@ -501,7 +501,7 @@ override method @pic18TestRegisterTerminator performTerminatorRelativeBranchReso
     !inNextBlockLabel
     !?ioConversionCount
     !?ioListFileContents
-    ?var @ipic18AbstractBlockTerminator outModifiedTrueTerminator
+    ?let @ipic18AbstractBlockTerminator outModifiedTrueTerminator
   ]
   [self.mSingleInstructionTerminatorIfConditionFalse performTerminatorRelativeBranchResolution
     !inAddress
@@ -510,7 +510,7 @@ override method @pic18TestRegisterTerminator performTerminatorRelativeBranchReso
     !inNextBlockLabel
     !?ioConversionCount
     !?ioListFileContents
-    ?var @ipic18AbstractBlockTerminator outModifiedFalseTerminator
+    ?let @ipic18AbstractBlockTerminator outModifiedFalseTerminator
   ]
   if ioConversionCount == n then
     outModifiedTerminator = self
@@ -608,7 +608,7 @@ override method @pic18BitTestTerminator performTerminatorRelativeBranchResolutio
     !inNextBlockLabel
     !?ioConversionCount
     !?ioListFileContents
-    ?var @ipic18AbstractBlockTerminator outModifiedTrueTerminator
+    ?let @ipic18AbstractBlockTerminator outModifiedTrueTerminator
   ]
   [self.mSingleInstructionTerminatorIfConditionFalse performTerminatorRelativeBranchResolution
     !inAddress
@@ -617,7 +617,7 @@ override method @pic18BitTestTerminator performTerminatorRelativeBranchResolutio
     !inNextBlockLabel
     !?ioConversionCount
     !?ioListFileContents
-    ?var @ipic18AbstractBlockTerminator outModifiedFalseTerminator
+    ?let @ipic18AbstractBlockTerminator outModifiedFalseTerminator
   ]
   if ioConversionCount == n then
     outModifiedTerminator = self
@@ -754,7 +754,7 @@ override method @ipic18IncDecRegisterTerminator performTerminatorRelativeBranchR
     !inNextBlockLabel
     !?ioConversionCount
     !?ioListFileContents
-    ?var @ipic18AbstractBlockTerminator outModifiedTrueTerminator
+    ?let @ipic18AbstractBlockTerminator outModifiedTrueTerminator
   ]
   [self.mSingleInstructionTerminatorIfConditionFalse performTerminatorRelativeBranchResolution
     !inAddress
@@ -763,7 +763,7 @@ override method @ipic18IncDecRegisterTerminator performTerminatorRelativeBranchR
     !inNextBlockLabel
     !?ioConversionCount
     !?ioListFileContents
-    ?var @ipic18AbstractBlockTerminator outModifiedFalseTerminator
+    ?let @ipic18AbstractBlockTerminator outModifiedFalseTerminator
   ]
   if ioConversionCount == n then
     outModifiedTerminator = self

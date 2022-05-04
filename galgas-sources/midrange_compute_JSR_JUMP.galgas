@@ -47,7 +47,7 @@ override
 method @midrange_intermediate_actualInstruction defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress {
-  var @uint nextAddress = ioAddress  + [self instructionLength]
+  let @uint nextAddress = ioAddress  + [self instructionLength]
   if ((nextAddress ^ ioAddress) & 0xF800) != 0 then
     error self.mInstructionLocation:"Routine too long, crosses page boundary at this instruction"
   end
@@ -113,11 +113,10 @@ override method @midrange_intermediate_JUMP compute
   ?let @uint inIndex
   ?!@string ioListFileContents {
 #--- Get target address
-    var @uint targetAddress
-    [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
+    [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #--- Change bit 11 ?
-   var @uint flags = ioAddress ^ targetAddress
-   var @midrange_call_goto_bit bit11
+   let @uint flags = ioAddress ^ targetAddress
+   let @midrange_call_goto_bit bit11
    if (flags & 0x800) == 0 then
      bit11 = @midrange_call_goto_bit. noChange
    elsif (targetAddress & 0x800) == 0 then
@@ -126,7 +125,7 @@ override method @midrange_intermediate_JUMP compute
      bit11 = @midrange_call_goto_bit. set
    end
 #--- Change bit 12 ?
-   var @midrange_call_goto_bit bit12
+   let @midrange_call_goto_bit bit12
    if (flags & 0x1000) == 0 then
      bit12 = @midrange_call_goto_bit. noChange
    elsif (targetAddress & 0x1000) == 0 then
@@ -136,7 +135,7 @@ override method @midrange_intermediate_JUMP compute
    end
 #--- Change ?
   if (bit11 != self.mBit11) | (bit12 != self.mBit12) then
-    var @midrange_intermediate_actualInstruction instruction = @midrange_intermediate_JUMP. new {
+    let @midrange_intermediate_actualInstruction instruction = @midrange_intermediate_JUMP. new {
       !self.mInstructionLocation
       !self.mTargetLabel
       !bit11
@@ -157,11 +156,10 @@ override method @midrange_intermediate_JSR compute
   ?let @uint inIndex
   ?!@string ioListFileContents {
 #--- Get target address
-    var @uint targetAddress
-    [inRoutineSymbolTable searchKey !self.mTargetLabel ?targetAddress]
+    [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #--- Change bit 11 ?
-   var @uint flags = ioAddress ^ targetAddress
-   var @midrange_call_goto_bit bit11
+   let @uint flags = ioAddress ^ targetAddress
+   let @midrange_call_goto_bit bit11
    if (flags & 0x800) == 0 then
      bit11 = @midrange_call_goto_bit. noChange
    elsif (targetAddress & 0x800) == 0 then
@@ -170,7 +168,7 @@ override method @midrange_intermediate_JSR compute
      bit11 = @midrange_call_goto_bit. set
    end
 #--- Change bit 12 ?
-   var @midrange_call_goto_bit bit12
+   let @midrange_call_goto_bit bit12
    if (flags & 0x1000) == 0 then
      bit12 = @midrange_call_goto_bit. noChange
    elsif (targetAddress & 0x1000) == 0 then
@@ -180,7 +178,7 @@ override method @midrange_intermediate_JSR compute
    end
 #--- Change ?
   if (bit11 != self.mBit11) | (bit12 != self.mBit12) then
-    var @midrange_intermediate_actualInstruction instruction = @midrange_intermediate_JSR. new {
+    let @midrange_intermediate_actualInstruction instruction = @midrange_intermediate_JSR. new {
       !self.mInstructionLocation
       !self.mTargetLabel
       !bit11
@@ -200,8 +198,7 @@ override method @midrange_intermediate_pseudo_LABEL compute
   ?!@midrange_intermediate_instructionList unused ioGeneratedInstructionList
   ?let @uint unused inIndex
   ?!@string unused ioListFileContents {
-  var @uint targetAddress
-  [inRoutineSymbolTable searchKey !self.mLabel ?targetAddress]
+  [inRoutineSymbolTable searchKey !self.mLabel ?let targetAddress]
   if (targetAddress != ioAddress) then
     error self.mLabel: "Internal second pass error: the '" + self.mLabel
     + "' label gets " + [ioAddress hexString] + " value in second pass, while it gets "
@@ -332,7 +329,7 @@ proc midrange_compute_JSR_JUMP
     for (mInstruction) in  ioGeneratedInstructionList do
       [mInstruction defineLabelAtAddress !?symbolTable !?currentAddress]
     end
-    var @uint lastAddressForFirstPass = currentAddress
+    let @uint lastAddressForFirstPass = currentAddress
   #-------------------------------- Second pass: generate code
     currentAddress = 0
     for (mInstruction) in  ioGeneratedInstructionList do(idx)

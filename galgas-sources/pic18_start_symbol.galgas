@@ -21,9 +21,9 @@ rule <body>
 
 rule <start_symbol> {
   $pic18$
-  $identifier$ ?var  @lstring programName
-  var @lstring deviceNameOrBootloaderReference
-  var @programKind programKind
+  $identifier$ ?let @lstring programName
+  let @lstring deviceNameOrBootloaderReference
+  let @programKind programKind
   select
     programKind = @programKind. regularProgram
   or
@@ -67,7 +67,7 @@ rule <start_symbol> {
   $end$
 #--- Semantic analysis
   if @uint. errorCount == 0 then
-    var piccoloModel = @pic18AST.new{
+    let piccoloModel = @pic18AST.new{
       !programName
       !programKind
       !deviceNameOrBootloaderReference
@@ -88,11 +88,11 @@ rule <start_symbol> {
     }
     pic18_analyze (!piccoloModel !@string.stringWithSourceFilePath)
   else
-    var @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
+    let @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
     if [hexDestinationFile fileExists] then
       [@string deleteFile !hexDestinationFile]
     end
-    var @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
+    let @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
     if [asmDestinationFile fileExists] then
       [@string deleteFile !asmDestinationFile]
     end
@@ -109,7 +109,7 @@ label importBootloaderSpecification
   !@routineDeclarationList outUserRoutineDeclarationList
   !@luint outBootloaderReservedROMsize {
   $pic18$
-  $identifier$ ?var  @lstring programName
+  $identifier$ ?let @lstring programName
   error programName: "this file does not define a bootloader specification"
    : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap, outDeviceName,

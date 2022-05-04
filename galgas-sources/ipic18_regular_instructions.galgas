@@ -91,7 +91,7 @@ override method @ipic18InstructionWithNoOperand generateCode
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
-  var @uint c
+  let @uint c
   switch self.mKind
   case CLRWDT :
     c = 0x0004
@@ -253,7 +253,7 @@ override getter @ipic18_intermediate_instruction_MOVFF instructionSize
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MOVFF instructionDisplay ->@stringlist outResult {
-  var @string s = "MOVFF " + self.mSourceRegisterDescription.mAssemblyString
+  let @string s = "MOVFF " + self.mSourceRegisterDescription.mAssemblyString
   + ", " + self.mDestinationRegisterDescription.mAssemblyString
   outResult = @stringlist. listWithValue { !s}
 }
@@ -280,7 +280,7 @@ override method @ipic18_intermediate_instruction_MOVFF generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_literalOperation instructionDisplay ->@stringlist outResult {
-  var @string s = [self.mLiteralInstruction mnemonic] + " " + [self.mLiteralValue hexString] + " ; " + self.mLiteralValue
+  let @string s = [self.mLiteralInstruction mnemonic] + " " + [self.mLiteralValue hexString] + " ; " + self.mLiteralValue
   outResult = {!s}
 }
 
@@ -321,7 +321,7 @@ override getter @ipic18_intermediate_instruction_LFSR instructionSize
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_LFSR instructionDisplay ->@stringlist outResult {
-  var @string s = "LFSR " + [self.mFSRindex.uint string] + ", " + [self.mValue hexString]
+  let @string s = "LFSR " + [self.mFSRindex.uint string] + ", " + [self.mValue hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -347,7 +347,7 @@ override method @ipic18_intermediate_instruction_LFSR generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_FBA instructionDisplay ->@stringlist outResult {
-  var @string s = [self.mBitOrientedOp mnemonic] + " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
+  let @string s = [self.mBitOrientedOp mnemonic] + " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -381,7 +381,7 @@ override method @ipic18_intermediate_instruction_FBA generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MOVLB instructionDisplay ->@stringlist outResult {
-  var @string s = "MOVLB " + [self.mBankIndex.uint hexString]
+  let @string s = "MOVLB " + [self.mBankIndex.uint hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -405,7 +405,7 @@ override method @ipic18_intermediate_instruction_MOVLB generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_TBLRD instructionDisplay ->@stringlist outResult {
-  var @string s = "TBLRD " + [self.mOption mnemonic]
+  let @string s = "TBLRD " + [self.mOption mnemonic]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -416,7 +416,7 @@ override method @ipic18_intermediate_instruction_TBLRD generateCode
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
-  var @uint code
+  let @uint code
   switch self.mOption
   case simpleAccess  : code = 0x0008
   case postIncrement : code = 0x0009
@@ -435,7 +435,7 @@ override method @ipic18_intermediate_instruction_TBLRD generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_TBLWT instructionDisplay ->@stringlist outResult {
-  var @string s = "TBLWT " + [self.mOption mnemonic]
+  let @string s = "TBLWT " + [self.mOption mnemonic]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -446,7 +446,7 @@ override method @ipic18_intermediate_instruction_TBLWT generateCode
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @pic18_dataAddressMap unused inDataAddressMap
   !@codeList outCode {
-  var @uint code
+  let @uint code
   switch self.mOption
   case simpleAccess  : code = 0x000C
   case postIncrement : code = 0x000D
@@ -538,7 +538,7 @@ override method @ipic18_intermediate_instruction_NOPBRA generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_MOV_LABEL_W instructionDisplay ->@stringlist outResult {
-  var @string s = "MOVLW ((" + self.mLabel + " + " + self.mOffset + ") >> " + self.mRightShift + ") & 0xFF"
+  let @string s = "MOVLW ((" + self.mLabel + " + " + self.mOffset + ") >> " + self.mRightShift + ") & 0xFF"
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -564,7 +564,7 @@ override method @ipic18_intermediate_MOV_LABEL_W generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_BLANK instructionDisplay ->@stringlist outResult {
-  var @string s = "BLANK " + [self.mBlankValue hexString]
+  let @string s = "BLANK " + [self.mBlankValue hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -588,7 +588,7 @@ override method @ipic18_intermediate_instruction_BLANK generateCode
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_FNOP instructionDisplay ->@stringlist outResult {
-  var @string s = "FNOP " + [self.mBlankValue hexString]
+  let @string s = "FNOP " + [self.mBlankValue hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
@@ -946,7 +946,7 @@ override method @ipic18_intermediate_JSR performInstructionRelativeBranchResolut
 #----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_JSR instructionDisplay ->@stringlist outResult {
-    var @string s
+    let @string s
     switch self.mKind
     case ipicRelative : s = "JSR " + self.mTargetLabel
     case relative     : s = "RCALL " + self.mTargetLabel

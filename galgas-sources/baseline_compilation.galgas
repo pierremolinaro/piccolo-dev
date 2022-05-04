@@ -41,14 +41,14 @@ override method @baseline_instruction_structured_if shouldTerminateWithMOVLW
   if [self.mThenInstructionList length] == 0 then
     error self.mInstructionLocation : "the 'then' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
   else
-   [self.mThenInstructionList last ?var @baseline_instruction lastInstruction]
+   [self.mThenInstructionList last ?let @baseline_instruction lastInstruction]
    [lastInstruction shouldTerminateWithMOVLW !"the 'then' branch of this 'if' instruction must terminate with a MOVLW instruction"]
   end
 #--- ELSE branch
   if [self.mElseInstructionList length] == 0 then
     error self.mInstructionLocation : "the 'else' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
   else
-   [self.mElseInstructionList last ?var @baseline_instruction lastInstruction]
+   [self.mElseInstructionList last ?let @baseline_instruction lastInstruction]
    [lastInstruction shouldTerminateWithMOVLW !"the 'else' branch of this 'if' instruction must terminate with a MOVLW instruction"]
   end
 
@@ -91,27 +91,25 @@ override method @baseline_instruction_FOREVER shouldNotContinueInSequence
 proc baseline_analysis
   ?let @baseline_model inPiccoloModel
   ?let @string inSourceFileName {
-  var @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+  let @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
   if sourceFileBaseName != inPiccoloModel.mProgramName.string then
     error inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
     + "') should be identical to the file base name '" + sourceFileBaseName + "'"
   end
   var @string listFileContents = ""
 #-------------------------------- Analyze Device
-  var @piccoloDeviceModel piccoloDeviceModel
-  parseDeviceDefinition ( !inPiccoloModel.mDeviceName ?piccoloDeviceModel )
+  parseDeviceDefinition ( !inPiccoloModel.mDeviceName ?let piccoloDeviceModel )
   switch piccoloDeviceModel.mProcessorType
     case baseline :
     case pic18_60, pic18_80 : error inPiccoloModel.mDeviceName: "a pic18 device is not accepted here : only a baseline device"
     case midrange : error inPiccoloModel.mDeviceName: "a mid-ranfe device is not accepted here : only a baseline device"
   end
 #-------------------------------- Config definition
-  var @actualConfigurationMap actualConfigurationMap
   buildConfig (
     !piccoloDeviceModel.mConfigRegisterMap
     !inPiccoloModel.mConfigDefinitionList
     !?listFileContents
-    ?actualConfigurationMap
+    ?let actualConfigurationMap
   )
 #-------------------------------- Build constant map
   var @constantMap constantMap = {}
@@ -156,7 +154,7 @@ proc baseline_analysis
   end
 #-------------------------------- Check the "main" routine is declared
   if [routineMap hasKey !"main"] then
-    [routineMap searchKey !@lstring. new { !"main" !@location.here} ?var @bool isNoReturn ?var @luint page]
+    [routineMap searchKey !@lstring. new { !"main" !@location.here} ?let @bool isNoReturn ?let @luint page]
     if not isNoReturn then
       error [routineMap locationForKey !"main"] :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main page 0\""
     end
@@ -213,14 +211,14 @@ proc baseline_analysis
             intermediateInstructionList += !@baseline_intermediate_pseudo_PAGE. new { !currentPage}
           end
         #---
-          var @routineKind routineKind
+          let @routineKind routineKind
           if mIsNoReturn then
             routineKind = @routineKind. noReturnRoutine
           #--- Check does not continue in sequence
             if [mInstructionList length] == 0 then
               error mRoutineName : "a noreturn routine should terminate by a GOTO or a FOREVER loop"
             else
-             [mInstructionList last ?var @baseline_instruction lastInstruction]
+             [mInstructionList last ?let @baseline_instruction lastInstruction]
              [lastInstruction shouldNotContinueInSequence !"a noreturn routine should terminate by a GOTO or a FOREVER loop"]
             end
           else
@@ -229,7 +227,7 @@ proc baseline_analysis
             if [mInstructionList length] == 0 then
               error mRoutineName : "a baseline routine must end with a MOVLW instruction"
             else
-             [mInstructionList last ?var @baseline_instruction lastInstruction]
+             [mInstructionList last ?let @baseline_instruction lastInstruction]
              [lastInstruction shouldTerminateWithMOVLW !"the last routine instruction should be MOVLW"]
             end
           end
@@ -247,7 +245,7 @@ proc baseline_analysis
             !?localLabelIndex
             !?intermediateInstructionList
             !?listFileContents
-            ?var @bool continuesInSequence
+            ?let @bool continuesInSequence
             !routineKind
             !not mIsNoReturn # Last instruction should be RETLW ?
             !?usedRegisters
@@ -335,8 +333,8 @@ proc baseline_analysis
   [sr resolveBaselineAccess
     !registerTable
     !constantMap
-    ?var @baseline_intermediate_registerExpression statusRegister
-    ?var @bitSliceTable statusRegisterBitSliceTable
+    ?let @baseline_intermediate_registerExpression statusRegister
+    ?let @bitSliceTable statusRegisterBitSliceTable
     !?usedRegisters
   ]
   var assemblyInstructionList =@baseline_assembly_instructionList.emptyList{}
@@ -359,12 +357,12 @@ proc baseline_analysis
       !assemblyInstructionList
       !piccoloDeviceModel.mRomSize.uint
       !?listFileContents
-      ?var @uint usedROMsize
+      ?let @uint usedROMsize
     )
   end
 #-------------------------------- Listing file
   if [option piccolo_options.ouputListingFile value] then
-    var @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
+    let @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]
   end
 #-------------------------------- Code generation
@@ -380,7 +378,7 @@ proc baseline_analysis
 #      !actualConfigurationMap
 #      ?usedROMsize
 #    ;
-    getGeneratedContents ( ?var @string contents )
+    getGeneratedContents (?var @string contents)
     var @string destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
     [contents writeToFileWhenDifferentContents !destinationFile ?*]
     if [option piccolo_options.output_C_Array value] then
@@ -416,7 +414,7 @@ proc baseline_analysis
       end
       assemblyCode += "\n;--- Registers\n"
       for (lkey mRegisterAddressList * * * *) in  registerTable do
-        [mRegisterAddressList first ?var @uint address]
+        [mRegisterAddressList first ?let @uint address]
         assemblyCode += lkey.string + " EQU " + [address hexString] + "\n"
       end
       assemblyCode += "W EQU 0\n\n"
@@ -425,15 +423,15 @@ proc baseline_analysis
         assemblyCode += "  __config " + [mRegisterAddress hexString] + ", " + [mRegisterValue & 255 hexString] + "\n"
       end
       assemblyCode += "\n  END\n"
-      var @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
+      let @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
       [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*]
     end
   else # There are errors : delete hex and asm files
-    var @string hexDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
+    let @string hexDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
     if [hexDestinationFile fileExists] then
       [@string deleteFile !hexDestinationFile]
     end
-    var @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
+    let @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
     if [asmDestinationFile fileExists] then
       [@string deleteFile !asmDestinationFile]
     end

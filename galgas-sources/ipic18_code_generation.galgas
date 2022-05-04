@@ -153,7 +153,7 @@ method @ipic18Block generateCodeForBlock
       generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode length]
     end
     if generatedCodeSize != [mInstruction instructionSize] then
-      var s = "*** INTERNAL ERROR ** generated code size ("
+      let s = "*** INTERNAL ERROR ** generated code size ("
       + generatedCodeSize + ") != instruction size (" + [mInstruction instructionSize] + ")"
       error .nowhere : s
       ioListFileContents += s + "\n"
@@ -186,7 +186,7 @@ method @ipic18Block generateCodeForBlock
       generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode length]
     end
     if generatedCodeSize != [self.mTerminator terminatorSize !inNextBlockLabel] then
-      var s = "*** INTERNAL ERROR ** generated code size ("
+      let s = "*** INTERNAL ERROR ** generated code size ("
       + generatedCodeSize + ") != instruction size (" + [self.mTerminator terminatorSize !inNextBlockLabel] + ")"
       error .nowhere : s
       ioListFileContents += s + "\n"
@@ -243,7 +243,7 @@ proc ipic18GenerateCode
   var blockStartAddress = 0
   outGeneratedCodeMap = {}
   for (mBlock) in  inGeneratedBlockList do(blockIndex)
-    var @string nextBlockLabel
+    let @string nextBlockLabel
     if (blockIndex+1) < [inGeneratedBlockList length] then
       nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else

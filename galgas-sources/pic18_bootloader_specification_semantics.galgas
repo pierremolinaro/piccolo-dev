@@ -17,7 +17,7 @@ proc pic18BootloaderSpecificationAnalysis
   !@ramBankTable outRamBank
   !@registerTable outRegisterTable {
 #-------------------------------- Check source file name
-  var @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+  let @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
   if sourceFileBaseName != inBootloaderName.string then
     error inBootloaderName: "the bootloader name ('" + inBootloaderName
     + "') should be identical to the file base name '" + sourceFileBaseName + "'"
@@ -45,11 +45,7 @@ proc pic18BootloaderSpecificationAnalysis
 #-------------------------------- Check reserved RAM size <= microcontroller RAM size (in every bank)
   outRamBank = outPiccoloDeviceModel.mRamBankTable
   for (lkey mReservedSize) in  inBootloaderReservedRAMmap do
-    var @uint firstAddress
-    var @uint firstFreeAddress # Mutable
-    var @uint lastAddressPlusOne
-    var @uintlist mirrorOffsetList
-    [outRamBank searchKey !lkey ?firstAddress ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList]
+    [outRamBank searchKey !lkey ?let firstAddress ?var firstFreeAddress ?let lastAddressPlusOne ?let mirrorOffsetList]
     firstFreeAddress = firstFreeAddress + mReservedSize.uint
     if (firstFreeAddress > lastAddressPlusOne) then
       error mReservedSize: "reserved size is greater than size of '" + lkey + "' bank ("

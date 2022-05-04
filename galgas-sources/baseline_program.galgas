@@ -14,8 +14,8 @@ rule <section_list>
 
 rule <start_symbol> {
   $baseline$
-  $identifier$ ?var  @lstring programName
-  $literal_string$ ?var  @lstring deviceName
+  $identifier$ ?let @lstring programName
+  $literal_string$ ?let @lstring deviceName
   $:$
   var routineDefinitionList =@baseline_routineDefinitionList.emptyList{}
   var ramDefinitionList =@ramDefinitionList.emptyList{}
@@ -33,7 +33,7 @@ rule <start_symbol> {
   $end$
 #--- Semantic analysis
   if @uint. errorCount == 0 then
-    var piccoloModel =@baseline_model.new{
+    let piccoloModel = @baseline_model.new{
       !programName
       !deviceName
       !configDefinitionList
@@ -46,11 +46,11 @@ rule <start_symbol> {
     }
     baseline_analysis ( !piccoloModel !@string. stringWithSourceFilePath )
   else
-    var @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
+    let @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
     if [hexDestinationFile fileExists] then
       [@string deleteFile !hexDestinationFile]
     end
-    var @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
+    let @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
     if [asmDestinationFile fileExists] then
       [@string deleteFile !asmDestinationFile]
     end
@@ -67,7 +67,7 @@ label importBootloaderSpecification
   !@routineDeclarationList outUserRoutineDeclarationList
   !@luint outBootloaderReservedROMsize {
   $baseline$
-  $identifier$ ?var  @lstring programName
+  $identifier$ ?let @lstring programName
   error programName: "this file does not define a bootloader specification"
    : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap, outBootloaderRoutineDeclarationList,
