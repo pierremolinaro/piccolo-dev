@@ -17,7 +17,7 @@ proc parseDeviceDefinition
   let @string deviceFullName = inDeviceName.string + ".piccoloDevice"
   if [fw fileExistsAtPath !deviceFullName] then
     let @string definitionString = [fw textFileContentsAtPath !deviceFullName]
-    grammar piccoloDevice_grammar on (definitionString, deviceFullName) ?outPiccoloDeviceModel
+    grammar piccoloDevice_grammar (?outPiccoloDeviceModel) on definitionString : deviceFullName
   else
     error
       inDeviceName:

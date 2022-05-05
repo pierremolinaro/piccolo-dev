@@ -990,8 +990,8 @@ method @ipic18Block optimize
   var @ipic18AbstractBlockTerminator optimizedTerminator = self.mTerminator
   if ([optimizedInstructionList length] > 0) & (self.mTerminator is >= @ipic18ReturnTerminator) then
     [optimizedInstructionList last ?let @ipic18SequentialInstruction lastInstruction ?2*]
-    cast lastInstruction
-    case == @ipic18_intermediate_instruction_literalOperation op :
+    if let op = lastInstruction as @ipic18_intermediate_instruction_literalOperation then
+#    case == @ipic18_intermediate_instruction_literalOperation op :
       if inOptimizeFlagStruct.mMOVLWfollowedByRETreplacedByRETLW & (op.mLiteralInstruction == @literal_instruction_opcode. MOVLW) then
         [!?optimizedInstructionList popLast ?3*]
         optimizedTerminator = @ipic18RetlwTerminator. new { !op.mInstructionLocation !op.mLiteralValue}
@@ -999,7 +999,8 @@ method @ipic18Block optimize
         ioListFileContents += "  [M] " + self.mLabel + ": MOVLW k ; RETURN --> RETLW k\n"
       end
   #--- Transform JSR label ; RETURN to JUMP label
-    case == @ipic18_intermediate_JSR jsr :
+    elsif let jsr = lastInstruction as @ipic18_intermediate_JSR then
+#    case == @ipic18_intermediate_JSR jsr :
       if inOptimizeFlagStruct.mJSRfollowedByRETreplacedByJUMP then
         [!?optimizedInstructionList popLast ?3*]
         optimizedTerminator = @ipic18JumpTerminator.new {!jsr.mInstructionLocation !jsr.mTargetLabel !jsr.mKind}

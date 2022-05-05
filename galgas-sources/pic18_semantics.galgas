@@ -50,7 +50,7 @@ proc pic18_analyze
   case bootloaderProgram :
     bootloaderRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList. emptyList
     userRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList. emptyList
-    grammar pic18_grammar label importBootloaderSpecification in inPiccoloModel.mDeviceNameOrBootLoaderReference
+    grammar pic18_grammar label importBootloaderSpecification (
       ?piccoloDeviceModel
       ?piccoloDeviceName
       ?accessBankSplitOffset
@@ -60,11 +60,12 @@ proc pic18_analyze
       ?bootloaderRoutineDeclarationListForBootloaderImplementation
       ?userRoutineDeclarationListForBootloaderImplementation
       ?bootloaderReservedROMsize
+    ) in inPiccoloModel.mDeviceNameOrBootLoaderReference
     for (lkey mFirstAddress * * *) in  ramBank do #--- Reset first free addresses for all banks
       [!?ramBank setMFirstFreeAddressForKey !mFirstAddress !lkey.string]
     end
   case userProgram :
-    grammar pic18_grammar label importBootloaderSpecification in inPiccoloModel.mDeviceNameOrBootLoaderReference
+    grammar pic18_grammar label importBootloaderSpecification (
       ?piccoloDeviceModel
       ?piccoloDeviceName
       ?accessBankSplitOffset
@@ -74,6 +75,7 @@ proc pic18_analyze
       ?bootloaderRoutineDeclarationListForUserProgramImplementation
       ?userRoutineDeclarationListForUserProgramImplementation
       ?bootloaderReservedROMsize
+    ) in inPiccoloModel.mDeviceNameOrBootLoaderReference
     bootloaderRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList. emptyList
     userRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList. emptyList
   end

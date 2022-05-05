@@ -502,7 +502,7 @@ static void extensionMethod_ipic_31__38_AbstractBlockTerminator_performTerminato
                                                                                                            GALGAS_ipic_31__38_AbstractBlockTerminator & outArgument_outModifiedTerminator,
                                                                                                            C_Compiler * /* inCompiler */
                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_ipic_31__38_AbstractBlockTerminator * object = inObject ;
+  auto object = (cPtr_ipic_31__38_AbstractBlockTerminator *) inObject ; // A
   macroValidSharedObject (object, cPtr_ipic_31__38_AbstractBlockTerminator) ;
   const GALGAS_ipic_31__38_AbstractBlockTerminator temp_0 = object ;
   outArgument_outModifiedTerminator = temp_0 ;
@@ -2003,7 +2003,7 @@ static void extensionMethod_ipic_31__38_SequentialInstruction_performInstruction
                                                                                                           GALGAS_ipic_31__38_SequentialInstruction & outArgument_outModifiedInstruction,
                                                                                                           C_Compiler * /* inCompiler */
                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_ipic_31__38_SequentialInstruction * object = inObject ;
+  auto object = (cPtr_ipic_31__38_SequentialInstruction *) inObject ; // A
   macroValidSharedObject (object, cPtr_ipic_31__38_SequentialInstruction) ;
   const GALGAS_ipic_31__38_SequentialInstruction temp_0 = object ;
   outArgument_outModifiedInstruction = temp_0 ;
@@ -2750,7 +2750,7 @@ static void extensionMethod_pic_31__38_PiccoloInstruction_performInlining (const
                                                                            GALGAS_pic_31__38_InstructionList & ioArgument_ioInstructionList,
                                                                            C_Compiler * /* inCompiler */
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_pic_31__38_PiccoloInstruction * object = inObject ;
+  auto object = (cPtr_pic_31__38_PiccoloInstruction *) inObject ; // A
   macroValidSharedObject (object, cPtr_pic_31__38_PiccoloInstruction) ;
   const GALGAS_pic_31__38_PiccoloInstruction temp_0 = object ;
   ioArgument_ioInstructionList.addAssign_operation (temp_0  COMMA_SOURCE_FILE ("pic18_routine_inlining.galgas", 22)) ;
@@ -3964,7 +3964,7 @@ static void extensionMethod_ipic_31__38_AbstractConditionTerminator_getOptimized
                                                                                              GALGAS_bool & outArgument_outIdenticalTerminators,
                                                                                              C_Compiler * inCompiler
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_ipic_31__38_AbstractConditionTerminator * object = inObject ;
+  auto object = (cPtr_ipic_31__38_AbstractConditionTerminator *) inObject ; // A
   macroValidSharedObject (object, cPtr_ipic_31__38_AbstractConditionTerminator) ;
   GALGAS_ipic_31__38_AbstractBlockTerminator var_optimizedTrueTerminator_7342 ;
   const GALGAS_ipic_31__38_AbstractConditionTerminator temp_0 = object ;
@@ -4281,7 +4281,7 @@ static void extensionMethod_ipic_31__38_SequentialInstruction_optimizeInstructio
                                                                                    GALGAS_bool & outArgument_outNOPsubstitution,
                                                                                    C_Compiler * /* inCompiler */
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_ipic_31__38_SequentialInstruction * object = inObject ;
+  auto object = (cPtr_ipic_31__38_SequentialInstruction *) inObject ; // A
   macroValidSharedObject (object, cPtr_ipic_31__38_SequentialInstruction) ;
   const GALGAS_ipic_31__38_SequentialInstruction temp_0 = object ;
   outArgument_outOptimizedInstruction = temp_0 ;

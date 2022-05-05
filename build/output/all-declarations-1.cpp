@@ -5942,7 +5942,7 @@ static void extensionMethod_baseline_5F_instruction_shouldTerminateWithMOVLW (co
                                                                               const GALGAS_string constinArgument_inErrorMessage,
                                                                               C_Compiler * inCompiler
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_baseline_5F_instruction * object = inObject ;
+  auto object = (cPtr_baseline_5F_instruction *) inObject ; // A
   macroValidSharedObject (object, cPtr_baseline_5F_instruction) ;
   const GALGAS_baseline_5F_instruction temp_0 = object ;
   TC_Array <C_FixItDescription> fixItArray1 ;
@@ -6019,7 +6019,7 @@ static void extensionMethod_baseline_5F_instruction_shouldNotContinueInSequence 
                                                                                  const GALGAS_string constinArgument_inErrorMessage,
                                                                                  C_Compiler * inCompiler
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_baseline_5F_instruction * object = inObject ;
+  auto object = (cPtr_baseline_5F_instruction *) inObject ; // A
   macroValidSharedObject (object, cPtr_baseline_5F_instruction) ;
   const GALGAS_baseline_5F_instruction temp_0 = object ;
   TC_Array <C_FixItDescription> fixItArray1 ;
@@ -11222,7 +11222,7 @@ static void extensionMethod_baseline_5F_intermediate_5F_instruction_setCurrentAd
                                                                                        GALGAS_uint & ioArgument_ioCurrentWordAdress,
                                                                                        C_Compiler * inCompiler
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_baseline_5F_intermediate_5F_instruction * object = inObject ;
+  auto object = (cPtr_baseline_5F_intermediate_5F_instruction *) inObject ; // A
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_instruction) ;
   const GALGAS_baseline_5F_intermediate_5F_instruction temp_0 = object ;
   ioArgument_ioCurrentWordAdress = ioArgument_ioCurrentWordAdress.add_operation (callExtensionGetter_length ((const cPtr_baseline_5F_intermediate_5F_instruction *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 20)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 20)) ;
@@ -11768,62 +11768,66 @@ static void extensionMethod_baseline_5F_intermediate_5F_incDecRegisterInConditio
                                                                                                       GALGAS_bool & ioArgument_ioOptimizationsDone,
                                                                                                       C_Compiler * inCompiler
                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * object = inObject ;
+  auto object = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) inObject ; // A
   macroValidSharedObject (object, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-  GALGAS_uint var_line_18522 ;
+  GALGAS_uint var_line_19691 ;
   const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_0 = object ;
-  constinArgument_inSymbolTable.method_searchKey (GALGAS_lstring::constructor_new (temp_0.readProperty_mTargetLabel (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 467))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 467)), var_line_18522, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 467)) ;
-  GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_18713 ;
+  constinArgument_inSymbolTable.method_searchKey (GALGAS_lstring::constructor_new (temp_0.readProperty_mTargetLabel (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480))  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)), var_line_19691, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)) ;
+  GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_19882 ;
   {
-  routine_findBaselineFirstInstructionFromAddress (var_line_18522.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 470)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_18713, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 469)) ;
+  routine_findBaselineFirstInstructionFromAddress (var_line_19691.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 483)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_19882, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 482)) ;
   }
-  if (var_firstInstruction_18713.isValid ()) {
-    if (var_firstInstruction_18713.dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO) {
-      GALGAS_baseline_5F_intermediate_5F_GOTO cast_18831_goto ((cPtr_baseline_5F_intermediate_5F_GOTO *) var_firstInstruction_18713.ptr ()) ;
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    GALGAS_baseline_5F_intermediate_5F_GOTO var_goto_19947 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_19882.ptr ())) ;
+    if (NULL == var_goto_19947.ptr ()) {
+      test_1 = kBoolFalse ;
+    }
+    if (kBoolTrue == test_1) {
       {
-      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_1 = object ;
       const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_2 = object ;
       const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_3 = object ;
       const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_4 = object ;
       const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_5 = object ;
-      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::constructor_new (temp_1.readProperty_mInstructionLocation (), temp_2.readProperty_mRegisterDescription (), cast_18831_goto.readProperty_mTargetLabel ().readProperty_string (), temp_3.readProperty_mIncrement (), temp_4.readProperty_m_5F_W_5F_isDestination (), temp_5.readProperty_mBranchIfZero ()  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 478)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 477)) ;
+      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_6 = object ;
+      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::constructor_new (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mRegisterDescription (), var_goto_19947.readProperty_mTargetLabel ().readProperty_string (), temp_4.readProperty_mIncrement (), temp_5.readProperty_m_5F_W_5F_isDestination (), temp_6.readProperty_mBranchIfZero ()  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 492)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 491)) ;
       }
       ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 488)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 488)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 488)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 488)) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("GOTO "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 489)) ;
-      enumGalgasBool test_6 = kBoolTrue ;
-      if (kBoolTrue == test_6) {
-        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_7 = object ;
-        test_6 = temp_7.readProperty_mIncrement ().boolEnum () ;
-        if (kBoolTrue == test_6) {
-          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 491)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("GOTO "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 503)) ;
+      enumGalgasBool test_7 = kBoolTrue ;
+      if (kBoolTrue == test_7) {
+        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_8 = object ;
+        test_7 = temp_8.readProperty_mIncrement ().boolEnum () ;
+        if (kBoolTrue == test_7) {
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 505)) ;
         }
       }
-      if (kBoolFalse == test_6) {
-        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 493)) ;
+      if (kBoolFalse == test_7) {
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 507)) ;
       }
-      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_8 = object ;
-      ioArgument_ioListFileContents.plusAssign_operation(temp_8.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 495)) ;
-      enumGalgasBool test_9 = kBoolTrue ;
-      if (kBoolTrue == test_9) {
-        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_10 = object ;
-        test_9 = temp_10.readProperty_m_5F_W_5F_isDestination ().boolEnum () ;
-        if (kBoolTrue == test_9) {
-          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 497)) ;
+      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_9 = object ;
+      ioArgument_ioListFileContents.plusAssign_operation(temp_9.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 509)) ;
+      enumGalgasBool test_10 = kBoolTrue ;
+      if (kBoolTrue == test_10) {
+        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_11 = object ;
+        test_10 = temp_11.readProperty_m_5F_W_5F_isDestination ().boolEnum () ;
+        if (kBoolTrue == test_10) {
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 511)) ;
         }
       }
-      enumGalgasBool test_11 = kBoolTrue ;
-      if (kBoolTrue == test_11) {
-        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_12 = object ;
-        test_11 = temp_12.readProperty_mBranchIfZero ().boolEnum () ;
-        if (kBoolTrue == test_11) {
-          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 500)) ;
+      enumGalgasBool test_12 = kBoolTrue ;
+      if (kBoolTrue == test_12) {
+        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_13 = object ;
+        test_12 = temp_13.readProperty_mBranchIfZero ().boolEnum () ;
+        if (kBoolTrue == test_12) {
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 514)) ;
         }
       }
-      if (kBoolFalse == test_11) {
-        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" NZ"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)) ;
+      if (kBoolFalse == test_12) {
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" NZ"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 516)) ;
       }
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": branching to GOTO replaced by second GOTO label\n"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 504)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": branching to GOTO replaced by second GOTO label\n"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 518)) ;
     }
   }
 }

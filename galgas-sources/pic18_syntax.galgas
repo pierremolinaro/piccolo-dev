@@ -90,7 +90,7 @@ rule <body>
   while
     $include$
     $literal_string$ ?let @lstring includedFilePath
-    grammar pic18_include_grammar in includedFilePath
+    grammar pic18_include_grammar (
       !?interruptDefinitionList
       !?routineDefinitionList
       !?ioMacroDefinitionList
@@ -104,6 +104,7 @@ rule <body>
       !?dataList
       !?needsComputedGoto2
       !?needsComputedGoto4
+    ) in includedFilePath
   while
     $macro$
     $identifier$ ?let macroName

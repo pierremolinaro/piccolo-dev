@@ -194,7 +194,7 @@ case . "piccolo"
 message "a source text file with the .piccolo extension"
 grammar pic18_grammar
 ?sourceFilePath:@lstring inSourceFile {
-  grammar pic18_grammar in inSourceFile
+  grammar pic18_grammar () in inSourceFile
 }
 
 #----------------------------------------------------------------------------*

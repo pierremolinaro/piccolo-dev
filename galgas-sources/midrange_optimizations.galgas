@@ -166,11 +166,12 @@ proc findMidRangeFirstInstructionFromAddress
 #--- Find first executable instruction
   outFirstInstruction = @midrange_intermediate_NULL. new # By default, no instruction
   var @bool found = false
-  loop( [inGeneratedInstructionList length])
+  loop ([inGeneratedInstructionList length])
   while (currentAddress < [inGeneratedInstructionList length]) & not found
   do
-    cast [inGeneratedInstructionList mInstructionAtIndex !currentAddress]
-    case >= @midrange_intermediate_actualInstruction instr :
+    if let instr = [inGeneratedInstructionList mInstructionAtIndex !currentAddress] as @midrange_intermediate_actualInstruction then
+#    cast [inGeneratedInstructionList mInstructionAtIndex !currentAddress]
+#    case >= @midrange_intermediate_actualInstruction instr :
       outFirstInstruction = instr
       found = true
     else
@@ -195,14 +196,18 @@ proc findMidRangeFirstInstructionOrLabelFromAddress
   loop( [inGeneratedInstructionList length])
   while (currentAddress < [inGeneratedInstructionList length]) & not found
   do
-    cast [inGeneratedInstructionList mInstructionAtIndex !currentAddress]
-    case >= @midrange_intermediate_actualInstruction instr :
+    let instruction = [inGeneratedInstructionList mInstructionAtIndex !currentAddress]
+    if let instr = instruction as @midrange_intermediate_actualInstruction then
+#    cast [inGeneratedInstructionList mInstructionAtIndex !currentAddress]
+#    case >= @midrange_intermediate_actualInstruction instr :
       outFirstInstruction = instr
       found = true
-    case >= @midrange_intermediate_pseudo_ORG instr :
+    elsif let instr = instruction as @midrange_intermediate_pseudo_ORG then
+#    case >= @midrange_intermediate_pseudo_ORG instr :
       outFirstInstruction = instr
       found = true
-    case == @midrange_intermediate_pseudo_LABEL instr :
+    elsif let instr = instruction as @midrange_intermediate_pseudo_LABEL then
+#    case == @midrange_intermediate_pseudo_LABEL instr :
       outFirstInstruction = instr
       outReachedLabelSet += !instr.mLabel.string
       currentAddress ++
@@ -236,15 +241,17 @@ method @midrange_intermediate_JUMP optimizeJUMP
   #--- Find first executable instruction
     findMidRangeFirstInstructionFromAddress ( !line + 1 !ioGeneratedInstructionList ?let firstInstruction )
   #--- Optimization from found first instruction
-    cast firstInstruction
-    case == @midrange_intermediate_instruction_RETURN :
+    if let ret = firstInstruction as @midrange_intermediate_instruction_RETURN then
+#    cast firstInstruction
+#    case == @midrange_intermediate_instruction_RETURN :
       [!?ioGeneratedInstructionList setMInstructionAtIndex
         !@midrange_intermediate_instruction_RETURN. new { !self.mInstructionLocation}
         !inLineIndex
       ]
       ioOptimizationsDone = true
       ioListFileContents += "  line " + [inLineIndex string] + ": JUMP branching to RETURN replaced by RETURN\n"
-    case == @midrange_intermediate_instruction_literalOperation literalOp :
+    elsif let literalOp = firstInstruction as @midrange_intermediate_instruction_literalOperation then
+#    case == @midrange_intermediate_instruction_literalOperation literalOp :
       if literalOp.mLiteralInstruction == @midrange_literal_instruction_opcode. RETLW then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
           !literalOp
@@ -253,7 +260,8 @@ method @midrange_intermediate_JUMP optimizeJUMP
         ioOptimizationsDone = true
         ioListFileContents += "  line " + [inLineIndex string] + ": JUMP branching to RETLW replaced by RETLW\n"
       end
-    case == @midrange_intermediate_JUMP jump :
+    elsif let jump = firstInstruction as @midrange_intermediate_JUMP then
+#    case == @midrange_intermediate_JUMP jump :
       if self.mTargetLabel != jump.mTargetLabel then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
           !@midrange_intermediate_JUMP. new { !self.mInstructionLocation !jump.mTargetLabel !@midrange_call_goto_bit. noChange !@midrange_call_goto_bit. noChange}
@@ -262,7 +270,7 @@ method @midrange_intermediate_JUMP optimizeJUMP
         ioOptimizationsDone = true
         ioListFileContents += "  line " + [inLineIndex string] + ": JUMP branching to JUMP replaced by JUMP\n"
       end
-    else # No Optimization
+#    else # No Optimization
     end
   end      
 }
@@ -289,15 +297,17 @@ method @midrange_intermediate_GOTO optimizeGOTO
     findMidRangeFirstInstructionFromAddress ( !line + 1 !ioGeneratedInstructionList ?let firstInstruction )
   #--- Optimization from found first instruction
 #    log firstInstruction ;
-    cast firstInstruction
-    case == @midrange_intermediate_instruction_RETURN :
+    if let jump = firstInstruction as @midrange_intermediate_instruction_RETURN then
+#    cast firstInstruction
+#    case == @midrange_intermediate_instruction_RETURN :
       [!?ioGeneratedInstructionList setMInstructionAtIndex
         !@midrange_intermediate_instruction_RETURN. new { !self.mInstructionLocation}
         !inLineIndex
       ]
       ioOptimizationsDone = true
       ioListFileContents += "  line " + [inLineIndex string] + ": GOTO branching to RETURN replaced by RETURN\n"
-    case == @midrange_intermediate_instruction_literalOperation literalOp :
+    elsif let literalOp = firstInstruction as @midrange_intermediate_instruction_literalOperation then
+#    case == @midrange_intermediate_instruction_literalOperation literalOp :
       if literalOp.mLiteralInstruction == @midrange_literal_instruction_opcode. RETLW then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
           !literalOp
@@ -306,7 +316,8 @@ method @midrange_intermediate_GOTO optimizeGOTO
         ioOptimizationsDone = true
         ioListFileContents += "  line " + [inLineIndex string] + ": GOTO branching to RETLW replaced by RETLW\n"
       end
-    case == @midrange_intermediate_JUMP jump :
+    elsif let jump = firstInstruction as @midrange_intermediate_JUMP then
+#    case == @midrange_intermediate_JUMP jump :
       if self.mTargetLabel != jump.mTargetLabel then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
           !@midrange_intermediate_JUMP. new { !self.mInstructionLocation !jump.mTargetLabel !@midrange_call_goto_bit. noChange !@midrange_call_goto_bit. noChange}
@@ -315,7 +326,8 @@ method @midrange_intermediate_GOTO optimizeGOTO
         ioOptimizationsDone = true
         ioListFileContents += "  line " + [inLineIndex string] + ": GOTO branching to JUMP replaced by JUMP\n"
       end
-    case == @midrange_intermediate_GOTO goto :
+    elsif let goto = firstInstruction as @midrange_intermediate_GOTO then
+#    case == @midrange_intermediate_GOTO goto :
       if self.mTargetLabel != goto.mTargetLabel then
         [!?ioGeneratedInstructionList setMInstructionAtIndex
           !@midrange_intermediate_GOTO. new { !self.mInstructionLocation !goto.mTargetLabel}
@@ -324,7 +336,7 @@ method @midrange_intermediate_GOTO optimizeGOTO
         ioOptimizationsDone = true
         ioListFileContents += "  line " + [inLineIndex string] + ": GOTO branching to GOTO replaced by GOTO\n"
       end
-    else # No Optimization
+#    else # No Optimization
     end
   end      
 }
@@ -364,15 +376,16 @@ method @midrange_intermediate_instruction_literalOperation optimizeMOVLW
   #--- Find first executable instruction
     findMidRangeFirstInstructionFromAddress ( !inLineIndex + 1 !ioGeneratedInstructionList ?let firstInstruction )
   #--- Optimization from found first instruction
-    cast firstInstruction
-    case == @midrange_intermediate_instruction_RETURN :
+    if let jump = firstInstruction as @midrange_intermediate_instruction_RETURN then
+#    cast firstInstruction
+#    case == @midrange_intermediate_instruction_RETURN :
       [!?ioGeneratedInstructionList setMInstructionAtIndex
         !@midrange_intermediate_instruction_literalOperation. new { !self.mInstructionLocation !@midrange_literal_instruction_opcode. RETLW !self.mLiteralValue}
         !inLineIndex
       ]
       ioOptimizationsDone = true
       ioListFileContents += "  line " + [inLineIndex string] + ": MOVLW followed by RETURN replaced by RETLW\n"
-    else
+#    else
     end
   end
 }
@@ -392,8 +405,9 @@ method @midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc
   findMidRangeFirstInstructionFromAddress ( !line + 1 !ioGeneratedInstructionList ?let firstInstruction )
 #--- Optimization from found first instruction
 #  log firstInstruction ;
-  cast firstInstruction
-  case == @midrange_intermediate_JUMP jump :
+  if let jump = firstInstruction as @midrange_intermediate_JUMP then
+#  cast firstInstruction
+#  case == @midrange_intermediate_JUMP jump :
     [!?ioGeneratedInstructionList setMInstructionAtIndex
       !@midrange_intermediate_incDecRegisterInCondition. new {
         !self.mInstructionLocation
@@ -422,7 +436,8 @@ method @midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc
       ioListFileContents += "NZ"
     end
     ioListFileContents += ": branching to JUMP replaced by second JUMP label\n"
-  case == @midrange_intermediate_GOTO goto :
+  elsif let goto = firstInstruction as @midrange_intermediate_GOTO then
+#  case == @midrange_intermediate_GOTO goto :
     [!?ioGeneratedInstructionList setMInstructionAtIndex
       !@midrange_intermediate_incDecRegisterInCondition. new {
         !self.mInstructionLocation
@@ -451,7 +466,7 @@ method @midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc
       ioListFileContents += " NZ"
     end
     ioListFileContents += ": branching to GOTO replaced by second JUMP label\n"
-  else
+#  else
   end
 }
 
@@ -464,18 +479,20 @@ method @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
   ?!@bool ioOptimizationsDone
 {
 #--- First following instruction is a JUMP ?
-  var @string jumpLabel = "" # No By default
-  var @bool ok = false
-  cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 1]
-  case == @midrange_intermediate_JUMP jump :
+  var jumpLabel = "" # No By default
+  var ok = false
+  if let jump = [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 1] as @midrange_intermediate_JUMP then
+#  cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 1]
+#  case == @midrange_intermediate_JUMP jump :
     jumpLabel = jump.mTargetLabel.string
     ok = true
   else
   end
 #--- Get second following instruction
   if (ok) then
-    cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2]
-    case >= @midrange_intermediate_actualInstruction instruction :
+    if let instruction = [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2] as @midrange_intermediate_actualInstruction then
+#    cast [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 2]
+#    case >= @midrange_intermediate_actualInstruction instruction :
       ok = [instruction instructionLength] == 1
     else
       ok = false
@@ -543,20 +560,24 @@ proc perform_midrange_optimizations
     loop ([ioGeneratedInstructionList length]) while idx < [ioGeneratedInstructionList length] do
 #    for () in ioGeneratedInstructionList do (idx)
       let instruction = [ioGeneratedInstructionList mInstructionAtIndex !idx]
-      cast instruction
-      case == @midrange_intermediate_GOTO ipic_GOTO :
+      if let ipic_GOTO = instruction as @midrange_intermediate_GOTO then
+#      case == @midrange_intermediate_GOTO ipic_GOTO :
         [ipic_GOTO optimizeGOTO !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
-      case == @midrange_intermediate_JUMP ipic_JUMP :
+      elsif let ipic_JUMP = instruction as @midrange_intermediate_JUMP then
+#      case == @midrange_intermediate_JUMP ipic_JUMP :
         [ipic_JUMP optimizeJUMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
 #      when == @midrange_intermediate_CALL ipic_CALL :
 #        [ipic_CALL optimizeCALL !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone] ;
-      case == @midrange_intermediate_instruction_literalOperation ipic_literal :
+      elsif let ipic_literal = instruction as @midrange_intermediate_instruction_literalOperation then
+#      case == @midrange_intermediate_instruction_literalOperation ipic_literal :
         [ipic_literal optimizeMOVLW !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
-      case == @midrange_intermediate_incDecRegisterInCondition ipic_decInc :
+      elsif let ipic_decInc = instruction as @midrange_intermediate_incDecRegisterInCondition then
+#      case == @midrange_intermediate_incDecRegisterInCondition ipic_decInc :
         [ipic_decInc optimizeTestDecInc !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
-      case == @midrange_intermediate_instruction_BitTestSkip ipic_bitTestSkip :
+      elsif let ipic_bitTestSkip = instruction as @midrange_intermediate_instruction_BitTestSkip then
+#      case == @midrange_intermediate_instruction_BitTestSkip ipic_bitTestSkip :
         [ipic_bitTestSkip optimizeBitTestSkip !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
-      else
+#      else
       end
       idx = idx + 1
     end

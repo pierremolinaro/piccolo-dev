@@ -850,7 +850,7 @@ static void extensionMethod_midrange_5F_instruction_5F_IF_5F_BitTest_getBaseCode
                                                                                   GALGAS_uint & outArgument_outBaseCode,
                                                                                   C_Compiler * /* inCompiler */
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * object = inObject ;
+  auto object = (cPtr_midrange_5F_instruction_5F_IF_5F_BitTest *) inObject ; // A
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_IF_5F_BitTest) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -936,7 +936,7 @@ static void extensionMethod_midrange_5F_instruction_5F_IF_5F_BitTest_getMnemonic
                                                                                   GALGAS_string & outArgument_outMnemonic,
                                                                                   C_Compiler * /* inCompiler */
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * object = inObject ;
+  auto object = (cPtr_midrange_5F_instruction_5F_IF_5F_BitTest *) inObject ; // A
   macroValidSharedObject (object, cPtr_midrange_5F_instruction_5F_IF_5F_BitTest) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -2033,7 +2033,7 @@ static void extensionMethod_registerExpression_resolveMidrangeAccess (const cPtr
                                                                       GALGAS_stringset & ioArgument_ioUsedRegisters,
                                                                       C_Compiler * inCompiler
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_registerExpression * object = inObject ;
+  auto object = (cPtr_registerExpression *) inObject ; // A
   macroValidSharedObject (object, cPtr_registerExpression) ;
   GALGAS_sint_36__34_ var_offset_653 ;
   const GALGAS_registerExpression temp_0 = object ;
@@ -6447,7 +6447,7 @@ static void extensionMethod_registerExpression_analyzeRegisterExpression (const 
                                                                           GALGAS_stringset & ioArgument_ioUsedRegisters,
                                                                           C_Compiler * inCompiler
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_registerExpression * object = inObject ;
+  auto object = (cPtr_registerExpression *) inObject ; // A
   macroValidSharedObject (object, cPtr_registerExpression) ;
   GALGAS_sint_36__34_ var_offset_620 ;
   const GALGAS_registerExpression temp_0 = object ;
@@ -6618,7 +6618,7 @@ static void extensionMethod_registerExpression_analyzeRegisterExpressionWithoutC
                                                                                              GALGAS_stringset & ioArgument_ioUsedRegisters,
                                                                                              C_Compiler * inCompiler
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_registerExpression * object = inObject ;
+  auto object = (cPtr_registerExpression *) inObject ; // A
   macroValidSharedObject (object, cPtr_registerExpression) ;
   const GALGAS_registerExpression temp_0 = object ;
   ioArgument_ioUsedRegisters.addAssign_operation (temp_0.readProperty_mRegisterName ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 81)) ;
@@ -6736,7 +6736,7 @@ static void extensionMethod_registerExpression_getRegisterAddress (const cPtr_re
                                                                    GALGAS_uint & outArgument_outRegisterAddress,
                                                                    C_Compiler * inCompiler
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  const cPtr_registerExpression * object = inObject ;
+  auto object = (cPtr_registerExpression *) inObject ; // A
   macroValidSharedObject (object, cPtr_registerExpression) ;
   GALGAS_uintlist var_registerAddressList_4086 ;
   GALGAS_uint var_size_4102 ;
