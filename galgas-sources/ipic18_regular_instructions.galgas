@@ -491,7 +491,7 @@ override method @ipic18_intermediate_instruction_MNOP generateCode
   while idx < self.mOccurrenceFactor.uint
   do
     outCode += !"    NOP" !{!0x0000}
-    idx ++
+    idx += 1
   end
 }
 
@@ -527,7 +527,7 @@ override method @ipic18_intermediate_instruction_NOPBRA generateCode
   while idx < self.mOccurrenceFactor.uint
   do
     outCode += !"    BRA $+2" !{!0xD000}
-    idx ++
+    idx += 1
   end
 }
 
@@ -929,7 +929,7 @@ override method @ipic18_intermediate_JSR performInstructionRelativeBranchResolut
   switch self.mKind
   case ipicRelative :
     if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabel !inAddress) then
-      ioConversionCount ++
+      ioConversionCount += 1
       ioListFileContents += "  " + inBlockLabel + ": JSR " + self.mTargetLabel + " --> CALL " + self.mTargetLabel + "\n"
       outModifiedInstruction = @ipic18_intermediate_JSR. new { !self.mInstructionLocation !self.mTargetLabel !@jumpInstructionKind. absolute}
     end
@@ -1053,7 +1053,7 @@ override method @ipic18_intermediate_instruction_computed_rcall performInstructi
   end
   if self.mUsesRCALL then
     if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_4" nowhere] !inAddress) then
-      ioConversionCount ++
+      ioConversionCount += 1
       ioListFileContents += "  " + inBlockLabel + ": computed rcall needs to use CALL _computed_goto_4\n"
       outModifiedInstruction = @ipic18_intermediate_instruction_computed_rcall. new {
         !self.mInstructionLocation
@@ -1086,7 +1086,7 @@ override method @ipic18_intermediate_instruction_computed_rcall generateCode
   let nextInstructionLabel = @lstring.new { !"_computed_" + [inAddress xString] !self.mInstructionLocation}
   var @uint idx = 0
   for (mInstruction * *) in  self.mTargetInstructions do
-    idx ++
+    idx += 1
     [mInstruction generateCode
       !currentInstructionAddress
       !inSymbolTable

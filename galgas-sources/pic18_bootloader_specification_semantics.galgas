@@ -45,7 +45,7 @@ proc pic18BootloaderSpecificationAnalysis
 #-------------------------------- Check reserved RAM size <= microcontroller RAM size (in every bank)
   outRamBank = outPiccoloDeviceModel.mRamBankTable
   for (lkey mReservedSize) in  inBootloaderReservedRAMmap do
-    [outRamBank searchKey !lkey ?let firstAddress ?var firstFreeAddress ?let lastAddressPlusOne ?let mirrorOffsetList]
+    [outRamBank searchKey !lkey ?let firstAddress ?var firstFreeAddress ?let lastAddressPlusOne ?let unused mirrorOffsetList]
     firstFreeAddress = firstFreeAddress + mReservedSize.uint
     if (firstFreeAddress > lastAddressPlusOne) then
       error mReservedSize: "reserved size is greater than size of '" + lkey + "' bank ("

@@ -557,7 +557,7 @@ func blockDiscontinuityCount ?let @ipic18BlockList inBlockList -> @uint outResul
         nextBlockLabel = ""
       end
       if [mBlock.mTerminator needToInsertJumpInstruction !nextBlockLabel] then
-        outResult ++
+        outResult += 1
       end
     end
   end

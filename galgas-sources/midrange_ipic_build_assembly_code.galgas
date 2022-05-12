@@ -99,7 +99,7 @@ override method @midrange_intermediate_incDecRegisterInCondition buildAssemblyCo
   end
   ioString += "\n"
   if self.mBranchIfZero then
-    let @string localLabel = ".LL" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+    let @string localLabel = ".LL" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
     ioString += "  GOTO " + localLabel + "\n"
     ioString += "  GOTO " + self.mTargetLabel + "\n"
     ioString += localLabel + ":\n"
@@ -239,7 +239,7 @@ override method @midrange_intermediate_instruction_MNOP buildAssemblyCode
   while idx < self.mOccurrenceFactor.uint
   do
     ioString += "  NOP\n"
-    idx ++
+    idx += 1
   end
 }
 

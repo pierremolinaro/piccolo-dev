@@ -648,7 +648,7 @@ override method @midrange_intermediate_instruction_MNOP generateBinaryCodeAtAddr
   while idx < self.mOccurrenceFactor.uint
   do
     emitMidrangeDirectCodeAtWordAddress ( !0x0000 !?ioAddress !"NOP" !?ioListFileContents )
-    idx ++
+    idx += 1
   end
 }
 

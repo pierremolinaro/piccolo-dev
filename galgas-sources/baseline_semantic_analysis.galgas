@@ -250,7 +250,7 @@ override method @baseline_instruction_FD build_baseline_intermediate_instruction
     !inRegisterTable
     !inConstantMap
     ?let @baseline_intermediate_registerExpression intermediateRegisterDescription
-    ?let @bitSliceTable bitSliceTable
+    ?let @bitSliceTable unused bitSliceTable
     !?ioUsedRegisters
   ]
   ioGeneratedInstructionList += !@baseline_intermediate_instruction_FD. new {
@@ -535,7 +535,7 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
     !inRegisterTable
     !inConstantMap
     ?let @baseline_intermediate_registerExpression intermediateRegisterDescription
-    ?let @bitSliceTable bitSliceTable
+    ?let @bitSliceTable unused bitSliceTable
     !?ioUsedRegisters
   ]
 #---
@@ -584,7 +584,7 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
   end
 #--- Check instruction list does not change bank
   let @string label0 = ".L" + [ioLocalLabelIndex string] 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
   ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !label0 !self.mInstructionLocation}}
   handleBaselineInstructionList (
     !inCurrentPage
@@ -671,7 +671,7 @@ override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_
       !false # Instruction list does not need to end with MOVLW
       !?ioUsedRegisters
     )
-    idx ++
+    idx += 1
   end
 }
 
@@ -690,7 +690,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters {
 #--- Generate label
-  let @string labelInstructionBegin = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+  let @string labelInstructionBegin = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
 #--- Define label
   ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !@lstring. new { !labelInstructionBegin !self.mInstructionLocation}}
 #--- Repeated instructions
@@ -723,7 +723,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
         !?ioUsedRegisters
       ]
     else
-      let @string nextBranchLabel = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+      let @string nextBranchLabel = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
       [mCondition build_intermediate_condition_instructions
         !inCurrentPage
         !inRegisterTable
@@ -772,8 +772,8 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters {
 #---
-  let @string label_nextCondition = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
-  let @string label_endOfIfinstruction = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+  let @string label_nextCondition = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
+  let @string label_endOfIfinstruction = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
 #--- Translate condition
   [self.mIfCondition build_intermediate_condition_instructions
     !inCurrentPage
@@ -862,7 +862,7 @@ override method @baseline_incDecRegisterInCondition build_intermediate_condition
     !inRegisterTable
     !inConstantMap
     ?let @baseline_intermediate_registerExpression intermediateRegisterDescription
-    ?let @bitSliceTable bitSliceTable
+    ?let @bitSliceTable unused bitSliceTable
     !?ioUsedRegisters
   ]
 #---
@@ -936,7 +936,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
       !?ioUsedRegisters
     ]
   else
-    let @string label0 = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex ++
+    let @string label0 = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
     [self.mLeftExpression build_intermediate_condition_instructions
       !inCurrentPage
       !inRegisterTable

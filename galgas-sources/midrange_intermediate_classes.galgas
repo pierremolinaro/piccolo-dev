@@ -56,7 +56,7 @@ method @registerExpression resolveMidrangeAccess
         ok = (mValue >= (bank * 128)) & (mValue < (bank * 128 + 128))
         registerAddress = mValue & 0x7F
       end
-      bank ++
+      bank += 1
     end
     if not ok then
       var @string acceptableBankMessage = ""

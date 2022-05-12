@@ -256,7 +256,7 @@ proc baseline_analysis
           end
         end
       end
-      currentPage ++
+      currentPage += 1
     end
   end
 #-------------------------------- Compute used routine set
@@ -357,7 +357,7 @@ proc baseline_analysis
       !assemblyInstructionList
       !piccoloDeviceModel.mRomSize.uint
       !?listFileContents
-      ?let @uint usedROMsize
+      ?let @uint unused usedROMsize
     )
   end
 #-------------------------------- Listing file

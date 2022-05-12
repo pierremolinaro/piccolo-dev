@@ -111,18 +111,18 @@ rule <parse_bootloader>
 
 rule <start_symbol> {
   <parse_bootloader>
-    ?let bootloaderName
-    ?let deviceName
-    ?let bootloaderRoutineDeclarationList
-    ?let bootloaderReservedRAMmap
-    ?let reservedRomSize
-    ?let userRoutineDeclarationList
-    ?let sharedRamDefinitionList
+    ?let unused bootloaderName
+    ?let unused deviceName
+    ?let unused bootloaderRoutineDeclarationList
+    ?let unused bootloaderReservedRAMmap
+    ?let unused reservedRomSize
+    ?let unused userRoutineDeclarationList
+    ?let unused sharedRamDefinitionList
     ?let listFileContents
-    ?let piccoloDeviceModel
-    ?let accessBankSplitOffset
-    ?let ramBank
-    ?let registerTable
+    ?let unused piccoloDeviceModel
+    ?let unused accessBankSplitOffset
+    ?let unused ramBank
+    ?let unused registerTable
 #--- Semantic analysis
   let @string listingFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".list"
   if (@uint. errorCount == 0) & [option piccolo_options.ouputListingFile value] then
@@ -143,14 +143,14 @@ label importBootloaderSpecification
   !@routineDeclarationList outUserRoutineDeclarationList
   !@luint outBootloaderReservedROMsize {
   <parse_bootloader>
-    ?let bootloaderName
+    ?let unused bootloaderName
     ?let @lstring deviceName
     ?outBootloaderRoutineDeclarationList
     ?outBootloaderReservedRAMmap
     ?outBootloaderReservedROMsize
     ?outUserRoutineDeclarationList
-    ?let sharedRamDefinitionList
-    ?let listFileContents
+    ?let unused sharedRamDefinitionList
+    ?let unused listFileContents
     ?outPiccoloDeviceModel
     ?outAccessBankSplitOffset
     ?outRamBank

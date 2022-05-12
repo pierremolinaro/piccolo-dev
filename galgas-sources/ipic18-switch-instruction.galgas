@@ -61,7 +61,7 @@ override method @pic18Instruction_switch analyze
   var caseConstantMap =@caseConstantMap.emptyMap{}
 #--- Labels
   let exitLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
 #--- Comparison value
   var @sint64 lastComparisonValue = 0LS
 #--- By default, do not continue in sequence
@@ -77,7 +77,7 @@ override method @pic18Instruction_switch analyze
   #--- Generate test blocks
     for (mCaseItem) in mCaseExpressionList do
       let conditionLabel = [ioLocalLabelIndex string]
-      ioLocalLabelIndex ++
+      ioLocalLabelIndex += 1
       [mCaseItem analyzeCaseItem
         !inRegisterTable
         !inConstantMap

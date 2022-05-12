@@ -205,7 +205,7 @@ override method @ipic18JumpTerminator performTerminatorRelativeBranchResolution
     switch self.mKind
     case ipicRelative :
       if not pic18_checkBRA_RCALL (!inSymbolTable !self.mLabel !inAddress) then
-        ioConversionCount ++
+        ioConversionCount += 1
         ioListFileContents += "  " + inBlockLabel + ": JUMP " + self.mLabel + " --> GOTO " + self.mLabel + "\n"
         outModifiedTerminator = @ipic18JumpTerminator. new { !self.mInstructionLocation !self.mLabel !@jumpInstructionKind. absolute}
       end
@@ -912,7 +912,7 @@ override method @ipic18ComputedRETLWTerminator performTerminatorRelativeBranchRe
   outModifiedTerminator = self
   if self.mUsesRCALL then
     if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_2" nowhere] !inAddress) then
-      ioConversionCount ++
+      ioConversionCount += 1
       ioListFileContents += "  " + inBlockLabel + ": computed RETLW needs CALL _computed_goto_2\n"
       outModifiedTerminator = @ipic18ComputedRETLWTerminator. new { !self.mInstructionLocation !self.mLiteralValues !false}
     end
@@ -1016,7 +1016,7 @@ override method @ipic18ComputedGotoTerminator performTerminatorRelativeBranchRes
   outModifiedTerminator = self
   if self.mUsesRCALL then
     if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_2" nowhere] !inAddress) then
-      ioConversionCount ++
+      ioConversionCount += 1
       ioListFileContents += "  " + inBlockLabel + ": computed GOTO needs CALL _computed_goto_4\n"
       outModifiedTerminator = @ipic18ComputedGotoTerminator. new { !self.mInstructionLocation !self.mTargetLabels !false}
     end
@@ -1121,7 +1121,7 @@ override method @ipic18ComputedBraTerminator performTerminatorRelativeBranchReso
   outModifiedTerminator = self
   if self.mUsesRCALL then
     if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_2" nowhere] !inAddress ) then
-      ioConversionCount ++
+      ioConversionCount += 1
       ioListFileContents += "  " + inBlockLabel + ": computed RETLW needs CALL _computed_goto_2\n"
       outModifiedTerminator = @ipic18ComputedBraTerminator. new { !self.mInstructionLocation !self.mTargetLabels !false}
     end
@@ -1418,7 +1418,7 @@ override method @ipic18ConditionalJumpTerminator performTerminatorRelativeBranch
       !branchModeOnTrueLabel
       !self.mTargetLabelWhenFalse
       !branchModeOnFalseLabel}
-    ioConversionCount ++
+    ioConversionCount += 1
   end
 }
 

@@ -95,7 +95,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
       or
         $-$
         bitDefinitionString += "-"
-        sliceIndex --
+        sliceIndex -= 1
       or
         $integer$ ?let bitCount
         if bitCount.uint == 0 then

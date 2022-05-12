@@ -150,7 +150,7 @@ proc ipic18RelativesResolution
   var @uint pass = 0
   loop( [ioGeneratedBlockList length] + 1)
   while (not resolutionDone) & (@uint. errorCount == 0) do
-    pass ++
+    pass += 1
     computeLabelAbsoluteAddressMap (
       !ioGeneratedBlockList
       !@ipic18BlockList. emptyList

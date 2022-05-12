@@ -175,7 +175,7 @@ proc findMidRangeFirstInstructionFromAddress
       outFirstInstruction = instr
       found = true
     else
-      currentAddress ++
+      currentAddress += 1
     end
   end
 }
@@ -210,9 +210,9 @@ proc findMidRangeFirstInstructionOrLabelFromAddress
 #    case == @midrange_intermediate_pseudo_LABEL instr :
       outFirstInstruction = instr
       outReachedLabelSet += !instr.mLabel.string
-      currentAddress ++
+      currentAddress += 1
     else
-      currentAddress ++
+      currentAddress += 1
     end
   end
 }
@@ -241,7 +241,7 @@ method @midrange_intermediate_JUMP optimizeJUMP
   #--- Find first executable instruction
     findMidRangeFirstInstructionFromAddress ( !line + 1 !ioGeneratedInstructionList ?let firstInstruction )
   #--- Optimization from found first instruction
-    if let ret = firstInstruction as @midrange_intermediate_instruction_RETURN then
+    if let * = firstInstruction as @midrange_intermediate_instruction_RETURN then
 #    cast firstInstruction
 #    case == @midrange_intermediate_instruction_RETURN :
       [!?ioGeneratedInstructionList setMInstructionAtIndex
@@ -297,7 +297,7 @@ method @midrange_intermediate_GOTO optimizeGOTO
     findMidRangeFirstInstructionFromAddress ( !line + 1 !ioGeneratedInstructionList ?let firstInstruction )
   #--- Optimization from found first instruction
 #    log firstInstruction ;
-    if let jump = firstInstruction as @midrange_intermediate_instruction_RETURN then
+    if let * = firstInstruction as @midrange_intermediate_instruction_RETURN then
 #    cast firstInstruction
 #    case == @midrange_intermediate_instruction_RETURN :
       [!?ioGeneratedInstructionList setMInstructionAtIndex
@@ -376,7 +376,7 @@ method @midrange_intermediate_instruction_literalOperation optimizeMOVLW
   #--- Find first executable instruction
     findMidRangeFirstInstructionFromAddress ( !inLineIndex + 1 !ioGeneratedInstructionList ?let firstInstruction )
   #--- Optimization from found first instruction
-    if let jump = firstInstruction as @midrange_intermediate_instruction_RETURN then
+    if let * = firstInstruction as @midrange_intermediate_instruction_RETURN then
 #    cast firstInstruction
 #    case == @midrange_intermediate_instruction_RETURN :
       [!?ioGeneratedInstructionList setMInstructionAtIndex
@@ -500,7 +500,7 @@ method @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
   end
 #--- Get third following instruction
   if (ok) then
-    let @midrange_intermediate_instruction thirdInstruction = @midrange_intermediate_NULL.new
+#    let @midrange_intermediate_instruction thirdInstruction = @midrange_intermediate_NULL.new
     findMidRangeFirstInstructionOrLabelFromAddress ( !inLineIndex+3 !ioGeneratedInstructionList ?* ?let reachedLabelSet )
     ok = [reachedLabelSet hasKey !jumpLabel]
   end
@@ -553,7 +553,7 @@ proc perform_midrange_optimizations
   while optimizationsDone
   do
     optimizationsDone = false
-    iteration ++
+    iteration += 1
     ioListFileContents += "Pass " + [iteration string] + ":\n"
   #--- Optimization loop
     var idx = 0

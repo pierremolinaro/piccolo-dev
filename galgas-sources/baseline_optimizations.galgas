@@ -211,7 +211,7 @@ proc findBaselineFirstInstructionFromAddress
       outFirstInstruction = instr
       found = true
     else
-      currentAddress ++
+      currentAddress += 1
     end
   end
 }
@@ -246,9 +246,9 @@ proc findBaselineFirstInstructionOrLabelFromAddress
 #    case == @baseline_intermediate_pseudo_LABEL instr :
       outFirstInstruction = instr
       outReachedLabelSet += !instr.mLabel.string
-      currentAddress ++
+      currentAddress += 1
     else
-      currentAddress ++
+      currentAddress += 1
     end
   end
 }
@@ -451,7 +451,7 @@ method @baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE
   let @baseline_intermediate_instruction nextInstruction = [ioGeneratedInstructionList mInstructionAtIndex !inLineIndex + 1]
 #--- Next instruction is a label ?
   var @bool reachable = false
-  if let aLabel = nextInstruction as @baseline_intermediate_pseudo_LABEL then
+  if let * = nextInstruction as @baseline_intermediate_pseudo_LABEL then
 #  cast nextInstruction
 #  case == @baseline_intermediate_pseudo_LABEL :
     reachable = true
@@ -545,7 +545,7 @@ proc perform_baseline_optimizations
   while optimizationsDone
   do
     optimizationsDone = false
-    iteration ++
+    iteration += 1
     ioListFileContents += "Pass " + [iteration string] + ":\n"
   #--- Optimization loop
     for (instruction) in  ioGeneratedInstructionList do (idx)

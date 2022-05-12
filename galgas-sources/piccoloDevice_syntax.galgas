@@ -49,11 +49,11 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   repeat
   while
     $unusedregister$
-    $integer$ ?let @luint unusedRegisterStart
+    $integer$ ?* # let @luint unusedRegisterStart
     select
     or
      $to$
-     $integer$ ?let @luint unusedRegisterEnd
+     $integer$ ?* # let @luint unusedRegisterEnd
     end
     $;$
   end
@@ -135,7 +135,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       or
         $-$
         bitDefinitionString += "-"
-        sliceIndex --
+        sliceIndex -= 1
       end
     while
       $,$

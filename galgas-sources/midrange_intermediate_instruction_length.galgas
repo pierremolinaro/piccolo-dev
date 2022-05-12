@@ -34,10 +34,10 @@ override
 getter @midrange_intermediate_JUMP instructionLength -> @uint outLength {
   outLength = 1
   if self.mBit11 != @midrange_call_goto_bit. noChange then
-    outLength ++
+    outLength += 1
   end
   if self.mBit12 != @midrange_call_goto_bit. noChange then
-    outLength ++
+    outLength += 1
   end
 }
 

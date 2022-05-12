@@ -545,7 +545,7 @@ override method @pic18Instruction_FOREVER analyze
   let @uint finalBank = ioCurrentBank
 #--- Get loop label
   let loopLabel = @lstring.new { !".L" + ioLocalLabelIndex !self.mInstructionLocation} 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
 #--- Store current block
   ioGeneratedBlockList += !@ipic18Block. new {
     !@uint. max # relocatable
@@ -781,7 +781,7 @@ override method @pic18Instruction_repetitionStatique analyze
       !inRoutineKind 
       !?ioUsedRegisters
     )
-    idx ++
+    idx += 1
   end
 }
 
@@ -1769,7 +1769,7 @@ override method @pic18Instruction_JUMPCC analyze
   end
 #--- Create the continuation label
   let label0 = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
 #--- Build block
   ioGeneratedBlockList += !@ipic18Block. new {
     !@uint. max # relocatable
@@ -2010,11 +2010,11 @@ override method @pic18Instruction_structured_if analyze
   var @uint thenBranchFinalBank = ioCurrentBank
 #--- Labels
   let conditionTrueLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
   let conditionFalseLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
   let exitLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
 #---- Analyze condition
   [self.mIfCondition analyzeCondition
     !inAccessBankSplitOffset
@@ -2187,7 +2187,7 @@ override method @pic18Instruction_do_while analyze
   ?!@stringset ioUsedRegisters {
 #--- Labels
   let startLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
 #--- Save current block
   ioGeneratedBlockList += !@ipic18Block. new {
     !@uint. max # relocatable
@@ -2230,9 +2230,9 @@ override method @pic18Instruction_do_while analyze
   for (mCondition mInstructionList mEndOfPartLocation) in  self.mWhilePartList do
   #--- Labels
     let conditionTrueLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
-    ioLocalLabelIndex ++
+    ioLocalLabelIndex += 1
    let conditionFalseLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
-   ioLocalLabelIndex ++
+   ioLocalLabelIndex += 1
   #---- Analyze condition
     [mCondition analyzeCondition
       !inAccessBankSplitOffset
@@ -2476,9 +2476,9 @@ override method @testTerminationForBlockInstruction generateBlock
   ?let @string inLabelForBlock
   !@ipic18AbstractBlockTerminator outTerminator {
   let conditionTrueLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mLocation} 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
   let conditionFalseLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mLocation} 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
 #--- Generate condition
   [self.mCondition analyzeCondition
     !inAccessBankSplitOffset
@@ -2555,7 +2555,7 @@ override method @pic18Instruction_block analyze
 {
 #----------------- Block labels prefix
   let @string labelForBlock = ".L" + [ioLocalLabelIndex string] + "_" 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
 #---------------- Save current block
   ioGeneratedBlockList += !@ipic18Block. new {
     !@uint. max # relocatable
@@ -2929,7 +2929,7 @@ override method @pic18AndCondition analyzeCondition
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator {
 #--- Create an intermédiate label for handling true condition of left expression
   let conditionTrueLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !inConditionTrueLabel.location} 
-  ioLocalLabelIndex ++
+  ioLocalLabelIndex += 1
 #--- Left expression
   [self.mLeftExpression analyzeCondition
     !inAccessBankSplitOffset
@@ -3282,7 +3282,7 @@ proc build_ipic18_block_representation_list
     }
     entryPoint = entryPoint + 0x4
   end
-  drop tempBootloaderRoutineDeclarationList
+#  drop tempBootloaderRoutineDeclarationList
 #-------------------------------- Generate low interrupt routine (if any)
   var @uint localLabelIndex = 0
   if inHasLowInterrupt then
