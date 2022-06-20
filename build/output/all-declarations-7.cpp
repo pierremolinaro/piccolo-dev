@@ -5026,6 +5026,16 @@ GALGAS_blockInvocationGraph GALGAS_blockInvocationGraph::getter_subgraphFromNode
 
 //----------------------------------------------------------------------------------------------------------------------
 
+GALGAS_stringlist GALGAS_blockInvocationGraph::getter_nodeList (UNUSED_LOCATION_ARGS) const {
+  GALGAS_stringlist resultingList ;
+  if (isValid ()) {
+    resultingList = graph () ;
+  }
+  return resultingList ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 GALGAS_lstringlist GALGAS_blockInvocationGraph::getter_accessibleNodesFrom (const GALGAS_lstringlist & inStartKeyList,
                                                                             const GALGAS_stringset & inNodesToExclude,
                                                                             C_Compiler * inCompiler
