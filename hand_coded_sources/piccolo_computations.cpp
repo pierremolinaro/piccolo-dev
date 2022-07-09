@@ -58,12 +58,12 @@ emit_04_record (C_String & ioGeneratedCode,
                 uint32_t & ioBufferHighAddress,
                 const uint32_t inStartAddress) {
   if (ioBufferHighAddress != (inStartAddress & 0xFFFF0000)) {
-    char s [20] ; sprintf (s, ":02000004%04X", inStartAddress >> 16) ;
+    char s [20] ; snprintf (s, 20, ":02000004%04X", inStartAddress >> 16) ;
     ioGeneratedCode << s ;
     uint8_t somme = 2 + 4 ;
     somme = (uint8_t) (somme + ((inStartAddress >> 24) & 255 )) ;
     somme = (uint8_t) (somme + ((inStartAddress >> 16) & 255 )) ;
-    sprintf (s, "%02X", (- somme) & 255) ;
+    snprintf (s, 20, "%02X", (- somme) & 255) ;
     ioGeneratedCode << s << "\n" ;
     ioBufferHighAddress = (inStartAddress & 0xFFFF0000) ;
   }
@@ -83,17 +83,17 @@ emit_data_record (C_String & ioGeneratedCode,
     emit_04_record (ioGeneratedCode, ioBufferHighAddress, startAddress) ;
   //---
     const uint32_t startAddressMod16 = startAddress & 0x0000FFFF ;
-    char s [20] ; sprintf (s, ":%02X%04X00", ioBufferEntryCount, startAddressMod16) ;
+    char s [20] ; snprintf (s, 20, ":%02X%04X00", ioBufferEntryCount, startAddressMod16) ;
     ioGeneratedCode << s ;
     uint8_t somme = (uint8_t) (ioBufferEntryCount & 255) ;
     somme = (uint8_t) (somme + ((startAddressMod16 >> 8) & 255)) ;
     somme = (uint8_t) (somme + (startAddressMod16 & 255)) ;
     for (uint32_t i=0 ; i<ioBufferEntryCount ; i++) {
       const unsigned char c = inBuffer [i] ;
-      sprintf (s, "%02X", c) ; ioGeneratedCode << s ;
+      snprintf (s, 20, "%02X", c) ; ioGeneratedCode << s ;
       somme = (uint8_t) (somme + c) ;
     }
-    sprintf (s, "%02X", (- somme) & 255) ; ioGeneratedCode << s << "\n" ;
+    snprintf (s, 20, "%02X", (- somme) & 255) ; ioGeneratedCode << s << "\n" ;
     ioBufferEntryCount = 0 ;
   }
 }
