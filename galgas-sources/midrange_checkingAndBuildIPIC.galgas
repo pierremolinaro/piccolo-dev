@@ -363,7 +363,7 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
   let @uint newBank = address >> 7
 #---
   [self.mRegister.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
-  if offset < 0LS then
+  if offset < 0 then
     error self.mRegister.mEndOfOffsetExpression : "index value (" + offset + ") should be <= 0 "
   elsif [offset uint] >= size then
     error self.mRegister.mEndOfOffsetExpression : "maximum index value is " + (size - 1)
@@ -826,14 +826,14 @@ override method @midrange_instruction_literalOperation build_midrange_ipic_instr
   ?!@stringset ioUsedRegisters {
   [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 #---
-   if (result > 255LS) | (result < -128LS) then
+   if (result > 255) | (result < -128) then
      error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be betwween -128 and 255)"
    end
 #---  
   ioGeneratedInstructionList += !@midrange_intermediate_instruction_literalOperation. new {
     !self.mInstructionLocation
     !self.mLiteralInstruction
-    ![result & 0x000000FFS uint]}
+    ![result & 0x000000FF uint]}
 }
 
 #----------------------------------------------------------------------------*
@@ -935,7 +935,7 @@ override method @midrange_instruction_STATIC_REPEAT build_midrange_ipic_instruct
 #---
   if lowerBound > upperBound then
     error self.mInstructionLocation: "lower bound (" + lowerBound + ") greater then upper bound (" + upperBound + ")"
-  elsif (upperBound - lowerBound) > 0xFFFF_LS then
+  elsif (upperBound - lowerBound) > 0xFFFF then
     error self.mInstructionLocation:"repeat count (" + (upperBound - lowerBound) + ") too large (should be <= 0xFFFF)"
   end
 #--- First pass (for lower bound

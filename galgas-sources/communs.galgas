@@ -55,13 +55,13 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
   or
     $<$
     bitDefinitionString = " <"
-    var @sint sliceIndex = 8S
+    var @sint sliceIndex = 8
     repeat
      select
         var @uint sliceWidth = 0 # Means undefined
         repeat
           var @uint sliceBase = 0
-          if sliceIndex >= 0S then
+          if sliceIndex >= 0 then
             sliceBase = [sliceIndex uint]
           end
           $identifier$ ?let @lstring sliceName
@@ -111,8 +111,8 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
       $,$
       bitDefinitionString += ", " 
     end
-    if sliceIndex != 0S then
-      error name:"Incorrect bit definition for register '" + name + "': " + [8S - sliceIndex string] + " bits (s) are defined, instead of 8"
+    if sliceIndex != 0 then
+      error name:"Incorrect bit definition for register '" + name + "': " + [8 - sliceIndex string] + " bits (s) are defined, instead of 8"
     end
     $>$
     bitDefinitionString += ">"

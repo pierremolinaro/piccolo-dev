@@ -20,7 +20,7 @@ method @registerExpression analyzeRegisterExpression
   ioUsedRegisters += !self.mRegisterName.string
 #--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
-  if offset > 0LS then
+  if offset > 0 then
     assemblyString += " + " + [[offset uint] hexString]
   end
 #--- 
@@ -35,7 +35,7 @@ method @registerExpression analyzeRegisterExpression
   ]
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:inWriteAccess !protection]
 #---
-  if offset < 0LS then
+  if offset < 0 then
     error self.mEndOfOffsetExpression: "offset (" + offset + ") should be >= 0"
   elsif [offset uint] >= size then
     error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string]
@@ -82,7 +82,7 @@ method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
 #--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
-  if offset > 0LS then
+  if offset > 0 then
     assemblyString += " + " + [[offset uint] hexString]
   end
 #--- 
@@ -113,7 +113,7 @@ method @registerExpression getRegisterAddress
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:inWriteAccess !protection]
 #---
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
-  if offset < 0LS then
+  if offset < 0 then
     error self.mEndOfOffsetExpression: "offset (" + offset + ") should be >= 0" : outRegisterAddress
   elsif [offset uint] >= size then
     error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string] : outRegisterAddress
@@ -308,14 +308,14 @@ override method @pic18Instruction_literalOperation analyzeSimpleInstruction
   !@ipic18SequentialInstruction outInstruction {
   [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 #---
-   if (result > 255LS) | (result < -128LS) then
+   if (result > 255) | (result < -128) then
      error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between -128 and 255)"
    end
 #---  
   outInstruction = @ipic18_intermediate_instruction_literalOperation. new {
     !self.mInstructionLocation
     !self.mLiteralInstruction
-    ![result & 0x000000FFS uint]}
+    ![result & 0x000000FF uint]}
 }
 
 #----------------------------------------------------*
@@ -332,7 +332,7 @@ override method @pic18Instruction_fnop analyzeSimpleInstruction
   !@ipic18SequentialInstruction outInstruction {
   [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 #---
-   if (result > 0xFFFLS) | (result < 0LS) then
+   if (result > 0xFFF) | (result < 0) then
      error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 4095)"
    end
 #---  
@@ -359,7 +359,7 @@ override method @pic18Instruction_LFSR analyzeSimpleInstruction
 #---
   [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 #---
-  if (result > 0xFFFLS) | (result < 0LS) then
+  if (result > 0xFFF) | (result < 0) then
     error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 4095)"
   end
   outInstruction = @ipic18_intermediate_instruction_LFSR. new {
@@ -727,7 +727,7 @@ override method @pic18Instruction_repetitionStatique analyze
 #---
   if lowerBound > upperBound then
     error self.mInstructionLocation: "lower bound (" + lowerBound + ") greater then upper bound (" + upperBound + ")"
-  elsif (upperBound - lowerBound) > 0xFF_FFFF_LS then
+  elsif (upperBound - lowerBound) > 0xFF_FFFF then
     error self.mInstructionLocation:"repeat count (" + (upperBound - lowerBound) + ") too large (should be <= 0xFF_FFFF)"
   end
 #--- Generate instruction list (first pass, for lower bound)
@@ -979,7 +979,7 @@ override method @pic18Instruction_LTBLPTR analyze
   ?!@stringset ioUsedRegisters {
   [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 #---
-  if (result > 0xFF_FFFF_LS) | (result < 0LS) then
+  if (result > 0xFF_FFFF) | (result < 0) then
     error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 0xFF_FFFF)"
   end
   let @uint address = [result uint]
@@ -1487,9 +1487,9 @@ override method @pic18Instruction_computed_rcall analyze
   ioCurrentBank = returnedBankSelection
 #---
   [self.mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
-  if size < 2LS then
+  if size < 2 then
     error self.mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
-  elsif size > 64LS then
+  elsif size > 64 then
     error self.mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 64"
   elsif [size uint] != [self.mTargetLabels length] then
     error self.mInstructionLocation:"the routine name list length (" + [[self.mTargetLabels length] string] + ") should be equal to the computed range (" + [size string] + ")"
@@ -1553,9 +1553,9 @@ override method @pic18Instruction_computed_goto analyze
   end
 #---
   [self.mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
-  if size < 2LS then
+  if size < 2 then
     error self.mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
-  elsif size > 64LS then
+  elsif size > 64 then
     error self.mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 64"
   elsif [size uint] != [self.mTargetLabels length] then
     error self.mInstructionLocation:"the routine name list length (" + [[self.mTargetLabels length] string] + ") should be equal to the computed range (" + [size string] + ")"
@@ -1644,9 +1644,9 @@ override method @pic18Instruction_computed_bra analyze
   end
 #---
   [self.mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
-  if size < 2LS then
+  if size < 2 then
     error self.mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
-  elsif size > 128LS then
+  elsif size > 128 then
     error self.mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 128"
   elsif [size uint] != [self.mTargetLabels length] then
     error self.mInstructionLocation:"the routine name list length (" + [[self.mTargetLabels length] string] + ") should be equal to the computed range (" + [size string] + ")"
@@ -1695,9 +1695,9 @@ override method @pic18Instruction_computed_retlw analyze
   end
 #---
   [self.mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
-  if size < 2LS then
+  if size < 2 then
     error self.mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
-  elsif size > 128LS then
+  elsif size > 128 then
     error self.mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 128"
   elsif [size uint] != [self.mImmediateExpressionList length] then
     error self.mInstructionLocation:"the constant list length (" + [[self.mImmediateExpressionList length] string] + ") should be equal to the computed range (" + [size string] + ")"
@@ -1706,10 +1706,10 @@ override method @pic18Instruction_computed_retlw analyze
   var literalValues =@uintlist.emptyList{}
   for (mExpression *) in  self.mImmediateExpressionList do(idx)
     [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 v !?ioUsedRegisters]
-    if (v > 255LS) | (v < -128LS) then
+    if (v > 255) | (v < -128) then
       error self.mInstructionLocation:"immediate value with idx " + [idx string] + " is evaluated as " + [v string] + " (should be <= 255)"
     end
-    literalValues += ![v & 0x000000FFS uint]
+    literalValues += ![v & 0x000000FF uint]
   end
 #--- Build block
   ioGeneratedBlockList += !@ipic18Block. new {
@@ -3045,12 +3045,12 @@ proc pic18_analyze_data_sections
       ioListFileContents += "Data8 '" + name + "', " + ([valueList length] / 2)
         + " words (" + [valueList length] + " bytes).\n" 
       [!?ioConstantMap insertKey !.new { !name.string + "_BYTE_COUNT" !name} ![[valueList length] sint64]]
-      var @sint byte = 0S
+      var @sint byte = 0
       for (expression errorLocation) in  valueList do (idx)
         [expression eval !inRegisterTable !inConstantMap ?let @sint64 value !?ioUsedRegisters]
-        if value < 0LS then
+        if value < 0 then
           error errorLocation: "data8 value is " + value + " (negative)"
-        elsif value > 255LS then
+        elsif value > 255 then
           error errorLocation: "data8 value is " + value + " (greater than 255"
         elsif (idx & 1) == 0 then
           byte = value
@@ -3064,9 +3064,9 @@ proc pic18_analyze_data_sections
       [!?ioConstantMap insertKey !.new { !name.string + "_BYTE_COUNT" !name} ![[valueList length] * 2 sint64]]
       for (mExpression mErrorLocation) in  valueList do
         [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 value !?ioUsedRegisters]
-        if value < 0LS then
+        if value < 0 then
           error mErrorLocation: "data16 value is " + value + " (negative)"
-        elsif value > 65535LS then
+        elsif value > 65535 then
           error mErrorLocation: "data16 value is " + value + " (greater than 2**16-1)"
         else
           data += ![value uint]

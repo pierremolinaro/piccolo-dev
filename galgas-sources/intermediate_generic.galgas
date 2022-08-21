@@ -111,7 +111,7 @@ override method @immediatRegister eval
     [inRegisterTable checkPrivateAccess !self.mRegister.mRegisterName !write:false !protection]
     [registerAddressList first ?let @uint registerAddress]
     [self.mRegister.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
-    if offset < 0LS then
+    if offset < 0 then
       error self.mRegister.mEndOfOffsetExpression
       :"index (" + offset + ") should be >= 0"
     elsif [offset uint] >= size then
@@ -122,7 +122,7 @@ override method @immediatRegister eval
   elsif [inConstantMap hasKey !self.mRegister.mRegisterName.string] then
     [inConstantMap searchKey !self.mRegister.mRegisterName ?outResult]
     [self.mRegister.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
-    if offset != 0LS then
+    if 0 != offset then
       error self.mRegister.mEndOfOffsetExpression:
       "index notation (" + offset + ") cannot be used with a constant"
     end
@@ -261,9 +261,9 @@ override method @immediatEqualTest eval
   [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
   [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
   if leftResult == rightResult then
-    outResult = 1LS
+    outResult = 1
   else
-    outResult = 0LS
+    outResult = 0
   end
 }
 
@@ -277,9 +277,9 @@ override method @immediatNotEqualTest eval
   [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
   [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
   if leftResult != rightResult then
-    outResult = 1LS
+    outResult = 1
   else
-    outResult = 0LS
+    outResult = 0
   end
 }
 
@@ -293,9 +293,9 @@ override method @immediatGreaterOrEqualTest eval
   [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
   [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
   if leftResult >= rightResult then
-    outResult = 1LS
+    outResult = 1
   else
-    outResult = 0LS
+    outResult = 0
   end
 }
 
@@ -309,9 +309,9 @@ override method @immediatLowerOrEqualTest eval
   [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
   [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
   if leftResult <= rightResult then
-    outResult = 1LS
+    outResult = 1
   else
-    outResult = 0LS
+    outResult = 0
   end
 }
 
@@ -325,9 +325,9 @@ override method @immediatGreaterTest eval
   [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
   [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
   if leftResult > rightResult then
-    outResult = 1LS
+    outResult = 1
   else
-    outResult = 0LS
+    outResult = 0
   end
 }
 
@@ -341,9 +341,9 @@ override method @immediatLowerTest eval
   [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
   [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
   if leftResult < rightResult then
-    outResult = 1LS
+    outResult = 1
   else
-    outResult = 0LS
+    outResult = 0
   end
 }
 
@@ -378,7 +378,7 @@ override method @immediatSlice eval
   ?!@stringset ioUsedRegisters
 {
   let @bitSliceTable bitSliceTable
-  outResult = 0LS
+  outResult = 0
   ioUsedRegisters += !self.mRegisterName.string
   [inRegisterTable searchKey !self.mRegisterName ?* ?* ? bitSliceTable ?* ?let protection]
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:false !protection]
@@ -390,7 +390,7 @@ override method @immediatSlice eval
       sliceNameSet += !mSliceName.string
       [bitSliceTable searchKey !mSliceName ?let sliceIndex ?let sliceSize]
       [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
-      if (result < 0LS) | (result > ((1LS << sliceSize) - 1LS)) then
+      if (result < 0) | (result > ((1 << sliceSize) - 1)) then
         error mSliceName:"invalid immediat value associated to the '" + mSliceName + "' bit field, evaluated as " + [result string]
         + " (should be between 0 and " + [(1 << sliceSize) - 1 string] + ")"
       end
@@ -454,9 +454,9 @@ override method @bitNumberLiteralExpression getBitNumber
   !@uint outBitNumber
 {
   [self.mBitNumberLiteralExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
-  if result < 0LS then
+  if result < 0 then
     error self.mEndOfExpression : "bit index is " + result + ", but should be >= 0" : outBitNumber
-  elsif result > 7LS then
+  elsif result > 7 then
     error self.mEndOfExpression: "bit index is " + result + ", but should be <= 7" : outBitNumber
   else
     outBitNumber = [result uint]

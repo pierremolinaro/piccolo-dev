@@ -3194,18 +3194,11 @@ C_String C_Lexique_piccolo_5F_lexique::getCurrentTokenString (const cToken * inT
 
 
 //----------------------------------------------------------------------------------------------------------------------
-//            Unicode test functions                                                             
-//----------------------------------------------------------------------------------------------------------------------
- 
-//----------------------------------------------------------------------------------------------------------------------
-//               P A R S E    L E X I C A L    T O K E N                                         
+//               INTERNAL PARSE LEXICAL TOKEN                                         
 //----------------------------------------------------------------------------------------------------------------------
 
-bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
-  cTokenFor_piccolo_5F_lexique token ;
-  mLoop = true ;
-  token.mTokenCode = -1 ;
-  while ((token.mTokenCode < 0) && (UNICODE_VALUE (mCurrentChar) != '\0')) {
+void C_Lexique_piccolo_5F_lexique::internalParseLexicalToken (cTokenFor_piccolo_5F_lexique & token) {
+  bool loop = true ;
     token.mLexicalAttribute_charValue = TO_UNICODE (0) ;
     token.mLexicalAttribute_identifierString.setLengthToZero () ;
     token.mLexicalAttribute_tokenString.setLengthToZero () ;
@@ -3218,10 +3211,10 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
           ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, previousChar ()) ;
           if (testForCharWithFunction (isUnicodeLetter) || testForInputUTF32Char (TO_UNICODE ('_')) || testForInputUTF32CharRange (TO_UNICODE ('0'), TO_UNICODE ('9'))) {
           }else{
-            mLoop = false ;
+            loop = false ;
           }
-        }while (mLoop) ;
-        mLoop = true ;
+        }while (loop) ;
+        loop = true ;
         if (token.mTokenCode == -1) {
           token.mTokenCode = search_into_instructionKeyWordList (token.mLexicalAttribute_identifierString) ;
         }
@@ -3237,10 +3230,10 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
           ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, previousChar ()) ;
           if (testForInputUTF32CharRange (TO_UNICODE ('a'), TO_UNICODE ('z')) || testForInputUTF32CharRange (TO_UNICODE ('A'), TO_UNICODE ('Z')) || testForInputUTF32Char (TO_UNICODE ('_')) || testForInputUTF32CharRange (TO_UNICODE ('0'), TO_UNICODE ('9'))) {
           }else{
-            mLoop = false ;
+            loop = false ;
           }
-        }while (mLoop) ;
-        mLoop = true ;
+        }while (loop) ;
+        loop = true ;
         token.mTokenCode = kToken_label ;
         enterToken (token) ;
       }else if (testForInputUTF32String (kUnicodeString_piccolo_5F_lexique__30_x, 2, true)) {
@@ -3253,10 +3246,10 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
             ::scanner_routine_enterHexDigitIntoUInt (*this, previousChar (), token.mLexicalAttribute_uint_33__32_value, gLexicalMessage_piccolo_5F_lexique_hexNumberTooLarge, gLexicalMessage_piccolo_5F_lexique_internalError) ;
           }else if (testForInputUTF32Char (TO_UNICODE ('_'))) {
           }else{
-            mLoop = false ;
+            loop = false ;
           }
-        }while (mLoop) ;
-        mLoop = true ;
+        }while (loop) ;
+        loop = true ;
         token.mTokenCode = kToken_integer ;
         enterToken (token) ;
       }else if (testForInputUTF32String (kUnicodeString_piccolo_5F_lexique__30_b, 2, true)) {
@@ -3265,10 +3258,10 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
             ::scanner_routine_enterBinDigitIntoUInt (*this, previousChar (), token.mLexicalAttribute_uint_33__32_value, gLexicalMessage_piccolo_5F_lexique_binNumberTooLarge, gLexicalMessage_piccolo_5F_lexique_internalError) ;
           }else if (testForInputUTF32Char (TO_UNICODE ('_'))) {
           }else{
-            mLoop = false ;
+            loop = false ;
           }
-        }while (mLoop) ;
-        mLoop = true ;
+        }while (loop) ;
+        loop = true ;
         token.mTokenCode = kToken_integer ;
         enterToken (token) ;
       }else if (testForInputUTF32CharRange (TO_UNICODE ('0'), TO_UNICODE ('9'))) {
@@ -3278,10 +3271,10 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
             ::scanner_routine_enterDigitIntoUInt (*this, previousChar (), token.mLexicalAttribute_uint_33__32_value, gLexicalMessage_piccolo_5F_lexique_decimalNumberTooLarge, gLexicalMessage_piccolo_5F_lexique_internalError) ;
           }else if (testForInputUTF32Char (TO_UNICODE ('_'))) {
           }else{
-            mLoop = false ;
+            loop = false ;
           }
-        }while (mLoop) ;
-        mLoop = true ;
+        }while (loop) ;
+        loop = true ;
         token.mTokenCode = kToken_integer ;
         enterToken (token) ;
       }else if (testForInputUTF32Char (TO_UNICODE ('\''))) {
@@ -3308,10 +3301,10 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
                 ::scanner_routine_enterHexDigitIntoASCIIcharacter (*this, token.mLexicalAttribute_charValue, previousChar (), gLexicalMessage_piccolo_5F_lexique_ASCIIcodeTooLargeError, gLexicalMessage_piccolo_5F_lexique_internalError) ;
                 if (testForInputUTF32CharRange (TO_UNICODE ('0'), TO_UNICODE ('9')) || testForInputUTF32CharRange (TO_UNICODE ('a'), TO_UNICODE ('f')) || testForInputUTF32CharRange (TO_UNICODE ('A'), TO_UNICODE ('F'))) {
                 }else{
-                  mLoop = false ;
+                  loop = false ;
                 }
-              }while (mLoop) ;
-              mLoop = true ;
+              }while (loop) ;
+              loop = true ;
             }else{
               lexicalError (gLexicalMessage_piccolo_5F_lexique_incorrectCharConstant COMMA_LINE_AND_SOURCE_FILE) ;
             }
@@ -3457,10 +3450,10 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
                 ::scanner_routine_enterHexDigitIntoASCIIcharacter (*this, token.mLexicalAttribute_charValue, previousChar (), gLexicalMessage_piccolo_5F_lexique_ASCIIcodeTooLargeError, gLexicalMessage_piccolo_5F_lexique_internalError) ;
                 if (testForInputUTF32CharRange (TO_UNICODE ('0'), TO_UNICODE ('9'))) {
                 }else{
-                  mLoop = false ;
+                  loop = false ;
                 }
-              }while (mLoop) ;
-              mLoop = true ;
+              }while (loop) ;
+              loop = true ;
               ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, token.mLexicalAttribute_charValue) ;
             }else{
               lexicalError (gLexicalMessage_piccolo_5F_lexique_incorrectCharConstant COMMA_LINE_AND_SOURCE_FILE) ;
@@ -3468,10 +3461,10 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
           }else if (testForInputUTF32Char (TO_UNICODE (' ')) || testForInputUTF32Char (TO_UNICODE ('!')) || testForInputUTF32CharRange (TO_UNICODE ('#'), TO_UNICODE ('~'))) {
             ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, previousChar ()) ;
           }else{
-            mLoop = false ;
+            loop = false ;
           }
-        }while (mLoop) ;
-        mLoop = true ;
+        }while (loop) ;
+        loop = true ;
         if (testForInputUTF32Char (TO_UNICODE ('\"'))) {
           token.mTokenCode = kToken_literal_5F_string ;
           enterToken (token) ;
@@ -3483,33 +3476,44 @@ bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
           do {
             if (testForInputUTF32CharRange (TO_UNICODE (1), TO_UNICODE ('\t')) || testForInputUTF32Char (TO_UNICODE ('\v')) || testForInputUTF32Char (TO_UNICODE ('\f')) || testForInputUTF32CharRange (TO_UNICODE (14), TO_UNICODE (65533))) {
             }else{
-              mLoop = false ;
+              loop = false ;
             }
-          }while (mLoop) ;
-          mLoop = true ;
+          }while (loop) ;
+          loop = true ;
           enterDroppedTerminal (kToken_commentMark) ;
         }else{
           do {
             if (testForInputUTF32CharRange (TO_UNICODE (1), TO_UNICODE ('\t')) || testForInputUTF32Char (TO_UNICODE ('\v')) || testForInputUTF32Char (TO_UNICODE ('\f')) || testForInputUTF32CharRange (TO_UNICODE (14), TO_UNICODE (65533))) {
             }else{
-              mLoop = false ;
+              loop = false ;
             }
-          }while (mLoop) ;
-          mLoop = true ;
+          }while (loop) ;
+          loop = true ;
           enterDroppedTerminal (kToken_comment) ;
         }
       }else if (testForInputUTF32CharRange (TO_UNICODE (1), TO_UNICODE (' '))) {
       }else if (testForInputUTF32Char (TO_UNICODE ('\0'))) { // End of source text ? 
-        token.mTokenCode = kToken_ ; // Empty string code
-      }else{ // Unknown input character
-        unknownCharacterLexicalError (LINE_AND_SOURCE_FILE) ;
-        token.mTokenCode = -1 ; // No token
-        advance () ; // ... go throught unknown character
-      }
-    }catch (const C_lexicalErrorException &) {
+      token.mTokenCode = kToken_ ; // Empty string code
+    }else{ // Unknown input character
+      unknownCharacterLexicalError (LINE_AND_SOURCE_FILE) ;
       token.mTokenCode = -1 ; // No token
       advance () ; // ... go throught unknown character
     }
+  }catch (const C_lexicalErrorException &) {
+    token.mTokenCode = -1 ; // No token
+    advance () ; // ... go throught unknown character
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//               P A R S E    L E X I C A L    T O K E N                                         
+//----------------------------------------------------------------------------------------------------------------------
+
+bool C_Lexique_piccolo_5F_lexique::parseLexicalToken (void) {
+  cTokenFor_piccolo_5F_lexique token ;
+  token.mTokenCode = -1 ;
+  while ((token.mTokenCode < 0) && (UNICODE_VALUE (mCurrentChar) != '\0')) {
+    internalParseLexicalToken (token) ;
   }
   if (UNICODE_VALUE (mCurrentChar) == '\0') {
     token.mTokenCode = 0 ;
@@ -15565,20 +15569,20 @@ GALGAS_string extensionGetter_x_34_String (const GALGAS_uint & inObject,
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_uint temp_1 = inObject ;
-    test_0 = GALGAS_bool (kIsStrictSup, temp_1.objectCompare (GALGAS_uint ((uint32_t) 65535U))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsStrictSup, temp_1.objectCompare (GALGAS_uint (uint32_t (65535U)))).boolEnum () ;
     if (kBoolTrue == test_0) {
       result_outResult = GALGAS_string ("****") ;
     }
   }
   if (kBoolFalse == test_0) {
     const GALGAS_uint temp_2 = inObject ;
-    result_outResult = temp_2.right_shift_operation (GALGAS_uint ((uint32_t) 12U), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 31)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 31)) ;
+    result_outResult = temp_2.right_shift_operation (GALGAS_bigint ("12", inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 31)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 31)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 31)) ;
     const GALGAS_uint temp_3 = inObject ;
-    result_outResult.plusAssign_operation(temp_3.right_shift_operation (GALGAS_uint ((uint32_t) 8U), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 32)), inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)) ;
+    result_outResult.plusAssign_operation(temp_3.right_shift_operation (GALGAS_bigint ("8", inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)).operator_and (GALGAS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 32)), inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 32)) ;
     const GALGAS_uint temp_4 = inObject ;
-    result_outResult.plusAssign_operation(temp_4.right_shift_operation (GALGAS_uint ((uint32_t) 4U), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)).operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 33)), inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)) ;
+    result_outResult.plusAssign_operation(temp_4.right_shift_operation (GALGAS_bigint ("4", inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)).operator_and (GALGAS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 33)), inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 33)) ;
     const GALGAS_uint temp_5 = inObject ;
-    result_outResult.plusAssign_operation(temp_5.operator_and (GALGAS_uint ((uint32_t) 15U) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 34)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 34)), inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 34)) ;
+    result_outResult.plusAssign_operation(temp_5.operator_and (GALGAS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 34)).getter_xString (SOURCE_FILE ("intermediate_generic.galgas", 34)), inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 34)) ;
   }
 //---
   return result_outResult ;
@@ -16442,29 +16446,7 @@ GALGAS_routineKind GALGAS_routineKind::extractObject (const GALGAS_object & inOb
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-static TC_UniqueArray <extensionMethodSignature_immediatExpression_eval> gExtensionMethodTable_immediatExpression_eval ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_eval (const int32_t inClassIndex,
-                                extensionMethodSignature_immediatExpression_eval inMethod) {
-  gExtensionMethodTable_immediatExpression_eval.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void freeExtensionMethod_immediatExpression_eval (void) {
-  gExtensionMethodTable_immediatExpression_eval.free () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_immediatExpression_eval (NULL,
-                                                    freeExtensionMethod_immediatExpression_eval) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_eval (const cPtr_immediatExpression * inObject,
+void callExtensionMethod_eval (cPtr_immediatExpression * inObject,
                                const GALGAS_registerTable constin_inRegisterTable,
                                const GALGAS_constantMap constin_inConstantMap,
                                GALGAS_sint_36__34_ & out_outResult,
@@ -16474,61 +16456,18 @@ void callExtensionMethod_eval (const cPtr_immediatExpression * inObject,
 //--- Drop output arguments
   out_outResult.drop () ;
 //--- Find method
-  if (NULL != inObject) {
+  if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_immediatExpression) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_immediatExpression_eval f = NULL ;
-    if (classIndex < gExtensionMethodTable_immediatExpression_eval.count ()) {
-      f = gExtensionMethodTable_immediatExpression_eval (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_immediatExpression_eval.count ()) {
-          f = gExtensionMethodTable_immediatExpression_eval (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_immediatExpression_eval.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, constin_inRegisterTable, constin_inConstantMap, out_outResult, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
-    }
+    inObject->method_eval (constin_inRegisterTable, constin_inConstantMap, out_outResult, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
   }
 }
-
 //----------------------------------------------------------------------------------------------------------------------
 //
 //Abstract extension method '@bitNumberExpression getBitNumber'
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-static TC_UniqueArray <extensionMethodSignature_bitNumberExpression_getBitNumber> gExtensionMethodTable_bitNumberExpression_getBitNumber ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_getBitNumber (const int32_t inClassIndex,
-                                        extensionMethodSignature_bitNumberExpression_getBitNumber inMethod) {
-  gExtensionMethodTable_bitNumberExpression_getBitNumber.forceObjectAtIndex (inClassIndex, inMethod, NULL COMMA_HERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void freeExtensionMethod_bitNumberExpression_getBitNumber (void) {
-  gExtensionMethodTable_bitNumberExpression_getBitNumber.free () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-C_PrologueEpilogue gMethod_bitNumberExpression_getBitNumber (NULL,
-                                                             freeExtensionMethod_bitNumberExpression_getBitNumber) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_getBitNumber (const cPtr_bitNumberExpression * inObject,
+void callExtensionMethod_getBitNumber (cPtr_bitNumberExpression * inObject,
                                        const GALGAS_registerTable constin_inRegisterTable,
                                        const GALGAS_constantMap constin_inConstantMap,
                                        GALGAS_stringset & io_ioUsedRegisters,
@@ -16539,32 +16478,11 @@ void callExtensionMethod_getBitNumber (const cPtr_bitNumberExpression * inObject
 //--- Drop output arguments
   out_outBitNumber.drop () ;
 //--- Find method
-  if (NULL != inObject) {
+  if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_bitNumberExpression) ;
-    const C_galgas_type_descriptor * info = inObject->classDescriptor () ;
-    const int32_t classIndex = info->mSlotID ;
-    extensionMethodSignature_bitNumberExpression_getBitNumber f = NULL ;
-    if (classIndex < gExtensionMethodTable_bitNumberExpression_getBitNumber.count ()) {
-      f = gExtensionMethodTable_bitNumberExpression_getBitNumber (classIndex COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      const C_galgas_type_descriptor * p = info->mSuperclassDescriptor ;
-      while ((NULL == f) && (NULL != p)) {
-        if (p->mSlotID < gExtensionMethodTable_bitNumberExpression_getBitNumber.count ()) {
-          f = gExtensionMethodTable_bitNumberExpression_getBitNumber (p->mSlotID COMMA_HERE) ;
-        }
-        p = p->mSuperclassDescriptor ;
-      }
-      gExtensionMethodTable_bitNumberExpression_getBitNumber.forceObjectAtIndex (classIndex, f, NULL COMMA_HERE) ;
-    }
-    if (NULL == f) {
-      fatalError ("FATAL CATEGORY METHOD CALL ERROR", __FILE__, __LINE__) ;
-    }else{
-      f (inObject, constin_inRegisterTable, constin_inConstantMap, io_ioUsedRegisters, constin_inBitSliceTable, out_outBitNumber, inCompiler COMMA_THERE) ;
-    }
+    inObject->method_getBitNumber (constin_inRegisterTable, constin_inConstantMap, io_ioUsedRegisters, constin_inBitSliceTable, out_outBitNumber, inCompiler COMMA_THERE) ;
   }
 }
-
 //----------------------------------------------------------------------------------------------------------------------
 
 cMapElement_symbolTableForOptimizations::cMapElement_symbolTableForOptimizations (const GALGAS_lstring & inKey,

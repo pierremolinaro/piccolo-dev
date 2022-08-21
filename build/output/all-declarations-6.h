@@ -533,28 +533,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_caseConstantMap_2D_
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_pic_31__38_AbstractCaseItem_analyzeCaseItem) (const class cPtr_pic_31__38_AbstractCaseItem * inObject,
-                                                                                      const class GALGAS_registerTable constinArgument0,
-                                                                                      const class GALGAS_constantMap constinArgument1,
-                                                                                      const class GALGAS_lstring constinArgument2,
-                                                                                      const class GALGAS_string constinArgument3,
-                                                                                      class GALGAS_stringset & ioArgument4,
-                                                                                      class GALGAS_caseConstantMap & ioArgument5,
-                                                                                      class GALGAS_ipic_31__38_SequentialInstructionList & ioArgument6,
-                                                                                      class GALGAS_ipic_31__38_BlockList & ioArgument7,
-                                                                                      class GALGAS_lstring & ioArgument8,
-                                                                                      class GALGAS_sint_36__34_ & ioArgument9,
-                                                                                      class C_Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_analyzeCaseItem (const int32_t inClassIndex,
-                                           extensionMethodSignature_pic_31__38_AbstractCaseItem_analyzeCaseItem inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeCaseItem (const class cPtr_pic_31__38_AbstractCaseItem * inObject,
+void callExtensionMethod_analyzeCaseItem (class cPtr_pic_31__38_AbstractCaseItem * inObject,
                                           const GALGAS_registerTable constin_inRegisterTable,
                                           const GALGAS_constantMap constin_inConstantMap,
                                           const GALGAS_lstring constin_inConditionTrueLabel,
@@ -1181,10 +1160,67 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Sequent
 
 class cPtr_ipic_31__38_SequentialInstruction : public acStrongPtr_class {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const = 0 ;
 
-/* § public: virtual GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const ; */
-/* § public: virtual GALGAS_uint getter_instructionSize (C_Compiler * COMMA_LOCATION_ARGS) const ; */
+//--- Extension getter instructionSize
+  public: virtual class GALGAS_uint getter_instructionSize (C_Compiler * COMMA_LOCATION_ARGS) const ;
+
+//--- Extension method buildCalledRoutineSetForStackComputations
+  public: virtual void method_buildCalledRoutineSetForStackComputations (class GALGAS_stringset & ioRoutineCalledSet,
+           C_Compiler * COMMA_LOCATION_ARGS) ;
+
+//--- Extension method buildInstructionInvocationGraph
+  public: virtual void method_buildInstructionInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           C_Compiler * COMMA_LOCATION_ARGS) ;
+
+//--- Extension method enterInstructionReferencedLabels
+  public: virtual void method_enterInstructionReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) = 0 ;
+
+//--- Extension method instructionRelativeBranchOverflow
+  public: virtual void method_instructionRelativeBranchOverflow (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           class GALGAS_branchOverflowMap & ioOverflowMap,
+           C_Compiler * COMMA_LOCATION_ARGS) ;
+
+//--- Extension method minMaxDuration
+  public: virtual void method_minMaxDuration (class GALGAS_blockDurationMap inExploredBlockMap,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) ;
+
+//--- Extension method optimizeInstruction
+  public: virtual void method_optimizeInstruction (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_lstring inBlockLabel,
+           class GALGAS_bool & outOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outOptimizedInstruction,
+           class GALGAS_bool & outNOPsubstitution,
+           C_Compiler * COMMA_LOCATION_ARGS) ;
+
+//--- Extension method performInstructionRelativeBranchResolution
+  public: virtual void method_performInstructionRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outModifiedInstruction,
+           C_Compiler * COMMA_LOCATION_ARGS) ;
+
 //--- Properties
   public: GALGAS_location mProperty_mInstructionLocation ;
 
@@ -1195,11 +1231,11 @@ class cPtr_ipic_31__38_SequentialInstruction : public acStrongPtr_class {
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const = 0 ;
+                                    const int32_t inIndentation) const override = 0 ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override = 0 ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -1410,16 +1446,87 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Abstrac
 
 class cPtr_ipic_31__38_AbstractBlockTerminator : public acStrongPtr_class {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const = 0 ;
 
-/* § public: virtual GALGAS_bool getter_isEqualToTerminator (const GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           C_Compiler * COMMA_LOCATION_ARGS) const ; */
-/* § public: virtual GALGAS_bool getter_needToInsertJumpInstruction (const GALGAS_string inNextBlockLabel,
-           C_Compiler * COMMA_LOCATION_ARGS) const ; */
-/* § public: virtual GALGAS_string getter_terminatorDisplay (const GALGAS_string inNextBlockLabel,
-           C_Compiler * COMMA_LOCATION_ARGS) const ; */
-/* § public: virtual GALGAS_uint getter_terminatorSize (const GALGAS_string inNextBlockLabel,
-           C_Compiler * COMMA_LOCATION_ARGS) const ; */
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const = 0 ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const = 0 ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const = 0 ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) = 0 ;
+
+//--- Extension method buildTerminatorOrderedGraph
+  public: virtual void method_buildTerminatorOrderedGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_blockInvocationGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) ;
+
+//--- Extension method enterTerminatorReferencedLabels
+  public: virtual void method_enterTerminatorReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) = 0 ;
+
+//--- Extension method exploreAccessibleBlocksForStackComputations
+  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GALGAS_stringset & ioBlockToExploreSet,
+           class GALGAS_stringset & ioExploredBlockSet,
+           class GALGAS_uint & outStackNeeds,
+           C_Compiler * COMMA_LOCATION_ARGS) = 0 ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) = 0 ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) = 0 ;
+
+//--- Extension method performTerminatorRelativeBranchResolution
+  public: virtual void method_performTerminatorRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outModifiedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) = 0 ;
+
+//--- Extension method terminatorRelativeBranchOverflow
+  public: virtual void method_terminatorRelativeBranchOverflow (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_branchOverflowMap & ioOverflowMap,
+           C_Compiler * COMMA_LOCATION_ARGS) ;
+
 //--- Properties
   public: GALGAS_location mProperty_mInstructionLocation ;
 
@@ -1430,11 +1537,11 @@ class cPtr_ipic_31__38_AbstractBlockTerminator : public acStrongPtr_class {
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const = 0 ;
+                                    const int32_t inIndentation) const override = 0 ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override = 0 ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -1743,7 +1850,18 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SingleI
 
 class cPtr_ipic_31__38_SingleInstructionTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension method duration
+  public: virtual void method_duration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) = 0 ;
+
+//--- Extension method enterTerminatorReferencedLabels
+  public: virtual void method_enterTerminatorReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
 
@@ -1754,11 +1872,11 @@ class cPtr_ipic_31__38_SingleInstructionTerminator : public cPtr_ipic_31__38_Abs
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const = 0 ;
+                                    const int32_t inIndentation) const override = 0 ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override = 0 ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -1879,7 +1997,64 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ReturnT
 
 class cPtr_ipic_31__38_ReturnTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method duration
+  public: virtual void method_duration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method exploreAccessibleBlocksForStackComputations
+  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GALGAS_stringset & ioBlockToExploreSet,
+           class GALGAS_stringset & ioExploredBlockSet,
+           class GALGAS_uint & outStackNeeds,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
 
@@ -1888,16 +2063,16 @@ class cPtr_ipic_31__38_ReturnTerminator : public cPtr_ipic_31__38_SingleInstruct
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2024,7 +2199,64 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetlwTe
 
 class cPtr_ipic_31__38_RetlwTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method duration
+  public: virtual void method_duration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method exploreAccessibleBlocksForStackComputations
+  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GALGAS_stringset & ioBlockToExploreSet,
+           class GALGAS_stringset & ioExploredBlockSet,
+           class GALGAS_uint & outStackNeeds,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_uint mProperty_mLiteralValue ;
@@ -2035,16 +2267,16 @@ class cPtr_ipic_31__38_RetlwTerminator : public cPtr_ipic_31__38_SingleInstructi
                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2171,7 +2403,64 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetfieT
 
 class cPtr_ipic_31__38_RetfieTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method duration
+  public: virtual void method_duration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method exploreAccessibleBlocksForStackComputations
+  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GALGAS_stringset & ioBlockToExploreSet,
+           class GALGAS_stringset & ioExploredBlockSet,
+           class GALGAS_uint & outStackNeeds,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_bool mProperty_mFastReturn ;
@@ -2182,16 +2471,16 @@ class cPtr_ipic_31__38_RetfieTerminator : public cPtr_ipic_31__38_SingleInstruct
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2321,7 +2610,93 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_JumpTer
 
 class cPtr_ipic_31__38_JumpTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method buildTerminatorOrderedGraph
+  public: virtual void method_buildTerminatorOrderedGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_blockInvocationGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method duration
+  public: virtual void method_duration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method enterTerminatorReferencedLabels
+  public: virtual void method_enterTerminatorReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method exploreAccessibleBlocksForStackComputations
+  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GALGAS_stringset & ioBlockToExploreSet,
+           class GALGAS_stringset & ioExploredBlockSet,
+           class GALGAS_uint & outStackNeeds,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performTerminatorRelativeBranchResolution
+  public: virtual void method_performTerminatorRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outModifiedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorRelativeBranchOverflow
+  public: virtual void method_terminatorRelativeBranchOverflow (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_branchOverflowMap & ioOverflowMap,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_lstring mProperty_mLabel ;
@@ -2334,16 +2709,16 @@ class cPtr_ipic_31__38_JumpTerminator : public cPtr_ipic_31__38_SingleInstructio
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2476,7 +2851,81 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Compute
 
 class cPtr_ipic_31__38_ComputedGotoTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method enterTerminatorReferencedLabels
+  public: virtual void method_enterTerminatorReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method exploreAccessibleBlocksForStackComputations
+  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GALGAS_stringset & ioBlockToExploreSet,
+           class GALGAS_stringset & ioExploredBlockSet,
+           class GALGAS_uint & outStackNeeds,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performTerminatorRelativeBranchResolution
+  public: virtual void method_performTerminatorRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outModifiedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorRelativeBranchOverflow
+  public: virtual void method_terminatorRelativeBranchOverflow (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_branchOverflowMap & ioOverflowMap,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_lstringlist mProperty_mTargetLabels ;
@@ -2489,16 +2938,16 @@ class cPtr_ipic_31__38_ComputedGotoTerminator : public cPtr_ipic_31__38_Abstract
                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2631,7 +3080,81 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Compute
 
 class cPtr_ipic_31__38_ComputedRETLWTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method enterTerminatorReferencedLabels
+  public: virtual void method_enterTerminatorReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method exploreAccessibleBlocksForStackComputations
+  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GALGAS_stringset & ioBlockToExploreSet,
+           class GALGAS_stringset & ioExploredBlockSet,
+           class GALGAS_uint & outStackNeeds,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performTerminatorRelativeBranchResolution
+  public: virtual void method_performTerminatorRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outModifiedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorRelativeBranchOverflow
+  public: virtual void method_terminatorRelativeBranchOverflow (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_branchOverflowMap & ioOverflowMap,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_uintlist mProperty_mLiteralValues ;
@@ -2644,16 +3167,16 @@ class cPtr_ipic_31__38_ComputedRETLWTerminator : public cPtr_ipic_31__38_Abstrac
                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2881,7 +3404,86 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Conditi
 
 class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method buildTerminatorOrderedGraph
+  public: virtual void method_buildTerminatorOrderedGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_blockInvocationGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method enterTerminatorReferencedLabels
+  public: virtual void method_enterTerminatorReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method exploreAccessibleBlocksForStackComputations
+  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GALGAS_stringset & ioBlockToExploreSet,
+           class GALGAS_stringset & ioExploredBlockSet,
+           class GALGAS_uint & outStackNeeds,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performTerminatorRelativeBranchResolution
+  public: virtual void method_performTerminatorRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outModifiedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorRelativeBranchOverflow
+  public: virtual void method_terminatorRelativeBranchOverflow (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_branchOverflowMap & ioOverflowMap,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_conditional_5F_branch mProperty_mConditionalBranch ;
@@ -2900,16 +3502,16 @@ class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_Abstr
                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3042,7 +3644,81 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Compute
 
 class cPtr_ipic_31__38_ComputedBraTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method enterTerminatorReferencedLabels
+  public: virtual void method_enterTerminatorReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method exploreAccessibleBlocksForStackComputations
+  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GALGAS_stringset & ioBlockToExploreSet,
+           class GALGAS_stringset & ioExploredBlockSet,
+           class GALGAS_uint & outStackNeeds,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performTerminatorRelativeBranchResolution
+  public: virtual void method_performTerminatorRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outModifiedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorRelativeBranchOverflow
+  public: virtual void method_terminatorRelativeBranchOverflow (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_branchOverflowMap & ioOverflowMap,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_lstringlist mProperty_mTargetLabels ;
@@ -3055,16 +3731,16 @@ class cPtr_ipic_31__38_ComputedBraTerminator : public cPtr_ipic_31__38_AbstractB
                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3268,7 +3944,51 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Abstrac
 
 class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method enterTerminatorReferencedLabels
+  public: virtual void method_enterTerminatorReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method exploreAccessibleBlocksForStackComputations
+  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GALGAS_stringset & ioBlockToExploreSet,
+           class GALGAS_stringset & ioExploredBlockSet,
+           class GALGAS_uint & outStackNeeds,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method getOptimizedTerminators
+  public: virtual void method_getOptimizedTerminators (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SingleInstructionTerminator & outOptimizedTrueTerminator,
+           class GALGAS_ipic_31__38_SingleInstructionTerminator & outOptimizedFalseTerminator,
+           class GALGAS_bool & outIdenticalTerminators,
+           C_Compiler * COMMA_LOCATION_ARGS) ;
+
+//--- Extension method terminatorRelativeBranchOverflow
+  public: virtual void method_terminatorRelativeBranchOverflow (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_branchOverflowMap & ioOverflowMap,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_ipic_31__38_SingleInstructionTerminator mProperty_mSingleInstructionTerminatorIfConditionTrue ;
@@ -3283,11 +4003,11 @@ class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_Abs
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const = 0 ;
+                                    const int32_t inIndentation) const override = 0 ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override = 0 ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -3514,7 +4234,66 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Register
 
 class cPtr_pic_31__38_RegisterComparisonTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method buildTerminatorOrderedGraph
+  public: virtual void method_buildTerminatorOrderedGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_blockInvocationGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performTerminatorRelativeBranchResolution
+  public: virtual void method_performTerminatorRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outModifiedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
@@ -3529,16 +4308,16 @@ class cPtr_pic_31__38_RegisterComparisonTerminator : public cPtr_ipic_31__38_Abs
                                                         COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3676,7 +4455,52 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_IncDecR
 
 class cPtr_ipic_31__38_IncDecRegisterTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorOrderedGraph
+  public: virtual void method_buildTerminatorOrderedGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_blockInvocationGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performTerminatorRelativeBranchResolution
+  public: virtual void method_performTerminatorRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outModifiedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
@@ -3693,16 +4517,16 @@ class cPtr_ipic_31__38_IncDecRegisterTerminator : public cPtr_ipic_31__38_Abstra
                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3828,7 +4652,66 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_TestRegi
 
 class cPtr_pic_31__38_TestRegisterTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter needToInsertJumpInstruction
+  public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorSize
+  public: virtual class GALGAS_uint getter_terminatorSize (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorInvocationGraph
+  public: virtual void method_buildTerminatorInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           const class GALGAS_bool inDottedArrow,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method buildTerminatorOrderedGraph
+  public: virtual void method_buildTerminatorOrderedGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_blockInvocationGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performTerminatorRelativeBranchResolution
+  public: virtual void method_performTerminatorRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outModifiedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
@@ -3841,16 +4724,16 @@ class cPtr_pic_31__38_TestRegisterTerminator : public cPtr_ipic_31__38_AbstractC
                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3982,7 +4865,52 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestT
 
 class cPtr_pic_31__38_BitTestTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter isEqualToTerminator
+  public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter terminatorDisplay
+  public: virtual class GALGAS_string getter_terminatorDisplay (const class GALGAS_string inNextBlockLabel,
+           C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildTerminatorOrderedGraph
+  public: virtual void method_buildTerminatorOrderedGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_blockInvocationGraph & ioGraph,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateTerminatorCode
+  public: virtual void method_generateTerminatorCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeTerminator
+  public: virtual void method_optimizeTerminator (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_string inBlockLabel,
+           class GALGAS_bool & ioOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outOptimizedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performTerminatorRelativeBranchResolution
+  public: virtual void method_performTerminatorRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_string inNextBlockLabel,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_AbstractBlockTerminator & outModifiedTerminator,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method terminatorMinMaxDuration
+  public: virtual void method_terminatorMinMaxDuration (const class GALGAS_blockDurationMap inExploredBlockMap,
+           const class GALGAS_string inNextLabel,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
@@ -3997,16 +4925,16 @@ class cPtr_pic_31__38_BitTestTerminator : public cPtr_ipic_31__38_AbstractCondit
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4130,7 +5058,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Instruc
 
 class cPtr_ipic_31__38_InstructionWithNoOperand : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_pic_31__38_InstructionWithNoOperandKind mProperty_mKind ;
@@ -4141,16 +5077,16 @@ class cPtr_ipic_31__38_InstructionWithNoOperand : public cPtr_ipic_31__38_Sequen
                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4297,7 +5233,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
@@ -4312,16 +5256,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public cPtr_ipic
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4545,7 +5489,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code mProperty_mFAinstruction ;
@@ -4558,16 +5510,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public cPtr_ipic_
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4784,7 +5736,24 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter instructionSize
+  public: virtual class GALGAS_uint getter_instructionSize (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method minMaxDuration
+  public: virtual void method_minMaxDuration (class GALGAS_blockDurationMap inExploredBlockMap,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication mProperty_mSourceRegisterDescription ;
@@ -4797,16 +5766,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public cPtr_ip
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4936,7 +5905,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_literal_5F_instruction_5F_opcode mProperty_mLiteralInstruction ;
@@ -4949,16 +5926,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : pub
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5091,7 +6068,24 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter instructionSize
+  public: virtual class GALGAS_uint getter_instructionSize (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method minMaxDuration
+  public: virtual void method_minMaxDuration (class GALGAS_blockDurationMap inExploredBlockMap,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_luint mProperty_mFSRindex ;
@@ -5104,16 +6098,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public cPtr_ipi
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5249,7 +6243,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_bit_5F_oriented_5F_op mProperty_mBitOrientedOp ;
@@ -5264,16 +6266,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public cPtr_ipic
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5403,7 +6405,66 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_JSR : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter instructionSize
+  public: virtual class GALGAS_uint getter_instructionSize (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildCalledRoutineSetForStackComputations
+  public: virtual void method_buildCalledRoutineSetForStackComputations (class GALGAS_stringset & ioRoutineCalledSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method buildInstructionInvocationGraph
+  public: virtual void method_buildInstructionInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method enterInstructionReferencedLabels
+  public: virtual void method_enterInstructionReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method instructionRelativeBranchOverflow
+  public: virtual void method_instructionRelativeBranchOverflow (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           class GALGAS_branchOverflowMap & ioOverflowMap,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method minMaxDuration
+  public: virtual void method_minMaxDuration (class GALGAS_blockDurationMap inExploredBlockMap,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeInstruction
+  public: virtual void method_optimizeInstruction (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_lstring inBlockLabel,
+           class GALGAS_bool & outOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outOptimizedInstruction,
+           class GALGAS_bool & outNOPsubstitution,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performInstructionRelativeBranchResolution
+  public: virtual void method_performInstructionRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outModifiedInstruction,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_lstring mProperty_mTargetLabel ;
@@ -5416,16 +6477,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_JSR : public cPtr_ipic_31__38_Sequent
                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5552,7 +6613,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_luint mProperty_mBankIndex ;
@@ -5563,16 +6632,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public cPtr_ip
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5699,7 +6768,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_uint mProperty_mBlankValue ;
@@ -5710,16 +6787,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public cPtr_ipi
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5846,7 +6923,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_uint mProperty_mBlankValue ;
@@ -5857,16 +6942,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public cPtr_ip
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5990,7 +7075,21 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method minMaxDuration
+  public: virtual void method_minMaxDuration (class GALGAS_blockDurationMap inExploredBlockMap,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_tableAccessOption mProperty_mOption ;
@@ -6001,16 +7100,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public cPtr_ip
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6134,7 +7233,21 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method minMaxDuration
+  public: virtual void method_minMaxDuration (class GALGAS_blockDurationMap inExploredBlockMap,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_tableAccessOption mProperty_mOption ;
@@ -6145,16 +7258,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public cPtr_ip
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6281,7 +7394,24 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter instructionSize
+  public: virtual class GALGAS_uint getter_instructionSize (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method minMaxDuration
+  public: virtual void method_minMaxDuration (class GALGAS_blockDurationMap inExploredBlockMap,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_luint mProperty_mOccurrenceFactor ;
@@ -6292,16 +7422,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public cPtr_ipi
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6428,7 +7558,24 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter instructionSize
+  public: virtual class GALGAS_uint getter_instructionSize (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method minMaxDuration
+  public: virtual void method_minMaxDuration (class GALGAS_blockDurationMap inExploredBlockMap,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_luint mProperty_mOccurrenceFactor ;
@@ -6439,16 +7586,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public cPtr_i
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6587,7 +7734,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_lstring mProperty_mLabel ;
@@ -6602,16 +7757,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public cPtr_ipic_
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6744,7 +7899,66 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_int
 
 class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter instructionSize
+  public: virtual class GALGAS_uint getter_instructionSize (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildCalledRoutineSetForStackComputations
+  public: virtual void method_buildCalledRoutineSetForStackComputations (class GALGAS_stringset & ioRoutineCalledSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method buildInstructionInvocationGraph
+  public: virtual void method_buildInstructionInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method enterInstructionReferencedLabels
+  public: virtual void method_enterInstructionReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method instructionRelativeBranchOverflow
+  public: virtual void method_instructionRelativeBranchOverflow (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           class GALGAS_branchOverflowMap & ioOverflowMap,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method minMaxDuration
+  public: virtual void method_minMaxDuration (class GALGAS_blockDurationMap inExploredBlockMap,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeInstruction
+  public: virtual void method_optimizeInstruction (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_lstring inBlockLabel,
+           class GALGAS_bool & outOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outOptimizedInstruction,
+           class GALGAS_bool & outNOPsubstitution,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performInstructionRelativeBranchResolution
+  public: virtual void method_performInstructionRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outModifiedInstruction,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_ipic_31__38_SequentialInstructionList mProperty_mTargetInstructions ;
@@ -6757,16 +7971,16 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : pu
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6885,7 +8099,36 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_con
 
 class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction : public cPtr_ipic_31__38_SequentialInstruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionSize
+  public: virtual class GALGAS_uint getter_instructionSize (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildCalledRoutineSetForStackComputations
+  public: virtual void method_buildCalledRoutineSetForStackComputations (class GALGAS_stringset & ioRoutineCalledSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method buildInstructionInvocationGraph
+  public: virtual void method_buildInstructionInvocationGraph (const class GALGAS_lstring inBlockLabel,
+           class GALGAS_string & ioGraphVizString,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method enterInstructionReferencedLabels
+  public: virtual void method_enterInstructionReferencedLabels (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           class GALGAS_stringset & ioReferencedBlockSet,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method instructionRelativeBranchOverflow
+  public: virtual void method_instructionRelativeBranchOverflow (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           class GALGAS_branchOverflowMap & ioOverflowMap,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method minMaxDuration
+  public: virtual void method_minMaxDuration (class GALGAS_blockDurationMap inExploredBlockMap,
+           class GALGAS_uint & outMin,
+           class GALGAS_uint & outMax,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_ipic_31__38_SequentialInstruction mProperty_mEmbeddedInstruction ;
@@ -6898,11 +8141,11 @@ class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction : public cPtr_ipic_3
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const = 0 ;
+                                    const int32_t inIndentation) const override = 0 ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const = 0 ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override = 0 ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const = 0 ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -7039,7 +8282,35 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_ski
 
 class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeInstruction
+  public: virtual void method_optimizeInstruction (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_lstring inBlockLabel,
+           class GALGAS_bool & outOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outOptimizedInstruction,
+           class GALGAS_bool & outNOPsubstitution,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performInstructionRelativeBranchResolution
+  public: virtual void method_performInstructionRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outModifiedInstruction,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_bool mProperty_mSkipIfSet ;
@@ -7055,16 +8326,16 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public cPtr_ipic
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -7282,7 +8553,35 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_ski
 
 class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeInstruction
+  public: virtual void method_optimizeInstruction (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_lstring inBlockLabel,
+           class GALGAS_bool & outOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outOptimizedInstruction,
+           class GALGAS_bool & outNOPsubstitution,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performInstructionRelativeBranchResolution
+  public: virtual void method_performInstructionRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outModifiedInstruction,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code mProperty_mCompareInstruction ;
@@ -7296,16 +8595,16 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register : public c
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -7529,7 +8828,35 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_ski
 
 class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
 
-//----------------------------------------------------------------------------------------------------------------------
+//--- Extension getter instructionDisplay
+  public: virtual class GALGAS_stringlist getter_instructionDisplay (C_Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_uint inAddress,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           const class GALGAS_pic_31__38__5F_dataAddressMap inDataMap,
+           class GALGAS_codeList & outCode,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeInstruction
+  public: virtual void method_optimizeInstruction (const class GALGAS_symbolTableForBlockOptimization inSymbolTable,
+           const class GALGAS_optimizeFlagStruct inOptimizeFlagStruct,
+           const class GALGAS_ipic_31__38_BlockList inBlockList,
+           const class GALGAS_lstring inBlockLabel,
+           class GALGAS_bool & outOptimizationDone,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outOptimizedInstruction,
+           class GALGAS_bool & outNOPsubstitution,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performInstructionRelativeBranchResolution
+  public: virtual void method_performInstructionRelativeBranchResolution (const class GALGAS_uint inAddress,
+           const class GALGAS_string inBlockLabel,
+           const class GALGAS_symbolTableForRelativesResolution inSymbolTable,
+           class GALGAS_uint & ioConversionCount,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_ipic_31__38_SequentialInstruction & outModifiedInstruction,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
@@ -7545,16 +8872,72 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public cPtr_ipic_31__38_
                                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const ;
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
   public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const ;
+                                    const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const ;
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const ;
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
 } ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak weak reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak : public GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak (void) ;
+
+//--------------------------------- Default GALGAS constructor
+  public: static GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak constructor_default (LOCATION_ARGS) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak (const class GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inSource) ;
+
+  public: GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak & operator = (const class GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA bang_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak constructor_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+ 
+} ; // End of GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak ;
 

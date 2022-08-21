@@ -29,9 +29,9 @@ override method @byteDeclarationInRam handleDeclaration
   let @uintlist mirrorOffsetList
   [ioRamBank searchKey !inCurrentRamBank ?* ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList]
   [self.mSizeExpression eval !ioRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
-  if size <= 0S then
+  if size <= 0 then
     error self.mName: "size expression should be > 0"
-  elsif size > 4096S then
+  elsif size > 4096 then
     error self.mName: "size expression should be < 4096"
   else
     var @uintlist addressList = {!firstFreeAddress}

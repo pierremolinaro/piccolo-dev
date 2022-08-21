@@ -22,7 +22,7 @@ method @registerExpression resolveMidrangeAccess
   ioUsedRegisters += !self.mRegisterName.string
 #--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
-  if offset > 0LS then
+  if offset > 0 then
     assemblyString += " + " + [[offset uint] hexString]
   end
 #--- 

@@ -7,20 +7,20 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//                    E X T E R N    R O U T I N E S                                             
+//                    E X T E R N    R O U T I N E S
 //
 //----------------------------------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//                    E X T E R N    F U N C T I O N S                                           
+//                    E X T E R N    F U N C T I O N S
 //
 //----------------------------------------------------------------------------------------------------------------------
 
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//         T E R M I N A L    S Y M B O L    E N U M E R A T I O N                               
+//         T E R M I N A L    S Y M B O L    E N U M E R A T I O N
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -62,28 +62,24 @@ enum {piccoloDevice_lexique_1_,
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//        U N I C O D E    T E S T    F U N C T I O N S                                          
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//                     S C A N N E R    C L A S S                                                
+//                     S C A N N E R    C L A S S
 //
 //----------------------------------------------------------------------------------------------------------------------
 
 @interface OC_Lexique_piccoloDevice_lexique : OC_Lexique {
 //--- Attributes
-  @private UInt32 mLexicalAttribute_charValue ;
-  @private NSMutableString * mLexicalAttribute_identifierString ;
-  @private NSMutableString * mLexicalAttribute_tokenString ;
-  @private UInt32 mLexicalAttribute_uint32value ;
+  @protected UInt32 mLexicalAttribute_charValue ;
+  @protected NSMutableString * mLexicalAttribute_identifierString ;
+  @protected NSMutableString * mLexicalAttribute_tokenString ;
+  @protected UInt32 mLexicalAttribute_uint32value ;
 
 }
 
 - (NSUInteger) terminalVocabularyCount ;
 
 - (NSUInteger) styleIndexForTerminal: (NSInteger) inTerminal ;
+
+- (BOOL) internalParseLexicalTokenForLexicalColoring ;
 
 - (void) parseLexicalTokenForLexicalColoring ;
 

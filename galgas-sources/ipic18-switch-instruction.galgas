@@ -63,7 +63,7 @@ override method @pic18Instruction_switch analyze
   let exitLabel = @lstring.new { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
   ioLocalLabelIndex += 1
 #--- Comparison value
-  var @sint64 lastComparisonValue = 0LS
+  var @sint64 lastComparisonValue = 0
 #--- By default, do not continue in sequence
   var @bool continuesInSequence = false
 #---
@@ -224,7 +224,7 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
 {
   [self.mCaseExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 #---
-  if (result > 255LS) | (result < 0LS) then
+  if (result > 255) | (result < 0) then
     error self.mCaseExpressionLocation:"case value is evaluated as " + result + " (should be between 0 and 255)"
   end
 #--- Check constant is unique
@@ -238,7 +238,7 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
   ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
     !self.mCaseExpressionLocation
     !.ADDLW
-    ![(ioLastComparisonValue - result) & 0xFFLS uint]
+    ![(ioLastComparisonValue - result) & 0xFF uint]
   }
   !@uint.max
   !0
@@ -285,24 +285,24 @@ override method @pic18IntervalCaseItem analyzeCaseItem
   [self.mMaxExpression eval !inRegisterTable !inConstantMap ?let @sint64 maxBound !?ioUsedRegisters]
 #---
   var ok = true
-  if (minBound > 255LS) | (minBound < 0LS) then
+  if (minBound > 255) | (minBound < 0) then
     error self.mCaseExpressionLocation:"min bound is evaluated as " + minBound + " (should be between 0 and 255)"
     ok = false
   end
-  if (maxBound > 255LS) | (maxBound < 0LS) then
+  if (maxBound > 255) | (maxBound < 0) then
     error self.mCaseExpressionLocation:"max bound is evaluated as " + maxBound + " (should be between 0 and 255)"
     ok = false
   end
   if maxBound <= minBound then
     error self.mCaseExpressionLocation:"max bound (" + maxBound + ") should be greater than low bound (" + minBound + ")"
     ok = false
-  elsif (maxBound == 255LS) & (minBound == 0LS) then
+  elsif (maxBound == 255) & (minBound == 0) then
     error self.mCaseExpressionLocation : "condition is always true"
     ok = false
   end
   if ok then
   #--- Check constant is unique
-    for n in @range.new {![minBound uint] ![maxBound - minBound + 1LS uint]} do
+    for n in @range.new {![minBound uint] ![maxBound - minBound + 1 uint]} do
       if [ioCaseConstantMap hasKey ![n string]] then
         error self.mCaseExpressionLocation : "the '" + n + "' constant is already used in switch instruction"
         error [ioCaseConstantMap locationForKey ![n string]] : "the '" + n + "' constant is used here"
@@ -318,13 +318,13 @@ override method @pic18IntervalCaseItem analyzeCaseItem
     let @ipic18SequentialInstruction secondTestInstruction = @ipic18_intermediate_instruction_literalOperation. new {
       !self.mCaseExpressionLocation
       !.ADDLW
-      ![maxBound - minBound + 1LS uint]
+      ![maxBound - minBound + 1 uint]
     }
   #---------------------- First test
     ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation. new {
         !self.mCaseExpressionLocation
         !.ADDLW
-        ![(ioLastComparisonValue + 255LS - maxBound) & 0xFFLS uint]
+        ![(ioLastComparisonValue + 255 - maxBound) & 0xFF uint]
       }
       !.max
       !0

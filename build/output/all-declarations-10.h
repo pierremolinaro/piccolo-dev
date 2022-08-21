@@ -14,26 +14,7 @@
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_registerExpression_analyzeRegisterExpression) (const class cPtr_registerExpression * inObject,
-                                                                                       const class GALGAS_uint constinArgument0,
-                                                                                       const class GALGAS_uint constinArgument1,
-                                                                                       const class GALGAS_registerTable constinArgument2,
-                                                                                       const class GALGAS_constantMap constinArgument3,
-                                                                                       const class GALGAS_bool constinArgument4,
-                                                                                       class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & outArgument5,
-                                                                                       class GALGAS_bitSliceTable & outArgument6,
-                                                                                       class GALGAS_stringset & ioArgument7,
-                                                                                       class C_Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_analyzeRegisterExpression (const int32_t inClassIndex,
-                                                     extensionMethodSignature_registerExpression_analyzeRegisterExpression inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeRegisterExpression (const class cPtr_registerExpression * inObject,
+void callExtensionMethod_analyzeRegisterExpression (class cPtr_registerExpression * inObject,
                                                     const GALGAS_uint constin_inAccessBankSplitOffset,
                                                     const GALGAS_uint constin_inCurrentBank,
                                                     const GALGAS_registerTable constin_inRegisterTable,
@@ -51,23 +32,7 @@ void callExtensionMethod_analyzeRegisterExpression (const class cPtr_registerExp
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_registerExpression_analyzeRegisterExpressionWithoutCheckingBank) (const class cPtr_registerExpression * inObject,
-                                                                                                          const class GALGAS_registerTable constinArgument0,
-                                                                                                          const class GALGAS_constantMap constinArgument1,
-                                                                                                          const class GALGAS_bool constinArgument2,
-                                                                                                          class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & outArgument3,
-                                                                                                          class GALGAS_stringset & ioArgument4,
-                                                                                                          class C_Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (const int32_t inClassIndex,
-                                                                        extensionMethodSignature_registerExpression_analyzeRegisterExpressionWithoutCheckingBank inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (const class cPtr_registerExpression * inObject,
+void callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (class cPtr_registerExpression * inObject,
                                                                        const GALGAS_registerTable constin_inRegisterTable,
                                                                        const GALGAS_constantMap constin_inConstantMap,
                                                                        const GALGAS_bool constin_inWriteAccess,
@@ -82,23 +47,7 @@ void callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (const cla
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_registerExpression_getRegisterAddress) (const class cPtr_registerExpression * inObject,
-                                                                                const class GALGAS_registerTable constinArgument0,
-                                                                                const class GALGAS_constantMap constinArgument1,
-                                                                                const class GALGAS_bool constinArgument2,
-                                                                                class GALGAS_stringset & ioArgument3,
-                                                                                class GALGAS_uint & outArgument4,
-                                                                                class C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_getRegisterAddress (const int32_t inClassIndex,
-                                              extensionMethodSignature_registerExpression_getRegisterAddress inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_getRegisterAddress (const class cPtr_registerExpression * inObject,
+void callExtensionMethod_getRegisterAddress (class cPtr_registerExpression * inObject,
                                              const GALGAS_registerTable constin_inRegisterTable,
                                              const GALGAS_constantMap constin_inConstantMap,
                                              const GALGAS_bool constin_inWriteAccess,
@@ -410,4 +359,48 @@ void routine_emitNoBaselineCodeAtWordAddress (const class GALGAS_uint constinArg
                                               class GALGAS_string & ioArgument2,
                                               class C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'addMidRangeUsedRoutinesFromInstructionList'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_addMidRangeUsedRoutinesFromInstructionList (const class GALGAS_midrange_5F_instructionList constinArgument0,
+                                                         class GALGAS_stringset & ioArgument1,
+                                                         class C_Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Function 'midrange_computeUsedRoutines'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_stringset function_midrange_5F_computeUsedRoutines (const class GALGAS_midrange_5F_interruptDefinitionList & constinArgument0,
+                                                                 const class GALGAS_midrange_5F_routineDefinitionList & constinArgument1,
+                                                                 class C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'handleMidrangeInstructionList'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_handleMidrangeInstructionList (const class GALGAS_midrange_5F_instructionList constinArgument0,
+                                            const class GALGAS_routineMap constinArgument1,
+                                            const class GALGAS_registerTable constinArgument2,
+                                            const class GALGAS_constantMap constinArgument3,
+                                            class GALGAS_uint & ioArgument4,
+                                            class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument5,
+                                            class GALGAS_string & ioArgument6,
+                                            const class GALGAS_uint constinArgument7,
+                                            class GALGAS_uint & ioArgument8,
+                                            const class GALGAS_bool constinArgument9,
+                                            class GALGAS_bool & outArgument10,
+                                            const class GALGAS_routineKind constinArgument11,
+                                            class GALGAS_stringset & ioArgument12,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 

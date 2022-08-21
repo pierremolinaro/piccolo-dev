@@ -7,16 +7,12 @@
 #import "PMDebug.h"
 
 //----------------------------------------------------------------------------------------------------------------------
-//            Unicode test functions                                                             
-//----------------------------------------------------------------------------------------------------------------------
- 
-//----------------------------------------------------------------------------------------------------------------------
 
 @implementation OC_Lexique_piccolo_lexique
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//                           Template Replacements                                               
+//                           Template Replacements
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -24,7 +20,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//                           Template Delimiters                                                 
+//                           Template Delimiters
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -35,10 +31,10 @@
   self = [super init] ;
   if (self) {
     noteObjectAllocation (self) ;
-    mLexicalAttribute_charValue = 0 ;
-    mLexicalAttribute_identifierString = [[NSMutableString alloc] init] ;
-    mLexicalAttribute_tokenString = [[NSMutableString alloc] init] ;
-    mLexicalAttribute_uint32value = 0 ;
+   mLexicalAttribute_charValue = 0 ;
+   mLexicalAttribute_identifierString = [[NSMutableString alloc] init] ;
+   mLexicalAttribute_tokenString = [[NSMutableString alloc] init] ;
+   mLexicalAttribute_uint32value = 0 ;
   }
   return self ;
 }
@@ -51,7 +47,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//                 I N D E X I N G    D I R E C T O R Y                                          
+//                 I N D E X I N G    D I R E C T O R Y
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -61,7 +57,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//                 I N D E X I N G    T I T L E S                                                
+//                 I N D E X I N G    T I T L E S
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -78,7 +74,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//            Terminal Symbols as end of script in template mark                                 
+//            Terminal Symbols as end of script in template mark
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -231,283 +227,294 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//               P A R S E    L E X I C A L    T O K E N                                         
+//               I N T E R N A L    P A R S E    L E X I C A L    T O K E N
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+- (BOOL) internalParseLexicalTokenForLexicalColoring {
+  BOOL loop = YES ;
+  BOOL scanningOk = YES ;
+  mLexicalAttribute_charValue = 0 ;
+  [mLexicalAttribute_identifierString setString:@""] ;
+  [mLexicalAttribute_tokenString setString:@""] ;
+  mLexicalAttribute_uint32value = 0 ;
+  mTokenStartLocation = mCurrentLocation ;
+  if (scanningOk && ([self testForCharWithFunction: isUnicodeLetter])) {
+    do {
+      scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_identifierString, scanner_cocoa_function_toLower (mPreviousChar)) ;
+      scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
+      if (scanningOk && ([self testForCharWithFunction: isUnicodeLetter] || [self testForInputChar:95] || [self testForInputFromChar:48 toChar:57])) {
+      }else{
+        loop = NO ;
+      }
+    }while (loop && scanningOk) ;
+    loop = YES ;
+    if (mTokenCode == 0) {
+      mTokenCode = search_into_piccolo_5F_lexique_instructionKeyWordList (mLexicalAttribute_identifierString) ;
+    }
+    if (mTokenCode == 0) {
+      mTokenCode = search_into_piccolo_5F_lexique_controlKeyWordList (mLexicalAttribute_identifierString) ;
+    }
+    if (mTokenCode == 0) {
+      mTokenCode = piccolo_lexique_1_identifier ;
+    }
+  }else if (scanningOk && ([self testForInputChar:64])) {
+    do {
+      scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
+      if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90] || [self testForInputChar:95] || [self testForInputFromChar:48 toChar:57])) {
+      }else{
+        loop = NO ;
+      }
+    }while (loop && scanningOk) ;
+    loop = YES ;
+    mTokenCode = piccolo_lexique_1_label ;
+  }else if (scanningOk && ([self testForInputString:@"0x" advance:YES])) {
+    do {
+      if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
+        scanner_cocoa_routine_enterHexDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
+      }else if (scanningOk && ([self testForInputFromChar:97 toChar:102])) {
+        scanner_cocoa_routine_enterHexDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
+      }else if (scanningOk && ([self testForInputFromChar:65 toChar:70])) {
+        scanner_cocoa_routine_enterHexDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
+      }else if (scanningOk && ([self testForInputChar:95])) {
+      }else{
+        loop = NO ;
+      }
+    }while (loop && scanningOk) ;
+    loop = YES ;
+    mTokenCode = piccolo_lexique_1_integer ;
+  }else if (scanningOk && ([self testForInputString:@"0b" advance:YES])) {
+    do {
+      if (scanningOk && ([self testForInputFromChar:48 toChar:49])) {
+        scanner_cocoa_routine_enterBinDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
+      }else if (scanningOk && ([self testForInputChar:95])) {
+      }else{
+        loop = NO ;
+      }
+    }while (loop && scanningOk) ;
+    loop = YES ;
+    mTokenCode = piccolo_lexique_1_integer ;
+  }else if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
+    scanner_cocoa_routine_enterDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
+    do {
+      if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
+        scanner_cocoa_routine_enterDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
+      }else if (scanningOk && ([self testForInputChar:95])) {
+      }else{
+        loop = NO ;
+      }
+    }while (loop && scanningOk) ;
+    loop = YES ;
+    mTokenCode = piccolo_lexique_1_integer ;
+  }else if (scanningOk && ([self testForInputChar:39])) {
+    if (scanningOk && ([self testForInputChar:92])) {
+      if (scanningOk && ([self testForInputChar:102])) {
+        scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 12) ;
+      }else if (scanningOk && ([self testForInputChar:110])) {
+        scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 10) ;
+      }else if (scanningOk && ([self testForInputChar:114])) {
+        scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 13) ;
+      }else if (scanningOk && ([self testForInputChar:116])) {
+        scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 9) ;
+      }else if (scanningOk && ([self testForInputChar:118])) {
+        scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 11) ;
+      }else if (scanningOk && ([self testForInputChar:92])) {
+        scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 92) ;
+      }else if (scanningOk && ([self testForInputChar:48])) {
+        scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 0) ;
+      }else if (scanningOk && ([self testForInputChar:39])) {
+        scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 39) ;
+      }else if (scanningOk && ([self testForInputChar:120] || [self testForInputChar:88])) {
+        if (scanningOk && ([self testForInputFromChar:48 toChar:57] || [self testForInputFromChar:97 toChar:102] || [self testForInputFromChar:65 toChar:70])) {
+          do {
+            scanner_cocoa_routine_enterHexDigitIntoASCIIcharacter (& scanningOk, & mLexicalAttribute_charValue, mPreviousChar) ;
+            if (scanningOk && ([self testForInputFromChar:48 toChar:57] || [self testForInputFromChar:97 toChar:102] || [self testForInputFromChar:65 toChar:70])) {
+            }else{
+              loop = NO ;
+            }
+          }while (loop && scanningOk) ;
+          loop = YES ;
+        }else{
+          scanningOk = NO ;
+        }
+      }else{
+        scanningOk = NO ;
+      }
+    }else if (scanningOk && ([self testForInputFromChar:32 toChar:126])) {
+      scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, mPreviousChar) ;
+    }else{
+      scanningOk = NO ;
+    }
+    if (scanningOk && ([self testForInputChar:39])) {
+      mTokenCode = piccolo_lexique_1_literal_5F_char ;
+    }else{
+      scanningOk = NO ;
+    }
+  }else if (scanningOk && [self testForInputString:@"..." advance:YES]) {
+    mTokenCode = piccolo_lexique_1__2E__2E__2E_ ;
+  }else if (scanningOk && [self testForInputString:@">>" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__3E__3E_ ;
+  }else if (scanningOk && [self testForInputString:@">=" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__3E__3D_ ;
+  }else if (scanningOk && [self testForInputString:@"==" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__3D__3D_ ;
+  }else if (scanningOk && [self testForInputString:@"<=" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__3C__3D_ ;
+  }else if (scanningOk && [self testForInputString:@"<<" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__3C__3C_ ;
+  }else if (scanningOk && [self testForInputString:@"+*" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__2B__2A_ ;
+  }else if (scanningOk && [self testForInputString:@"*-" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__2A__2D_ ;
+  }else if (scanningOk && [self testForInputString:@"*+" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__2A__2B_ ;
+  }else if (scanningOk && [self testForInputString:@"!=" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__21__3D_ ;
+  }else if (scanningOk && [self testForInputString:@"~" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__7E_ ;
+  }else if (scanningOk && [self testForInputString:@"}" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__7D_ ;
+  }else if (scanningOk && [self testForInputString:@"|" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__7C_ ;
+  }else if (scanningOk && [self testForInputString:@"{" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__7B_ ;
+  }else if (scanningOk && [self testForInputString:@"^" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__5E_ ;
+  }else if (scanningOk && [self testForInputString:@"]" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__5D_ ;
+  }else if (scanningOk && [self testForInputString:@"[" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__5B_ ;
+  }else if (scanningOk && [self testForInputString:@"\?" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__3F_ ;
+  }else if (scanningOk && [self testForInputString:@">" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__3E_ ;
+  }else if (scanningOk && [self testForInputString:@"=" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__3D_ ;
+  }else if (scanningOk && [self testForInputString:@"<" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__3C_ ;
+  }else if (scanningOk && [self testForInputString:@";" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__3B_ ;
+  }else if (scanningOk && [self testForInputString:@":" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__3A_ ;
+  }else if (scanningOk && [self testForInputString:@"/" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__2F_ ;
+  }else if (scanningOk && [self testForInputString:@"." advance:YES]) {
+    mTokenCode = piccolo_lexique_1__2E_ ;
+  }else if (scanningOk && [self testForInputString:@"-" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__2D_ ;
+  }else if (scanningOk && [self testForInputString:@"," advance:YES]) {
+    mTokenCode = piccolo_lexique_1__2C_ ;
+  }else if (scanningOk && [self testForInputString:@"+" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__2B_ ;
+  }else if (scanningOk && [self testForInputString:@"*" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__2A_ ;
+  }else if (scanningOk && [self testForInputString:@")" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__29_ ;
+  }else if (scanningOk && [self testForInputString:@"(" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__28_ ;
+  }else if (scanningOk && [self testForInputString:@"&" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__26_ ;
+  }else if (scanningOk && [self testForInputString:@"%" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__25_ ;
+  }else if (scanningOk && [self testForInputString:@"!" advance:YES]) {
+    mTokenCode = piccolo_lexique_1__21_ ;
+  }else if (scanningOk && ([self testForInputChar:34])) {
+    do {
+      if (scanningOk && ([self testForInputChar:92])) {
+        if (scanningOk && ([self testForInputChar:102])) {
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 12) ;
+        }else if (scanningOk && ([self testForInputChar:110])) {
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 10) ;
+        }else if (scanningOk && ([self testForInputChar:114])) {
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 13) ;
+        }else if (scanningOk && ([self testForInputChar:116])) {
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 9) ;
+        }else if (scanningOk && ([self testForInputChar:118])) {
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 11) ;
+        }else if (scanningOk && ([self testForInputChar:92])) {
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 92) ;
+        }else if (scanningOk && ([self testForInputChar:48])) {
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 0) ;
+        }else if (scanningOk && ([self testForInputChar:34])) {
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 34) ;
+        }else if (scanningOk && ([self testForInputChar:39])) {
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 39) ;
+        }else if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
+          do {
+            scanner_cocoa_routine_enterHexDigitIntoASCIIcharacter (& scanningOk, & mLexicalAttribute_charValue, mPreviousChar) ;
+            if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
+            }else{
+              loop = NO ;
+            }
+          }while (loop && scanningOk) ;
+          loop = YES ;
+          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mLexicalAttribute_charValue) ;
+        }else{
+          scanningOk = NO ;
+        }
+      }else if (scanningOk && ([self testForInputChar:32] || [self testForInputChar:33] || [self testForInputFromChar:35 toChar:126])) {
+        scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
+      }else{
+        loop = NO ;
+      }
+    }while (loop && scanningOk) ;
+    loop = YES ;
+    if (scanningOk && ([self testForInputChar:34])) {
+      mTokenCode = piccolo_lexique_1_literal_5F_string ;
+    }else{
+      scanningOk = NO ;
+    }
+  }else if (scanningOk && ([self testForInputChar:35])) {
+    if (scanningOk && ([self testForInputChar:33])) {
+      do {
+        if (scanningOk && ([self testForInputFromChar:1 toChar:9] || [self testForInputChar:11] || [self testForInputChar:12] || [self testForInputFromChar:14 toChar:65533])) {
+        }else{
+          loop = NO ;
+        }
+      }while (loop && scanningOk) ;
+      loop = YES ;
+      mTokenCode = piccolo_lexique_1_commentMark ;
+    }else{
+      do {
+        if (scanningOk && ([self testForInputFromChar:1 toChar:9] || [self testForInputChar:11] || [self testForInputChar:12] || [self testForInputFromChar:14 toChar:65533])) {
+        }else{
+          loop = NO ;
+        }
+      }while (loop && scanningOk) ;
+      loop = YES ;
+      mTokenCode = piccolo_lexique_1_comment ;
+    }
+  }else if (scanningOk && ([self testForInputFromChar:1 toChar:32])) {
+  }else   if ([self testForInputChar:'\0']) { // End of source text ?
+    mTokenCode = piccolo_lexique_1_ ; // Empty string code
+  }else{ // Unknown input character
+    scanningOk = NO ;
+    [self advance] ;
+  }
+  return scanningOk ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//               P A R S E    L E X I C A L    T O K E N
 //
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void) parseLexicalTokenForLexicalColoring {
-  mLoop = YES ;
   BOOL scanningOk = YES ;
   mTokenCode = 0 ;
   while ((mTokenCode == 0) && (mCurrentChar != '\0')) {
-    mTokenStartLocation = mCurrentLocation ;
-    mLexicalAttribute_charValue = 0 ;
-    [mLexicalAttribute_identifierString setString:@""] ;
-    [mLexicalAttribute_tokenString setString:@""] ;
-    mLexicalAttribute_uint32value = 0 ;
-    mTokenStartLocation = mCurrentLocation ;
-    if (scanningOk && ([self testForCharWithFunction:isUnicodeLetter])) {
-      do {
-        scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_identifierString, scanner_cocoa_function_toLower (mPreviousChar)) ;
-        scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
-        if (scanningOk && ([self testForCharWithFunction:isUnicodeLetter] || [self testForInputChar:95] || [self testForInputFromChar:48 toChar:57])) {
-        }else{
-          mLoop = NO ;
-        }
-      }while (mLoop && scanningOk) ;
-      mLoop = YES ;
-      if (mTokenCode == 0) {
-        mTokenCode = search_into_piccolo_5F_lexique_instructionKeyWordList (mLexicalAttribute_identifierString) ;
-      }
-      if (mTokenCode == 0) {
-        mTokenCode = search_into_piccolo_5F_lexique_controlKeyWordList (mLexicalAttribute_identifierString) ;
-      }
-      if (mTokenCode == 0) {
-        mTokenCode = piccolo_lexique_1_identifier ;
-      }
-    }else if (scanningOk && ([self testForInputChar:64])) {
-      do {
-        scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
-        if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90] || [self testForInputChar:95] || [self testForInputFromChar:48 toChar:57])) {
-        }else{
-          mLoop = NO ;
-        }
-      }while (mLoop && scanningOk) ;
-      mLoop = YES ;
-      mTokenCode = piccolo_lexique_1_label ;
-    }else if (scanningOk && ([self testForInputString:@"0x" advance:YES])) {
-      do {
-        if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
-          scanner_cocoa_routine_enterHexDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
-        }else if (scanningOk && ([self testForInputFromChar:97 toChar:102])) {
-          scanner_cocoa_routine_enterHexDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
-        }else if (scanningOk && ([self testForInputFromChar:65 toChar:70])) {
-          scanner_cocoa_routine_enterHexDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
-        }else if (scanningOk && ([self testForInputChar:95])) {
-        }else{
-          mLoop = NO ;
-        }
-      }while (mLoop && scanningOk) ;
-      mLoop = YES ;
-      mTokenCode = piccolo_lexique_1_integer ;
-    }else if (scanningOk && ([self testForInputString:@"0b" advance:YES])) {
-      do {
-        if (scanningOk && ([self testForInputFromChar:48 toChar:49])) {
-          scanner_cocoa_routine_enterBinDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
-        }else if (scanningOk && ([self testForInputChar:95])) {
-        }else{
-          mLoop = NO ;
-        }
-      }while (mLoop && scanningOk) ;
-      mLoop = YES ;
-      mTokenCode = piccolo_lexique_1_integer ;
-    }else if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
-      scanner_cocoa_routine_enterDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
-      do {
-        if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
-          scanner_cocoa_routine_enterDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
-        }else if (scanningOk && ([self testForInputChar:95])) {
-        }else{
-          mLoop = NO ;
-        }
-      }while (mLoop && scanningOk) ;
-      mLoop = YES ;
-      mTokenCode = piccolo_lexique_1_integer ;
-    }else if (scanningOk && ([self testForInputChar:39])) {
-      if (scanningOk && ([self testForInputChar:92])) {
-        if (scanningOk && ([self testForInputChar:102])) {
-          scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 12) ;
-        }else if (scanningOk && ([self testForInputChar:110])) {
-          scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 10) ;
-        }else if (scanningOk && ([self testForInputChar:114])) {
-          scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 13) ;
-        }else if (scanningOk && ([self testForInputChar:116])) {
-          scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 9) ;
-        }else if (scanningOk && ([self testForInputChar:118])) {
-          scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 11) ;
-        }else if (scanningOk && ([self testForInputChar:92])) {
-          scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 92) ;
-        }else if (scanningOk && ([self testForInputChar:48])) {
-          scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 0) ;
-        }else if (scanningOk && ([self testForInputChar:39])) {
-          scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 39) ;
-        }else if (scanningOk && ([self testForInputChar:120] || [self testForInputChar:88])) {
-          if (scanningOk && ([self testForInputFromChar:48 toChar:57] || [self testForInputFromChar:97 toChar:102] || [self testForInputFromChar:65 toChar:70])) {
-            do {
-              scanner_cocoa_routine_enterHexDigitIntoASCIIcharacter (& scanningOk, & mLexicalAttribute_charValue, mPreviousChar) ;
-              if (scanningOk && ([self testForInputFromChar:48 toChar:57] || [self testForInputFromChar:97 toChar:102] || [self testForInputFromChar:65 toChar:70])) {
-              }else{
-                mLoop = NO ;
-              }
-            }while (mLoop && scanningOk) ;
-            mLoop = YES ;
-          }else{
-            scanningOk = NO ;
-          }
-        }else{
-          scanningOk = NO ;
-        }
-      }else if (scanningOk && ([self testForInputFromChar:32 toChar:126])) {
-        scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, mPreviousChar) ;
-      }else{
-        scanningOk = NO ;
-      }
-      if (scanningOk && ([self testForInputChar:39])) {
-        mTokenCode = piccolo_lexique_1_literal_5F_char ;
-      }else{
-        scanningOk = NO ;
-      }
-    }else if (scanningOk && [self testForInputString:@"..." advance:YES]) {
-      mTokenCode = piccolo_lexique_1__2E__2E__2E_ ;
-    }else if (scanningOk && [self testForInputString:@">>" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__3E__3E_ ;
-    }else if (scanningOk && [self testForInputString:@">=" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__3E__3D_ ;
-    }else if (scanningOk && [self testForInputString:@"==" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__3D__3D_ ;
-    }else if (scanningOk && [self testForInputString:@"<=" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__3C__3D_ ;
-    }else if (scanningOk && [self testForInputString:@"<<" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__3C__3C_ ;
-    }else if (scanningOk && [self testForInputString:@"+*" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__2B__2A_ ;
-    }else if (scanningOk && [self testForInputString:@"*-" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__2A__2D_ ;
-    }else if (scanningOk && [self testForInputString:@"*+" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__2A__2B_ ;
-    }else if (scanningOk && [self testForInputString:@"!=" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__21__3D_ ;
-    }else if (scanningOk && [self testForInputString:@"~" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__7E_ ;
-    }else if (scanningOk && [self testForInputString:@"}" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__7D_ ;
-    }else if (scanningOk && [self testForInputString:@"|" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__7C_ ;
-    }else if (scanningOk && [self testForInputString:@"{" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__7B_ ;
-    }else if (scanningOk && [self testForInputString:@"^" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__5E_ ;
-    }else if (scanningOk && [self testForInputString:@"]" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__5D_ ;
-    }else if (scanningOk && [self testForInputString:@"[" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__5B_ ;
-    }else if (scanningOk && [self testForInputString:@"\?" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__3F_ ;
-    }else if (scanningOk && [self testForInputString:@">" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__3E_ ;
-    }else if (scanningOk && [self testForInputString:@"=" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__3D_ ;
-    }else if (scanningOk && [self testForInputString:@"<" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__3C_ ;
-    }else if (scanningOk && [self testForInputString:@";" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__3B_ ;
-    }else if (scanningOk && [self testForInputString:@":" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__3A_ ;
-    }else if (scanningOk && [self testForInputString:@"/" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__2F_ ;
-    }else if (scanningOk && [self testForInputString:@"." advance:YES]) {
-      mTokenCode = piccolo_lexique_1__2E_ ;
-    }else if (scanningOk && [self testForInputString:@"-" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__2D_ ;
-    }else if (scanningOk && [self testForInputString:@"," advance:YES]) {
-      mTokenCode = piccolo_lexique_1__2C_ ;
-    }else if (scanningOk && [self testForInputString:@"+" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__2B_ ;
-    }else if (scanningOk && [self testForInputString:@"*" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__2A_ ;
-    }else if (scanningOk && [self testForInputString:@")" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__29_ ;
-    }else if (scanningOk && [self testForInputString:@"(" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__28_ ;
-    }else if (scanningOk && [self testForInputString:@"&" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__26_ ;
-    }else if (scanningOk && [self testForInputString:@"%" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__25_ ;
-    }else if (scanningOk && [self testForInputString:@"!" advance:YES]) {
-      mTokenCode = piccolo_lexique_1__21_ ;
-    }else if (scanningOk && ([self testForInputChar:34])) {
-      do {
-        if (scanningOk && ([self testForInputChar:92])) {
-          if (scanningOk && ([self testForInputChar:102])) {
-            scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 12) ;
-          }else if (scanningOk && ([self testForInputChar:110])) {
-            scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 10) ;
-          }else if (scanningOk && ([self testForInputChar:114])) {
-            scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 13) ;
-          }else if (scanningOk && ([self testForInputChar:116])) {
-            scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 9) ;
-          }else if (scanningOk && ([self testForInputChar:118])) {
-            scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 11) ;
-          }else if (scanningOk && ([self testForInputChar:92])) {
-            scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 92) ;
-          }else if (scanningOk && ([self testForInputChar:48])) {
-            scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 0) ;
-          }else if (scanningOk && ([self testForInputChar:34])) {
-            scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 34) ;
-          }else if (scanningOk && ([self testForInputChar:39])) {
-            scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 39) ;
-          }else if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
-            do {
-              scanner_cocoa_routine_enterHexDigitIntoASCIIcharacter (& scanningOk, & mLexicalAttribute_charValue, mPreviousChar) ;
-              if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
-              }else{
-                mLoop = NO ;
-              }
-            }while (mLoop && scanningOk) ;
-            mLoop = YES ;
-            scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mLexicalAttribute_charValue) ;
-          }else{
-            scanningOk = NO ;
-          }
-        }else if (scanningOk && ([self testForInputChar:32] || [self testForInputChar:33] || [self testForInputFromChar:35 toChar:126])) {
-          scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
-        }else{
-          mLoop = NO ;
-        }
-      }while (mLoop && scanningOk) ;
-      mLoop = YES ;
-      if (scanningOk && ([self testForInputChar:34])) {
-        mTokenCode = piccolo_lexique_1_literal_5F_string ;
-      }else{
-        scanningOk = NO ;
-      }
-    }else if (scanningOk && ([self testForInputChar:35])) {
-      if (scanningOk && ([self testForInputChar:33])) {
-        do {
-          if (scanningOk && ([self testForInputFromChar:1 toChar:9] || [self testForInputChar:11] || [self testForInputChar:12] || [self testForInputFromChar:14 toChar:65533])) {
-          }else{
-            mLoop = NO ;
-          }
-        }while (mLoop && scanningOk) ;
-        mLoop = YES ;
-        mTokenCode = piccolo_lexique_1_commentMark ;
-      }else{
-        do {
-          if (scanningOk && ([self testForInputFromChar:1 toChar:9] || [self testForInputChar:11] || [self testForInputChar:12] || [self testForInputFromChar:14 toChar:65533])) {
-          }else{
-            mLoop = NO ;
-          }
-        }while (mLoop && scanningOk) ;
-        mLoop = YES ;
-        mTokenCode = piccolo_lexique_1_comment ;
-      }
-    }else if (scanningOk && ([self testForInputFromChar:1 toChar:32])) {
-    }else if ([self testForInputChar:'\0']) { // End of source text ? 
-      mTokenCode = piccolo_lexique_1_ ; // Empty string code
-    }else{ // Unknown input character
-      scanningOk = NO ;
-      [self advance] ;
-    }
-  //--- Error ?
-    if (! scanningOk) {
-      mTokenCode = -1 ;
-    }
+    scanningOk = [self internalParseLexicalTokenForLexicalColoring] ;
+  }
+//--- Error ?
+  if (! scanningOk) {
+    mTokenCode = -1 ;
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//                   T E R M I N A L    C O U N T                                                
+//                   T E R M I N A L    C O U N T
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -517,7 +524,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//                     S T Y L E   C O U N T                                                     
+//                     S T Y L E   C O U N T
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -527,7 +534,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//                I S    T E M P L A T E    L E X I Q U E                                        
+//                I S    T E M P L A T E    L E X I Q U E
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -537,7 +544,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//   S T Y L E   I N D E X    F O R    T E R M I N A L                                           
+//   S T Y L E   I N D E X    F O R    T E R M I N A L
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -708,7 +715,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//    A T O M I C    S E L E C T I O N   F O R    T E R M I N A L                                
+//    A T O M I C    S E L E C T I O N   F O R    T E R M I N A L
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -879,7 +886,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//             S T Y L E   N A M E    F O R    I N D E X                                         
+//             S T Y L E   N A M E    F O R    I N D E X
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -904,7 +911,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//         S T Y L E   I D E N T I F I E R    F O R    I N D E X                                 
+//         S T Y L E   I D E N T I F I E R    F O R    I N D E X
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -929,7 +936,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//         L E X I Q U E   I D E N T I F I E R                                                   
+//         L E X I Q U E   I D E N T I F I E R
 //
 //----------------------------------------------------------------------------------------------------------------------
 

@@ -22,7 +22,7 @@ method @registerExpression resolveBaselineAccess
   ioUsedRegisters += !self.mRegisterName.string
 #--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
-  if offset > 0LS then
+  if offset > 0 then
     assemblyString += " + " + [[offset uint] hexString]
   end
 #--- Find register
@@ -211,7 +211,7 @@ override method @baseline_instruction_literalOperation build_baseline_intermedia
   end
   [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 immediatValue !?ioUsedRegisters]
 #---
-   if (immediatValue > 255LS) | (immediatValue < -128LS) then
+   if (immediatValue > 255) | (immediatValue < -128) then
      error self.mInstructionLocation:"immediate value is evaluated as " + immediatValue + " (should be betwween -128 and 255)"
    end
 #---  
@@ -219,12 +219,12 @@ override method @baseline_instruction_literalOperation build_baseline_intermedia
     ioGeneratedInstructionList += !@baseline_intermediate_instruction_literalOperation. new {
       !self.mInstructionLocation
       !@baseline_literal_instruction_opcode. RETLW
-      ![immediatValue & 0x000000FFS uint]}
+      ![immediatValue & 0x000000FF uint]}
   else
     ioGeneratedInstructionList += !@baseline_intermediate_instruction_literalOperation. new {
       !self.mInstructionLocation
       !self.mLiteralInstruction
-      ![immediatValue & 0x000000FFS uint]}
+      ![immediatValue & 0x000000FF uint]}
   end
 }
 
@@ -629,7 +629,7 @@ override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_
 #---
   if lowerBound > upperBound then
     error self.mInstructionLocation: "lower bound (" + lowerBound + ") greater then upper bound (" + upperBound + ")"
-  elsif (upperBound - lowerBound) > 0xFFFF_LS then
+  elsif (upperBound - lowerBound) > 0xFFFF then
     error self.mInstructionLocation:"repeat count (" + (upperBound - lowerBound) + ") too large (should be <= 0xFFFF)"
   end
 #--- First pass

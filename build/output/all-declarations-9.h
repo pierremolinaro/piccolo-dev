@@ -240,19 +240,7 @@ class cGrammar_piccoloDevice_5F_grammar : public cParser_piccoloDevice_5F_syntax
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_baseline_5F_instruction_5F_IF_5F_BitTest_getBaseCode) (const class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                                                                               class GALGAS_uint & outArgument0,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_getBaseCode (const int32_t inClassIndex,
-                                       extensionMethodSignature_baseline_5F_instruction_5F_IF_5F_BitTest_getBaseCode inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_getBaseCode (const class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
+void callExtensionMethod_getBaseCode (class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
                                       GALGAS_uint & out_outBaseCode,
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
@@ -263,19 +251,7 @@ void callExtensionMethod_getBaseCode (const class cPtr_baseline_5F_instruction_5
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_baseline_5F_instruction_5F_IF_5F_BitTest_getMnemonic) (const class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                                                                               class GALGAS_string & outArgument0,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_getMnemonic (const int32_t inClassIndex,
-                                       extensionMethodSignature_baseline_5F_instruction_5F_IF_5F_BitTest_getMnemonic inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_getMnemonic (const class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
+void callExtensionMethod_getMnemonic (class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
                                       GALGAS_string & out_outMnemonic,
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
@@ -286,23 +262,7 @@ void callExtensionMethod_getMnemonic (const class cPtr_baseline_5F_instruction_5
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_registerExpression_resolveBaselineAccess) (const class cPtr_registerExpression * inObject,
-                                                                                   const class GALGAS_registerTable constinArgument0,
-                                                                                   const class GALGAS_constantMap constinArgument1,
-                                                                                   class GALGAS_baseline_5F_intermediate_5F_registerExpression & outArgument2,
-                                                                                   class GALGAS_bitSliceTable & outArgument3,
-                                                                                   class GALGAS_stringset & ioArgument4,
-                                                                                   class C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_resolveBaselineAccess (const int32_t inClassIndex,
-                                                 extensionMethodSignature_registerExpression_resolveBaselineAccess inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_resolveBaselineAccess (const class cPtr_registerExpression * inObject,
+void callExtensionMethod_resolveBaselineAccess (class cPtr_registerExpression * inObject,
                                                 const GALGAS_registerTable constin_inRegisterTable,
                                                 const GALGAS_constantMap constin_inConstantMap,
                                                 GALGAS_baseline_5F_intermediate_5F_registerExpression & out_outIntermediateRegisterDescription,
@@ -317,19 +277,7 @@ void callExtensionMethod_resolveBaselineAccess (const class cPtr_registerExpress
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_midrange_5F_instruction_5F_IF_5F_BitTest_getBaseCode) (const class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                                                                               class GALGAS_uint & outArgument0,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_getBaseCode (const int32_t inClassIndex,
-                                       extensionMethodSignature_midrange_5F_instruction_5F_IF_5F_BitTest_getBaseCode inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_getBaseCode (const class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
+void callExtensionMethod_getBaseCode (class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
                                       GALGAS_uint & out_outBaseCode,
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
@@ -340,19 +288,7 @@ void callExtensionMethod_getBaseCode (const class cPtr_midrange_5F_instruction_5
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_midrange_5F_instruction_5F_IF_5F_BitTest_getMnemonic) (const class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                                                                               class GALGAS_string & outArgument0,
-                                                                                               class C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_getMnemonic (const int32_t inClassIndex,
-                                       extensionMethodSignature_midrange_5F_instruction_5F_IF_5F_BitTest_getMnemonic inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_getMnemonic (const class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
+void callExtensionMethod_getMnemonic (class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
                                       GALGAS_string & out_outMnemonic,
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
@@ -363,25 +299,7 @@ void callExtensionMethod_getMnemonic (const class cPtr_midrange_5F_instruction_5
 //
 //----------------------------------------------------------------------------------------------------------------------
 
-typedef void (*extensionMethodSignature_registerExpression_resolveMidrangeAccess) (const class cPtr_registerExpression * inObject,
-                                                                                   const class GALGAS_uint constinArgument0,
-                                                                                   const class GALGAS_uint constinArgument1,
-                                                                                   const class GALGAS_registerTable constinArgument2,
-                                                                                   const class GALGAS_constantMap constinArgument3,
-                                                                                   class GALGAS_midrange_5F_intermediate_5F_registerExpression & outArgument4,
-                                                                                   class GALGAS_bitSliceTable & outArgument5,
-                                                                                   class GALGAS_stringset & ioArgument6,
-                                                                                   class C_Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void enterExtensionMethod_resolveMidrangeAccess (const int32_t inClassIndex,
-                                                 extensionMethodSignature_registerExpression_resolveMidrangeAccess inMethod) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_resolveMidrangeAccess (const class cPtr_registerExpression * inObject,
+void callExtensionMethod_resolveMidrangeAccess (class cPtr_registerExpression * inObject,
                                                 const GALGAS_uint constin_inTotalBankCount,
                                                 const GALGAS_uint constin_inCurrentBank,
                                                 const GALGAS_registerTable constin_inRegisterTable,

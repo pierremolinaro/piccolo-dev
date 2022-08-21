@@ -54,7 +54,7 @@ void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 67)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("pic18_start_symbol.galgas", 69)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("pic18_start_symbol.galgas", 69)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_pic_31__38_AST var_piccoloModel_2245 = GALGAS_pic_31__38_AST::constructor_new (var_programName_767, var_programKind_845, var_deviceNameOrBootloaderReference_814, var_configDefinitionList_1515, var_ramDefinitionList_1405, var_unusedRegisterList_1462, var_checkpicList_1673, var_dataList_1631, var_interruptDefinitionList_1162, var_constantDefinitionList_1579, var_routineDefinitionList_1233, var_macroDefinitionList_1326, var_unusedRoutineList_1355, var_inlinedRoutineList_1725, var_needsComputedGoto_32__1782, var_needsComputedGoto_34__1821, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 87))  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 70)) ;
       {
@@ -274,7 +274,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (C_
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 81)) ;
   enumGalgasBool test_3 = kBoolTrue ;
   if (kBoolTrue == test_3) {
-    test_3 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_syntax.galgas", 83)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_3 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_syntax.galgas", 83)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_3) {
       GALGAS_midrange_5F_model var_piccoloModel_2195 = GALGAS_midrange_5F_model::constructor_new (var_programName_778, var_deviceName_822, var_configDefinitionList_1162, var_ramDefinitionList_1002, var_unusedRegisterList_1059, var_interruptDefinitionList_858, var_constantDefinitionList_1226, var_routineDefinitionList_933, var_unusedRoutineList_1109, var_needsComputedGoto_32__1294, var_needsComputedGoto_34__1333, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 96))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 84)) ;
       {
@@ -674,7 +674,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
   GALGAS_luint var_page_6015 ;
   switch (select_midrange_5F_syntax_5 (inCompiler)) {
   case 1: {
-    var_page_6015 = GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230)) ;
+    var_page_6015 = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_page COMMA_SOURCE_FILE ("midrange_syntax.galgas", 232)) ;
@@ -3029,7 +3029,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_routine_5F_
   GALGAS_luint var_page_2356 ;
   switch (select_baseline_5F_syntax_5 (inCompiler)) {
   case 1: {
-    var_page_2356 = GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 100))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 100)) ;
+    var_page_2356 = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 100))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 100)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_page COMMA_SOURCE_FILE ("baseline_syntax.galgas", 102)) ;
@@ -4835,7 +4835,7 @@ void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_ (
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("baseline_program.galgas", 33)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_program.galgas", 35)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_program.galgas", 35)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_baseline_5F_model var_piccoloModel_1197 = GALGAS_baseline_5F_model::constructor_new (var_programName_530, var_deviceName_574, var_configDefinitionList_837, var_ramDefinitionList_677, var_unusedRegisterList_734, var_constantDefinitionList_901, var_routineDefinitionList_608, var_unusedRoutineList_784, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 45))  COMMA_SOURCE_FILE ("baseline_program.galgas", 36)) ;
       {
@@ -4969,7 +4969,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 42)) ;
   outArgument_outBootloaderRoutineDeclarationList = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 43)) ;
   outArgument_outBootloaderReservedRAMmap = GALGAS_bootloaderReservedRAMmap::constructor_emptyMap (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 44)) ;
-  outArgument_outReservedRomSize = GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 45))  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 45)) ;
+  outArgument_outReservedRomSize = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 45))  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 45)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_pic_31__38__5F_bootloader_5F_syntax_0 (inCompiler)) {
@@ -4983,7 +4983,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 52)) ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = GALGAS_bool (kIsNotEqual, outArgument_outReservedRomSize.readProperty_uint ().objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+        test_1 = GALGAS_bool (kIsNotEqual, outArgument_outReservedRomSize.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
         if (kBoolTrue == test_1) {
           TC_Array <C_FixItDescription> fixItArray2 ;
           inCompiler->emitSemanticError (var_rs_1709.readProperty_location (), GALGAS_string ("ROM size already defined"), fixItArray2  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 54)) ;
@@ -4992,7 +4992,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
       if (kBoolFalse == test_1) {
         enumGalgasBool test_3 = kBoolTrue ;
         if (kBoolTrue == test_3) {
-          test_3 = GALGAS_bool (kIsEqual, var_rs_1709.readProperty_uint ().objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+          test_3 = GALGAS_bool (kIsEqual, var_rs_1709.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
           if (kBoolTrue == test_3) {
             TC_Array <C_FixItDescription> fixItArray4 ;
             inCompiler->emitSemanticError (var_rs_1709.readProperty_location (), GALGAS_string ("ROM size should be > 0"), fixItArray4  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 56)) ;
@@ -5001,7 +5001,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
         if (kBoolFalse == test_3) {
           enumGalgasBool test_5 = kBoolTrue ;
           if (kBoolTrue == test_5) {
-            test_5 = GALGAS_bool (kIsNotEqual, var_rs_1709.readProperty_uint ().modulo_operation (GALGAS_uint ((uint32_t) 8U), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 57)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+            test_5 = GALGAS_bool (kIsNotEqual, var_rs_1709.readProperty_uint ().modulo_operation (GALGAS_uint (uint32_t (8U)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 57)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
             if (kBoolTrue == test_5) {
               TC_Array <C_FixItDescription> fixItArray6 ;
               inCompiler->emitSemanticError (var_rs_1709.readProperty_location (), GALGAS_string ("ROM size should be a multiple of 8"), fixItArray6  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 58)) ;
@@ -5031,7 +5031,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
       if (kBoolFalse == test_7) {
         enumGalgasBool test_9 = kBoolTrue ;
         if (kBoolTrue == test_9) {
-          test_9 = GALGAS_bool (kIsEqual, var_rs_2094.readProperty_uint ().objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+          test_9 = GALGAS_bool (kIsEqual, var_rs_2094.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
           if (kBoolTrue == test_9) {
             TC_Array <C_FixItDescription> fixItArray10 ;
             inCompiler->emitSemanticError (var_rs_2094.readProperty_location (), GALGAS_string ("RAM size should be > 0"), fixItArray10  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 70)) ;
@@ -5221,7 +5221,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   GALGAS_string var_listingFile_3736 = GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)).add_operation (GALGAS_string (".list"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 128)).objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.readProperty_value ()) COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 128)).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 128)).objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.readProperty_value ()) COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 128)).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_bool joker_3969 ; // Joker input parameter
       var_listFileContents_3560.method_writeToFileWhenDifferentContents (var_listingFile_3736, joker_3969, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 129)) ;
@@ -5229,7 +5229,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = GALGAS_bool (kIsStrictSup, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 131)).objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+    test_1 = GALGAS_bool (kIsStrictSup, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 131)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_1) {
       {
       GALGAS_string::class_method_deleteFileIfExists (var_listingFile_3736, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 132)) ;
@@ -5610,7 +5610,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
   GALGAS_immediatExpression var_sizeExpression_1019 ;
   switch (select_communs_3 (inCompiler)) {
   case 1: {
-    var_sizeExpression_1019 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 1U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 45))  COMMA_SOURCE_FILE ("communs.galgas", 45))  COMMA_SOURCE_FILE ("communs.galgas", 45)) ;
+    var_sizeExpression_1019 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (1U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 45))  COMMA_SOURCE_FILE ("communs.galgas", 45))  COMMA_SOURCE_FILE ("communs.galgas", 45)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 47)) ;
@@ -5629,67 +5629,67 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("communs.galgas", 56)) ;
     var_bitDefinitionString_1243 = GALGAS_string (" <") ;
-    GALGAS_sint var_sliceIndex_1350 = GALGAS_sint ((int32_t) 8L) ;
+    GALGAS_sint var_sliceIndex_1350 = GALGAS_sint (int32_t (8L)) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
       switch (select_communs_6 (inCompiler)) {
       case 1: {
-        GALGAS_uint var_sliceWidth_1407 = GALGAS_uint ((uint32_t) 0U) ;
+        GALGAS_uint var_sliceWidth_1406 = GALGAS_uint (uint32_t (0U)) ;
         bool repeatFlag_1 = true ;
         while (repeatFlag_1) {
-          GALGAS_uint var_sliceBase_1474 = GALGAS_uint ((uint32_t) 0U) ;
+          GALGAS_uint var_sliceBase_1473 = GALGAS_uint (uint32_t (0U)) ;
           enumGalgasBool test_2 = kBoolTrue ;
           if (kBoolTrue == test_2) {
-            test_2 = GALGAS_bool (kIsSupOrEqual, var_sliceIndex_1350.objectCompare (GALGAS_sint ((int32_t) 0L))).boolEnum () ;
+            test_2 = GALGAS_bool (kIsSupOrEqual, var_sliceIndex_1350.objectCompare (GALGAS_sint (int32_t (0L)))).boolEnum () ;
             if (kBoolTrue == test_2) {
-              var_sliceBase_1474 = var_sliceIndex_1350.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
+              var_sliceBase_1473 = var_sliceIndex_1350.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
             }
           }
-          GALGAS_lstring var_sliceName_1616 = inCompiler->synthetizedAttribute_tokenString () ;
+          GALGAS_lstring var_sliceName_1614 = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 67)) ;
           switch (select_communs_8 (inCompiler)) {
           case 1: {
             enumGalgasBool test_3 = kBoolTrue ;
             if (kBoolTrue == test_3) {
-              test_3 = GALGAS_bool (kIsNotEqual, var_sliceWidth_1407.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_1407.objectCompare (GALGAS_uint ((uint32_t) 1U))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
+              test_3 = GALGAS_bool (kIsNotEqual, var_sliceWidth_1406.objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_1406.objectCompare (GALGAS_uint (uint32_t (1U)))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
               if (kBoolTrue == test_3) {
                 TC_Array <C_FixItDescription> fixItArray4 ;
-                inCompiler->emitSemanticError (var_sliceName_1616.readProperty_location (), GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_1616.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)), fixItArray4  COMMA_SOURCE_FILE ("communs.galgas", 70)) ;
+                inCompiler->emitSemanticError (var_sliceName_1614.readProperty_location (), GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_1614.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)), fixItArray4  COMMA_SOURCE_FILE ("communs.galgas", 70)) ;
               }
             }
-            var_sliceWidth_1407 = GALGAS_uint ((uint32_t) 1U) ;
-            var_bitDefinitionString_1243.plusAssign_operation(var_sliceName_1616.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 73)) ;
+            var_sliceWidth_1406 = GALGAS_uint (uint32_t (1U)) ;
+            var_bitDefinitionString_1243.plusAssign_operation(var_sliceName_1614.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 73)) ;
           } break ;
           case 2: {
             inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 75)) ;
-            GALGAS_luint var_sliceSize_1946 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+            GALGAS_luint var_sliceSize_1944 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
             inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 76)) ;
             enumGalgasBool test_5 = kBoolTrue ;
             if (kBoolTrue == test_5) {
-              test_5 = GALGAS_bool (kIsNotEqual, var_sliceWidth_1407.objectCompare (GALGAS_uint ((uint32_t) 0U))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_1407.objectCompare (var_sliceSize_1946.readProperty_uint ())) COMMA_SOURCE_FILE ("communs.galgas", 77)).boolEnum () ;
+              test_5 = GALGAS_bool (kIsNotEqual, var_sliceWidth_1406.objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_1406.objectCompare (var_sliceSize_1944.readProperty_uint ())) COMMA_SOURCE_FILE ("communs.galgas", 77)).boolEnum () ;
               if (kBoolTrue == test_5) {
                 TC_Array <C_FixItDescription> fixItArray6 ;
-                inCompiler->emitSemanticError (var_sliceName_1616.readProperty_location (), GALGAS_string ("a slice of ").add_operation (var_sliceWidth_1407.getter_string (SOURCE_FILE ("communs.galgas", 78)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (var_sliceName_1616.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)), fixItArray6  COMMA_SOURCE_FILE ("communs.galgas", 78)) ;
+                inCompiler->emitSemanticError (var_sliceName_1614.readProperty_location (), GALGAS_string ("a slice of ").add_operation (var_sliceWidth_1406.getter_string (SOURCE_FILE ("communs.galgas", 78)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (var_sliceName_1614.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)), fixItArray6  COMMA_SOURCE_FILE ("communs.galgas", 78)) ;
               }
             }
-            var_sliceWidth_1407 = var_sliceSize_1946.readProperty_uint () ;
-            var_sliceBase_1474 = var_sliceBase_1474.add_operation (GALGAS_uint ((uint32_t) 1U), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)).substract_operation (var_sliceSize_1946.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)) ;
-            var_bitDefinitionString_1243.plusAssign_operation(var_sliceName_1616.readProperty_string ().add_operation (GALGAS_string ("["), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (var_sliceSize_1946.readProperty_uint ().getter_string (SOURCE_FILE ("communs.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 82)) ;
+            var_sliceWidth_1406 = var_sliceSize_1944.readProperty_uint () ;
+            var_sliceBase_1473 = var_sliceBase_1473.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)).substract_operation (var_sliceSize_1944.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)) ;
+            var_bitDefinitionString_1243.plusAssign_operation(var_sliceName_1614.readProperty_string ().add_operation (GALGAS_string ("["), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (var_sliceSize_1944.readProperty_uint ().getter_string (SOURCE_FILE ("communs.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 82)) ;
             inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 83)) ;
           } break ;
           default:
             break ;
           }
-          GALGAS_uint var_base_2387 = GALGAS_uint ((uint32_t) 0U) ;
+          GALGAS_uint var_base_2385 = GALGAS_uint (uint32_t (0U)) ;
           enumGalgasBool test_7 = kBoolTrue ;
           if (kBoolTrue == test_7) {
-            test_7 = GALGAS_bool (kIsSupOrEqual, var_sliceIndex_1350.objectCompare (var_sliceWidth_1407.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)))).boolEnum () ;
+            test_7 = GALGAS_bool (kIsSupOrEqual, var_sliceIndex_1350.objectCompare (var_sliceWidth_1406.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)))).boolEnum () ;
             if (kBoolTrue == test_7) {
-              var_base_2387 = var_sliceIndex_1350.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)).substract_operation (var_sliceWidth_1407, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)) ;
+              var_base_2385 = var_sliceIndex_1350.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)).substract_operation (var_sliceWidth_1406, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)) ;
             }
           }
           {
-          var_bitSliceTable_1181.setter_insertKey (var_sliceName_1616, var_base_2387, var_sliceWidth_1407, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 89)) ;
+          var_bitSliceTable_1181.setter_insertKey (var_sliceName_1614, var_base_2385, var_sliceWidth_1406, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 89)) ;
           }
           switch (select_communs_7 (inCompiler)) {
           case 2: {
@@ -5701,33 +5701,33 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
             break ;
           }
         }
-        var_sliceIndex_1350 = var_sliceIndex_1350.substract_operation (var_sliceWidth_1407.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)) ;
+        var_sliceIndex_1350 = var_sliceIndex_1350.substract_operation (var_sliceWidth_1406.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)) ;
       } break ;
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 96)) ;
         var_bitDefinitionString_1243.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 97)) ;
-        var_sliceIndex_1350.minusAssign_operation(GALGAS_uint ((uint32_t) 1U).getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 98)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 98)) ;
+        var_sliceIndex_1350.minusAssign_operation(GALGAS_sint (int32_t (1L)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 98)) ;
       } break ;
       case 3: {
-        GALGAS_luint var_bitCount_2822 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        GALGAS_luint var_bitCount_2820 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 100)) ;
         enumGalgasBool test_8 = kBoolTrue ;
         if (kBoolTrue == test_8) {
-          test_8 = GALGAS_bool (kIsEqual, var_bitCount_2822.readProperty_uint ().objectCompare (GALGAS_uint ((uint32_t) 0U))).boolEnum () ;
+          test_8 = GALGAS_bool (kIsEqual, var_bitCount_2820.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
           if (kBoolTrue == test_8) {
             TC_Array <C_FixItDescription> fixItArray9 ;
-            inCompiler->emitSemanticError (var_bitCount_2822.readProperty_location (), GALGAS_string ("the bit count should be > 0"), fixItArray9  COMMA_SOURCE_FILE ("communs.galgas", 102)) ;
+            inCompiler->emitSemanticError (var_bitCount_2820.readProperty_location (), GALGAS_string ("the bit count should be > 0"), fixItArray9  COMMA_SOURCE_FILE ("communs.galgas", 102)) ;
           }
         }
-        cEnumerator_range enumerator_2971 (GALGAS_range (GALGAS_uint ((uint32_t) 0U), var_bitCount_2822.readProperty_uint ().substract_operation (GALGAS_uint ((uint32_t) 0U), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 104))), kENUMERATION_UP) ;
-        while (enumerator_2971.hasCurrentObject ()) {
+        cEnumerator_range enumerator_2969 (GALGAS_range (GALGAS_uint (uint32_t (0U)), var_bitCount_2820.readProperty_uint ().substract_operation (GALGAS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 104))), kENUMERATION_UP) ;
+        while (enumerator_2969.hasCurrentObject ()) {
           var_bitDefinitionString_1243.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 105)) ;
-          if (enumerator_2971.hasNextObject ()) {
+          if (enumerator_2969.hasNextObject ()) {
             var_bitDefinitionString_1243.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 106)) ;
           }
-          enumerator_2971.gotoNextObject () ;
+          enumerator_2969.gotoNextObject () ;
         }
-        var_sliceIndex_1350 = var_sliceIndex_1350.substract_operation (var_bitCount_2822.readProperty_uint ().getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)) ;
+        var_sliceIndex_1350 = var_sliceIndex_1350.substract_operation (var_bitCount_2820.readProperty_uint ().getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)) ;
       } break ;
       default:
         break ;
@@ -5744,10 +5744,10 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
     }
     enumGalgasBool test_10 = kBoolTrue ;
     if (kBoolTrue == test_10) {
-      test_10 = GALGAS_bool (kIsNotEqual, var_sliceIndex_1350.objectCompare (GALGAS_sint ((int32_t) 0L))).boolEnum () ;
+      test_10 = GALGAS_bool (kIsNotEqual, var_sliceIndex_1350.objectCompare (GALGAS_sint (int32_t (0L)))).boolEnum () ;
       if (kBoolTrue == test_10) {
         TC_Array <C_FixItDescription> fixItArray11 ;
-        inCompiler->emitSemanticError (var_name_949.readProperty_location (), GALGAS_string ("Incorrect bit definition for register '").add_operation (var_name_949.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_sint ((int32_t) 8L).substract_operation (var_sliceIndex_1350, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).getter_string (SOURCE_FILE ("communs.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)), fixItArray11  COMMA_SOURCE_FILE ("communs.galgas", 115)) ;
+        inCompiler->emitSemanticError (var_name_949.readProperty_location (), GALGAS_string ("Incorrect bit definition for register '").add_operation (var_name_949.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_sint (int32_t (8L)).substract_operation (var_sliceIndex_1350, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).getter_string (SOURCE_FILE ("communs.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)), fixItArray11  COMMA_SOURCE_FILE ("communs.galgas", 115)) ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("communs.galgas", 117)) ;
@@ -5939,24 +5939,24 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_indexing (C_Lexiq
 void cParser_communs::rule_communs_ram_5F_definition_i2_ (GALGAS_ramDefinitionList & ioArgument_ioRamDefinitionList,
                                                           C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("communs.galgas", 128)) ;
-  GALGAS_lstring var_bankName_3709 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_bankName_3705 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 129)) ;
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 130)) ;
-  GALGAS_declarationInRamList var_declarationInRamList_3742 = GALGAS_declarationInRamList::constructor_emptyList (SOURCE_FILE ("communs.galgas", 131)) ;
+  GALGAS_declarationInRamList var_declarationInRamList_3738 = GALGAS_declarationInRamList::constructor_emptyList (SOURCE_FILE ("communs.galgas", 131)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_communs_9 (inCompiler)) {
     case 2: {
-      GALGAS_declarationInRam var_declaration_3854 ;
-      nt_declaration_5F_in_5F_ram_ (var_declaration_3854, inCompiler) ;
-      var_declarationInRamList_3742.addAssign_operation (var_declaration_3854  COMMA_SOURCE_FILE ("communs.galgas", 135)) ;
+      GALGAS_declarationInRam var_declaration_3850 ;
+      nt_declaration_5F_in_5F_ram_ (var_declaration_3850, inCompiler) ;
+      var_declarationInRamList_3738.addAssign_operation (var_declaration_3850  COMMA_SOURCE_FILE ("communs.galgas", 135)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  ioArgument_ioRamDefinitionList.addAssign_operation (var_bankName_3709, var_declarationInRamList_3742  COMMA_SOURCE_FILE ("communs.galgas", 137)) ;
+  ioArgument_ioRamDefinitionList.addAssign_operation (var_bankName_3705, var_declarationInRamList_3738  COMMA_SOURCE_FILE ("communs.galgas", 137)) ;
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("communs.galgas", 138)) ;
 }
 
@@ -6006,13 +6006,13 @@ void cParser_communs::rule_communs_ram_5F_definition_i2_indexing (C_Lexique_picc
 void cParser_communs::rule_communs_constant_5F_definition_i3_ (GALGAS_constantDefinitionList & ioArgument_ioConstantDefinitionList,
                                                                C_Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_const COMMA_SOURCE_FILE ("communs.galgas", 145)) ;
-  GALGAS_lstring var_constantName_4157 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_constantName_4153 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_constantDeclaration, "") ;
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 146)) ;
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3D_ COMMA_SOURCE_FILE ("communs.galgas", 147)) ;
-  GALGAS_immediatExpression var_expression_4253 ;
-  nt_immediate_5F_expression_ (var_expression_4253, inCompiler) ;
-  ioArgument_ioConstantDefinitionList.addAssign_operation (var_constantName_4157, var_expression_4253  COMMA_SOURCE_FILE ("communs.galgas", 149)) ;
+  GALGAS_immediatExpression var_expression_4249 ;
+  nt_immediate_5F_expression_ (var_expression_4249, inCompiler) ;
+  ioArgument_ioConstantDefinitionList.addAssign_operation (var_constantName_4153, var_expression_4249  COMMA_SOURCE_FILE ("communs.galgas", 149)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6047,15 +6047,15 @@ void cParser_communs::rule_communs_immediate_5F_expression_i4_ (GALGAS_immediatE
     switch (select_communs_10 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("communs.galgas", 158)) ;
-      GALGAS_immediatExpression var_rightExpression_4570 ;
-      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4570, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatOr::constructor_new (outArgument_outExpression, var_rightExpression_4570  COMMA_SOURCE_FILE ("communs.galgas", 160)) ;
+      GALGAS_immediatExpression var_rightExpression_4566 ;
+      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4566, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatOr::constructor_new (outArgument_outExpression, var_rightExpression_4566  COMMA_SOURCE_FILE ("communs.galgas", 160)) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5E_ COMMA_SOURCE_FILE ("communs.galgas", 162)) ;
-      GALGAS_immediatExpression var_rightExpression_4728 ;
-      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4728, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatXor::constructor_new (outArgument_outExpression, var_rightExpression_4728  COMMA_SOURCE_FILE ("communs.galgas", 164)) ;
+      GALGAS_immediatExpression var_rightExpression_4724 ;
+      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4724, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatXor::constructor_new (outArgument_outExpression, var_rightExpression_4724  COMMA_SOURCE_FILE ("communs.galgas", 164)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -6120,9 +6120,9 @@ void cParser_communs::rule_communs_immediate_5F_bitwise_5F_term_i5_ (GALGAS_imme
     switch (select_communs_11 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("communs.galgas", 174)) ;
-      GALGAS_immediatExpression var_rightExpression_5055 ;
-      nt_immediate_5F_bitwise_5F_factor_ (var_rightExpression_5055, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatAnd::constructor_new (outArgument_outExpression, var_rightExpression_5055  COMMA_SOURCE_FILE ("communs.galgas", 176)) ;
+      GALGAS_immediatExpression var_rightExpression_5051 ;
+      nt_immediate_5F_bitwise_5F_factor_ (var_rightExpression_5051, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatAnd::constructor_new (outArgument_outExpression, var_rightExpression_5051  COMMA_SOURCE_FILE ("communs.galgas", 176)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -6179,39 +6179,39 @@ void cParser_communs::rule_communs_immediate_5F_bitwise_5F_factor_i6_ (GALGAS_im
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3D__3D_ COMMA_SOURCE_FILE ("communs.galgas", 186)) ;
-    GALGAS_immediatExpression var_rightExpression_5362 ;
-    nt_immediate_5F_term_ (var_rightExpression_5362, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatEqualTest::constructor_new (outArgument_outExpression, var_rightExpression_5362  COMMA_SOURCE_FILE ("communs.galgas", 188)) ;
+    GALGAS_immediatExpression var_rightExpression_5358 ;
+    nt_immediate_5F_term_ (var_rightExpression_5358, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatEqualTest::constructor_new (outArgument_outExpression, var_rightExpression_5358  COMMA_SOURCE_FILE ("communs.galgas", 188)) ;
   } break ;
   case 3: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__21__3D_ COMMA_SOURCE_FILE ("communs.galgas", 190)) ;
-    GALGAS_immediatExpression var_rightExpression_5498 ;
-    nt_immediate_5F_term_ (var_rightExpression_5498, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatNotEqualTest::constructor_new (outArgument_outExpression, var_rightExpression_5498  COMMA_SOURCE_FILE ("communs.galgas", 192)) ;
+    GALGAS_immediatExpression var_rightExpression_5494 ;
+    nt_immediate_5F_term_ (var_rightExpression_5494, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatNotEqualTest::constructor_new (outArgument_outExpression, var_rightExpression_5494  COMMA_SOURCE_FILE ("communs.galgas", 192)) ;
   } break ;
   case 4: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3E__3D_ COMMA_SOURCE_FILE ("communs.galgas", 194)) ;
-    GALGAS_immediatExpression var_rightExpression_5637 ;
-    nt_immediate_5F_term_ (var_rightExpression_5637, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatGreaterOrEqualTest::constructor_new (outArgument_outExpression, var_rightExpression_5637  COMMA_SOURCE_FILE ("communs.galgas", 196)) ;
+    GALGAS_immediatExpression var_rightExpression_5633 ;
+    nt_immediate_5F_term_ (var_rightExpression_5633, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatGreaterOrEqualTest::constructor_new (outArgument_outExpression, var_rightExpression_5633  COMMA_SOURCE_FILE ("communs.galgas", 196)) ;
   } break ;
   case 5: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3C__3D_ COMMA_SOURCE_FILE ("communs.galgas", 198)) ;
-    GALGAS_immediatExpression var_rightExpression_5782 ;
-    nt_immediate_5F_term_ (var_rightExpression_5782, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatLowerOrEqualTest::constructor_new (outArgument_outExpression, var_rightExpression_5782  COMMA_SOURCE_FILE ("communs.galgas", 200)) ;
+    GALGAS_immediatExpression var_rightExpression_5778 ;
+    nt_immediate_5F_term_ (var_rightExpression_5778, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatLowerOrEqualTest::constructor_new (outArgument_outExpression, var_rightExpression_5778  COMMA_SOURCE_FILE ("communs.galgas", 200)) ;
   } break ;
   case 6: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("communs.galgas", 202)) ;
-    GALGAS_immediatExpression var_rightExpression_5924 ;
-    nt_immediate_5F_term_ (var_rightExpression_5924, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatGreaterTest::constructor_new (outArgument_outExpression, var_rightExpression_5924  COMMA_SOURCE_FILE ("communs.galgas", 204)) ;
+    GALGAS_immediatExpression var_rightExpression_5920 ;
+    nt_immediate_5F_term_ (var_rightExpression_5920, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatGreaterTest::constructor_new (outArgument_outExpression, var_rightExpression_5920  COMMA_SOURCE_FILE ("communs.galgas", 204)) ;
   } break ;
   case 7: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("communs.galgas", 206)) ;
-    GALGAS_immediatExpression var_rightExpression_6061 ;
-    nt_immediate_5F_term_ (var_rightExpression_6061, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatLowerTest::constructor_new (outArgument_outExpression, var_rightExpression_6061  COMMA_SOURCE_FILE ("communs.galgas", 208)) ;
+    GALGAS_immediatExpression var_rightExpression_6057 ;
+    nt_immediate_5F_term_ (var_rightExpression_6057, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatLowerTest::constructor_new (outArgument_outExpression, var_rightExpression_6057  COMMA_SOURCE_FILE ("communs.galgas", 208)) ;
   } break ;
   default:
     break ;
@@ -6302,27 +6302,27 @@ void cParser_communs::rule_communs_immediate_5F_term_i7_ (GALGAS_immediatExpress
     switch (select_communs_13 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2B_ COMMA_SOURCE_FILE ("communs.galgas", 218)) ;
-      GALGAS_immediatExpression var_rightExpression_6369 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6369, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatAdd::constructor_new (outArgument_outExpression, var_rightExpression_6369  COMMA_SOURCE_FILE ("communs.galgas", 220)) ;
+      GALGAS_immediatExpression var_rightExpression_6365 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6365, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatAdd::constructor_new (outArgument_outExpression, var_rightExpression_6365  COMMA_SOURCE_FILE ("communs.galgas", 220)) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 222)) ;
-      GALGAS_immediatExpression var_rightExpression_6502 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6502, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatSub::constructor_new (outArgument_outExpression, var_rightExpression_6502  COMMA_SOURCE_FILE ("communs.galgas", 224)) ;
+      GALGAS_immediatExpression var_rightExpression_6498 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6498, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatSub::constructor_new (outArgument_outExpression, var_rightExpression_6498  COMMA_SOURCE_FILE ("communs.galgas", 224)) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3C__3C_ COMMA_SOURCE_FILE ("communs.galgas", 226)) ;
-      GALGAS_immediatExpression var_rightExpression_6636 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6636, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatLeftShift::constructor_new (outArgument_outExpression, var_rightExpression_6636  COMMA_SOURCE_FILE ("communs.galgas", 228)) ;
+      GALGAS_immediatExpression var_rightExpression_6632 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6632, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatLeftShift::constructor_new (outArgument_outExpression, var_rightExpression_6632  COMMA_SOURCE_FILE ("communs.galgas", 228)) ;
     } break ;
     case 5: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3E__3E_ COMMA_SOURCE_FILE ("communs.galgas", 230)) ;
-      GALGAS_immediatExpression var_rightExpression_6776 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6776, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatRightShift::constructor_new (outArgument_outExpression, var_rightExpression_6776  COMMA_SOURCE_FILE ("communs.galgas", 232)) ;
+      GALGAS_immediatExpression var_rightExpression_6772 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6772, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatRightShift::constructor_new (outArgument_outExpression, var_rightExpression_6772  COMMA_SOURCE_FILE ("communs.galgas", 232)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -6403,21 +6403,21 @@ void cParser_communs::rule_communs_immediate_5F_factor_i8_ (GALGAS_immediatExpre
     switch (select_communs_14 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("communs.galgas", 242)) ;
-      GALGAS_immediatExpression var_rightExpression_7089 ;
-      nt_immediate_5F_primary_ (var_rightExpression_7089, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatMul::constructor_new (outArgument_outExpression, var_rightExpression_7089  COMMA_SOURCE_FILE ("communs.galgas", 244)) ;
+      GALGAS_immediatExpression var_rightExpression_7085 ;
+      nt_immediate_5F_primary_ (var_rightExpression_7085, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatMul::constructor_new (outArgument_outExpression, var_rightExpression_7085  COMMA_SOURCE_FILE ("communs.galgas", 244)) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__25_ COMMA_SOURCE_FILE ("communs.galgas", 246)) ;
-      GALGAS_immediatExpression var_rightExpression_7223 ;
-      nt_immediate_5F_primary_ (var_rightExpression_7223, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatMod::constructor_new (outArgument_outExpression, var_rightExpression_7223  COMMA_SOURCE_FILE ("communs.galgas", 248)) ;
+      GALGAS_immediatExpression var_rightExpression_7219 ;
+      nt_immediate_5F_primary_ (var_rightExpression_7219, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatMod::constructor_new (outArgument_outExpression, var_rightExpression_7219  COMMA_SOURCE_FILE ("communs.galgas", 248)) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("communs.galgas", 250)) ;
-      GALGAS_immediatExpression var_rightExpression_7357 ;
-      nt_immediate_5F_primary_ (var_rightExpression_7357, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatDiv::constructor_new (outArgument_outExpression, var_rightExpression_7357  COMMA_SOURCE_FILE ("communs.galgas", 252)) ;
+      GALGAS_immediatExpression var_rightExpression_7353 ;
+      nt_immediate_5F_primary_ (var_rightExpression_7353, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatDiv::constructor_new (outArgument_outExpression, var_rightExpression_7353  COMMA_SOURCE_FILE ("communs.galgas", 252)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -6487,48 +6487,48 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GALGAS_immediatExpr
   switch (select_communs_15 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 261)) ;
-    GALGAS_immediatExpression var_expression_7615 ;
-    nt_immediate_5F_primary_ (var_expression_7615, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatNegate::constructor_new (var_expression_7615  COMMA_SOURCE_FILE ("communs.galgas", 263)) ;
+    GALGAS_immediatExpression var_expression_7611 ;
+    nt_immediate_5F_primary_ (var_expression_7611, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatNegate::constructor_new (var_expression_7611  COMMA_SOURCE_FILE ("communs.galgas", 263)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7E_ COMMA_SOURCE_FILE ("communs.galgas", 265)) ;
-    GALGAS_immediatExpression var_expression_7724 ;
-    nt_immediate_5F_primary_ (var_expression_7724, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatComplement::constructor_new (var_expression_7724  COMMA_SOURCE_FILE ("communs.galgas", 267)) ;
+    GALGAS_immediatExpression var_expression_7720 ;
+    nt_immediate_5F_primary_ (var_expression_7720, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatComplement::constructor_new (var_expression_7720  COMMA_SOURCE_FILE ("communs.galgas", 267)) ;
   } break ;
   case 3: {
-    GALGAS_luint var_constant_7824 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    GALGAS_luint var_constant_7820 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 269)) ;
-    outArgument_outExpression = GALGAS_immediatInteger::constructor_new (var_constant_7824  COMMA_SOURCE_FILE ("communs.galgas", 270)) ;
+    outArgument_outExpression = GALGAS_immediatInteger::constructor_new (var_constant_7820  COMMA_SOURCE_FILE ("communs.galgas", 270)) ;
   } break ;
   case 4: {
-    GALGAS_lchar var_literalCharValue_7932 = inCompiler->synthetizedAttribute_charValue () ;
+    GALGAS_lchar var_literalCharValue_7928 = inCompiler->synthetizedAttribute_charValue () ;
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char COMMA_SOURCE_FILE ("communs.galgas", 272)) ;
-    outArgument_outExpression = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (var_literalCharValue_7932.readProperty_char ().getter_uint (SOURCE_FILE ("communs.galgas", 273)), var_literalCharValue_7932.readProperty_location ()  COMMA_SOURCE_FILE ("communs.galgas", 273))  COMMA_SOURCE_FILE ("communs.galgas", 273)) ;
+    outArgument_outExpression = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (var_literalCharValue_7928.readProperty_char ().getter_uint (SOURCE_FILE ("communs.galgas", 273)), var_literalCharValue_7928.readProperty_location ()  COMMA_SOURCE_FILE ("communs.galgas", 273))  COMMA_SOURCE_FILE ("communs.galgas", 273)) ;
   } break ;
   case 5: {
-    GALGAS_lstring var_registerName_8099 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_registerName_8095 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_variableUse, "") ;
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 275)) ;
-    GALGAS_immediatExpression var_offset_8155 ;
-    GALGAS_location var_endOfOffsetExpression_8195 ;
+    GALGAS_immediatExpression var_offset_8151 ;
+    GALGAS_location var_endOfOffsetExpression_8191 ;
     switch (select_communs_16 (inCompiler)) {
     case 1: {
-      var_offset_8155 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 279))  COMMA_SOURCE_FILE ("communs.galgas", 279))  COMMA_SOURCE_FILE ("communs.galgas", 279)) ;
-      var_endOfOffsetExpression_8195 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 280)) ;
+      var_offset_8151 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 279))  COMMA_SOURCE_FILE ("communs.galgas", 279))  COMMA_SOURCE_FILE ("communs.galgas", 279)) ;
+      var_endOfOffsetExpression_8191 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 280)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 282)) ;
-      nt_immediate_5F_expression_ (var_offset_8155, inCompiler) ;
-      var_endOfOffsetExpression_8195 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 284)) ;
+      nt_immediate_5F_expression_ (var_offset_8151, inCompiler) ;
+      var_endOfOffsetExpression_8191 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 284)) ;
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 285)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_registerExpression var_registerExpression_8433 = GALGAS_registerExpression::constructor_new (var_registerName_8099, var_offset_8155, var_endOfOffsetExpression_8195  COMMA_SOURCE_FILE ("communs.galgas", 287)) ;
-    outArgument_outExpression = GALGAS_immediatRegister::constructor_new (var_registerExpression_8433  COMMA_SOURCE_FILE ("communs.galgas", 292)) ;
+    GALGAS_registerExpression var_registerExpression_8429 = GALGAS_registerExpression::constructor_new (var_registerName_8095, var_offset_8151, var_endOfOffsetExpression_8191  COMMA_SOURCE_FILE ("communs.galgas", 287)) ;
+    outArgument_outExpression = GALGAS_immediatRegister::constructor_new (var_registerExpression_8429  COMMA_SOURCE_FILE ("communs.galgas", 292)) ;
   } break ;
   case 6: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 294)) ;
@@ -6536,18 +6536,18 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GALGAS_immediatExpr
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 296)) ;
   } break ;
   case 7: {
-    GALGAS_lstring var_registerName_8707 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_registerName_8703 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 298)) ;
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 299)) ;
-    GALGAS_immediatSliceExpressionList var_sliceExpressionList_8743 = GALGAS_immediatSliceExpressionList::constructor_emptyList (SOURCE_FILE ("communs.galgas", 300)) ;
+    GALGAS_immediatSliceExpressionList var_sliceExpressionList_8739 = GALGAS_immediatSliceExpressionList::constructor_emptyList (SOURCE_FILE ("communs.galgas", 300)) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      GALGAS_lstring var_sliceName_8839 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_sliceName_8835 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 302)) ;
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 303)) ;
-      GALGAS_immediatExpression var_expression_8894 ;
-      nt_immediate_5F_expression_ (var_expression_8894, inCompiler) ;
-      var_sliceExpressionList_8743.addAssign_operation (var_sliceName_8839, var_expression_8894  COMMA_SOURCE_FILE ("communs.galgas", 305)) ;
+      GALGAS_immediatExpression var_expression_8890 ;
+      nt_immediate_5F_expression_ (var_expression_8890, inCompiler) ;
+      var_sliceExpressionList_8739.addAssign_operation (var_sliceName_8835, var_expression_8890  COMMA_SOURCE_FILE ("communs.galgas", 305)) ;
       switch (select_communs_17 (inCompiler)) {
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 307)) ;
@@ -6558,7 +6558,7 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GALGAS_immediatExpr
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 309)) ;
-    outArgument_outExpression = GALGAS_immediatSlice::constructor_new (var_registerName_8707, var_sliceExpressionList_8743  COMMA_SOURCE_FILE ("communs.galgas", 310)) ;
+    outArgument_outExpression = GALGAS_immediatSlice::constructor_new (var_registerName_8703, var_sliceExpressionList_8739  COMMA_SOURCE_FILE ("communs.galgas", 310)) ;
   } break ;
   default:
     break ;
@@ -6695,26 +6695,26 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_indexing (C_Lexique_p
 void cParser_communs::rule_communs_register_5F_parsing_i10_ (GALGAS_registerExpression & outArgument_outRegisterExpression,
                                                              C_Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outRegisterExpression.drop () ; // Release 'out' argument
-  GALGAS_lstring var_registerName_9234 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_registerName_9230 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_variableUse, "") ;
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 317)) ;
-  GALGAS_immediatExpression var_offset_9288 ;
-  GALGAS_location var_endOfOffsetExpression_9326 ;
+  GALGAS_immediatExpression var_offset_9284 ;
+  GALGAS_location var_endOfOffsetExpression_9322 ;
   switch (select_communs_18 (inCompiler)) {
   case 1: {
-    var_offset_9288 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 321))  COMMA_SOURCE_FILE ("communs.galgas", 321))  COMMA_SOURCE_FILE ("communs.galgas", 321)) ;
-    var_endOfOffsetExpression_9326 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 322)) ;
+    var_offset_9284 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 321))  COMMA_SOURCE_FILE ("communs.galgas", 321))  COMMA_SOURCE_FILE ("communs.galgas", 321)) ;
+    var_endOfOffsetExpression_9322 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 322)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 324)) ;
-    nt_immediate_5F_expression_ (var_offset_9288, inCompiler) ;
-    var_endOfOffsetExpression_9326 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 326)) ;
+    nt_immediate_5F_expression_ (var_offset_9284, inCompiler) ;
+    var_endOfOffsetExpression_9322 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 326)) ;
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 327)) ;
   } break ;
   default:
     break ;
   }
-  outArgument_outRegisterExpression = GALGAS_registerExpression::constructor_new (var_registerName_9234, var_offset_9288, var_endOfOffsetExpression_9326  COMMA_SOURCE_FILE ("communs.galgas", 329)) ;
+  outArgument_outRegisterExpression = GALGAS_registerExpression::constructor_new (var_registerName_9230, var_offset_9284, var_endOfOffsetExpression_9322  COMMA_SOURCE_FILE ("communs.galgas", 329)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6759,23 +6759,23 @@ void cParser_communs::rule_communs_register_5F_parsing_i10_indexing (C_Lexique_p
 void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i11_ (GALGAS_bitNumberExpression & outArgument_outBitNumber,
                                                                   C_Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outBitNumber.drop () ; // Release 'out' argument
-  GALGAS_lstring var_bitNumberLabel_9798 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_bitNumberLabel_9794 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 339)) ;
-  GALGAS_luint var_bitIndex_9820 ;
+  GALGAS_luint var_bitIndex_9816 ;
   switch (select_communs_19 (inCompiler)) {
   case 1: {
-    var_bitIndex_9820 = GALGAS_luint::constructor_new (GALGAS_uint ((uint32_t) 0U), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 342))  COMMA_SOURCE_FILE ("communs.galgas", 342)) ;
+    var_bitIndex_9816 = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 342))  COMMA_SOURCE_FILE ("communs.galgas", 342)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 344)) ;
-    var_bitIndex_9820 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    var_bitIndex_9816 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 345)) ;
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 346)) ;
   } break ;
   default:
     break ;
   }
-  outArgument_outBitNumber = GALGAS_bitNumberLabelValue::constructor_new (var_bitNumberLabel_9798, var_bitIndex_9820  COMMA_SOURCE_FILE ("communs.galgas", 348)) ;
+  outArgument_outBitNumber = GALGAS_bitNumberLabelValue::constructor_new (var_bitNumberLabel_9794, var_bitIndex_9816  COMMA_SOURCE_FILE ("communs.galgas", 348)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6818,9 +6818,9 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i11_indexing (C_Lexi
 void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i12_ (GALGAS_bitNumberExpression & outArgument_outBitNumber,
                                                                   C_Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outBitNumber.drop () ; // Release 'out' argument
-  GALGAS_luint var_bitIndex_10148 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+  GALGAS_luint var_bitIndex_10144 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 354)) ;
-  outArgument_outBitNumber = GALGAS_bitNumberLiteralValue::constructor_new (var_bitIndex_10148  COMMA_SOURCE_FILE ("communs.galgas", 355)) ;
+  outArgument_outBitNumber = GALGAS_bitNumberLiteralValue::constructor_new (var_bitIndex_10144  COMMA_SOURCE_FILE ("communs.galgas", 355)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -6842,11 +6842,11 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i13_ (GALGAS_bitNumb
                                                                   C_Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outBitNumber.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 361)) ;
-  GALGAS_immediatExpression var_bitNumberExpression_10382 ;
-  nt_immediate_5F_expression_ (var_bitNumberExpression_10382, inCompiler) ;
-  GALGAS_location var_endOfExpression_10404 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 363)) ;
+  GALGAS_immediatExpression var_bitNumberExpression_10378 ;
+  nt_immediate_5F_expression_ (var_bitNumberExpression_10378, inCompiler) ;
+  GALGAS_location var_endOfExpression_10400 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 363)) ;
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 364)) ;
-  outArgument_outBitNumber = GALGAS_bitNumberLiteralExpression::constructor_new (var_bitNumberExpression_10382, var_endOfExpression_10404  COMMA_SOURCE_FILE ("communs.galgas", 365)) ;
+  outArgument_outBitNumber = GALGAS_bitNumberLiteralExpression::constructor_new (var_bitNumberExpression_10378, var_endOfExpression_10400  COMMA_SOURCE_FILE ("communs.galgas", 365)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
