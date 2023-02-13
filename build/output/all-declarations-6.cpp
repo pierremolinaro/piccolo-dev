@@ -6630,13 +6630,13 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::constructor_new (const GALGAS_string & inOperand0,
-                                                                                                                                      const GALGAS_uint & inOperand1,
-                                                                                                                                      const GALGAS_bool & inOperand2 
+GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::constructor_new (const GALGAS_string & in_mAssemblyString,
+                                                                                                                                      const GALGAS_uint & in_mRegisterAddress,
+                                                                                                                                      const GALGAS_bool & in_mNeedsBSR 
                                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-    result = GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (inOperand0, inOperand1, inOperand2) ;
+  if (in_mAssemblyString.isValid () && in_mRegisterAddress.isValid () && in_mNeedsBSR.isValid ()) {
+    result = GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (in_mAssemblyString, in_mRegisterAddress, in_mNeedsBSR) ;
   }
   return result ;
 }
@@ -8956,12 +8956,12 @@ GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GA
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::constructor_new (const GALGAS_string & inOperand0,
-                                                                                                                                                                              const GALGAS_uint & inOperand1 
+GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::constructor_new (const GALGAS_string & in_mAssemblyString,
+                                                                                                                                                                              const GALGAS_uint & in_mRegisterAddress 
                                                                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (inOperand0, inOperand1) ;
+  if (in_mAssemblyString.isValid () && in_mRegisterAddress.isValid ()) {
+    result = GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (in_mAssemblyString, in_mRegisterAddress) ;
   }
   return result ;
 }

@@ -1240,7 +1240,7 @@ void routine_interruptRoutineShouldSavePCLATH (const GALGAS_midrange_5F_model co
                                                C_Compiler * inCompiler
                                                COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outShouldSavePCLATH.drop () ; // Release 'out' argument
-  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("PCLATH should be saved \?\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1761)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("PCLATH should be saved ?\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1761)) ;
   outArgument_outShouldSavePCLATH = GALGAS_bool (false) ;
   cEnumerator_midrange_5F_routineDefinitionList enumerator_63558 (constinArgument_inPiccoloModel.readProperty_mRoutineDefinitionList (), kENUMERATION_UP) ;
   while (enumerator_63558.hasCurrentObject ()) {
@@ -6659,7 +6659,7 @@ GALGAS_string cPtr_pic_31__38_RegisterComparisonTerminator::getter_terminatorDis
     }
     break ;
   }
-  result_outResult.plusAssign_operation(GALGAS_string (" W \? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 345)) ;
+  result_outResult.plusAssign_operation(GALGAS_string (" W ? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 345)) ;
   const GALGAS_pic_31__38_RegisterComparisonTerminator temp_2 = this ;
   result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 346)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 346)) ;
   result_outResult.plusAssign_operation(GALGAS_string (" : "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 347)) ;
@@ -6871,7 +6871,7 @@ GALGAS_string cPtr_pic_31__38_TestRegisterTerminator::getter_terminatorDisplay (
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_pic_31__38_TestRegisterTerminator temp_0 = this ;
   result_outResult = temp_0.readProperty_mRegisterDescription ().readProperty_mAssemblyString () ;
-  result_outResult.plusAssign_operation(GALGAS_string (" Z \? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 480)) ;
+  result_outResult.plusAssign_operation(GALGAS_string (" Z ? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 480)) ;
   const GALGAS_pic_31__38_TestRegisterTerminator temp_1 = this ;
   result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_1.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 481)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 481)) ;
   result_outResult.plusAssign_operation(GALGAS_string (" : "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 482)) ;
@@ -7032,7 +7032,7 @@ GALGAS_string cPtr_pic_31__38_BitTestTerminator::getter_terminatorDisplay (const
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_pic_31__38_BitTestTerminator temp_0 = this ;
   const GALGAS_pic_31__38_BitTestTerminator temp_1 = this ;
-  result_outResult = temp_0.readProperty_mRegisterDescription ().readProperty_mAssemblyString ().add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)).add_operation (temp_1.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 587)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)).add_operation (GALGAS_string (" \? "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)) ;
+  result_outResult = temp_0.readProperty_mRegisterDescription ().readProperty_mAssemblyString ().add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)).add_operation (temp_1.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 587)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)).add_operation (GALGAS_string (" ? "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 587)) ;
   const GALGAS_pic_31__38_BitTestTerminator temp_2 = this ;
   result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 588)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 588)) ;
   result_outResult.plusAssign_operation(GALGAS_string (" : "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 589)) ;
@@ -7258,7 +7258,7 @@ GALGAS_string cPtr_ipic_31__38_IncDecRegisterTerminator::getter_terminatorDispla
   if (kBoolFalse == test_3) {
     result_outResult.plusAssign_operation(GALGAS_string (", F"), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 731)) ;
   }
-  result_outResult.plusAssign_operation(GALGAS_string (" Z \? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 733)) ;
+  result_outResult.plusAssign_operation(GALGAS_string (" Z ? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 733)) ;
   const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_5 = this ;
   result_outResult.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_SingleInstructionTerminator *) temp_5.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 734)), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 734)) ;
   result_outResult.plusAssign_operation(GALGAS_string (" : "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 735)) ;
@@ -8199,7 +8199,7 @@ GALGAS_string cPtr_ipic_31__38_ConditionalJumpTerminator::getter_terminatorDispl
     }
     break ;
   }
-  result_outResult.plusAssign_operation(GALGAS_string (" \? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1300)) ;
+  result_outResult.plusAssign_operation(GALGAS_string (" ? "), inCompiler  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1300)) ;
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
     const GALGAS_ipic_31__38_ConditionalJumpTerminator temp_2 = this ;

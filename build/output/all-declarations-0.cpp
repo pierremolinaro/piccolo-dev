@@ -530,7 +530,7 @@ static const char * gSyntaxErrorMessage_piccolo_5F_lexique__2D_ = "the '-' delim
 static const char * gSyntaxErrorMessage_piccolo_5F_lexique__2B_ = "the '+' delimitor" ;
 
 //--- Syntax error message for terminal '$?$' :
-static const char * gSyntaxErrorMessage_piccolo_5F_lexique__3F_ = "the '\?' delimitor" ;
+static const char * gSyntaxErrorMessage_piccolo_5F_lexique__3F_ = "the '?' delimitor" ;
 
 //--- Syntax error message for terminal '$^$' :
 static const char * gSyntaxErrorMessage_piccolo_5F_lexique__5E_ = "the '^' delimitor" ;
@@ -3138,7 +3138,7 @@ C_String C_Lexique_piccolo_5F_lexique::getCurrentTokenString (const cToken * inT
       break ;
     case kToken__3F_:
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendCString ("\?") ;
+      s.appendCString ("?") ;
       s.appendUnicodeCharacter (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__5E_:
@@ -3776,7 +3776,7 @@ GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
   result.addAssign_operation (GALGAS_string ("/") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("-") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("+") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("\?") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("?") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("^") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string ("<<") COMMA_THERE) ;
   result.addAssign_operation (GALGAS_string (">>") COMMA_THERE) ;
@@ -3869,7 +3869,7 @@ static void getKeywordsForIdentifier_piccolo_5F_lexique (const C_String & inIden
     ioList.appendObject ("<") ;
     ioList.appendObject ("=") ;
     ioList.appendObject (">") ;
-    ioList.appendObject ("\?") ;
+    ioList.appendObject ("?") ;
     ioList.appendObject ("[") ;
     ioList.appendObject ("]") ;
     ioList.appendObject ("^") ;

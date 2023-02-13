@@ -349,19 +349,19 @@ GALGAS_baseline_5F_model GALGAS_baseline_5F_model::constructor_default (UNUSED_L
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_model GALGAS_baseline_5F_model::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                    const GALGAS_lstring & inOperand1,
-                                                                    const GALGAS_configDefinitionList & inOperand2,
-                                                                    const GALGAS_ramDefinitionList & inOperand3,
-                                                                    const GALGAS_lstringlist & inOperand4,
-                                                                    const GALGAS_constantDefinitionList & inOperand5,
-                                                                    const GALGAS_baseline_5F_routineDefinitionList & inOperand6,
-                                                                    const GALGAS_lstringlist & inOperand7,
-                                                                    const GALGAS_location & inOperand8 
+GALGAS_baseline_5F_model GALGAS_baseline_5F_model::constructor_new (const GALGAS_lstring & in_mProgramName,
+                                                                    const GALGAS_lstring & in_mDeviceName,
+                                                                    const GALGAS_configDefinitionList & in_mConfigDefinitionList,
+                                                                    const GALGAS_ramDefinitionList & in_mRamDefinitionList,
+                                                                    const GALGAS_lstringlist & in_mUnusedRegisterList,
+                                                                    const GALGAS_constantDefinitionList & in_mConstantDefinitionList,
+                                                                    const GALGAS_baseline_5F_routineDefinitionList & in_mRoutineDefinitionList,
+                                                                    const GALGAS_lstringlist & in_mUnusedRoutineList,
+                                                                    const GALGAS_location & in_mEndOfProgram 
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_model result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid ()) {
-    result = GALGAS_baseline_5F_model (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8) ;
+  if (in_mProgramName.isValid () && in_mDeviceName.isValid () && in_mConfigDefinitionList.isValid () && in_mRamDefinitionList.isValid () && in_mUnusedRegisterList.isValid () && in_mConstantDefinitionList.isValid () && in_mRoutineDefinitionList.isValid () && in_mUnusedRoutineList.isValid () && in_mEndOfProgram.isValid ()) {
+    result = GALGAS_baseline_5F_model (in_mProgramName, in_mDeviceName, in_mConfigDefinitionList, in_mRamDefinitionList, in_mUnusedRegisterList, in_mConstantDefinitionList, in_mRoutineDefinitionList, in_mUnusedRoutineList, in_mEndOfProgram) ;
   }
   return result ;
 }
@@ -4539,22 +4539,22 @@ GALGAS_midrange_5F_model GALGAS_midrange_5F_model::constructor_default (UNUSED_L
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_model GALGAS_midrange_5F_model::constructor_new (const GALGAS_lstring & inOperand0,
-                                                                    const GALGAS_lstring & inOperand1,
-                                                                    const GALGAS_configDefinitionList & inOperand2,
-                                                                    const GALGAS_ramDefinitionList & inOperand3,
-                                                                    const GALGAS_lstringlist & inOperand4,
-                                                                    const GALGAS_midrange_5F_interruptDefinitionList & inOperand5,
-                                                                    const GALGAS_constantDefinitionList & inOperand6,
-                                                                    const GALGAS_midrange_5F_routineDefinitionList & inOperand7,
-                                                                    const GALGAS_lstringlist & inOperand8,
-                                                                    const GALGAS_bool & inOperand9,
-                                                                    const GALGAS_bool & inOperand10,
-                                                                    const GALGAS_location & inOperand11 
+GALGAS_midrange_5F_model GALGAS_midrange_5F_model::constructor_new (const GALGAS_lstring & in_mProgramName,
+                                                                    const GALGAS_lstring & in_mDeviceName,
+                                                                    const GALGAS_configDefinitionList & in_mConfigDefinitionList,
+                                                                    const GALGAS_ramDefinitionList & in_mRamDefinitionList,
+                                                                    const GALGAS_lstringlist & in_mUnusedRegisterList,
+                                                                    const GALGAS_midrange_5F_interruptDefinitionList & in_mInterruptDefinitionList,
+                                                                    const GALGAS_constantDefinitionList & in_mConstantDefinitionList,
+                                                                    const GALGAS_midrange_5F_routineDefinitionList & in_mRoutineDefinitionList,
+                                                                    const GALGAS_lstringlist & in_mUnusedRoutineList,
+                                                                    const GALGAS_bool & in_mNeedsComputedGoto2,
+                                                                    const GALGAS_bool & in_mNeedsComputedGoto4,
+                                                                    const GALGAS_location & in_mEndOfProgram 
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_model result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid ()) {
-    result = GALGAS_midrange_5F_model (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11) ;
+  if (in_mProgramName.isValid () && in_mDeviceName.isValid () && in_mConfigDefinitionList.isValid () && in_mRamDefinitionList.isValid () && in_mUnusedRegisterList.isValid () && in_mInterruptDefinitionList.isValid () && in_mConstantDefinitionList.isValid () && in_mRoutineDefinitionList.isValid () && in_mUnusedRoutineList.isValid () && in_mNeedsComputedGoto2.isValid () && in_mNeedsComputedGoto4.isValid () && in_mEndOfProgram.isValid ()) {
+    result = GALGAS_midrange_5F_model (in_mProgramName, in_mDeviceName, in_mConfigDefinitionList, in_mRamDefinitionList, in_mUnusedRegisterList, in_mInterruptDefinitionList, in_mConstantDefinitionList, in_mRoutineDefinitionList, in_mUnusedRoutineList, in_mNeedsComputedGoto2, in_mNeedsComputedGoto4, in_mEndOfProgram) ;
   }
   return result ;
 }
@@ -8141,27 +8141,27 @@ mProperty_mEndOfProgram (inOperand16) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_AST GALGAS_pic_31__38_AST::constructor_new (const GALGAS_lstring & inOperand0,
-                                                              const GALGAS_programKind & inOperand1,
-                                                              const GALGAS_lstring & inOperand2,
-                                                              const GALGAS_configDefinitionList & inOperand3,
-                                                              const GALGAS_ramDefinitionList & inOperand4,
-                                                              const GALGAS_lstringlist & inOperand5,
-                                                              const GALGAS_checkpicList & inOperand6,
-                                                              const GALGAS_dataList & inOperand7,
-                                                              const GALGAS_pic_31__38_InterruptDefinitionList & inOperand8,
-                                                              const GALGAS_constantDefinitionList & inOperand9,
-                                                              const GALGAS_pic_31__38_RoutineDefinitionList & inOperand10,
-                                                              const GALGAS_pic_31__38_MacroDefinitionList & inOperand11,
-                                                              const GALGAS_lstringlist & inOperand12,
-                                                              const GALGAS_lstringlist & inOperand13,
-                                                              const GALGAS_bool & inOperand14,
-                                                              const GALGAS_bool & inOperand15,
-                                                              const GALGAS_location & inOperand16 
+GALGAS_pic_31__38_AST GALGAS_pic_31__38_AST::constructor_new (const GALGAS_lstring & in_mProgramName,
+                                                              const GALGAS_programKind & in_mProgramKind,
+                                                              const GALGAS_lstring & in_mDeviceNameOrBootLoaderReference,
+                                                              const GALGAS_configDefinitionList & in_mConfigDefinitionList,
+                                                              const GALGAS_ramDefinitionList & in_mRamDefinitionList,
+                                                              const GALGAS_lstringlist & in_mUnusedRegisterList,
+                                                              const GALGAS_checkpicList & in_mCheckpicList,
+                                                              const GALGAS_dataList & in_mDataList,
+                                                              const GALGAS_pic_31__38_InterruptDefinitionList & in_mInterruptDefinitionList,
+                                                              const GALGAS_constantDefinitionList & in_mConstantDefinitionList,
+                                                              const GALGAS_pic_31__38_RoutineDefinitionList & in_mRoutineDefinitionList,
+                                                              const GALGAS_pic_31__38_MacroDefinitionList & in_mMacroDefinitionList,
+                                                              const GALGAS_lstringlist & in_mUnusedRoutineList,
+                                                              const GALGAS_lstringlist & in_mInlinedRoutineList,
+                                                              const GALGAS_bool & in_mNeedsComputedGoto2,
+                                                              const GALGAS_bool & in_mNeedsComputedGoto4,
+                                                              const GALGAS_location & in_mEndOfProgram 
                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_AST result ;
-  if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid () && inOperand12.isValid () && inOperand13.isValid () && inOperand14.isValid () && inOperand15.isValid () && inOperand16.isValid ()) {
-    result = GALGAS_pic_31__38_AST (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11, inOperand12, inOperand13, inOperand14, inOperand15, inOperand16) ;
+  if (in_mProgramName.isValid () && in_mProgramKind.isValid () && in_mDeviceNameOrBootLoaderReference.isValid () && in_mConfigDefinitionList.isValid () && in_mRamDefinitionList.isValid () && in_mUnusedRegisterList.isValid () && in_mCheckpicList.isValid () && in_mDataList.isValid () && in_mInterruptDefinitionList.isValid () && in_mConstantDefinitionList.isValid () && in_mRoutineDefinitionList.isValid () && in_mMacroDefinitionList.isValid () && in_mUnusedRoutineList.isValid () && in_mInlinedRoutineList.isValid () && in_mNeedsComputedGoto2.isValid () && in_mNeedsComputedGoto4.isValid () && in_mEndOfProgram.isValid ()) {
+    result = GALGAS_pic_31__38_AST (in_mProgramName, in_mProgramKind, in_mDeviceNameOrBootLoaderReference, in_mConfigDefinitionList, in_mRamDefinitionList, in_mUnusedRegisterList, in_mCheckpicList, in_mDataList, in_mInterruptDefinitionList, in_mConstantDefinitionList, in_mRoutineDefinitionList, in_mMacroDefinitionList, in_mUnusedRoutineList, in_mInlinedRoutineList, in_mNeedsComputedGoto2, in_mNeedsComputedGoto4, in_mEndOfProgram) ;
   }
   return result ;
 }

@@ -8069,12 +8069,12 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_registerExpression::constructor_new (const GALGAS_string & inOperand0,
-                                                                                                                              const GALGAS_uint & inOperand1 
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_registerExpression::constructor_new (const GALGAS_string & in_mAssemblyString,
+                                                                                                                              const GALGAS_uint & in_mRegisterAddress 
                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_baseline_5F_intermediate_5F_registerExpression (inOperand0, inOperand1) ;
+  if (in_mAssemblyString.isValid () && in_mRegisterAddress.isValid ()) {
+    result = GALGAS_baseline_5F_intermediate_5F_registerExpression (in_mAssemblyString, in_mRegisterAddress) ;
   }
   return result ;
 }

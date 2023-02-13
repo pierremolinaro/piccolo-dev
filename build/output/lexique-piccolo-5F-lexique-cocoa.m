@@ -31,10 +31,10 @@
   self = [super init] ;
   if (self) {
     noteObjectAllocation (self) ;
-   mLexicalAttribute_charValue = 0 ;
-   mLexicalAttribute_identifierString = [[NSMutableString alloc] init] ;
-   mLexicalAttribute_tokenString = [[NSMutableString alloc] init] ;
-   mLexicalAttribute_uint32value = 0 ;
+    mLexicalAttribute_charValue = 0 ;
+    mLexicalAttribute_identifierString = [[NSMutableString alloc] init] ;
+    mLexicalAttribute_tokenString = [[NSMutableString alloc] init] ;
+    mLexicalAttribute_uint32value = 0 ;
   }
   return self ;
 }
@@ -384,7 +384,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
     mTokenCode = piccolo_lexique_1__5D_ ;
   }else if (scanningOk && [self testForInputString:@"[" advance:YES]) {
     mTokenCode = piccolo_lexique_1__5B_ ;
-  }else if (scanningOk && [self testForInputString:@"\?" advance:YES]) {
+  }else if (scanningOk && [self testForInputString:@"?" advance:YES]) {
     mTokenCode = piccolo_lexique_1__3F_ ;
   }else if (scanningOk && [self testForInputString:@">" advance:YES]) {
     mTokenCode = piccolo_lexique_1__3E_ ;

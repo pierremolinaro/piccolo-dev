@@ -31,10 +31,10 @@
   self = [super init] ;
   if (self) {
     noteObjectAllocation (self) ;
-   mLexicalAttribute_charValue = 0 ;
-   mLexicalAttribute_identifierString = [[NSMutableString alloc] init] ;
-   mLexicalAttribute_tokenString = [[NSMutableString alloc] init] ;
-   mLexicalAttribute_uint32value = 0 ;
+    mLexicalAttribute_charValue = 0 ;
+    mLexicalAttribute_identifierString = [[NSMutableString alloc] init] ;
+    mLexicalAttribute_tokenString = [[NSMutableString alloc] init] ;
+    mLexicalAttribute_uint32value = 0 ;
   }
   return self ;
 }

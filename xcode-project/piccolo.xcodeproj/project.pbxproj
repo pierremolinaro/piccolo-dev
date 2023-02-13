@@ -5782,7 +5782,7 @@
     path = "cocoa_utilities";
     sourceTree = "<group>";
   };
-  BB0B408017B62254211691B5 /* Cocoa GALGAS */ = {
+  BB0B408017B62254211691B5 /* Cocoa Objc GALGAS */ = {
     isa = PBXGroup;
     children = (
       86960EEB576A8FD4C9EC6997, 
@@ -5837,8 +5837,8 @@
       137649590B755372B040AFAD, 
       2E94197FF767970B67041697, 
     );
-    name = "Cocoa GALGAS";
-    path = "cocoa_galgas";
+    name = "Cocoa Objc GALGAS";
+    path = "cocoa_objc_galgas";
     sourceTree = "<group>";
   };
   6411F7873CB83DACB17B0AFC /* Collections */ = {
