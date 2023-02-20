@@ -7760,11 +7760,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineKind ;
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_eval (class cPtr_immediatExpression * inObject,
-                               const GALGAS_registerTable constin_inRegisterTable,
-                               const GALGAS_constantMap constin_inConstantMap,
-                               GALGAS_sint_36__34_ & out_outResult,
-                               GALGAS_stringset & io_ioUsedRegisters,
-                               C_Compiler * inCompiler
+                               const class GALGAS_registerTable constin_inRegisterTable,
+                               const class GALGAS_constantMap constin_inConstantMap,
+                               class GALGAS_sint_36__34_ & out_outResult,
+                               class GALGAS_stringset & io_ioUsedRegisters,
+                               class C_Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7975,12 +7975,12 @@ class cMapElement_registerTable : public cMapElement {
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_getBitNumber (class cPtr_bitNumberExpression * inObject,
-                                       const GALGAS_registerTable constin_inRegisterTable,
-                                       const GALGAS_constantMap constin_inConstantMap,
-                                       GALGAS_stringset & io_ioUsedRegisters,
-                                       const GALGAS_bitSliceTable constin_inBitSliceTable,
-                                       GALGAS_uint & out_outBitNumber,
-                                       C_Compiler * inCompiler
+                                       const class GALGAS_registerTable constin_inRegisterTable,
+                                       const class GALGAS_constantMap constin_inConstantMap,
+                                       class GALGAS_stringset & io_ioUsedRegisters,
+                                       const class GALGAS_bitSliceTable constin_inBitSliceTable,
+                                       class GALGAS_uint & out_outBitNumber,
+                                       class C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

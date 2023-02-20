@@ -15,11 +15,11 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeGOTO (class cPtr_baseline_5F_intermediate_5F_GOTO * inObject,
-                                       const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
-                                       const GALGAS_uint constin_inLineIndex,
-                                       GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                       GALGAS_string & io_ioListFileContents,
-                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       const class GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                       const class GALGAS_uint constin_inLineIndex,
+                                       class GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       class GALGAS_string & io_ioListFileContents,
+                                       class GALGAS_bool & io_ioOptimizationsDone,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
@@ -43,11 +43,11 @@ void routine_findBaselineFirstInstructionOrLabelFromAddress (const class GALGAS_
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeJUMP (class cPtr_baseline_5F_intermediate_5F_JUMP * inObject,
-                                       const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
-                                       const GALGAS_uint constin_inLineIndex,
-                                       GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                       GALGAS_string & io_ioListFileContents,
-                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       const class GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                       const class GALGAS_uint constin_inLineIndex,
+                                       class GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       class GALGAS_string & io_ioListFileContents,
+                                       class GALGAS_bool & io_ioOptimizationsDone,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
@@ -58,11 +58,11 @@ void callExtensionMethod_optimizeJUMP (class cPtr_baseline_5F_intermediate_5F_JU
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeCALL (class cPtr_baseline_5F_intermediate_5F_CALL * inObject,
-                                       const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
-                                       const GALGAS_uint constin_inLineIndex,
-                                       GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                       GALGAS_string & io_ioListFileContents,
-                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       const class GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                       const class GALGAS_uint constin_inLineIndex,
+                                       class GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       class GALGAS_string & io_ioListFileContents,
+                                       class GALGAS_bool & io_ioOptimizationsDone,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
@@ -73,11 +73,11 @@ void callExtensionMethod_optimizeCALL (class cPtr_baseline_5F_intermediate_5F_CA
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeJSR (class cPtr_baseline_5F_intermediate_5F_JSR * inObject,
-                                      const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
-                                      const GALGAS_uint constin_inLineIndex,
-                                      GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                      GALGAS_string & io_ioListFileContents,
-                                      GALGAS_bool & io_ioOptimizationsDone,
+                                      const class GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                      const class GALGAS_uint constin_inLineIndex,
+                                      class GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                      class GALGAS_string & io_ioListFileContents,
+                                      class GALGAS_bool & io_ioOptimizationsDone,
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
@@ -88,10 +88,10 @@ void callExtensionMethod_optimizeJSR (class cPtr_baseline_5F_intermediate_5F_JSR
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeBEGIN_5F_ROUTINE (class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * inObject,
-                                                   const GALGAS_uint constin_inLineIndex,
-                                                   GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                                   GALGAS_string & io_ioListFileContents,
-                                                   GALGAS_bool & io_ioOptimizationsDone,
+                                                   const class GALGAS_uint constin_inLineIndex,
+                                                   class GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                                   class GALGAS_string & io_ioListFileContents,
+                                                   class GALGAS_bool & io_ioOptimizationsDone,
                                                    C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
@@ -102,11 +102,11 @@ void callExtensionMethod_optimizeBEGIN_5F_ROUTINE (class cPtr_baseline_5F_interm
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeJUMP (class cPtr_midrange_5F_intermediate_5F_JUMP * inObject,
-                                       const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
-                                       const GALGAS_uint constin_inLineIndex,
-                                       GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                       GALGAS_string & io_ioListFileContents,
-                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       const class GALGAS_symbolTableForOptimizations constin_inSymbolTable,
+                                       const class GALGAS_uint constin_inLineIndex,
+                                       class GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       class GALGAS_string & io_ioListFileContents,
+                                       class GALGAS_bool & io_ioOptimizationsDone,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
@@ -117,11 +117,11 @@ void callExtensionMethod_optimizeJUMP (class cPtr_midrange_5F_intermediate_5F_JU
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeGOTO (class cPtr_midrange_5F_intermediate_5F_GOTO * inObject,
-                                       const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
-                                       const GALGAS_uint constin_inLineIndex,
-                                       GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                       GALGAS_string & io_ioListFileContents,
-                                       GALGAS_bool & io_ioOptimizationsDone,
+                                       const class GALGAS_symbolTableForOptimizations constin_inSymbolTable,
+                                       const class GALGAS_uint constin_inLineIndex,
+                                       class GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       class GALGAS_string & io_ioListFileContents,
+                                       class GALGAS_bool & io_ioOptimizationsDone,
                                        C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 

@@ -457,10 +457,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForClust
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_instructionRelativeBranchOverflow (class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                            const GALGAS_uint constin_inAddress,
-                                                            const GALGAS_string constin_inBlockLabel,
-                                                            const GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                                            GALGAS_branchOverflowMap & io_ioOverflowMap,
+                                                            const class GALGAS_uint constin_inAddress,
+                                                            const class GALGAS_string constin_inBlockLabel,
+                                                            const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                                            class GALGAS_branchOverflowMap & io_ioOverflowMap,
                                                             C_Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
@@ -675,11 +675,11 @@ class cMapElement_symbolTableForRelativesResolution : public cMapElement {
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_terminatorRelativeBranchOverflow (class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                           const GALGAS_uint constin_inAddress,
-                                                           const GALGAS_string constin_inBlockLabel,
-                                                           const GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                                           const GALGAS_string constin_inNextBlockLabel,
-                                                           GALGAS_branchOverflowMap & io_ioOverflowMap,
+                                                           const class GALGAS_uint constin_inAddress,
+                                                           const class GALGAS_string constin_inBlockLabel,
+                                                           const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                                           const class GALGAS_string constin_inNextBlockLabel,
+                                                           class GALGAS_branchOverflowMap & io_ioOverflowMap,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
@@ -690,13 +690,13 @@ void callExtensionMethod_terminatorRelativeBranchOverflow (class cPtr_ipic_31__3
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_performTerminatorRelativeBranchResolution (class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                    const GALGAS_uint constin_inAddress,
-                                                                    const GALGAS_string constin_inBlockLabel,
-                                                                    const GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                                                    const GALGAS_string constin_inNextBlockLabel,
-                                                                    GALGAS_uint & io_ioConversionCount,
-                                                                    GALGAS_string & io_ioListFileContents,
-                                                                    GALGAS_ipic_31__38_AbstractBlockTerminator & out_outModifiedTerminator,
+                                                                    const class GALGAS_uint constin_inAddress,
+                                                                    const class GALGAS_string constin_inBlockLabel,
+                                                                    const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                                                    const class GALGAS_string constin_inNextBlockLabel,
+                                                                    class GALGAS_uint & io_ioConversionCount,
+                                                                    class GALGAS_string & io_ioListFileContents,
+                                                                    class GALGAS_ipic_31__38_AbstractBlockTerminator & out_outModifiedTerminator,
                                                                     C_Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
@@ -1249,11 +1249,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38__5F_data
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_generateCode (class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                       const GALGAS_uint constin_inAddress,
-                                       const GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                       const GALGAS_pic_31__38__5F_dataAddressMap constin_inDataMap,
-                                       GALGAS_codeList & out_outCode,
-                                       C_Compiler * inCompiler
+                                       const class GALGAS_uint constin_inAddress,
+                                       const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                       const class GALGAS_pic_31__38__5F_dataAddressMap constin_inDataMap,
+                                       class GALGAS_codeList & out_outCode,
+                                       class C_Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1263,11 +1263,11 @@ void callExtensionMethod_generateCode (class cPtr_ipic_31__38_SequentialInstruct
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_generateTerminatorCode (class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                 const GALGAS_uint constin_inAddress,
-                                                 const GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                                 const GALGAS_string constin_inNextBlockLabel,
-                                                 GALGAS_codeList & out_outCode,
-                                                 C_Compiler * inCompiler
+                                                 const class GALGAS_uint constin_inAddress,
+                                                 const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                                 const class GALGAS_string constin_inNextBlockLabel,
+                                                 class GALGAS_codeList & out_outCode,
+                                                 class C_Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1277,8 +1277,8 @@ void callExtensionMethod_generateTerminatorCode (class cPtr_ipic_31__38_Abstract
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_bool callExtensionGetter_isEqualToTerminator (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                           const GALGAS_ipic_31__38_AbstractBlockTerminator constin_inTerminator,
-                                                           C_Compiler * inCompiler
+                                                           const class GALGAS_ipic_31__38_AbstractBlockTerminator constin_inTerminator,
+                                                           class C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1288,8 +1288,8 @@ class GALGAS_bool callExtensionGetter_isEqualToTerminator (const class cPtr_ipic
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_string callExtensionGetter_terminatorDisplay (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                           const GALGAS_string constin_inNextBlockLabel,
-                                                           C_Compiler * inCompiler
+                                                           const class GALGAS_string constin_inNextBlockLabel,
+                                                           class C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1299,8 +1299,8 @@ class GALGAS_string callExtensionGetter_terminatorDisplay (const class cPtr_ipic
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_uint callExtensionGetter_terminatorSize (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                      const GALGAS_string constin_inNextBlockLabel,
-                                                      C_Compiler * inCompiler
+                                                      const class GALGAS_string constin_inNextBlockLabel,
+                                                      class C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1320,12 +1320,12 @@ class GALGAS_uint callExtensionGetter_instructionSize (const cPtr_ipic_31__38_Se
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_performInstructionRelativeBranchResolution (class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                     const GALGAS_uint constin_inAddress,
-                                                                     const GALGAS_string constin_inBlockLabel,
-                                                                     const GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                                                     GALGAS_uint & io_ioConversionCount,
-                                                                     GALGAS_string & io_ioListFileContents,
-                                                                     GALGAS_ipic_31__38_SequentialInstruction & out_outModifiedInstruction,
+                                                                     const class GALGAS_uint constin_inAddress,
+                                                                     const class GALGAS_string constin_inBlockLabel,
+                                                                     const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                                                     class GALGAS_uint & io_ioConversionCount,
+                                                                     class GALGAS_string & io_ioListFileContents,
+                                                                     class GALGAS_ipic_31__38_SequentialInstruction & out_outModifiedInstruction,
                                                                      C_Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
@@ -1336,7 +1336,7 @@ void callExtensionMethod_performInstructionRelativeBranchResolution (class cPtr_
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_stringlist callExtensionGetter_instructionDisplay (const class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                C_Compiler * inCompiler
+                                                                class C_Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1356,9 +1356,9 @@ class GALGAS_string extensionGetter_mnemonic (const class GALGAS_pic_31__38_Inst
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_addUsedRoutines (class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                          const GALGAS_pic_31__38_MacroMap constin_inMacroMap,
-                                          GALGAS_stringset & io_ioUsedRoutines,
-                                          C_Compiler * inCompiler
+                                          const class GALGAS_pic_31__38_MacroMap constin_inMacroMap,
+                                          class GALGAS_stringset & io_ioUsedRoutines,
+                                          class C_Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1697,10 +1697,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declaredRoutineMap_
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_performInlining (class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                          const GALGAS_stringset constin_inInlinedRoutineSet,
-                                          const GALGAS_declaredRoutineMap constin_inDeclaredRoutineMap,
-                                          const GALGAS_stringset constin_inCurrentlyInlinedRoutineSet,
-                                          GALGAS_pic_31__38_InstructionList & io_ioInstructionList,
+                                          const class GALGAS_stringset constin_inInlinedRoutineSet,
+                                          const class GALGAS_declaredRoutineMap constin_inDeclaredRoutineMap,
+                                          const class GALGAS_stringset constin_inCurrentlyInlinedRoutineSet,
+                                          class GALGAS_pic_31__38_InstructionList & io_ioInstructionList,
                                           C_Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) ;
 
@@ -1711,16 +1711,16 @@ void callExtensionMethod_performInlining (class cPtr_pic_31__38_PiccoloInstructi
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_analyzeSimpleInstruction (class cPtr_pic_31__38_PiccoloSimpleInstruction * inObject,
-                                                   const GALGAS_uint constin_inAccessBankSplitOffset,
-                                                   const GALGAS_routineMap constin_inRoutineMap,
-                                                   const GALGAS_registerTable constin_inRegisterTable,
-                                                   const GALGAS_pic_31__38__5F_dataMap constin_inDataMap,
-                                                   const GALGAS_constantMap constin_inConstantMap,
-                                                   GALGAS_uint & io_ioCurrentBank,
-                                                   const GALGAS_bool constin_inShouldPreserveBSR,
-                                                   GALGAS_stringset & io_ioUsedRegisters,
-                                                   GALGAS_ipic_31__38_SequentialInstruction & out_outInstruction,
-                                                   C_Compiler * inCompiler
+                                                   const class GALGAS_uint constin_inAccessBankSplitOffset,
+                                                   const class GALGAS_routineMap constin_inRoutineMap,
+                                                   const class GALGAS_registerTable constin_inRegisterTable,
+                                                   const class GALGAS_pic_31__38__5F_dataMap constin_inDataMap,
+                                                   const class GALGAS_constantMap constin_inConstantMap,
+                                                   class GALGAS_uint & io_ioCurrentBank,
+                                                   const class GALGAS_bool constin_inShouldPreserveBSR,
+                                                   class GALGAS_stringset & io_ioUsedRegisters,
+                                                   class GALGAS_ipic_31__38_SequentialInstruction & out_outInstruction,
+                                                   class C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1730,22 +1730,22 @@ void callExtensionMethod_analyzeSimpleInstruction (class cPtr_pic_31__38_Piccolo
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_analyze (class cPtr_pic_31__38_PiccoloInstruction * inObject,
-                                  const GALGAS_uint constin_inAccessBankSplitOffset,
-                                  GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                  const GALGAS_routineMap constin_inRoutineMap,
-                                  const GALGAS_registerTable constin_inRegisterTable,
-                                  const GALGAS_pic_31__38__5F_dataMap constin_inDataMap,
-                                  const GALGAS_constantMap constin_inConstantMap,
-                                  const GALGAS_pic_31__38_MacroMap constin_inMacroMap,
-                                  GALGAS_uint & io_ioLocalLabelIndex,
-                                  GALGAS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
-                                  GALGAS_lstring & io_ioBlockLabel,
-                                  GALGAS_string & io_ioListFileContents,
-                                  GALGAS_uint & io_ioCurrentBank,
-                                  const GALGAS_bool constin_inShouldPreserveBSR,
-                                  const GALGAS_routineKind constin_inRoutineKind,
-                                  GALGAS_stringset & io_ioUsedRegisters,
-                                  C_Compiler * inCompiler
+                                  const class GALGAS_uint constin_inAccessBankSplitOffset,
+                                  class GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
+                                  const class GALGAS_routineMap constin_inRoutineMap,
+                                  const class GALGAS_registerTable constin_inRegisterTable,
+                                  const class GALGAS_pic_31__38__5F_dataMap constin_inDataMap,
+                                  const class GALGAS_constantMap constin_inConstantMap,
+                                  const class GALGAS_pic_31__38_MacroMap constin_inMacroMap,
+                                  class GALGAS_uint & io_ioLocalLabelIndex,
+                                  class GALGAS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
+                                  class GALGAS_lstring & io_ioBlockLabel,
+                                  class GALGAS_string & io_ioListFileContents,
+                                  class GALGAS_uint & io_ioCurrentBank,
+                                  const class GALGAS_bool constin_inShouldPreserveBSR,
+                                  const class GALGAS_routineKind constin_inRoutineKind,
+                                  class GALGAS_stringset & io_ioUsedRegisters,
+                                  class C_Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2275,14 +2275,14 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInitialBankSel
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_addVisitedBlocks (class cPtr_abstractBlockTerminationForBlockInstruction * inObject,
-                                           GALGAS_stringset & io_ioVisitedBlockSet,
-                                           const GALGAS_blockInstructionBlockMap constin_inBlockMap,
-                                           const GALGAS_string constin_inCurrentBlockName,
-                                           const GALGAS_uint constin_inInitialBlockSetting,
-                                           GALGAS_blockInitialBankSelectionMap & io_ioBlockInitialBankSelectionMap,
-                                           GALGAS_bool & io_ioContinuesInSequence,
-                                           GALGAS_bool & io_ioContinueAccessibilityExploration,
-                                           C_Compiler * inCompiler
+                                           class GALGAS_stringset & io_ioVisitedBlockSet,
+                                           const class GALGAS_blockInstructionBlockMap constin_inBlockMap,
+                                           const class GALGAS_string constin_inCurrentBlockName,
+                                           const class GALGAS_uint constin_inInitialBlockSetting,
+                                           class GALGAS_blockInitialBankSelectionMap & io_ioBlockInitialBankSelectionMap,
+                                           class GALGAS_bool & io_ioContinuesInSequence,
+                                           class GALGAS_bool & io_ioContinueAccessibilityExploration,
+                                           class C_Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2292,16 +2292,16 @@ void callExtensionMethod_addVisitedBlocks (class cPtr_abstractBlockTerminationFo
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_generateBlock (class cPtr_abstractBlockTerminationForBlockInstruction * inObject,
-                                        const GALGAS_uint constin_inAccessBankSplitOffset,
-                                        const GALGAS_uint constin_inCurrentBank,
-                                        const GALGAS_registerTable constin_inRegisterTable,
-                                        const GALGAS_constantMap constin_inConstantMap,
-                                        GALGAS_uint & io_ioLocalLabelIndex,
-                                        GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                        GALGAS_stringset & io_ioUsedRegisters,
-                                        const GALGAS_string constin_inLabelForBlock,
-                                        GALGAS_ipic_31__38_AbstractBlockTerminator & out_outTerminator,
-                                        C_Compiler * inCompiler
+                                        const class GALGAS_uint constin_inAccessBankSplitOffset,
+                                        const class GALGAS_uint constin_inCurrentBank,
+                                        const class GALGAS_registerTable constin_inRegisterTable,
+                                        const class GALGAS_constantMap constin_inConstantMap,
+                                        class GALGAS_uint & io_ioLocalLabelIndex,
+                                        class GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
+                                        class GALGAS_stringset & io_ioUsedRegisters,
+                                        const class GALGAS_string constin_inLabelForBlock,
+                                        class GALGAS_ipic_31__38_AbstractBlockTerminator & out_outTerminator,
+                                        class C_Compiler * inCompiler
                                         COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2311,17 +2311,17 @@ void callExtensionMethod_generateBlock (class cPtr_abstractBlockTerminationForBl
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_analyzeCondition (class cPtr_pic_31__38_ConditionExpression * inObject,
-                                           const GALGAS_uint constin_inAccessBankSplitOffset,
-                                           const GALGAS_uint constin_inCurrentBank,
-                                           const GALGAS_registerTable constin_inRegisterTable,
-                                           const GALGAS_constantMap constin_inConstantMap,
-                                           GALGAS_uint & io_ioLocalLabelIndex,
-                                           GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                           const GALGAS_lstring constin_inConditionTrueLabel,
-                                           const GALGAS_lstring constin_inConditionFalseLabel,
-                                           GALGAS_stringset & io_ioUsedRegisters,
-                                           GALGAS_ipic_31__38_AbstractBlockTerminator & out_outCurrentBlockTerminator,
-                                           C_Compiler * inCompiler
+                                           const class GALGAS_uint constin_inAccessBankSplitOffset,
+                                           const class GALGAS_uint constin_inCurrentBank,
+                                           const class GALGAS_registerTable constin_inRegisterTable,
+                                           const class GALGAS_constantMap constin_inConstantMap,
+                                           class GALGAS_uint & io_ioLocalLabelIndex,
+                                           class GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
+                                           const class GALGAS_lstring constin_inConditionTrueLabel,
+                                           const class GALGAS_lstring constin_inConditionFalseLabel,
+                                           class GALGAS_stringset & io_ioUsedRegisters,
+                                           class GALGAS_ipic_31__38_AbstractBlockTerminator & out_outCurrentBlockTerminator,
+                                           class C_Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2331,14 +2331,14 @@ void callExtensionMethod_analyzeCondition (class cPtr_pic_31__38_ConditionExpres
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeTerminator (class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                             const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                             const GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
-                                             const GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                             const GALGAS_string constin_inBlockLabel,
-                                             GALGAS_bool & io_ioOptimizationDone,
-                                             GALGAS_string & io_ioListFileContents,
-                                             GALGAS_ipic_31__38_AbstractBlockTerminator & out_outOptimizedTerminator,
-                                             C_Compiler * inCompiler
+                                             const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
+                                             const class GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
+                                             const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
+                                             const class GALGAS_string constin_inBlockLabel,
+                                             class GALGAS_bool & io_ioOptimizationDone,
+                                             class GALGAS_string & io_ioListFileContents,
+                                             class GALGAS_ipic_31__38_AbstractBlockTerminator & out_outOptimizedTerminator,
+                                             class C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2487,15 +2487,15 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_optimizeFlagStruct 
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_getOptimizedTerminators (class cPtr_ipic_31__38_AbstractConditionTerminator * inObject,
-                                                  const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                                  const GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
-                                                  const GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                                  const GALGAS_string constin_inBlockLabel,
-                                                  GALGAS_bool & io_ioOptimizationDone,
-                                                  GALGAS_string & io_ioListFileContents,
-                                                  GALGAS_ipic_31__38_SingleInstructionTerminator & out_outOptimizedTrueTerminator,
-                                                  GALGAS_ipic_31__38_SingleInstructionTerminator & out_outOptimizedFalseTerminator,
-                                                  GALGAS_bool & out_outIdenticalTerminators,
+                                                  const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
+                                                  const class GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
+                                                  const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
+                                                  const class GALGAS_string constin_inBlockLabel,
+                                                  class GALGAS_bool & io_ioOptimizationDone,
+                                                  class GALGAS_string & io_ioListFileContents,
+                                                  class GALGAS_ipic_31__38_SingleInstructionTerminator & out_outOptimizedTrueTerminator,
+                                                  class GALGAS_ipic_31__38_SingleInstructionTerminator & out_outOptimizedFalseTerminator,
+                                                  class GALGAS_bool & out_outIdenticalTerminators,
                                                   C_Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
@@ -2506,10 +2506,10 @@ void callExtensionMethod_getOptimizedTerminators (class cPtr_ipic_31__38_Abstrac
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_enterTerminatorReferencedLabels (class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                          const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                                          const GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                                          GALGAS_stringset & io_ioReferencedBlockSet,
-                                                          C_Compiler * inCompiler
+                                                          const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
+                                                          const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
+                                                          class GALGAS_stringset & io_ioReferencedBlockSet,
+                                                          class C_Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2519,9 +2519,9 @@ void callExtensionMethod_enterTerminatorReferencedLabels (class cPtr_ipic_31__38
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_enterInstructionReferencedLabels (class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                           const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                                           const GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                                           GALGAS_stringset & io_ioReferencedBlockSet,
+                                                           const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
+                                                           const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
+                                                           class GALGAS_stringset & io_ioReferencedBlockSet,
                                                            C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
@@ -2532,14 +2532,14 @@ void callExtensionMethod_enterInstructionReferencedLabels (class cPtr_ipic_31__3
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeInstruction (class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                              const GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                              const GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
-                                              const GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                              const GALGAS_lstring constin_inBlockLabel,
-                                              GALGAS_bool & out_outOptimizationDone,
-                                              GALGAS_string & io_ioListFileContents,
-                                              GALGAS_ipic_31__38_SequentialInstruction & out_outOptimizedInstruction,
-                                              GALGAS_bool & out_outNOPsubstitution,
+                                              const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
+                                              const class GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
+                                              const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
+                                              const class GALGAS_lstring constin_inBlockLabel,
+                                              class GALGAS_bool & out_outOptimizationDone,
+                                              class GALGAS_string & io_ioListFileContents,
+                                              class GALGAS_ipic_31__38_SequentialInstruction & out_outOptimizedInstruction,
+                                              class GALGAS_bool & out_outNOPsubstitution,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
@@ -2661,8 +2661,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInvocationGrap
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_buildInstructionInvocationGraph (class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                          const GALGAS_lstring constin_inBlockLabel,
-                                                          GALGAS_string & io_ioGraphVizString,
+                                                          const class GALGAS_lstring constin_inBlockLabel,
+                                                          class GALGAS_string & io_ioGraphVizString,
                                                           C_Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
 
@@ -2673,10 +2673,10 @@ void callExtensionMethod_buildInstructionInvocationGraph (class cPtr_ipic_31__38
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_buildTerminatorInvocationGraph (class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                         const GALGAS_lstring constin_inBlockLabel,
-                                                         GALGAS_string & io_ioGraphVizString,
-                                                         const GALGAS_bool constin_inDottedArrow,
-                                                         C_Compiler * inCompiler
+                                                         const class GALGAS_lstring constin_inBlockLabel,
+                                                         class GALGAS_string & io_ioGraphVizString,
+                                                         const class GALGAS_bool constin_inDottedArrow,
+                                                         class C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2686,8 +2686,8 @@ void callExtensionMethod_buildTerminatorInvocationGraph (class cPtr_ipic_31__38_
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_bool callExtensionGetter_needToInsertJumpInstruction (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                   const GALGAS_string constin_inNextBlockLabel,
-                                                                   C_Compiler * inCompiler
+                                                                   const class GALGAS_string constin_inNextBlockLabel,
+                                                                   class C_Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2697,8 +2697,8 @@ class GALGAS_bool callExtensionGetter_needToInsertJumpInstruction (const class c
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_buildTerminatorOrderedGraph (class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                      const GALGAS_lstring constin_inBlockLabel,
-                                                      GALGAS_blockInvocationGraph & io_ioGraph,
+                                                      const class GALGAS_lstring constin_inBlockLabel,
+                                                      class GALGAS_blockInvocationGraph & io_ioGraph,
                                                       C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -4079,10 +4079,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineStackRequire
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_exploreAccessibleBlocksForStackComputations (class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                                      GALGAS_stringset & io_ioBlockToExploreSet,
-                                                                      GALGAS_stringset & io_ioExploredBlockSet,
-                                                                      GALGAS_uint & out_outStackNeeds,
-                                                                      C_Compiler * inCompiler
+                                                                      class GALGAS_stringset & io_ioBlockToExploreSet,
+                                                                      class GALGAS_stringset & io_ioExploredBlockSet,
+                                                                      class GALGAS_uint & out_outStackNeeds,
+                                                                      class C_Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4092,7 +4092,7 @@ void callExtensionMethod_exploreAccessibleBlocksForStackComputations (class cPtr
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_buildCalledRoutineSetForStackComputations (class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                                                    GALGAS_stringset & io_ioRoutineCalledSet,
+                                                                    class GALGAS_stringset & io_ioRoutineCalledSet,
                                                                     C_Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
@@ -4351,11 +4351,11 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockDurationMap_2D
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_terminatorMinMaxDuration (class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                   const GALGAS_blockDurationMap constin_inExploredBlockMap,
-                                                   const GALGAS_string constin_inNextLabel,
-                                                   GALGAS_uint & out_outMin,
-                                                   GALGAS_uint & out_outMax,
-                                                   C_Compiler * inCompiler
+                                                   const class GALGAS_blockDurationMap constin_inExploredBlockMap,
+                                                   const class GALGAS_string constin_inNextLabel,
+                                                   class GALGAS_uint & out_outMin,
+                                                   class GALGAS_uint & out_outMax,
+                                                   class C_Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4365,11 +4365,11 @@ void callExtensionMethod_terminatorMinMaxDuration (class cPtr_ipic_31__38_Abstra
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_duration (class cPtr_ipic_31__38_SingleInstructionTerminator * inObject,
-                                   const GALGAS_blockDurationMap constin_inExploredBlockMap,
-                                   const GALGAS_string constin_inNextLabel,
-                                   GALGAS_uint & out_outMin,
-                                   GALGAS_uint & out_outMax,
-                                   C_Compiler * inCompiler
+                                   const class GALGAS_blockDurationMap constin_inExploredBlockMap,
+                                   const class GALGAS_string constin_inNextLabel,
+                                   class GALGAS_uint & out_outMin,
+                                   class GALGAS_uint & out_outMax,
+                                   class C_Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4379,9 +4379,9 @@ void callExtensionMethod_duration (class cPtr_ipic_31__38_SingleInstructionTermi
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_minMaxDuration (class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                         GALGAS_blockDurationMap in_inExploredBlockMap,
-                                         GALGAS_uint & out_outMin,
-                                         GALGAS_uint & out_outMax,
+                                         class GALGAS_blockDurationMap in_inExploredBlockMap,
+                                         class GALGAS_uint & out_outMin,
+                                         class GALGAS_uint & out_outMax,
                                          C_Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
 
@@ -4392,13 +4392,13 @@ void callExtensionMethod_minMaxDuration (class cPtr_ipic_31__38_SequentialInstru
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_handleDeclaration (class cPtr_declarationInRam * inObject,
-                                            const GALGAS_constantMap constin_inConstantMap,
-                                            GALGAS_stringset & io_ioUsedRegisters,
-                                            GALGAS_ramBankTable & io_ioRamBank,
-                                            GALGAS_registerTable & io_ioRegisterTable,
-                                            const GALGAS_lstring constin_inCurrentRamBank,
-                                            GALGAS_declaredByteMap & io_ioDeclaredByteMap,
-                                            C_Compiler * inCompiler
+                                            const class GALGAS_constantMap constin_inConstantMap,
+                                            class GALGAS_stringset & io_ioUsedRegisters,
+                                            class GALGAS_ramBankTable & io_ioRamBank,
+                                            class GALGAS_registerTable & io_ioRegisterTable,
+                                            const class GALGAS_lstring constin_inCurrentRamBank,
+                                            class GALGAS_declaredByteMap & io_ioDeclaredByteMap,
+                                            class C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

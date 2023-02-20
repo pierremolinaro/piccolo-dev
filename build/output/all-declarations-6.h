@@ -534,17 +534,17 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_caseConstantMap_2D_
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_analyzeCaseItem (class cPtr_pic_31__38_AbstractCaseItem * inObject,
-                                          const GALGAS_registerTable constin_inRegisterTable,
-                                          const GALGAS_constantMap constin_inConstantMap,
-                                          const GALGAS_lstring constin_inConditionTrueLabel,
-                                          const GALGAS_string constin_inIndexForLabels,
-                                          GALGAS_stringset & io_ioUsedRegisters,
-                                          GALGAS_caseConstantMap & io_ioCaseConstantMap,
-                                          GALGAS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
-                                          GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                          GALGAS_lstring & io_ioBlockLabel,
-                                          GALGAS_sint_36__34_ & io_ioLastComparisonValue,
-                                          C_Compiler * inCompiler
+                                          const class GALGAS_registerTable constin_inRegisterTable,
+                                          const class GALGAS_constantMap constin_inConstantMap,
+                                          const class GALGAS_lstring constin_inConditionTrueLabel,
+                                          const class GALGAS_string constin_inIndexForLabels,
+                                          class GALGAS_stringset & io_ioUsedRegisters,
+                                          class GALGAS_caseConstantMap & io_ioCaseConstantMap,
+                                          class GALGAS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
+                                          class GALGAS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
+                                          class GALGAS_lstring & io_ioBlockLabel,
+                                          class GALGAS_sint_36__34_ & io_ioLastComparisonValue,
+                                          class C_Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

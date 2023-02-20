@@ -3634,8 +3634,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interme
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_addUsedRoutines (class cPtr_midrange_5F_instruction * inObject,
-                                          GALGAS_stringset & io_ioUsedRoutines,
-                                          C_Compiler * inCompiler
+                                          class GALGAS_stringset & io_ioUsedRoutines,
+                                          class C_Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3645,7 +3645,7 @@ void callExtensionMethod_addUsedRoutines (class cPtr_midrange_5F_instruction * i
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_uint callExtensionGetter_instructionLength (const class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                         C_Compiler * inCompiler
+                                                         class C_Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3655,8 +3655,8 @@ class GALGAS_uint callExtensionGetter_instructionLength (const class cPtr_midran
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_print (class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                GALGAS_string & io_ioListFileContents,
-                                C_Compiler * inCompiler
+                                class GALGAS_string & io_ioListFileContents,
+                                class C_Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3666,7 +3666,7 @@ void callExtensionMethod_print (class cPtr_midrange_5F_intermediate_5F_instructi
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_setCurrentAddress (class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                            GALGAS_uint & io_ioCurrentAddress,
+                                            class GALGAS_uint & io_ioCurrentAddress,
                                             C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
@@ -3677,7 +3677,7 @@ void callExtensionMethod_setCurrentAddress (class cPtr_midrange_5F_intermediate_
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_instructionUsesGOTOorCALL (class cPtr_midrange_5F_instruction * inObject,
-                                                    GALGAS_bool & io_ioUsesGOTOorCALL,
+                                                    class GALGAS_bool & io_ioUsesGOTOorCALL,
                                                     C_Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
@@ -3688,19 +3688,19 @@ void callExtensionMethod_instructionUsesGOTOorCALL (class cPtr_midrange_5F_instr
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (class cPtr_midrange_5F_instruction * inObject,
-                                                                       const GALGAS_routineMap constin_inRoutineMap,
-                                                                       const GALGAS_registerTable constin_inRegisterTable,
-                                                                       const GALGAS_constantMap constin_inConstantMap,
-                                                                       GALGAS_uint & io_ioLocalLabelIndex,
-                                                                       GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                                                       GALGAS_string & io_ioListFileContents,
-                                                                       const GALGAS_uint constin_inTotalBankCount,
-                                                                       GALGAS_uint & io_ioCurrentBank,
-                                                                       const GALGAS_bool constin_inShouldPreserveBank,
-                                                                       GALGAS_bool & io_ioContinuesInSequence,
-                                                                       const GALGAS_routineKind constin_inRoutineKind,
-                                                                       GALGAS_stringset & io_ioUsedRegisters,
-                                                                       C_Compiler * inCompiler
+                                                                       const class GALGAS_routineMap constin_inRoutineMap,
+                                                                       const class GALGAS_registerTable constin_inRegisterTable,
+                                                                       const class GALGAS_constantMap constin_inConstantMap,
+                                                                       class GALGAS_uint & io_ioLocalLabelIndex,
+                                                                       class GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                                                       class GALGAS_string & io_ioListFileContents,
+                                                                       const class GALGAS_uint constin_inTotalBankCount,
+                                                                       class GALGAS_uint & io_ioCurrentBank,
+                                                                       const class GALGAS_bool constin_inShouldPreserveBank,
+                                                                       class GALGAS_bool & io_ioContinuesInSequence,
+                                                                       const class GALGAS_routineKind constin_inRoutineKind,
+                                                                       class GALGAS_stringset & io_ioUsedRegisters,
+                                                                       class C_Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3710,18 +3710,18 @@ void callExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (class cPt
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_buildIPICinstructionForCondition (class cPtr_midrange_5F_conditionExpression * inObject,
-                                                           const GALGAS_uint constin_inTotalBankCount,
-                                                           const GALGAS_uint constin_inCurrentBank,
-                                                           const GALGAS_registerTable constin_inRegisterTable,
-                                                           const GALGAS_constantMap constin_inConstantMap,
-                                                           GALGAS_uint & io_ioLocalLabelIndex,
-                                                           const GALGAS_bool constin_inComplementaryBranch,
-                                                           const GALGAS_location constin_inInstructionLocation,
-                                                           const GALGAS_string constin_inTargetLabel,
-                                                           GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                                           GALGAS_string & io_ioListFileContents,
-                                                           GALGAS_stringset & io_ioUsedRegisters,
-                                                           C_Compiler * inCompiler
+                                                           const class GALGAS_uint constin_inTotalBankCount,
+                                                           const class GALGAS_uint constin_inCurrentBank,
+                                                           const class GALGAS_registerTable constin_inRegisterTable,
+                                                           const class GALGAS_constantMap constin_inConstantMap,
+                                                           class GALGAS_uint & io_ioLocalLabelIndex,
+                                                           const class GALGAS_bool constin_inComplementaryBranch,
+                                                           const class GALGAS_location constin_inInstructionLocation,
+                                                           const class GALGAS_string constin_inTargetLabel,
+                                                           class GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                                           class GALGAS_string & io_ioListFileContents,
+                                                           class GALGAS_stringset & io_ioUsedRegisters,
+                                                           class C_Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3731,9 +3731,9 @@ void callExtensionMethod_buildIPICinstructionForCondition (class cPtr_midrange_5
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_computeInstructionCountForCondition (class cPtr_midrange_5F_conditionExpression * inObject,
-                                                              const GALGAS_bool constin_inComplementaryBranch,
-                                                              GALGAS_uint & out_outInstructionCount,
-                                                              C_Compiler * inCompiler
+                                                              const class GALGAS_bool constin_inComplementaryBranch,
+                                                              class GALGAS_uint & out_outInstructionCount,
+                                                              class C_Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3763,7 +3763,7 @@ class GALGAS_bool callExtensionGetter_isNULL (const cPtr_midrange_5F_intermediat
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_enterReferencedLabel (class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                               GALGAS_stringset & io_ioReferencedLabelSet,
+                                               class GALGAS_stringset & io_ioReferencedLabelSet,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -3794,8 +3794,8 @@ class GALGAS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_mid
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_defineLabel (class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                      GALGAS_symbolTableForOptimizations & io_ioRoutineSymbolTable,
-                                      const GALGAS_uint constin_inLineIndex,
+                                      class GALGAS_symbolTableForOptimizations & io_ioRoutineSymbolTable,
+                                      const class GALGAS_uint constin_inLineIndex,
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
@@ -3806,10 +3806,10 @@ void callExtensionMethod_defineLabel (class cPtr_midrange_5F_intermediate_5F_ins
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeMOVLW (class cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * inObject,
-                                        const GALGAS_uint constin_inLineIndex,
-                                        GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                        GALGAS_string & io_ioListFileContents,
-                                        GALGAS_bool & io_ioOptimizationsDone,
+                                        const class GALGAS_uint constin_inLineIndex,
+                                        class GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                        class GALGAS_string & io_ioListFileContents,
+                                        class GALGAS_bool & io_ioOptimizationsDone,
                                         C_Compiler * inCompiler
                                         COMMA_LOCATION_ARGS) ;
 
@@ -3832,11 +3832,11 @@ void routine_findMidRangeFirstInstructionFromAddress (const class GALGAS_uint co
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeTestDecInc (class cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * inObject,
-                                             const GALGAS_symbolTableForOptimizations constin_inSymbolTable,
-                                             const GALGAS_uint constin_inLineIndex,
-                                             GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                             GALGAS_string & io_ioListFileContents,
-                                             GALGAS_bool & io_ioOptimizationsDone,
+                                             const class GALGAS_symbolTableForOptimizations constin_inSymbolTable,
+                                             const class GALGAS_uint constin_inLineIndex,
+                                             class GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                             class GALGAS_string & io_ioListFileContents,
+                                             class GALGAS_bool & io_ioOptimizationsDone,
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
@@ -3847,10 +3847,10 @@ void callExtensionMethod_optimizeTestDecInc (class cPtr_midrange_5F_intermediate
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_optimizeBitTestSkip (class cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip * inObject,
-                                              const GALGAS_uint constin_inLineIndex,
-                                              GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                              GALGAS_string & io_ioListFileContents,
-                                              GALGAS_bool & io_ioOptimizationsDone,
+                                              const class GALGAS_uint constin_inLineIndex,
+                                              class GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                              class GALGAS_string & io_ioListFileContents,
+                                              class GALGAS_bool & io_ioOptimizationsDone,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
@@ -4095,8 +4095,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_symbolT
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_defineLabelAtAddress (class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                               GALGAS_midrange_5F_symbolTableForConvertingRelatives & io_ioRoutineSymbolTable,
-                                               GALGAS_uint & io_ioAddress,
+                                               class GALGAS_midrange_5F_symbolTableForConvertingRelatives & io_ioRoutineSymbolTable,
+                                               class GALGAS_uint & io_ioAddress,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -4107,13 +4107,13 @@ void callExtensionMethod_defineLabelAtAddress (class cPtr_midrange_5F_intermedia
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_compute (class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                  const GALGAS_midrange_5F_symbolTableForConvertingRelatives constin_inRoutineSymbolTable,
-                                  GALGAS_uint & io_ioAddress,
-                                  GALGAS_bool & io_ioJUMP_5F_or_5F_JSR_5F_fixed,
-                                  GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                  const GALGAS_uint constin_inIndex,
-                                  GALGAS_string & io_ioListFileContents,
-                                  C_Compiler * inCompiler
+                                  const class GALGAS_midrange_5F_symbolTableForConvertingRelatives constin_inRoutineSymbolTable,
+                                  class GALGAS_uint & io_ioAddress,
+                                  class GALGAS_bool & io_ioJUMP_5F_or_5F_JSR_5F_fixed,
+                                  class GALGAS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                  const class GALGAS_uint constin_inIndex,
+                                  class GALGAS_string & io_ioListFileContents,
+                                  class C_Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4123,9 +4123,9 @@ void callExtensionMethod_compute (class cPtr_midrange_5F_intermediate_5F_instruc
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_buildAssemblyCode (class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                            GALGAS_string & io_ioString,
-                                            GALGAS_uint & io_ioLocalLabelIndex,
-                                            C_Compiler * inCompiler
+                                            class GALGAS_string & io_ioString,
+                                            class GALGAS_uint & io_ioLocalLabelIndex,
+                                            class C_Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4356,8 +4356,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_symbolT
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_enterLabelAtAddress (class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                              GALGAS_midrange_5F_symbolTable & io_ioRoutineSymbolTable,
-                                              GALGAS_uint & io_ioAddress,
+                                              class GALGAS_midrange_5F_symbolTable & io_ioRoutineSymbolTable,
+                                              class GALGAS_uint & io_ioAddress,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
@@ -4368,13 +4368,13 @@ void callExtensionMethod_enterLabelAtAddress (class cPtr_midrange_5F_intermediat
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_generateBinaryCodeAtAddress (class cPtr_midrange_5F_intermediate_5F_instruction * inObject,
-                                                      const GALGAS_registerTable constin_inRegisterTable,
-                                                      const GALGAS_constantMap constin_inConstantMap,
-                                                      const GALGAS_uint constin_inTotalBankCount,
-                                                      const GALGAS_midrange_5F_symbolTable constin_inRoutineSymbolTable,
-                                                      GALGAS_string & io_ioListFileContents,
-                                                      GALGAS_uint & io_ioAddress,
-                                                      C_Compiler * inCompiler
+                                                      const class GALGAS_registerTable constin_inRegisterTable,
+                                                      const class GALGAS_constantMap constin_inConstantMap,
+                                                      const class GALGAS_uint constin_inTotalBankCount,
+                                                      const class GALGAS_midrange_5F_symbolTable constin_inRoutineSymbolTable,
+                                                      class GALGAS_string & io_ioListFileContents,
+                                                      class GALGAS_uint & io_ioAddress,
+                                                      class C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

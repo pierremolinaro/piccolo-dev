@@ -2576,8 +2576,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembl
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_print (class cPtr_baseline_5F_assembly_5F_instruction * inObject,
-                                GALGAS_string & io_ioListFileContents,
-                                C_Compiler * inCompiler
+                                class GALGAS_string & io_ioListFileContents,
+                                class C_Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2587,7 +2587,7 @@ void callExtensionMethod_print (class cPtr_baseline_5F_assembly_5F_instruction *
 //----------------------------------------------------------------------------------------------------------------------
 
 class GALGAS_uint callExtensionGetter_length (const class cPtr_baseline_5F_assembly_5F_instruction * inObject,
-                                              C_Compiler * inCompiler
+                                              class C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2597,10 +2597,10 @@ class GALGAS_uint callExtensionGetter_length (const class cPtr_baseline_5F_assem
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_generateAssemblyCode (class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                               const GALGAS_baseline_5F_intermediate_5F_registerExpression constin_inSTATUSregister,
-                                               const GALGAS_bitSliceTable constin_inStatusRegisterBitSliceTable,
-                                               GALGAS_baseline_5F_assembly_5F_instructionList & io_ioAssemblyInstructionList,
-                                               C_Compiler * inCompiler
+                                               const class GALGAS_baseline_5F_intermediate_5F_registerExpression constin_inSTATUSregister,
+                                               const class GALGAS_bitSliceTable constin_inStatusRegisterBitSliceTable,
+                                               class GALGAS_baseline_5F_assembly_5F_instructionList & io_ioAssemblyInstructionList,
+                                               class C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2831,8 +2831,8 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_symbolT
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_enterLabelAtAddress (class cPtr_baseline_5F_assembly_5F_instruction * inObject,
-                                              GALGAS_baseline_5F_symbolTable & io_ioRoutineSymbolTable,
-                                              GALGAS_uint & io_ioWordAddress,
+                                              class GALGAS_baseline_5F_symbolTable & io_ioRoutineSymbolTable,
+                                              class GALGAS_uint & io_ioWordAddress,
                                               C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
@@ -2843,10 +2843,10 @@ void callExtensionMethod_enterLabelAtAddress (class cPtr_baseline_5F_assembly_5F
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_generateBinaryCodeAtAddress (class cPtr_baseline_5F_assembly_5F_instruction * inObject,
-                                                      const GALGAS_baseline_5F_symbolTable constin_inRoutineSymbolTable,
-                                                      GALGAS_string & io_ioListFileContents,
-                                                      GALGAS_uint & io_ioWordAddress,
-                                                      C_Compiler * inCompiler
+                                                      const class GALGAS_baseline_5F_symbolTable constin_inRoutineSymbolTable,
+                                                      class GALGAS_string & io_ioListFileContents,
+                                                      class GALGAS_uint & io_ioWordAddress,
+                                                      class C_Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

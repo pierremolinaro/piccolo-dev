@@ -885,7 +885,7 @@ class SWIFT_Lexique_piccolo_lexique : SWIFT_Lexique {
       tokenCode = piccolo_lexique_1__5D_
     }else if scanningOk && self.testForInputString ("[", advance: true) {
       tokenCode = piccolo_lexique_1__5B_
-    }else if scanningOk && self.testForInputString ("?", advance: true) {
+    }else if scanningOk && self.testForInputString ("\?", advance: true) {
       tokenCode = piccolo_lexique_1__3F_
     }else if scanningOk && self.testForInputString (">", advance: true) {
       tokenCode = piccolo_lexique_1__3E_

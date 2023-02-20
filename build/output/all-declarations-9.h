@@ -241,7 +241,7 @@ class cGrammar_piccoloDevice_5F_grammar : public cParser_piccoloDevice_5F_syntax
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_getBaseCode (class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                      GALGAS_uint & out_outBaseCode,
+                                      class GALGAS_uint & out_outBaseCode,
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
@@ -252,7 +252,7 @@ void callExtensionMethod_getBaseCode (class cPtr_baseline_5F_instruction_5F_IF_5
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_getMnemonic (class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                      GALGAS_string & out_outMnemonic,
+                                      class GALGAS_string & out_outMnemonic,
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
@@ -263,11 +263,11 @@ void callExtensionMethod_getMnemonic (class cPtr_baseline_5F_instruction_5F_IF_5
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_resolveBaselineAccess (class cPtr_registerExpression * inObject,
-                                                const GALGAS_registerTable constin_inRegisterTable,
-                                                const GALGAS_constantMap constin_inConstantMap,
-                                                GALGAS_baseline_5F_intermediate_5F_registerExpression & out_outIntermediateRegisterDescription,
-                                                GALGAS_bitSliceTable & out_outBitSliceTable,
-                                                GALGAS_stringset & io_ioUsedRegisters,
+                                                const class GALGAS_registerTable constin_inRegisterTable,
+                                                const class GALGAS_constantMap constin_inConstantMap,
+                                                class GALGAS_baseline_5F_intermediate_5F_registerExpression & out_outIntermediateRegisterDescription,
+                                                class GALGAS_bitSliceTable & out_outBitSliceTable,
+                                                class GALGAS_stringset & io_ioUsedRegisters,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
@@ -278,7 +278,7 @@ void callExtensionMethod_resolveBaselineAccess (class cPtr_registerExpression * 
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_getBaseCode (class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                      GALGAS_uint & out_outBaseCode,
+                                      class GALGAS_uint & out_outBaseCode,
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
@@ -289,7 +289,7 @@ void callExtensionMethod_getBaseCode (class cPtr_midrange_5F_instruction_5F_IF_5
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_getMnemonic (class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest * inObject,
-                                      GALGAS_string & out_outMnemonic,
+                                      class GALGAS_string & out_outMnemonic,
                                       C_Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
@@ -300,13 +300,13 @@ void callExtensionMethod_getMnemonic (class cPtr_midrange_5F_instruction_5F_IF_5
 //----------------------------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_resolveMidrangeAccess (class cPtr_registerExpression * inObject,
-                                                const GALGAS_uint constin_inTotalBankCount,
-                                                const GALGAS_uint constin_inCurrentBank,
-                                                const GALGAS_registerTable constin_inRegisterTable,
-                                                const GALGAS_constantMap constin_inConstantMap,
-                                                GALGAS_midrange_5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
-                                                GALGAS_bitSliceTable & out_outBitSliceTable,
-                                                GALGAS_stringset & io_ioUsedRegisters,
+                                                const class GALGAS_uint constin_inTotalBankCount,
+                                                const class GALGAS_uint constin_inCurrentBank,
+                                                const class GALGAS_registerTable constin_inRegisterTable,
+                                                const class GALGAS_constantMap constin_inConstantMap,
+                                                class GALGAS_midrange_5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
+                                                class GALGAS_bitSliceTable & out_outBitSliceTable,
+                                                class GALGAS_stringset & io_ioUsedRegisters,
                                                 C_Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
