@@ -21,7 +21,8 @@ mProperty_mMask (in_mMask) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_fieldSettingMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mValue.isValid () && mProperty_mMask.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mValue.isValid () && mProperty_mMask.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1860,7 +1861,7 @@ mObject (inElement.mProperty_mInstruction) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_baseline_5F_instructionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6237,7 +6238,7 @@ mObject (inElement.mProperty_mCondition, inElement.mProperty_mInstructionList, i
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_baseline_5F_partList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7132,7 +7133,7 @@ mObject (inElement.mProperty_mRoutineName, inElement.mProperty_mPage, inElement.
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_baseline_5F_routineDefinitionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7783,6 +7784,7 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_baseline_5F_declaredRoutineMap::isValid (void) const {
+  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -8405,7 +8407,7 @@ mObject (inElement.mProperty_mInstruction) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_baseline_5F_intermediate_5F_instructionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13183,7 +13185,8 @@ mProperty_mPage (in_mPage) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_baselineRoutineMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mIsNoReturn.isValid () && mProperty_mPage.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mIsNoReturn.isValid () && mProperty_mPage.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13591,7 +13594,8 @@ mProperty_mDefinitionLineIndex (in_mDefinitionLineIndex) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_baselineSymbolTableForOptimizations::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mDefinitionLineIndex.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mDefinitionLineIndex.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14382,7 +14386,7 @@ mObject (inElement.mProperty_mInstruction) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_baseline_5F_assembly_5F_instructionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

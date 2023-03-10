@@ -3713,7 +3713,8 @@ mProperty_mRoutineAddress (in_mRoutineAddress) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_baseline_5F_symbolTable::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mRoutineAddress.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mRoutineAddress.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4282,7 +4283,7 @@ mObject (inElement.mProperty_mInstruction) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_midrange_5F_instructionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -11657,7 +11658,7 @@ mObject (inElement.mProperty_mCondition, inElement.mProperty_mInstructionList, i
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_midrange_5F_partList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -12552,7 +12553,7 @@ mObject (inElement.mProperty_mInterruptLocation, inElement.mProperty_mInstructio
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_midrange_5F_interruptDefinitionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13235,7 +13236,7 @@ mObject (inElement.mProperty_mRoutineName, inElement.mProperty_mPage, inElement.
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_midrange_5F_routineDefinitionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14413,7 +14414,7 @@ mObject (inElement.mProperty_mInstruction) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_midrange_5F_intermediate_5F_instructionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

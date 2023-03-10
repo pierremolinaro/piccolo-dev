@@ -4177,7 +4177,8 @@ mProperty_mSliceSize (in_mSliceSize) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_bitSliceTable::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mSliceIndex.isValid () && mProperty_mSliceSize.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mSliceIndex.isValid () && mProperty_mSliceSize.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5183,7 +5184,7 @@ mObject (inElement.mProperty_mDeclarationInRAM) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_declarationInRamList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5602,7 +5603,7 @@ mObject (inElement.mProperty_mBankName, inElement.mProperty_mDeclaration) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_ramDefinitionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6084,7 +6085,7 @@ mObject (inElement.mProperty_mSettingName, inElement.mProperty_mSettingValue) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_configSettingList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6566,7 +6567,7 @@ mObject (inElement.mProperty_mDefinitionLocation, inElement.mProperty_mSettingLi
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_configDefinitionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7159,7 +7160,7 @@ mObject (inElement.mProperty_mExpression, inElement.mProperty_mErrorLocation) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_immediatExpressionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13129,7 +13130,7 @@ mObject (inElement.mProperty_mSliceName, inElement.mProperty_mExpression) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_immediatSliceExpressionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13722,7 +13723,7 @@ mObject (inElement.mProperty_mConstantName, inElement.mProperty_mExpression) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_constantDefinitionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14171,7 +14172,8 @@ mProperty_mRegisterValue (in_mRegisterValue) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_actualConfigurationMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mRegisterAddress.isValid () && mProperty_mRegisterValue.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mRegisterAddress.isValid () && mProperty_mRegisterValue.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -15368,6 +15370,7 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_labelMap::isValid (void) const {
+  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -15603,7 +15606,8 @@ mProperty_mValue (in_mValue) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_constantMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mValue.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mValue.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -15880,7 +15884,8 @@ mProperty_mPreservesBank (in_mPreservesBank) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_routineMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mIsNoReturn.isValid () && mProperty_mRequiredBank.isValid () && mProperty_mReturnedBank.isValid () && mProperty_mPreservesBank.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mIsNoReturn.isValid () && mProperty_mRequiredBank.isValid () && mProperty_mReturnedBank.isValid () && mProperty_mPreservesBank.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -16497,7 +16502,8 @@ mProperty_mIsDeletable (in_mIsDeletable) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_symbolTableForOptimizations::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mDefinitionLineIndex.isValid () && mProperty_mIsDeletable.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mDefinitionLineIndex.isValid () && mProperty_mIsDeletable.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -16847,7 +16853,8 @@ mProperty_mFieldSettingMap (in_mFieldSettingMap) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_configFieldMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mRegisterName.isValid () && mProperty_mMaskValue.isValid () && mProperty_mDescription.isValid () && mProperty_mFieldSettingMap.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mRegisterName.isValid () && mProperty_mMaskValue.isValid () && mProperty_mDescription.isValid () && mProperty_mFieldSettingMap.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

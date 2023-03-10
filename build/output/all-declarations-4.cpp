@@ -6291,7 +6291,7 @@ mObject (inElement.mProperty_mCondition, inElement.mProperty_mInstructionList, i
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_pic_31__38_DoWhilePartList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7184,7 +7184,7 @@ mObject (inElement.mProperty_mInterruptName, inElement.mProperty_mFastReturn, in
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_pic_31__38_InterruptDefinitionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7802,7 +7802,7 @@ mObject (inElement.mProperty_mRoutineName, inElement.mProperty_mRequiredBank, in
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_pic_31__38_RoutineDefinitionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -8601,7 +8601,7 @@ mObject (inElement.mProperty_mMacroName, inElement.mProperty_mConstantNameList, 
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_pic_31__38_MacroDefinitionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9113,7 +9113,8 @@ mProperty_mInstructionList (in_mInstructionList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_pic_31__38_MacroMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mConstantNameList.isValid () && mProperty_mInstructionList.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mConstantNameList.isValid () && mProperty_mInstructionList.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9477,7 +9478,7 @@ mObject (inElement.mProperty_mRoutineName, inElement.mProperty_mRequiredBank, in
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_routineDeclarationList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10295,7 +10296,7 @@ mObject (inElement.mProperty_mDataName, inElement.mProperty_mValueList, inElemen
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_dataList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10840,7 +10841,7 @@ mObject (inElement.mProperty_mErrorLocation, inElement.mProperty_mValueList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_checkpicList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

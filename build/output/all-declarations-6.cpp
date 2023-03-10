@@ -675,7 +675,7 @@ mObject (inElement.mProperty_mCaseItem) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_pic_31__38_CaseExpressionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1096,7 +1096,7 @@ mObject (inElement.mProperty_mStartOfCase, inElement.mProperty_mCaseExpressionLi
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_pic_31__38_SwitchInstructionCaseList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1948,6 +1948,7 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_caseConstantMap::isValid (void) const {
+  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -2176,7 +2177,8 @@ mProperty_mIsData_38_ (in_mIsData_38_) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_pic_31__38__5F_dataMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mData.isValid () && mProperty_mIsData_38_.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mData.isValid () && mProperty_mIsData_38_.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2758,7 +2760,7 @@ mObject (inElement.mProperty_mInstruction, inElement.mProperty_mMin, inElement.m
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_ipic_31__38_SequentialInstructionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3523,7 +3525,7 @@ mObject (inElement.mProperty_mBlock) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_ipic_31__38_BlockList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

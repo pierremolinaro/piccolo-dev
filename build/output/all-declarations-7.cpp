@@ -19,7 +19,8 @@ mProperty_mDefinitionBlockIndex (in_mDefinitionBlockIndex) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_symbolTableForBlockOptimization::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mDefinitionBlockIndex.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mDefinitionBlockIndex.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -290,7 +291,8 @@ mProperty_mCluster (in_mCluster) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_symbolTableForClusterOrdering::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mCluster.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mCluster.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -656,7 +658,8 @@ mProperty_mLabelAddress (in_mLabelAddress) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_symbolTableForRelativesResolution::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mLabelAddress.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mLabelAddress.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -962,7 +965,7 @@ mObject (inElement.mProperty_mAssemblyCode, inElement.mProperty_mBinaryCode) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_codeList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1409,7 +1412,8 @@ mProperty_mDataAddress (in_mDataAddress) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_pic_31__38__5F_dataAddressMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mDataAddress.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mDataAddress.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1935,7 +1939,8 @@ mProperty_mInstructionList (in_mInstructionList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_declaredRoutineMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mRequiredBank.isValid () && mProperty_mReturnedBank.isValid () && mProperty_mPreservesBank.isValid () && mProperty_mIsNoReturn.isValid () && mProperty_mInstructionList.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mRequiredBank.isValid () && mProperty_mReturnedBank.isValid () && mProperty_mPreservesBank.isValid () && mProperty_mIsNoReturn.isValid () && mProperty_mInstructionList.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2505,7 +2510,8 @@ mProperty_mEndOfBlock (in_mEndOfBlock) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_blockInstructionBlockMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mInstructionList.isValid () && mProperty_mBlockTerminaisonForBlockInstruction.isValid () && mProperty_mEndOfBlock.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mInstructionList.isValid () && mProperty_mBlockTerminaisonForBlockInstruction.isValid () && mProperty_mEndOfBlock.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2882,7 +2888,8 @@ mProperty_mSourceBlock (in_mSourceBlock) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_blockInitialBankSelectionMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mInitialBankSelection.isValid () && mProperty_mSourceBlock.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mInitialBankSelection.isValid () && mProperty_mSourceBlock.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4047,7 +4054,7 @@ mObject (inElement.mProperty_mBlockList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_clusterList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4431,7 +4438,8 @@ mProperty_mConversions (in_mConversions) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_neededConversionForClusterOrder::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mConversions.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mConversions.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4704,7 +4712,8 @@ mProperty_mInstruction (in_mInstruction) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_generatedCodeMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mCode.isValid () && mProperty_mInstruction.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mCode.isValid () && mProperty_mInstruction.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5079,7 +5088,8 @@ mProperty_mBlock (in_mBlock) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_blockMapForStackComputation::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mBlock.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mBlock.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5352,7 +5362,8 @@ mProperty_mTerminatorStackNeeds (in_mTerminatorStackNeeds) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_routineCallMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mCalledRoutineSet.isValid () && mProperty_mTerminatorStackNeeds.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mCalledRoutineSet.isValid () && mProperty_mTerminatorStackNeeds.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5650,7 +5661,8 @@ mProperty_mLevels (in_mLevels) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_routineStackRequirementMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mLevels.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mLevels.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5965,7 +5977,8 @@ mProperty_mMaxDuration (in_mMaxDuration) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_blockDurationMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mMinDuration.isValid () && mProperty_mMaxDuration.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mMinDuration.isValid () && mProperty_mMaxDuration.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7590,6 +7603,7 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_declaredByteMap::isValid (void) const {
+  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -7817,7 +7831,8 @@ mProperty_mProtection (in_mProtection) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_registerTable::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mRegisterAddressList.isValid () && mProperty_mSize.isValid () && mProperty_mBitSliceTable.isValid () && mProperty_mBitDefinitionString.isValid () && mProperty_mProtection.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mRegisterAddressList.isValid () && mProperty_mSize.isValid () && mProperty_mBitSliceTable.isValid () && mProperty_mBitDefinitionString.isValid () && mProperty_mProtection.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -8371,7 +8386,8 @@ mProperty_mMirrorOffsetList (in_mMirrorOffsetList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_ramBankTable::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mFirstAddress.isValid () && mProperty_mFirstFreeAddress.isValid () && mProperty_mLastAddressPlusOne.isValid () && mProperty_mMirrorOffsetList.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mFirstAddress.isValid () && mProperty_mFirstFreeAddress.isValid () && mProperty_mLastAddressPlusOne.isValid () && mProperty_mMirrorOffsetList.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9002,7 +9018,7 @@ mObject (inElement.mProperty_mIllegalValue, inElement.mProperty_mIllegalMask, in
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_illegalMaskList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9516,7 +9532,8 @@ mProperty_mFieldSettingMap (in_mFieldSettingMap) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_configRegisterMaskMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mMaskValue.isValid () && mProperty_mDescription.isValid () && mProperty_mFieldSettingMap.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mMaskValue.isValid () && mProperty_mDescription.isValid () && mProperty_mFieldSettingMap.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9897,7 +9914,8 @@ mProperty_mIllegalMaskList (in_mIllegalMaskList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_configRegisterMap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mRegisterAddress.isValid () && mProperty_mRegisterWidth.isValid () && mProperty_mConfigRegisterMaskMap.isValid () && mProperty_mIllegalMaskList.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mRegisterAddress.isValid () && mProperty_mRegisterWidth.isValid () && mProperty_mConfigRegisterMaskMap.isValid () && mProperty_mIllegalMaskList.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

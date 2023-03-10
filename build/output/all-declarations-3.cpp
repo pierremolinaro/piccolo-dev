@@ -5738,7 +5738,8 @@ mProperty_mRoutineAddress (in_mRoutineAddress) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_midrange_5F_symbolTableForConvertingRelatives::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mRoutineAddress.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mRoutineAddress.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6073,7 +6074,8 @@ mProperty_mRoutineAddress (in_mRoutineAddress) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_midrange_5F_symbolTable::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mRoutineAddress.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mRoutineAddress.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6601,6 +6603,7 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_midrange_5F_declaredRoutineMap::isValid (void) const {
+  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -6820,7 +6823,8 @@ mProperty_mReservedSize (in_mReservedSize) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_bootloaderReservedRAMmap::isValid (void) const {
-  return mProperty_lkey.isValid () && mProperty_mReservedSize.isValid () ;
+  /* return mProperty_lkey.isValid () && mProperty_mReservedSize.isValid () ; */
+  return mProperty_lkey.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7346,7 +7350,7 @@ mObject (inElement.mProperty_mInstruction) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_pic_31__38_InstructionList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10165,7 +10169,7 @@ mObject (inElement.mProperty_mBlockName, inElement.mProperty_mInstructionList, i
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_pic_31__38_BlockInstructionBlockList::isValid (void) const {
-  return mObject.isValid () ;
+  return true ; // return mObject.isValid () ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
