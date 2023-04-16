@@ -1,6 +1,8 @@
 gui cocoa {
 with option piccolo_options
 
+project "piccolo" indexing in "PICCOLO_INDEXES"
+
 nibAndMainClass : "PMPiccoloCocoa"
 nibAndMainClass : "installCLITools"
 

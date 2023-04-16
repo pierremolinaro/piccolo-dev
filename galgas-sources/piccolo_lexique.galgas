@@ -1,4 +1,4 @@
-lexique piccolo_lexique indexing in "PICCOLO_INDEXES" {
+lexique piccolo_lexique {
 
 @string identifierString
 @uint uint32value

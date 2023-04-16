@@ -8,7 +8,252 @@
 #include "all-declarations-10.h"
 
 //----------------------------------------------------------------------------------------------------------------------
+// @pic_31__38_Instruction_5F_savebank reference class
+//----------------------------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_savebank::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mRegister.printNonNullClassInstanceProperties ("mRegister") ;
+    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
+    mProperty_mEndOfSaveBankInstruction.printNonNullClassInstanceProperties ("mEndOfSaveBankInstruction") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
+typeComparisonResult cPtr_pic_31__38_Instruction_5F_savebank::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_pic_31__38_Instruction_5F_savebank * p = (const cPtr_pic_31__38_Instruction_5F_savebank *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_savebank) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mInstructionLocation.objectCompare (p->mProperty_mInstructionLocation) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRegister.objectCompare (p->mProperty_mRegister) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mInstructionList.objectCompare (p->mProperty_mInstructionList) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mEndOfSaveBankInstruction.objectCompare (p->mProperty_mEndOfSaveBankInstruction) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+typeComparisonResult GALGAS_pic_31__38_Instruction_5F_savebank::objectCompare (const GALGAS_pic_31__38_Instruction_5F_savebank & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_Instruction_5F_savebank::GALGAS_pic_31__38_Instruction_5F_savebank (void) :
+GALGAS_pic_31__38_PiccoloInstruction () {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_Instruction_5F_savebank::GALGAS_pic_31__38_Instruction_5F_savebank (const cPtr_pic_31__38_Instruction_5F_savebank * inSourcePtr) :
+GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_savebank) ;
+}
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_Instruction_5F_savebank GALGAS_pic_31__38_Instruction_5F_savebank::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                      const GALGAS_registerExpression & inAttribute_mRegister,
+                                                                                                      const GALGAS_pic_31__38_InstructionList & inAttribute_mInstructionList,
+                                                                                                      const GALGAS_location & inAttribute_mEndOfSaveBankInstruction
+                                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38_Instruction_5F_savebank result ;
+  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mRegister.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mEndOfSaveBankInstruction.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_savebank (inAttribute_mInstructionLocation, inAttribute_mRegister, inAttribute_mInstructionList, inAttribute_mEndOfSaveBankInstruction COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_pic_31__38_Instruction_5F_savebank::setter_setMRegister (GALGAS_registerExpression inValue
+                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_savebank) ;
+    p->mProperty_mRegister = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_pic_31__38_Instruction_5F_savebank::setter_setMInstructionList (GALGAS_pic_31__38_InstructionList inValue
+                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_savebank) ;
+    p->mProperty_mInstructionList = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_pic_31__38_Instruction_5F_savebank::setter_setMEndOfSaveBankInstruction (GALGAS_location inValue
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  if (NULL != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_savebank) ;
+    p->mProperty_mEndOfSaveBankInstruction = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_savebank::readProperty_mRegister (void) const {
+  if (NULL == mObjectPtr) {
+    return GALGAS_registerExpression () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_savebank) ;
+    return p->mProperty_mRegister ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_Instruction_5F_savebank::readProperty_mInstructionList (void) const {
+  if (NULL == mObjectPtr) {
+    return GALGAS_pic_31__38_InstructionList () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_savebank) ;
+    return p->mProperty_mInstructionList ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_location GALGAS_pic_31__38_Instruction_5F_savebank::readProperty_mEndOfSaveBankInstruction (void) const {
+  if (NULL == mObjectPtr) {
+    return GALGAS_location () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_savebank) ;
+    return p->mProperty_mEndOfSaveBankInstruction ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//Pointer class for @pic18Instruction_savebank class
+//----------------------------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_savebank::cPtr_pic_31__38_Instruction_5F_savebank (const GALGAS_location & in_mInstructionLocation,
+                                                                                  const GALGAS_registerExpression & in_mRegister,
+                                                                                  const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                  const GALGAS_location & in_mEndOfSaveBankInstruction
+                                                                                  COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation COMMA_THERE),
+mProperty_mRegister (in_mRegister),
+mProperty_mInstructionList (in_mInstructionList),
+mProperty_mEndOfSaveBankInstruction (in_mEndOfSaveBankInstruction) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_savebank::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_savebank ;
+}
+
+void cPtr_pic_31__38_Instruction_5F_savebank::description (C_String & ioString,
+                                                           const int32_t inIndentation) const {
+  ioString << "[@pic18Instruction_savebank:" ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mRegister.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mEndOfSaveBankInstruction.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_pic_31__38_Instruction_5F_savebank::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_savebank (mProperty_mInstructionLocation, mProperty_mRegister, mProperty_mInstructionList, mProperty_mEndOfSaveBankInstruction COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//     @pic18Instruction_savebank generic code implementation
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_savebank ("pic18Instruction_savebank",
+                                                           & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_savebank::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_savebank ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_savebank::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_savebank (*this)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_Instruction_5F_savebank GALGAS_pic_31__38_Instruction_5F_savebank::extractObject (const GALGAS_object & inObject,
+                                                                                                    C_Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38_Instruction_5F_savebank result ;
+  const GALGAS_pic_31__38_Instruction_5F_savebank * p = (const GALGAS_pic_31__38_Instruction_5F_savebank *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_savebank *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_savebank", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 // @pic_31__38_Instruction_5F_FDA reference class
+//----------------------------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_FDA::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction_5F_FDA_5F_base_5F_code.printNonNullClassInstanceProperties ("mInstruction_FDA_base_code") ;
+    mProperty_mRegisterExpression.printNonNullClassInstanceProperties ("mRegisterExpression") ;
+    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
+  }
+#endif
+
 //----------------------------------------------------------------------------------------------------------------------
 
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_FDA::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
@@ -43,7 +288,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_FDA::objectCompare (const 
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -189,7 +434,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_FDA::duplicate (LOCATION_ARGS) cons
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_FDA type
+//     @pic18Instruction_FDA generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -234,6 +479,16 @@ GALGAS_pic_31__38_Instruction_5F_FDA GALGAS_pic_31__38_Instruction_5F_FDA::extra
 // @pic_31__38_Instruction_5F_FA reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_FA::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mFAinstruction.printNonNullClassInstanceProperties ("mFAinstruction") ;
+    mProperty_mRegisterExpression.printNonNullClassInstanceProperties ("mRegisterExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_FA::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_FA * p = (const cPtr_pic_31__38_Instruction_5F_FA *) inOperandPtr ;
@@ -263,7 +518,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_FA::objectCompare (const G
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -381,7 +636,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_FA::duplicate (LOCATION_ARGS) const
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_FA type
+//     @pic18Instruction_FA generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -426,6 +681,16 @@ GALGAS_pic_31__38_Instruction_5F_FA GALGAS_pic_31__38_Instruction_5F_FA::extract
 // @pic_31__38_Instruction_5F_MOVFF reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_MOVFF::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mSourceRegisterName.printNonNullClassInstanceProperties ("mSourceRegisterName") ;
+    mProperty_mDestinationRegisterName.printNonNullClassInstanceProperties ("mDestinationRegisterName") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_MOVFF::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_MOVFF * p = (const cPtr_pic_31__38_Instruction_5F_MOVFF *) inOperandPtr ;
@@ -455,7 +720,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_MOVFF::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -573,7 +838,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_MOVFF::duplicate (LOCATION_ARGS) co
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_MOVFF type
+//     @pic18Instruction_MOVFF generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -618,6 +883,17 @@ GALGAS_pic_31__38_Instruction_5F_MOVFF GALGAS_pic_31__38_Instruction_5F_MOVFF::e
 // @pic_31__38_Instruction_5F_FBA reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_FBA::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mBitOrientedOp.printNonNullClassInstanceProperties ("mBitOrientedOp") ;
+    mProperty_mRegisterExpression.printNonNullClassInstanceProperties ("mRegisterExpression") ;
+    mProperty_mBitNumber.printNonNullClassInstanceProperties ("mBitNumber") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_FBA::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_FBA * p = (const cPtr_pic_31__38_Instruction_5F_FBA *) inOperandPtr ;
@@ -650,7 +926,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_FBA::objectCompare (const 
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -796,7 +1072,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_FBA::duplicate (LOCATION_ARGS) cons
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_FBA type
+//     @pic18Instruction_FBA generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -841,6 +1117,16 @@ GALGAS_pic_31__38_Instruction_5F_FBA GALGAS_pic_31__38_Instruction_5F_FBA::extra
 // @pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON::printNonNullClassInstanceProperties () ;
+    mProperty_mOpCode.printNonNullClassInstanceProperties ("mOpCode") ;
+    mProperty_mRegisterExpression.printNonNullClassInstanceProperties ("mRegisterExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON * p = (const cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON *) inOperandPtr ;
@@ -873,7 +1159,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON:
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -995,7 +1281,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::duplicat
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_IF_FA_SEMI_COLON type
+//     @pic18Instruction_IF_FA_SEMI_COLON generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1040,6 +1326,17 @@ GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON GALGAS_pic_31__38_Ins
 // @pic_31__38_Instruction_5F_IF_5F_BitTest reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON::printNonNullClassInstanceProperties () ;
+    mProperty_mSkipIfSet.printNonNullClassInstanceProperties ("mSkipIfSet") ;
+    mProperty_mRegisterExpression.printNonNullClassInstanceProperties ("mRegisterExpression") ;
+    mProperty_mBitNumber.printNonNullClassInstanceProperties ("mBitNumber") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest * p = (const cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest *) inOperandPtr ;
@@ -1075,7 +1372,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::objectCompa
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -1225,7 +1522,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest::duplicate (LOCATION_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_IF_BitTest type
+//     @pic18Instruction_IF_BitTest generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1270,6 +1567,18 @@ GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest GALGAS_pic_31__38_Instruction_5F_
 // @pic_31__38_Instruction_5F_IF_5F_IncDec reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON::printNonNullClassInstanceProperties () ;
+    mProperty_mIncrement.printNonNullClassInstanceProperties ("mIncrement") ;
+    mProperty_mSkipIfZero.printNonNullClassInstanceProperties ("mSkipIfZero") ;
+    mProperty_mRegisterExpression.printNonNullClassInstanceProperties ("mRegisterExpression") ;
+    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec * p = (const cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec *) inOperandPtr ;
@@ -1308,7 +1617,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::objectCompar
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -1486,7 +1795,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec::duplicate (LOCATION_A
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_IF_IncDec type
+//     @pic18Instruction_IF_IncDec generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1531,6 +1840,16 @@ GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec GALGAS_pic_31__38_Instruction_5F_I
 // @pic_31__38_RegisterTestCondition reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_RegisterTestCondition::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_ConditionExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mRegisterExpression.printNonNullClassInstanceProperties ("mRegisterExpression") ;
+    mProperty_mBranchIfZero.printNonNullClassInstanceProperties ("mBranchIfZero") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_RegisterTestCondition::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_RegisterTestCondition * p = (const cPtr_pic_31__38_RegisterTestCondition *) inOperandPtr ;
@@ -1557,7 +1876,7 @@ typeComparisonResult GALGAS_pic_31__38_RegisterTestCondition::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -1671,7 +1990,7 @@ acPtr_class * cPtr_pic_31__38_RegisterTestCondition::duplicate (LOCATION_ARGS) c
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18RegisterTestCondition type
+//     @pic18RegisterTestCondition generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1716,6 +2035,16 @@ GALGAS_pic_31__38_RegisterTestCondition GALGAS_pic_31__38_RegisterTestCondition:
 // @pic_31__38_RegisterComparisonCondition reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_RegisterComparisonCondition::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_ConditionExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mRegisterExpression.printNonNullClassInstanceProperties ("mRegisterExpression") ;
+    mProperty_mComparison.printNonNullClassInstanceProperties ("mComparison") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_RegisterComparisonCondition::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_RegisterComparisonCondition * p = (const cPtr_pic_31__38_RegisterComparisonCondition *) inOperandPtr ;
@@ -1742,7 +2071,7 @@ typeComparisonResult GALGAS_pic_31__38_RegisterComparisonCondition::objectCompar
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -1856,7 +2185,7 @@ acPtr_class * cPtr_pic_31__38_RegisterComparisonCondition::duplicate (LOCATION_A
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18RegisterComparisonCondition type
+//     @pic18RegisterComparisonCondition generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1901,6 +2230,18 @@ GALGAS_pic_31__38_RegisterComparisonCondition GALGAS_pic_31__38_RegisterComparis
 // @pic_31__38_IncDecRegisterInCondition reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_IncDecRegisterInCondition::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_ConditionExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mRegisterExpression.printNonNullClassInstanceProperties ("mRegisterExpression") ;
+    mProperty_mIncrement.printNonNullClassInstanceProperties ("mIncrement") ;
+    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
+    mProperty_mBranchIfZero.printNonNullClassInstanceProperties ("mBranchIfZero") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_IncDecRegisterInCondition::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_IncDecRegisterInCondition * p = (const cPtr_pic_31__38_IncDecRegisterInCondition *) inOperandPtr ;
@@ -1933,7 +2274,7 @@ typeComparisonResult GALGAS_pic_31__38_IncDecRegisterInCondition::objectCompare 
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -2103,7 +2444,7 @@ acPtr_class * cPtr_pic_31__38_IncDecRegisterInCondition::duplicate (LOCATION_ARG
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18IncDecRegisterInCondition type
+//     @pic18IncDecRegisterInCondition generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -2148,6 +2489,16 @@ GALGAS_pic_31__38_IncDecRegisterInCondition GALGAS_pic_31__38_IncDecRegisterInCo
 // @pic_31__38_BitTestInStructuredCondition reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_BitTestInStructuredCondition::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_ConditionExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mRegisterExpression.printNonNullClassInstanceProperties ("mRegisterExpression") ;
+    mProperty_mBitNumber.printNonNullClassInstanceProperties ("mBitNumber") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_BitTestInStructuredCondition::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_BitTestInStructuredCondition * p = (const cPtr_pic_31__38_BitTestInStructuredCondition *) inOperandPtr ;
@@ -2174,7 +2525,7 @@ typeComparisonResult GALGAS_pic_31__38_BitTestInStructuredCondition::objectCompa
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -2288,7 +2639,7 @@ acPtr_class * cPtr_pic_31__38_BitTestInStructuredCondition::duplicate (LOCATION_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18BitTestInStructuredCondition type
+//     @pic18BitTestInStructuredCondition generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9674,191 +10025,4 @@ void cPtr_midrange_5F_instruction_5F_F::method_build_5F_midrange_5F_ipic_5F_inst
   const GALGAS_midrange_5F_instruction_5F_F temp_1 = this ;
   const GALGAS_midrange_5F_instruction_5F_F temp_2 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (temp_1.readProperty_mInstructionLocation (), temp_2.readProperty_mFAinstruction (), var_IPICregisterDescription_17283  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 485))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 485)) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_instruction_FB build_midrange_ipic_instructionList'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void cPtr_midrange_5F_instruction_5F_FB::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
-                                                                                              const GALGAS_registerTable constinArgument_inRegisterTable,
-                                                                                              const GALGAS_constantMap constinArgument_inConstantMap,
-                                                                                              GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                              GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                                                              GALGAS_string & /* ioArgument_ioListFileContents */,
-                                                                                              const GALGAS_uint constinArgument_inTotalBankCount,
-                                                                                              GALGAS_uint & ioArgument_ioCurrentBank,
-                                                                                              const GALGAS_bool /* constinArgument_inShouldPreserveBank */,
-                                                                                              GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
-                                                                                              const GALGAS_routineKind /* constinArgument_inRoutineKind */,
-                                                                                              GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription_18428 ;
-  GALGAS_bitSliceTable var_bitSliceTable_18451 ;
-  const GALGAS_midrange_5F_instruction_5F_FB temp_0 = this ;
-  callExtensionMethod_resolveMidrangeAccess ((cPtr_registerExpression *) temp_0.readProperty_mRegisterExpression ().ptr (), constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, var_IPICregisterDescription_18428, var_bitSliceTable_18451, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 508)) ;
-  GALGAS_uint var_bitNumber_18609 ;
-  const GALGAS_midrange_5F_instruction_5F_FB temp_1 = this ;
-  callExtensionMethod_getBitNumber ((cPtr_bitNumberExpression *) temp_1.readProperty_mBitNumber ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioUsedRegisters, var_bitSliceTable_18451, var_bitNumber_18609, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 517)) ;
-  const GALGAS_midrange_5F_instruction_5F_FB temp_2 = this ;
-  const GALGAS_midrange_5F_instruction_5F_FB temp_3 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB::constructor_new (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mBitOrientedOp (), var_IPICregisterDescription_18428, var_bitNumber_18609  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 524))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 524)) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrange_instruction_JSR build_midrange_ipic_instructionList'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void cPtr_midrange_5F_instruction_5F_JSR::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
-                                                                                               const GALGAS_registerTable /* constinArgument_inRegisterTable */,
-                                                                                               const GALGAS_constantMap /* constinArgument_inConstantMap */,
-                                                                                               GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                               GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                                                               GALGAS_string & /* ioArgument_ioListFileContents */,
-                                                                                               const GALGAS_uint /* constinArgument_inTotalBankCount */,
-                                                                                               GALGAS_uint & ioArgument_ioCurrentBank,
-                                                                                               const GALGAS_bool /* constinArgument_inShouldPreserveBank */,
-                                                                                               GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
-                                                                                               const GALGAS_routineKind /* constinArgument_inRoutineKind */,
-                                                                                               GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                               C_Compiler * inCompiler
-                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_bool var_isNoReturn_19523 ;
-  GALGAS_uint var_requiredBank_19541 ;
-  GALGAS_uint var_returnedBank_19559 ;
-  GALGAS_bool var_preservesBank_19578 ;
-  const GALGAS_midrange_5F_instruction_5F_JSR temp_0 = this ;
-  constinArgument_inRoutineMap.method_searchKey (temp_0.readProperty_mTargetLabel (), var_isNoReturn_19523, var_requiredBank_19541, var_returnedBank_19559, var_preservesBank_19578, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 548)) ;
-  enumGalgasBool test_1 = kBoolTrue ;
-  if (kBoolTrue == test_1) {
-    test_1 = GALGAS_bool (kIsNotEqual, var_requiredBank_19541.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 549)))).operator_and (GALGAS_bool (kIsNotEqual, var_requiredBank_19541.objectCompare (ioArgument_ioCurrentBank)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 549)).boolEnum () ;
-    if (kBoolTrue == test_1) {
-      const GALGAS_midrange_5F_instruction_5F_JSR temp_2 = this ;
-      GALGAS_string var_errorMessage_19681 = GALGAS_string ("the routine '").add_operation (temp_2.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 550)).add_operation (GALGAS_string ("' requires bank selection to be set to "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 550)).add_operation (var_requiredBank_19541.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 550)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 550)) ;
-      var_errorMessage_19681.plusAssign_operation(GALGAS_string (", but bank selection "), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 551)) ;
-      enumGalgasBool test_3 = kBoolTrue ;
-      if (kBoolTrue == test_3) {
-        test_3 = GALGAS_bool (kIsEqual, ioArgument_ioCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 552)))).boolEnum () ;
-        if (kBoolTrue == test_3) {
-          var_errorMessage_19681.plusAssign_operation(GALGAS_string ("does contain any reliable value"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 553)) ;
-        }
-      }
-      if (kBoolFalse == test_3) {
-        var_errorMessage_19681.plusAssign_operation(GALGAS_string ("is set to ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 555)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 555)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 555)) ;
-      }
-      const GALGAS_midrange_5F_instruction_5F_JSR temp_4 = this ;
-      TC_Array <C_FixItDescription> fixItArray5 ;
-      inCompiler->emitSemanticError (temp_4.readProperty_mTargetLabel ().readProperty_location (), var_errorMessage_19681, fixItArray5  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 557)) ;
-    }
-  }
-  enumGalgasBool test_6 = kBoolTrue ;
-  if (kBoolTrue == test_6) {
-    test_6 = var_isNoReturn_19523.boolEnum () ;
-    if (kBoolTrue == test_6) {
-      const GALGAS_midrange_5F_instruction_5F_JSR temp_7 = this ;
-      TC_Array <C_FixItDescription> fixItArray8 ;
-      inCompiler->emitSemanticError (temp_7.readProperty_mTargetLabel ().readProperty_location (), GALGAS_string ("a \"noreturn\" routine should be called with a GOTO or JUMP instruction"), fixItArray8  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 560)) ;
-    }
-  }
-  enumGalgasBool test_9 = kBoolTrue ;
-  if (kBoolTrue == test_9) {
-    test_9 = var_preservesBank_19578.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 562)).boolEnum () ;
-    if (kBoolTrue == test_9) {
-      ioArgument_ioCurrentBank = var_returnedBank_19559 ;
-    }
-  }
-  const GALGAS_midrange_5F_instruction_5F_JSR temp_10 = this ;
-  const GALGAS_midrange_5F_instruction_5F_JSR temp_11 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_JSR::constructor_new (temp_10.readProperty_mInstructionLocation (), temp_11.readProperty_mTargetLabel (), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 569)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 570))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 566))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 566)) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrangeInstruction_checkbank build_midrange_ipic_instructionList'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void cPtr_midrangeInstruction_5F_checkbank::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
-                                                                                                 const GALGAS_registerTable /* constinArgument_inRegisterTable */,
-                                                                                                 const GALGAS_constantMap /* constinArgument_inConstantMap */,
-                                                                                                 GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                                 GALGAS_midrange_5F_intermediate_5F_instructionList & /* ioArgument_ioGeneratedInstructionList */,
-                                                                                                 GALGAS_string & /* ioArgument_ioListFileContents */,
-                                                                                                 const GALGAS_uint /* constinArgument_inTotalBankCount */,
-                                                                                                 GALGAS_uint & ioArgument_ioCurrentBank,
-                                                                                                 const GALGAS_bool /* constinArgument_inShouldPreserveBank */,
-                                                                                                 GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
-                                                                                                 const GALGAS_routineKind /* constinArgument_inRoutineKind */,
-                                                                                                 GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                 C_Compiler * inCompiler
-                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
-    const GALGAS_midrangeInstruction_5F_checkbank temp_1 = this ;
-    test_0 = GALGAS_bool (kIsStrictSup, temp_1.readProperty_mBankIndex ().objectCompare (GALGAS_uint (uint32_t (15U)))).boolEnum () ;
-    if (kBoolTrue == test_0) {
-      const GALGAS_midrangeInstruction_5F_checkbank temp_2 = this ;
-      TC_Array <C_FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticError (temp_2.readProperty_mInstructionLocation (), GALGAS_string ("Bank index should be <= 15"), fixItArray3  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 590)) ;
-    }
-  }
-  if (kBoolFalse == test_0) {
-    enumGalgasBool test_4 = kBoolTrue ;
-    if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (kIsEqual, ioArgument_ioCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 591)))).boolEnum () ;
-      if (kBoolTrue == test_4) {
-        const GALGAS_midrangeInstruction_5F_checkbank temp_5 = this ;
-        TC_Array <C_FixItDescription> fixItArray6 ;
-        inCompiler->emitSemanticError (temp_5.readProperty_mInstructionLocation (), GALGAS_string ("checkbank fail: there is no selected bank"), fixItArray6  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 592)) ;
-      }
-    }
-    if (kBoolFalse == test_4) {
-      enumGalgasBool test_7 = kBoolTrue ;
-      if (kBoolTrue == test_7) {
-        const GALGAS_midrangeInstruction_5F_checkbank temp_8 = this ;
-        test_7 = GALGAS_bool (kIsNotEqual, ioArgument_ioCurrentBank.objectCompare (temp_8.readProperty_mBankIndex ())).boolEnum () ;
-        if (kBoolTrue == test_7) {
-          const GALGAS_midrangeInstruction_5F_checkbank temp_9 = this ;
-          const GALGAS_midrangeInstruction_5F_checkbank temp_10 = this ;
-          TC_Array <C_FixItDescription> fixItArray11 ;
-          inCompiler->emitSemanticError (temp_9.readProperty_mInstructionLocation (), GALGAS_string ("checkbank fail: the selected bank is ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 594)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 594)).add_operation (GALGAS_string (", required bank is "), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 594)).add_operation (temp_10.readProperty_mBankIndex ().getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 594)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 594)), fixItArray11  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 594)) ;
-        }
-      }
-    }
-  }
-  const GALGAS_midrangeInstruction_5F_checkbank temp_12 = this ;
-  ioArgument_ioCurrentBank = temp_12.readProperty_mBankIndex () ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@midrangeInstruction_checknobank build_midrange_ipic_instructionList'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void cPtr_midrangeInstruction_5F_checknobank::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
-                                                                                                   const GALGAS_registerTable /* constinArgument_inRegisterTable */,
-                                                                                                   const GALGAS_constantMap /* constinArgument_inConstantMap */,
-                                                                                                   GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                                   GALGAS_midrange_5F_intermediate_5F_instructionList & /* ioArgument_ioGeneratedInstructionList */,
-                                                                                                   GALGAS_string & /* ioArgument_ioListFileContents */,
-                                                                                                   const GALGAS_uint /* constinArgument_inTotalBankCount */,
-                                                                                                   GALGAS_uint & ioArgument_ioCurrentBank,
-                                                                                                   const GALGAS_bool /* constinArgument_inShouldPreserveBank */,
-                                                                                                   GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
-                                                                                                   const GALGAS_routineKind /* constinArgument_inRoutineKind */,
-                                                                                                   GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                   C_Compiler * inCompiler
-                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsNotEqual, ioArgument_ioCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 615)))).boolEnum () ;
-    if (kBoolTrue == test_0) {
-      const GALGAS_midrangeInstruction_5F_checknobank temp_1 = this ;
-      TC_Array <C_FixItDescription> fixItArray2 ;
-      inCompiler->emitSemanticError (temp_1.readProperty_mInstructionLocation (), GALGAS_string ("checknobank fail: the ").add_operation (ioArgument_ioCurrentBank.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 616)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 616)).add_operation (GALGAS_string (" bank is selected"), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 616)), fixItArray2  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 616)) ;
-      ioArgument_ioCurrentBank = GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 617)) ;
-    }
-  }
 }

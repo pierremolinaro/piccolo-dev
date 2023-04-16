@@ -8,6 +8,138 @@
 #include "all-declarations-3.h"
 
 //----------------------------------------------------------------------------------------------------------------------
+// @midrange_5F_intermediate_5F_NULL reference class
+//----------------------------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_NULL::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_instruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
+typeComparisonResult cPtr_midrange_5F_intermediate_5F_NULL::dynamicObjectCompare (const acPtr_class * /* inOperandPtr */) const {
+  return kOperandEqual ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+typeComparisonResult GALGAS_midrange_5F_intermediate_5F_NULL::objectCompare (const GALGAS_midrange_5F_intermediate_5F_NULL & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+    }
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_midrange_5F_intermediate_5F_NULL::GALGAS_midrange_5F_intermediate_5F_NULL (void) :
+GALGAS_midrange_5F_intermediate_5F_instruction () {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_midrange_5F_intermediate_5F_NULL GALGAS_midrange_5F_intermediate_5F_NULL::constructor_default (LOCATION_ARGS) {
+  return GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_midrange_5F_intermediate_5F_NULL::GALGAS_midrange_5F_intermediate_5F_NULL (const cPtr_midrange_5F_intermediate_5F_NULL * inSourcePtr) :
+GALGAS_midrange_5F_intermediate_5F_instruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_intermediate_5F_NULL) ;
+}
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_midrange_5F_intermediate_5F_NULL GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (LOCATION_ARGS) {
+  GALGAS_midrange_5F_intermediate_5F_NULL result ;
+  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_intermediate_5F_NULL (THERE)) ;
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//Pointer class for @midrange_intermediate_NULL class
+//----------------------------------------------------------------------------------------------------------------------
+
+cPtr_midrange_5F_intermediate_5F_NULL::cPtr_midrange_5F_intermediate_5F_NULL (LOCATION_ARGS) :
+cPtr_midrange_5F_intermediate_5F_instruction (THERE) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_midrange_5F_intermediate_5F_NULL::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_NULL ;
+}
+
+void cPtr_midrange_5F_intermediate_5F_NULL::description (C_String & ioString,
+                                                         const int32_t /* inIndentation */) const {
+  ioString << "[@midrange_intermediate_NULL]" ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_midrange_5F_intermediate_5F_NULL::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = NULL ;
+  macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_NULL (THERE)) ;
+  return ptr ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//     @midrange_intermediate_NULL generic code implementation
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_NULL ("midrange_intermediate_NULL",
+                                                         & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_NULL::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_NULL ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_NULL::clonedObject (void) const {
+  AC_GALGAS_root * result = NULL ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_NULL (*this)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_midrange_5F_intermediate_5F_NULL GALGAS_midrange_5F_intermediate_5F_NULL::extractObject (const GALGAS_object & inObject,
+                                                                                                C_Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_midrange_5F_intermediate_5F_NULL result ;
+  const GALGAS_midrange_5F_intermediate_5F_NULL * p = (const GALGAS_midrange_5F_intermediate_5F_NULL *) inObject.embeddedObject () ;
+  if (NULL != p) {
+    if (NULL != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_NULL *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("midrange_intermediate_NULL", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
 
 typeComparisonResult GALGAS_midrange_5F_intermediate_5F_NULL_2D_weak::objectCompare (const GALGAS_midrange_5F_intermediate_5F_NULL_2D_weak & inOperand) const {
   typeComparisonResult result = kOperandNotValid ;
@@ -77,7 +209,7 @@ GALGAS_midrange_5F_intermediate_5F_NULL GALGAS_midrange_5F_intermediate_5F_NULL_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_NULL-weak type
+//     @midrange_intermediate_NULL-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -122,6 +254,15 @@ GALGAS_midrange_5F_intermediate_5F_NULL_2D_weak GALGAS_midrange_5F_intermediate_
 // @midrange_5F_intermediate_5F_pseudo_5F_ORG reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mOrigin.printNonNullClassInstanceProperties ("mOrigin") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG * p = (const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *) inOperandPtr ;
@@ -145,7 +286,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG::objectCom
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -238,7 +379,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::duplicate (LOCATIO
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_pseudo_ORG type
+//     @midrange_intermediate_pseudo_ORG generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -349,7 +490,7 @@ GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG GALGAS_midrange_5F_intermediate
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_pseudo_ORG-weak type
+//     @midrange_intermediate_pseudo_ORG-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -460,7 +601,7 @@ GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL GALGAS_midrange_5F_intermedia
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_pseudo_LABEL-weak type
+//     @midrange_intermediate_pseudo_LABEL-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -505,6 +646,15 @@ GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak GALGAS_midrange_5F_in
 // @midrange_5F_intermediate_5F_actualInstruction reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstructionLocation.printNonNullClassInstanceProperties ("mInstructionLocation") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
 
 typeComparisonResult GALGAS_midrange_5F_intermediate_5F_actualInstruction::objectCompare (const GALGAS_midrange_5F_intermediate_5F_actualInstruction & inOperand) const {
@@ -517,7 +667,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_actualInstruction::objec
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -571,7 +721,7 @@ mProperty_mInstructionLocation (in_mInstructionLocation) {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_actualInstruction type
+//     @midrange_intermediate_actualInstruction generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -682,7 +832,7 @@ GALGAS_midrange_5F_intermediate_5F_actualInstruction GALGAS_midrange_5F_intermed
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_actualInstruction-weak type
+//     @midrange_intermediate_actualInstruction-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -727,6 +877,17 @@ GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak GALGAS_midrange_5F_
 // @midrange_5F_intermediate_5F_instruction_5F_FD reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction_5F_FD_5F_base_5F_code.printNonNullClassInstanceProperties ("mInstruction_FD_base_code") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_FD * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_FD *) inOperandPtr ;
@@ -759,7 +920,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::objec
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -905,7 +1066,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::duplicate (LOC
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_FD type
+//     @midrange_intermediate_instruction_FD generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1016,7 +1177,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD GALGAS_midrange_5F_intermed
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_FD-weak type
+//     @midrange_intermediate_instruction_FD-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1061,6 +1222,16 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak GALGAS_midrange_5F_
 // @midrange_5F_intermediate_5F_instruction_5F_F reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_F::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mFinstruction.printNonNullClassInstanceProperties ("mFinstruction") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_F::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_F * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_F *) inOperandPtr ;
@@ -1090,7 +1261,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::object
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -1208,7 +1379,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_F::duplicate (LOCA
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_F type
+//     @midrange_intermediate_instruction_F generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1319,7 +1490,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_F GALGAS_midrange_5F_intermedi
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_F-weak type
+//     @midrange_intermediate_instruction_F-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1364,6 +1535,17 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak GALGAS_midrange_5F_i
 // @midrange_5F_intermediate_5F_instruction_5F_FB reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mBitOrientedOp.printNonNullClassInstanceProperties ("mBitOrientedOp") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_mBitNumber.printNonNullClassInstanceProperties ("mBitNumber") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_FB *) inOperandPtr ;
@@ -1396,7 +1578,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB::objec
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -1542,7 +1724,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::duplicate (LOC
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_FB type
+//     @midrange_intermediate_instruction_FB generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1653,7 +1835,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB GALGAS_midrange_5F_intermed
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_FB-weak type
+//     @midrange_intermediate_instruction_FB-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1698,6 +1880,17 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB_2D_weak GALGAS_midrange_5F_
 // @midrange_5F_intermediate_5F_instruction_5F_BitTestSkip reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mSkipIfSet.printNonNullClassInstanceProperties ("mSkipIfSet") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_mBitNumber.printNonNullClassInstanceProperties ("mBitNumber") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip *) inOperandPtr ;
@@ -1730,7 +1923,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSk
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -1886,7 +2079,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::dupli
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_BitTestSkip type
+//     @midrange_intermediate_instruction_BitTestSkip generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1997,7 +2190,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip GALGAS_midrange_5F
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_BitTestSkip-weak type
+//     @midrange_intermediate_instruction_BitTestSkip-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -2142,7 +2335,7 @@ typeComparisonResult GALGAS_midrange_5F_call_5F_goto_5F_bit::objectCompare (cons
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_call_goto_bit type
+//     @midrange_call_goto_bit generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -2253,7 +2446,7 @@ GALGAS_midrange_5F_intermediate_5F_JUMP GALGAS_midrange_5F_intermediate_5F_JUMP_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_JUMP-weak type
+//     @midrange_intermediate_JUMP-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -2364,7 +2557,7 @@ GALGAS_midrange_5F_intermediate_5F_GOTO GALGAS_midrange_5F_intermediate_5F_GOTO_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_GOTO-weak type
+//     @midrange_intermediate_GOTO-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -2475,7 +2668,7 @@ GALGAS_midrange_5F_intermediate_5F_CALL GALGAS_midrange_5F_intermediate_5F_CALL_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_CALL-weak type
+//     @midrange_intermediate_CALL-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -2586,7 +2779,7 @@ GALGAS_midrange_5F_intermediate_5F_JSR GALGAS_midrange_5F_intermediate_5F_JSR_2D
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_JSR-weak type
+//     @midrange_intermediate_JSR-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -2631,6 +2824,14 @@ GALGAS_midrange_5F_intermediate_5F_JSR_2D_weak GALGAS_midrange_5F_intermediate_5
 // @midrange_5F_intermediate_5F_instruction_5F_CLRWDT reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT *) inOperandPtr ;
@@ -2654,7 +2855,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_CLRWDT::o
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -2723,7 +2924,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT::duplicate 
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_CLRWDT type
+//     @midrange_intermediate_instruction_CLRWDT generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -2834,7 +3035,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_CLRWDT GALGAS_midrange_5F_inte
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_CLRWDT-weak type
+//     @midrange_intermediate_instruction_CLRWDT-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -2879,6 +3080,14 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_CLRWDT_2D_weak GALGAS_midrange
 // @midrange_5F_intermediate_5F_instruction_5F_CLRW reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW *) inOperandPtr ;
@@ -2902,7 +3111,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_CLRW::obj
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -2971,7 +3180,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW::duplicate (L
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_CLRW type
+//     @midrange_intermediate_instruction_CLRW generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -3082,7 +3291,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_CLRW GALGAS_midrange_5F_interm
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_CLRW-weak type
+//     @midrange_intermediate_instruction_CLRW-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -3127,6 +3336,14 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_CLRW_2D_weak GALGAS_midrange_5
 // @midrange_5F_intermediate_5F_instruction_5F_NOP reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP *) inOperandPtr ;
@@ -3150,7 +3367,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_NOP::obje
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -3219,7 +3436,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP::duplicate (LO
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_NOP type
+//     @midrange_intermediate_instruction_NOP generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -3330,7 +3547,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_NOP GALGAS_midrange_5F_interme
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_NOP-weak type
+//     @midrange_intermediate_instruction_NOP-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -3375,6 +3592,14 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_NOP_2D_weak GALGAS_midrange_5F
 // @midrange_5F_intermediate_5F_instruction_5F_RETURN reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN *) inOperandPtr ;
@@ -3398,7 +3623,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETURN::o
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -3467,7 +3692,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::duplicate 
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_RETURN type
+//     @midrange_intermediate_instruction_RETURN generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -3578,7 +3803,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETURN GALGAS_midrange_5F_inte
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_RETURN-weak type
+//     @midrange_intermediate_instruction_RETURN-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -3623,6 +3848,14 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETURN_2D_weak GALGAS_midrange
 // @midrange_5F_intermediate_5F_instruction_5F_RETFIE reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE *) inOperandPtr ;
@@ -3646,7 +3879,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETFIE::o
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -3715,7 +3948,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::duplicate 
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_RETFIE type
+//     @midrange_intermediate_instruction_RETFIE generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -3826,7 +4059,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETFIE GALGAS_midrange_5F_inte
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_RETFIE-weak type
+//     @midrange_intermediate_instruction_RETFIE-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -3871,6 +4104,14 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETFIE_2D_weak GALGAS_midrange
 // @midrange_5F_intermediate_5F_instruction_5F_SLEEP reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP *) inOperandPtr ;
@@ -3894,7 +4135,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_SLEEP::ob
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -3963,7 +4204,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP::duplicate (
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_SLEEP type
+//     @midrange_intermediate_instruction_SLEEP generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4074,7 +4315,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_SLEEP GALGAS_midrange_5F_inter
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_SLEEP-weak type
+//     @midrange_intermediate_instruction_SLEEP-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4119,6 +4360,16 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_SLEEP_2D_weak GALGAS_midrange_
 // @midrange_5F_intermediate_5F_instruction_5F_literalOperation reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mLiteralInstruction.printNonNullClassInstanceProperties ("mLiteralInstruction") ;
+    mProperty_mLiteralValue.printNonNullClassInstanceProperties ("mLiteralValue") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *) inOperandPtr ;
@@ -4148,7 +4399,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOp
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -4266,7 +4517,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_literalOperation type
+//     @midrange_intermediate_instruction_literalOperation generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4377,7 +4628,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation GALGAS_midran
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_literalOperation-weak type
+//     @midrange_intermediate_instruction_literalOperation-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4422,6 +4673,15 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation_2D_weak GALGA
 // @midrange_5F_intermediate_5F_instruction_5F_MNOP reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mOccurrenceFactor.printNonNullClassInstanceProperties ("mOccurrenceFactor") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP *) inOperandPtr ;
@@ -4448,7 +4708,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP::obj
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -4546,7 +4806,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::duplicate (L
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_MNOP type
+//     @midrange_intermediate_instruction_MNOP generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4657,7 +4917,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP GALGAS_midrange_5F_interm
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_instruction_MNOP-weak type
+//     @midrange_intermediate_instruction_MNOP-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4702,6 +4962,19 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP_2D_weak GALGAS_midrange_5
 // @midrange_5F_intermediate_5F_incDecRegisterInCondition reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_mTargetLabel.printNonNullClassInstanceProperties ("mTargetLabel") ;
+    mProperty_mIncrement.printNonNullClassInstanceProperties ("mIncrement") ;
+    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
+    mProperty_mBranchIfZero.printNonNullClassInstanceProperties ("mBranchIfZero") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * p = (const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition *) inOperandPtr ;
@@ -4740,7 +5013,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_incDecRegisterInConditio
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -4954,7 +5227,7 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::duplic
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_incDecRegisterInCondition type
+//     @midrange_intermediate_incDecRegisterInCondition generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -5065,7 +5338,7 @@ GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition GALGAS_midrange_5F_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_intermediate_incDecRegisterInCondition-weak type
+//     @midrange_intermediate_incDecRegisterInCondition-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -5957,7 +6230,7 @@ bool GALGAS_midrange_5F_symbolTableForConvertingRelatives::optional_searchKey (c
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_symbolTableForConvertingRelatives type
+//     @midrange_symbolTableForConvertingRelatives generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -6293,7 +6566,7 @@ bool GALGAS_midrange_5F_symbolTable::optional_searchKey (const GALGAS_string & i
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_symbolTable type
+//     @midrange_symbolTable generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -6770,7 +7043,7 @@ bool GALGAS_midrange_5F_declaredRoutineMap::optional_searchKey (const GALGAS_str
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@midrange_declaredRoutineMap type
+//     @midrange_declaredRoutineMap generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7042,7 +7315,7 @@ bool GALGAS_bootloaderReservedRAMmap::optional_searchKey (const GALGAS_string & 
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@bootloaderReservedRAMmap type
+//     @bootloaderReservedRAMmap generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7087,6 +7360,15 @@ GALGAS_bootloaderReservedRAMmap GALGAS_bootloaderReservedRAMmap::extractObject (
 // @pic_31__38_PiccoloInstruction reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_PiccoloInstruction::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+    mProperty_mInstructionLocation.printNonNullClassInstanceProperties ("mInstructionLocation") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
 
 typeComparisonResult GALGAS_pic_31__38_PiccoloInstruction::objectCompare (const GALGAS_pic_31__38_PiccoloInstruction & inOperand) const {
@@ -7099,7 +7381,7 @@ typeComparisonResult GALGAS_pic_31__38_PiccoloInstruction::objectCompare (const 
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -7153,7 +7435,7 @@ mProperty_mInstructionLocation (in_mInstructionLocation) {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18PiccoloInstruction type
+//     @pic18PiccoloInstruction generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7264,7 +7546,7 @@ GALGAS_pic_31__38_PiccoloInstruction GALGAS_pic_31__38_PiccoloInstruction_2D_wea
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18PiccoloInstruction-weak type
+//     @pic18PiccoloInstruction-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7681,7 +7963,7 @@ GALGAS_pic_31__38_PiccoloInstruction cEnumerator_pic_31__38_InstructionList::cur
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18InstructionList type
+//     @pic18InstructionList generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7726,6 +8008,14 @@ GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_InstructionList::extractObje
 // @pic_31__38_Instruction_5F_nobanksel reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_nobanksel::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloInstruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_nobanksel::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_nobanksel * p = (const cPtr_pic_31__38_Instruction_5F_nobanksel *) inOperandPtr ;
@@ -7749,7 +8039,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_nobanksel::objectCompare (
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -7818,7 +8108,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_nobanksel::duplicate (LOCATION_ARGS
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_nobanksel type
+//     @pic18Instruction_nobanksel generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7929,7 +8219,7 @@ GALGAS_pic_31__38_Instruction_5F_nobanksel GALGAS_pic_31__38_Instruction_5F_noba
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_nobanksel-weak type
+//     @pic18Instruction_nobanksel-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7974,6 +8264,14 @@ GALGAS_pic_31__38_Instruction_5F_nobanksel_2D_weak GALGAS_pic_31__38_Instruction
 // @pic_31__38_Instruction_5F_checknobank reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_checknobank::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloInstruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_checknobank::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_checknobank * p = (const cPtr_pic_31__38_Instruction_5F_checknobank *) inOperandPtr ;
@@ -7997,7 +8295,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_checknobank::objectCompare
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -8066,7 +8364,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_checknobank::duplicate (LOCATION_AR
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_checknobank type
+//     @pic18Instruction_checknobank generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8177,7 +8475,7 @@ GALGAS_pic_31__38_Instruction_5F_checknobank GALGAS_pic_31__38_Instruction_5F_ch
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_checknobank-weak type
+//     @pic18Instruction_checknobank-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8222,6 +8520,15 @@ GALGAS_pic_31__38_Instruction_5F_checknobank_2D_weak GALGAS_pic_31__38_Instructi
 // @pic_31__38_Instruction_5F_checkbank reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_checkbank::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mBankIndex.printNonNullClassInstanceProperties ("mBankIndex") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_checkbank::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_checkbank * p = (const cPtr_pic_31__38_Instruction_5F_checkbank *) inOperandPtr ;
@@ -8248,7 +8555,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_checkbank::objectCompare (
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -8346,7 +8653,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_checkbank::duplicate (LOCATION_ARGS
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_checkbank type
+//     @pic18Instruction_checkbank generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8457,7 +8764,7 @@ GALGAS_pic_31__38_Instruction_5F_checkbank GALGAS_pic_31__38_Instruction_5F_chec
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_checkbank-weak type
+//     @pic18Instruction_checkbank-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8502,6 +8809,14 @@ GALGAS_pic_31__38_Instruction_5F_checkbank_2D_weak GALGAS_pic_31__38_Instruction
 // @pic_31__38_PiccoloSimpleInstruction reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloInstruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
 
 typeComparisonResult GALGAS_pic_31__38_PiccoloSimpleInstruction::objectCompare (const GALGAS_pic_31__38_PiccoloSimpleInstruction & inOperand) const {
@@ -8514,7 +8829,7 @@ typeComparisonResult GALGAS_pic_31__38_PiccoloSimpleInstruction::objectCompare (
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -8544,7 +8859,7 @@ cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation COMMA_THERE) {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18PiccoloSimpleInstruction type
+//     @pic18PiccoloSimpleInstruction generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8655,7 +8970,7 @@ GALGAS_pic_31__38_PiccoloSimpleInstruction GALGAS_pic_31__38_PiccoloSimpleInstru
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18PiccoloSimpleInstruction-weak type
+//     @pic18PiccoloSimpleInstruction-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8700,6 +9015,16 @@ GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak GALGAS_pic_31__38_PiccoloSimp
 // @pic_31__38_Instruction_5F_banksel reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_banksel::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mBankIndex.printNonNullClassInstanceProperties ("mBankIndex") ;
+    mProperty_mWarningOnUselessBanksel.printNonNullClassInstanceProperties ("mWarningOnUselessBanksel") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_banksel::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_banksel * p = (const cPtr_pic_31__38_Instruction_5F_banksel *) inOperandPtr ;
@@ -8729,7 +9054,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_banksel::objectCompare (co
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -8856,7 +9181,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_banksel::duplicate (LOCATION_ARGS) 
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_banksel type
+//     @pic18Instruction_banksel generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8967,7 +9292,7 @@ GALGAS_pic_31__38_Instruction_5F_banksel GALGAS_pic_31__38_Instruction_5F_bankse
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_banksel-weak type
+//     @pic18Instruction_banksel-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9078,7 +9403,7 @@ GALGAS_pic_31__38_Instruction_5F_banksel_5F_register GALGAS_pic_31__38_Instructi
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_banksel_register-weak type
+//     @pic18Instruction_banksel_register-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9189,7 +9514,7 @@ GALGAS_pic_31__38_Instruction_5F_savebank GALGAS_pic_31__38_Instruction_5F_saveb
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_savebank-weak type
+//     @pic18Instruction_savebank-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9300,7 +9625,7 @@ GALGAS_pic_31__38_Instruction_5F_repetitionStatique GALGAS_pic_31__38_Instructio
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_repetitionStatique-weak type
+//     @pic18Instruction_repetitionStatique-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9345,6 +9670,14 @@ GALGAS_pic_31__38_Instruction_5F_repetitionStatique_2D_weak GALGAS_pic_31__38_In
 // @abstractBlockTerminationForBlockInstruction reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_abstractBlockTerminationForBlockInstruction::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
 
 typeComparisonResult GALGAS_abstractBlockTerminationForBlockInstruction::objectCompare (const GALGAS_abstractBlockTerminationForBlockInstruction & inOperand) const {
@@ -9357,7 +9690,7 @@ typeComparisonResult GALGAS_abstractBlockTerminationForBlockInstruction::objectC
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -9386,7 +9719,7 @@ acStrongPtr_class (THERE) {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@abstractBlockTerminationForBlockInstruction type
+//     @abstractBlockTerminationForBlockInstruction generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9497,7 +9830,7 @@ GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_abstractBlockTerminati
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@abstractBlockTerminationForBlockInstruction-weak type
+//     @abstractBlockTerminationForBlockInstruction-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9542,6 +9875,15 @@ GALGAS_abstractBlockTerminationForBlockInstruction_2D_weak GALGAS_abstractBlockT
 // @exitBlockTerminationForBlockInstruction reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_exitBlockTerminationForBlockInstruction::printNonNullClassInstanceProperties (void) const {
+    cPtr_abstractBlockTerminationForBlockInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mLocation.printNonNullClassInstanceProperties ("mLocation") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_exitBlockTerminationForBlockInstruction::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_exitBlockTerminationForBlockInstruction * p = (const cPtr_exitBlockTerminationForBlockInstruction *) inOperandPtr ;
@@ -9565,7 +9907,7 @@ typeComparisonResult GALGAS_exitBlockTerminationForBlockInstruction::objectCompa
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -9658,7 +10000,7 @@ acPtr_class * cPtr_exitBlockTerminationForBlockInstruction::duplicate (LOCATION_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@exitBlockTerminationForBlockInstruction type
+//     @exitBlockTerminationForBlockInstruction generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9769,7 +10111,7 @@ GALGAS_exitBlockTerminationForBlockInstruction GALGAS_exitBlockTerminationForBlo
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@exitBlockTerminationForBlockInstruction-weak type
+//     @exitBlockTerminationForBlockInstruction-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9880,7 +10222,7 @@ GALGAS_gotoTerminationForBlockInstruction GALGAS_gotoTerminationForBlockInstruct
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@gotoTerminationForBlockInstruction-weak type
+//     @gotoTerminationForBlockInstruction-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9925,6 +10267,14 @@ GALGAS_gotoTerminationForBlockInstruction_2D_weak GALGAS_gotoTerminationForBlock
 // @pic_31__38_ConditionExpression reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_ConditionExpression::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
 
 typeComparisonResult GALGAS_pic_31__38_ConditionExpression::objectCompare (const GALGAS_pic_31__38_ConditionExpression & inOperand) const {
@@ -9937,7 +10287,7 @@ typeComparisonResult GALGAS_pic_31__38_ConditionExpression::objectCompare (const
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -9966,7 +10316,7 @@ acStrongPtr_class (THERE) {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18ConditionExpression type
+//     @pic18ConditionExpression generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10077,7 +10427,7 @@ GALGAS_testTerminationForBlockInstruction GALGAS_testTerminationForBlockInstruct
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@testTerminationForBlockInstruction-weak type
+//     @testTerminationForBlockInstruction-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10689,7 +11039,7 @@ GALGAS_location cEnumerator_pic_31__38_BlockInstructionBlockList::current_mEndOf
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18BlockInstructionBlockList type
+//     @pic18BlockInstructionBlockList generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10800,7 +11150,7 @@ GALGAS_pic_31__38_Instruction_5F_block GALGAS_pic_31__38_Instruction_5F_block_2D
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_block-weak type
+//     @pic18Instruction_block-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10845,6 +11195,14 @@ GALGAS_pic_31__38_Instruction_5F_block_2D_weak GALGAS_pic_31__38_Instruction_5F_
 // @pic_31__38_AbstractCaseItem reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_AbstractCaseItem::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
 
 typeComparisonResult GALGAS_pic_31__38_AbstractCaseItem::objectCompare (const GALGAS_pic_31__38_AbstractCaseItem & inOperand) const {
@@ -10857,7 +11215,7 @@ typeComparisonResult GALGAS_pic_31__38_AbstractCaseItem::objectCompare (const GA
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -10886,7 +11244,7 @@ acStrongPtr_class (THERE) {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18AbstractCaseItem type
+//     @pic18AbstractCaseItem generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10997,7 +11355,7 @@ GALGAS_pic_31__38_AbstractCaseItem GALGAS_pic_31__38_AbstractCaseItem_2D_weak::b
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18AbstractCaseItem-weak type
+//     @pic18AbstractCaseItem-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11450,7 +11808,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_FDA_base_code_AST type
+//     @pic18Instruction_FDA_base_code_AST generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11561,7 +11919,7 @@ GALGAS_pic_31__38_Instruction_5F_FDA GALGAS_pic_31__38_Instruction_5F_FDA_2D_wea
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_FDA-weak type
+//     @pic18Instruction_FDA-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11838,7 +12196,7 @@ typeComparisonResult GALGAS_FA_5F_instruction_5F_base_5F_code::objectCompare (co
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@FA_instruction_base_code type
+//     @FA_instruction_base_code generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11949,7 +12307,7 @@ GALGAS_pic_31__38_Instruction_5F_FA GALGAS_pic_31__38_Instruction_5F_FA_2D_weak:
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_FA-weak type
+//     @pic18Instruction_FA-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12060,7 +12418,7 @@ GALGAS_pic_31__38_Instruction_5F_MOVFF GALGAS_pic_31__38_Instruction_5F_MOVFF_2D
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_MOVFF-weak type
+//     @pic18Instruction_MOVFF-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12205,7 +12563,7 @@ typeComparisonResult GALGAS_bit_5F_oriented_5F_op::objectCompare (const GALGAS_b
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@bit_oriented_op type
+//     @bit_oriented_op generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12316,7 +12674,7 @@ GALGAS_pic_31__38_Instruction_5F_FBA GALGAS_pic_31__38_Instruction_5F_FBA_2D_wea
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_FBA-weak type
+//     @pic18Instruction_FBA-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12571,7 +12929,7 @@ typeComparisonResult GALGAS_conditional_5F_branch::objectCompare (const GALGAS_c
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@conditional_branch type
+//     @conditional_branch generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12716,7 +13074,7 @@ typeComparisonResult GALGAS_jumpInstructionKind::objectCompare (const GALGAS_jum
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@jumpInstructionKind type
+//     @jumpInstructionKind generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12827,7 +13185,7 @@ GALGAS_pic_31__38_Instruction_5F_JSR GALGAS_pic_31__38_Instruction_5F_JSR_2D_wea
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_JSR-weak type
+//     @pic18Instruction_JSR-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12938,7 +13296,7 @@ GALGAS_pic_31__38_Instruction_5F_macro GALGAS_pic_31__38_Instruction_5F_macro_2D
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_macro-weak type
+//     @pic18Instruction_macro-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13049,7 +13407,7 @@ GALGAS_pic_31__38_Instruction_5F_JUMP GALGAS_pic_31__38_Instruction_5F_JUMP_2D_w
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_JUMP-weak type
+//     @pic18Instruction_JUMP-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13160,7 +13518,7 @@ GALGAS_pic_31__38_Instruction_5F_JUMPCC GALGAS_pic_31__38_Instruction_5F_JUMPCC_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_JUMPCC-weak type
+//     @pic18Instruction_JUMPCC-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13393,7 +13751,7 @@ typeComparisonResult GALGAS_pic_31__38_InstructionWithNoOperandKind::objectCompa
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18InstructionWithNoOperandKind type
+//     @pic18InstructionWithNoOperandKind generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13438,6 +13796,15 @@ GALGAS_pic_31__38_InstructionWithNoOperandKind GALGAS_pic_31__38_InstructionWith
 // @pic_31__38_Instruction_5F_withNoOperand reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_withNoOperand::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mKind.printNonNullClassInstanceProperties ("mKind") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_withNoOperand::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_withNoOperand * p = (const cPtr_pic_31__38_Instruction_5F_withNoOperand *) inOperandPtr ;
@@ -13464,7 +13831,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_withNoOperand::objectCompa
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -13554,7 +13921,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_withNoOperand::duplicate (LOCATION_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_withNoOperand type
+//     @pic18Instruction_withNoOperand generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13665,7 +14032,7 @@ GALGAS_pic_31__38_Instruction_5F_withNoOperand GALGAS_pic_31__38_Instruction_5F_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_withNoOperand-weak type
+//     @pic18Instruction_withNoOperand-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13898,7 +14265,7 @@ typeComparisonResult GALGAS_literal_5F_instruction_5F_opcode::objectCompare (con
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@literal_instruction_opcode type
+//     @literal_instruction_opcode generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13943,6 +14310,16 @@ GALGAS_literal_5F_instruction_5F_opcode GALGAS_literal_5F_instruction_5F_opcode:
 // @pic_31__38_Instruction_5F_literalOperation reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_literalOperation::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mLiteralInstruction.printNonNullClassInstanceProperties ("mLiteralInstruction") ;
+    mProperty_mImmediatExpression.printNonNullClassInstanceProperties ("mImmediatExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_literalOperation::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_literalOperation * p = (const cPtr_pic_31__38_Instruction_5F_literalOperation *) inOperandPtr ;
@@ -13972,7 +14349,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_literalOperation::objectCo
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -14090,7 +14467,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_literalOperation::duplicate (LOCATI
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_literalOperation type
+//     @pic18Instruction_literalOperation generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14201,7 +14578,7 @@ GALGAS_pic_31__38_Instruction_5F_literalOperation GALGAS_pic_31__38_Instruction_
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_literalOperation-weak type
+//     @pic18Instruction_literalOperation-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14246,6 +14623,15 @@ GALGAS_pic_31__38_Instruction_5F_literalOperation_2D_weak GALGAS_pic_31__38_Inst
 // @pic_31__38_Instruction_5F_fnop reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_fnop::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mImmediatExpression.printNonNullClassInstanceProperties ("mImmediatExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_pic_31__38_Instruction_5F_fnop::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_pic_31__38_Instruction_5F_fnop * p = (const cPtr_pic_31__38_Instruction_5F_fnop *) inOperandPtr ;
@@ -14272,7 +14658,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_fnop::objectCompare (const
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -14362,7 +14748,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_fnop::duplicate (LOCATION_ARGS) con
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@pic18Instruction_fnop type
+//     @pic18Instruction_fnop generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14398,309 +14784,6 @@ GALGAS_pic_31__38_Instruction_5F_fnop GALGAS_pic_31__38_Instruction_5F_fnop::ext
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_fnop", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::objectCompare (const GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak (void) :
-GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak & GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::operator = (const GALGAS_pic_31__38_Instruction_5F_fnop & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak (const GALGAS_pic_31__38_Instruction_5F_fnop & inSource) :
-GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak (inSource) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::constructor_nil (LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::bang_pic_31__38_Instruction_5F_fnop_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_Instruction_5F_fnop result ;
-  if (mProxyPtr != NULL) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_pic_31__38_Instruction_5F_fnop) ;
-      result = GALGAS_pic_31__38_Instruction_5F_fnop ((cPtr_pic_31__38_Instruction_5F_fnop *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//@pic18Instruction_fnop-weak type
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak ("pic18Instruction_fnop-weak",
-                                                               & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::extractObject (const GALGAS_object & inObject,
-                                                                                                            C_Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak result ;
-  const GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak * p = (const GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("pic18Instruction_fnop-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-// @pic_31__38_Instruction_5F_LFSR reference class
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_pic_31__38_Instruction_5F_LFSR::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_pic_31__38_Instruction_5F_LFSR * p = (const cPtr_pic_31__38_Instruction_5F_LFSR *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mInstructionLocation.objectCompare (p->mProperty_mInstructionLocation) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mFSRindex.objectCompare (p->mProperty_mFSRindex) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mImmediatExpression.objectCompare (p->mProperty_mImmediatExpression) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_pic_31__38_Instruction_5F_LFSR::objectCompare (const GALGAS_pic_31__38_Instruction_5F_LFSR & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_LFSR::GALGAS_pic_31__38_Instruction_5F_LFSR (void) :
-GALGAS_pic_31__38_PiccoloSimpleInstruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_LFSR::GALGAS_pic_31__38_Instruction_5F_LFSR (const cPtr_pic_31__38_Instruction_5F_LFSR * inSourcePtr) :
-GALGAS_pic_31__38_PiccoloSimpleInstruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_LFSR) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_LFSR GALGAS_pic_31__38_Instruction_5F_LFSR::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                              const GALGAS_luint & inAttribute_mFSRindex,
-                                                                                              const GALGAS_immediatExpression & inAttribute_mImmediatExpression
-                                                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_LFSR result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mFSRindex.isValid () && inAttribute_mImmediatExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_LFSR (inAttribute_mInstructionLocation, inAttribute_mFSRindex, inAttribute_mImmediatExpression COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_pic_31__38_Instruction_5F_LFSR::setter_setMFSRindex (GALGAS_luint inValue
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
-    p->mProperty_mFSRindex = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_pic_31__38_Instruction_5F_LFSR::setter_setMImmediatExpression (GALGAS_immediatExpression inValue
-                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
-    p->mProperty_mImmediatExpression = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_luint GALGAS_pic_31__38_Instruction_5F_LFSR::readProperty_mFSRindex (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_luint () ;
-  }else{
-    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
-    return p->mProperty_mFSRindex ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_immediatExpression GALGAS_pic_31__38_Instruction_5F_LFSR::readProperty_mImmediatExpression (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_immediatExpression () ;
-  }else{
-    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
-    return p->mProperty_mImmediatExpression ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @pic18Instruction_LFSR class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_pic_31__38_Instruction_5F_LFSR::cPtr_pic_31__38_Instruction_5F_LFSR (const GALGAS_location & in_mInstructionLocation,
-                                                                          const GALGAS_luint & in_mFSRindex,
-                                                                          const GALGAS_immediatExpression & in_mImmediatExpression
-                                                                          COMMA_LOCATION_ARGS) :
-cPtr_pic_31__38_PiccoloSimpleInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mFSRindex (in_mFSRindex),
-mProperty_mImmediatExpression (in_mImmediatExpression) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_LFSR::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR ;
-}
-
-void cPtr_pic_31__38_Instruction_5F_LFSR::description (C_String & ioString,
-                                                       const int32_t inIndentation) const {
-  ioString << "[@pic18Instruction_LFSR:" ;
-  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mFSRindex.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mImmediatExpression.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_pic_31__38_Instruction_5F_LFSR::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_LFSR (mProperty_mInstructionLocation, mProperty_mFSRindex, mProperty_mImmediatExpression COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//@pic18Instruction_LFSR type
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR ("pic18Instruction_LFSR",
-                                                       & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_LFSR::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_LFSR::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_LFSR (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_LFSR GALGAS_pic_31__38_Instruction_5F_LFSR::extractObject (const GALGAS_object & inObject,
-                                                                                            C_Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_LFSR result ;
-  const GALGAS_pic_31__38_Instruction_5F_LFSR * p = (const GALGAS_pic_31__38_Instruction_5F_LFSR *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_LFSR *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("pic18Instruction_LFSR", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

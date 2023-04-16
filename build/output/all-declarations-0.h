@@ -258,9 +258,6 @@ class C_Lexique_piccolo_5F_lexique : public C_Lexique {
     kIndexing_constantDeclaration
   } ;
 
-//--- Indexing directory
-  protected: virtual C_String indexingDirectory (void) const override  ;
-
 //--- Parse lexical token
   protected: void internalParseLexicalToken (cTokenFor_piccolo_5F_lexique & token) ;
   protected: virtual bool parseLexicalToken (void) override ;
@@ -307,7 +304,7 @@ class GALGAS_bitSliceTable : public AC_GALGAS_map {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_bitSliceTable extractObject (const GALGAS_object & inObject,
@@ -374,7 +371,7 @@ class GALGAS_bitSliceTable : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_bitSliceTable * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                           const GALGAS_string & inKey
                                                                                           COMMA_LOCATION_ARGS) ;
@@ -459,8 +456,8 @@ class GALGAS_bitSliceTable_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default GALGAS constructor
   public: static GALGAS_bitSliceTable_2D_element constructor_default (LOCATION_ARGS) ;
@@ -492,7 +489,7 @@ class GALGAS_bitSliceTable_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_bitSliceTable_2D_element extractObject (const GALGAS_object & inObject,
@@ -507,7 +504,7 @@ class GALGAS_bitSliceTable_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_bitSliceTable_2D_element & inOperand) const ;
 
@@ -521,7 +518,7 @@ class GALGAS_bitSliceTable_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_bitSliceTable_2D_element class
 
@@ -547,7 +544,7 @@ class GALGAS_immediatExpression : public AC_GALGAS_reference_class {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatExpression extractObject (const GALGAS_object & inObject,
@@ -567,7 +564,7 @@ class GALGAS_immediatExpression : public AC_GALGAS_reference_class {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatExpression class
 
@@ -584,6 +581,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatExpression 
 
 class cPtr_immediatExpression : public acStrongPtr_class {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -630,7 +630,7 @@ class GALGAS_registerExpression : public AC_GALGAS_reference_class {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_registerExpression extractObject (const GALGAS_object & inObject,
@@ -665,7 +665,7 @@ class GALGAS_registerExpression : public AC_GALGAS_reference_class {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_registerExpression class
 
@@ -682,6 +682,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_registerExpression 
 
 class cPtr_registerExpression : public acStrongPtr_class {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method analyzeRegisterExpression
   public: virtual void method_analyzeRegisterExpression (const class GALGAS_uint inAccessBankSplitOffset,
            const class GALGAS_uint inCurrentBank,
@@ -776,7 +779,7 @@ class GALGAS_registerExpression_2D_weak : public AC_GALGAS_weak_reference {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_registerExpression_2D_weak extractObject (const GALGAS_object & inObject,
@@ -799,7 +802,7 @@ class GALGAS_registerExpression_2D_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_registerExpression_2D_weak class
 
@@ -825,7 +828,7 @@ class GALGAS_declarationInRam : public AC_GALGAS_reference_class {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_declarationInRam extractObject (const GALGAS_object & inObject,
@@ -845,7 +848,7 @@ class GALGAS_declarationInRam : public AC_GALGAS_reference_class {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_declarationInRam class
 
@@ -862,6 +865,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationInRam ;
 
 class cPtr_declarationInRam : public acStrongPtr_class {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method handleDeclaration
   public: virtual void method_handleDeclaration (const class GALGAS_constantMap inConstantMap,
            class GALGAS_stringset & ioUsedRegisters,
@@ -911,7 +917,7 @@ class GALGAS_declarationInRam_2D_weak : public AC_GALGAS_weak_reference {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_declarationInRam_2D_weak extractObject (const GALGAS_object & inObject,
@@ -934,7 +940,7 @@ class GALGAS_declarationInRam_2D_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_declarationInRam_2D_weak class
 
@@ -965,14 +971,14 @@ class GALGAS_registerProtection : public AC_GALGAS_root {
   private: enumeration mEnum ;
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const { return kNotBuilt != mEnum ; }
-  public: VIRTUAL_IN_DEBUG inline void drop (void) { mEnum = kNotBuilt ; }
+  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return kNotBuilt != mEnum ; }
+  public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
   public: inline enumeration enumValue (void) const { return mEnum ; }
 
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_registerProtection extractObject (const GALGAS_object & inObject,
@@ -988,7 +994,7 @@ class GALGAS_registerProtection : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_registerProtection & inOperand) const ;
 
@@ -1014,7 +1020,7 @@ class GALGAS_registerProtection : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_registerProtection class
 
@@ -1050,7 +1056,7 @@ class GALGAS_byteDeclarationInRam : public GALGAS_declarationInRam {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_byteDeclarationInRam extractObject (const GALGAS_object & inObject,
@@ -1093,7 +1099,7 @@ class GALGAS_byteDeclarationInRam : public GALGAS_declarationInRam {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_byteDeclarationInRam class
 
@@ -1110,6 +1116,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_byteDeclarationInRa
 
 class cPtr_byteDeclarationInRam : public cPtr_declarationInRam {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method handleDeclaration
   public: virtual void method_handleDeclaration (const class GALGAS_constantMap inConstantMap,
            class GALGAS_stringset & ioUsedRegisters,
@@ -1172,7 +1181,7 @@ class GALGAS_byteDeclarationInRam_2D_weak : public GALGAS_declarationInRam_2D_we
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_byteDeclarationInRam_2D_weak extractObject (const GALGAS_object & inObject,
@@ -1195,7 +1204,7 @@ class GALGAS_byteDeclarationInRam_2D_weak : public GALGAS_declarationInRam_2D_we
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_byteDeclarationInRam_2D_weak class
 
@@ -1225,7 +1234,7 @@ class GALGAS_declarationInRamList : public AC_GALGAS_list {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_declarationInRamList extractObject (const GALGAS_object & inObject,
@@ -1313,7 +1322,7 @@ class GALGAS_declarationInRamList : public AC_GALGAS_list {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
 
   friend class cEnumerator_declarationInRamList ;
@@ -1352,8 +1361,8 @@ class GALGAS_declarationInRamList_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default constructor
   public: GALGAS_declarationInRamList_2D_element (void) ;
@@ -1372,7 +1381,7 @@ class GALGAS_declarationInRamList_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_declarationInRamList_2D_element extractObject (const GALGAS_object & inObject,
@@ -1385,7 +1394,7 @@ class GALGAS_declarationInRamList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_declarationInRamList_2D_element & inOperand) const ;
 
@@ -1399,7 +1408,7 @@ class GALGAS_declarationInRamList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_declarationInRamList_2D_element class
 
@@ -1430,7 +1439,7 @@ class GALGAS_ramDefinitionList : public AC_GALGAS_list {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_ramDefinitionList extractObject (const GALGAS_object & inObject,
@@ -1535,7 +1544,7 @@ class GALGAS_ramDefinitionList : public AC_GALGAS_list {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
 
   friend class cEnumerator_ramDefinitionList ;
@@ -1580,8 +1589,8 @@ class GALGAS_ramDefinitionList_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default GALGAS constructor
   public: static GALGAS_ramDefinitionList_2D_element constructor_default (LOCATION_ARGS) ;
@@ -1608,7 +1617,7 @@ class GALGAS_ramDefinitionList_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_ramDefinitionList_2D_element extractObject (const GALGAS_object & inObject,
@@ -1622,7 +1631,7 @@ class GALGAS_ramDefinitionList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_ramDefinitionList_2D_element & inOperand) const ;
 
@@ -1636,7 +1645,7 @@ class GALGAS_ramDefinitionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_ramDefinitionList_2D_element class
 
@@ -1667,7 +1676,7 @@ class GALGAS_configSettingList : public AC_GALGAS_list {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_configSettingList extractObject (const GALGAS_object & inObject,
@@ -1772,7 +1781,7 @@ class GALGAS_configSettingList : public AC_GALGAS_list {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
 
   friend class cEnumerator_configSettingList ;
@@ -1817,8 +1826,8 @@ class GALGAS_configSettingList_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default GALGAS constructor
   public: static GALGAS_configSettingList_2D_element constructor_default (LOCATION_ARGS) ;
@@ -1845,7 +1854,7 @@ class GALGAS_configSettingList_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_configSettingList_2D_element extractObject (const GALGAS_object & inObject,
@@ -1859,7 +1868,7 @@ class GALGAS_configSettingList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_configSettingList_2D_element & inOperand) const ;
 
@@ -1873,7 +1882,7 @@ class GALGAS_configSettingList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_configSettingList_2D_element class
 
@@ -1904,7 +1913,7 @@ class GALGAS_configDefinitionList : public AC_GALGAS_list {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_configDefinitionList extractObject (const GALGAS_object & inObject,
@@ -2009,7 +2018,7 @@ class GALGAS_configDefinitionList : public AC_GALGAS_list {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
 
   friend class cEnumerator_configDefinitionList ;
@@ -2054,8 +2063,8 @@ class GALGAS_configDefinitionList_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default GALGAS constructor
   public: static GALGAS_configDefinitionList_2D_element constructor_default (LOCATION_ARGS) ;
@@ -2082,7 +2091,7 @@ class GALGAS_configDefinitionList_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_configDefinitionList_2D_element extractObject (const GALGAS_object & inObject,
@@ -2096,7 +2105,7 @@ class GALGAS_configDefinitionList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_configDefinitionList_2D_element & inOperand) const ;
 
@@ -2110,7 +2119,7 @@ class GALGAS_configDefinitionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_configDefinitionList_2D_element class
 
@@ -2143,7 +2152,7 @@ class GALGAS_immediatExpression_2D_weak : public AC_GALGAS_weak_reference {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatExpression_2D_weak extractObject (const GALGAS_object & inObject,
@@ -2166,7 +2175,7 @@ class GALGAS_immediatExpression_2D_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatExpression_2D_weak class
 
@@ -2197,7 +2206,7 @@ class GALGAS_immediatExpressionList : public AC_GALGAS_list {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatExpressionList extractObject (const GALGAS_object & inObject,
@@ -2302,7 +2311,7 @@ class GALGAS_immediatExpressionList : public AC_GALGAS_list {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
 
   friend class cEnumerator_immediatExpressionList ;
@@ -2347,8 +2356,8 @@ class GALGAS_immediatExpressionList_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default constructor
   public: GALGAS_immediatExpressionList_2D_element (void) ;
@@ -2372,7 +2381,7 @@ class GALGAS_immediatExpressionList_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatExpressionList_2D_element extractObject (const GALGAS_object & inObject,
@@ -2386,7 +2395,7 @@ class GALGAS_immediatExpressionList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_immediatExpressionList_2D_element & inOperand) const ;
 
@@ -2400,7 +2409,7 @@ class GALGAS_immediatExpressionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatExpressionList_2D_element class
 
@@ -2431,7 +2440,7 @@ class GALGAS_immediatInteger : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatInteger extractObject (const GALGAS_object & inObject,
@@ -2458,7 +2467,7 @@ class GALGAS_immediatInteger : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatInteger class
 
@@ -2475,6 +2484,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatInteger ;
 
 class cPtr_immediatInteger : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -2527,7 +2539,7 @@ class GALGAS_immediatInteger_2D_weak : public GALGAS_immediatExpression_2D_weak 
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatInteger_2D_weak extractObject (const GALGAS_object & inObject,
@@ -2550,7 +2562,7 @@ class GALGAS_immediatInteger_2D_weak : public GALGAS_immediatExpression_2D_weak 
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatInteger_2D_weak class
 
@@ -2578,7 +2590,7 @@ class GALGAS_immediatRegister : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatRegister extractObject (const GALGAS_object & inObject,
@@ -2605,7 +2617,7 @@ class GALGAS_immediatRegister : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatRegister class
 
@@ -2622,6 +2634,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatRegister ;
 
 class cPtr_immediatRegister : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -2674,7 +2689,7 @@ class GALGAS_immediatRegister_2D_weak : public GALGAS_immediatExpression_2D_weak
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatRegister_2D_weak extractObject (const GALGAS_object & inObject,
@@ -2697,7 +2712,7 @@ class GALGAS_immediatRegister_2D_weak : public GALGAS_immediatExpression_2D_weak
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatRegister_2D_weak class
 
@@ -2727,7 +2742,7 @@ class GALGAS_immediatAdd : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatAdd extractObject (const GALGAS_object & inObject,
@@ -2758,7 +2773,7 @@ class GALGAS_immediatAdd : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatAdd class
 
@@ -2775,6 +2790,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatAdd ;
 
 class cPtr_immediatAdd : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -2829,7 +2847,7 @@ class GALGAS_immediatAdd_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatAdd_2D_weak extractObject (const GALGAS_object & inObject,
@@ -2852,7 +2870,7 @@ class GALGAS_immediatAdd_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatAdd_2D_weak class
 
@@ -2882,7 +2900,7 @@ class GALGAS_immediatSub : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatSub extractObject (const GALGAS_object & inObject,
@@ -2913,7 +2931,7 @@ class GALGAS_immediatSub : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatSub class
 
@@ -2930,6 +2948,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatSub ;
 
 class cPtr_immediatSub : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -2984,7 +3005,7 @@ class GALGAS_immediatSub_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatSub_2D_weak extractObject (const GALGAS_object & inObject,
@@ -3007,7 +3028,7 @@ class GALGAS_immediatSub_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatSub_2D_weak class
 
@@ -3037,7 +3058,7 @@ class GALGAS_immediatMul : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatMul extractObject (const GALGAS_object & inObject,
@@ -3068,7 +3089,7 @@ class GALGAS_immediatMul : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatMul class
 
@@ -3085,6 +3106,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatMul ;
 
 class cPtr_immediatMul : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -3139,7 +3163,7 @@ class GALGAS_immediatMul_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatMul_2D_weak extractObject (const GALGAS_object & inObject,
@@ -3162,7 +3186,7 @@ class GALGAS_immediatMul_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatMul_2D_weak class
 
@@ -3192,7 +3216,7 @@ class GALGAS_immediatDiv : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatDiv extractObject (const GALGAS_object & inObject,
@@ -3223,7 +3247,7 @@ class GALGAS_immediatDiv : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatDiv class
 
@@ -3240,6 +3264,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatDiv ;
 
 class cPtr_immediatDiv : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -3294,7 +3321,7 @@ class GALGAS_immediatDiv_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatDiv_2D_weak extractObject (const GALGAS_object & inObject,
@@ -3317,7 +3344,7 @@ class GALGAS_immediatDiv_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatDiv_2D_weak class
 
@@ -3347,7 +3374,7 @@ class GALGAS_immediatMod : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatMod extractObject (const GALGAS_object & inObject,
@@ -3378,7 +3405,7 @@ class GALGAS_immediatMod : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatMod class
 
@@ -3395,6 +3422,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatMod ;
 
 class cPtr_immediatMod : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -3449,7 +3479,7 @@ class GALGAS_immediatMod_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatMod_2D_weak extractObject (const GALGAS_object & inObject,
@@ -3472,7 +3502,7 @@ class GALGAS_immediatMod_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatMod_2D_weak class
 
@@ -3502,7 +3532,7 @@ class GALGAS_immediatOr : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatOr extractObject (const GALGAS_object & inObject,
@@ -3533,7 +3563,7 @@ class GALGAS_immediatOr : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatOr class
 
@@ -3550,6 +3580,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatOr ;
 
 class cPtr_immediatOr : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -3604,7 +3637,7 @@ class GALGAS_immediatOr_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatOr_2D_weak extractObject (const GALGAS_object & inObject,
@@ -3627,7 +3660,7 @@ class GALGAS_immediatOr_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatOr_2D_weak class
 
@@ -3657,7 +3690,7 @@ class GALGAS_immediatAnd : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatAnd extractObject (const GALGAS_object & inObject,
@@ -3688,7 +3721,7 @@ class GALGAS_immediatAnd : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatAnd class
 
@@ -3705,6 +3738,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatAnd ;
 
 class cPtr_immediatAnd : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -3759,7 +3795,7 @@ class GALGAS_immediatAnd_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatAnd_2D_weak extractObject (const GALGAS_object & inObject,
@@ -3782,7 +3818,7 @@ class GALGAS_immediatAnd_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatAnd_2D_weak class
 
@@ -3812,7 +3848,7 @@ class GALGAS_immediatXor : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatXor extractObject (const GALGAS_object & inObject,
@@ -3843,7 +3879,7 @@ class GALGAS_immediatXor : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatXor class
 
@@ -3860,6 +3896,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatXor ;
 
 class cPtr_immediatXor : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -3914,7 +3953,7 @@ class GALGAS_immediatXor_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatXor_2D_weak extractObject (const GALGAS_object & inObject,
@@ -3937,7 +3976,7 @@ class GALGAS_immediatXor_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatXor_2D_weak class
 
@@ -3967,7 +4006,7 @@ class GALGAS_immediatLeftShift : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatLeftShift extractObject (const GALGAS_object & inObject,
@@ -3998,7 +4037,7 @@ class GALGAS_immediatLeftShift : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatLeftShift class
 
@@ -4015,6 +4054,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatLeftShift ;
 
 class cPtr_immediatLeftShift : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -4069,7 +4111,7 @@ class GALGAS_immediatLeftShift_2D_weak : public GALGAS_immediatExpression_2D_wea
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatLeftShift_2D_weak extractObject (const GALGAS_object & inObject,
@@ -4092,7 +4134,7 @@ class GALGAS_immediatLeftShift_2D_weak : public GALGAS_immediatExpression_2D_wea
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatLeftShift_2D_weak class
 
@@ -4122,7 +4164,7 @@ class GALGAS_immediatRightShift : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatRightShift extractObject (const GALGAS_object & inObject,
@@ -4153,7 +4195,7 @@ class GALGAS_immediatRightShift : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatRightShift class
 
@@ -4170,6 +4212,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatRightShift 
 
 class cPtr_immediatRightShift : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -4224,7 +4269,7 @@ class GALGAS_immediatRightShift_2D_weak : public GALGAS_immediatExpression_2D_we
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatRightShift_2D_weak extractObject (const GALGAS_object & inObject,
@@ -4247,7 +4292,7 @@ class GALGAS_immediatRightShift_2D_weak : public GALGAS_immediatExpression_2D_we
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatRightShift_2D_weak class
 
@@ -4277,7 +4322,7 @@ class GALGAS_immediatEqualTest : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatEqualTest extractObject (const GALGAS_object & inObject,
@@ -4308,7 +4353,7 @@ class GALGAS_immediatEqualTest : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatEqualTest class
 
@@ -4325,6 +4370,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatEqualTest ;
 
 class cPtr_immediatEqualTest : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -4379,7 +4427,7 @@ class GALGAS_immediatEqualTest_2D_weak : public GALGAS_immediatExpression_2D_wea
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatEqualTest_2D_weak extractObject (const GALGAS_object & inObject,
@@ -4402,7 +4450,7 @@ class GALGAS_immediatEqualTest_2D_weak : public GALGAS_immediatExpression_2D_wea
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatEqualTest_2D_weak class
 
@@ -4432,7 +4480,7 @@ class GALGAS_immediatNotEqualTest : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatNotEqualTest extractObject (const GALGAS_object & inObject,
@@ -4463,7 +4511,7 @@ class GALGAS_immediatNotEqualTest : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatNotEqualTest class
 
@@ -4480,6 +4528,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatNotEqualTes
 
 class cPtr_immediatNotEqualTest : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -4534,7 +4585,7 @@ class GALGAS_immediatNotEqualTest_2D_weak : public GALGAS_immediatExpression_2D_
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatNotEqualTest_2D_weak extractObject (const GALGAS_object & inObject,
@@ -4557,7 +4608,7 @@ class GALGAS_immediatNotEqualTest_2D_weak : public GALGAS_immediatExpression_2D_
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatNotEqualTest_2D_weak class
 
@@ -4587,7 +4638,7 @@ class GALGAS_immediatGreaterTest : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatGreaterTest extractObject (const GALGAS_object & inObject,
@@ -4618,7 +4669,7 @@ class GALGAS_immediatGreaterTest : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatGreaterTest class
 
@@ -4635,6 +4686,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatGreaterTest
 
 class cPtr_immediatGreaterTest : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -4689,7 +4743,7 @@ class GALGAS_immediatGreaterTest_2D_weak : public GALGAS_immediatExpression_2D_w
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatGreaterTest_2D_weak extractObject (const GALGAS_object & inObject,
@@ -4712,7 +4766,7 @@ class GALGAS_immediatGreaterTest_2D_weak : public GALGAS_immediatExpression_2D_w
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatGreaterTest_2D_weak class
 
@@ -4742,7 +4796,7 @@ class GALGAS_immediatGreaterOrEqualTest : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatGreaterOrEqualTest extractObject (const GALGAS_object & inObject,
@@ -4773,7 +4827,7 @@ class GALGAS_immediatGreaterOrEqualTest : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatGreaterOrEqualTest class
 
@@ -4790,6 +4844,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatGreaterOrEq
 
 class cPtr_immediatGreaterOrEqualTest : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -4844,7 +4901,7 @@ class GALGAS_immediatGreaterOrEqualTest_2D_weak : public GALGAS_immediatExpressi
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatGreaterOrEqualTest_2D_weak extractObject (const GALGAS_object & inObject,
@@ -4867,7 +4924,7 @@ class GALGAS_immediatGreaterOrEqualTest_2D_weak : public GALGAS_immediatExpressi
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatGreaterOrEqualTest_2D_weak class
 
@@ -4897,7 +4954,7 @@ class GALGAS_immediatLowerTest : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatLowerTest extractObject (const GALGAS_object & inObject,
@@ -4928,7 +4985,7 @@ class GALGAS_immediatLowerTest : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatLowerTest class
 
@@ -4945,6 +5002,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatLowerTest ;
 
 class cPtr_immediatLowerTest : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -4999,7 +5059,7 @@ class GALGAS_immediatLowerTest_2D_weak : public GALGAS_immediatExpression_2D_wea
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatLowerTest_2D_weak extractObject (const GALGAS_object & inObject,
@@ -5022,7 +5082,7 @@ class GALGAS_immediatLowerTest_2D_weak : public GALGAS_immediatExpression_2D_wea
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatLowerTest_2D_weak class
 
@@ -5052,7 +5112,7 @@ class GALGAS_immediatLowerOrEqualTest : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatLowerOrEqualTest extractObject (const GALGAS_object & inObject,
@@ -5083,7 +5143,7 @@ class GALGAS_immediatLowerOrEqualTest : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatLowerOrEqualTest class
 
@@ -5100,6 +5160,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatLowerOrEqua
 
 class cPtr_immediatLowerOrEqualTest : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -5154,7 +5217,7 @@ class GALGAS_immediatLowerOrEqualTest_2D_weak : public GALGAS_immediatExpression
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatLowerOrEqualTest_2D_weak extractObject (const GALGAS_object & inObject,
@@ -5177,7 +5240,7 @@ class GALGAS_immediatLowerOrEqualTest_2D_weak : public GALGAS_immediatExpression
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatLowerOrEqualTest_2D_weak class
 
@@ -5205,7 +5268,7 @@ class GALGAS_immediatNegate : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatNegate extractObject (const GALGAS_object & inObject,
@@ -5232,7 +5295,7 @@ class GALGAS_immediatNegate : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatNegate class
 
@@ -5249,6 +5312,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatNegate ;
 
 class cPtr_immediatNegate : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -5301,7 +5367,7 @@ class GALGAS_immediatNegate_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatNegate_2D_weak extractObject (const GALGAS_object & inObject,
@@ -5324,7 +5390,7 @@ class GALGAS_immediatNegate_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatNegate_2D_weak class
 
@@ -5352,7 +5418,7 @@ class GALGAS_immediatComplement : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatComplement extractObject (const GALGAS_object & inObject,
@@ -5379,7 +5445,7 @@ class GALGAS_immediatComplement : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatComplement class
 
@@ -5396,6 +5462,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatComplement 
 
 class cPtr_immediatComplement : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -5448,7 +5517,7 @@ class GALGAS_immediatComplement_2D_weak : public GALGAS_immediatExpression_2D_we
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatComplement_2D_weak extractObject (const GALGAS_object & inObject,
@@ -5471,7 +5540,7 @@ class GALGAS_immediatComplement_2D_weak : public GALGAS_immediatExpression_2D_we
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatComplement_2D_weak class
 
@@ -5502,7 +5571,7 @@ class GALGAS_immediatSliceExpressionList : public AC_GALGAS_list {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatSliceExpressionList extractObject (const GALGAS_object & inObject,
@@ -5607,7 +5676,7 @@ class GALGAS_immediatSliceExpressionList : public AC_GALGAS_list {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
 
   friend class cEnumerator_immediatSliceExpressionList ;
@@ -5652,8 +5721,8 @@ class GALGAS_immediatSliceExpressionList_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default constructor
   public: GALGAS_immediatSliceExpressionList_2D_element (void) ;
@@ -5677,7 +5746,7 @@ class GALGAS_immediatSliceExpressionList_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatSliceExpressionList_2D_element extractObject (const GALGAS_object & inObject,
@@ -5691,7 +5760,7 @@ class GALGAS_immediatSliceExpressionList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_immediatSliceExpressionList_2D_element & inOperand) const ;
 
@@ -5705,7 +5774,7 @@ class GALGAS_immediatSliceExpressionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatSliceExpressionList_2D_element class
 
@@ -5738,7 +5807,7 @@ class GALGAS_immediatSlice : public GALGAS_immediatExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatSlice extractObject (const GALGAS_object & inObject,
@@ -5769,7 +5838,7 @@ class GALGAS_immediatSlice : public GALGAS_immediatExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatSlice class
 
@@ -5786,6 +5855,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatSlice ;
 
 class cPtr_immediatSlice : public cPtr_immediatExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -5840,7 +5912,7 @@ class GALGAS_immediatSlice_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_immediatSlice_2D_weak extractObject (const GALGAS_object & inObject,
@@ -5863,7 +5935,7 @@ class GALGAS_immediatSlice_2D_weak : public GALGAS_immediatExpression_2D_weak {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_immediatSlice_2D_weak class
 
@@ -5894,7 +5966,7 @@ class GALGAS_constantDefinitionList : public AC_GALGAS_list {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_constantDefinitionList extractObject (const GALGAS_object & inObject,
@@ -5999,7 +6071,7 @@ class GALGAS_constantDefinitionList : public AC_GALGAS_list {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
 
   friend class cEnumerator_constantDefinitionList ;
@@ -6044,8 +6116,8 @@ class GALGAS_constantDefinitionList_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default constructor
   public: GALGAS_constantDefinitionList_2D_element (void) ;
@@ -6069,7 +6141,7 @@ class GALGAS_constantDefinitionList_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_constantDefinitionList_2D_element extractObject (const GALGAS_object & inObject,
@@ -6083,7 +6155,7 @@ class GALGAS_constantDefinitionList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_constantDefinitionList_2D_element & inOperand) const ;
 
@@ -6097,7 +6169,7 @@ class GALGAS_constantDefinitionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_constantDefinitionList_2D_element class
 
@@ -6131,7 +6203,7 @@ class GALGAS_actualConfigurationMap : public AC_GALGAS_map {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_actualConfigurationMap extractObject (const GALGAS_object & inObject,
@@ -6198,7 +6270,7 @@ class GALGAS_actualConfigurationMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_actualConfigurationMap * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                    const GALGAS_string & inKey
                                                                                                    COMMA_LOCATION_ARGS) ;
@@ -6283,8 +6355,8 @@ class GALGAS_actualConfigurationMap_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default GALGAS constructor
   public: static GALGAS_actualConfigurationMap_2D_element constructor_default (LOCATION_ARGS) ;
@@ -6316,7 +6388,7 @@ class GALGAS_actualConfigurationMap_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_actualConfigurationMap_2D_element extractObject (const GALGAS_object & inObject,
@@ -6331,7 +6403,7 @@ class GALGAS_actualConfigurationMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_actualConfigurationMap_2D_element & inOperand) const ;
 
@@ -6345,7 +6417,7 @@ class GALGAS_actualConfigurationMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_actualConfigurationMap_2D_element class
 
@@ -6371,7 +6443,7 @@ class GALGAS_bitNumberExpression : public AC_GALGAS_reference_class {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_bitNumberExpression extractObject (const GALGAS_object & inObject,
@@ -6391,7 +6463,7 @@ class GALGAS_bitNumberExpression : public AC_GALGAS_reference_class {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_bitNumberExpression class
 
@@ -6408,6 +6480,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberExpression
 
 class cPtr_bitNumberExpression : public acStrongPtr_class {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method getBitNumber
   public: virtual void method_getBitNumber (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -6456,7 +6531,7 @@ class GALGAS_bitNumberExpression_2D_weak : public AC_GALGAS_weak_reference {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_bitNumberExpression_2D_weak extractObject (const GALGAS_object & inObject,
@@ -6479,7 +6554,7 @@ class GALGAS_bitNumberExpression_2D_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_bitNumberExpression_2D_weak class
 
@@ -6509,7 +6584,7 @@ class GALGAS_bitNumberLiteralExpression : public GALGAS_bitNumberExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_bitNumberLiteralExpression extractObject (const GALGAS_object & inObject,
@@ -6540,7 +6615,7 @@ class GALGAS_bitNumberLiteralExpression : public GALGAS_bitNumberExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_bitNumberLiteralExpression class
 
@@ -6557,6 +6632,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberLiteralExp
 
 class cPtr_bitNumberLiteralExpression : public cPtr_bitNumberExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method getBitNumber
   public: virtual void method_getBitNumber (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -6612,7 +6690,7 @@ class GALGAS_bitNumberLiteralExpression_2D_weak : public GALGAS_bitNumberExpress
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_bitNumberLiteralExpression_2D_weak extractObject (const GALGAS_object & inObject,
@@ -6635,7 +6713,7 @@ class GALGAS_bitNumberLiteralExpression_2D_weak : public GALGAS_bitNumberExpress
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_bitNumberLiteralExpression_2D_weak class
 
@@ -6666,7 +6744,7 @@ class GALGAS_bitNumberLiteralValue : public GALGAS_bitNumberExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_bitNumberLiteralValue extractObject (const GALGAS_object & inObject,
@@ -6693,7 +6771,7 @@ class GALGAS_bitNumberLiteralValue : public GALGAS_bitNumberExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_bitNumberLiteralValue class
 
@@ -6710,6 +6788,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberLiteralVal
 
 class cPtr_bitNumberLiteralValue : public cPtr_bitNumberExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method getBitNumber
   public: virtual void method_getBitNumber (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -6763,7 +6844,7 @@ class GALGAS_bitNumberLiteralValue_2D_weak : public GALGAS_bitNumberExpression_2
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_bitNumberLiteralValue_2D_weak extractObject (const GALGAS_object & inObject,
@@ -6786,7 +6867,7 @@ class GALGAS_bitNumberLiteralValue_2D_weak : public GALGAS_bitNumberExpression_2
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_bitNumberLiteralValue_2D_weak class
 
@@ -6819,7 +6900,7 @@ class GALGAS_bitNumberLabelValue : public GALGAS_bitNumberExpression {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_bitNumberLabelValue extractObject (const GALGAS_object & inObject,
@@ -6850,7 +6931,7 @@ class GALGAS_bitNumberLabelValue : public GALGAS_bitNumberExpression {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_bitNumberLabelValue class
 
@@ -6867,6 +6948,9 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberLabelValue
 
 class cPtr_bitNumberLabelValue : public cPtr_bitNumberExpression {
 
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
 //--- Extension method getBitNumber
   public: virtual void method_getBitNumber (const class GALGAS_registerTable inRegisterTable,
            const class GALGAS_constantMap inConstantMap,
@@ -6922,7 +7006,7 @@ class GALGAS_bitNumberLabelValue_2D_weak : public GALGAS_bitNumberExpression_2D_
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_bitNumberLabelValue_2D_weak extractObject (const GALGAS_object & inObject,
@@ -6945,7 +7029,7 @@ class GALGAS_bitNumberLabelValue_2D_weak : public GALGAS_bitNumberExpression_2D_
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_bitNumberLabelValue_2D_weak class
 
@@ -6975,7 +7059,7 @@ class GALGAS_labelMap : public AC_GALGAS_map {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_labelMap extractObject (const GALGAS_object & inObject,
@@ -7012,7 +7096,7 @@ class GALGAS_labelMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_labelMap * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                      const GALGAS_string & inKey
                                                                                      COMMA_LOCATION_ARGS) ;
@@ -7081,8 +7165,8 @@ class GALGAS_labelMap_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default GALGAS constructor
   public: static GALGAS_labelMap_2D_element constructor_default (LOCATION_ARGS) ;
@@ -7104,7 +7188,7 @@ class GALGAS_labelMap_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_labelMap_2D_element extractObject (const GALGAS_object & inObject,
@@ -7117,7 +7201,7 @@ class GALGAS_labelMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_labelMap_2D_element & inOperand) const ;
 
@@ -7131,7 +7215,7 @@ class GALGAS_labelMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_labelMap_2D_element class
 
@@ -7175,7 +7259,7 @@ class GALGAS_constantMap : public AC_GALGAS_map {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_constantMap extractObject (const GALGAS_object & inObject,
@@ -7229,7 +7313,7 @@ class GALGAS_constantMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_constantMap * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                         const GALGAS_string & inKey
                                                                                         COMMA_LOCATION_ARGS) ;
@@ -7306,8 +7390,8 @@ class GALGAS_constantMap_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default GALGAS constructor
   public: static GALGAS_constantMap_2D_element constructor_default (LOCATION_ARGS) ;
@@ -7334,7 +7418,7 @@ class GALGAS_constantMap_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_constantMap_2D_element extractObject (const GALGAS_object & inObject,
@@ -7348,7 +7432,7 @@ class GALGAS_constantMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_constantMap_2D_element & inOperand) const ;
 
@@ -7362,7 +7446,7 @@ class GALGAS_constantMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_constantMap_2D_element class
 
@@ -7396,7 +7480,7 @@ class GALGAS_routineMap : public AC_GALGAS_map {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_routineMap extractObject (const GALGAS_object & inObject,
@@ -7489,7 +7573,7 @@ class GALGAS_routineMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_routineMap * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                        const GALGAS_string & inKey
                                                                                        COMMA_LOCATION_ARGS) ;
@@ -7590,8 +7674,8 @@ class GALGAS_routineMap_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default GALGAS constructor
   public: static GALGAS_routineMap_2D_element constructor_default (LOCATION_ARGS) ;
@@ -7633,7 +7717,7 @@ class GALGAS_routineMap_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_routineMap_2D_element extractObject (const GALGAS_object & inObject,
@@ -7650,7 +7734,7 @@ class GALGAS_routineMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_routineMap_2D_element & inOperand) const ;
 
@@ -7664,7 +7748,7 @@ class GALGAS_routineMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_routineMap_2D_element class
 
@@ -7695,14 +7779,14 @@ class GALGAS_routineKind : public AC_GALGAS_root {
   private: enumeration mEnum ;
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const { return kNotBuilt != mEnum ; }
-  public: VIRTUAL_IN_DEBUG inline void drop (void) { mEnum = kNotBuilt ; }
+  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return kNotBuilt != mEnum ; }
+  public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
   public: inline enumeration enumValue (void) const { return mEnum ; }
 
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_routineKind extractObject (const GALGAS_object & inObject,
@@ -7718,7 +7802,7 @@ class GALGAS_routineKind : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_routineKind & inOperand) const ;
 
@@ -7744,7 +7828,7 @@ class GALGAS_routineKind : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_routineKind class
 
@@ -7792,7 +7876,7 @@ class GALGAS_registerTable : public AC_GALGAS_map {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_registerTable extractObject (const GALGAS_object & inObject,
@@ -7898,7 +7982,7 @@ class GALGAS_registerTable : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_registerTable * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                           const GALGAS_string & inKey
                                                                                           COMMA_LOCATION_ARGS) ;
@@ -8008,7 +8092,7 @@ class GALGAS_symbolTableForOptimizations : public AC_GALGAS_map {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_symbolTableForOptimizations extractObject (const GALGAS_object & inObject,
@@ -8081,7 +8165,7 @@ class GALGAS_symbolTableForOptimizations : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_symbolTableForOptimizations * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                                         const GALGAS_string & inKey
                                                                                                         COMMA_LOCATION_ARGS) ;
@@ -8166,8 +8250,8 @@ class GALGAS_symbolTableForOptimizations_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default GALGAS constructor
   public: static GALGAS_symbolTableForOptimizations_2D_element constructor_default (LOCATION_ARGS) ;
@@ -8199,7 +8283,7 @@ class GALGAS_symbolTableForOptimizations_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_symbolTableForOptimizations_2D_element extractObject (const GALGAS_object & inObject,
@@ -8214,7 +8298,7 @@ class GALGAS_symbolTableForOptimizations_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_symbolTableForOptimizations_2D_element & inOperand) const ;
 
@@ -8228,7 +8312,7 @@ class GALGAS_symbolTableForOptimizations_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_symbolTableForOptimizations_2D_element class
 
@@ -8262,7 +8346,7 @@ class GALGAS_configFieldMap : public AC_GALGAS_map {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_configFieldMap extractObject (const GALGAS_object & inObject,
@@ -8355,7 +8439,7 @@ class GALGAS_configFieldMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_configFieldMap * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                            const GALGAS_string & inKey
                                                                                            COMMA_LOCATION_ARGS) ;
@@ -8413,7 +8497,7 @@ class GALGAS_fieldSettingMap : public AC_GALGAS_map {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_fieldSettingMap extractObject (const GALGAS_object & inObject,
@@ -8480,7 +8564,7 @@ class GALGAS_fieldSettingMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_fieldSettingMap * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
                                                                                             const GALGAS_string & inKey
                                                                                             COMMA_LOCATION_ARGS) ;
@@ -8579,8 +8663,8 @@ class GALGAS_configFieldMap_2D_element : public AC_GALGAS_root {
   }
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const ;
-  public: VIRTUAL_IN_DEBUG void drop (void) ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default GALGAS constructor
   public: static GALGAS_configFieldMap_2D_element constructor_default (LOCATION_ARGS) ;
@@ -8622,7 +8706,7 @@ class GALGAS_configFieldMap_2D_element : public AC_GALGAS_root {
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const ;
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
   public: static GALGAS_configFieldMap_2D_element extractObject (const GALGAS_object & inObject,
@@ -8639,7 +8723,7 @@ class GALGAS_configFieldMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const ;
+                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_configFieldMap_2D_element & inOperand) const ;
 
@@ -8653,7 +8737,7 @@ class GALGAS_configFieldMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const ;
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
 } ; // End of GALGAS_configFieldMap_2D_element class
 

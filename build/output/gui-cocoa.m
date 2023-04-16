@@ -19,9 +19,7 @@
 #pragma mark Nibs
 
 //----------------------------------------------------------------------------------------------------------------------
-//
 //          N I B S   A N D   T H E I R   M A I N   C L A S S E S                                
-//
 //----------------------------------------------------------------------------------------------------------------------
 
 NSArray * nibsAndClasses (void) {
@@ -32,15 +30,20 @@ NSArray * nibsAndClasses (void) {
   ] ;
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+//    Project file extensions
+//----------------------------------------------------------------------------------------------------------------------
+
+NSDictionary * indexingDescriptorDictionary (void) {
+  return [NSDictionary dictionaryWithObjectsAndKeys: @"PICCOLO_INDEXES", @"piccolo", nil] ;
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 
 #pragma mark Command Line Options
 
 //----------------------------------------------------------------------------------------------------------------------
-//
 //                       Command Line Options                                                    
-//
 //----------------------------------------------------------------------------------------------------------------------
 
 #import "option-piccolo-5F-options-cocoa.h"
@@ -68,40 +71,38 @@ void enterOptions (NSMutableArray * ioBoolOptionArray,
 #pragma mark Lexique piccolo_lexique
 
 //----------------------------------------------------------------------------------------------------------------------
-//
-//                     P O P    U P    L I S T    D A T A                                        
-//
+//                     P O P    U P    L I S T    D A T A
 //----------------------------------------------------------------------------------------------------------------------
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_241 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_290 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_routine, 0,
   piccolo_lexique_1_identifier, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_269 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_318 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_ram, 0,
   piccolo_lexique_1_identifier, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_303 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_352 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_interrupt, 0,
   piccolo_lexique_1_identifier, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_339 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_388 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_include, 0,
   piccolo_lexique_1_literal_5F_string, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_378 [8] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_427 [8] = {
   0, // Leading character count to strip
   piccolo_lexique_1_unused, 0,
   piccolo_lexique_1_byte, 0,
@@ -109,7 +110,7 @@ static const UInt16 gPopUpData_0_piccolo_5F_lexique_378 [8] = {
   0
 } ;
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_420 [8] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_469 [8] = {
   0, // Leading character count to strip
   piccolo_lexique_1_unused, 0,
   piccolo_lexique_1_routine, 0,
@@ -117,27 +118,25 @@ static const UInt16 gPopUpData_0_piccolo_5F_lexique_420 [8] = {
   0
 } ;
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_450 [4] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_499 [4] = {
   1, // Leading character count to strip
   piccolo_lexique_1_commentMark, 32,
   0
 } ;
 
 static const UInt16 * gPopUpData_0_piccolo_5F_lexique [8] = {
-  gPopUpData_0_piccolo_5F_lexique_241,
-  gPopUpData_0_piccolo_5F_lexique_269,
-  gPopUpData_0_piccolo_5F_lexique_303,
-  gPopUpData_0_piccolo_5F_lexique_339,
-  gPopUpData_0_piccolo_5F_lexique_378,
-  gPopUpData_0_piccolo_5F_lexique_420,
-  gPopUpData_0_piccolo_5F_lexique_450,
+  gPopUpData_0_piccolo_5F_lexique_290,
+  gPopUpData_0_piccolo_5F_lexique_318,
+  gPopUpData_0_piccolo_5F_lexique_352,
+  gPopUpData_0_piccolo_5F_lexique_388,
+  gPopUpData_0_piccolo_5F_lexique_427,
+  gPopUpData_0_piccolo_5F_lexique_469,
+  gPopUpData_0_piccolo_5F_lexique_499,
   NULL
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
-//
-//                            Lexique interface                                                  
-//
+//                            Lexique interface
 //----------------------------------------------------------------------------------------------------------------------
 
 @interface OC_Tokenizer_0_piccolo_lexique : OC_Lexique_piccolo_lexique {

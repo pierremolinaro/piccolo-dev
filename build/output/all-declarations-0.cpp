@@ -44,14 +44,6 @@ C_Lexique (inCallerCompiler, inSourceString, inStringForError COMMA_THERE) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-//                 I N D E X I N G    D I R E C T O R Y                                          
-//----------------------------------------------------------------------------------------------------------------------
-
-C_String C_Lexique_piccolo_5F_lexique::indexingDirectory (void) const {
-  return "PICCOLO_INDEXES" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
 //                        Lexical error message list                                             
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4448,7 +4440,7 @@ bool GALGAS_bitSliceTable::optional_searchKey (const GALGAS_string & inKey,
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@bitSliceTable type
+//     @bitSliceTable generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4493,6 +4485,14 @@ GALGAS_bitSliceTable GALGAS_bitSliceTable::extractObject (const GALGAS_object & 
 // @immediatExpression reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatExpression::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
 
 typeComparisonResult GALGAS_immediatExpression::objectCompare (const GALGAS_immediatExpression & inOperand) const {
@@ -4505,7 +4505,7 @@ typeComparisonResult GALGAS_immediatExpression::objectCompare (const GALGAS_imme
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -4534,7 +4534,7 @@ acStrongPtr_class (THERE) {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatExpression type
+//     @immediatExpression generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4645,7 +4645,7 @@ GALGAS_registerExpression GALGAS_registerExpression_2D_weak::bang_registerExpres
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@registerExpression-weak type
+//     @registerExpression-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4690,6 +4690,14 @@ GALGAS_registerExpression_2D_weak GALGAS_registerExpression_2D_weak::extractObje
 // @declarationInRam reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_declarationInRam::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
 
 typeComparisonResult GALGAS_declarationInRam::objectCompare (const GALGAS_declarationInRam & inOperand) const {
@@ -4702,7 +4710,7 @@ typeComparisonResult GALGAS_declarationInRam::objectCompare (const GALGAS_declar
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -4731,7 +4739,7 @@ acStrongPtr_class (THERE) {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@declarationInRam type
+//     @declarationInRam generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4842,7 +4850,7 @@ GALGAS_declarationInRam GALGAS_declarationInRam_2D_weak::bang_declarationInRam_2
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@declarationInRam-weak type
+//     @declarationInRam-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4987,7 +4995,7 @@ typeComparisonResult GALGAS_registerProtection::objectCompare (const GALGAS_regi
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@registerProtection type
+//     @registerProtection generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -5098,7 +5106,7 @@ GALGAS_byteDeclarationInRam GALGAS_byteDeclarationInRam_2D_weak::bang_byteDeclar
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@byteDeclarationInRam-weak type
+//     @byteDeclarationInRam-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -5515,7 +5523,7 @@ GALGAS_declarationInRam cEnumerator_declarationInRamList::current_mDeclarationIn
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@declarationInRamList type
+//     @declarationInRamList generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -5997,7 +6005,7 @@ GALGAS_declarationInRamList cEnumerator_ramDefinitionList::current_mDeclaration 
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@ramDefinitionList type
+//     @ramDefinitionList generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -6479,7 +6487,7 @@ GALGAS_lstring cEnumerator_configSettingList::current_mSettingValue (LOCATION_AR
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@configSettingList type
+//     @configSettingList generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -6961,7 +6969,7 @@ GALGAS_configSettingList cEnumerator_configDefinitionList::current_mSettingList 
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@configDefinitionList type
+//     @configDefinitionList generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7072,7 +7080,7 @@ GALGAS_immediatExpression GALGAS_immediatExpression_2D_weak::bang_immediatExpres
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatExpression-weak type
+//     @immediatExpression-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7554,7 +7562,7 @@ GALGAS_location cEnumerator_immediatExpressionList::current_mErrorLocation (LOCA
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatExpressionList type
+//     @immediatExpressionList generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7665,7 +7673,7 @@ GALGAS_immediatInteger GALGAS_immediatInteger_2D_weak::bang_immediatInteger_2D_w
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatInteger-weak type
+//     @immediatInteger-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7776,7 +7784,7 @@ GALGAS_immediatRegister GALGAS_immediatRegister_2D_weak::bang_immediatRegister_2
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatRegister-weak type
+//     @immediatRegister-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7821,6 +7829,16 @@ GALGAS_immediatRegister_2D_weak GALGAS_immediatRegister_2D_weak::extractObject (
 // @immediatAdd reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatAdd::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatAdd::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatAdd * p = (const cPtr_immediatAdd *) inOperandPtr ;
@@ -7847,7 +7865,7 @@ typeComparisonResult GALGAS_immediatAdd::objectCompare (const GALGAS_immediatAdd
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -7961,7 +7979,7 @@ acPtr_class * cPtr_immediatAdd::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatAdd type
+//     @immediatAdd generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8072,7 +8090,7 @@ GALGAS_immediatAdd GALGAS_immediatAdd_2D_weak::bang_immediatAdd_2D_weak (C_Compi
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatAdd-weak type
+//     @immediatAdd-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8117,6 +8135,16 @@ GALGAS_immediatAdd_2D_weak GALGAS_immediatAdd_2D_weak::extractObject (const GALG
 // @immediatSub reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatSub::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatSub::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatSub * p = (const cPtr_immediatSub *) inOperandPtr ;
@@ -8143,7 +8171,7 @@ typeComparisonResult GALGAS_immediatSub::objectCompare (const GALGAS_immediatSub
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -8257,7 +8285,7 @@ acPtr_class * cPtr_immediatSub::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatSub type
+//     @immediatSub generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8368,7 +8396,7 @@ GALGAS_immediatSub GALGAS_immediatSub_2D_weak::bang_immediatSub_2D_weak (C_Compi
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatSub-weak type
+//     @immediatSub-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8413,6 +8441,16 @@ GALGAS_immediatSub_2D_weak GALGAS_immediatSub_2D_weak::extractObject (const GALG
 // @immediatMul reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatMul::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatMul::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatMul * p = (const cPtr_immediatMul *) inOperandPtr ;
@@ -8439,7 +8477,7 @@ typeComparisonResult GALGAS_immediatMul::objectCompare (const GALGAS_immediatMul
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -8553,7 +8591,7 @@ acPtr_class * cPtr_immediatMul::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatMul type
+//     @immediatMul generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8664,7 +8702,7 @@ GALGAS_immediatMul GALGAS_immediatMul_2D_weak::bang_immediatMul_2D_weak (C_Compi
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatMul-weak type
+//     @immediatMul-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8709,6 +8747,16 @@ GALGAS_immediatMul_2D_weak GALGAS_immediatMul_2D_weak::extractObject (const GALG
 // @immediatDiv reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatDiv::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatDiv::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatDiv * p = (const cPtr_immediatDiv *) inOperandPtr ;
@@ -8735,7 +8783,7 @@ typeComparisonResult GALGAS_immediatDiv::objectCompare (const GALGAS_immediatDiv
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -8849,7 +8897,7 @@ acPtr_class * cPtr_immediatDiv::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatDiv type
+//     @immediatDiv generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8960,7 +9008,7 @@ GALGAS_immediatDiv GALGAS_immediatDiv_2D_weak::bang_immediatDiv_2D_weak (C_Compi
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatDiv-weak type
+//     @immediatDiv-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9005,6 +9053,16 @@ GALGAS_immediatDiv_2D_weak GALGAS_immediatDiv_2D_weak::extractObject (const GALG
 // @immediatMod reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatMod::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatMod::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatMod * p = (const cPtr_immediatMod *) inOperandPtr ;
@@ -9031,7 +9089,7 @@ typeComparisonResult GALGAS_immediatMod::objectCompare (const GALGAS_immediatMod
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -9145,7 +9203,7 @@ acPtr_class * cPtr_immediatMod::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatMod type
+//     @immediatMod generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9256,7 +9314,7 @@ GALGAS_immediatMod GALGAS_immediatMod_2D_weak::bang_immediatMod_2D_weak (C_Compi
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatMod-weak type
+//     @immediatMod-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9301,6 +9359,16 @@ GALGAS_immediatMod_2D_weak GALGAS_immediatMod_2D_weak::extractObject (const GALG
 // @immediatOr reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatOr::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatOr::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatOr * p = (const cPtr_immediatOr *) inOperandPtr ;
@@ -9327,7 +9395,7 @@ typeComparisonResult GALGAS_immediatOr::objectCompare (const GALGAS_immediatOr &
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -9441,7 +9509,7 @@ acPtr_class * cPtr_immediatOr::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatOr type
+//     @immediatOr generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9552,7 +9620,7 @@ GALGAS_immediatOr GALGAS_immediatOr_2D_weak::bang_immediatOr_2D_weak (C_Compiler
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatOr-weak type
+//     @immediatOr-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9597,6 +9665,16 @@ GALGAS_immediatOr_2D_weak GALGAS_immediatOr_2D_weak::extractObject (const GALGAS
 // @immediatAnd reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatAnd::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatAnd::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatAnd * p = (const cPtr_immediatAnd *) inOperandPtr ;
@@ -9623,7 +9701,7 @@ typeComparisonResult GALGAS_immediatAnd::objectCompare (const GALGAS_immediatAnd
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -9737,7 +9815,7 @@ acPtr_class * cPtr_immediatAnd::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatAnd type
+//     @immediatAnd generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9848,7 +9926,7 @@ GALGAS_immediatAnd GALGAS_immediatAnd_2D_weak::bang_immediatAnd_2D_weak (C_Compi
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatAnd-weak type
+//     @immediatAnd-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9893,6 +9971,16 @@ GALGAS_immediatAnd_2D_weak GALGAS_immediatAnd_2D_weak::extractObject (const GALG
 // @immediatXor reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatXor::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatXor::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatXor * p = (const cPtr_immediatXor *) inOperandPtr ;
@@ -9919,7 +10007,7 @@ typeComparisonResult GALGAS_immediatXor::objectCompare (const GALGAS_immediatXor
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -10033,7 +10121,7 @@ acPtr_class * cPtr_immediatXor::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatXor type
+//     @immediatXor generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10144,7 +10232,7 @@ GALGAS_immediatXor GALGAS_immediatXor_2D_weak::bang_immediatXor_2D_weak (C_Compi
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatXor-weak type
+//     @immediatXor-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10189,6 +10277,16 @@ GALGAS_immediatXor_2D_weak GALGAS_immediatXor_2D_weak::extractObject (const GALG
 // @immediatLeftShift reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatLeftShift::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatLeftShift::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatLeftShift * p = (const cPtr_immediatLeftShift *) inOperandPtr ;
@@ -10215,7 +10313,7 @@ typeComparisonResult GALGAS_immediatLeftShift::objectCompare (const GALGAS_immed
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -10329,7 +10427,7 @@ acPtr_class * cPtr_immediatLeftShift::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatLeftShift type
+//     @immediatLeftShift generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10440,7 +10538,7 @@ GALGAS_immediatLeftShift GALGAS_immediatLeftShift_2D_weak::bang_immediatLeftShif
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatLeftShift-weak type
+//     @immediatLeftShift-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10485,6 +10583,16 @@ GALGAS_immediatLeftShift_2D_weak GALGAS_immediatLeftShift_2D_weak::extractObject
 // @immediatRightShift reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatRightShift::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatRightShift::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatRightShift * p = (const cPtr_immediatRightShift *) inOperandPtr ;
@@ -10511,7 +10619,7 @@ typeComparisonResult GALGAS_immediatRightShift::objectCompare (const GALGAS_imme
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -10625,7 +10733,7 @@ acPtr_class * cPtr_immediatRightShift::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatRightShift type
+//     @immediatRightShift generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10736,7 +10844,7 @@ GALGAS_immediatRightShift GALGAS_immediatRightShift_2D_weak::bang_immediatRightS
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatRightShift-weak type
+//     @immediatRightShift-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10781,6 +10889,16 @@ GALGAS_immediatRightShift_2D_weak GALGAS_immediatRightShift_2D_weak::extractObje
 // @immediatEqualTest reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatEqualTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatEqualTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatEqualTest * p = (const cPtr_immediatEqualTest *) inOperandPtr ;
@@ -10807,7 +10925,7 @@ typeComparisonResult GALGAS_immediatEqualTest::objectCompare (const GALGAS_immed
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -10921,7 +11039,7 @@ acPtr_class * cPtr_immediatEqualTest::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatEqualTest type
+//     @immediatEqualTest generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11032,7 +11150,7 @@ GALGAS_immediatEqualTest GALGAS_immediatEqualTest_2D_weak::bang_immediatEqualTes
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatEqualTest-weak type
+//     @immediatEqualTest-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11077,6 +11195,16 @@ GALGAS_immediatEqualTest_2D_weak GALGAS_immediatEqualTest_2D_weak::extractObject
 // @immediatNotEqualTest reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatNotEqualTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatNotEqualTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatNotEqualTest * p = (const cPtr_immediatNotEqualTest *) inOperandPtr ;
@@ -11103,7 +11231,7 @@ typeComparisonResult GALGAS_immediatNotEqualTest::objectCompare (const GALGAS_im
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -11217,7 +11345,7 @@ acPtr_class * cPtr_immediatNotEqualTest::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatNotEqualTest type
+//     @immediatNotEqualTest generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11328,7 +11456,7 @@ GALGAS_immediatNotEqualTest GALGAS_immediatNotEqualTest_2D_weak::bang_immediatNo
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatNotEqualTest-weak type
+//     @immediatNotEqualTest-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11373,6 +11501,16 @@ GALGAS_immediatNotEqualTest_2D_weak GALGAS_immediatNotEqualTest_2D_weak::extract
 // @immediatGreaterTest reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatGreaterTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatGreaterTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatGreaterTest * p = (const cPtr_immediatGreaterTest *) inOperandPtr ;
@@ -11399,7 +11537,7 @@ typeComparisonResult GALGAS_immediatGreaterTest::objectCompare (const GALGAS_imm
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -11513,7 +11651,7 @@ acPtr_class * cPtr_immediatGreaterTest::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatGreaterTest type
+//     @immediatGreaterTest generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11624,7 +11762,7 @@ GALGAS_immediatGreaterTest GALGAS_immediatGreaterTest_2D_weak::bang_immediatGrea
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatGreaterTest-weak type
+//     @immediatGreaterTest-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11669,6 +11807,16 @@ GALGAS_immediatGreaterTest_2D_weak GALGAS_immediatGreaterTest_2D_weak::extractOb
 // @immediatGreaterOrEqualTest reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatGreaterOrEqualTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatGreaterOrEqualTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatGreaterOrEqualTest * p = (const cPtr_immediatGreaterOrEqualTest *) inOperandPtr ;
@@ -11695,7 +11843,7 @@ typeComparisonResult GALGAS_immediatGreaterOrEqualTest::objectCompare (const GAL
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -11809,7 +11957,7 @@ acPtr_class * cPtr_immediatGreaterOrEqualTest::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatGreaterOrEqualTest type
+//     @immediatGreaterOrEqualTest generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11920,7 +12068,7 @@ GALGAS_immediatGreaterOrEqualTest GALGAS_immediatGreaterOrEqualTest_2D_weak::ban
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatGreaterOrEqualTest-weak type
+//     @immediatGreaterOrEqualTest-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11965,6 +12113,16 @@ GALGAS_immediatGreaterOrEqualTest_2D_weak GALGAS_immediatGreaterOrEqualTest_2D_w
 // @immediatLowerTest reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatLowerTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatLowerTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatLowerTest * p = (const cPtr_immediatLowerTest *) inOperandPtr ;
@@ -11991,7 +12149,7 @@ typeComparisonResult GALGAS_immediatLowerTest::objectCompare (const GALGAS_immed
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -12105,7 +12263,7 @@ acPtr_class * cPtr_immediatLowerTest::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatLowerTest type
+//     @immediatLowerTest generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12216,7 +12374,7 @@ GALGAS_immediatLowerTest GALGAS_immediatLowerTest_2D_weak::bang_immediatLowerTes
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatLowerTest-weak type
+//     @immediatLowerTest-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12261,6 +12419,16 @@ GALGAS_immediatLowerTest_2D_weak GALGAS_immediatLowerTest_2D_weak::extractObject
 // @immediatLowerOrEqualTest reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatLowerOrEqualTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatLowerOrEqualTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatLowerOrEqualTest * p = (const cPtr_immediatLowerOrEqualTest *) inOperandPtr ;
@@ -12287,7 +12455,7 @@ typeComparisonResult GALGAS_immediatLowerOrEqualTest::objectCompare (const GALGA
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -12401,7 +12569,7 @@ acPtr_class * cPtr_immediatLowerOrEqualTest::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatLowerOrEqualTest type
+//     @immediatLowerOrEqualTest generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12512,7 +12680,7 @@ GALGAS_immediatLowerOrEqualTest GALGAS_immediatLowerOrEqualTest_2D_weak::bang_im
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatLowerOrEqualTest-weak type
+//     @immediatLowerOrEqualTest-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12557,6 +12725,15 @@ GALGAS_immediatLowerOrEqualTest_2D_weak GALGAS_immediatLowerOrEqualTest_2D_weak:
 // @immediatNegate reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatNegate::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mExpression.printNonNullClassInstanceProperties ("mExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatNegate::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatNegate * p = (const cPtr_immediatNegate *) inOperandPtr ;
@@ -12580,7 +12757,7 @@ typeComparisonResult GALGAS_immediatNegate::objectCompare (const GALGAS_immediat
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -12666,7 +12843,7 @@ acPtr_class * cPtr_immediatNegate::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatNegate type
+//     @immediatNegate generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12777,7 +12954,7 @@ GALGAS_immediatNegate GALGAS_immediatNegate_2D_weak::bang_immediatNegate_2D_weak
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatNegate-weak type
+//     @immediatNegate-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12822,6 +12999,15 @@ GALGAS_immediatNegate_2D_weak GALGAS_immediatNegate_2D_weak::extractObject (cons
 // @immediatComplement reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatComplement::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mExpression.printNonNullClassInstanceProperties ("mExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_immediatComplement::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_immediatComplement * p = (const cPtr_immediatComplement *) inOperandPtr ;
@@ -12845,7 +13031,7 @@ typeComparisonResult GALGAS_immediatComplement::objectCompare (const GALGAS_imme
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -12931,7 +13117,7 @@ acPtr_class * cPtr_immediatComplement::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatComplement type
+//     @immediatComplement generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13042,7 +13228,7 @@ GALGAS_immediatComplement GALGAS_immediatComplement_2D_weak::bang_immediatComple
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatComplement-weak type
+//     @immediatComplement-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13524,7 +13710,7 @@ GALGAS_immediatExpression cEnumerator_immediatSliceExpressionList::current_mExpr
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatSliceExpressionList type
+//     @immediatSliceExpressionList generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13635,7 +13821,7 @@ GALGAS_immediatSlice GALGAS_immediatSlice_2D_weak::bang_immediatSlice_2D_weak (C
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@immediatSlice-weak type
+//     @immediatSlice-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14117,7 +14303,7 @@ GALGAS_immediatExpression cEnumerator_constantDefinitionList::current_mExpressio
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@constantDefinitionList type
+//     @constantDefinitionList generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14443,7 +14629,7 @@ bool GALGAS_actualConfigurationMap::optional_searchKey (const GALGAS_string & in
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@actualConfigurationMap type
+//     @actualConfigurationMap generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14488,6 +14674,14 @@ GALGAS_actualConfigurationMap GALGAS_actualConfigurationMap::extractObject (cons
 // @bitNumberExpression reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_bitNumberExpression::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
 
 typeComparisonResult GALGAS_bitNumberExpression::objectCompare (const GALGAS_bitNumberExpression & inOperand) const {
@@ -14500,7 +14694,7 @@ typeComparisonResult GALGAS_bitNumberExpression::objectCompare (const GALGAS_bit
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -14529,7 +14723,7 @@ acStrongPtr_class (THERE) {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@bitNumberExpression type
+//     @bitNumberExpression generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14640,7 +14834,7 @@ GALGAS_bitNumberExpression GALGAS_bitNumberExpression_2D_weak::bang_bitNumberExp
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@bitNumberExpression-weak type
+//     @bitNumberExpression-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14685,6 +14879,16 @@ GALGAS_bitNumberExpression_2D_weak GALGAS_bitNumberExpression_2D_weak::extractOb
 // @bitNumberLiteralExpression reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_bitNumberLiteralExpression::printNonNullClassInstanceProperties (void) const {
+    cPtr_bitNumberExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mBitNumberLiteralExpression.printNonNullClassInstanceProperties ("mBitNumberLiteralExpression") ;
+    mProperty_mEndOfExpression.printNonNullClassInstanceProperties ("mEndOfExpression") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_bitNumberLiteralExpression::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_bitNumberLiteralExpression * p = (const cPtr_bitNumberLiteralExpression *) inOperandPtr ;
@@ -14711,7 +14915,7 @@ typeComparisonResult GALGAS_bitNumberLiteralExpression::objectCompare (const GAL
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -14825,7 +15029,7 @@ acPtr_class * cPtr_bitNumberLiteralExpression::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@bitNumberLiteralExpression type
+//     @bitNumberLiteralExpression generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14936,7 +15140,7 @@ GALGAS_bitNumberLiteralExpression GALGAS_bitNumberLiteralExpression_2D_weak::ban
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@bitNumberLiteralExpression-weak type
+//     @bitNumberLiteralExpression-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14981,6 +15185,15 @@ GALGAS_bitNumberLiteralExpression_2D_weak GALGAS_bitNumberLiteralExpression_2D_w
 // @bitNumberLiteralValue reference class
 //----------------------------------------------------------------------------------------------------------------------
 
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_bitNumberLiteralValue::printNonNullClassInstanceProperties (void) const {
+    cPtr_bitNumberExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mBitNumberLiteralValue.printNonNullClassInstanceProperties ("mBitNumberLiteralValue") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
 typeComparisonResult cPtr_bitNumberLiteralValue::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
   typeComparisonResult result = kOperandEqual ;
   const cPtr_bitNumberLiteralValue * p = (const cPtr_bitNumberLiteralValue *) inOperandPtr ;
@@ -15004,7 +15217,7 @@ typeComparisonResult GALGAS_bitNumberLiteralValue::objectCompare (const GALGAS_b
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
     }
   }
   return result ;
@@ -15097,7 +15310,7 @@ acPtr_class * cPtr_bitNumberLiteralValue::duplicate (LOCATION_ARGS) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@bitNumberLiteralValue type
+//     @bitNumberLiteralValue generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -15208,7 +15421,7 @@ GALGAS_bitNumberLiteralValue GALGAS_bitNumberLiteralValue_2D_weak::bang_bitNumbe
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@bitNumberLiteralValue-weak type
+//     @bitNumberLiteralValue-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -15319,7 +15532,7 @@ GALGAS_bitNumberLabelValue GALGAS_bitNumberLabelValue_2D_weak::bang_bitNumberLab
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@bitNumberLabelValue-weak type
+//     @bitNumberLabelValue-weak generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -15518,7 +15731,7 @@ bool GALGAS_labelMap::optional_searchKey (const GALGAS_string & inKey) const {
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@labelMap type
+//     @labelMap generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -15825,7 +16038,7 @@ bool GALGAS_constantMap::optional_searchKey (const GALGAS_string & inKey,
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@constantMap type
+//     @constantMap generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -16259,7 +16472,7 @@ bool GALGAS_routineMap::optional_searchKey (const GALGAS_string & inKey,
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@routineMap type
+//     @routineMap generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -16404,7 +16617,7 @@ typeComparisonResult GALGAS_routineKind::objectCompare (const GALGAS_routineKind
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@routineKind type
+//     @routineKind generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -16794,7 +17007,7 @@ bool GALGAS_symbolTableForOptimizations::optional_searchKey (const GALGAS_string
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@symbolTableForOptimizations type
+//     @symbolTableForOptimizations generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -17228,7 +17441,7 @@ bool GALGAS_configFieldMap::optional_searchKey (const GALGAS_string & inKey,
 
 //----------------------------------------------------------------------------------------------------------------------
 //
-//@configFieldMap type
+//     @configFieldMap generic code implementation
 //
 //----------------------------------------------------------------------------------------------------------------------
 

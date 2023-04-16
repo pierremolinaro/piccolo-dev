@@ -172,6 +172,9 @@ class cGrammar_piccoloDevice_5F_grammar : public cParser_piccoloDevice_5F_syntax
 //--- 'parse' label
   public: virtual void nt_start_5F_symbol_parse (C_Lexique_piccoloDevice_5F_lexique * inCompiler) ;
 
+//--- indexing
+  public: virtual void nt_start_5F_symbol_indexing (C_Lexique_piccoloDevice_5F_lexique * inCompiler) ;
+
 //----------- '' label
   public: virtual void nt_start_5F_symbol_ (GALGAS_piccoloDeviceModel & outArgument0,
                                             C_Lexique_piccoloDevice_5F_lexique * inCompiler) ;

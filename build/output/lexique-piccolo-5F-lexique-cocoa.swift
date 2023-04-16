@@ -691,12 +691,6 @@ class SWIFT_Lexique_piccolo_lexique : SWIFT_Lexique {
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  func indexingDirectory () -> String {
-    return "PICCOLO_INDEXES"
-  }
-
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
   func indexingTitles () -> [String] {
     return [
       "Routine Definition" /* routineDefinition */,

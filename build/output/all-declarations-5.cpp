@@ -27767,7 +27767,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_body_ (GALGAS_pic_31__38_Int
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::performIndexing (C_Compiler * inCompiler,
              const C_String & inSourceFilePath) {
-  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+  C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
   macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   scanner->enableIndexing () ;
   if (scanner->sourceText ().isValid ()) {
