@@ -174,20 +174,30 @@ do{
               ["-target", "Cocoa piccolo",
                "-configuration", "Default"
               ])
+  fm.changeCurrentDirectoryPath (DISTRIBUTION_DIR + "/" + PICCOLO_DIR)
   let DureeCompilation = Date ().timeIntervalSince (debutCompilation)
   let PRODUCT_NAME = "CocoaPiccolo"
 //-------------------- Copier l'application dans la racine du répertoire de distribution
-  runCommand ("/bin/cp", ["-r", "build/Default/" + PRODUCT_NAME + ".app", DISTRIBUTION_DIR])
+  runCommand (
+    "/bin/cp",
+    ["-r", "xcode-project/build/Default/" + PRODUCT_NAME + ".app", DISTRIBUTION_DIR]
+  )
 //-------------------- Construction package
   let packageFile = PRODUCT_NAME + "-" + VERSION_PICCOLO + ".pkg"
-  runCommand ("/usr/bin/productbuild", ["--component-compression", "auto", "--component", "build/Default/" + PRODUCT_NAME + ".app", "/Applications", packageFile])
+  runCommand (
+    "/usr/bin/productbuild",
+    ["--component-compression", "auto", "--component", "xcode-project/build/Default/" + PRODUCT_NAME + ".app", "/Applications", packageFile]
+  )
   runCommand ("/bin/cp", [packageFile, DISTRIBUTION_DIR])
-//-------------------- Créer l'archive de Cocoa canari
+//-------------------- Créer l'archive de Cocoa Piccolo
   let nomArchive = PRODUCT_NAME + "-" + VERSION_PICCOLO
   runCommand ("/bin/mkdir", [nomArchive])
   runCommand ("/bin/ln", ["-s", "/Applications", nomArchive + "/Applications"])
   runCommand ("/bin/mv", [DISTRIBUTION_DIR + "/" + PRODUCT_NAME + ".app", nomArchive])
-  runCommand ("/usr/bin/hdiutil", ["create", "-srcfolder", nomArchive, "../" + nomArchive + ".dmg", "-format", "ULMO"]) // , "-fs", "HFS+"
+  runCommand (
+    "/usr/bin/hdiutil",
+    ["create", "-srcfolder", nomArchive, "../" + nomArchive + ".dmg", "-format", "ULMO"]
+  ) // , "-fs", "HFS+"
 //-------------------- Supprimer le fichier .pkg
 //  runCommand ("/bin/rm", [DISTRIBUTION_DIR + "/" + packageFile])
 //-------------------- Calculer la clé de la somme de contrôle de l'archive DMG pour Sparkle
