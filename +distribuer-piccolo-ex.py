@@ -1,13 +1,13 @@
-#! /usr/bin/env python
+#!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 
-#------------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------------------
 
 import sys, os, subprocess, atexit, datetime
 
-#------------------------------------------------------------------------------*
-#   FOR PRINTING IN COLOR                                                      *
-#------------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------------------
+#   FOR PRINTING IN COLOR
+#-----------------------------------------------------------------------------------------
 
 MAGENTA = '\033[95m'
 BLUE = '\033[94m'
@@ -21,18 +21,18 @@ BOLD_BLUE = BOLD + BLUE
 BOLD_GREEN = BOLD + GREEN
 BOLD_RED = BOLD + RED
 
-#------------------------------------------------------------------------------*
-#   writeFile                                                                  *
-#------------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------------------
+#   writeFile
+#-----------------------------------------------------------------------------------------
 
 def writeFile (contents, filename) :
   f = open (filename, "w")
   f.write (contents)
   f.close ()
 
-#------------------------------------------------------------------------------*
-#   remplacerAnneeEtVersionGALGAS                                              *
-#------------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------------------
+#   remplacerAnneeEtVersionGALGAS
+#-----------------------------------------------------------------------------------------
 
 def remplacerAnneeEtVersionGALGAS (annee, versionPICCOLO, filename) :
   f = open (filename, "r")
@@ -42,9 +42,9 @@ def remplacerAnneeEtVersionGALGAS (annee, versionPICCOLO, filename) :
   contents = contents.replace ("GALGASBETAVERSION", versionPICCOLO)
   writeFile (contents, filename)
 
-#------------------------------------------------------------------------------*
-#   runCommand                                                                 *
-#------------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------------------
+#   runCommand
+#-----------------------------------------------------------------------------------------
 
 def runCommand (cmd) :
   str = "+"
@@ -56,9 +56,9 @@ def runCommand (cmd) :
   if childProcess.returncode != 0 :
     sys.exit (childProcess.returncode)
 
-#------------------------------------------------------------------------------*
-#   runHiddenCommand                                                           *
-#------------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------------------
+#   runHiddenCommand
+#-----------------------------------------------------------------------------------------
 
 def runHiddenCommand (cmd) :
   str = "+"
@@ -83,9 +83,9 @@ def runHiddenCommand (cmd) :
         sys.exit (childProcess.returncode)
       return result
 
-#------------------------------------------------------------------------------*
-#  ENTRY POINT                                                                 *
-#------------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------------------
+#  ENTRY POINT
+#-----------------------------------------------------------------------------------------
 
 #-------------------------------------- Get script absolute path
 scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))
@@ -96,12 +96,16 @@ runCommand (["rm", "-fr", TEMP_DIR])
 #-------------------- Creer le repertoire contenant la distribution
 runCommand (["mkdir", TEMP_DIR])
 #-------------------- Importer piccolo
-texteSurConsole = runHiddenCommand (["svn", "export", "https://piccolo.rts-software.org/svn/", TEMP_DIR + "/piccolo"])
-components = texteSurConsole.split ("Exported revision")
-#print "'" + components [1] + "'"
-components = components [1].split (".")
-numeroRevisionSVN = components [0].strip ()
-print "Révision SVN : '" + numeroRevisionSVN + "'"
+runCommand (
+  "/usr/bin/git",
+  ["clone", "--depth=1", "https://github.com/pierremolinaro/piccolo-dev.git"]
+)
+# texteSurConsole = runHiddenCommand (["svn", "export", "https://piccolo.rts-software.org/svn/", TEMP_DIR + "/piccolo"])
+# components = texteSurConsole.split ("Exported revision")
+# #print "'" + components [1] + "'"
+# components = components [1].split (".")
+# numeroRevisionSVN = components [0].strip ()
+# print "Révision SVN : '" + numeroRevisionSVN + "'"
 #-------------------- Obtenir l'année
 ANNEE = str (datetime.datetime.now().year)
 print "ANNÉE : '" + ANNEE + "'"
@@ -244,4 +248,4 @@ runCommand (["rm", "-fr", DIR + "/COCOA-TOOL"])
 runCommand (["rm", "-fr", DIR + "/piccolo"])
 print BOLD_GREEN + "-------------- SUCCES ---------------" + ENDC
 
-#------------------------------------------------------------------------------*
+#-----------------------------------------------------------------------------------------

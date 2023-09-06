@@ -252,3 +252,4 @@ TSWLatexianTemp*
 hex2piccoloData/build/**
 hex2piccoloData/hex2piccoloData.xcodeproj/project.xcworkspace/**
 hex2piccoloData/hex2piccoloData.xcodeproj/xcuserdata/**
+xcode-project/piccolo.xcodeproj/xcshareddata/xcschemes/Cocoa piccolo.xcscheme
