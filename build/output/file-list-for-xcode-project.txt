@@ -6993,10 +6993,12 @@
       isa = XCBuildConfiguration;
       buildSettings = {
         ONLY_ACTIVE_ARCH = YES;
-      CODE_SIGN_IDENTITY = "-" ;
       GCC_OPTIMIZATION_LEVEL = 2 ;
       GCC_PREPROCESSOR_DEFINITIONS = (DO_NOT_GENERATE_CHECKINGS) ;
       GCC_WARN_UNUSED_PARAMETER = YES ;
+      PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.piccolo.tool" ;
+      CODE_SIGN_IDENTITY = "Mac Developer" ;
+      DEVELOPMENT_TEAM = "YW8QY74J2A" ;
       PRODUCT_NAME = "piccolo" ;
     };
     name = Default;
@@ -7006,11 +7008,13 @@
       isa = XCBuildConfiguration;
       buildSettings = {
         ONLY_ACTIVE_ARCH = YES;
-      CODE_SIGN_IDENTITY = "-" ;
       GCC_OPTIMIZATION_LEVEL = 0 ;
       GCC_GENERATE_DEBUGGING_SYMBOLS = YES ;
       GCC_PREPROCESSOR_DEFINITIONS = () ;
       GCC_WARN_UNUSED_PARAMETER = YES ;
+      PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.piccolo.tooldebug" ;
+      CODE_SIGN_IDENTITY = "Mac Developer" ;
+      DEVELOPMENT_TEAM = "YW8QY74J2A" ;
       PRODUCT_NAME = "piccolo-debug" ;
     };
     name = Default;
@@ -7019,7 +7023,6 @@
     017A5476AFB7EEB3F8B96F9B /* Default */ = {
       isa = XCBuildConfiguration;
       buildSettings = {
-      CODE_SIGN_IDENTITY = "-" ;
       GCC_OPTIMIZATION_LEVEL = 0 ;
       GCC_PREPROCESSOR_DEFINITIONS = () ;
       CODE_SIGN_IDENTITY = "Mac Developer" ;
