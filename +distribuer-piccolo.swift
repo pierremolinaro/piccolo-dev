@@ -8,8 +8,8 @@ import Foundation
 // Version Piccolo
 //----------------------------------------------------------------------------------------
 
-let VERSION_PICCOLO = "2.0.0"
-let MAC_OS_MINIMUM_VERSION = "10.15"
+let VERSION_PICCOLO = "3.2.0"
+//let MAC_OS_MINIMUM_VERSION = "10.15"
 let NOTES : [String] = [
 ]
 let BUGFIXES : [String] = [
