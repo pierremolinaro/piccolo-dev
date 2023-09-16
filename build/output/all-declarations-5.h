@@ -128,6 +128,11 @@ class GALGAS_ramBankTable : public AC_GALGAS_map {
                                                      const class GALGAS_uintlist & inOperand4,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_ramBankTable add_operation (const GALGAS_ramBankTable & inOperand,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -657,6 +662,11 @@ class GALGAS_configRegisterMap : public AC_GALGAS_map {
                                                      const class GALGAS_illegalMaskList & inOperand4,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_configRegisterMap add_operation (const GALGAS_configRegisterMap & inOperand,
+                                                                   C_Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,

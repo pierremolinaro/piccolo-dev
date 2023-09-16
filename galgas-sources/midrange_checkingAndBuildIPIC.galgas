@@ -1191,7 +1191,7 @@ override method @midrange_andCondition buildIPICinstructionForCondition
       !?ioUsedRegisters
     ]
   else
-    let @string label0 = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
+    let @string label0 = ".L" + [ioLocalLabelIndex string] ; ioLocalLabelIndex += 1
     [self.mLeftExpression buildIPICinstructionForCondition
       !inTotalBankCount
       !inCurrentBank
@@ -1308,11 +1308,11 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
   var @bool generateComplementaryCondition = false
 #--- Direct Test Instruction Count
   if [option piccolo_options.performOptimizations value] then
-    var @uint directCount [self.mIfCondition computeInstructionCountForCondition !true ?directCount]
+    var @uint directCount ; [self.mIfCondition computeInstructionCountForCondition !true ?directCount]
     if [self.mElseInstructionList length] > 0 then
       directCount += 1
     end
-    var @uint complementaryCount [self.mIfCondition computeInstructionCountForCondition !false ?complementaryCount]
+    var @uint complementaryCount ; [self.mIfCondition computeInstructionCountForCondition !false ?complementaryCount]
     if [self.mThenInstructionList length] > 0 then
       complementaryCount += 1
     end
@@ -1332,8 +1332,8 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
   let @bool thenContinuesInSequence
   if generateComplementaryCondition then
   #---
-    let @string label_nextCondition = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
-    let @string label_endOfIfinstruction = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
+    let @string label_nextCondition = ".L" + [ioLocalLabelIndex string] ; ioLocalLabelIndex += 1
+    let @string label_endOfIfinstruction = ".L" + [ioLocalLabelIndex string] ; ioLocalLabelIndex += 1
   #--- Translate condition
     [self.mIfCondition buildIPICinstructionForCondition
       !inTotalBankCount
@@ -1389,8 +1389,8 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
     end
   else
   #---
-    let @string label_nextCondition = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
-    let @string label_endOfIfinstruction = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
+    let @string label_nextCondition = ".L" + [ioLocalLabelIndex string] ; ioLocalLabelIndex += 1
+    let @string label_endOfIfinstruction = ".L" + [ioLocalLabelIndex string] ; ioLocalLabelIndex += 1
   #--- Translate condition
     [self.mIfCondition buildIPICinstructionForCondition
       !inTotalBankCount
@@ -1471,7 +1471,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
   ?let @routineKind inRoutineKind
   ?!@stringset ioUsedRegisters {
 #--- Generate label
-  let @string labelInstructionBegin = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
+  let @string labelInstructionBegin = ".L" + [ioLocalLabelIndex string] ; ioLocalLabelIndex += 1
 #--- Define label
   ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL. new { !@lstring. new { !labelInstructionBegin !self.mInstructionLocation} !true}
 #--- Repeated instructions
@@ -1511,7 +1511,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
         !?ioUsedRegisters
       ]
     else
-      let @string nextBranchLabel = ".L" + [ioLocalLabelIndex string] ioLocalLabelIndex += 1
+      let @string nextBranchLabel = ".L" + [ioLocalLabelIndex string] ; ioLocalLabelIndex += 1
       [mCondition buildIPICinstructionForCondition
         !inTotalBankCount
         !ioCurrentBank

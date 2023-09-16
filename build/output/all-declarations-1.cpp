@@ -21,7 +21,6 @@ mProperty_mMask (in_mMask) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_fieldSettingMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mValue.isValid () && mProperty_mMask.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -120,6 +119,20 @@ void GALGAS_fieldSettingMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@fieldSettingMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_fieldSettingMap GALGAS_fieldSettingMap::add_operation (const GALGAS_fieldSettingMap & inOperand,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_fieldSettingMap result = *this ;
+  cEnumerator_fieldSettingMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mValue (HERE), enumerator.current_mMask (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7890,7 +7903,6 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_baseline_5F_declaredRoutineMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -7973,6 +7985,20 @@ void GALGAS_baseline_5F_declaredRoutineMap::addAssign_operation (const GALGAS_ls
   const char * kInsertErrorMessage = "@baseline_5F_declaredRoutineMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_declaredRoutineMap GALGAS_baseline_5F_declaredRoutineMap::add_operation (const GALGAS_baseline_5F_declaredRoutineMap & inOperand,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_declaredRoutineMap result = *this ;
+  cEnumerator_baseline_5F_declaredRoutineMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13417,7 +13443,6 @@ mProperty_mPage (in_mPage) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_baselineRoutineMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mIsNoReturn.isValid () && mProperty_mPage.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -13516,6 +13541,20 @@ void GALGAS_baselineRoutineMap::addAssign_operation (const GALGAS_lstring & inKe
   const char * kInsertErrorMessage = "@baselineRoutineMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_baselineRoutineMap GALGAS_baselineRoutineMap::add_operation (const GALGAS_baselineRoutineMap & inOperand,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const {
+  GALGAS_baselineRoutineMap result = *this ;
+  cEnumerator_baselineRoutineMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mIsNoReturn (HERE), enumerator.current_mPage (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13826,7 +13865,6 @@ mProperty_mDefinitionLineIndex (in_mDefinitionLineIndex) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_baselineSymbolTableForOptimizations::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mDefinitionLineIndex.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -13917,6 +13955,20 @@ void GALGAS_baselineSymbolTableForOptimizations::addAssign_operation (const GALG
   const char * kInsertErrorMessage = "@baselineSymbolTableForOptimizations insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_baselineSymbolTableForOptimizations GALGAS_baselineSymbolTableForOptimizations::add_operation (const GALGAS_baselineSymbolTableForOptimizations & inOperand,
+                                                                                                      C_Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) const {
+  GALGAS_baselineSymbolTableForOptimizations result = *this ;
+  cEnumerator_baselineSymbolTableForOptimizations enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mDefinitionLineIndex (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

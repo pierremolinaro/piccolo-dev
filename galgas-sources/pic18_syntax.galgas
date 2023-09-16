@@ -327,16 +327,16 @@ rule <condition_factor>
   select
     let @bool isIncrement
     select
-      $incf$ isIncrement = true
+      $incf$ ; isIncrement = true
     or
-      $decf$ isIncrement = false
+      $decf$ ; isIncrement = false
     end
     <register_parsing> ?let registerExpression
     let @bool W_isDestination
     select
       W_isDestination = false
     or
-      $,$ $w$ W_isDestination = true
+      $,$ ; $w$ ; W_isDestination = true
     end
     $identifier$ ?let @lstring conditionString
     let @string condition = [conditionString.string uppercaseString]
@@ -359,17 +359,17 @@ rule <condition_factor>
     <register_parsing> ?let registerExpression
     let @pic18RegisterComparison comparison
     select
-      $!=$ $w$ comparison = @pic18RegisterComparison. notEqual
+      $!=$ ; $w$ ; comparison = @pic18RegisterComparison. notEqual
     or
-      $==$ $w$ comparison = @pic18RegisterComparison. equal
+      $==$ ; $w$ ; comparison = @pic18RegisterComparison. equal
     or
-      $<=$ $w$ comparison = @pic18RegisterComparison. lowerOrEqual
+      $<=$ ; $w$ ; comparison = @pic18RegisterComparison. lowerOrEqual
     or
-      $>=$ $w$ comparison = @pic18RegisterComparison. greaterOrEqual
+      $>=$ ; $w$ ; comparison = @pic18RegisterComparison. greaterOrEqual
     or
-      $<$ $w$ comparison = @pic18RegisterComparison. lower
+      $<$ ; $w$ ; comparison = @pic18RegisterComparison. lower
     or
-      $>$ $w$ comparison = @pic18RegisterComparison. greater
+      $>$ ; $w$ ; comparison = @pic18RegisterComparison. greater
     end
     outCondition = @pic18RegisterComparisonCondition. new {
       !registerExpression
@@ -832,11 +832,11 @@ rule <structured_instruction>
     <register_parsing> ?let registerName
     let @if_semi_colon_op opCode
     select
-      $!=$ $w$ opCode = @if_semi_colon_op. CPFSEQ
+      $!=$ ; $w$ ; opCode = @if_semi_colon_op. CPFSEQ
     or
-      $<=$ $w$ opCode = @if_semi_colon_op. CPFSGT
+      $<=$ ; $w$ ; opCode = @if_semi_colon_op. CPFSGT
     or
-      $>=$ $w$ opCode = @if_semi_colon_op. CPFSLT
+      $>=$ ; $w$ ; opCode = @if_semi_colon_op. CPFSLT
     or
       $identifier$ ?let @lstring conditionString
       let @string condition = [conditionString.string uppercaseString]
@@ -884,16 +884,16 @@ rule <structured_instruction>
     let @location instructionLocation = @location.here
     let @bool increment
     select
-      $decf$ increment = false
+      $decf$ ; increment = false
     or
-      $incf$ increment = true
+      $incf$ ; increment = true
     end
     <register_parsing> ?let registerName
     let @bool w_isTarget
     select
       w_isTarget = false
     or
-      $,$ $w$ w_isTarget = true
+      $,$ ; $w$ ; w_isTarget = true
     end
     let @bool skipIfZero
     $identifier$ ?let @lstring conditionString
@@ -1008,21 +1008,21 @@ rule <structured_instruction>
   or
     let @conditional_branch condition
     select
-      $bc$ condition = @conditional_branch. bc
+      $bc$ ; condition = @conditional_branch. bc
     or
-      $bnc$ condition = @conditional_branch. bnc
+      $bnc$ ; condition = @conditional_branch. bnc
     or
-      $bn$ condition = @conditional_branch. bn
+      $bn$ ; condition = @conditional_branch. bn
     or
-      $bnn$ condition = @conditional_branch. bnn
+      $bnn$ ; condition = @conditional_branch. bnn
     or
-      $bov$ condition = @conditional_branch. bov
+      $bov$ ; condition = @conditional_branch. bov
     or
-      $bnov$ condition = @conditional_branch. bnov
+      $bnov$ ; condition = @conditional_branch. bnov
     or
-      $bz$ condition = @conditional_branch. bz
+      $bz$ ; condition = @conditional_branch. bz
     or
-      $bnz$ condition = @conditional_branch. bnz
+      $bnz$ ; condition = @conditional_branch. bnz
     end
     let @location instructionLocation = @location.here
     $identifier$ ?let @lstring targetLabelName indexing routineCall
@@ -1295,11 +1295,11 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
   or
     let @bit_oriented_op bitOrientedOp
     select
-      $bcf$ bitOrientedOp = @bit_oriented_op. BCF
+      $bcf$ ; bitOrientedOp = @bit_oriented_op. BCF
     or
-      $bsf$ bitOrientedOp = @bit_oriented_op. BSF
+      $bsf$ ; bitOrientedOp = @bit_oriented_op. BSF
     or
-      $btg$ bitOrientedOp = @bit_oriented_op. BTG
+      $btg$ ; bitOrientedOp = @bit_oriented_op. BTG
     end
     let @location instructionLocation = @location.here
     <register_parsing> ?let @registerExpression registerName
@@ -1366,19 +1366,19 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
   or
     let @literal_instruction_opcode literalInstruction
     select
-      $addlw$ literalInstruction = @literal_instruction_opcode. ADDLW
+      $addlw$ ; literalInstruction = @literal_instruction_opcode. ADDLW
     or
-      $andlw$ literalInstruction = @literal_instruction_opcode. ANDLW
+      $andlw$ ; literalInstruction = @literal_instruction_opcode. ANDLW
     or
-      $iorlw$ literalInstruction = @literal_instruction_opcode. IORLW
+      $iorlw$ ; literalInstruction = @literal_instruction_opcode. IORLW
     or
-      $movlw$ literalInstruction = @literal_instruction_opcode. MOVLW
+      $movlw$ ; literalInstruction = @literal_instruction_opcode. MOVLW
     or
-      $mullw$ literalInstruction = @literal_instruction_opcode. MULLW
+      $mullw$ ; literalInstruction = @literal_instruction_opcode. MULLW
     or
-      $sublw$ literalInstruction = @literal_instruction_opcode. SUBLW
+      $sublw$ ; literalInstruction = @literal_instruction_opcode. SUBLW
     or
-      $xorlw$ literalInstruction = @literal_instruction_opcode. XORLW
+      $xorlw$ ; literalInstruction = @literal_instruction_opcode. XORLW
     end
     let @location instructionLocation = @location.here
     <immediate_expression> ?let @immediatExpression expression

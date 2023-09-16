@@ -493,9 +493,9 @@ override method @midrange_intermediate_incDecRegisterInCondition generateBinaryC
   var @uint code
   var @string s
   if self.mIncrement then
-    code = 0x0F00 s = "INCFSZ"
+    code = 0x0F00 ; s = "INCFSZ"
   else
-    code = 0x0B00 s = "DECFSZ"
+    code = 0x0B00 ; s = "DECFSZ"
   end
   if not self.m_W_isDestination then
     code = code | 0x0080

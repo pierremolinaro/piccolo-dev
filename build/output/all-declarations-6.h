@@ -379,6 +379,11 @@ class GALGAS_caseConstantMap : public AC_GALGAS_map {
   public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_caseConstantMap add_operation (const GALGAS_caseConstantMap & inOperand,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -897,6 +902,11 @@ class GALGAS_pic_31__38__5F_dataMap : public AC_GALGAS_map {
                                                      const class GALGAS_bool & inOperand2,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_pic_31__38__5F_dataMap add_operation (const GALGAS_pic_31__38__5F_dataMap & inOperand,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,

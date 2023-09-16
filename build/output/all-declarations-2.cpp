@@ -3812,7 +3812,6 @@ mProperty_mRoutineAddress (in_mRoutineAddress) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_baseline_5F_symbolTable::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mRoutineAddress.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -3903,6 +3902,20 @@ void GALGAS_baseline_5F_symbolTable::addAssign_operation (const GALGAS_lstring &
   const char * kInsertErrorMessage = "@baseline_5F_symbolTable insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_symbolTable GALGAS_baseline_5F_symbolTable::add_operation (const GALGAS_baseline_5F_symbolTable & inOperand,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_symbolTable result = *this ;
+  cEnumerator_baseline_5F_symbolTable enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRoutineAddress (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

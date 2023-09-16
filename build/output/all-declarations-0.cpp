@@ -4169,7 +4169,6 @@ mProperty_mSliceSize (in_mSliceSize) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_bitSliceTable::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mSliceIndex.isValid () && mProperty_mSliceSize.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -4268,6 +4267,20 @@ void GALGAS_bitSliceTable::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@bitSliceTable insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bitSliceTable GALGAS_bitSliceTable::add_operation (const GALGAS_bitSliceTable & inOperand,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_bitSliceTable result = *this ;
+  cEnumerator_bitSliceTable enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mSliceIndex (HERE), enumerator.current_mSliceSize (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14358,7 +14371,6 @@ mProperty_mRegisterValue (in_mRegisterValue) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_actualConfigurationMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mRegisterAddress.isValid () && mProperty_mRegisterValue.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -14457,6 +14469,20 @@ void GALGAS_actualConfigurationMap::addAssign_operation (const GALGAS_lstring & 
   const char * kInsertErrorMessage = "@actualConfigurationMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_actualConfigurationMap GALGAS_actualConfigurationMap::add_operation (const GALGAS_actualConfigurationMap & inOperand,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_actualConfigurationMap result = *this ;
+  cEnumerator_actualConfigurationMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRegisterAddress (HERE), enumerator.current_mRegisterValue (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -15583,7 +15609,6 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_labelMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -15666,6 +15691,20 @@ void GALGAS_labelMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@labelMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_labelMap GALGAS_labelMap::add_operation (const GALGAS_labelMap & inOperand,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_labelMap result = *this ;
+  cEnumerator_labelMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -15819,7 +15858,6 @@ mProperty_mValue (in_mValue) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_constantMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mValue.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -15910,6 +15948,20 @@ void GALGAS_constantMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@constantMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_constantMap GALGAS_constantMap::add_operation (const GALGAS_constantMap & inOperand,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const {
+  GALGAS_constantMap result = *this ;
+  cEnumerator_constantMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mValue (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -16097,7 +16149,6 @@ mProperty_mPreservesBank (in_mPreservesBank) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_routineMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mIsNoReturn.isValid () && mProperty_mRequiredBank.isValid () && mProperty_mReturnedBank.isValid () && mProperty_mPreservesBank.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -16212,6 +16263,20 @@ void GALGAS_routineMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@routineMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_routineMap GALGAS_routineMap::add_operation (const GALGAS_routineMap & inOperand,
+                                                    C_Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const {
+  GALGAS_routineMap result = *this ;
+  cEnumerator_routineMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mIsNoReturn (HERE), enumerator.current_mRequiredBank (HERE), enumerator.current_mReturnedBank (HERE), enumerator.current_mPreservesBank (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -16715,7 +16780,6 @@ mProperty_mIsDeletable (in_mIsDeletable) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_symbolTableForOptimizations::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mDefinitionLineIndex.isValid () && mProperty_mIsDeletable.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -16814,6 +16878,20 @@ void GALGAS_symbolTableForOptimizations::addAssign_operation (const GALGAS_lstri
   const char * kInsertErrorMessage = "@symbolTableForOptimizations insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_symbolTableForOptimizations GALGAS_symbolTableForOptimizations::add_operation (const GALGAS_symbolTableForOptimizations & inOperand,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const {
+  GALGAS_symbolTableForOptimizations result = *this ;
+  cEnumerator_symbolTableForOptimizations enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mDefinitionLineIndex (HERE), enumerator.current_mIsDeletable (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -17066,7 +17144,6 @@ mProperty_mFieldSettingMap (in_mFieldSettingMap) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_configFieldMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mRegisterName.isValid () && mProperty_mMaskValue.isValid () && mProperty_mDescription.isValid () && mProperty_mFieldSettingMap.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -17181,6 +17258,20 @@ void GALGAS_configFieldMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@configFieldMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::add_operation (const GALGAS_configFieldMap & inOperand,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_configFieldMap result = *this ;
+  cEnumerator_configFieldMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRegisterName (HERE), enumerator.current_mMaskValue (HERE), enumerator.current_mDescription (HERE), enumerator.current_mFieldSettingMap (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

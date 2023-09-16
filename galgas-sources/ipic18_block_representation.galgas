@@ -540,14 +540,14 @@ func pic18_Bcc_instruction_code
   let @uint baseCode
   let @string mnemonic
   switch conditionalBranch
-  case bz   : baseCode = 0xE000 mnemonic = "BZ"
-  case bnz  : baseCode = 0xE100 mnemonic = "BNZ"
-  case bn   : baseCode = 0xE600 mnemonic = "BN"
-  case bnn  : baseCode = 0xE700 mnemonic = "BNN"
-  case bc   : baseCode = 0xE200 mnemonic = "BC"
-  case bnc  : baseCode = 0xE300 mnemonic = "BNC"
-  case bov  : baseCode = 0xE400 mnemonic = "BOV"
-  case bnov : baseCode = 0xE500 mnemonic = "BNOV"
+  case bz   : baseCode = 0xE000 ; mnemonic = "BZ"
+  case bnz  : baseCode = 0xE100 ; mnemonic = "BNZ"
+  case bn   : baseCode = 0xE600 ; mnemonic = "BN"
+  case bnn  : baseCode = 0xE700 ; mnemonic = "BNN"
+  case bc   : baseCode = 0xE200 ; mnemonic = "BC"
+  case bnc  : baseCode = 0xE300 ; mnemonic = "BNC"
+  case bov  : baseCode = 0xE400 ; mnemonic = "BOV"
+  case bnov : baseCode = 0xE500 ; mnemonic = "BNOV"
   end
   outCode = @codeList. listWithValue {
     !"    " + mnemonic + " " + inTargetLabel

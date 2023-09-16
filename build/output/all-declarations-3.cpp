@@ -6011,7 +6011,6 @@ mProperty_mRoutineAddress (in_mRoutineAddress) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_midrange_5F_symbolTableForConvertingRelatives::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mRoutineAddress.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -6102,6 +6101,20 @@ void GALGAS_midrange_5F_symbolTableForConvertingRelatives::addAssign_operation (
   const char * kInsertErrorMessage = "@midrange_5F_symbolTableForConvertingRelatives insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_midrange_5F_symbolTableForConvertingRelatives GALGAS_midrange_5F_symbolTableForConvertingRelatives::add_operation (const GALGAS_midrange_5F_symbolTableForConvertingRelatives & inOperand,
+                                                                                                                          C_Compiler * inCompiler
+                                                                                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_midrange_5F_symbolTableForConvertingRelatives result = *this ;
+  cEnumerator_midrange_5F_symbolTableForConvertingRelatives enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRoutineAddress (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6347,7 +6360,6 @@ mProperty_mRoutineAddress (in_mRoutineAddress) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_midrange_5F_symbolTable::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mRoutineAddress.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -6438,6 +6450,20 @@ void GALGAS_midrange_5F_symbolTable::addAssign_operation (const GALGAS_lstring &
   const char * kInsertErrorMessage = "@midrange_5F_symbolTable insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_midrange_5F_symbolTable GALGAS_midrange_5F_symbolTable::add_operation (const GALGAS_midrange_5F_symbolTable & inOperand,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_midrange_5F_symbolTable result = *this ;
+  cEnumerator_midrange_5F_symbolTable enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRoutineAddress (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6876,7 +6902,6 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_midrange_5F_declaredRoutineMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -6959,6 +6984,20 @@ void GALGAS_midrange_5F_declaredRoutineMap::addAssign_operation (const GALGAS_ls
   const char * kInsertErrorMessage = "@midrange_5F_declaredRoutineMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_midrange_5F_declaredRoutineMap GALGAS_midrange_5F_declaredRoutineMap::add_operation (const GALGAS_midrange_5F_declaredRoutineMap & inOperand,
+                                                                                            C_Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_midrange_5F_declaredRoutineMap result = *this ;
+  cEnumerator_midrange_5F_declaredRoutineMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7096,7 +7135,6 @@ mProperty_mReservedSize (in_mReservedSize) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_bootloaderReservedRAMmap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mReservedSize.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -7187,6 +7225,20 @@ void GALGAS_bootloaderReservedRAMmap::addAssign_operation (const GALGAS_lstring 
   const char * kInsertErrorMessage = "@bootloaderReservedRAMmap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bootloaderReservedRAMmap GALGAS_bootloaderReservedRAMmap::add_operation (const GALGAS_bootloaderReservedRAMmap & inOperand,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_bootloaderReservedRAMmap result = *this ;
+  cEnumerator_bootloaderReservedRAMmap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mReservedSize (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14614,176 +14666,6 @@ GALGAS_pic_31__38_Instruction_5F_literalOperation_2D_weak GALGAS_pic_31__38_Inst
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_literalOperation-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-// @pic_31__38_Instruction_5F_fnop reference class
-//----------------------------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_pic_31__38_Instruction_5F_fnop::printNonNullClassInstanceProperties (void) const {
-    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
-    mProperty_mImmediatExpression.printNonNullClassInstanceProperties ("mImmediatExpression") ;
-  }
-#endif
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_pic_31__38_Instruction_5F_fnop::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_pic_31__38_Instruction_5F_fnop * p = (const cPtr_pic_31__38_Instruction_5F_fnop *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_fnop) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mInstructionLocation.objectCompare (p->mProperty_mInstructionLocation) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mImmediatExpression.objectCompare (p->mProperty_mImmediatExpression) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_pic_31__38_Instruction_5F_fnop::objectCompare (const GALGAS_pic_31__38_Instruction_5F_fnop & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop::GALGAS_pic_31__38_Instruction_5F_fnop (void) :
-GALGAS_pic_31__38_PiccoloSimpleInstruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop::GALGAS_pic_31__38_Instruction_5F_fnop (const cPtr_pic_31__38_Instruction_5F_fnop * inSourcePtr) :
-GALGAS_pic_31__38_PiccoloSimpleInstruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_fnop) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop GALGAS_pic_31__38_Instruction_5F_fnop::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                              const GALGAS_immediatExpression & inAttribute_mImmediatExpression
-                                                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_fnop result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mImmediatExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_fnop (inAttribute_mInstructionLocation, inAttribute_mImmediatExpression COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_pic_31__38_Instruction_5F_fnop::setter_setMImmediatExpression (GALGAS_immediatExpression inValue
-                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_pic_31__38_Instruction_5F_fnop * p = (cPtr_pic_31__38_Instruction_5F_fnop *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_fnop) ;
-    p->mProperty_mImmediatExpression = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_immediatExpression GALGAS_pic_31__38_Instruction_5F_fnop::readProperty_mImmediatExpression (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_immediatExpression () ;
-  }else{
-    cPtr_pic_31__38_Instruction_5F_fnop * p = (cPtr_pic_31__38_Instruction_5F_fnop *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_fnop) ;
-    return p->mProperty_mImmediatExpression ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @pic18Instruction_fnop class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_pic_31__38_Instruction_5F_fnop::cPtr_pic_31__38_Instruction_5F_fnop (const GALGAS_location & in_mInstructionLocation,
-                                                                          const GALGAS_immediatExpression & in_mImmediatExpression
-                                                                          COMMA_LOCATION_ARGS) :
-cPtr_pic_31__38_PiccoloSimpleInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mImmediatExpression (in_mImmediatExpression) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_fnop::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop ;
-}
-
-void cPtr_pic_31__38_Instruction_5F_fnop::description (C_String & ioString,
-                                                       const int32_t inIndentation) const {
-  ioString << "[@pic18Instruction_fnop:" ;
-  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mImmediatExpression.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_pic_31__38_Instruction_5F_fnop::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_fnop (mProperty_mInstructionLocation, mProperty_mImmediatExpression COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @pic18Instruction_fnop generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop ("pic18Instruction_fnop",
-                                                       & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_fnop::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_fnop::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_fnop (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop GALGAS_pic_31__38_Instruction_5F_fnop::extractObject (const GALGAS_object & inObject,
-                                                                                            C_Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_fnop result ;
-  const GALGAS_pic_31__38_Instruction_5F_fnop * p = (const GALGAS_pic_31__38_Instruction_5F_fnop *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_fnop *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("pic18Instruction_fnop", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

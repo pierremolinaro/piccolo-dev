@@ -232,16 +232,16 @@ rule <baseline_structured_instruction>
     let @location instructionLocation = @location.here
     let @bool increment
     select
-      $decf$ increment = false
+      $decf$ ; increment = false
     or
-      $incf$ increment = true
+      $incf$ ; increment = true
     end
     <register_parsing> ?let registerExpression
     let @bool w_isTarget
     select
       w_isTarget = false
     or
-      $,$ $w$ w_isTarget = true
+      $,$ ; $w$ ; w_isTarget = true
     end
     $identifier$ ?let @lstring conditionString
     let @string condition = [conditionString.string uppercaseString]
@@ -469,9 +469,9 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
   or
     let @baseline_bit_oriented_op bitOrientedOp
     select
-      $bcf$ bitOrientedOp = @baseline_bit_oriented_op. BCF
+      $bcf$ ; bitOrientedOp = @baseline_bit_oriented_op. BCF
     or
-      $bsf$ bitOrientedOp = @baseline_bit_oriented_op. BSF
+      $bsf$ ; bitOrientedOp = @baseline_bit_oriented_op. BSF
     end
     let @location instructionLocation = @location.here
     <register_parsing> ?let registerExpression
@@ -518,13 +518,13 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
   or
     let @baseline_literal_instruction_opcode literalInstruction
     select
-      $andlw$ literalInstruction = @baseline_literal_instruction_opcode. ANDLW
+      $andlw$ ; literalInstruction = @baseline_literal_instruction_opcode. ANDLW
     or
-      $iorlw$ literalInstruction = @baseline_literal_instruction_opcode. IORLW
+      $iorlw$ ; literalInstruction = @baseline_literal_instruction_opcode. IORLW
     or
-      $movlw$ literalInstruction = @baseline_literal_instruction_opcode. MOVLW
+      $movlw$ ; literalInstruction = @baseline_literal_instruction_opcode. MOVLW
     or
-      $xorlw$ literalInstruction = @baseline_literal_instruction_opcode. XORLW
+      $xorlw$ ; literalInstruction = @baseline_literal_instruction_opcode. XORLW
     end
     let @location instructionLocation = @location.here
     <immediate_expression> ?let expression
@@ -558,16 +558,16 @@ rule <baseline_condition_factor>
   select
     let @bool isIncrement
     select
-      $incf$ isIncrement = true
+      $incf$ ; isIncrement = true
     or
-      $decf$ isIncrement = false
+      $decf$ ; isIncrement = false
     end
     <register_parsing> ?let registerExpression
     let @bool W_isDestination
     select
       W_isDestination = false
     or
-      $,$ $w$ W_isDestination = true
+      $,$ ; $w$ ; W_isDestination = true
     end
     $identifier$ ?let @lstring conditionString
     let @string condition = [conditionString.string uppercaseString]

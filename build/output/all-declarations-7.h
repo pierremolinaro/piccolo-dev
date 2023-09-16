@@ -244,6 +244,11 @@ class GALGAS_symbolTableForBlockOptimization : public AC_GALGAS_map {
                                                      const class GALGAS_uint & inOperand1,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_symbolTableForBlockOptimization add_operation (const GALGAS_symbolTableForBlockOptimization & inOperand,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -465,6 +470,11 @@ class GALGAS_symbolTableForClusterOrdering : public AC_GALGAS_map {
                                                      const class GALGAS_uint & inOperand1,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_symbolTableForClusterOrdering add_operation (const GALGAS_symbolTableForClusterOrdering & inOperand,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -767,6 +777,11 @@ class GALGAS_symbolTableForRelativesResolution : public AC_GALGAS_map {
                                                      const class GALGAS_uint & inOperand1,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_symbolTableForRelativesResolution add_operation (const GALGAS_symbolTableForRelativesResolution & inOperand,
+                                                                                   C_Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -1257,6 +1272,11 @@ class GALGAS_pic_31__38__5F_dataAddressMap : public AC_GALGAS_map {
                                                      const class GALGAS_uint & inOperand1,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_pic_31__38__5F_dataAddressMap add_operation (const GALGAS_pic_31__38__5F_dataAddressMap & inOperand,
+                                                                               C_Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -1601,6 +1621,11 @@ class GALGAS_declaredRoutineMap : public AC_GALGAS_map {
                                                      const class GALGAS_pic_31__38_InstructionList & inOperand5,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_declaredRoutineMap add_operation (const GALGAS_declaredRoutineMap & inOperand,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -1986,6 +2011,11 @@ class GALGAS_blockInstructionBlockMap : public AC_GALGAS_map {
                                                      const class GALGAS_location & inOperand3,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_blockInstructionBlockMap add_operation (const GALGAS_blockInstructionBlockMap & inOperand,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -2257,6 +2287,11 @@ class GALGAS_blockInitialBankSelectionMap : public AC_GALGAS_map {
                                                      const class GALGAS_string & inOperand2,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_blockInitialBankSelectionMap add_operation (const GALGAS_blockInitialBankSelectionMap & inOperand,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -3145,6 +3180,11 @@ class GALGAS_neededConversionForClusterOrder : public AC_GALGAS_map {
                                                      const class GALGAS_uint & inOperand1,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_neededConversionForClusterOrder add_operation (const GALGAS_neededConversionForClusterOrder & inOperand,
+                                                                                 C_Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -3367,6 +3407,11 @@ class GALGAS_generatedCodeMap : public AC_GALGAS_map {
                                                      const class GALGAS_ipic_31__38_SequentialInstruction & inOperand2,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_generatedCodeMap add_operation (const GALGAS_generatedCodeMap & inOperand,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -3631,6 +3676,11 @@ class GALGAS_blockMapForStackComputation : public AC_GALGAS_map {
                                                      const class GALGAS_ipic_31__38_Block & inOperand1,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_blockMapForStackComputation add_operation (const GALGAS_blockMapForStackComputation & inOperand,
+                                                                             C_Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -3846,6 +3896,11 @@ class GALGAS_routineCallMap : public AC_GALGAS_map {
                                                      const class GALGAS_uint & inOperand2,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_routineCallMap add_operation (const GALGAS_routineCallMap & inOperand,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -4087,6 +4142,11 @@ class GALGAS_routineStackRequirementMap : public AC_GALGAS_map {
                                                      const class GALGAS_uint & inOperand1,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_routineStackRequirementMap add_operation (const GALGAS_routineStackRequirementMap & inOperand,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -4333,6 +4393,11 @@ class GALGAS_blockDurationMap : public AC_GALGAS_map {
                                                      const class GALGAS_uint & inOperand2,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_blockDurationMap add_operation (const GALGAS_blockDurationMap & inOperand,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -4636,6 +4701,11 @@ class GALGAS_declaredByteMap : public AC_GALGAS_map {
   public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_declaredByteMap add_operation (const GALGAS_declaredByteMap & inOperand,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
@@ -5491,6 +5561,11 @@ class GALGAS_configRegisterMaskMap : public AC_GALGAS_map {
                                                      const class GALGAS_fieldSettingMap & inOperand3,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_configRegisterMaskMap add_operation (const GALGAS_configRegisterMaskMap & inOperand,
+                                                                       C_Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,

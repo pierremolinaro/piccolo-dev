@@ -1980,7 +1980,6 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_caseConstantMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -2063,6 +2062,20 @@ void GALGAS_caseConstantMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@caseConstantMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_caseConstantMap GALGAS_caseConstantMap::add_operation (const GALGAS_caseConstantMap & inOperand,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_caseConstantMap result = *this ;
+  cEnumerator_caseConstantMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2209,7 +2222,6 @@ mProperty_mIsData_38_ (in_mIsData_38_) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_pic_31__38__5F_dataMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mData.isValid () && mProperty_mIsData_38_.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -2308,6 +2320,20 @@ void GALGAS_pic_31__38__5F_dataMap::addAssign_operation (const GALGAS_lstring & 
   const char * kInsertErrorMessage = "@pic_31__38__5F_dataMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38__5F_dataMap GALGAS_pic_31__38__5F_dataMap::add_operation (const GALGAS_pic_31__38__5F_dataMap & inOperand,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_pic_31__38__5F_dataMap result = *this ;
+  cEnumerator_pic_31__38__5F_dataMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mData (HERE), enumerator.current_mIsData_38_ (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

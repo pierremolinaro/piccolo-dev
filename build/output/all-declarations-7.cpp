@@ -371,7 +371,6 @@ mProperty_mDefinitionBlockIndex (in_mDefinitionBlockIndex) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_symbolTableForBlockOptimization::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mDefinitionBlockIndex.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -462,6 +461,20 @@ void GALGAS_symbolTableForBlockOptimization::addAssign_operation (const GALGAS_l
   const char * kInsertErrorMessage = "@symbolTableForBlockOptimization insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_symbolTableForBlockOptimization GALGAS_symbolTableForBlockOptimization::add_operation (const GALGAS_symbolTableForBlockOptimization & inOperand,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_symbolTableForBlockOptimization result = *this ;
+  cEnumerator_symbolTableForBlockOptimization enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mDefinitionBlockIndex (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -643,7 +656,6 @@ mProperty_mCluster (in_mCluster) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_symbolTableForClusterOrdering::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mCluster.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -734,6 +746,20 @@ void GALGAS_symbolTableForClusterOrdering::addAssign_operation (const GALGAS_lst
   const char * kInsertErrorMessage = "@symbolTableForClusterOrdering insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_symbolTableForClusterOrdering GALGAS_symbolTableForClusterOrdering::add_operation (const GALGAS_symbolTableForClusterOrdering & inOperand,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_symbolTableForClusterOrdering result = *this ;
+  cEnumerator_symbolTableForClusterOrdering enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mCluster (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1010,7 +1036,6 @@ mProperty_mLabelAddress (in_mLabelAddress) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_symbolTableForRelativesResolution::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mLabelAddress.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -1101,6 +1126,20 @@ void GALGAS_symbolTableForRelativesResolution::addAssign_operation (const GALGAS
   const char * kInsertErrorMessage = "@symbolTableForRelativesResolution insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_symbolTableForRelativesResolution GALGAS_symbolTableForRelativesResolution::add_operation (const GALGAS_symbolTableForRelativesResolution & inOperand,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) const {
+  GALGAS_symbolTableForRelativesResolution result = *this ;
+  cEnumerator_symbolTableForRelativesResolution enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mLabelAddress (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1764,7 +1803,6 @@ mProperty_mDataAddress (in_mDataAddress) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_pic_31__38__5F_dataAddressMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mDataAddress.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -1855,6 +1893,20 @@ void GALGAS_pic_31__38__5F_dataAddressMap::addAssign_operation (const GALGAS_lst
   const char * kInsertErrorMessage = "@pic_31__38__5F_dataAddressMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38__5F_dataAddressMap GALGAS_pic_31__38__5F_dataAddressMap::add_operation (const GALGAS_pic_31__38__5F_dataAddressMap & inOperand,
+                                                                                          C_Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_pic_31__38__5F_dataAddressMap result = *this ;
+  cEnumerator_pic_31__38__5F_dataAddressMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mDataAddress (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2291,7 +2343,6 @@ mProperty_mInstructionList (in_mInstructionList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_declaredRoutineMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mRequiredBank.isValid () && mProperty_mReturnedBank.isValid () && mProperty_mPreservesBank.isValid () && mProperty_mIsNoReturn.isValid () && mProperty_mInstructionList.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -2414,6 +2465,20 @@ void GALGAS_declaredRoutineMap::addAssign_operation (const GALGAS_lstring & inKe
   const char * kInsertErrorMessage = "@declaredRoutineMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_declaredRoutineMap GALGAS_declaredRoutineMap::add_operation (const GALGAS_declaredRoutineMap & inOperand,
+                                                                    C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const {
+  GALGAS_declaredRoutineMap result = *this ;
+  cEnumerator_declaredRoutineMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRequiredBank (HERE), enumerator.current_mReturnedBank (HERE), enumerator.current_mPreservesBank (HERE), enumerator.current_mIsNoReturn (HERE), enumerator.current_mInstructionList (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2862,7 +2927,6 @@ mProperty_mEndOfBlock (in_mEndOfBlock) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_blockInstructionBlockMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mInstructionList.isValid () && mProperty_mBlockTerminaisonForBlockInstruction.isValid () && mProperty_mEndOfBlock.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -2969,6 +3033,20 @@ void GALGAS_blockInstructionBlockMap::addAssign_operation (const GALGAS_lstring 
   const char * kInsertErrorMessage = "@blockInstructionBlockMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::add_operation (const GALGAS_blockInstructionBlockMap & inOperand,
+                                                                                C_Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_blockInstructionBlockMap result = *this ;
+  cEnumerator_blockInstructionBlockMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mInstructionList (HERE), enumerator.current_mBlockTerminaisonForBlockInstruction (HERE), enumerator.current_mEndOfBlock (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3240,7 +3318,6 @@ mProperty_mSourceBlock (in_mSourceBlock) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_blockInitialBankSelectionMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mInitialBankSelection.isValid () && mProperty_mSourceBlock.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -3339,6 +3416,20 @@ void GALGAS_blockInitialBankSelectionMap::addAssign_operation (const GALGAS_lstr
   const char * kInsertErrorMessage = "@blockInitialBankSelectionMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::add_operation (const GALGAS_blockInitialBankSelectionMap & inOperand,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const {
+  GALGAS_blockInitialBankSelectionMap result = *this ;
+  cEnumerator_blockInitialBankSelectionMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mInitialBankSelection (HERE), enumerator.current_mSourceBlock (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4790,7 +4881,6 @@ mProperty_mConversions (in_mConversions) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_neededConversionForClusterOrder::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mConversions.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -4881,6 +4971,20 @@ void GALGAS_neededConversionForClusterOrder::addAssign_operation (const GALGAS_l
   const char * kInsertErrorMessage = "@neededConversionForClusterOrder insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_neededConversionForClusterOrder GALGAS_neededConversionForClusterOrder::add_operation (const GALGAS_neededConversionForClusterOrder & inOperand,
+                                                                                              C_Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_neededConversionForClusterOrder result = *this ;
+  cEnumerator_neededConversionForClusterOrder enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mConversions (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5064,7 +5168,6 @@ mProperty_mInstruction (in_mInstruction) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_generatedCodeMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mCode.isValid () && mProperty_mInstruction.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -5163,6 +5266,20 @@ void GALGAS_generatedCodeMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@generatedCodeMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_generatedCodeMap GALGAS_generatedCodeMap::add_operation (const GALGAS_generatedCodeMap & inOperand,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_generatedCodeMap result = *this ;
+  cEnumerator_generatedCodeMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mCode (HERE), enumerator.current_mInstruction (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5440,7 +5557,6 @@ mProperty_mBlock (in_mBlock) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_blockMapForStackComputation::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mBlock.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -5531,6 +5647,20 @@ void GALGAS_blockMapForStackComputation::addAssign_operation (const GALGAS_lstri
   const char * kInsertErrorMessage = "@blockMapForStackComputation insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_blockMapForStackComputation GALGAS_blockMapForStackComputation::add_operation (const GALGAS_blockMapForStackComputation & inOperand,
+                                                                                      C_Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const {
+  GALGAS_blockMapForStackComputation result = *this ;
+  cEnumerator_blockMapForStackComputation enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mBlock (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5714,7 +5844,6 @@ mProperty_mTerminatorStackNeeds (in_mTerminatorStackNeeds) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_routineCallMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mCalledRoutineSet.isValid () && mProperty_mTerminatorStackNeeds.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -5813,6 +5942,20 @@ void GALGAS_routineCallMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@routineCallMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_routineCallMap GALGAS_routineCallMap::add_operation (const GALGAS_routineCallMap & inOperand,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_routineCallMap result = *this ;
+  cEnumerator_routineCallMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mCalledRoutineSet (HERE), enumerator.current_mTerminatorStackNeeds (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6013,7 +6156,6 @@ mProperty_mLevels (in_mLevels) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_routineStackRequirementMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mLevels.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -6104,6 +6246,20 @@ void GALGAS_routineStackRequirementMap::addAssign_operation (const GALGAS_lstrin
   const char * kInsertErrorMessage = "@routineStackRequirementMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_routineStackRequirementMap GALGAS_routineStackRequirementMap::add_operation (const GALGAS_routineStackRequirementMap & inOperand,
+                                                                                    C_Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const {
+  GALGAS_routineStackRequirementMap result = *this ;
+  cEnumerator_routineStackRequirementMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mLevels (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6329,7 +6485,6 @@ mProperty_mMaxDuration (in_mMaxDuration) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_blockDurationMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mMinDuration.isValid () && mProperty_mMaxDuration.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -6428,6 +6583,20 @@ void GALGAS_blockDurationMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@blockDurationMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_blockDurationMap GALGAS_blockDurationMap::add_operation (const GALGAS_blockDurationMap & inOperand,
+                                                                C_Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_blockDurationMap result = *this ;
+  cEnumerator_blockDurationMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mMinDuration (HERE), enumerator.current_mMaxDuration (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7947,7 +8116,6 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_declaredByteMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -8030,6 +8198,20 @@ void GALGAS_declaredByteMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@declaredByteMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_declaredByteMap GALGAS_declaredByteMap::add_operation (const GALGAS_declaredByteMap & inOperand,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_declaredByteMap result = *this ;
+  cEnumerator_declaredByteMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -8175,7 +8357,6 @@ mProperty_mProtection (in_mProtection) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_registerTable::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mRegisterAddressList.isValid () && mProperty_mSize.isValid () && mProperty_mBitSliceTable.isValid () && mProperty_mBitDefinitionString.isValid () && mProperty_mProtection.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -8298,6 +8479,20 @@ void GALGAS_registerTable::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@registerTable insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_registerTable GALGAS_registerTable::add_operation (const GALGAS_registerTable & inOperand,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_registerTable result = *this ;
+  cEnumerator_registerTable enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRegisterAddressList (HERE), enumerator.current_mSize (HERE), enumerator.current_mBitSliceTable (HERE), enumerator.current_mBitDefinitionString (HERE), enumerator.current_mProtection (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -8730,7 +8925,6 @@ mProperty_mMirrorOffsetList (in_mMirrorOffsetList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_ramBankTable::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mFirstAddress.isValid () && mProperty_mFirstFreeAddress.isValid () && mProperty_mLastAddressPlusOne.isValid () && mProperty_mMirrorOffsetList.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -8845,6 +9039,20 @@ void GALGAS_ramBankTable::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@ramBankTable insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_ramBankTable GALGAS_ramBankTable::add_operation (const GALGAS_ramBankTable & inOperand,
+                                                        C_Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const {
+  GALGAS_ramBankTable result = *this ;
+  cEnumerator_ramBankTable enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mFirstAddress (HERE), enumerator.current_mFirstFreeAddress (HERE), enumerator.current_mLastAddressPlusOne (HERE), enumerator.current_mMirrorOffsetList (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9876,7 +10084,6 @@ mProperty_mFieldSettingMap (in_mFieldSettingMap) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_configRegisterMaskMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mMaskValue.isValid () && mProperty_mDescription.isValid () && mProperty_mFieldSettingMap.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -9983,6 +10190,20 @@ void GALGAS_configRegisterMaskMap::addAssign_operation (const GALGAS_lstring & i
   const char * kInsertErrorMessage = "@configRegisterMaskMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_configRegisterMaskMap GALGAS_configRegisterMaskMap::add_operation (const GALGAS_configRegisterMaskMap & inOperand,
+                                                                          C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_configRegisterMaskMap result = *this ;
+  cEnumerator_configRegisterMaskMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mMaskValue (HERE), enumerator.current_mDescription (HERE), enumerator.current_mFieldSettingMap (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10258,7 +10479,6 @@ mProperty_mIllegalMaskList (in_mIllegalMaskList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_configRegisterMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mRegisterAddress.isValid () && mProperty_mRegisterWidth.isValid () && mProperty_mConfigRegisterMaskMap.isValid () && mProperty_mIllegalMaskList.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -10373,6 +10593,20 @@ void GALGAS_configRegisterMap::addAssign_operation (const GALGAS_lstring & inKey
   const char * kInsertErrorMessage = "@configRegisterMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_configRegisterMap GALGAS_configRegisterMap::add_operation (const GALGAS_configRegisterMap & inOperand,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
+  GALGAS_configRegisterMap result = *this ;
+  cEnumerator_configRegisterMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRegisterAddress (HERE), enumerator.current_mRegisterWidth (HERE), enumerator.current_mConfigRegisterMaskMap (HERE), enumerator.current_mIllegalMaskList (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14440,387 +14674,6 @@ GALGAS_immediatSlice GALGAS_immediatSlice::extractObject (const GALGAS_object & 
       result = *p ;
     }else{
       inCompiler->castError ("immediatSlice", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-// @bitNumberLabelValue reference class
-//----------------------------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_bitNumberLabelValue::printNonNullClassInstanceProperties (void) const {
-    cPtr_bitNumberExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mBitNumberLabelValue.printNonNullClassInstanceProperties ("mBitNumberLabelValue") ;
-    mProperty_mBitNumberIndexValue.printNonNullClassInstanceProperties ("mBitNumberIndexValue") ;
-  }
-#endif
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_bitNumberLabelValue::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_bitNumberLabelValue * p = (const cPtr_bitNumberLabelValue *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_bitNumberLabelValue) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mBitNumberLabelValue.objectCompare (p->mProperty_mBitNumberLabelValue) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mBitNumberIndexValue.objectCompare (p->mProperty_mBitNumberIndexValue) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_bitNumberLabelValue::objectCompare (const GALGAS_bitNumberLabelValue & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bitNumberLabelValue::GALGAS_bitNumberLabelValue (void) :
-GALGAS_bitNumberExpression () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bitNumberLabelValue GALGAS_bitNumberLabelValue::constructor_default (LOCATION_ARGS) {
-  return GALGAS_bitNumberLabelValue::constructor_new (GALGAS_lstring::constructor_default (HERE),
-                                                      GALGAS_luint::constructor_default (HERE)
-                                                      COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bitNumberLabelValue::GALGAS_bitNumberLabelValue (const cPtr_bitNumberLabelValue * inSourcePtr) :
-GALGAS_bitNumberExpression (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_bitNumberLabelValue) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bitNumberLabelValue GALGAS_bitNumberLabelValue::constructor_new (const GALGAS_lstring & inAttribute_mBitNumberLabelValue,
-                                                                        const GALGAS_luint & inAttribute_mBitNumberIndexValue
-                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_bitNumberLabelValue result ;
-  if (inAttribute_mBitNumberLabelValue.isValid () && inAttribute_mBitNumberIndexValue.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_bitNumberLabelValue (inAttribute_mBitNumberLabelValue, inAttribute_mBitNumberIndexValue COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_bitNumberLabelValue::setter_setMBitNumberLabelValue (GALGAS_lstring inValue
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_bitNumberLabelValue * p = (cPtr_bitNumberLabelValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLabelValue) ;
-    p->mProperty_mBitNumberLabelValue = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_bitNumberLabelValue::setter_setMBitNumberIndexValue (GALGAS_luint inValue
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_bitNumberLabelValue * p = (cPtr_bitNumberLabelValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLabelValue) ;
-    p->mProperty_mBitNumberIndexValue = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_lstring GALGAS_bitNumberLabelValue::readProperty_mBitNumberLabelValue (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_lstring () ;
-  }else{
-    cPtr_bitNumberLabelValue * p = (cPtr_bitNumberLabelValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLabelValue) ;
-    return p->mProperty_mBitNumberLabelValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_luint GALGAS_bitNumberLabelValue::readProperty_mBitNumberIndexValue (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_luint () ;
-  }else{
-    cPtr_bitNumberLabelValue * p = (cPtr_bitNumberLabelValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLabelValue) ;
-    return p->mProperty_mBitNumberIndexValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @bitNumberLabelValue class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_bitNumberLabelValue::cPtr_bitNumberLabelValue (const GALGAS_lstring & in_mBitNumberLabelValue,
-                                                    const GALGAS_luint & in_mBitNumberIndexValue
-                                                    COMMA_LOCATION_ARGS) :
-cPtr_bitNumberExpression (THERE),
-mProperty_mBitNumberLabelValue (in_mBitNumberLabelValue),
-mProperty_mBitNumberIndexValue (in_mBitNumberIndexValue) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_bitNumberLabelValue::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_bitNumberLabelValue ;
-}
-
-void cPtr_bitNumberLabelValue::description (C_String & ioString,
-                                            const int32_t inIndentation) const {
-  ioString << "[@bitNumberLabelValue:" ;
-  mProperty_mBitNumberLabelValue.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mBitNumberIndexValue.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_bitNumberLabelValue::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_bitNumberLabelValue (mProperty_mBitNumberLabelValue, mProperty_mBitNumberIndexValue COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @bitNumberLabelValue generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_bitNumberLabelValue ("bitNumberLabelValue",
-                                            & kTypeDescriptor_GALGAS_bitNumberExpression) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_bitNumberLabelValue::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_bitNumberLabelValue ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_bitNumberLabelValue::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_bitNumberLabelValue (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bitNumberLabelValue GALGAS_bitNumberLabelValue::extractObject (const GALGAS_object & inObject,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_bitNumberLabelValue result ;
-  const GALGAS_bitNumberLabelValue * p = (const GALGAS_bitNumberLabelValue *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_bitNumberLabelValue *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("bitNumberLabelValue", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-// @baseline_5F_instruction_5F_CALL reference class
-//----------------------------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_instruction_5F_CALL::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mTargetLabel.printNonNullClassInstanceProperties ("mTargetLabel") ;
-  }
-#endif
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_baseline_5F_instruction_5F_CALL::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_baseline_5F_instruction_5F_CALL * p = (const cPtr_baseline_5F_instruction_5F_CALL *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_CALL) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mInstructionLocation.objectCompare (p->mProperty_mInstructionLocation) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mTargetLabel.objectCompare (p->mProperty_mTargetLabel) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_baseline_5F_instruction_5F_CALL::objectCompare (const GALGAS_baseline_5F_instruction_5F_CALL & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_baseline_5F_instruction_5F_CALL::GALGAS_baseline_5F_instruction_5F_CALL (void) :
-GALGAS_baseline_5F_instruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_baseline_5F_instruction_5F_CALL GALGAS_baseline_5F_instruction_5F_CALL::constructor_default (LOCATION_ARGS) {
-  return GALGAS_baseline_5F_instruction_5F_CALL::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                  GALGAS_lstring::constructor_default (HERE)
-                                                                  COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_baseline_5F_instruction_5F_CALL::GALGAS_baseline_5F_instruction_5F_CALL (const cPtr_baseline_5F_instruction_5F_CALL * inSourcePtr) :
-GALGAS_baseline_5F_instruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_instruction_5F_CALL) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_baseline_5F_instruction_5F_CALL GALGAS_baseline_5F_instruction_5F_CALL::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                const GALGAS_lstring & inAttribute_mTargetLabel
-                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_baseline_5F_instruction_5F_CALL result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mTargetLabel.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_CALL (inAttribute_mInstructionLocation, inAttribute_mTargetLabel COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_CALL::setter_setMTargetLabel (GALGAS_lstring inValue
-                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_CALL * p = (cPtr_baseline_5F_instruction_5F_CALL *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_CALL) ;
-    p->mProperty_mTargetLabel = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_lstring GALGAS_baseline_5F_instruction_5F_CALL::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_lstring () ;
-  }else{
-    cPtr_baseline_5F_instruction_5F_CALL * p = (cPtr_baseline_5F_instruction_5F_CALL *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_CALL) ;
-    return p->mProperty_mTargetLabel ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @baseline_instruction_CALL class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_baseline_5F_instruction_5F_CALL::cPtr_baseline_5F_instruction_5F_CALL (const GALGAS_location & in_mInstructionLocation,
-                                                                            const GALGAS_lstring & in_mTargetLabel
-                                                                            COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mTargetLabel (in_mTargetLabel) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_baseline_5F_instruction_5F_CALL::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL ;
-}
-
-void cPtr_baseline_5F_instruction_5F_CALL::description (C_String & ioString,
-                                                        const int32_t inIndentation) const {
-  ioString << "[@baseline_instruction_CALL:" ;
-  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mTargetLabel.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_baseline_5F_instruction_5F_CALL::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_CALL (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @baseline_instruction_CALL generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL ("baseline_instruction_CALL",
-                                                        & kTypeDescriptor_GALGAS_baseline_5F_instruction) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_baseline_5F_instruction_5F_CALL::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_baseline_5F_instruction_5F_CALL::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_baseline_5F_instruction_5F_CALL (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_baseline_5F_instruction_5F_CALL GALGAS_baseline_5F_instruction_5F_CALL::extractObject (const GALGAS_object & inObject,
-                                                                                              C_Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_baseline_5F_instruction_5F_CALL result ;
-  const GALGAS_baseline_5F_instruction_5F_CALL * p = (const GALGAS_baseline_5F_instruction_5F_CALL *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_CALL *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("baseline_instruction_CALL", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

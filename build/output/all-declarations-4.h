@@ -10,6 +10,112 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+// Phase 1: @pic_31__38_Instruction_5F_fnop reference class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_pic_31__38_Instruction_5F_fnop : public GALGAS_pic_31__38_PiccoloSimpleInstruction {
+//--------------------------------- Default constructor
+  public: GALGAS_pic_31__38_Instruction_5F_fnop (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GALGAS_pic_31__38_Instruction_5F_fnop (const class cPtr_pic_31__38_Instruction_5F_fnop * inSourcePtr) ;
+
+//--------------------------------- Property read access
+  public: class GALGAS_immediatExpression readProperty_mImmediatExpression (void) const ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_pic_31__38_Instruction_5F_fnop extractObject (const GALGAS_object & inObject,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_pic_31__38_Instruction_5F_fnop constructor_new (const class GALGAS_location & inOperand0,
+                                                                              const class GALGAS_immediatExpression & inOperand1
+                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_fnop & inOperand) const ;
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_setMImmediatExpression (class GALGAS_immediatExpression inArgument0
+                                                               COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_pic_31__38_Instruction_5F_fnop class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @pic18Instruction_fnop class
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cPtr_pic_31__38_Instruction_5F_fnop : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+//--- Extension method addUsedRoutines
+  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
+           class GALGAS_stringset & ioUsedRoutines,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method analyzeSimpleInstruction
+  public: virtual void method_analyzeSimpleInstruction (const class GALGAS_uint inAccessBankSplitOffset,
+           const class GALGAS_routineMap inRoutineMap,
+           const class GALGAS_registerTable inRegisterTable,
+           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
+           const class GALGAS_constantMap inConstantMap,
+           class GALGAS_uint & ioCurrentBank,
+           const class GALGAS_bool inShouldPreserveBSR,
+           class GALGAS_stringset & ioUsedRegisters,
+           class GALGAS_ipic_31__38_SequentialInstruction & outInstruction,
+           C_Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GALGAS_immediatExpression mProperty_mImmediatExpression ;
+
+//--- Constructor
+  public: cPtr_pic_31__38_Instruction_5F_fnop (const GALGAS_location & in_mInstructionLocation,
+                                               const GALGAS_immediatExpression & in_mImmediatExpression
+                                               COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (C_String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 // Phase 1: @pic_31__38_Instruction_5F_fnop_2D_weak weak reference class
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -6182,6 +6288,11 @@ class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
                                                      const class GALGAS_pic_31__38_InstructionList & inOperand2,
                                                      C_Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_pic_31__38_MacroMap add_operation (const GALGAS_pic_31__38_MacroMap & inOperand,
+                                                                     C_Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
