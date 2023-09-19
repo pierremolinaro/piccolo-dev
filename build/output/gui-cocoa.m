@@ -74,35 +74,35 @@ void enterOptions (NSMutableArray * ioBoolOptionArray,
 //                     P O P    U P    L I S T    D A T A
 //----------------------------------------------------------------------------------------------------------------------
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_290 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_279 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_routine, 0,
   piccolo_lexique_1_identifier, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_318 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_307 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_ram, 0,
   piccolo_lexique_1_identifier, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_352 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_341 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_interrupt, 0,
   piccolo_lexique_1_identifier, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_388 [6] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_373 [6] = {
   0, // Leading character count to strip
   piccolo_lexique_1_include, 0,
   piccolo_lexique_1_literal_5F_string, 0,
   0
 } ;
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_427 [8] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_416 [8] = {
   0, // Leading character count to strip
   piccolo_lexique_1_unused, 0,
   piccolo_lexique_1_byte, 0,
@@ -110,7 +110,7 @@ static const UInt16 gPopUpData_0_piccolo_5F_lexique_427 [8] = {
   0
 } ;
 
-static const UInt16 gPopUpData_0_piccolo_5F_lexique_469 [8] = {
+static const UInt16 gPopUpData_0_piccolo_5F_lexique_458 [8] = {
   0, // Leading character count to strip
   piccolo_lexique_1_unused, 0,
   piccolo_lexique_1_routine, 0,
@@ -125,12 +125,12 @@ static const UInt16 gPopUpData_0_piccolo_5F_lexique_499 [4] = {
 } ;
 
 static const UInt16 * gPopUpData_0_piccolo_5F_lexique [8] = {
-  gPopUpData_0_piccolo_5F_lexique_290,
-  gPopUpData_0_piccolo_5F_lexique_318,
-  gPopUpData_0_piccolo_5F_lexique_352,
-  gPopUpData_0_piccolo_5F_lexique_388,
-  gPopUpData_0_piccolo_5F_lexique_427,
-  gPopUpData_0_piccolo_5F_lexique_469,
+  gPopUpData_0_piccolo_5F_lexique_279,
+  gPopUpData_0_piccolo_5F_lexique_307,
+  gPopUpData_0_piccolo_5F_lexique_341,
+  gPopUpData_0_piccolo_5F_lexique_373,
+  gPopUpData_0_piccolo_5F_lexique_416,
+  gPopUpData_0_piccolo_5F_lexique_458,
   gPopUpData_0_piccolo_5F_lexique_499,
   NULL
 } ;
