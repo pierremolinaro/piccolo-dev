@@ -103,7 +103,6 @@ static NSInteger search_into_piccoloDevice_5F_lexique_controlKeyWordList (NSStri
 //----------------------------------------------------------------------------------------------------------------------
 
 - (BOOL) internalParseLexicalTokenForLexicalColoring {
-  BOOL loop = YES ;
   BOOL scanningOk = YES ;
   mLexicalAttribute_charValue = 0 ;
   [mLexicalAttribute_identifierString setString:@""] ;
@@ -111,15 +110,15 @@ static NSInteger search_into_piccoloDevice_5F_lexique_controlKeyWordList (NSStri
   mLexicalAttribute_uint32value = 0 ;
   mTokenStartLocation = mCurrentLocation ;
   if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90])) {
+    BOOL loop920 = YES ;
     do {
       scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_identifierString, scanner_cocoa_function_toLower (mPreviousChar)) ;
       scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
       if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90] || [self testForInputChar:95] || [self testForInputFromChar:48 toChar:57])) {
       }else{
-        loop = NO ;
+        loop920 = NO ;
       }
-    }while (loop && scanningOk) ;
-    loop = YES ;
+    }while (loop920 && scanningOk) ;
     if (mTokenCode == 0) {
       mTokenCode = search_into_piccoloDevice_5F_lexique_controlKeyWordList (mLexicalAttribute_identifierString) ;
     }
@@ -127,6 +126,7 @@ static NSInteger search_into_piccoloDevice_5F_lexique_controlKeyWordList (NSStri
       mTokenCode = piccoloDevice_lexique_1_identifier ;
     }
   }else if (scanningOk && ([self testForInputString:@"0x" advance:YES])) {
+    BOOL loop1508 = YES ;
     do {
       if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
         scanner_cocoa_routine_enterHexDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
@@ -136,22 +136,21 @@ static NSInteger search_into_piccoloDevice_5F_lexique_controlKeyWordList (NSStri
         scanner_cocoa_routine_enterHexDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
       }else if (scanningOk && ([self testForInputChar:95])) {
       }else{
-        loop = NO ;
+        loop1508 = NO ;
       }
-    }while (loop && scanningOk) ;
-    loop = YES ;
+    }while (loop1508 && scanningOk) ;
     mTokenCode = piccoloDevice_lexique_1_integer ;
   }else if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
     scanner_cocoa_routine_enterDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
+    BOOL loop1973 = YES ;
     do {
       if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
         scanner_cocoa_routine_enterDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
       }else if (scanningOk && ([self testForInputChar:95])) {
       }else{
-        loop = NO ;
+        loop1973 = NO ;
       }
-    }while (loop && scanningOk) ;
-    loop = YES ;
+    }while (loop1973 && scanningOk) ;
     mTokenCode = piccoloDevice_lexique_1_integer ;
   }else if (scanningOk && [self testForInputString:@"}" advance:YES]) {
     mTokenCode = piccoloDevice_lexique_1__7D_ ;
@@ -176,6 +175,7 @@ static NSInteger search_into_piccoloDevice_5F_lexique_controlKeyWordList (NSStri
   }else if (scanningOk && [self testForInputString:@"," advance:YES]) {
     mTokenCode = piccoloDevice_lexique_1__2C_ ;
   }else if (scanningOk && ([self testForInputChar:34])) {
+    BOOL loop2766 = YES ;
     do {
       if (scanningOk && ([self testForInputChar:92])) {
         if (scanningOk && ([self testForInputChar:102])) {
@@ -197,14 +197,14 @@ static NSInteger search_into_piccoloDevice_5F_lexique_controlKeyWordList (NSStri
         }else if (scanningOk && ([self testForInputChar:39])) {
           scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 39) ;
         }else if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
+          BOOL loop3458 = YES ;
           do {
             scanner_cocoa_routine_enterHexDigitIntoASCIIcharacter (& scanningOk, & mLexicalAttribute_charValue, mPreviousChar) ;
             if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
             }else{
-              loop = NO ;
+              loop3458 = NO ;
             }
-          }while (loop && scanningOk) ;
-          loop = YES ;
+          }while (loop3458 && scanningOk) ;
           scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mLexicalAttribute_charValue) ;
         }else{
           scanningOk = NO ;
@@ -212,23 +212,22 @@ static NSInteger search_into_piccoloDevice_5F_lexique_controlKeyWordList (NSStri
       }else if (scanningOk && ([self testForInputChar:32] || [self testForInputChar:33] || [self testForInputFromChar:35 toChar:126])) {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
       }else{
-        loop = NO ;
+        loop2766 = NO ;
       }
-    }while (loop && scanningOk) ;
-    loop = YES ;
+    }while (loop2766 && scanningOk) ;
     if (scanningOk && ([self testForInputChar:34])) {
       mTokenCode = piccoloDevice_lexique_1_string ;
     }else{
       scanningOk = NO ;
     }
   }else if (scanningOk && ([self testForInputChar:35])) {
+    BOOL loop4044 = YES ;
     do {
       if (scanningOk && ([self testForInputFromChar:1 toChar:9] || [self testForInputChar:11] || [self testForInputChar:12] || [self testForInputFromChar:14 toChar:65533])) {
       }else{
-        loop = NO ;
+        loop4044 = NO ;
       }
-    }while (loop && scanningOk) ;
-    loop = YES ;
+    }while (loop4044 && scanningOk) ;
     mTokenCode = piccoloDevice_lexique_1_comment ;
   }else if (scanningOk && ([self testForInputFromChar:1 toChar:32])) {
   }else   if ([self testForInputChar:'\0']) { // End of source text ?
