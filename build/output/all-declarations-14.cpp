@@ -60,14 +60,14 @@ static void print_tool_help_message (void) {
 
 static const char * kSourceFileExtensions [] = {
   "piccolo",
-  NULL
+  nullptr
 } ;    
 
 //----------------------------------------------------------------------------------------------------------------------
 
 static const char * kSourceFileHelpMessages [] = {
   "a source text file with the .piccolo extension",
-  NULL
+  nullptr
 } ;    
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -455,8 +455,8 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
     returnCode = 1 ;
   }else{
   //--- Common lexique object
-    C_Compiler * commonCompiler = NULL ;
-    macroMyNew (commonCompiler, C_Compiler (NULL COMMA_HERE)) ;
+    C_Compiler * commonCompiler = nullptr ;
+    macroMyNew (commonCompiler, C_Compiler (nullptr COMMA_HERE)) ;
     try{
       routine_before (commonCompiler COMMA_HERE) ;
       cLexiqueIntrospection::handleGetKeywordListOption (commonCompiler) ;

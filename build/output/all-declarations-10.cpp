@@ -54,7 +54,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_savebank::objectCompare (c
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -90,7 +90,7 @@ GALGAS_pic_31__38_Instruction_5F_savebank GALGAS_pic_31__38_Instruction_5F_saveb
 
 void GALGAS_pic_31__38_Instruction_5F_savebank::setter_setMRegister (GALGAS_registerExpression inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_savebank) ;
     p->mProperty_mRegister = inValue ;
@@ -101,7 +101,7 @@ void GALGAS_pic_31__38_Instruction_5F_savebank::setter_setMRegister (GALGAS_regi
 
 void GALGAS_pic_31__38_Instruction_5F_savebank::setter_setMInstructionList (GALGAS_pic_31__38_InstructionList inValue
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_savebank) ;
     p->mProperty_mInstructionList = inValue ;
@@ -112,7 +112,7 @@ void GALGAS_pic_31__38_Instruction_5F_savebank::setter_setMInstructionList (GALG
 
 void GALGAS_pic_31__38_Instruction_5F_savebank::setter_setMEndOfSaveBankInstruction (GALGAS_location inValue
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_savebank) ;
     p->mProperty_mEndOfSaveBankInstruction = inValue ;
@@ -122,7 +122,7 @@ void GALGAS_pic_31__38_Instruction_5F_savebank::setter_setMEndOfSaveBankInstruct
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_savebank::readProperty_mRegister (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
@@ -134,7 +134,7 @@ GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_savebank::readPropert
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_Instruction_5F_savebank::readProperty_mInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_pic_31__38_InstructionList () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
@@ -146,7 +146,7 @@ GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_Instruction_5F_savebank::rea
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_pic_31__38_Instruction_5F_savebank::readProperty_mEndOfSaveBankInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_savebank * p = (cPtr_pic_31__38_Instruction_5F_savebank *) mObjectPtr ;
@@ -192,7 +192,7 @@ void cPtr_pic_31__38_Instruction_5F_savebank::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_savebank::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_savebank (mProperty_mInstructionLocation, mProperty_mRegister, mProperty_mInstructionList, mProperty_mEndOfSaveBankInstruction COMMA_THERE)) ;
   return ptr ;
 }
@@ -217,7 +217,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_savebank::stat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_savebank::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_savebank (*this)) ;
   }
@@ -231,8 +231,8 @@ GALGAS_pic_31__38_Instruction_5F_savebank GALGAS_pic_31__38_Instruction_5F_saveb
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_savebank result ;
   const GALGAS_pic_31__38_Instruction_5F_savebank * p = (const GALGAS_pic_31__38_Instruction_5F_savebank *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_savebank *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_savebank *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_savebank", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -288,7 +288,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_FDA::objectCompare (const 
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -324,7 +324,7 @@ GALGAS_pic_31__38_Instruction_5F_FDA GALGAS_pic_31__38_Instruction_5F_FDA::const
 
 void GALGAS_pic_31__38_Instruction_5F_FDA::setter_setMInstruction_5F_FDA_5F_base_5F_code (GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST inValue
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_FDA * p = (cPtr_pic_31__38_Instruction_5F_FDA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_FDA) ;
     p->mProperty_mInstruction_5F_FDA_5F_base_5F_code = inValue ;
@@ -335,7 +335,7 @@ void GALGAS_pic_31__38_Instruction_5F_FDA::setter_setMInstruction_5F_FDA_5F_base
 
 void GALGAS_pic_31__38_Instruction_5F_FDA::setter_setMRegisterExpression (GALGAS_registerExpression inValue
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_FDA * p = (cPtr_pic_31__38_Instruction_5F_FDA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_FDA) ;
     p->mProperty_mRegisterExpression = inValue ;
@@ -346,7 +346,7 @@ void GALGAS_pic_31__38_Instruction_5F_FDA::setter_setMRegisterExpression (GALGAS
 
 void GALGAS_pic_31__38_Instruction_5F_FDA::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_FDA * p = (cPtr_pic_31__38_Instruction_5F_FDA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_FDA) ;
     p->mProperty_m_5F_W_5F_isDestination = inValue ;
@@ -356,7 +356,7 @@ void GALGAS_pic_31__38_Instruction_5F_FDA::setter_setM_5F_W_5F_isDestination (GA
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST GALGAS_pic_31__38_Instruction_5F_FDA::readProperty_mInstruction_5F_FDA_5F_base_5F_code (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_FDA * p = (cPtr_pic_31__38_Instruction_5F_FDA *) mObjectPtr ;
@@ -368,7 +368,7 @@ GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST GALGAS_pic_31__38_In
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_FDA::readProperty_mRegisterExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_FDA * p = (cPtr_pic_31__38_Instruction_5F_FDA *) mObjectPtr ;
@@ -380,7 +380,7 @@ GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_FDA::readProperty_mRe
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_pic_31__38_Instruction_5F_FDA::readProperty_m_5F_W_5F_isDestination (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_FDA * p = (cPtr_pic_31__38_Instruction_5F_FDA *) mObjectPtr ;
@@ -426,7 +426,7 @@ void cPtr_pic_31__38_Instruction_5F_FDA::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_FDA::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_FDA (mProperty_mInstructionLocation, mProperty_mInstruction_5F_FDA_5F_base_5F_code, mProperty_mRegisterExpression, mProperty_m_5F_W_5F_isDestination COMMA_THERE)) ;
   return ptr ;
 }
@@ -451,7 +451,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_FDA::staticTyp
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_FDA::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_FDA (*this)) ;
   }
@@ -465,8 +465,8 @@ GALGAS_pic_31__38_Instruction_5F_FDA GALGAS_pic_31__38_Instruction_5F_FDA::extra
                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_FDA result ;
   const GALGAS_pic_31__38_Instruction_5F_FDA * p = (const GALGAS_pic_31__38_Instruction_5F_FDA *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_FDA *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_FDA *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_FDA", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -518,7 +518,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_FA::objectCompare (const G
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -553,7 +553,7 @@ GALGAS_pic_31__38_Instruction_5F_FA GALGAS_pic_31__38_Instruction_5F_FA::constru
 
 void GALGAS_pic_31__38_Instruction_5F_FA::setter_setMFAinstruction (GALGAS_FA_5F_instruction_5F_base_5F_code inValue
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_FA * p = (cPtr_pic_31__38_Instruction_5F_FA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_FA) ;
     p->mProperty_mFAinstruction = inValue ;
@@ -564,7 +564,7 @@ void GALGAS_pic_31__38_Instruction_5F_FA::setter_setMFAinstruction (GALGAS_FA_5F
 
 void GALGAS_pic_31__38_Instruction_5F_FA::setter_setMRegisterExpression (GALGAS_registerExpression inValue
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_FA * p = (cPtr_pic_31__38_Instruction_5F_FA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_FA) ;
     p->mProperty_mRegisterExpression = inValue ;
@@ -574,7 +574,7 @@ void GALGAS_pic_31__38_Instruction_5F_FA::setter_setMRegisterExpression (GALGAS_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_FA_5F_instruction_5F_base_5F_code GALGAS_pic_31__38_Instruction_5F_FA::readProperty_mFAinstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_FA_5F_instruction_5F_base_5F_code () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_FA * p = (cPtr_pic_31__38_Instruction_5F_FA *) mObjectPtr ;
@@ -586,7 +586,7 @@ GALGAS_FA_5F_instruction_5F_base_5F_code GALGAS_pic_31__38_Instruction_5F_FA::re
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_FA::readProperty_mRegisterExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_FA * p = (cPtr_pic_31__38_Instruction_5F_FA *) mObjectPtr ;
@@ -628,7 +628,7 @@ void cPtr_pic_31__38_Instruction_5F_FA::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_FA::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_FA (mProperty_mInstructionLocation, mProperty_mFAinstruction, mProperty_mRegisterExpression COMMA_THERE)) ;
   return ptr ;
 }
@@ -653,7 +653,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_FA::staticType
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_FA::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_FA (*this)) ;
   }
@@ -667,8 +667,8 @@ GALGAS_pic_31__38_Instruction_5F_FA GALGAS_pic_31__38_Instruction_5F_FA::extract
                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_FA result ;
   const GALGAS_pic_31__38_Instruction_5F_FA * p = (const GALGAS_pic_31__38_Instruction_5F_FA *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_FA *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_FA *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_FA", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -720,7 +720,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_MOVFF::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -755,7 +755,7 @@ GALGAS_pic_31__38_Instruction_5F_MOVFF GALGAS_pic_31__38_Instruction_5F_MOVFF::c
 
 void GALGAS_pic_31__38_Instruction_5F_MOVFF::setter_setMSourceRegisterName (GALGAS_registerExpression inValue
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_MOVFF * p = (cPtr_pic_31__38_Instruction_5F_MOVFF *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_MOVFF) ;
     p->mProperty_mSourceRegisterName = inValue ;
@@ -766,7 +766,7 @@ void GALGAS_pic_31__38_Instruction_5F_MOVFF::setter_setMSourceRegisterName (GALG
 
 void GALGAS_pic_31__38_Instruction_5F_MOVFF::setter_setMDestinationRegisterName (GALGAS_registerExpression inValue
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_MOVFF * p = (cPtr_pic_31__38_Instruction_5F_MOVFF *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_MOVFF) ;
     p->mProperty_mDestinationRegisterName = inValue ;
@@ -776,7 +776,7 @@ void GALGAS_pic_31__38_Instruction_5F_MOVFF::setter_setMDestinationRegisterName 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_MOVFF::readProperty_mSourceRegisterName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_MOVFF * p = (cPtr_pic_31__38_Instruction_5F_MOVFF *) mObjectPtr ;
@@ -788,7 +788,7 @@ GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_MOVFF::readProperty_m
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_MOVFF::readProperty_mDestinationRegisterName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_MOVFF * p = (cPtr_pic_31__38_Instruction_5F_MOVFF *) mObjectPtr ;
@@ -830,7 +830,7 @@ void cPtr_pic_31__38_Instruction_5F_MOVFF::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_MOVFF::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_MOVFF (mProperty_mInstructionLocation, mProperty_mSourceRegisterName, mProperty_mDestinationRegisterName COMMA_THERE)) ;
   return ptr ;
 }
@@ -855,7 +855,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_MOVFF::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_MOVFF::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_MOVFF (*this)) ;
   }
@@ -869,8 +869,8 @@ GALGAS_pic_31__38_Instruction_5F_MOVFF GALGAS_pic_31__38_Instruction_5F_MOVFF::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_MOVFF result ;
   const GALGAS_pic_31__38_Instruction_5F_MOVFF * p = (const GALGAS_pic_31__38_Instruction_5F_MOVFF *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_MOVFF *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_MOVFF *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_MOVFF", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -926,7 +926,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_FBA::objectCompare (const 
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -962,7 +962,7 @@ GALGAS_pic_31__38_Instruction_5F_FBA GALGAS_pic_31__38_Instruction_5F_FBA::const
 
 void GALGAS_pic_31__38_Instruction_5F_FBA::setter_setMBitOrientedOp (GALGAS_bit_5F_oriented_5F_op inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_FBA * p = (cPtr_pic_31__38_Instruction_5F_FBA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_FBA) ;
     p->mProperty_mBitOrientedOp = inValue ;
@@ -973,7 +973,7 @@ void GALGAS_pic_31__38_Instruction_5F_FBA::setter_setMBitOrientedOp (GALGAS_bit_
 
 void GALGAS_pic_31__38_Instruction_5F_FBA::setter_setMRegisterExpression (GALGAS_registerExpression inValue
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_FBA * p = (cPtr_pic_31__38_Instruction_5F_FBA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_FBA) ;
     p->mProperty_mRegisterExpression = inValue ;
@@ -984,7 +984,7 @@ void GALGAS_pic_31__38_Instruction_5F_FBA::setter_setMRegisterExpression (GALGAS
 
 void GALGAS_pic_31__38_Instruction_5F_FBA::setter_setMBitNumber (GALGAS_bitNumberExpression inValue
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_FBA * p = (cPtr_pic_31__38_Instruction_5F_FBA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_FBA) ;
     p->mProperty_mBitNumber = inValue ;
@@ -994,7 +994,7 @@ void GALGAS_pic_31__38_Instruction_5F_FBA::setter_setMBitNumber (GALGAS_bitNumbe
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bit_5F_oriented_5F_op GALGAS_pic_31__38_Instruction_5F_FBA::readProperty_mBitOrientedOp (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bit_5F_oriented_5F_op () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_FBA * p = (cPtr_pic_31__38_Instruction_5F_FBA *) mObjectPtr ;
@@ -1006,7 +1006,7 @@ GALGAS_bit_5F_oriented_5F_op GALGAS_pic_31__38_Instruction_5F_FBA::readProperty_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_FBA::readProperty_mRegisterExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_FBA * p = (cPtr_pic_31__38_Instruction_5F_FBA *) mObjectPtr ;
@@ -1018,7 +1018,7 @@ GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_FBA::readProperty_mRe
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bitNumberExpression GALGAS_pic_31__38_Instruction_5F_FBA::readProperty_mBitNumber (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bitNumberExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_FBA * p = (cPtr_pic_31__38_Instruction_5F_FBA *) mObjectPtr ;
@@ -1064,7 +1064,7 @@ void cPtr_pic_31__38_Instruction_5F_FBA::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_FBA::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_FBA (mProperty_mInstructionLocation, mProperty_mBitOrientedOp, mProperty_mRegisterExpression, mProperty_mBitNumber COMMA_THERE)) ;
   return ptr ;
 }
@@ -1089,7 +1089,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_FBA::staticTyp
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_FBA::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_FBA (*this)) ;
   }
@@ -1103,8 +1103,8 @@ GALGAS_pic_31__38_Instruction_5F_FBA GALGAS_pic_31__38_Instruction_5F_FBA::extra
                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_FBA result ;
   const GALGAS_pic_31__38_Instruction_5F_FBA * p = (const GALGAS_pic_31__38_Instruction_5F_FBA *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_FBA *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_FBA *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_FBA", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1159,7 +1159,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON:
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1195,7 +1195,7 @@ GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON GALGAS_pic_31__38_Ins
 
 void GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::setter_setMOpCode (GALGAS_if_5F_semi_5F_colon_5F_op inValue
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON) ;
     p->mProperty_mOpCode = inValue ;
@@ -1206,7 +1206,7 @@ void GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::setter_setMOpCo
 
 void GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::setter_setMRegisterExpression (GALGAS_registerExpression inValue
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON) ;
     p->mProperty_mRegisterExpression = inValue ;
@@ -1216,7 +1216,7 @@ void GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::setter_setMRegi
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_if_5F_semi_5F_colon_5F_op GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::readProperty_mOpCode (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_if_5F_semi_5F_colon_5F_op () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON *) mObjectPtr ;
@@ -1228,7 +1228,7 @@ GALGAS_if_5F_semi_5F_colon_5F_op GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SE
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::readProperty_mRegisterExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON *) mObjectPtr ;
@@ -1273,7 +1273,7 @@ void cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::description (C_St
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON (mProperty_mInstructionLocation, mProperty_mEmbeddedInstruction, mProperty_mOpCode, mProperty_mRegisterExpression COMMA_THERE)) ;
   return ptr ;
 }
@@ -1298,7 +1298,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SE
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON (*this)) ;
   }
@@ -1312,8 +1312,8 @@ GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON GALGAS_pic_31__38_Ins
                                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON result ;
   const GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON * p = (const GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_IF_FA_SEMI_COLON", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1372,7 +1372,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::objectCompa
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1409,7 +1409,7 @@ GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest GALGAS_pic_31__38_Instruction_5F_
 
 void GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::setter_setMSkipIfSet (GALGAS_bool inValue
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest) ;
     p->mProperty_mSkipIfSet = inValue ;
@@ -1420,7 +1420,7 @@ void GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::setter_setMSkipIfSet (GALGA
 
 void GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::setter_setMRegisterExpression (GALGAS_registerExpression inValue
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest) ;
     p->mProperty_mRegisterExpression = inValue ;
@@ -1431,7 +1431,7 @@ void GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::setter_setMRegisterExpressi
 
 void GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::setter_setMBitNumber (GALGAS_bitNumberExpression inValue
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest) ;
     p->mProperty_mBitNumber = inValue ;
@@ -1441,7 +1441,7 @@ void GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::setter_setMBitNumber (GALGA
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::readProperty_mSkipIfSet (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest *) mObjectPtr ;
@@ -1453,7 +1453,7 @@ GALGAS_bool GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::readProperty_mSkipIf
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::readProperty_mRegisterExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest *) mObjectPtr ;
@@ -1465,7 +1465,7 @@ GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::readPr
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bitNumberExpression GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::readProperty_mBitNumber (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bitNumberExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest *) mObjectPtr ;
@@ -1514,7 +1514,7 @@ void cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest::description (C_String & ioStr
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest (mProperty_mInstructionLocation, mProperty_mEmbeddedInstruction, mProperty_mSkipIfSet, mProperty_mRegisterExpression, mProperty_mBitNumber COMMA_THERE)) ;
   return ptr ;
 }
@@ -1539,7 +1539,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest (*this)) ;
   }
@@ -1553,8 +1553,8 @@ GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest GALGAS_pic_31__38_Instruction_5F_
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest result ;
   const GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest * p = (const GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_IF_BitTest", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1617,7 +1617,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::objectCompar
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1655,7 +1655,7 @@ GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec GALGAS_pic_31__38_Instruction_5F_I
 
 void GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::setter_setMIncrement (GALGAS_bool inValue
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec) ;
     p->mProperty_mIncrement = inValue ;
@@ -1666,7 +1666,7 @@ void GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::setter_setMIncrement (GALGAS
 
 void GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::setter_setMSkipIfZero (GALGAS_bool inValue
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec) ;
     p->mProperty_mSkipIfZero = inValue ;
@@ -1677,7 +1677,7 @@ void GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::setter_setMSkipIfZero (GALGA
 
 void GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::setter_setMRegisterExpression (GALGAS_registerExpression inValue
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec) ;
     p->mProperty_mRegisterExpression = inValue ;
@@ -1688,7 +1688,7 @@ void GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::setter_setMRegisterExpressio
 
 void GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec) ;
     p->mProperty_m_5F_W_5F_isDestination = inValue ;
@@ -1698,7 +1698,7 @@ void GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::setter_setM_5F_W_5F_isDestin
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::readProperty_mIncrement (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec *) mObjectPtr ;
@@ -1710,7 +1710,7 @@ GALGAS_bool GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::readProperty_mIncreme
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::readProperty_mSkipIfZero (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec *) mObjectPtr ;
@@ -1722,7 +1722,7 @@ GALGAS_bool GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::readProperty_mSkipIfZ
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::readProperty_mRegisterExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec *) mObjectPtr ;
@@ -1734,7 +1734,7 @@ GALGAS_registerExpression GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::readPro
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::readProperty_m_5F_W_5F_isDestination (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec * p = (cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec *) mObjectPtr ;
@@ -1787,7 +1787,7 @@ void cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec::description (C_String & ioStri
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec (mProperty_mInstructionLocation, mProperty_mEmbeddedInstruction, mProperty_mIncrement, mProperty_mSkipIfZero, mProperty_mRegisterExpression, mProperty_m_5F_W_5F_isDestination COMMA_THERE)) ;
   return ptr ;
 }
@@ -1812,7 +1812,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec (*this)) ;
   }
@@ -1826,8 +1826,8 @@ GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec GALGAS_pic_31__38_Instruction_5F_I
                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec result ;
   const GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec * p = (const GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_IF_IncDec", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1876,7 +1876,7 @@ typeComparisonResult GALGAS_pic_31__38_RegisterTestCondition::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1910,7 +1910,7 @@ GALGAS_pic_31__38_RegisterTestCondition GALGAS_pic_31__38_RegisterTestCondition:
 
 void GALGAS_pic_31__38_RegisterTestCondition::setter_setMRegisterExpression (GALGAS_registerExpression inValue
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_RegisterTestCondition * p = (cPtr_pic_31__38_RegisterTestCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_RegisterTestCondition) ;
     p->mProperty_mRegisterExpression = inValue ;
@@ -1921,7 +1921,7 @@ void GALGAS_pic_31__38_RegisterTestCondition::setter_setMRegisterExpression (GAL
 
 void GALGAS_pic_31__38_RegisterTestCondition::setter_setMBranchIfZero (GALGAS_bool inValue
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_RegisterTestCondition * p = (cPtr_pic_31__38_RegisterTestCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_RegisterTestCondition) ;
     p->mProperty_mBranchIfZero = inValue ;
@@ -1931,7 +1931,7 @@ void GALGAS_pic_31__38_RegisterTestCondition::setter_setMBranchIfZero (GALGAS_bo
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_RegisterTestCondition::readProperty_mRegisterExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_RegisterTestCondition * p = (cPtr_pic_31__38_RegisterTestCondition *) mObjectPtr ;
@@ -1943,7 +1943,7 @@ GALGAS_registerExpression GALGAS_pic_31__38_RegisterTestCondition::readProperty_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_pic_31__38_RegisterTestCondition::readProperty_mBranchIfZero (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_pic_31__38_RegisterTestCondition * p = (cPtr_pic_31__38_RegisterTestCondition *) mObjectPtr ;
@@ -1982,7 +1982,7 @@ void cPtr_pic_31__38_RegisterTestCondition::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_RegisterTestCondition::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_RegisterTestCondition (mProperty_mRegisterExpression, mProperty_mBranchIfZero COMMA_THERE)) ;
   return ptr ;
 }
@@ -2007,7 +2007,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_RegisterTestCondition::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_RegisterTestCondition::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_RegisterTestCondition (*this)) ;
   }
@@ -2021,8 +2021,8 @@ GALGAS_pic_31__38_RegisterTestCondition GALGAS_pic_31__38_RegisterTestCondition:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_RegisterTestCondition result ;
   const GALGAS_pic_31__38_RegisterTestCondition * p = (const GALGAS_pic_31__38_RegisterTestCondition *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_RegisterTestCondition *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_RegisterTestCondition *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18RegisterTestCondition", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2071,7 +2071,7 @@ typeComparisonResult GALGAS_pic_31__38_RegisterComparisonCondition::objectCompar
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2105,7 +2105,7 @@ GALGAS_pic_31__38_RegisterComparisonCondition GALGAS_pic_31__38_RegisterComparis
 
 void GALGAS_pic_31__38_RegisterComparisonCondition::setter_setMRegisterExpression (GALGAS_registerExpression inValue
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_RegisterComparisonCondition * p = (cPtr_pic_31__38_RegisterComparisonCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_RegisterComparisonCondition) ;
     p->mProperty_mRegisterExpression = inValue ;
@@ -2116,7 +2116,7 @@ void GALGAS_pic_31__38_RegisterComparisonCondition::setter_setMRegisterExpressio
 
 void GALGAS_pic_31__38_RegisterComparisonCondition::setter_setMComparison (GALGAS_pic_31__38_RegisterComparison inValue
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_RegisterComparisonCondition * p = (cPtr_pic_31__38_RegisterComparisonCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_RegisterComparisonCondition) ;
     p->mProperty_mComparison = inValue ;
@@ -2126,7 +2126,7 @@ void GALGAS_pic_31__38_RegisterComparisonCondition::setter_setMComparison (GALGA
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_RegisterComparisonCondition::readProperty_mRegisterExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_RegisterComparisonCondition * p = (cPtr_pic_31__38_RegisterComparisonCondition *) mObjectPtr ;
@@ -2138,7 +2138,7 @@ GALGAS_registerExpression GALGAS_pic_31__38_RegisterComparisonCondition::readPro
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparisonCondition::readProperty_mComparison (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_pic_31__38_RegisterComparison () ;
   }else{
     cPtr_pic_31__38_RegisterComparisonCondition * p = (cPtr_pic_31__38_RegisterComparisonCondition *) mObjectPtr ;
@@ -2177,7 +2177,7 @@ void cPtr_pic_31__38_RegisterComparisonCondition::description (C_String & ioStri
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_RegisterComparisonCondition::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_RegisterComparisonCondition (mProperty_mRegisterExpression, mProperty_mComparison COMMA_THERE)) ;
   return ptr ;
 }
@@ -2202,7 +2202,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_RegisterComparisonCondition::
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_RegisterComparisonCondition::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_RegisterComparisonCondition (*this)) ;
   }
@@ -2216,8 +2216,8 @@ GALGAS_pic_31__38_RegisterComparisonCondition GALGAS_pic_31__38_RegisterComparis
                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_RegisterComparisonCondition result ;
   const GALGAS_pic_31__38_RegisterComparisonCondition * p = (const GALGAS_pic_31__38_RegisterComparisonCondition *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_RegisterComparisonCondition *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_RegisterComparisonCondition *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18RegisterComparisonCondition", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2274,7 +2274,7 @@ typeComparisonResult GALGAS_pic_31__38_IncDecRegisterInCondition::objectCompare 
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2310,7 +2310,7 @@ GALGAS_pic_31__38_IncDecRegisterInCondition GALGAS_pic_31__38_IncDecRegisterInCo
 
 void GALGAS_pic_31__38_IncDecRegisterInCondition::setter_setMRegisterExpression (GALGAS_registerExpression inValue
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_IncDecRegisterInCondition * p = (cPtr_pic_31__38_IncDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_IncDecRegisterInCondition) ;
     p->mProperty_mRegisterExpression = inValue ;
@@ -2321,7 +2321,7 @@ void GALGAS_pic_31__38_IncDecRegisterInCondition::setter_setMRegisterExpression 
 
 void GALGAS_pic_31__38_IncDecRegisterInCondition::setter_setMIncrement (GALGAS_bool inValue
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_IncDecRegisterInCondition * p = (cPtr_pic_31__38_IncDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_IncDecRegisterInCondition) ;
     p->mProperty_mIncrement = inValue ;
@@ -2332,7 +2332,7 @@ void GALGAS_pic_31__38_IncDecRegisterInCondition::setter_setMIncrement (GALGAS_b
 
 void GALGAS_pic_31__38_IncDecRegisterInCondition::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_IncDecRegisterInCondition * p = (cPtr_pic_31__38_IncDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_IncDecRegisterInCondition) ;
     p->mProperty_m_5F_W_5F_isDestination = inValue ;
@@ -2343,7 +2343,7 @@ void GALGAS_pic_31__38_IncDecRegisterInCondition::setter_setM_5F_W_5F_isDestinat
 
 void GALGAS_pic_31__38_IncDecRegisterInCondition::setter_setMBranchIfZero (GALGAS_bool inValue
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_IncDecRegisterInCondition * p = (cPtr_pic_31__38_IncDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_IncDecRegisterInCondition) ;
     p->mProperty_mBranchIfZero = inValue ;
@@ -2353,7 +2353,7 @@ void GALGAS_pic_31__38_IncDecRegisterInCondition::setter_setMBranchIfZero (GALGA
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_IncDecRegisterInCondition::readProperty_mRegisterExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_IncDecRegisterInCondition * p = (cPtr_pic_31__38_IncDecRegisterInCondition *) mObjectPtr ;
@@ -2365,7 +2365,7 @@ GALGAS_registerExpression GALGAS_pic_31__38_IncDecRegisterInCondition::readPrope
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_pic_31__38_IncDecRegisterInCondition::readProperty_mIncrement (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_pic_31__38_IncDecRegisterInCondition * p = (cPtr_pic_31__38_IncDecRegisterInCondition *) mObjectPtr ;
@@ -2377,7 +2377,7 @@ GALGAS_bool GALGAS_pic_31__38_IncDecRegisterInCondition::readProperty_mIncrement
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_pic_31__38_IncDecRegisterInCondition::readProperty_m_5F_W_5F_isDestination (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_pic_31__38_IncDecRegisterInCondition * p = (cPtr_pic_31__38_IncDecRegisterInCondition *) mObjectPtr ;
@@ -2389,7 +2389,7 @@ GALGAS_bool GALGAS_pic_31__38_IncDecRegisterInCondition::readProperty_m_5F_W_5F_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_pic_31__38_IncDecRegisterInCondition::readProperty_mBranchIfZero (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_pic_31__38_IncDecRegisterInCondition * p = (cPtr_pic_31__38_IncDecRegisterInCondition *) mObjectPtr ;
@@ -2436,7 +2436,7 @@ void cPtr_pic_31__38_IncDecRegisterInCondition::description (C_String & ioString
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_IncDecRegisterInCondition::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_IncDecRegisterInCondition (mProperty_mRegisterExpression, mProperty_mIncrement, mProperty_m_5F_W_5F_isDestination, mProperty_mBranchIfZero COMMA_THERE)) ;
   return ptr ;
 }
@@ -2461,7 +2461,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_IncDecRegisterInCondition::st
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_IncDecRegisterInCondition::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_IncDecRegisterInCondition (*this)) ;
   }
@@ -2475,8 +2475,8 @@ GALGAS_pic_31__38_IncDecRegisterInCondition GALGAS_pic_31__38_IncDecRegisterInCo
                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_IncDecRegisterInCondition result ;
   const GALGAS_pic_31__38_IncDecRegisterInCondition * p = (const GALGAS_pic_31__38_IncDecRegisterInCondition *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_IncDecRegisterInCondition *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_IncDecRegisterInCondition *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18IncDecRegisterInCondition", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2525,7 +2525,7 @@ typeComparisonResult GALGAS_pic_31__38_BitTestInStructuredCondition::objectCompa
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2559,7 +2559,7 @@ GALGAS_pic_31__38_BitTestInStructuredCondition GALGAS_pic_31__38_BitTestInStruct
 
 void GALGAS_pic_31__38_BitTestInStructuredCondition::setter_setMRegisterExpression (GALGAS_registerExpression inValue
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_BitTestInStructuredCondition * p = (cPtr_pic_31__38_BitTestInStructuredCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_BitTestInStructuredCondition) ;
     p->mProperty_mRegisterExpression = inValue ;
@@ -2570,7 +2570,7 @@ void GALGAS_pic_31__38_BitTestInStructuredCondition::setter_setMRegisterExpressi
 
 void GALGAS_pic_31__38_BitTestInStructuredCondition::setter_setMBitNumber (GALGAS_bitNumberExpression inValue
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_BitTestInStructuredCondition * p = (cPtr_pic_31__38_BitTestInStructuredCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_BitTestInStructuredCondition) ;
     p->mProperty_mBitNumber = inValue ;
@@ -2580,7 +2580,7 @@ void GALGAS_pic_31__38_BitTestInStructuredCondition::setter_setMBitNumber (GALGA
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_registerExpression GALGAS_pic_31__38_BitTestInStructuredCondition::readProperty_mRegisterExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_registerExpression () ;
   }else{
     cPtr_pic_31__38_BitTestInStructuredCondition * p = (cPtr_pic_31__38_BitTestInStructuredCondition *) mObjectPtr ;
@@ -2592,7 +2592,7 @@ GALGAS_registerExpression GALGAS_pic_31__38_BitTestInStructuredCondition::readPr
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bitNumberExpression GALGAS_pic_31__38_BitTestInStructuredCondition::readProperty_mBitNumber (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bitNumberExpression () ;
   }else{
     cPtr_pic_31__38_BitTestInStructuredCondition * p = (cPtr_pic_31__38_BitTestInStructuredCondition *) mObjectPtr ;
@@ -2631,7 +2631,7 @@ void cPtr_pic_31__38_BitTestInStructuredCondition::description (C_String & ioStr
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_BitTestInStructuredCondition::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_BitTestInStructuredCondition (mProperty_mRegisterExpression, mProperty_mBitNumber COMMA_THERE)) ;
   return ptr ;
 }
@@ -2656,7 +2656,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_BitTestInStructuredCondition:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_BitTestInStructuredCondition::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_BitTestInStructuredCondition (*this)) ;
   }
@@ -2670,8 +2670,8 @@ GALGAS_pic_31__38_BitTestInStructuredCondition GALGAS_pic_31__38_BitTestInStruct
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_BitTestInStructuredCondition result ;
   const GALGAS_pic_31__38_BitTestInStructuredCondition * p = (const GALGAS_pic_31__38_BitTestInStructuredCondition *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_BitTestInStructuredCondition *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_BitTestInStructuredCondition *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18BitTestInStructuredCondition", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4297,7 +4297,7 @@ GALGAS_stringset function_baseline_5F_computeUsedRoutines (const GALGAS_baseline
 
 static const C_galgas_type_descriptor * functionArgs_baseline_5F_computeUsedRoutines [2] = {
   & kTypeDescriptor_GALGAS_baseline_5F_routineDefinitionList,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5080,7 +5080,7 @@ static void releaseOnceFunctionResult_acceptableTRISoperand (void) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-C_PrologueEpilogue gEpilogueForOnceFunction_acceptableTRISoperand (NULL,
+C_PrologueEpilogue gEpilogueForOnceFunction_acceptableTRISoperand (nullptr,
                                                                    releaseOnceFunctionResult_acceptableTRISoperand) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5088,7 +5088,7 @@ C_PrologueEpilogue gEpilogueForOnceFunction_acceptableTRISoperand (NULL,
 //----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_acceptableTRISoperand [1] = {
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6716,7 +6716,7 @@ void routine_findBaselineFirstInstructionFromAddress (const GALGAS_uint constinA
         enumGalgasBool test_0 = kBoolTrue ;
         if (kBoolTrue == test_0) {
           GALGAS_baseline_5F_intermediate_5F_actualInstruction var_instr_8232 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_actualInstruction *> (constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_7916, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 208)).ptr ())) ;
-          if (NULL == var_instr_8232.ptr ()) {
+          if (nullptr == var_instr_8232.ptr ()) {
             test_0 = kBoolFalse ;
           }
           if (kBoolTrue == test_0) {
@@ -6769,7 +6769,7 @@ void routine_findBaselineFirstInstructionOrLabelFromAddress (const GALGAS_uint c
         enumGalgasBool test_0 = kBoolTrue ;
         if (kBoolTrue == test_0) {
           GALGAS_baseline_5F_intermediate_5F_actualInstruction var_instr_9394 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_actualInstruction *> (var_instruction_9304.ptr ())) ;
-          if (NULL == var_instr_9394.ptr ()) {
+          if (nullptr == var_instr_9394.ptr ()) {
             test_0 = kBoolFalse ;
           }
           if (kBoolTrue == test_0) {
@@ -6781,7 +6781,7 @@ void routine_findBaselineFirstInstructionOrLabelFromAddress (const GALGAS_uint c
           enumGalgasBool test_1 = kBoolTrue ;
           if (kBoolTrue == test_1) {
             GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE var_instr_9667 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE *> (var_instruction_9304.ptr ())) ;
-            if (NULL == var_instr_9667.ptr ()) {
+            if (nullptr == var_instr_9667.ptr ()) {
               test_1 = kBoolFalse ;
             }
             if (kBoolTrue == test_1) {
@@ -6793,7 +6793,7 @@ void routine_findBaselineFirstInstructionOrLabelFromAddress (const GALGAS_uint c
             enumGalgasBool test_2 = kBoolTrue ;
             if (kBoolTrue == test_2) {
               GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL var_instr_9853 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL *> (var_instruction_9304.ptr ())) ;
-              if (NULL == var_instr_9853.ptr ()) {
+              if (nullptr == var_instr_9853.ptr ()) {
                 test_2 = kBoolFalse ;
               }
               if (kBoolTrue == test_2) {
@@ -6859,7 +6859,7 @@ void routine_perform_5F_baseline_5F_optimizations (GALGAS_baseline_5F_intermedia
           enumGalgasBool test_0 = kBoolTrue ;
           if (kBoolTrue == test_0) {
             GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE var_inst_22506 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *> (enumerator_22440.current_mInstruction (HERE).ptr ())) ;
-            if (NULL == var_inst_22506.ptr ()) {
+            if (nullptr == var_inst_22506.ptr ()) {
               test_0 = kBoolFalse ;
             }
             if (kBoolTrue == test_0) {
@@ -6870,7 +6870,7 @@ void routine_perform_5F_baseline_5F_optimizations (GALGAS_baseline_5F_intermedia
             enumGalgasBool test_1 = kBoolTrue ;
             if (kBoolTrue == test_1) {
               GALGAS_baseline_5F_intermediate_5F_GOTO var_inst_22795 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (enumerator_22440.current_mInstruction (HERE).ptr ())) ;
-              if (NULL == var_inst_22795.ptr ()) {
+              if (nullptr == var_inst_22795.ptr ()) {
                 test_1 = kBoolFalse ;
               }
               if (kBoolTrue == test_1) {
@@ -6881,7 +6881,7 @@ void routine_perform_5F_baseline_5F_optimizations (GALGAS_baseline_5F_intermedia
               enumGalgasBool test_2 = kBoolTrue ;
               if (kBoolTrue == test_2) {
                 GALGAS_baseline_5F_intermediate_5F_JUMP var_inst_23032 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_JUMP *> (enumerator_22440.current_mInstruction (HERE).ptr ())) ;
-                if (NULL == var_inst_23032.ptr ()) {
+                if (nullptr == var_inst_23032.ptr ()) {
                   test_2 = kBoolFalse ;
                 }
                 if (kBoolTrue == test_2) {
@@ -6892,7 +6892,7 @@ void routine_perform_5F_baseline_5F_optimizations (GALGAS_baseline_5F_intermedia
                 enumGalgasBool test_3 = kBoolTrue ;
                 if (kBoolTrue == test_3) {
                   GALGAS_baseline_5F_intermediate_5F_CALL var_inst_23269 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_CALL *> (enumerator_22440.current_mInstruction (HERE).ptr ())) ;
-                  if (NULL == var_inst_23269.ptr ()) {
+                  if (nullptr == var_inst_23269.ptr ()) {
                     test_3 = kBoolFalse ;
                   }
                   if (kBoolTrue == test_3) {
@@ -6903,7 +6903,7 @@ void routine_perform_5F_baseline_5F_optimizations (GALGAS_baseline_5F_intermedia
                   enumGalgasBool test_4 = kBoolTrue ;
                   if (kBoolTrue == test_4) {
                     GALGAS_baseline_5F_intermediate_5F_JSR var_inst_23506 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_JSR *> (enumerator_22440.current_mInstruction (HERE).ptr ())) ;
-                    if (NULL == var_inst_23506.ptr ()) {
+                    if (nullptr == var_inst_23506.ptr ()) {
                       test_4 = kBoolFalse ;
                     }
                     if (kBoolTrue == test_4) {
@@ -6914,7 +6914,7 @@ void routine_perform_5F_baseline_5F_optimizations (GALGAS_baseline_5F_intermedia
                     enumGalgasBool test_5 = kBoolTrue ;
                     if (kBoolTrue == test_5) {
                       GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition var_inst_23740 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *> (enumerator_22440.current_mInstruction (HERE).ptr ())) ;
-                      if (NULL == var_inst_23740.ptr ()) {
+                      if (nullptr == var_inst_23740.ptr ()) {
                         test_5 = kBoolFalse ;
                       }
                       if (kBoolTrue == test_5) {
@@ -8905,7 +8905,7 @@ GALGAS_stringset function_midrange_5F_computeUsedRoutines (const GALGAS_midrange
 static const C_galgas_type_descriptor * functionArgs_midrange_5F_computeUsedRoutines [3] = {
   & kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList,
   & kTypeDescriptor_GALGAS_midrange_5F_routineDefinitionList,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------

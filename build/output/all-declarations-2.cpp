@@ -43,7 +43,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::objectCompare
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -83,7 +83,7 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG GALGAS_baseline_5F_assembly_5F_pseu
 
 void GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::setter_setMOrigin (GALGAS_uint inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG) ;
     p->mProperty_mOrigin = inValue ;
@@ -93,7 +93,7 @@ void GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::setter_setMOrigin (GALGAS_uin
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::readProperty_mOrigin (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) mObjectPtr ;
@@ -128,7 +128,7 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::description (C_String & ioStrin
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (mProperty_mOrigin COMMA_THERE)) ;
   return ptr ;
 }
@@ -153,7 +153,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::s
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG (*this)) ;
   }
@@ -167,8 +167,8 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG GALGAS_baseline_5F_assembly_5F_pseu
                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_pseudo_ORG", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -206,9 +206,9 @@ GALGAS_baseline_5F_assembly_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak & GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -233,9 +233,9 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak GALGAS_baseline_5F_assembly
 
 GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak::bang_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG) ;
@@ -264,7 +264,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak (*this)) ;
   }
@@ -278,8 +278,8 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak GALGAS_baseline_5F_assembly
                                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_pseudo_ORG-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -317,9 +317,9 @@ GALGAS_baseline_5F_assembly_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak & GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -344,9 +344,9 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak GALGAS_baseline_
 
 GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak::bang_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE) ;
@@ -375,7 +375,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINO
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak (*this)) ;
   }
@@ -389,8 +389,8 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak GALGAS_baseline_
                                                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_pseudo_BEGINOFROUTINE-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -428,9 +428,9 @@ GALGAS_baseline_5F_assembly_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak & GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -455,9 +455,9 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak GALGAS_baseline_5F
 
 GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak::bang_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE) ;
@@ -486,7 +486,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFR
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak (*this)) ;
   }
@@ -500,8 +500,8 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak GALGAS_baseline_5F
                                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_pseudo_ENDOFROUTINE-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -539,9 +539,9 @@ GALGAS_baseline_5F_assembly_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak & GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -566,9 +566,9 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak GALGAS_baseline_5F_assemb
 
 GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak::bang_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL) ;
@@ -597,7 +597,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak (*this)) ;
   }
@@ -611,8 +611,8 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak GALGAS_baseline_5F_assemb
                                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_pseudo_LABEL-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -646,7 +646,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_actualInstruction::objectCom
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -668,7 +668,7 @@ GALGAS_baseline_5F_assembly_5F_instruction (inSourcePtr) {
 
 void GALGAS_baseline_5F_assembly_5F_actualInstruction::setter_setMInstructionLocation (GALGAS_location inValue
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_actualInstruction * p = (cPtr_baseline_5F_assembly_5F_actualInstruction *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_actualInstruction) ;
     p->mProperty_mInstructionLocation = inValue ;
@@ -678,7 +678,7 @@ void GALGAS_baseline_5F_assembly_5F_actualInstruction::setter_setMInstructionLoc
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_baseline_5F_assembly_5F_actualInstruction::readProperty_mInstructionLocation (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
   }else{
     cPtr_baseline_5F_assembly_5F_actualInstruction * p = (cPtr_baseline_5F_assembly_5F_actualInstruction *) mObjectPtr ;
@@ -717,7 +717,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_actualInstructio
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_actualInstruction::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_actualInstruction (*this)) ;
   }
@@ -731,8 +731,8 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction GALGAS_baseline_5F_assembly_5F_
                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_actualInstruction result ;
   const GALGAS_baseline_5F_assembly_5F_actualInstruction * p = (const GALGAS_baseline_5F_assembly_5F_actualInstruction *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_actualInstruction *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_actualInstruction *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_actualInstruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -770,9 +770,9 @@ GALGAS_baseline_5F_assembly_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak & GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_actualInstruction & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -797,9 +797,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak GALGAS_baseline_5F_asse
 
 GALGAS_baseline_5F_assembly_5F_actualInstruction GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::bang_baseline_5F_assembly_5F_actualInstruction_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_actualInstruction result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_actualInstruction) ;
@@ -828,7 +828,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_actualInstructio
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (*this)) ;
   }
@@ -842,8 +842,8 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak GALGAS_baseline_5F_asse
                                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_actualInstruction-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -899,7 +899,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::objectCom
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -935,7 +935,7 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FD GALGAS_baseline_5F_assembly_5F_
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::setter_setMInstruction (GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code inValue
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
     p->mProperty_mInstruction = inValue ;
@@ -946,7 +946,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::setter_setMInstruction (G
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::setter_setMRegisterDescription (GALGAS_baseline_5F_intermediate_5F_registerExpression inValue
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
     p->mProperty_mRegisterDescription = inValue ;
@@ -957,7 +957,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::setter_setMRegisterDescri
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
     p->mProperty_m_5F_W_5F_isDestination = inValue ;
@@ -967,7 +967,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::setter_setM_5F_W_5F_isDes
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::readProperty_mInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
@@ -979,7 +979,7 @@ GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_assembly
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::readProperty_mRegisterDescription (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_intermediate_5F_registerExpression () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
@@ -991,7 +991,7 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembl
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::readProperty_m_5F_W_5F_isDestination (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
@@ -1037,7 +1037,7 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_FD::description (C_String & ioS
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_FD::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_instruction_5F_FD (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription, mProperty_m_5F_W_5F_isDestination COMMA_THERE)) ;
   return ptr ;
 }
@@ -1062,7 +1062,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction_5F_F
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction_5F_FD (*this)) ;
   }
@@ -1076,8 +1076,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FD GALGAS_baseline_5F_assembly_5F_
                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_FD result ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD * p = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction_FD", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1115,9 +1115,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak & GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -1142,9 +1142,9 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak GALGAS_baseline_5F_asse
 
 GALGAS_baseline_5F_assembly_5F_instruction_5F_FD GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak::bang_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_FD result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
@@ -1173,7 +1173,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction_5F_F
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak (*this)) ;
   }
@@ -1187,8 +1187,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak GALGAS_baseline_5F_asse
                                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction_FD-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1240,7 +1240,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_instruction_5F_F::objectComp
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1275,7 +1275,7 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_F GALGAS_baseline_5F_assembly_5F_i
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_F::setter_setMInstruction (GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code inValue
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_F * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_F *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_F) ;
     p->mProperty_mInstruction = inValue ;
@@ -1286,7 +1286,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_F::setter_setMInstruction (GA
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_F::setter_setMRegisterDescription (GALGAS_baseline_5F_intermediate_5F_registerExpression inValue
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_F * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_F *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_F) ;
     p->mProperty_mRegisterDescription = inValue ;
@@ -1296,7 +1296,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_F::setter_setMRegisterDescrip
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_assembly_5F_instruction_5F_F::readProperty_mInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_F * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_F *) mObjectPtr ;
@@ -1308,7 +1308,7 @@ GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_assembly_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_F::readProperty_mRegisterDescription (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_intermediate_5F_registerExpression () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_F * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_F *) mObjectPtr ;
@@ -1350,7 +1350,7 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_F::description (C_String & ioSt
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_F::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_instruction_5F_F (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription COMMA_THERE)) ;
   return ptr ;
 }
@@ -1375,7 +1375,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction_5F_F
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction_5F_F::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction_5F_F (*this)) ;
   }
@@ -1389,8 +1389,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_F GALGAS_baseline_5F_assembly_5F_i
                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_F result ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_F * p = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_F *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_F *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_F *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction_F", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1428,9 +1428,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak & GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_F & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -1455,9 +1455,9 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak GALGAS_baseline_5F_assem
 
 GALGAS_baseline_5F_assembly_5F_instruction_5F_F GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak::bang_baseline_5F_assembly_5F_instruction_5F_F_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_F result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_instruction_5F_F) ;
@@ -1486,7 +1486,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction_5F_F
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak (*this)) ;
   }
@@ -1500,8 +1500,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak GALGAS_baseline_5F_assem
                                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction_F-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1557,7 +1557,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::objectCom
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1593,7 +1593,7 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FB GALGAS_baseline_5F_assembly_5F_
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::setter_setMInstruction (GALGAS_baseline_5F_bit_5F_oriented_5F_op inValue
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_FB * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FB) ;
     p->mProperty_mInstruction = inValue ;
@@ -1604,7 +1604,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::setter_setMInstruction (G
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::setter_setMRegisterDescription (GALGAS_baseline_5F_intermediate_5F_registerExpression inValue
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_FB * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FB) ;
     p->mProperty_mRegisterDescription = inValue ;
@@ -1615,7 +1615,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::setter_setMRegisterDescri
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::setter_setMBitNumber (GALGAS_uint inValue
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_FB * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FB) ;
     p->mProperty_mBitNumber = inValue ;
@@ -1625,7 +1625,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::setter_setMBitNumber (GAL
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::readProperty_mInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_bit_5F_oriented_5F_op () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_FB * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) mObjectPtr ;
@@ -1637,7 +1637,7 @@ GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_assembly_5F_instruct
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::readProperty_mRegisterDescription (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_intermediate_5F_registerExpression () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_FB * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) mObjectPtr ;
@@ -1649,7 +1649,7 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembl
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::readProperty_mBitNumber (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_FB * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FB *) mObjectPtr ;
@@ -1695,7 +1695,7 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_FB::description (C_String & ioS
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_FB::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_instruction_5F_FB (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription, mProperty_mBitNumber COMMA_THERE)) ;
   return ptr ;
 }
@@ -1720,7 +1720,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction_5F_F
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction_5F_FB (*this)) ;
   }
@@ -1734,8 +1734,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FB GALGAS_baseline_5F_assembly_5F_
                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_FB result ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB * p = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction_FB", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1773,9 +1773,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak & GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -1800,9 +1800,9 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak GALGAS_baseline_5F_asse
 
 GALGAS_baseline_5F_assembly_5F_instruction_5F_FB GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak::bang_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_FB result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_instruction_5F_FB) ;
@@ -1831,7 +1831,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction_5F_F
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak (*this)) ;
   }
@@ -1845,8 +1845,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak GALGAS_baseline_5F_asse
                                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction_FB-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1902,7 +1902,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1948,7 +1948,7 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_ass
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::setter_setMSkipIfSet (GALGAS_bool inValue
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip) ;
     p->mProperty_mSkipIfSet = inValue ;
@@ -1959,7 +1959,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::setter_setMSkipI
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::setter_setMRegisterDescription (GALGAS_baseline_5F_intermediate_5F_registerExpression inValue
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip) ;
     p->mProperty_mRegisterDescription = inValue ;
@@ -1970,7 +1970,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::setter_setMRegis
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::setter_setMBitNumber (GALGAS_uint inValue
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip) ;
     p->mProperty_mBitNumber = inValue ;
@@ -1980,7 +1980,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::setter_setMBitNu
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::readProperty_mSkipIfSet (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
@@ -1992,7 +1992,7 @@ GALGAS_bool GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::readPrope
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::readProperty_mRegisterDescription (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_intermediate_5F_registerExpression () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
@@ -2004,7 +2004,7 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembl
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::readProperty_mBitNumber (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
@@ -2050,7 +2050,7 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::description (C_Str
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip (mProperty_mInstructionLocation, mProperty_mSkipIfSet, mProperty_mRegisterDescription, mProperty_mBitNumber COMMA_THERE)) ;
   return ptr ;
 }
@@ -2075,7 +2075,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction_5F_B
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip (*this)) ;
   }
@@ -2089,8 +2089,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_ass
                                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip result ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * p = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction_BitTestSkip", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2128,9 +2128,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak & GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -2155,9 +2155,9 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak GALGAS_baselin
 
 GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak::bang_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip) ;
@@ -2186,7 +2186,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction_5F_B
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak (*this)) ;
   }
@@ -2200,8 +2200,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak GALGAS_baselin
                                                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction_BitTestSkip-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2239,9 +2239,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak & GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_GOTO & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -2266,9 +2266,9 @@ GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak GALGAS_baseline_5F_assembly_5F_GOTO_
 
 GALGAS_baseline_5F_assembly_5F_GOTO GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak::bang_baseline_5F_assembly_5F_GOTO_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_GOTO result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_GOTO) ;
@@ -2297,7 +2297,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak::st
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak (*this)) ;
   }
@@ -2311,8 +2311,8 @@ GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak GALGAS_baseline_5F_assembly_5F_GOTO_
                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_GOTO-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2356,7 +2356,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_SKIP::objectCompare (const G
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2417,7 +2417,7 @@ void cPtr_baseline_5F_assembly_5F_SKIP::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_SKIP::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_SKIP (mProperty_mInstructionLocation COMMA_THERE)) ;
   return ptr ;
 }
@@ -2442,7 +2442,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_SKIP::staticType
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_SKIP::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_SKIP (*this)) ;
   }
@@ -2456,8 +2456,8 @@ GALGAS_baseline_5F_assembly_5F_SKIP GALGAS_baseline_5F_assembly_5F_SKIP::extract
                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_SKIP result ;
   const GALGAS_baseline_5F_assembly_5F_SKIP * p = (const GALGAS_baseline_5F_assembly_5F_SKIP *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_SKIP *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_SKIP *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_SKIP", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2495,9 +2495,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak & GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_SKIP & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -2522,9 +2522,9 @@ GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak GALGAS_baseline_5F_assembly_5F_SKIP_
 
 GALGAS_baseline_5F_assembly_5F_SKIP GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak::bang_baseline_5F_assembly_5F_SKIP_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_SKIP result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_SKIP) ;
@@ -2553,7 +2553,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak::st
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak (*this)) ;
   }
@@ -2567,8 +2567,8 @@ GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak GALGAS_baseline_5F_assembly_5F_SKIP_
                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_SKIP-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2606,9 +2606,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_CALL_2D_weak & GALGAS_baseline_5F_assembly_5F_CALL_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_CALL & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -2633,9 +2633,9 @@ GALGAS_baseline_5F_assembly_5F_CALL_2D_weak GALGAS_baseline_5F_assembly_5F_CALL_
 
 GALGAS_baseline_5F_assembly_5F_CALL GALGAS_baseline_5F_assembly_5F_CALL_2D_weak::bang_baseline_5F_assembly_5F_CALL_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_CALL result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_CALL) ;
@@ -2664,7 +2664,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_CALL_2D_weak::st
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_CALL_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_CALL_2D_weak (*this)) ;
   }
@@ -2678,8 +2678,8 @@ GALGAS_baseline_5F_assembly_5F_CALL_2D_weak GALGAS_baseline_5F_assembly_5F_CALL_
                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_CALL_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_CALL_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_CALL_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_CALL_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_CALL_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_CALL-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2727,7 +2727,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND::objectCompare
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2761,7 +2761,7 @@ GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND GALGAS_baseline_5F_assembly_5F_WO_5
 
 void GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND::setter_setMInstruction (GALGAS_baseline_5F_WO_5F_OPERAND_5F_group inValue
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND) ;
     p->mProperty_mInstruction = inValue ;
@@ -2771,7 +2771,7 @@ void GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND::setter_setMInstruction (GALGA
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND::readProperty_mInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_WO_5F_OPERAND_5F_group () ;
   }else{
     cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND *) mObjectPtr ;
@@ -2809,7 +2809,7 @@ void cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND::description (C_String & ioStrin
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND (mProperty_mInstructionLocation, mProperty_mInstruction COMMA_THERE)) ;
   return ptr ;
 }
@@ -2834,7 +2834,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND::s
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND (*this)) ;
   }
@@ -2848,8 +2848,8 @@ GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND GALGAS_baseline_5F_assembly_5F_WO_5
                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND result ;
   const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND * p = (const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_WO_OPERAND", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2887,9 +2887,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak & GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -2914,9 +2914,9 @@ GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak GALGAS_baseline_5F_assembly
 
 GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak::bang_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND) ;
@@ -2945,7 +2945,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak (*this)) ;
   }
@@ -2959,8 +2959,8 @@ GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak GALGAS_baseline_5F_assembly
                                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_WO_OPERAND-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2998,9 +2998,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak & GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_TRIS & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -3025,9 +3025,9 @@ GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak GALGAS_baseline_5F_assembly_5F_TRIS_
 
 GALGAS_baseline_5F_assembly_5F_TRIS GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak::bang_baseline_5F_assembly_5F_TRIS_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_TRIS result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_TRIS) ;
@@ -3056,7 +3056,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak::st
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak (*this)) ;
   }
@@ -3070,8 +3070,8 @@ GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak GALGAS_baseline_5F_assembly_5F_TRIS_
                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_TRIS-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3123,7 +3123,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperat
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -3158,7 +3158,7 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation GALGAS_baseline_5
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::setter_setMInstruction (GALGAS_baseline_5F_literal_5F_instruction_5F_opcode inValue
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation) ;
     p->mProperty_mInstruction = inValue ;
@@ -3169,7 +3169,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::setter_setM
 
 void GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::setter_setMLiteralValue (GALGAS_uint inValue
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation) ;
     p->mProperty_mLiteralValue = inValue ;
@@ -3179,7 +3179,7 @@ void GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::setter_setM
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::readProperty_mInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_literal_5F_instruction_5F_opcode () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation *) mObjectPtr ;
@@ -3191,7 +3191,7 @@ GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_assembly_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::readProperty_mLiteralValue (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation *) mObjectPtr ;
@@ -3233,7 +3233,7 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::description (
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mLiteralValue COMMA_THERE)) ;
   return ptr ;
 }
@@ -3258,7 +3258,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction_5F_l
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation (*this)) ;
   }
@@ -3272,8 +3272,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation GALGAS_baseline_5
                                                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation result ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation * p = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction_literalOperation", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3311,9 +3311,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak & GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -3338,9 +3338,9 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak GALGAS_ba
 
 GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak::bang_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation) ;
@@ -3369,7 +3369,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction_5F_l
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak (*this)) ;
   }
@@ -3383,8 +3383,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak GALGAS_ba
                                                                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction_literalOperation-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3440,7 +3440,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::o
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -3486,7 +3486,7 @@ GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition GALGAS_baseline_5F_asse
 
 void GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::setter_setMRegisterDescription (GALGAS_baseline_5F_intermediate_5F_registerExpression inValue
                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition) ;
     p->mProperty_mRegisterDescription = inValue ;
@@ -3497,7 +3497,7 @@ void GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::setter_setMRegist
 
 void GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::setter_setMIncrement (GALGAS_bool inValue
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition) ;
     p->mProperty_mIncrement = inValue ;
@@ -3508,7 +3508,7 @@ void GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::setter_setMIncrem
 
 void GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition) ;
     p->mProperty_m_5F_W_5F_isDestination = inValue ;
@@ -3518,7 +3518,7 @@ void GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::setter_setM_5F_W_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::readProperty_mRegisterDescription (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_intermediate_5F_registerExpression () ;
   }else{
     cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -3530,7 +3530,7 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembl
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::readProperty_mIncrement (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -3542,7 +3542,7 @@ GALGAS_bool GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::readProper
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::readProperty_m_5F_W_5F_isDestination (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition *) mObjectPtr ;
@@ -3588,7 +3588,7 @@ void cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::description (C_Stri
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition (mProperty_mInstructionLocation, mProperty_mRegisterDescription, mProperty_mIncrement, mProperty_m_5F_W_5F_isDestination COMMA_THERE)) ;
   return ptr ;
 }
@@ -3613,7 +3613,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_incDecRegisterIn
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition (*this)) ;
   }
@@ -3627,8 +3627,8 @@ GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition GALGAS_baseline_5F_asse
                                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition result ;
   const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition * p = (const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_incDecRegisterInCondition", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3666,9 +3666,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak & GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -3693,9 +3693,9 @@ GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak GALGAS_baseline
 
 GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak::bang_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition) ;
@@ -3724,7 +3724,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_incDecRegisterIn
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak (*this)) ;
   }
@@ -3738,8 +3738,8 @@ GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak GALGAS_baseline
                                                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak result ;
   const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_incDecRegisterInCondition-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3818,7 +3818,7 @@ bool cMapElement_baseline_5F_symbolTable::isValid (void) const {
 //----------------------------------------------------------------------------------------------------------------------
 
 cMapElement * cMapElement_baseline_5F_symbolTable::copy (void) {
-  cMapElement * result = NULL ;
+  cMapElement * result = nullptr ;
   macroMyNew (result, cMapElement_baseline_5F_symbolTable (mProperty_lkey, mProperty_mRoutineAddress COMMA_HERE)) ;
   return result ;
 }
@@ -3894,7 +3894,7 @@ void GALGAS_baseline_5F_symbolTable::addAssign_operation (const GALGAS_lstring &
                                                           const GALGAS_uint & inArgument0,
                                                           C_Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) {
-  cMapElement_baseline_5F_symbolTable * p = NULL ;
+  cMapElement_baseline_5F_symbolTable * p = nullptr ;
   macroMyNew (p, cMapElement_baseline_5F_symbolTable (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
@@ -3924,7 +3924,7 @@ void GALGAS_baseline_5F_symbolTable::setter_insertKey (GALGAS_lstring inKey,
                                                        GALGAS_uint inArgument0,
                                                        C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) {
-  cMapElement_baseline_5F_symbolTable * p = NULL ;
+  cMapElement_baseline_5F_symbolTable * p = nullptr ;
   macroMyNew (p, cMapElement_baseline_5F_symbolTable (inKey, inArgument0 COMMA_HERE)) ;
   capCollectionElement attributes ;
   attributes.setPointer (p) ;
@@ -3948,7 +3948,7 @@ void GALGAS_baseline_5F_symbolTable::method_searchKey (GALGAS_lstring inKey,
                                                                                                                inCompiler,
                                                                                                                kSearchErrorMessage_baseline_5F_symbolTable_searchKey
                                                                                                                COMMA_THERE) ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outArgument0.drop () ;
   }else{
     macroValidSharedObject (p, cMapElement_baseline_5F_symbolTable) ;
@@ -3964,7 +3964,7 @@ GALGAS_uint GALGAS_baseline_5F_symbolTable::getter_mRoutineAddressForKey (const 
   const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
   const cMapElement_baseline_5F_symbolTable * p = (const cMapElement_baseline_5F_symbolTable *) attributes ;
   GALGAS_uint result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cMapElement_baseline_5F_symbolTable) ;
     result = p->mProperty_mRoutineAddress ;
   }
@@ -3979,7 +3979,7 @@ void GALGAS_baseline_5F_symbolTable::setter_setMRoutineAddressForKey (GALGAS_uin
                                                                       COMMA_LOCATION_ARGS) {
   cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
   cMapElement_baseline_5F_symbolTable * p = (cMapElement_baseline_5F_symbolTable *) attributes ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cMapElement_baseline_5F_symbolTable) ;
     p->mProperty_mRoutineAddress = inAttributeValue ;
   }
@@ -4032,7 +4032,7 @@ GALGAS_uint cEnumerator_baseline_5F_symbolTable::current_mRoutineAddress (LOCATI
 bool GALGAS_baseline_5F_symbolTable::optional_searchKey (const GALGAS_string & inKey,
                                                          GALGAS_uint & outArgument0) const {
   const cMapElement_baseline_5F_symbolTable * p = (const cMapElement_baseline_5F_symbolTable *) searchForKey (inKey) ;
-  const bool result = NULL != p ;
+  const bool result = nullptr != p ;
   if (result) {
     macroValidSharedObject (p, cMapElement_baseline_5F_symbolTable) ;
     outArgument0 = p->mProperty_mRoutineAddress ;
@@ -4050,7 +4050,7 @@ bool GALGAS_baseline_5F_symbolTable::optional_searchKey (const GALGAS_string & i
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_baseline_5F_symbolTable ("baseline_symbolTable",
-                                                NULL) ;
+                                                nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4061,7 +4061,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_symbolTable::staticTypeDescr
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_symbolTable::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_symbolTable (*this)) ;
   }
@@ -4075,8 +4075,8 @@ GALGAS_baseline_5F_symbolTable GALGAS_baseline_5F_symbolTable::extractObject (co
                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_symbolTable result ;
   const GALGAS_baseline_5F_symbolTable * p = (const GALGAS_baseline_5F_symbolTable *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_symbolTable *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_symbolTable *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_symbolTable", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4153,7 +4153,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction::objectCompare (const GALGAS
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -4175,7 +4175,7 @@ AC_GALGAS_reference_class (inSourcePtr) {
 
 void GALGAS_midrange_5F_instruction::setter_setMInstructionLocation (GALGAS_location inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction * p = (cPtr_midrange_5F_instruction *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction) ;
     p->mProperty_mInstructionLocation = inValue ;
@@ -4185,7 +4185,7 @@ void GALGAS_midrange_5F_instruction::setter_setMInstructionLocation (GALGAS_loca
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_midrange_5F_instruction::readProperty_mInstructionLocation (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
   }else{
     cPtr_midrange_5F_instruction * p = (cPtr_midrange_5F_instruction *) mObjectPtr ;
@@ -4213,7 +4213,7 @@ mProperty_mInstructionLocation (in_mInstructionLocation) {
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_instruction ("midrange_instruction",
-                                                NULL) ;
+                                                nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4224,7 +4224,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction::staticTypeDescr
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction (*this)) ;
   }
@@ -4238,8 +4238,8 @@ GALGAS_midrange_5F_instruction GALGAS_midrange_5F_instruction::extractObject (co
                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction result ;
   const GALGAS_midrange_5F_instruction * p = (const GALGAS_midrange_5F_instruction *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4277,9 +4277,9 @@ AC_GALGAS_weak_reference () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_2D_weak & GALGAS_midrange_5F_instruction_2D_weak::operator = (const GALGAS_midrange_5F_instruction & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -4304,9 +4304,9 @@ GALGAS_midrange_5F_instruction_2D_weak GALGAS_midrange_5F_instruction_2D_weak::c
 
 GALGAS_midrange_5F_instruction GALGAS_midrange_5F_instruction_2D_weak::bang_midrange_5F_instruction_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction) ;
@@ -4324,7 +4324,7 @@ GALGAS_midrange_5F_instruction GALGAS_midrange_5F_instruction_2D_weak::bang_midr
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak ("midrange_instruction-weak",
-                                                        NULL) ;
+                                                        nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4335,7 +4335,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_2D_weak::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_2D_weak (*this)) ;
   }
@@ -4349,8 +4349,8 @@ GALGAS_midrange_5F_instruction_2D_weak GALGAS_midrange_5F_instruction_2D_weak::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_2D_weak result ;
   const GALGAS_midrange_5F_instruction_2D_weak * p = (const GALGAS_midrange_5F_instruction_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4404,13 +4404,13 @@ mObject (inElement.mProperty_mInstruction) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_midrange_5F_instructionList::isValid (void) const {
-  return true ; // return mObject.isValid () ;
+  return true ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 cCollectionElement * cCollectionElement_midrange_5F_instructionList::copy (void) {
-  cCollectionElement * result = NULL ;
+  cCollectionElement * result = nullptr ;
   macroMyNew (result, cCollectionElement_midrange_5F_instructionList (mObject.mProperty_mInstruction COMMA_HERE)) ;
   return result ;
 }
@@ -4469,7 +4469,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::construct
 void GALGAS_midrange_5F_instructionList::makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                                     const GALGAS_midrange_5F_instruction & in_mInstruction
                                                                     COMMA_LOCATION_ARGS) {
-  cCollectionElement_midrange_5F_instructionList * p = NULL ;
+  cCollectionElement_midrange_5F_instructionList * p = nullptr ;
   macroMyNew (p, cCollectionElement_midrange_5F_instructionList (in_mInstruction COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -4481,7 +4481,7 @@ void GALGAS_midrange_5F_instructionList::addAssign_operation (const GALGAS_midra
                                                               COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inOperand0.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_instructionList (inOperand0 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -4500,7 +4500,7 @@ void GALGAS_midrange_5F_instructionList::setter_append (GALGAS_midrange_5F_instr
                                                         COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inElement.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_instructionList (inElement COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -4520,7 +4520,7 @@ void GALGAS_midrange_5F_instructionList::setter_insertAtIndex (const GALGAS_midr
                                                                COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inInsertionIndex.isValid () && inOperand0.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_instructionList (inOperand0 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -4543,7 +4543,7 @@ void GALGAS_midrange_5F_instructionList::setter_removeAtIndex (GALGAS_midrange_5
       capCollectionElement attributes ;
       removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
       cCollectionElement_midrange_5F_instructionList * p = (cCollectionElement_midrange_5F_instructionList *) attributes.ptr () ;
-      if (NULL == p) {
+      if (nullptr == p) {
         outOperand0.drop () ;
         drop () ;
       }else{
@@ -4567,7 +4567,7 @@ void GALGAS_midrange_5F_instructionList::setter_popFirst (GALGAS_midrange_5F_ins
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_instructionList * p = (cCollectionElement_midrange_5F_instructionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_midrange_5F_instructionList) ;
@@ -4583,7 +4583,7 @@ void GALGAS_midrange_5F_instructionList::setter_popLast (GALGAS_midrange_5F_inst
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_instructionList * p = (cCollectionElement_midrange_5F_instructionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_midrange_5F_instructionList) ;
@@ -4599,7 +4599,7 @@ void GALGAS_midrange_5F_instructionList::method_first (GALGAS_midrange_5F_instru
   capCollectionElement attributes ;
   readFirst (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_instructionList * p = (cCollectionElement_midrange_5F_instructionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_midrange_5F_instructionList) ;
@@ -4615,7 +4615,7 @@ void GALGAS_midrange_5F_instructionList::method_last (GALGAS_midrange_5F_instruc
   capCollectionElement attributes ;
   readLast (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_instructionList * p = (cCollectionElement_midrange_5F_instructionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_midrange_5F_instructionList) ;
@@ -4681,7 +4681,7 @@ void GALGAS_midrange_5F_instructionList::setter_setMInstructionAtIndex (GALGAS_m
                                                                         C_Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_instructionList * p = (cCollectionElement_midrange_5F_instructionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_instructionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mInstruction = inOperand ;
@@ -4696,7 +4696,7 @@ GALGAS_midrange_5F_instruction GALGAS_midrange_5F_instructionList::getter_mInstr
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_instructionList * p = (cCollectionElement_midrange_5F_instructionList *) attributes.ptr () ;
   GALGAS_midrange_5F_instruction result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_instructionList) ;
     result = p->mObject.mProperty_mInstruction ;
   }
@@ -4741,7 +4741,7 @@ GALGAS_midrange_5F_instruction cEnumerator_midrange_5F_instructionList::current_
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_instructionList ("midrange_instructionList",
-                                                    NULL) ;
+                                                    nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -4752,7 +4752,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instructionList::staticTypeD
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instructionList::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instructionList (*this)) ;
   }
@@ -4766,8 +4766,8 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::extractOb
                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instructionList result ;
   const GALGAS_midrange_5F_instructionList * p = (const GALGAS_midrange_5F_instructionList *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instructionList *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instructionList *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instructionList", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4811,7 +4811,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_nobanksel::objectCompare 
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -4872,7 +4872,7 @@ void cPtr_midrange_5F_instruction_5F_nobanksel::description (C_String & ioString
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_nobanksel::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_nobanksel (mProperty_mInstructionLocation COMMA_THERE)) ;
   return ptr ;
 }
@@ -4897,7 +4897,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_nobanksel::st
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_nobanksel::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_nobanksel (*this)) ;
   }
@@ -4911,8 +4911,8 @@ GALGAS_midrange_5F_instruction_5F_nobanksel GALGAS_midrange_5F_instruction_5F_no
                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_nobanksel result ;
   const GALGAS_midrange_5F_instruction_5F_nobanksel * p = (const GALGAS_midrange_5F_instruction_5F_nobanksel *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_nobanksel *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_nobanksel *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_nobanksel", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4950,9 +4950,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak & GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_nobanksel & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -4977,9 +4977,9 @@ GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak GALGAS_midrange_5F_instructi
 
 GALGAS_midrange_5F_instruction_5F_nobanksel GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak::bang_midrange_5F_instruction_5F_nobanksel_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_nobanksel result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_nobanksel) ;
@@ -5008,7 +5008,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_nobanksel_2D_
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak (*this)) ;
   }
@@ -5022,8 +5022,8 @@ GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak GALGAS_midrange_5F_instructi
                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_nobanksel-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5075,7 +5075,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_banksel::objectCompare (c
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -5119,7 +5119,7 @@ GALGAS_midrange_5F_instruction_5F_banksel GALGAS_midrange_5F_instruction_5F_bank
 
 void GALGAS_midrange_5F_instruction_5F_banksel::setter_setMBankIndex (GALGAS_luint inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_banksel * p = (cPtr_midrange_5F_instruction_5F_banksel *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_banksel) ;
     p->mProperty_mBankIndex = inValue ;
@@ -5130,7 +5130,7 @@ void GALGAS_midrange_5F_instruction_5F_banksel::setter_setMBankIndex (GALGAS_lui
 
 void GALGAS_midrange_5F_instruction_5F_banksel::setter_setMWarningOnUselessBanksel (GALGAS_bool inValue
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_banksel * p = (cPtr_midrange_5F_instruction_5F_banksel *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_banksel) ;
     p->mProperty_mWarningOnUselessBanksel = inValue ;
@@ -5140,7 +5140,7 @@ void GALGAS_midrange_5F_instruction_5F_banksel::setter_setMWarningOnUselessBanks
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_luint GALGAS_midrange_5F_instruction_5F_banksel::readProperty_mBankIndex (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_luint () ;
   }else{
     cPtr_midrange_5F_instruction_5F_banksel * p = (cPtr_midrange_5F_instruction_5F_banksel *) mObjectPtr ;
@@ -5152,7 +5152,7 @@ GALGAS_luint GALGAS_midrange_5F_instruction_5F_banksel::readProperty_mBankIndex 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_midrange_5F_instruction_5F_banksel::readProperty_mWarningOnUselessBanksel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_midrange_5F_instruction_5F_banksel * p = (cPtr_midrange_5F_instruction_5F_banksel *) mObjectPtr ;
@@ -5194,7 +5194,7 @@ void cPtr_midrange_5F_instruction_5F_banksel::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_banksel::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_banksel (mProperty_mInstructionLocation, mProperty_mBankIndex, mProperty_mWarningOnUselessBanksel COMMA_THERE)) ;
   return ptr ;
 }
@@ -5219,7 +5219,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_banksel::stat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_banksel::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_banksel (*this)) ;
   }
@@ -5233,8 +5233,8 @@ GALGAS_midrange_5F_instruction_5F_banksel GALGAS_midrange_5F_instruction_5F_bank
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_banksel result ;
   const GALGAS_midrange_5F_instruction_5F_banksel * p = (const GALGAS_midrange_5F_instruction_5F_banksel *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_banksel *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_banksel *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_banksel", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5272,9 +5272,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_banksel_2D_weak & GALGAS_midrange_5F_instruction_5F_banksel_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_banksel & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -5299,9 +5299,9 @@ GALGAS_midrange_5F_instruction_5F_banksel_2D_weak GALGAS_midrange_5F_instruction
 
 GALGAS_midrange_5F_instruction_5F_banksel GALGAS_midrange_5F_instruction_5F_banksel_2D_weak::bang_midrange_5F_instruction_5F_banksel_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_banksel result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_banksel) ;
@@ -5330,7 +5330,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_banksel_2D_we
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_banksel_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_banksel_2D_weak (*this)) ;
   }
@@ -5344,8 +5344,8 @@ GALGAS_midrange_5F_instruction_5F_banksel_2D_weak GALGAS_midrange_5F_instruction
                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_banksel_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_banksel_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_banksel_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_banksel_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_banksel_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_banksel-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5393,7 +5393,7 @@ typeComparisonResult GALGAS_midrangeInstruction_5F_checkbank::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -5435,7 +5435,7 @@ GALGAS_midrangeInstruction_5F_checkbank GALGAS_midrangeInstruction_5F_checkbank:
 
 void GALGAS_midrangeInstruction_5F_checkbank::setter_setMBankIndex (GALGAS_uint inValue
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrangeInstruction_5F_checkbank * p = (cPtr_midrangeInstruction_5F_checkbank *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrangeInstruction_5F_checkbank) ;
     p->mProperty_mBankIndex = inValue ;
@@ -5445,7 +5445,7 @@ void GALGAS_midrangeInstruction_5F_checkbank::setter_setMBankIndex (GALGAS_uint 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_midrangeInstruction_5F_checkbank::readProperty_mBankIndex (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_midrangeInstruction_5F_checkbank * p = (cPtr_midrangeInstruction_5F_checkbank *) mObjectPtr ;
@@ -5483,7 +5483,7 @@ void cPtr_midrangeInstruction_5F_checkbank::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrangeInstruction_5F_checkbank::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrangeInstruction_5F_checkbank (mProperty_mInstructionLocation, mProperty_mBankIndex COMMA_THERE)) ;
   return ptr ;
 }
@@ -5508,7 +5508,7 @@ const C_galgas_type_descriptor * GALGAS_midrangeInstruction_5F_checkbank::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrangeInstruction_5F_checkbank::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrangeInstruction_5F_checkbank (*this)) ;
   }
@@ -5522,8 +5522,8 @@ GALGAS_midrangeInstruction_5F_checkbank GALGAS_midrangeInstruction_5F_checkbank:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrangeInstruction_5F_checkbank result ;
   const GALGAS_midrangeInstruction_5F_checkbank * p = (const GALGAS_midrangeInstruction_5F_checkbank *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrangeInstruction_5F_checkbank *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrangeInstruction_5F_checkbank *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrangeInstruction_checkbank", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5561,9 +5561,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrangeInstruction_5F_checkbank_2D_weak & GALGAS_midrangeInstruction_5F_checkbank_2D_weak::operator = (const GALGAS_midrangeInstruction_5F_checkbank & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -5588,9 +5588,9 @@ GALGAS_midrangeInstruction_5F_checkbank_2D_weak GALGAS_midrangeInstruction_5F_ch
 
 GALGAS_midrangeInstruction_5F_checkbank GALGAS_midrangeInstruction_5F_checkbank_2D_weak::bang_midrangeInstruction_5F_checkbank_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrangeInstruction_5F_checkbank result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrangeInstruction_5F_checkbank) ;
@@ -5619,7 +5619,7 @@ const C_galgas_type_descriptor * GALGAS_midrangeInstruction_5F_checkbank_2D_weak
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrangeInstruction_5F_checkbank_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrangeInstruction_5F_checkbank_2D_weak (*this)) ;
   }
@@ -5633,8 +5633,8 @@ GALGAS_midrangeInstruction_5F_checkbank_2D_weak GALGAS_midrangeInstruction_5F_ch
                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrangeInstruction_5F_checkbank_2D_weak result ;
   const GALGAS_midrangeInstruction_5F_checkbank_2D_weak * p = (const GALGAS_midrangeInstruction_5F_checkbank_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrangeInstruction_5F_checkbank_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrangeInstruction_5F_checkbank_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrangeInstruction_checkbank-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5678,7 +5678,7 @@ typeComparisonResult GALGAS_midrangeInstruction_5F_checknobank::objectCompare (c
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -5739,7 +5739,7 @@ void cPtr_midrangeInstruction_5F_checknobank::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrangeInstruction_5F_checknobank::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrangeInstruction_5F_checknobank (mProperty_mInstructionLocation COMMA_THERE)) ;
   return ptr ;
 }
@@ -5764,7 +5764,7 @@ const C_galgas_type_descriptor * GALGAS_midrangeInstruction_5F_checknobank::stat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrangeInstruction_5F_checknobank::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrangeInstruction_5F_checknobank (*this)) ;
   }
@@ -5778,8 +5778,8 @@ GALGAS_midrangeInstruction_5F_checknobank GALGAS_midrangeInstruction_5F_checknob
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_midrangeInstruction_5F_checknobank result ;
   const GALGAS_midrangeInstruction_5F_checknobank * p = (const GALGAS_midrangeInstruction_5F_checknobank *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrangeInstruction_5F_checknobank *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrangeInstruction_5F_checknobank *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrangeInstruction_checknobank", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5817,9 +5817,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrangeInstruction_5F_checknobank_2D_weak & GALGAS_midrangeInstruction_5F_checknobank_2D_weak::operator = (const GALGAS_midrangeInstruction_5F_checknobank & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -5844,9 +5844,9 @@ GALGAS_midrangeInstruction_5F_checknobank_2D_weak GALGAS_midrangeInstruction_5F_
 
 GALGAS_midrangeInstruction_5F_checknobank GALGAS_midrangeInstruction_5F_checknobank_2D_weak::bang_midrangeInstruction_5F_checknobank_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrangeInstruction_5F_checknobank result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrangeInstruction_5F_checknobank) ;
@@ -5875,7 +5875,7 @@ const C_galgas_type_descriptor * GALGAS_midrangeInstruction_5F_checknobank_2D_we
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrangeInstruction_5F_checknobank_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrangeInstruction_5F_checknobank_2D_weak (*this)) ;
   }
@@ -5889,8 +5889,8 @@ GALGAS_midrangeInstruction_5F_checknobank_2D_weak GALGAS_midrangeInstruction_5F_
                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_midrangeInstruction_5F_checknobank_2D_weak result ;
   const GALGAS_midrangeInstruction_5F_checknobank_2D_weak * p = (const GALGAS_midrangeInstruction_5F_checknobank_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrangeInstruction_5F_checknobank_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrangeInstruction_5F_checknobank_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrangeInstruction_checknobank-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5928,9 +5928,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak & GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_banksel_5F_register & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -5955,9 +5955,9 @@ GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak GALGAS_midrange_5F
 
 GALGAS_midrange_5F_instruction_5F_banksel_5F_register GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak::bang_midrange_5F_instruction_5F_banksel_5F_register_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_banksel_5F_register result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_banksel_5F_register) ;
@@ -5986,7 +5986,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_banksel_5F_re
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak (*this)) ;
   }
@@ -6000,8 +6000,8 @@ GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak GALGAS_midrange_5F
                                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_banksel_register-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6039,9 +6039,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_savebank_2D_weak & GALGAS_midrange_5F_instruction_5F_savebank_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_savebank & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -6066,9 +6066,9 @@ GALGAS_midrange_5F_instruction_5F_savebank_2D_weak GALGAS_midrange_5F_instructio
 
 GALGAS_midrange_5F_instruction_5F_savebank GALGAS_midrange_5F_instruction_5F_savebank_2D_weak::bang_midrange_5F_instruction_5F_savebank_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_savebank result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_savebank) ;
@@ -6097,7 +6097,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_savebank_2D_w
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_savebank_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_savebank_2D_weak (*this)) ;
   }
@@ -6111,8 +6111,8 @@ GALGAS_midrange_5F_instruction_5F_savebank_2D_weak GALGAS_midrange_5F_instructio
                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_savebank_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_savebank_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_savebank_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_savebank_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_savebank_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_savebank-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6150,9 +6150,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak & GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -6177,9 +6177,9 @@ GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak GALGAS_midrange_5F_in
 
 GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak::bang_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
@@ -6208,7 +6208,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_STATIC_5F_REP
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak (*this)) ;
   }
@@ -6222,8 +6222,8 @@ GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak GALGAS_midrange_5F_in
                                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_STATIC_REPEAT-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6584,7 +6584,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::objec
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code ("midrange_instruction_FD_base_code",
-                                                                      NULL) ;
+                                                                      nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -6595,7 +6595,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code (*this)) ;
   }
@@ -6609,8 +6609,8 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
                                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   const GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code * p = (const GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_FD_base_code", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6740,9 +6740,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_FD_2D_weak & GALGAS_midrange_5F_instruction_5F_FD_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_FD & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -6767,9 +6767,9 @@ GALGAS_midrange_5F_instruction_5F_FD_2D_weak GALGAS_midrange_5F_instruction_5F_F
 
 GALGAS_midrange_5F_instruction_5F_FD GALGAS_midrange_5F_instruction_5F_FD_2D_weak::bang_midrange_5F_instruction_5F_FD_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_FD result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_FD) ;
@@ -6798,7 +6798,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_FD_2D_weak::s
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_FD_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_FD_2D_weak (*this)) ;
   }
@@ -6812,8 +6812,8 @@ GALGAS_midrange_5F_instruction_5F_FD_2D_weak GALGAS_midrange_5F_instruction_5F_F
                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_FD_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_FD_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_FD_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_FD_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_FD-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6910,7 +6910,7 @@ typeComparisonResult GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::object
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code ("midrange_F_instruction_base_code",
-                                                                     NULL) ;
+                                                                     nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -6921,7 +6921,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code (*this)) ;
   }
@@ -6935,8 +6935,8 @@ GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code GALGAS_midrange_5F_F_5F_inst
                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code result ;
   const GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code * p = (const GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_F_instruction_base_code", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7006,9 +7006,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_F_2D_weak & GALGAS_midrange_5F_instruction_5F_F_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_F & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -7033,9 +7033,9 @@ GALGAS_midrange_5F_instruction_5F_F_2D_weak GALGAS_midrange_5F_instruction_5F_F_
 
 GALGAS_midrange_5F_instruction_5F_F GALGAS_midrange_5F_instruction_5F_F_2D_weak::bang_midrange_5F_instruction_5F_F_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_F result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_F) ;
@@ -7064,7 +7064,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_F_2D_weak::st
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_F_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_F_2D_weak (*this)) ;
   }
@@ -7078,8 +7078,8 @@ GALGAS_midrange_5F_instruction_5F_F_2D_weak GALGAS_midrange_5F_instruction_5F_F_
                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_F_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_F_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_F_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_F_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_F_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_F-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7176,7 +7176,7 @@ typeComparisonResult GALGAS_midrange_5F_bit_5F_oriented_5F_op::objectCompare (co
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_bit_5F_oriented_5F_op ("midrange_bit_oriented_op",
-                                                          NULL) ;
+                                                          nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7187,7 +7187,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_bit_5F_oriented_5F_op::stati
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_bit_5F_oriented_5F_op::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_bit_5F_oriented_5F_op (*this)) ;
   }
@@ -7201,8 +7201,8 @@ GALGAS_midrange_5F_bit_5F_oriented_5F_op GALGAS_midrange_5F_bit_5F_oriented_5F_o
                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_bit_5F_oriented_5F_op result ;
   const GALGAS_midrange_5F_bit_5F_oriented_5F_op * p = (const GALGAS_midrange_5F_bit_5F_oriented_5F_op *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_bit_5F_oriented_5F_op *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_bit_5F_oriented_5F_op *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_bit_oriented_op", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7272,9 +7272,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_FB_2D_weak & GALGAS_midrange_5F_instruction_5F_FB_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_FB & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -7299,9 +7299,9 @@ GALGAS_midrange_5F_instruction_5F_FB_2D_weak GALGAS_midrange_5F_instruction_5F_F
 
 GALGAS_midrange_5F_instruction_5F_FB GALGAS_midrange_5F_instruction_5F_FB_2D_weak::bang_midrange_5F_instruction_5F_FB_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_FB result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_FB) ;
@@ -7330,7 +7330,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_FB_2D_weak::s
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_FB_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_FB_2D_weak (*this)) ;
   }
@@ -7344,8 +7344,8 @@ GALGAS_midrange_5F_instruction_5F_FB_2D_weak GALGAS_midrange_5F_instruction_5F_F
                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FB_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_FB_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_FB_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_FB_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_FB_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_FB-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7383,9 +7383,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_CALL_2D_weak & GALGAS_midrange_5F_instruction_5F_CALL_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_CALL & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -7410,9 +7410,9 @@ GALGAS_midrange_5F_instruction_5F_CALL_2D_weak GALGAS_midrange_5F_instruction_5F
 
 GALGAS_midrange_5F_instruction_5F_CALL GALGAS_midrange_5F_instruction_5F_CALL_2D_weak::bang_midrange_5F_instruction_5F_CALL_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_CALL result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_CALL) ;
@@ -7441,7 +7441,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_CALL_2D_weak:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_CALL_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_CALL_2D_weak (*this)) ;
   }
@@ -7455,8 +7455,8 @@ GALGAS_midrange_5F_instruction_5F_CALL_2D_weak GALGAS_midrange_5F_instruction_5F
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_CALL_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_CALL_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_CALL_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CALL_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CALL_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_CALL-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7494,9 +7494,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_JSR_2D_weak & GALGAS_midrange_5F_instruction_5F_JSR_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_JSR & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -7521,9 +7521,9 @@ GALGAS_midrange_5F_instruction_5F_JSR_2D_weak GALGAS_midrange_5F_instruction_5F_
 
 GALGAS_midrange_5F_instruction_5F_JSR GALGAS_midrange_5F_instruction_5F_JSR_2D_weak::bang_midrange_5F_instruction_5F_JSR_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_JSR result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_JSR) ;
@@ -7552,7 +7552,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_JSR_2D_weak::
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_JSR_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_JSR_2D_weak (*this)) ;
   }
@@ -7566,8 +7566,8 @@ GALGAS_midrange_5F_instruction_5F_JSR_2D_weak GALGAS_midrange_5F_instruction_5F_
                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_JSR_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_JSR_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_JSR_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_JSR_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_JSR_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_JSR-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7605,9 +7605,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak & GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_JUMP & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -7632,9 +7632,9 @@ GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak GALGAS_midrange_5F_instruction_5F
 
 GALGAS_midrange_5F_instruction_5F_JUMP GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak::bang_midrange_5F_instruction_5F_JUMP_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_JUMP result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_JUMP) ;
@@ -7663,7 +7663,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak (*this)) ;
   }
@@ -7677,8 +7677,8 @@ GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak GALGAS_midrange_5F_instruction_5F
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_JUMP-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7716,9 +7716,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak & GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_GOTO & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -7743,9 +7743,9 @@ GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak GALGAS_midrange_5F_instruction_5F
 
 GALGAS_midrange_5F_instruction_5F_GOTO GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak::bang_midrange_5F_instruction_5F_GOTO_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_GOTO result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_GOTO) ;
@@ -7774,7 +7774,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak (*this)) ;
   }
@@ -7788,8 +7788,8 @@ GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak GALGAS_midrange_5F_instruction_5F
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_GOTO-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7833,7 +7833,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_CLRWDT::objectCompare (co
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -7894,7 +7894,7 @@ void cPtr_midrange_5F_instruction_5F_CLRWDT::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_CLRWDT::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_CLRWDT (mProperty_mInstructionLocation COMMA_THERE)) ;
   return ptr ;
 }
@@ -7919,7 +7919,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_CLRWDT::stati
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_CLRWDT::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_CLRWDT (*this)) ;
   }
@@ -7933,8 +7933,8 @@ GALGAS_midrange_5F_instruction_5F_CLRWDT GALGAS_midrange_5F_instruction_5F_CLRWD
                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_CLRWDT result ;
   const GALGAS_midrange_5F_instruction_5F_CLRWDT * p = (const GALGAS_midrange_5F_instruction_5F_CLRWDT *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CLRWDT *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CLRWDT *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_CLRWDT", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7972,9 +7972,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak & GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_CLRWDT & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -7999,9 +7999,9 @@ GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak GALGAS_midrange_5F_instruction_
 
 GALGAS_midrange_5F_instruction_5F_CLRWDT GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak::bang_midrange_5F_instruction_5F_CLRWDT_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_CLRWDT result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_CLRWDT) ;
@@ -8030,7 +8030,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_wea
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak (*this)) ;
   }
@@ -8044,8 +8044,8 @@ GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak GALGAS_midrange_5F_instruction_
                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_CLRWDT-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8089,7 +8089,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_CLRW::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -8150,7 +8150,7 @@ void cPtr_midrange_5F_instruction_5F_CLRW::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_CLRW::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_CLRW (mProperty_mInstructionLocation COMMA_THERE)) ;
   return ptr ;
 }
@@ -8175,7 +8175,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_CLRW::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_CLRW::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_CLRW (*this)) ;
   }
@@ -8189,8 +8189,8 @@ GALGAS_midrange_5F_instruction_5F_CLRW GALGAS_midrange_5F_instruction_5F_CLRW::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_CLRW result ;
   const GALGAS_midrange_5F_instruction_5F_CLRW * p = (const GALGAS_midrange_5F_instruction_5F_CLRW *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CLRW *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CLRW *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_CLRW", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8228,9 +8228,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak & GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_CLRW & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -8255,9 +8255,9 @@ GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak GALGAS_midrange_5F_instruction_5F
 
 GALGAS_midrange_5F_instruction_5F_CLRW GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak::bang_midrange_5F_instruction_5F_CLRW_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_CLRW result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_CLRW) ;
@@ -8286,7 +8286,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak (*this)) ;
   }
@@ -8300,8 +8300,8 @@ GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak GALGAS_midrange_5F_instruction_5F
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_CLRW-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8345,7 +8345,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_NOP::objectCompare (const
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -8406,7 +8406,7 @@ void cPtr_midrange_5F_instruction_5F_NOP::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_NOP::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_NOP (mProperty_mInstructionLocation COMMA_THERE)) ;
   return ptr ;
 }
@@ -8431,7 +8431,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_NOP::staticTy
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_NOP::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_NOP (*this)) ;
   }
@@ -8445,8 +8445,8 @@ GALGAS_midrange_5F_instruction_5F_NOP GALGAS_midrange_5F_instruction_5F_NOP::ext
                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_NOP result ;
   const GALGAS_midrange_5F_instruction_5F_NOP * p = (const GALGAS_midrange_5F_instruction_5F_NOP *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_NOP *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_NOP *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_NOP", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8484,9 +8484,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_NOP_2D_weak & GALGAS_midrange_5F_instruction_5F_NOP_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_NOP & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -8511,9 +8511,9 @@ GALGAS_midrange_5F_instruction_5F_NOP_2D_weak GALGAS_midrange_5F_instruction_5F_
 
 GALGAS_midrange_5F_instruction_5F_NOP GALGAS_midrange_5F_instruction_5F_NOP_2D_weak::bang_midrange_5F_instruction_5F_NOP_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_NOP result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_NOP) ;
@@ -8542,7 +8542,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_NOP_2D_weak::
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_NOP_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_NOP_2D_weak (*this)) ;
   }
@@ -8556,8 +8556,8 @@ GALGAS_midrange_5F_instruction_5F_NOP_2D_weak GALGAS_midrange_5F_instruction_5F_
                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_NOP_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_NOP_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_NOP_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_NOP_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_NOP_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_NOP-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8601,7 +8601,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_SLEEP::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -8662,7 +8662,7 @@ void cPtr_midrange_5F_instruction_5F_SLEEP::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_SLEEP::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_SLEEP (mProperty_mInstructionLocation COMMA_THERE)) ;
   return ptr ;
 }
@@ -8687,7 +8687,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_SLEEP::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_SLEEP::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_SLEEP (*this)) ;
   }
@@ -8701,8 +8701,8 @@ GALGAS_midrange_5F_instruction_5F_SLEEP GALGAS_midrange_5F_instruction_5F_SLEEP:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_SLEEP result ;
   const GALGAS_midrange_5F_instruction_5F_SLEEP * p = (const GALGAS_midrange_5F_instruction_5F_SLEEP *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_SLEEP *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_SLEEP *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_SLEEP", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8740,9 +8740,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak & GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_SLEEP & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -8767,9 +8767,9 @@ GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak GALGAS_midrange_5F_instruction_5
 
 GALGAS_midrange_5F_instruction_5F_SLEEP GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak::bang_midrange_5F_instruction_5F_SLEEP_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_SLEEP result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_SLEEP) ;
@@ -8798,7 +8798,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak (*this)) ;
   }
@@ -8812,8 +8812,8 @@ GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak GALGAS_midrange_5F_instruction_5
                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_SLEEP-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9020,7 +9020,7 @@ typeComparisonResult GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::object
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_literal_5F_instruction_5F_opcode ("midrange_literal_instruction_opcode",
-                                                                     NULL) ;
+                                                                     nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9031,7 +9031,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_literal_5F_instruction_5F_op
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_literal_5F_instruction_5F_opcode (*this)) ;
   }
@@ -9045,8 +9045,8 @@ GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5
                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_literal_5F_instruction_5F_opcode result ;
   const GALGAS_midrange_5F_literal_5F_instruction_5F_opcode * p = (const GALGAS_midrange_5F_literal_5F_instruction_5F_opcode *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_literal_5F_instruction_5F_opcode *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_literal_5F_instruction_5F_opcode *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_literal_instruction_opcode", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9155,7 +9155,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_literalOperation::objectC
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -9190,7 +9190,7 @@ GALGAS_midrange_5F_instruction_5F_literalOperation GALGAS_midrange_5F_instructio
 
 void GALGAS_midrange_5F_instruction_5F_literalOperation::setter_setMLiteralInstruction (GALGAS_midrange_5F_literal_5F_instruction_5F_opcode inValue
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_literalOperation * p = (cPtr_midrange_5F_instruction_5F_literalOperation *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_literalOperation) ;
     p->mProperty_mLiteralInstruction = inValue ;
@@ -9201,7 +9201,7 @@ void GALGAS_midrange_5F_instruction_5F_literalOperation::setter_setMLiteralInstr
 
 void GALGAS_midrange_5F_instruction_5F_literalOperation::setter_setMImmediatExpression (GALGAS_immediatExpression inValue
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_literalOperation * p = (cPtr_midrange_5F_instruction_5F_literalOperation *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_literalOperation) ;
     p->mProperty_mImmediatExpression = inValue ;
@@ -9211,7 +9211,7 @@ void GALGAS_midrange_5F_instruction_5F_literalOperation::setter_setMImmediatExpr
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_instruction_5F_literalOperation::readProperty_mLiteralInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_literal_5F_instruction_5F_opcode () ;
   }else{
     cPtr_midrange_5F_instruction_5F_literalOperation * p = (cPtr_midrange_5F_instruction_5F_literalOperation *) mObjectPtr ;
@@ -9223,7 +9223,7 @@ GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_instructi
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpression GALGAS_midrange_5F_instruction_5F_literalOperation::readProperty_mImmediatExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
   }else{
     cPtr_midrange_5F_instruction_5F_literalOperation * p = (cPtr_midrange_5F_instruction_5F_literalOperation *) mObjectPtr ;
@@ -9265,7 +9265,7 @@ void cPtr_midrange_5F_instruction_5F_literalOperation::description (C_String & i
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_literalOperation::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_literalOperation (mProperty_mInstructionLocation, mProperty_mLiteralInstruction, mProperty_mImmediatExpression COMMA_THERE)) ;
   return ptr ;
 }
@@ -9290,7 +9290,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_literalOperat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_literalOperation::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_literalOperation (*this)) ;
   }
@@ -9304,8 +9304,8 @@ GALGAS_midrange_5F_instruction_5F_literalOperation GALGAS_midrange_5F_instructio
                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_literalOperation result ;
   const GALGAS_midrange_5F_instruction_5F_literalOperation * p = (const GALGAS_midrange_5F_instruction_5F_literalOperation *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_literalOperation *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_literalOperation *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_literalOperation", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9343,9 +9343,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak & GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_literalOperation & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -9370,9 +9370,9 @@ GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak GALGAS_midrange_5F_in
 
 GALGAS_midrange_5F_instruction_5F_literalOperation GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak::bang_midrange_5F_instruction_5F_literalOperation_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_literalOperation result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_literalOperation) ;
@@ -9401,7 +9401,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_literalOperat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak (*this)) ;
   }
@@ -9415,8 +9415,8 @@ GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak GALGAS_midrange_5F_in
                                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_literalOperation-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9464,7 +9464,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_MNOP::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -9506,7 +9506,7 @@ GALGAS_midrange_5F_instruction_5F_MNOP GALGAS_midrange_5F_instruction_5F_MNOP::c
 
 void GALGAS_midrange_5F_instruction_5F_MNOP::setter_setMOccurrenceFactor (GALGAS_luint inValue
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_MNOP * p = (cPtr_midrange_5F_instruction_5F_MNOP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_MNOP) ;
     p->mProperty_mOccurrenceFactor = inValue ;
@@ -9516,7 +9516,7 @@ void GALGAS_midrange_5F_instruction_5F_MNOP::setter_setMOccurrenceFactor (GALGAS
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_luint GALGAS_midrange_5F_instruction_5F_MNOP::readProperty_mOccurrenceFactor (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_luint () ;
   }else{
     cPtr_midrange_5F_instruction_5F_MNOP * p = (cPtr_midrange_5F_instruction_5F_MNOP *) mObjectPtr ;
@@ -9554,7 +9554,7 @@ void cPtr_midrange_5F_instruction_5F_MNOP::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_MNOP::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_MNOP (mProperty_mInstructionLocation, mProperty_mOccurrenceFactor COMMA_THERE)) ;
   return ptr ;
 }
@@ -9579,7 +9579,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_MNOP::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_MNOP::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_MNOP (*this)) ;
   }
@@ -9593,8 +9593,8 @@ GALGAS_midrange_5F_instruction_5F_MNOP GALGAS_midrange_5F_instruction_5F_MNOP::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_MNOP result ;
   const GALGAS_midrange_5F_instruction_5F_MNOP * p = (const GALGAS_midrange_5F_instruction_5F_MNOP *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_MNOP *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_MNOP *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_MNOP", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9632,9 +9632,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak & GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_MNOP & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -9659,9 +9659,9 @@ GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak GALGAS_midrange_5F_instruction_5F
 
 GALGAS_midrange_5F_instruction_5F_MNOP GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak::bang_midrange_5F_instruction_5F_MNOP_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_MNOP result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_MNOP) ;
@@ -9690,7 +9690,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak (*this)) ;
   }
@@ -9704,8 +9704,8 @@ GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak GALGAS_midrange_5F_instruction_5F
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_MNOP-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9757,7 +9757,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_FOREVER::objectCompare (c
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -9801,7 +9801,7 @@ GALGAS_midrange_5F_instruction_5F_FOREVER GALGAS_midrange_5F_instruction_5F_FORE
 
 void GALGAS_midrange_5F_instruction_5F_FOREVER::setter_setMInstructionList (GALGAS_midrange_5F_instructionList inValue
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_FOREVER * p = (cPtr_midrange_5F_instruction_5F_FOREVER *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_FOREVER) ;
     p->mProperty_mInstructionList = inValue ;
@@ -9812,7 +9812,7 @@ void GALGAS_midrange_5F_instruction_5F_FOREVER::setter_setMInstructionList (GALG
 
 void GALGAS_midrange_5F_instruction_5F_FOREVER::setter_setMEndOfInstructionList (GALGAS_location inValue
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_FOREVER * p = (cPtr_midrange_5F_instruction_5F_FOREVER *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_FOREVER) ;
     p->mProperty_mEndOfInstructionList = inValue ;
@@ -9822,7 +9822,7 @@ void GALGAS_midrange_5F_instruction_5F_FOREVER::setter_setMEndOfInstructionList 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_FOREVER::readProperty_mInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_instructionList () ;
   }else{
     cPtr_midrange_5F_instruction_5F_FOREVER * p = (cPtr_midrange_5F_instruction_5F_FOREVER *) mObjectPtr ;
@@ -9834,7 +9834,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_FOREVER::re
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_midrange_5F_instruction_5F_FOREVER::readProperty_mEndOfInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
   }else{
     cPtr_midrange_5F_instruction_5F_FOREVER * p = (cPtr_midrange_5F_instruction_5F_FOREVER *) mObjectPtr ;
@@ -9876,7 +9876,7 @@ void cPtr_midrange_5F_instruction_5F_FOREVER::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_FOREVER::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_FOREVER (mProperty_mInstructionLocation, mProperty_mInstructionList, mProperty_mEndOfInstructionList COMMA_THERE)) ;
   return ptr ;
 }
@@ -9901,7 +9901,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_FOREVER::stat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_FOREVER::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_FOREVER (*this)) ;
   }
@@ -9915,8 +9915,8 @@ GALGAS_midrange_5F_instruction_5F_FOREVER GALGAS_midrange_5F_instruction_5F_FORE
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FOREVER result ;
   const GALGAS_midrange_5F_instruction_5F_FOREVER * p = (const GALGAS_midrange_5F_instruction_5F_FOREVER *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_FOREVER *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_FOREVER *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_FOREVER", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9954,9 +9954,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak & GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_FOREVER & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -9981,9 +9981,9 @@ GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak GALGAS_midrange_5F_instruction
 
 GALGAS_midrange_5F_instruction_5F_FOREVER GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak::bang_midrange_5F_instruction_5F_FOREVER_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_FOREVER result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_FOREVER) ;
@@ -10012,7 +10012,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_FOREVER_2D_we
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak (*this)) ;
   }
@@ -10026,8 +10026,8 @@ GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak GALGAS_midrange_5F_instruction
                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_FOREVER-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10061,7 +10061,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON::obje
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -10083,7 +10083,7 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 
 void GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON::setter_setMInstruction (GALGAS_midrange_5F_instruction inValue
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON * p = (cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON) ;
     p->mProperty_mInstruction = inValue ;
@@ -10093,7 +10093,7 @@ void GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON::setter_setMInstructi
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON::readProperty_mInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_instruction () ;
   }else{
     cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON * p = (cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON *) mObjectPtr ;
@@ -10133,7 +10133,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON (*this)) ;
   }
@@ -10147,8 +10147,8 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON GALGAS_midrange_5F_instruc
                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON result ;
   const GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON * p = (const GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_IF_SEMI_COLON", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10186,9 +10186,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak & GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -10213,9 +10213,9 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak GALGAS_midrange_5F
 
 GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak::bang_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON) ;
@@ -10244,7 +10244,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak (*this)) ;
   }
@@ -10258,8 +10258,8 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak GALGAS_midrange_5F
                                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_IF_SEMI_COLON-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10297,9 +10297,9 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak & GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -10324,9 +10324,9 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak GALGAS_midrange_5F_instr
 
 GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak::bang_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_IF_5F_BitTest) ;
@@ -10355,7 +10355,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak (*this)) ;
   }
@@ -10369,8 +10369,8 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak GALGAS_midrange_5F_instr
                                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_IF_BitTest-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10408,9 +10408,9 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak & GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -10435,9 +10435,9 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak GALGAS_midrange_5F_instru
 
 GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak::bang_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_IF_5F_IncDec) ;
@@ -10466,7 +10466,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak (*this)) ;
   }
@@ -10480,8 +10480,8 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak GALGAS_midrange_5F_instru
                                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_IF_IncDec-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10514,7 +10514,7 @@ typeComparisonResult GALGAS_midrange_5F_conditionExpression::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -10549,7 +10549,7 @@ acStrongPtr_class (THERE) {
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_conditionExpression ("midrange_conditionExpression",
-                                                        NULL) ;
+                                                        nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10560,7 +10560,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_conditionExpression::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_conditionExpression::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_conditionExpression (*this)) ;
   }
@@ -10574,8 +10574,8 @@ GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_conditionExpression::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_conditionExpression result ;
   const GALGAS_midrange_5F_conditionExpression * p = (const GALGAS_midrange_5F_conditionExpression *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_conditionExpression *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_conditionExpression *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_conditionExpression", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10613,9 +10613,9 @@ AC_GALGAS_weak_reference () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_conditionExpression_2D_weak & GALGAS_midrange_5F_conditionExpression_2D_weak::operator = (const GALGAS_midrange_5F_conditionExpression & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -10640,9 +10640,9 @@ GALGAS_midrange_5F_conditionExpression_2D_weak GALGAS_midrange_5F_conditionExpre
 
 GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_conditionExpression_2D_weak::bang_midrange_5F_conditionExpression_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_conditionExpression result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_conditionExpression) ;
@@ -10660,7 +10660,7 @@ GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_conditionExpression_2D
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_conditionExpression_2D_weak ("midrange_conditionExpression-weak",
-                                                                NULL) ;
+                                                                nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10671,7 +10671,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_conditionExpression_2D_weak:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_conditionExpression_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_conditionExpression_2D_weak (*this)) ;
   }
@@ -10685,8 +10685,8 @@ GALGAS_midrange_5F_conditionExpression_2D_weak GALGAS_midrange_5F_conditionExpre
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_conditionExpression_2D_weak result ;
   const GALGAS_midrange_5F_conditionExpression_2D_weak * p = (const GALGAS_midrange_5F_conditionExpression_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_conditionExpression_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_conditionExpression_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_conditionExpression-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10724,9 +10724,9 @@ GALGAS_midrange_5F_conditionExpression_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak & GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak::operator = (const GALGAS_midrange_5F_incDecRegisterInCondition & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -10751,9 +10751,9 @@ GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak GALGAS_midrange_5F_incDecRe
 
 GALGAS_midrange_5F_incDecRegisterInCondition GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak::bang_midrange_5F_incDecRegisterInCondition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_incDecRegisterInCondition result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_incDecRegisterInCondition) ;
@@ -10782,7 +10782,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_incDecRegisterInCondition_2D
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak (*this)) ;
   }
@@ -10796,8 +10796,8 @@ GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak GALGAS_midrange_5F_incDecRe
                                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak result ;
   const GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak * p = (const GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_incDecRegisterInCondition-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10842,7 +10842,7 @@ typeComparisonResult GALGAS_midrange_5F_negateCondition::objectCompare (const GA
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -10875,7 +10875,7 @@ GALGAS_midrange_5F_negateCondition GALGAS_midrange_5F_negateCondition::construct
 
 void GALGAS_midrange_5F_negateCondition::setter_setMCondition (GALGAS_midrange_5F_conditionExpression inValue
                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_negateCondition * p = (cPtr_midrange_5F_negateCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_negateCondition) ;
     p->mProperty_mCondition = inValue ;
@@ -10885,7 +10885,7 @@ void GALGAS_midrange_5F_negateCondition::setter_setMCondition (GALGAS_midrange_5
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_negateCondition::readProperty_mCondition (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_conditionExpression () ;
   }else{
     cPtr_midrange_5F_negateCondition * p = (cPtr_midrange_5F_negateCondition *) mObjectPtr ;
@@ -10920,7 +10920,7 @@ void cPtr_midrange_5F_negateCondition::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_negateCondition::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_negateCondition (mProperty_mCondition COMMA_THERE)) ;
   return ptr ;
 }
@@ -10945,7 +10945,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_negateCondition::staticTypeD
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_negateCondition::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_negateCondition (*this)) ;
   }
@@ -10959,8 +10959,8 @@ GALGAS_midrange_5F_negateCondition GALGAS_midrange_5F_negateCondition::extractOb
                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_negateCondition result ;
   const GALGAS_midrange_5F_negateCondition * p = (const GALGAS_midrange_5F_negateCondition *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_negateCondition *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_negateCondition *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_negateCondition", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10998,9 +10998,9 @@ GALGAS_midrange_5F_conditionExpression_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_negateCondition_2D_weak & GALGAS_midrange_5F_negateCondition_2D_weak::operator = (const GALGAS_midrange_5F_negateCondition & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -11025,9 +11025,9 @@ GALGAS_midrange_5F_negateCondition_2D_weak GALGAS_midrange_5F_negateCondition_2D
 
 GALGAS_midrange_5F_negateCondition GALGAS_midrange_5F_negateCondition_2D_weak::bang_midrange_5F_negateCondition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_negateCondition result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_negateCondition) ;
@@ -11056,7 +11056,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_negateCondition_2D_weak::sta
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_negateCondition_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_negateCondition_2D_weak (*this)) ;
   }
@@ -11070,8 +11070,8 @@ GALGAS_midrange_5F_negateCondition_2D_weak GALGAS_midrange_5F_negateCondition_2D
                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_negateCondition_2D_weak result ;
   const GALGAS_midrange_5F_negateCondition_2D_weak * p = (const GALGAS_midrange_5F_negateCondition_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_negateCondition_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_negateCondition_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_negateCondition-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11120,7 +11120,7 @@ typeComparisonResult GALGAS_midrange_5F_andCondition::objectCompare (const GALGA
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -11154,7 +11154,7 @@ GALGAS_midrange_5F_andCondition GALGAS_midrange_5F_andCondition::constructor_new
 
 void GALGAS_midrange_5F_andCondition::setter_setMLeftExpression (GALGAS_midrange_5F_conditionExpression inValue
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_andCondition * p = (cPtr_midrange_5F_andCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_andCondition) ;
     p->mProperty_mLeftExpression = inValue ;
@@ -11165,7 +11165,7 @@ void GALGAS_midrange_5F_andCondition::setter_setMLeftExpression (GALGAS_midrange
 
 void GALGAS_midrange_5F_andCondition::setter_setMRightExpression (GALGAS_midrange_5F_conditionExpression inValue
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_andCondition * p = (cPtr_midrange_5F_andCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_andCondition) ;
     p->mProperty_mRightExpression = inValue ;
@@ -11175,7 +11175,7 @@ void GALGAS_midrange_5F_andCondition::setter_setMRightExpression (GALGAS_midrang
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_andCondition::readProperty_mLeftExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_conditionExpression () ;
   }else{
     cPtr_midrange_5F_andCondition * p = (cPtr_midrange_5F_andCondition *) mObjectPtr ;
@@ -11187,7 +11187,7 @@ GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_andCondition::readProp
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_andCondition::readProperty_mRightExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_conditionExpression () ;
   }else{
     cPtr_midrange_5F_andCondition * p = (cPtr_midrange_5F_andCondition *) mObjectPtr ;
@@ -11226,7 +11226,7 @@ void cPtr_midrange_5F_andCondition::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_andCondition::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_andCondition (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
   return ptr ;
 }
@@ -11251,7 +11251,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_andCondition::staticTypeDesc
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_andCondition::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_andCondition (*this)) ;
   }
@@ -11265,8 +11265,8 @@ GALGAS_midrange_5F_andCondition GALGAS_midrange_5F_andCondition::extractObject (
                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_andCondition result ;
   const GALGAS_midrange_5F_andCondition * p = (const GALGAS_midrange_5F_andCondition *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_andCondition *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_andCondition *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_andCondition", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11304,9 +11304,9 @@ GALGAS_midrange_5F_conditionExpression_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_andCondition_2D_weak & GALGAS_midrange_5F_andCondition_2D_weak::operator = (const GALGAS_midrange_5F_andCondition & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -11331,9 +11331,9 @@ GALGAS_midrange_5F_andCondition_2D_weak GALGAS_midrange_5F_andCondition_2D_weak:
 
 GALGAS_midrange_5F_andCondition GALGAS_midrange_5F_andCondition_2D_weak::bang_midrange_5F_andCondition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_andCondition result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_andCondition) ;
@@ -11362,7 +11362,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_andCondition_2D_weak::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_andCondition_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_andCondition_2D_weak (*this)) ;
   }
@@ -11376,8 +11376,8 @@ GALGAS_midrange_5F_andCondition_2D_weak GALGAS_midrange_5F_andCondition_2D_weak:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_andCondition_2D_weak result ;
   const GALGAS_midrange_5F_andCondition_2D_weak * p = (const GALGAS_midrange_5F_andCondition_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_andCondition_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_andCondition_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_andCondition-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11415,9 +11415,9 @@ GALGAS_midrange_5F_conditionExpression_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak & GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak::operator = (const GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -11442,9 +11442,9 @@ GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak GALGAS
 
 GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak::bang_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition) ;
@@ -11473,7 +11473,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_bitTest_5F_in_5F_structured_
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak (*this)) ;
   }
@@ -11487,8 +11487,8 @@ GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak GALGAS
                                                                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak result ;
   const GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak * p = (const GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_bitTest_in_structured_if_condition-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11548,7 +11548,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_structured_5F_if::objectC
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -11585,7 +11585,7 @@ GALGAS_midrange_5F_instruction_5F_structured_5F_if GALGAS_midrange_5F_instructio
 
 void GALGAS_midrange_5F_instruction_5F_structured_5F_if::setter_setMIfCondition (GALGAS_midrange_5F_conditionExpression inValue
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_structured_5F_if * p = (cPtr_midrange_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_structured_5F_if) ;
     p->mProperty_mIfCondition = inValue ;
@@ -11596,7 +11596,7 @@ void GALGAS_midrange_5F_instruction_5F_structured_5F_if::setter_setMIfCondition 
 
 void GALGAS_midrange_5F_instruction_5F_structured_5F_if::setter_setMThenInstructionList (GALGAS_midrange_5F_instructionList inValue
                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_structured_5F_if * p = (cPtr_midrange_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_structured_5F_if) ;
     p->mProperty_mThenInstructionList = inValue ;
@@ -11607,7 +11607,7 @@ void GALGAS_midrange_5F_instruction_5F_structured_5F_if::setter_setMThenInstruct
 
 void GALGAS_midrange_5F_instruction_5F_structured_5F_if::setter_setMElseInstructionList (GALGAS_midrange_5F_instructionList inValue
                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_structured_5F_if * p = (cPtr_midrange_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_structured_5F_if) ;
     p->mProperty_mElseInstructionList = inValue ;
@@ -11618,7 +11618,7 @@ void GALGAS_midrange_5F_instruction_5F_structured_5F_if::setter_setMElseInstruct
 
 void GALGAS_midrange_5F_instruction_5F_structured_5F_if::setter_setMEndOfElsePartLocation (GALGAS_location inValue
                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_structured_5F_if * p = (cPtr_midrange_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_structured_5F_if) ;
     p->mProperty_mEndOfElsePartLocation = inValue ;
@@ -11628,7 +11628,7 @@ void GALGAS_midrange_5F_instruction_5F_structured_5F_if::setter_setMEndOfElsePar
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_instruction_5F_structured_5F_if::readProperty_mIfCondition (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_conditionExpression () ;
   }else{
     cPtr_midrange_5F_instruction_5F_structured_5F_if * p = (cPtr_midrange_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
@@ -11640,7 +11640,7 @@ GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_instruction_5F_structu
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_structured_5F_if::readProperty_mThenInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_instructionList () ;
   }else{
     cPtr_midrange_5F_instruction_5F_structured_5F_if * p = (cPtr_midrange_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
@@ -11652,7 +11652,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_structured_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_structured_5F_if::readProperty_mElseInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_instructionList () ;
   }else{
     cPtr_midrange_5F_instruction_5F_structured_5F_if * p = (cPtr_midrange_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
@@ -11664,7 +11664,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_structured_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_midrange_5F_instruction_5F_structured_5F_if::readProperty_mEndOfElsePartLocation (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
   }else{
     cPtr_midrange_5F_instruction_5F_structured_5F_if * p = (cPtr_midrange_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
@@ -11714,7 +11714,7 @@ void cPtr_midrange_5F_instruction_5F_structured_5F_if::description (C_String & i
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_structured_5F_if::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_structured_5F_if (mProperty_mInstructionLocation, mProperty_mIfCondition, mProperty_mThenInstructionList, mProperty_mElseInstructionList, mProperty_mEndOfElsePartLocation COMMA_THERE)) ;
   return ptr ;
 }
@@ -11739,7 +11739,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_structured_5F
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_structured_5F_if::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_structured_5F_if (*this)) ;
   }
@@ -11753,8 +11753,8 @@ GALGAS_midrange_5F_instruction_5F_structured_5F_if GALGAS_midrange_5F_instructio
                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_structured_5F_if result ;
   const GALGAS_midrange_5F_instruction_5F_structured_5F_if * p = (const GALGAS_midrange_5F_instruction_5F_structured_5F_if *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_structured_5F_if *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_structured_5F_if *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_structured_if", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11792,9 +11792,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak & GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_structured_5F_if & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -11819,9 +11819,9 @@ GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak GALGAS_midrange_5F_in
 
 GALGAS_midrange_5F_instruction_5F_structured_5F_if GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak::bang_midrange_5F_instruction_5F_structured_5F_if_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_structured_5F_if result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_structured_5F_if) ;
@@ -11850,7 +11850,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_structured_5F
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak (*this)) ;
   }
@@ -11864,8 +11864,8 @@ GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak GALGAS_midrange_5F_in
                                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_structured_if-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11923,13 +11923,13 @@ mObject (inElement.mProperty_mCondition, inElement.mProperty_mInstructionList, i
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_midrange_5F_partList::isValid (void) const {
-  return true ; // return mObject.isValid () ;
+  return true ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 cCollectionElement * cCollectionElement_midrange_5F_partList::copy (void) {
-  cCollectionElement * result = NULL ;
+  cCollectionElement * result = nullptr ;
   macroMyNew (result, cCollectionElement_midrange_5F_partList (mObject.mProperty_mCondition, mObject.mProperty_mInstructionList, mObject.mProperty_mEndOfPartLocation COMMA_HERE)) ;
   return result ;
 }
@@ -12000,7 +12000,7 @@ void GALGAS_midrange_5F_partList::makeAttributesFromObjects (capCollectionElemen
                                                              const GALGAS_midrange_5F_instructionList & in_mInstructionList,
                                                              const GALGAS_location & in_mEndOfPartLocation
                                                              COMMA_LOCATION_ARGS) {
-  cCollectionElement_midrange_5F_partList * p = NULL ;
+  cCollectionElement_midrange_5F_partList * p = nullptr ;
   macroMyNew (p, cCollectionElement_midrange_5F_partList (in_mCondition,
                                                           in_mInstructionList,
                                                           in_mEndOfPartLocation COMMA_THERE)) ;
@@ -12016,7 +12016,7 @@ void GALGAS_midrange_5F_partList::addAssign_operation (const GALGAS_midrange_5F_
                                                        COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_partList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -12035,7 +12035,7 @@ void GALGAS_midrange_5F_partList::setter_append (GALGAS_midrange_5F_partList_2D_
                                                  COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inElement.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_partList (inElement COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -12057,7 +12057,7 @@ void GALGAS_midrange_5F_partList::setter_insertAtIndex (const GALGAS_midrange_5F
                                                         COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_partList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -12082,7 +12082,7 @@ void GALGAS_midrange_5F_partList::setter_removeAtIndex (GALGAS_midrange_5F_condi
       capCollectionElement attributes ;
       removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
       cCollectionElement_midrange_5F_partList * p = (cCollectionElement_midrange_5F_partList *) attributes.ptr () ;
-      if (NULL == p) {
+      if (nullptr == p) {
         outOperand0.drop () ;
         outOperand1.drop () ;
         outOperand2.drop () ;
@@ -12116,7 +12116,7 @@ void GALGAS_midrange_5F_partList::setter_popFirst (GALGAS_midrange_5F_conditionE
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_partList * p = (cCollectionElement_midrange_5F_partList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -12138,7 +12138,7 @@ void GALGAS_midrange_5F_partList::setter_popLast (GALGAS_midrange_5F_conditionEx
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_partList * p = (cCollectionElement_midrange_5F_partList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -12160,7 +12160,7 @@ void GALGAS_midrange_5F_partList::method_first (GALGAS_midrange_5F_conditionExpr
   capCollectionElement attributes ;
   readFirst (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_partList * p = (cCollectionElement_midrange_5F_partList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -12182,7 +12182,7 @@ void GALGAS_midrange_5F_partList::method_last (GALGAS_midrange_5F_conditionExpre
   capCollectionElement attributes ;
   readLast (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_partList * p = (cCollectionElement_midrange_5F_partList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -12252,7 +12252,7 @@ void GALGAS_midrange_5F_partList::setter_setMConditionAtIndex (GALGAS_midrange_5
                                                                C_Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_partList * p = (cCollectionElement_midrange_5F_partList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_partList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mCondition = inOperand ;
@@ -12267,7 +12267,7 @@ GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_partList::getter_mCond
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_partList * p = (cCollectionElement_midrange_5F_partList *) attributes.ptr () ;
   GALGAS_midrange_5F_conditionExpression result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_partList) ;
     result = p->mObject.mProperty_mCondition ;
   }
@@ -12281,7 +12281,7 @@ void GALGAS_midrange_5F_partList::setter_setMInstructionListAtIndex (GALGAS_midr
                                                                      C_Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_partList * p = (cCollectionElement_midrange_5F_partList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_partList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mInstructionList = inOperand ;
@@ -12296,7 +12296,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_partList::getter_mInstruct
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_partList * p = (cCollectionElement_midrange_5F_partList *) attributes.ptr () ;
   GALGAS_midrange_5F_instructionList result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_partList) ;
     result = p->mObject.mProperty_mInstructionList ;
   }
@@ -12310,7 +12310,7 @@ void GALGAS_midrange_5F_partList::setter_setMEndOfPartLocationAtIndex (GALGAS_lo
                                                                        C_Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_partList * p = (cCollectionElement_midrange_5F_partList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_partList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mEndOfPartLocation = inOperand ;
@@ -12325,7 +12325,7 @@ GALGAS_location GALGAS_midrange_5F_partList::getter_mEndOfPartLocationAtIndex (c
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_partList * p = (cCollectionElement_midrange_5F_partList *) attributes.ptr () ;
   GALGAS_location result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_partList) ;
     result = p->mObject.mProperty_mEndOfPartLocation ;
   }
@@ -12386,7 +12386,7 @@ GALGAS_location cEnumerator_midrange_5F_partList::current_mEndOfPartLocation (LO
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_partList ("midrange_partList",
-                                             NULL) ;
+                                             nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12397,7 +12397,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_partList::staticTypeDescript
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_partList::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_partList (*this)) ;
   }
@@ -12411,8 +12411,8 @@ GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::extractObject (const GA
                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_partList result ;
   const GALGAS_midrange_5F_partList * p = (const GALGAS_midrange_5F_partList *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_partList *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_partList *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_partList", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -12468,7 +12468,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_do_5F_while::objectCompar
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -12514,7 +12514,7 @@ GALGAS_midrange_5F_instruction_5F_do_5F_while GALGAS_midrange_5F_instruction_5F_
 
 void GALGAS_midrange_5F_instruction_5F_do_5F_while::setter_setMRepeatedInstructionList (GALGAS_midrange_5F_instructionList inValue
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_do_5F_while * p = (cPtr_midrange_5F_instruction_5F_do_5F_while *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_do_5F_while) ;
     p->mProperty_mRepeatedInstructionList = inValue ;
@@ -12525,7 +12525,7 @@ void GALGAS_midrange_5F_instruction_5F_do_5F_while::setter_setMRepeatedInstructi
 
 void GALGAS_midrange_5F_instruction_5F_do_5F_while::setter_setMEndOfRepeatedInstructionList (GALGAS_location inValue
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_do_5F_while * p = (cPtr_midrange_5F_instruction_5F_do_5F_while *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_do_5F_while) ;
     p->mProperty_mEndOfRepeatedInstructionList = inValue ;
@@ -12536,7 +12536,7 @@ void GALGAS_midrange_5F_instruction_5F_do_5F_while::setter_setMEndOfRepeatedInst
 
 void GALGAS_midrange_5F_instruction_5F_do_5F_while::setter_setMWhilePartList (GALGAS_midrange_5F_partList inValue
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_do_5F_while * p = (cPtr_midrange_5F_instruction_5F_do_5F_while *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_do_5F_while) ;
     p->mProperty_mWhilePartList = inValue ;
@@ -12546,7 +12546,7 @@ void GALGAS_midrange_5F_instruction_5F_do_5F_while::setter_setMWhilePartList (GA
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_do_5F_while::readProperty_mRepeatedInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_instructionList () ;
   }else{
     cPtr_midrange_5F_instruction_5F_do_5F_while * p = (cPtr_midrange_5F_instruction_5F_do_5F_while *) mObjectPtr ;
@@ -12558,7 +12558,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_do_5F_while
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_midrange_5F_instruction_5F_do_5F_while::readProperty_mEndOfRepeatedInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
   }else{
     cPtr_midrange_5F_instruction_5F_do_5F_while * p = (cPtr_midrange_5F_instruction_5F_do_5F_while *) mObjectPtr ;
@@ -12570,7 +12570,7 @@ GALGAS_location GALGAS_midrange_5F_instruction_5F_do_5F_while::readProperty_mEnd
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_partList GALGAS_midrange_5F_instruction_5F_do_5F_while::readProperty_mWhilePartList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_partList () ;
   }else{
     cPtr_midrange_5F_instruction_5F_do_5F_while * p = (cPtr_midrange_5F_instruction_5F_do_5F_while *) mObjectPtr ;
@@ -12616,7 +12616,7 @@ void cPtr_midrange_5F_instruction_5F_do_5F_while::description (C_String & ioStri
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_do_5F_while::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_do_5F_while (mProperty_mInstructionLocation, mProperty_mRepeatedInstructionList, mProperty_mEndOfRepeatedInstructionList, mProperty_mWhilePartList COMMA_THERE)) ;
   return ptr ;
 }
@@ -12641,7 +12641,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_do_5F_while::
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_do_5F_while::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_do_5F_while (*this)) ;
   }
@@ -12655,8 +12655,8 @@ GALGAS_midrange_5F_instruction_5F_do_5F_while GALGAS_midrange_5F_instruction_5F_
                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_do_5F_while result ;
   const GALGAS_midrange_5F_instruction_5F_do_5F_while * p = (const GALGAS_midrange_5F_instruction_5F_do_5F_while *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_do_5F_while *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_do_5F_while *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_do_while", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -12694,9 +12694,9 @@ GALGAS_midrange_5F_instruction_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak & GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak::operator = (const GALGAS_midrange_5F_instruction_5F_do_5F_while & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -12721,9 +12721,9 @@ GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak GALGAS_midrange_5F_instruc
 
 GALGAS_midrange_5F_instruction_5F_do_5F_while GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak::bang_midrange_5F_instruction_5F_do_5F_while_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_instruction_5F_do_5F_while result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_do_5F_while) ;
@@ -12752,7 +12752,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_do_5F_while_2
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak (*this)) ;
   }
@@ -12766,8 +12766,8 @@ GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak GALGAS_midrange_5F_instruc
                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak result ;
   const GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak * p = (const GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_do_while-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -12829,13 +12829,13 @@ mObject (inElement.mProperty_mInterruptLocation, inElement.mProperty_mInstructio
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_midrange_5F_interruptDefinitionList::isValid (void) const {
-  return true ; // return mObject.isValid () ;
+  return true ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 cCollectionElement * cCollectionElement_midrange_5F_interruptDefinitionList::copy (void) {
-  cCollectionElement * result = NULL ;
+  cCollectionElement * result = nullptr ;
   macroMyNew (result, cCollectionElement_midrange_5F_interruptDefinitionList (mObject.mProperty_mInterruptLocation, mObject.mProperty_mInstructionList, mObject.mProperty_mFirstSaveRegister, mObject.mProperty_mSecondSaveRegister, mObject.mProperty_mEndOfInterruptLocation COMMA_HERE)) ;
   return result ;
 }
@@ -12918,7 +12918,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::makeAttributesFromObjects (capC
                                                                             const GALGAS_lstring & in_mSecondSaveRegister,
                                                                             const GALGAS_location & in_mEndOfInterruptLocation
                                                                             COMMA_LOCATION_ARGS) {
-  cCollectionElement_midrange_5F_interruptDefinitionList * p = NULL ;
+  cCollectionElement_midrange_5F_interruptDefinitionList * p = nullptr ;
   macroMyNew (p, cCollectionElement_midrange_5F_interruptDefinitionList (in_mInterruptLocation,
                                                                          in_mInstructionList,
                                                                          in_mFirstSaveRegister,
@@ -12938,7 +12938,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::addAssign_operation (const GALG
                                                                       COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_interruptDefinitionList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -12957,7 +12957,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::setter_append (GALGAS_midrange_
                                                                 COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inElement.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_interruptDefinitionList (inElement COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -12981,7 +12981,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::setter_insertAtIndex (const GAL
                                                                        COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_interruptDefinitionList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -13008,7 +13008,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::setter_removeAtIndex (GALGAS_lo
       capCollectionElement attributes ;
       removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
       cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-      if (NULL == p) {
+      if (nullptr == p) {
         outOperand0.drop () ;
         outOperand1.drop () ;
         outOperand2.drop () ;
@@ -13052,7 +13052,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::setter_popFirst (GALGAS_locatio
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -13080,7 +13080,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::setter_popLast (GALGAS_location
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -13108,7 +13108,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::method_first (GALGAS_location &
   capCollectionElement attributes ;
   readFirst (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -13136,7 +13136,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::method_last (GALGAS_location & 
   capCollectionElement attributes ;
   readLast (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -13210,7 +13210,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::setter_setMInterruptLocationAtI
                                                                                       C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mInterruptLocation = inOperand ;
@@ -13225,7 +13225,7 @@ GALGAS_location GALGAS_midrange_5F_interruptDefinitionList::getter_mInterruptLoc
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
   GALGAS_location result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
     result = p->mObject.mProperty_mInterruptLocation ;
   }
@@ -13239,7 +13239,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::setter_setMInstructionListAtInd
                                                                                     C_Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mInstructionList = inOperand ;
@@ -13254,7 +13254,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_interruptDefinitionList::g
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
   GALGAS_midrange_5F_instructionList result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
     result = p->mObject.mProperty_mInstructionList ;
   }
@@ -13268,7 +13268,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::setter_setMFirstSaveRegisterAtI
                                                                                       C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mFirstSaveRegister = inOperand ;
@@ -13283,7 +13283,7 @@ GALGAS_lstring GALGAS_midrange_5F_interruptDefinitionList::getter_mFirstSaveRegi
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
   GALGAS_lstring result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
     result = p->mObject.mProperty_mFirstSaveRegister ;
   }
@@ -13297,7 +13297,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::setter_setMSecondSaveRegisterAt
                                                                                        C_Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mSecondSaveRegister = inOperand ;
@@ -13312,7 +13312,7 @@ GALGAS_lstring GALGAS_midrange_5F_interruptDefinitionList::getter_mSecondSaveReg
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
   GALGAS_lstring result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
     result = p->mObject.mProperty_mSecondSaveRegister ;
   }
@@ -13326,7 +13326,7 @@ void GALGAS_midrange_5F_interruptDefinitionList::setter_setMEndOfInterruptLocati
                                                                                            C_Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mEndOfInterruptLocation = inOperand ;
@@ -13341,7 +13341,7 @@ GALGAS_location GALGAS_midrange_5F_interruptDefinitionList::getter_mEndOfInterru
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) attributes.ptr () ;
   GALGAS_location result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
     result = p->mObject.mProperty_mEndOfInterruptLocation ;
   }
@@ -13418,7 +13418,7 @@ GALGAS_location cEnumerator_midrange_5F_interruptDefinitionList::current_mEndOfI
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList ("midrange_interruptDefinitionList",
-                                                            NULL) ;
+                                                            nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13429,7 +13429,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_interruptDefinitionList::sta
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_interruptDefinitionList::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_interruptDefinitionList (*this)) ;
   }
@@ -13443,8 +13443,8 @@ GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitio
                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_interruptDefinitionList result ;
   const GALGAS_midrange_5F_interruptDefinitionList * p = (const GALGAS_midrange_5F_interruptDefinitionList *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_interruptDefinitionList *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_interruptDefinitionList *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_interruptDefinitionList", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -13512,13 +13512,13 @@ mObject (inElement.mProperty_mRoutineName, inElement.mProperty_mPage, inElement.
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_midrange_5F_routineDefinitionList::isValid (void) const {
-  return true ; // return mObject.isValid () ;
+  return true ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 cCollectionElement * cCollectionElement_midrange_5F_routineDefinitionList::copy (void) {
-  cCollectionElement * result = NULL ;
+  cCollectionElement * result = nullptr ;
   macroMyNew (result, cCollectionElement_midrange_5F_routineDefinitionList (mObject.mProperty_mRoutineName, mObject.mProperty_mPage, mObject.mProperty_mRequiredBank, mObject.mProperty_mReturnedBank, mObject.mProperty_mPreservesBank, mObject.mProperty_mIsNoReturn, mObject.mProperty_mInstructionList, mObject.mProperty_mEndOfRoutineLocation COMMA_HERE)) ;
   return result ;
 }
@@ -13619,7 +13619,7 @@ void GALGAS_midrange_5F_routineDefinitionList::makeAttributesFromObjects (capCol
                                                                           const GALGAS_midrange_5F_instructionList & in_mInstructionList,
                                                                           const GALGAS_location & in_mEndOfRoutineLocation
                                                                           COMMA_LOCATION_ARGS) {
-  cCollectionElement_midrange_5F_routineDefinitionList * p = NULL ;
+  cCollectionElement_midrange_5F_routineDefinitionList * p = nullptr ;
   macroMyNew (p, cCollectionElement_midrange_5F_routineDefinitionList (in_mRoutineName,
                                                                        in_mPage,
                                                                        in_mRequiredBank,
@@ -13645,7 +13645,7 @@ void GALGAS_midrange_5F_routineDefinitionList::addAssign_operation (const GALGAS
                                                                     COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_routineDefinitionList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -13664,7 +13664,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_append (GALGAS_midrange_5F
                                                               COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inElement.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_routineDefinitionList (inElement COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -13691,7 +13691,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_insertAtIndex (const GALGA
                                                                      COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_routineDefinitionList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -13721,7 +13721,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_removeAtIndex (GALGAS_lstr
       capCollectionElement attributes ;
       removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
       cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
-      if (NULL == p) {
+      if (nullptr == p) {
         outOperand0.drop () ;
         outOperand1.drop () ;
         outOperand2.drop () ;
@@ -13780,7 +13780,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_popFirst (GALGAS_lstring &
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -13817,7 +13817,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_popLast (GALGAS_lstring & 
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -13854,7 +13854,7 @@ void GALGAS_midrange_5F_routineDefinitionList::method_first (GALGAS_lstring & ou
   capCollectionElement attributes ;
   readFirst (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -13891,7 +13891,7 @@ void GALGAS_midrange_5F_routineDefinitionList::method_last (GALGAS_lstring & out
   capCollectionElement attributes ;
   readLast (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
     outOperand1.drop () ;
     outOperand2.drop () ;
@@ -13971,7 +13971,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_setMRoutineNameAtIndex (GA
                                                                               C_Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mRoutineName = inOperand ;
@@ -13986,7 +13986,7 @@ GALGAS_lstring GALGAS_midrange_5F_routineDefinitionList::getter_mRoutineNameAtIn
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
   GALGAS_lstring result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     result = p->mObject.mProperty_mRoutineName ;
   }
@@ -14000,7 +14000,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_setMPageAtIndex (GALGAS_lu
                                                                        C_Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mPage = inOperand ;
@@ -14015,7 +14015,7 @@ GALGAS_luint GALGAS_midrange_5F_routineDefinitionList::getter_mPageAtIndex (cons
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
   GALGAS_luint result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     result = p->mObject.mProperty_mPage ;
   }
@@ -14029,7 +14029,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_setMRequiredBankAtIndex (G
                                                                                C_Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mRequiredBank = inOperand ;
@@ -14044,7 +14044,7 @@ GALGAS_luint GALGAS_midrange_5F_routineDefinitionList::getter_mRequiredBankAtInd
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
   GALGAS_luint result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     result = p->mObject.mProperty_mRequiredBank ;
   }
@@ -14058,7 +14058,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_setMReturnedBankAtIndex (G
                                                                                C_Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mReturnedBank = inOperand ;
@@ -14073,7 +14073,7 @@ GALGAS_luint GALGAS_midrange_5F_routineDefinitionList::getter_mReturnedBankAtInd
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
   GALGAS_luint result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     result = p->mObject.mProperty_mReturnedBank ;
   }
@@ -14087,7 +14087,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_setMPreservesBankAtIndex (
                                                                                 C_Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mPreservesBank = inOperand ;
@@ -14102,7 +14102,7 @@ GALGAS_bool GALGAS_midrange_5F_routineDefinitionList::getter_mPreservesBankAtInd
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
   GALGAS_bool result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     result = p->mObject.mProperty_mPreservesBank ;
   }
@@ -14116,7 +14116,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_setMIsNoReturnAtIndex (GAL
                                                                              C_Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mIsNoReturn = inOperand ;
@@ -14131,7 +14131,7 @@ GALGAS_bool GALGAS_midrange_5F_routineDefinitionList::getter_mIsNoReturnAtIndex 
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
   GALGAS_bool result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     result = p->mObject.mProperty_mIsNoReturn ;
   }
@@ -14145,7 +14145,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_setMInstructionListAtIndex
                                                                                   C_Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mInstructionList = inOperand ;
@@ -14160,7 +14160,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_routineDefinitionList::get
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
   GALGAS_midrange_5F_instructionList result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     result = p->mObject.mProperty_mInstructionList ;
   }
@@ -14174,7 +14174,7 @@ void GALGAS_midrange_5F_routineDefinitionList::setter_setMEndOfRoutineLocationAt
                                                                                        C_Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mEndOfRoutineLocation = inOperand ;
@@ -14189,7 +14189,7 @@ GALGAS_location GALGAS_midrange_5F_routineDefinitionList::getter_mEndOfRoutineLo
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_routineDefinitionList * p = (cCollectionElement_midrange_5F_routineDefinitionList *) attributes.ptr () ;
   GALGAS_location result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_routineDefinitionList) ;
     result = p->mObject.mProperty_mEndOfRoutineLocation ;
   }
@@ -14290,7 +14290,7 @@ GALGAS_location cEnumerator_midrange_5F_routineDefinitionList::current_mEndOfRou
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_routineDefinitionList ("midrange_routineDefinitionList",
-                                                          NULL) ;
+                                                          nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14301,7 +14301,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_routineDefinitionList::stati
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_routineDefinitionList::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_routineDefinitionList (*this)) ;
   }
@@ -14315,8 +14315,8 @@ GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionLis
                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_routineDefinitionList result ;
   const GALGAS_midrange_5F_routineDefinitionList * p = (const GALGAS_midrange_5F_routineDefinitionList *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_routineDefinitionList *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_routineDefinitionList *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_routineDefinitionList", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -14413,7 +14413,7 @@ void GALGAS_midrange_5F_intermediate_5F_registerExpression::description (C_Strin
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_registerExpression ("midrange_intermediate_registerExpression",
-                                                                       NULL) ;
+                                                                       nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14424,7 +14424,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_registerExpr
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_registerExpression::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_registerExpression (*this)) ;
   }
@@ -14438,8 +14438,8 @@ GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_interme
                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_registerExpression result ;
   const GALGAS_midrange_5F_intermediate_5F_registerExpression * p = (const GALGAS_midrange_5F_intermediate_5F_registerExpression *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_registerExpression *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_registerExpression *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_intermediate_registerExpression", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -14472,7 +14472,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction::objectCompa
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -14507,7 +14507,7 @@ acStrongPtr_class (THERE) {
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction ("midrange_intermediate_instruction",
-                                                                NULL) ;
+                                                                nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14518,7 +14518,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_instruction:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_instruction::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_instruction (*this)) ;
   }
@@ -14532,8 +14532,8 @@ GALGAS_midrange_5F_intermediate_5F_instruction GALGAS_midrange_5F_intermediate_5
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_instruction result ;
   const GALGAS_midrange_5F_intermediate_5F_instruction * p = (const GALGAS_midrange_5F_intermediate_5F_instruction *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_instruction *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_instruction *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_intermediate_instruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -14571,9 +14571,9 @@ AC_GALGAS_weak_reference () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak & GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak::operator = (const GALGAS_midrange_5F_intermediate_5F_instruction & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -14598,9 +14598,9 @@ GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak GALGAS_midrange_5F_interm
 
 GALGAS_midrange_5F_intermediate_5F_instruction GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak::bang_midrange_5F_intermediate_5F_instruction_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_midrange_5F_intermediate_5F_instruction result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_midrange_5F_intermediate_5F_instruction) ;
@@ -14618,7 +14618,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction GALGAS_midrange_5F_intermediate_5
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak ("midrange_intermediate_instruction-weak",
-                                                                        NULL) ;
+                                                                        nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -14629,7 +14629,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_instruction_
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak (*this)) ;
   }
@@ -14643,8 +14643,8 @@ GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak GALGAS_midrange_5F_interm
                                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak result ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak * p = (const GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_intermediate_instruction-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -14698,13 +14698,13 @@ mObject (inElement.mProperty_mInstruction) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cCollectionElement_midrange_5F_intermediate_5F_instructionList::isValid (void) const {
-  return true ; // return mObject.isValid () ;
+  return true ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 cCollectionElement * cCollectionElement_midrange_5F_intermediate_5F_instructionList::copy (void) {
-  cCollectionElement * result = NULL ;
+  cCollectionElement * result = nullptr ;
   macroMyNew (result, cCollectionElement_midrange_5F_intermediate_5F_instructionList (mObject.mProperty_mInstruction COMMA_HERE)) ;
   return result ;
 }
@@ -14763,7 +14763,7 @@ GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermedia
 void GALGAS_midrange_5F_intermediate_5F_instructionList::makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                                                     const GALGAS_midrange_5F_intermediate_5F_instruction & in_mInstruction
                                                                                     COMMA_LOCATION_ARGS) {
-  cCollectionElement_midrange_5F_intermediate_5F_instructionList * p = NULL ;
+  cCollectionElement_midrange_5F_intermediate_5F_instructionList * p = nullptr ;
   macroMyNew (p, cCollectionElement_midrange_5F_intermediate_5F_instructionList (in_mInstruction COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
@@ -14775,7 +14775,7 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList::addAssign_operation (co
                                                                               COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inOperand0.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_intermediate_5F_instructionList (inOperand0 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -14794,7 +14794,7 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList::setter_append (GALGAS_m
                                                                         COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inElement.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_intermediate_5F_instructionList (inElement COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -14814,7 +14814,7 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList::setter_insertAtIndex (c
                                                                                COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     if (inInsertionIndex.isValid () && inOperand0.isValid ()) {
-      cCollectionElement * p = NULL ;
+      cCollectionElement * p = nullptr ;
       macroMyNew (p, cCollectionElement_midrange_5F_intermediate_5F_instructionList (inOperand0 COMMA_THERE)) ;
       capCollectionElement attributes ;
       attributes.setPointer (p) ;
@@ -14837,7 +14837,7 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList::setter_removeAtIndex (G
       capCollectionElement attributes ;
       removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
       cCollectionElement_midrange_5F_intermediate_5F_instructionList * p = (cCollectionElement_midrange_5F_intermediate_5F_instructionList *) attributes.ptr () ;
-      if (NULL == p) {
+      if (nullptr == p) {
         outOperand0.drop () ;
         drop () ;
       }else{
@@ -14861,7 +14861,7 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList::setter_popFirst (GALGAS
   capCollectionElement attributes ;
   removeFirstObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_intermediate_5F_instructionList * p = (cCollectionElement_midrange_5F_intermediate_5F_instructionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_midrange_5F_intermediate_5F_instructionList) ;
@@ -14877,7 +14877,7 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList::setter_popLast (GALGAS_
   capCollectionElement attributes ;
   removeLastObject (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_intermediate_5F_instructionList * p = (cCollectionElement_midrange_5F_intermediate_5F_instructionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_midrange_5F_intermediate_5F_instructionList) ;
@@ -14893,7 +14893,7 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList::method_first (GALGAS_mi
   capCollectionElement attributes ;
   readFirst (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_intermediate_5F_instructionList * p = (cCollectionElement_midrange_5F_intermediate_5F_instructionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_midrange_5F_intermediate_5F_instructionList) ;
@@ -14909,7 +14909,7 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList::method_last (GALGAS_mid
   capCollectionElement attributes ;
   readLast (attributes, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_intermediate_5F_instructionList * p = (cCollectionElement_midrange_5F_intermediate_5F_instructionList *) attributes.ptr () ;
-  if (NULL == p) {
+  if (nullptr == p) {
     outOperand0.drop () ;
   }else{
     macroValidSharedObject (p, cCollectionElement_midrange_5F_intermediate_5F_instructionList) ;
@@ -14975,7 +14975,7 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList::setter_setMInstructionA
                                                                                         C_Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) {
   cCollectionElement_midrange_5F_intermediate_5F_instructionList * p = (cCollectionElement_midrange_5F_intermediate_5F_instructionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_intermediate_5F_instructionList) ;
     macroUniqueSharedObject (p) ;
     p->mObject.mProperty_mInstruction = inOperand ;
@@ -14990,7 +14990,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction GALGAS_midrange_5F_intermediate_5
   capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
   cCollectionElement_midrange_5F_intermediate_5F_instructionList * p = (cCollectionElement_midrange_5F_intermediate_5F_instructionList *) attributes.ptr () ;
   GALGAS_midrange_5F_intermediate_5F_instruction result ;
-  if (NULL != p) {
+  if (nullptr != p) {
     macroValidSharedObject (p, cCollectionElement_midrange_5F_intermediate_5F_instructionList) ;
     result = p->mObject.mProperty_mInstruction ;
   }
@@ -15035,7 +15035,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction cEnumerator_midrange_5F_intermedi
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instructionList ("midrange_intermediate_instructionList",
-                                                                    NULL) ;
+                                                                    nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -15046,7 +15046,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_instructionL
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_instructionList::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_instructionList (*this)) ;
   }
@@ -15060,8 +15060,8 @@ GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermedia
                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_instructionList result ;
   const GALGAS_midrange_5F_intermediate_5F_instructionList * p = (const GALGAS_midrange_5F_intermediate_5F_instructionList *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_instructionList *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_instructionList *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_intermediate_instructionList", p->dynamicTypeDescriptor () COMMA_THERE) ;

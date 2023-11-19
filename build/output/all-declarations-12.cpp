@@ -109,7 +109,7 @@ GALGAS_bool cPtr_ipic_31__38_ComputedBraTerminator::getter_isEqualToTerminator (
     if (kBoolTrue == test_0) {
       GALGAS_ipic_31__38_ComputedBraTerminator temp_1 ;
       if (constinArgument_inTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_ipic_31__38_ComputedBraTerminator *> (constinArgument_inTerminator.ptr ())) {
+        if (nullptr != dynamic_cast <const cPtr_ipic_31__38_ComputedBraTerminator *> (constinArgument_inTerminator.ptr ())) {
           temp_1 = (cPtr_ipic_31__38_ComputedBraTerminator *) constinArgument_inTerminator.ptr () ;
         }else{
           inCompiler->castError ("ipic_31__38_ComputedBraTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1187)) ;
@@ -1135,7 +1135,7 @@ GALGAS_bool cPtr_ipic_31__38_ConditionalJumpTerminator::getter_isEqualToTerminat
     if (kBoolTrue == test_0) {
       GALGAS_ipic_31__38_ConditionalJumpTerminator temp_1 ;
       if (constinArgument_inTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_ipic_31__38_ConditionalJumpTerminator *> (constinArgument_inTerminator.ptr ())) {
+        if (nullptr != dynamic_cast <const cPtr_ipic_31__38_ConditionalJumpTerminator *> (constinArgument_inTerminator.ptr ())) {
           temp_1 = (cPtr_ipic_31__38_ConditionalJumpTerminator *) constinArgument_inTerminator.ptr () ;
         }else{
           inCompiler->castError ("ipic_31__38_ConditionalJumpTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1637)) ;
@@ -3807,7 +3807,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_computeUsedR
   & kTypeDescriptor_GALGAS_pic_31__38_MacroMap,
   & kTypeDescriptor_GALGAS_routineDeclarationList,
   & kTypeDescriptor_GALGAS_routineDeclarationList,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7936,16 +7936,16 @@ void cPtr_ipic_31__38_JumpTerminator::method_optimizeTerminator (const GALGAS_sy
       GALGAS_ipic_31__38_Block var_targetBlock_2082 = constinArgument_inBlockList.getter_mBlockAtIndex (var_targetBlockIndex_2043, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 54)) ;
       enumGalgasBool test_4 = kBoolTrue ;
       if (kBoolTrue == test_4) {
-        test_4 = GALGAS_bool (kIsEqual, var_targetBlock_2082.readProperty_mAddress ().objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_optimize_block.galgas", 55)))).operator_and (GALGAS_bool (kIsEqual, var_targetBlock_2082.readProperty_mInstructionList ().getter_count (SOURCE_FILE ("ipic18_optimize_block.galgas", 56)).objectCompare (GALGAS_uint (uint32_t (0U)))) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 55)).operator_and (GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_targetBlock_2082.readProperty_mTerminator ().ptr ())) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 56)).boolEnum () ;
+        test_4 = GALGAS_bool (kIsEqual, var_targetBlock_2082.readProperty_mAddress ().objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_optimize_block.galgas", 55)))).operator_and (GALGAS_bool (kIsEqual, var_targetBlock_2082.readProperty_mInstructionList ().getter_count (SOURCE_FILE ("ipic18_optimize_block.galgas", 56)).objectCompare (GALGAS_uint (uint32_t (0U)))) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 55)).operator_and (GALGAS_bool (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_targetBlock_2082.readProperty_mTerminator ().ptr ())) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 56)).boolEnum () ;
         if (kBoolTrue == test_4) {
           GALGAS_bool var_optimize_2361 ;
           enumGalgasBool test_5 = kBoolTrue ;
           if (kBoolTrue == test_5) {
-            test_5 = GALGAS_bool (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (var_targetBlock_2082.readProperty_mTerminator ().ptr ())).boolEnum () ;
+            test_5 = GALGAS_bool (nullptr != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (var_targetBlock_2082.readProperty_mTerminator ().ptr ())).boolEnum () ;
             if (kBoolTrue == test_5) {
               GALGAS_ipic_31__38_JumpTerminator temp_6 ;
               if (var_targetBlock_2082.readProperty_mTerminator ().isValid ()) {
-                if (NULL != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (var_targetBlock_2082.readProperty_mTerminator ().ptr ())) {
+                if (nullptr != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (var_targetBlock_2082.readProperty_mTerminator ().ptr ())) {
                   temp_6 = (cPtr_ipic_31__38_JumpTerminator *) var_targetBlock_2082.readProperty_mTerminator ().ptr () ;
                 }else{
                   inCompiler->castError ("ipic_31__38_JumpTerminator", var_targetBlock_2082.readProperty_mTerminator ().ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 60)) ;
@@ -8030,7 +8030,7 @@ void cPtr_ipic_31__38_ConditionalJumpTerminator::method_optimizeTerminator (cons
             test_12 = GALGAS_bool (kIsEqual, var_targetBlock_4314.readProperty_mInstructionList ().getter_count (SOURCE_FILE ("ipic18_optimize_block.galgas", 107)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
             if (kBoolTrue == test_12) {
               GALGAS_ipic_31__38_JumpTerminator var_targetBlockJumpTerminator_4520 (dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (var_targetBlock_4314.readProperty_mTerminator ().ptr ())) ;
-              if (NULL == var_targetBlockJumpTerminator_4520.ptr ()) {
+              if (nullptr == var_targetBlockJumpTerminator_4520.ptr ()) {
                 test_12 = kBoolFalse ;
               }
               if (kBoolTrue == test_12) {
@@ -8073,7 +8073,7 @@ void cPtr_ipic_31__38_ConditionalJumpTerminator::method_optimizeTerminator (cons
             test_20 = GALGAS_bool (kIsEqual, var_targetBlock_5351.readProperty_mInstructionList ().getter_count (SOURCE_FILE ("ipic18_optimize_block.galgas", 126)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
             if (kBoolTrue == test_20) {
               GALGAS_ipic_31__38_JumpTerminator var_targetBlockJumpTerminator_5555 (dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (var_targetBlock_5351.readProperty_mTerminator ().ptr ())) ;
-              if (NULL == var_targetBlockJumpTerminator_5555.ptr ()) {
+              if (nullptr == var_targetBlockJumpTerminator_5555.ptr ()) {
                 test_20 = kBoolFalse ;
               }
               if (kBoolTrue == test_20) {

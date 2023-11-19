@@ -4878,10 +4878,10 @@ class C_Lexique_piccoloDevice_5F_lexique : public C_Lexique {
    kToken__7D_} ;
 
 //--- Key words table 'controlKeyWordList'
-  public: static int16_t search_into_controlKeyWordList (const C_String & inSearchedString) ;
+  public: static int32_t search_into_controlKeyWordList (const C_String & inSearchedString) ;
 
 //--- Key words table 'delimitorsList'
-  public: static int16_t search_into_delimitorsList (const C_String & inSearchedString) ;
+  public: static int32_t search_into_delimitorsList (const C_String & inSearchedString) ;
   
 
 //--- Assign from attribute
@@ -4905,10 +4905,10 @@ class C_Lexique_piccoloDevice_5F_lexique : public C_Lexique {
   protected: virtual bool parseLexicalToken (void) override ;
 
 //--- Get terminal message
-  protected: virtual C_String getMessageForTerminal (const int16_t inTerminalSymbol) const override ;
+  protected: virtual C_String getMessageForTerminal (const int32_t inTerminalSymbol) const override ;
 
 //--- Get terminal count
-  public: virtual int16_t terminalVocabularyCount (void) const override { return 33 ; }
+  public: virtual int32_t terminalVocabularyCount (void) const override { return 33 ; }
 
 //--- Get Token String
   public: virtual C_String getCurrentTokenString (const cToken * inTokenPtr) const override ;

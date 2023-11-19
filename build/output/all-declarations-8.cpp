@@ -8,209 +8,6 @@
 #include "all-declarations-8.h"
 
 //----------------------------------------------------------------------------------------------------------------------
-// @bitNumberLabelValue reference class
-//----------------------------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_bitNumberLabelValue::printNonNullClassInstanceProperties (void) const {
-    cPtr_bitNumberExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mBitNumberLabelValue.printNonNullClassInstanceProperties ("mBitNumberLabelValue") ;
-    mProperty_mBitNumberIndexValue.printNonNullClassInstanceProperties ("mBitNumberIndexValue") ;
-  }
-#endif
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_bitNumberLabelValue::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_bitNumberLabelValue * p = (const cPtr_bitNumberLabelValue *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_bitNumberLabelValue) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mBitNumberLabelValue.objectCompare (p->mProperty_mBitNumberLabelValue) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mBitNumberIndexValue.objectCompare (p->mProperty_mBitNumberIndexValue) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_bitNumberLabelValue::objectCompare (const GALGAS_bitNumberLabelValue & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bitNumberLabelValue::GALGAS_bitNumberLabelValue (void) :
-GALGAS_bitNumberExpression () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bitNumberLabelValue GALGAS_bitNumberLabelValue::constructor_default (LOCATION_ARGS) {
-  return GALGAS_bitNumberLabelValue::constructor_new (GALGAS_lstring::constructor_default (HERE),
-                                                      GALGAS_luint::constructor_default (HERE)
-                                                      COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bitNumberLabelValue::GALGAS_bitNumberLabelValue (const cPtr_bitNumberLabelValue * inSourcePtr) :
-GALGAS_bitNumberExpression (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_bitNumberLabelValue) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bitNumberLabelValue GALGAS_bitNumberLabelValue::constructor_new (const GALGAS_lstring & inAttribute_mBitNumberLabelValue,
-                                                                        const GALGAS_luint & inAttribute_mBitNumberIndexValue
-                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_bitNumberLabelValue result ;
-  if (inAttribute_mBitNumberLabelValue.isValid () && inAttribute_mBitNumberIndexValue.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_bitNumberLabelValue (inAttribute_mBitNumberLabelValue, inAttribute_mBitNumberIndexValue COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_bitNumberLabelValue::setter_setMBitNumberLabelValue (GALGAS_lstring inValue
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_bitNumberLabelValue * p = (cPtr_bitNumberLabelValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLabelValue) ;
-    p->mProperty_mBitNumberLabelValue = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_bitNumberLabelValue::setter_setMBitNumberIndexValue (GALGAS_luint inValue
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_bitNumberLabelValue * p = (cPtr_bitNumberLabelValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLabelValue) ;
-    p->mProperty_mBitNumberIndexValue = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_lstring GALGAS_bitNumberLabelValue::readProperty_mBitNumberLabelValue (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_lstring () ;
-  }else{
-    cPtr_bitNumberLabelValue * p = (cPtr_bitNumberLabelValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLabelValue) ;
-    return p->mProperty_mBitNumberLabelValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_luint GALGAS_bitNumberLabelValue::readProperty_mBitNumberIndexValue (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_luint () ;
-  }else{
-    cPtr_bitNumberLabelValue * p = (cPtr_bitNumberLabelValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLabelValue) ;
-    return p->mProperty_mBitNumberIndexValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @bitNumberLabelValue class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_bitNumberLabelValue::cPtr_bitNumberLabelValue (const GALGAS_lstring & in_mBitNumberLabelValue,
-                                                    const GALGAS_luint & in_mBitNumberIndexValue
-                                                    COMMA_LOCATION_ARGS) :
-cPtr_bitNumberExpression (THERE),
-mProperty_mBitNumberLabelValue (in_mBitNumberLabelValue),
-mProperty_mBitNumberIndexValue (in_mBitNumberIndexValue) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_bitNumberLabelValue::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_bitNumberLabelValue ;
-}
-
-void cPtr_bitNumberLabelValue::description (C_String & ioString,
-                                            const int32_t inIndentation) const {
-  ioString << "[@bitNumberLabelValue:" ;
-  mProperty_mBitNumberLabelValue.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mBitNumberIndexValue.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_bitNumberLabelValue::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_bitNumberLabelValue (mProperty_mBitNumberLabelValue, mProperty_mBitNumberIndexValue COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @bitNumberLabelValue generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_bitNumberLabelValue ("bitNumberLabelValue",
-                                            & kTypeDescriptor_GALGAS_bitNumberExpression) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_bitNumberLabelValue::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_bitNumberLabelValue ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_bitNumberLabelValue::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_bitNumberLabelValue (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bitNumberLabelValue GALGAS_bitNumberLabelValue::extractObject (const GALGAS_object & inObject,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_bitNumberLabelValue result ;
-  const GALGAS_bitNumberLabelValue * p = (const GALGAS_bitNumberLabelValue *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_bitNumberLabelValue *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("bitNumberLabelValue", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
 // @baseline_5F_instruction_5F_CALL reference class
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -249,7 +46,7 @@ typeComparisonResult GALGAS_baseline_5F_instruction_5F_CALL::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -291,7 +88,7 @@ GALGAS_baseline_5F_instruction_5F_CALL GALGAS_baseline_5F_instruction_5F_CALL::c
 
 void GALGAS_baseline_5F_instruction_5F_CALL::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_instruction_5F_CALL * p = (cPtr_baseline_5F_instruction_5F_CALL *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_CALL) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -301,7 +98,7 @@ void GALGAS_baseline_5F_instruction_5F_CALL::setter_setMTargetLabel (GALGAS_lstr
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_instruction_5F_CALL::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_instruction_5F_CALL * p = (cPtr_baseline_5F_instruction_5F_CALL *) mObjectPtr ;
@@ -339,7 +136,7 @@ void cPtr_baseline_5F_instruction_5F_CALL::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_instruction_5F_CALL::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_CALL (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -364,7 +161,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_instruction_5F_CALL::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_instruction_5F_CALL::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_instruction_5F_CALL (*this)) ;
   }
@@ -378,8 +175,8 @@ GALGAS_baseline_5F_instruction_5F_CALL GALGAS_baseline_5F_instruction_5F_CALL::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_CALL result ;
   const GALGAS_baseline_5F_instruction_5F_CALL * p = (const GALGAS_baseline_5F_instruction_5F_CALL *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_CALL *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_CALL *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_instruction_CALL", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -427,7 +224,7 @@ typeComparisonResult GALGAS_baseline_5F_instruction_5F_JSR::objectCompare (const
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -469,7 +266,7 @@ GALGAS_baseline_5F_instruction_5F_JSR GALGAS_baseline_5F_instruction_5F_JSR::con
 
 void GALGAS_baseline_5F_instruction_5F_JSR::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_instruction_5F_JSR * p = (cPtr_baseline_5F_instruction_5F_JSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_JSR) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -479,7 +276,7 @@ void GALGAS_baseline_5F_instruction_5F_JSR::setter_setMTargetLabel (GALGAS_lstri
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_instruction_5F_JSR::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_instruction_5F_JSR * p = (cPtr_baseline_5F_instruction_5F_JSR *) mObjectPtr ;
@@ -517,7 +314,7 @@ void cPtr_baseline_5F_instruction_5F_JSR::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_instruction_5F_JSR::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_JSR (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -542,7 +339,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_instruction_5F_JSR::staticTy
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_instruction_5F_JSR::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_instruction_5F_JSR (*this)) ;
   }
@@ -556,8 +353,8 @@ GALGAS_baseline_5F_instruction_5F_JSR GALGAS_baseline_5F_instruction_5F_JSR::ext
                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_JSR result ;
   const GALGAS_baseline_5F_instruction_5F_JSR * p = (const GALGAS_baseline_5F_instruction_5F_JSR *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_JSR *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_JSR *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_instruction_JSR", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -605,7 +402,7 @@ typeComparisonResult GALGAS_baseline_5F_instruction_5F_GOTO::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -647,7 +444,7 @@ GALGAS_baseline_5F_instruction_5F_GOTO GALGAS_baseline_5F_instruction_5F_GOTO::c
 
 void GALGAS_baseline_5F_instruction_5F_GOTO::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_instruction_5F_GOTO * p = (cPtr_baseline_5F_instruction_5F_GOTO *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_GOTO) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -657,7 +454,7 @@ void GALGAS_baseline_5F_instruction_5F_GOTO::setter_setMTargetLabel (GALGAS_lstr
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_instruction_5F_GOTO::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_instruction_5F_GOTO * p = (cPtr_baseline_5F_instruction_5F_GOTO *) mObjectPtr ;
@@ -695,7 +492,7 @@ void cPtr_baseline_5F_instruction_5F_GOTO::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_instruction_5F_GOTO::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_GOTO (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -720,7 +517,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_instruction_5F_GOTO::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_instruction_5F_GOTO::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_instruction_5F_GOTO (*this)) ;
   }
@@ -734,8 +531,8 @@ GALGAS_baseline_5F_instruction_5F_GOTO GALGAS_baseline_5F_instruction_5F_GOTO::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_GOTO result ;
   const GALGAS_baseline_5F_instruction_5F_GOTO * p = (const GALGAS_baseline_5F_instruction_5F_GOTO *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_GOTO *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_GOTO *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_instruction_GOTO", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -783,7 +580,7 @@ typeComparisonResult GALGAS_baseline_5F_instruction_5F_JUMP::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -825,7 +622,7 @@ GALGAS_baseline_5F_instruction_5F_JUMP GALGAS_baseline_5F_instruction_5F_JUMP::c
 
 void GALGAS_baseline_5F_instruction_5F_JUMP::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_instruction_5F_JUMP * p = (cPtr_baseline_5F_instruction_5F_JUMP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_JUMP) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -835,7 +632,7 @@ void GALGAS_baseline_5F_instruction_5F_JUMP::setter_setMTargetLabel (GALGAS_lstr
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_instruction_5F_JUMP::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_instruction_5F_JUMP * p = (cPtr_baseline_5F_instruction_5F_JUMP *) mObjectPtr ;
@@ -873,7 +670,7 @@ void cPtr_baseline_5F_instruction_5F_JUMP::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_instruction_5F_JUMP::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_JUMP (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -898,7 +695,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_instruction_5F_JUMP::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_instruction_5F_JUMP::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_instruction_5F_JUMP (*this)) ;
   }
@@ -912,8 +709,8 @@ GALGAS_baseline_5F_instruction_5F_JUMP GALGAS_baseline_5F_instruction_5F_JUMP::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_JUMP result ;
   const GALGAS_baseline_5F_instruction_5F_JUMP * p = (const GALGAS_baseline_5F_instruction_5F_JUMP *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_JUMP *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_JUMP *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_instruction_JUMP", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -961,7 +758,7 @@ typeComparisonResult GALGAS_baseline_5F_instruction_5F_TRIS::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1003,7 +800,7 @@ GALGAS_baseline_5F_instruction_5F_TRIS GALGAS_baseline_5F_instruction_5F_TRIS::c
 
 void GALGAS_baseline_5F_instruction_5F_TRIS::setter_setMOperand (GALGAS_lstring inValue
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_instruction_5F_TRIS * p = (cPtr_baseline_5F_instruction_5F_TRIS *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_TRIS) ;
     p->mProperty_mOperand = inValue ;
@@ -1013,7 +810,7 @@ void GALGAS_baseline_5F_instruction_5F_TRIS::setter_setMOperand (GALGAS_lstring 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_instruction_5F_TRIS::readProperty_mOperand (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_instruction_5F_TRIS * p = (cPtr_baseline_5F_instruction_5F_TRIS *) mObjectPtr ;
@@ -1051,7 +848,7 @@ void cPtr_baseline_5F_instruction_5F_TRIS::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_instruction_5F_TRIS::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_TRIS (mProperty_mInstructionLocation, mProperty_mOperand COMMA_THERE)) ;
   return ptr ;
 }
@@ -1076,7 +873,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_instruction_5F_TRIS::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_instruction_5F_TRIS::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_instruction_5F_TRIS (*this)) ;
   }
@@ -1090,8 +887,8 @@ GALGAS_baseline_5F_instruction_5F_TRIS GALGAS_baseline_5F_instruction_5F_TRIS::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_TRIS result ;
   const GALGAS_baseline_5F_instruction_5F_TRIS * p = (const GALGAS_baseline_5F_instruction_5F_TRIS *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_TRIS *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_TRIS *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_instruction_TRIS", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1155,7 +952,7 @@ typeComparisonResult GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::objectC
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1193,7 +990,7 @@ GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_baseline_5F_instructio
 
 void GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMConstantName (GALGAS_lstring inValue
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT) ;
     p->mProperty_mConstantName = inValue ;
@@ -1204,7 +1001,7 @@ void GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMConstantName
 
 void GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMLowerBoundExpression (GALGAS_immediatExpression inValue
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT) ;
     p->mProperty_mLowerBoundExpression = inValue ;
@@ -1215,7 +1012,7 @@ void GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMLowerBoundEx
 
 void GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMUpperBoundExpression (GALGAS_immediatExpression inValue
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT) ;
     p->mProperty_mUpperBoundExpression = inValue ;
@@ -1226,7 +1023,7 @@ void GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMUpperBoundEx
 
 void GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMInstructionList (GALGAS_baseline_5F_instructionList inValue
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT) ;
     p->mProperty_mInstructionList = inValue ;
@@ -1237,7 +1034,7 @@ void GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMInstructionL
 
 void GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMEndOfInstruction (GALGAS_location inValue
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT) ;
     p->mProperty_mEndOfInstruction = inValue ;
@@ -1247,7 +1044,7 @@ void GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMEndOfInstruc
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_mConstantName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -1259,7 +1056,7 @@ GALGAS_lstring GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_mLowerBoundExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
   }else{
     cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -1271,7 +1068,7 @@ GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::re
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_mUpperBoundExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
   }else{
     cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -1283,7 +1080,7 @@ GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::re
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_mInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_instructionList () ;
   }else{
     cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -1295,7 +1092,7 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_STATIC_5F_R
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_mEndOfInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
   }else{
     cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -1349,7 +1146,7 @@ void cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::description (C_String & i
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT (mProperty_mInstructionLocation, mProperty_mConstantName, mProperty_mLowerBoundExpression, mProperty_mUpperBoundExpression, mProperty_mInstructionList, mProperty_mEndOfInstruction COMMA_THERE)) ;
   return ptr ;
 }
@@ -1374,7 +1171,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_instruction_5F_STATIC_5F_REP
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT (*this)) ;
   }
@@ -1388,8 +1185,8 @@ GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_baseline_5F_instructio
                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT result ;
   const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_instruction_STATIC_REPEAT", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1563,7 +1360,7 @@ void GALGAS_baseline_5F_model::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_baseline_5F_model ("baseline_model",
-                                          NULL) ;
+                                          nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1574,7 +1371,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_model::staticTypeDescriptor 
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_model::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_model (*this)) ;
   }
@@ -1588,8 +1385,8 @@ GALGAS_baseline_5F_model GALGAS_baseline_5F_model::extractObject (const GALGAS_o
                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_model result ;
   const GALGAS_baseline_5F_model * p = (const GALGAS_baseline_5F_model *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_model *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_model *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_model", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1634,7 +1431,7 @@ typeComparisonResult GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::objectC
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1674,7 +1471,7 @@ GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL GALGAS_baseline_5F_intermedia
 
 void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::setter_setMLabel (GALGAS_lstring inValue
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL) ;
     p->mProperty_mLabel = inValue ;
@@ -1684,7 +1481,7 @@ void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::setter_setMLabel (GALGA
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::readProperty_mLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL *) mObjectPtr ;
@@ -1719,7 +1516,7 @@ void cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::description (C_String & i
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL (mProperty_mLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -1744,7 +1541,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LA
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL (*this)) ;
   }
@@ -1758,8 +1555,8 @@ GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL GALGAS_baseline_5F_intermedia
                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL result ;
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL * p = (const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_intermediate_pseudo_LABEL", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1808,7 +1605,7 @@ typeComparisonResult GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTI
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1850,7 +1647,7 @@ GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE GALGAS_baseline_5F
 
 void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::setter_setMRoutineName (GALGAS_lstring inValue
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE) ;
     p->mProperty_mRoutineName = inValue ;
@@ -1861,7 +1658,7 @@ void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::setter_setMR
 
 void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::setter_setMIsRegular (GALGAS_bool inValue
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE) ;
     p->mProperty_mIsRegular = inValue ;
@@ -1871,7 +1668,7 @@ void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::setter_setMI
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::readProperty_mRoutineName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *) mObjectPtr ;
@@ -1883,7 +1680,7 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::re
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::readProperty_mIsRegular (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *) mObjectPtr ;
@@ -1922,7 +1719,7 @@ void cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::description (C
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE (mProperty_mRoutineName, mProperty_mIsRegular COMMA_THERE)) ;
   return ptr ;
 }
@@ -1947,7 +1744,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BE
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE (*this)) ;
   }
@@ -1961,8 +1758,8 @@ GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE GALGAS_baseline_5F
                                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE result ;
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * p = (const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_intermediate_pseudo_BEGIN_ROUTINE", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2011,7 +1808,7 @@ typeComparisonResult GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2053,7 +1850,7 @@ GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE GALGAS_baseline_5F_i
 
 void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::setter_setMRoutineName (GALGAS_lstring inValue
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE) ;
     p->mProperty_mRoutineName = inValue ;
@@ -2064,7 +1861,7 @@ void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::setter_setMRou
 
 void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::setter_setMPage (GALGAS_uint inValue
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE) ;
     p->mProperty_mPage = inValue ;
@@ -2074,7 +1871,7 @@ void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::setter_setMPag
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::readProperty_mRoutineName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *) mObjectPtr ;
@@ -2086,7 +1883,7 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::read
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::readProperty_mPage (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *) mObjectPtr ;
@@ -2125,7 +1922,7 @@ void cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::description (C_S
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE (mProperty_mRoutineName, mProperty_mPage COMMA_THERE)) ;
   return ptr ;
 }
@@ -2150,7 +1947,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_intermediate_5F_pseudo_5F_EN
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE (*this)) ;
   }
@@ -2164,8 +1961,8 @@ GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE GALGAS_baseline_5F_i
                                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE result ;
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE * p = (const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_intermediate_pseudo_END_ROUTINE", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2213,7 +2010,7 @@ typeComparisonResult GALGAS_baseline_5F_intermediate_5F_GOTO::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2255,7 +2052,7 @@ GALGAS_baseline_5F_intermediate_5F_GOTO GALGAS_baseline_5F_intermediate_5F_GOTO:
 
 void GALGAS_baseline_5F_intermediate_5F_GOTO::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_GOTO * p = (cPtr_baseline_5F_intermediate_5F_GOTO *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_GOTO) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -2265,7 +2062,7 @@ void GALGAS_baseline_5F_intermediate_5F_GOTO::setter_setMTargetLabel (GALGAS_lst
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_GOTO::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_GOTO * p = (cPtr_baseline_5F_intermediate_5F_GOTO *) mObjectPtr ;
@@ -2303,7 +2100,7 @@ void cPtr_baseline_5F_intermediate_5F_GOTO::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_intermediate_5F_GOTO::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_GOTO (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -2328,7 +2125,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_intermediate_5F_GOTO::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_GOTO::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_intermediate_5F_GOTO (*this)) ;
   }
@@ -2342,8 +2139,8 @@ GALGAS_baseline_5F_intermediate_5F_GOTO GALGAS_baseline_5F_intermediate_5F_GOTO:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_GOTO result ;
   const GALGAS_baseline_5F_intermediate_5F_GOTO * p = (const GALGAS_baseline_5F_intermediate_5F_GOTO *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_GOTO *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_GOTO *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_intermediate_GOTO", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2399,7 +2196,7 @@ typeComparisonResult GALGAS_baseline_5F_intermediate_5F_JUMP::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2445,7 +2242,7 @@ GALGAS_baseline_5F_intermediate_5F_JUMP GALGAS_baseline_5F_intermediate_5F_JUMP:
 
 void GALGAS_baseline_5F_intermediate_5F_JUMP::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_JUMP * p = (cPtr_baseline_5F_intermediate_5F_JUMP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_JUMP) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -2456,7 +2253,7 @@ void GALGAS_baseline_5F_intermediate_5F_JUMP::setter_setMTargetLabel (GALGAS_lst
 
 void GALGAS_baseline_5F_intermediate_5F_JUMP::setter_setMCurrentPage (GALGAS_uint inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_JUMP * p = (cPtr_baseline_5F_intermediate_5F_JUMP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_JUMP) ;
     p->mProperty_mCurrentPage = inValue ;
@@ -2467,7 +2264,7 @@ void GALGAS_baseline_5F_intermediate_5F_JUMP::setter_setMCurrentPage (GALGAS_uin
 
 void GALGAS_baseline_5F_intermediate_5F_JUMP::setter_setMTargetPage (GALGAS_uint inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_JUMP * p = (cPtr_baseline_5F_intermediate_5F_JUMP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_JUMP) ;
     p->mProperty_mTargetPage = inValue ;
@@ -2477,7 +2274,7 @@ void GALGAS_baseline_5F_intermediate_5F_JUMP::setter_setMTargetPage (GALGAS_uint
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_JUMP::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_JUMP * p = (cPtr_baseline_5F_intermediate_5F_JUMP *) mObjectPtr ;
@@ -2489,7 +2286,7 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_JUMP::readProperty_mTargetLabe
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JUMP::readProperty_mCurrentPage (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_JUMP * p = (cPtr_baseline_5F_intermediate_5F_JUMP *) mObjectPtr ;
@@ -2501,7 +2298,7 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JUMP::readProperty_mCurrentPage (
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JUMP::readProperty_mTargetPage (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_JUMP * p = (cPtr_baseline_5F_intermediate_5F_JUMP *) mObjectPtr ;
@@ -2547,7 +2344,7 @@ void cPtr_baseline_5F_intermediate_5F_JUMP::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_intermediate_5F_JUMP::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_JUMP (mProperty_mInstructionLocation, mProperty_mTargetLabel, mProperty_mCurrentPage, mProperty_mTargetPage COMMA_THERE)) ;
   return ptr ;
 }
@@ -2572,7 +2369,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_intermediate_5F_JUMP::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_JUMP::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_intermediate_5F_JUMP (*this)) ;
   }
@@ -2586,8 +2383,8 @@ GALGAS_baseline_5F_intermediate_5F_JUMP GALGAS_baseline_5F_intermediate_5F_JUMP:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_JUMP result ;
   const GALGAS_baseline_5F_intermediate_5F_JUMP * p = (const GALGAS_baseline_5F_intermediate_5F_JUMP *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_JUMP *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_JUMP *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_intermediate_JUMP", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2635,7 +2432,7 @@ typeComparisonResult GALGAS_baseline_5F_intermediate_5F_CALL::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2677,7 +2474,7 @@ GALGAS_baseline_5F_intermediate_5F_CALL GALGAS_baseline_5F_intermediate_5F_CALL:
 
 void GALGAS_baseline_5F_intermediate_5F_CALL::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_CALL * p = (cPtr_baseline_5F_intermediate_5F_CALL *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_CALL) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -2687,7 +2484,7 @@ void GALGAS_baseline_5F_intermediate_5F_CALL::setter_setMTargetLabel (GALGAS_lst
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_CALL::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_CALL * p = (cPtr_baseline_5F_intermediate_5F_CALL *) mObjectPtr ;
@@ -2725,7 +2522,7 @@ void cPtr_baseline_5F_intermediate_5F_CALL::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_intermediate_5F_CALL::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_CALL (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -2750,7 +2547,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_intermediate_5F_CALL::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_CALL::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_intermediate_5F_CALL (*this)) ;
   }
@@ -2764,8 +2561,8 @@ GALGAS_baseline_5F_intermediate_5F_CALL GALGAS_baseline_5F_intermediate_5F_CALL:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_CALL result ;
   const GALGAS_baseline_5F_intermediate_5F_CALL * p = (const GALGAS_baseline_5F_intermediate_5F_CALL *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_CALL *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_CALL *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_intermediate_CALL", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2821,7 +2618,7 @@ typeComparisonResult GALGAS_baseline_5F_intermediate_5F_JSR::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2867,7 +2664,7 @@ GALGAS_baseline_5F_intermediate_5F_JSR GALGAS_baseline_5F_intermediate_5F_JSR::c
 
 void GALGAS_baseline_5F_intermediate_5F_JSR::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_JSR * p = (cPtr_baseline_5F_intermediate_5F_JSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_JSR) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -2878,7 +2675,7 @@ void GALGAS_baseline_5F_intermediate_5F_JSR::setter_setMTargetLabel (GALGAS_lstr
 
 void GALGAS_baseline_5F_intermediate_5F_JSR::setter_setMCurrentPage (GALGAS_uint inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_JSR * p = (cPtr_baseline_5F_intermediate_5F_JSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_JSR) ;
     p->mProperty_mCurrentPage = inValue ;
@@ -2889,7 +2686,7 @@ void GALGAS_baseline_5F_intermediate_5F_JSR::setter_setMCurrentPage (GALGAS_uint
 
 void GALGAS_baseline_5F_intermediate_5F_JSR::setter_setMTargetPage (GALGAS_uint inValue
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_JSR * p = (cPtr_baseline_5F_intermediate_5F_JSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_JSR) ;
     p->mProperty_mTargetPage = inValue ;
@@ -2899,7 +2696,7 @@ void GALGAS_baseline_5F_intermediate_5F_JSR::setter_setMTargetPage (GALGAS_uint 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_JSR::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_JSR * p = (cPtr_baseline_5F_intermediate_5F_JSR *) mObjectPtr ;
@@ -2911,7 +2708,7 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_JSR::readProperty_mTargetLabel
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JSR::readProperty_mCurrentPage (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_JSR * p = (cPtr_baseline_5F_intermediate_5F_JSR *) mObjectPtr ;
@@ -2923,7 +2720,7 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JSR::readProperty_mCurrentPage (v
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_intermediate_5F_JSR::readProperty_mTargetPage (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_JSR * p = (cPtr_baseline_5F_intermediate_5F_JSR *) mObjectPtr ;
@@ -2969,7 +2766,7 @@ void cPtr_baseline_5F_intermediate_5F_JSR::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_intermediate_5F_JSR::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_JSR (mProperty_mInstructionLocation, mProperty_mTargetLabel, mProperty_mCurrentPage, mProperty_mTargetPage COMMA_THERE)) ;
   return ptr ;
 }
@@ -2994,7 +2791,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_intermediate_5F_JSR::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_JSR::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_intermediate_5F_JSR (*this)) ;
   }
@@ -3008,8 +2805,8 @@ GALGAS_baseline_5F_intermediate_5F_JSR GALGAS_baseline_5F_intermediate_5F_JSR::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_JSR result ;
   const GALGAS_baseline_5F_intermediate_5F_JSR * p = (const GALGAS_baseline_5F_intermediate_5F_JSR *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_JSR *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_JSR *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_intermediate_JSR", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3061,7 +2858,7 @@ typeComparisonResult GALGAS_baseline_5F_intermediate_5F_TRIS::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -3105,7 +2902,7 @@ GALGAS_baseline_5F_intermediate_5F_TRIS GALGAS_baseline_5F_intermediate_5F_TRIS:
 
 void GALGAS_baseline_5F_intermediate_5F_TRIS::setter_setMOperand (GALGAS_lstring inValue
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_TRIS * p = (cPtr_baseline_5F_intermediate_5F_TRIS *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_TRIS) ;
     p->mProperty_mOperand = inValue ;
@@ -3116,7 +2913,7 @@ void GALGAS_baseline_5F_intermediate_5F_TRIS::setter_setMOperand (GALGAS_lstring
 
 void GALGAS_baseline_5F_intermediate_5F_TRIS::setter_setMOpcode (GALGAS_uint inValue
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_intermediate_5F_TRIS * p = (cPtr_baseline_5F_intermediate_5F_TRIS *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_TRIS) ;
     p->mProperty_mOpcode = inValue ;
@@ -3126,7 +2923,7 @@ void GALGAS_baseline_5F_intermediate_5F_TRIS::setter_setMOpcode (GALGAS_uint inV
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_TRIS::readProperty_mOperand (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_TRIS * p = (cPtr_baseline_5F_intermediate_5F_TRIS *) mObjectPtr ;
@@ -3138,7 +2935,7 @@ GALGAS_lstring GALGAS_baseline_5F_intermediate_5F_TRIS::readProperty_mOperand (v
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_intermediate_5F_TRIS::readProperty_mOpcode (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_intermediate_5F_TRIS * p = (cPtr_baseline_5F_intermediate_5F_TRIS *) mObjectPtr ;
@@ -3180,7 +2977,7 @@ void cPtr_baseline_5F_intermediate_5F_TRIS::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_intermediate_5F_TRIS::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_TRIS (mProperty_mInstructionLocation, mProperty_mOperand, mProperty_mOpcode COMMA_THERE)) ;
   return ptr ;
 }
@@ -3205,7 +3002,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_intermediate_5F_TRIS::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_intermediate_5F_TRIS::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_intermediate_5F_TRIS (*this)) ;
   }
@@ -3219,8 +3016,8 @@ GALGAS_baseline_5F_intermediate_5F_TRIS GALGAS_baseline_5F_intermediate_5F_TRIS:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_TRIS result ;
   const GALGAS_baseline_5F_intermediate_5F_TRIS * p = (const GALGAS_baseline_5F_intermediate_5F_TRIS *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_TRIS *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_intermediate_5F_TRIS *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_intermediate_TRIS", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3269,7 +3066,7 @@ void cPtr_baseline_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GALGAS_ba
     enumGalgasBool test_3 = kBoolTrue ;
     if (kBoolTrue == test_3) {
       GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_11253 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_11174.ptr ())) ;
-      if (NULL == var_literalOp_11253.ptr ()) {
+      if (nullptr == var_literalOp_11253.ptr ()) {
         test_3 = kBoolFalse ;
       }
       if (kBoolTrue == test_3) {
@@ -3290,7 +3087,7 @@ void cPtr_baseline_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GALGAS_ba
       enumGalgasBool test_5 = kBoolTrue ;
       if (kBoolTrue == test_5) {
         GALGAS_baseline_5F_intermediate_5F_GOTO var_goto_11817 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_11174.ptr ())) ;
-        if (NULL == var_goto_11817.ptr ()) {
+        if (nullptr == var_goto_11817.ptr ()) {
           test_5 = kBoolFalse ;
         }
         if (kBoolTrue == test_5) {
@@ -3352,7 +3149,7 @@ void cPtr_baseline_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GALGAS_ba
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
     GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_13166 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_13089.ptr ())) ;
-    if (NULL == var_literalOp_13166.ptr ()) {
+    if (nullptr == var_literalOp_13166.ptr ()) {
       test_1 = kBoolFalse ;
     }
     if (kBoolTrue == test_1) {
@@ -3373,7 +3170,7 @@ void cPtr_baseline_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GALGAS_ba
     enumGalgasBool test_3 = kBoolTrue ;
     if (kBoolTrue == test_3) {
       GALGAS_baseline_5F_intermediate_5F_GOTO var_goto_13708 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_13089.ptr ())) ;
-      if (NULL == var_goto_13708.ptr ()) {
+      if (nullptr == var_goto_13708.ptr ()) {
         test_3 = kBoolFalse ;
       }
       if (kBoolTrue == test_3) {
@@ -3399,7 +3196,7 @@ void cPtr_baseline_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GALGAS_ba
       enumGalgasBool test_10 = kBoolTrue ;
       if (kBoolTrue == test_10) {
         GALGAS_baseline_5F_intermediate_5F_JUMP var_jump_14368 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_JUMP *> (var_firstInstruction_13089.ptr ())) ;
-        if (NULL == var_jump_14368.ptr ()) {
+        if (nullptr == var_jump_14368.ptr ()) {
           test_10 = kBoolFalse ;
         }
         if (kBoolTrue == test_10) {
@@ -3462,7 +3259,7 @@ void cPtr_baseline_5F_intermediate_5F_CALL::method_optimizeCALL (const GALGAS_ba
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
     GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_15752 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_15675.ptr ())) ;
-    if (NULL == var_literalOp_15752.ptr ()) {
+    if (nullptr == var_literalOp_15752.ptr ()) {
       test_1 = kBoolFalse ;
     }
     if (kBoolTrue == test_1) {
@@ -3521,7 +3318,7 @@ void cPtr_baseline_5F_intermediate_5F_JSR::method_optimizeJSR (const GALGAS_base
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
     GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_17260 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_17183.ptr ())) ;
-    if (NULL == var_literalOp_17260.ptr ()) {
+    if (nullptr == var_literalOp_17260.ptr ()) {
       test_1 = kBoolFalse ;
     }
     if (kBoolTrue == test_1) {
@@ -3574,7 +3371,7 @@ void cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::method_optimiz
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL var__18732 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL *> (var_nextInstruction_18574.ptr ())) ;
-    if (NULL == var__18732.ptr ()) {
+    if (nullptr == var__18732.ptr ()) {
       test_0 = kBoolFalse ;
     }
     if (kBoolTrue == test_0) {
@@ -3648,7 +3445,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::ob
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -3690,7 +3487,7 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE GALGAS_baseline_5F_assem
 
 void GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::setter_setMRoutineName (GALGAS_lstring inValue
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE) ;
     p->mProperty_mRoutineName = inValue ;
@@ -3701,7 +3498,7 @@ void GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::setter_setMRoutine
 
 void GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::setter_setMIsRegular (GALGAS_bool inValue
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE) ;
     p->mProperty_mIsRegular = inValue ;
@@ -3711,7 +3508,7 @@ void GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::setter_setMIsRegul
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::readProperty_mRoutineName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) mObjectPtr ;
@@ -3723,7 +3520,7 @@ GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::readProp
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::readProperty_mIsRegular (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) mObjectPtr ;
@@ -3762,7 +3559,7 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::description (C_Strin
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (mProperty_mRoutineName, mProperty_mIsRegular COMMA_THERE)) ;
   return ptr ;
 }
@@ -3787,7 +3584,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINO
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (*this)) ;
   }
@@ -3801,8 +3598,8 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE GALGAS_baseline_5F_assem
                                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE result ;
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * p = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_pseudo_BEGINOFROUTINE", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3851,7 +3648,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::obje
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -3893,7 +3690,7 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE GALGAS_baseline_5F_assembl
 
 void GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::setter_setMRoutineName (GALGAS_lstring inValue
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE) ;
     p->mProperty_mRoutineName = inValue ;
@@ -3904,7 +3701,7 @@ void GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::setter_setMRoutineNa
 
 void GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::setter_setMPage (GALGAS_uint inValue
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE) ;
     p->mProperty_mPage = inValue ;
@@ -3914,7 +3711,7 @@ void GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::setter_setMPage (GAL
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::readProperty_mRoutineName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) mObjectPtr ;
@@ -3926,7 +3723,7 @@ GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::readProper
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::readProperty_mPage (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) mObjectPtr ;
@@ -3965,7 +3762,7 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::description (C_String 
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (mProperty_mRoutineName, mProperty_mPage COMMA_THERE)) ;
   return ptr ;
 }
@@ -3990,7 +3787,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFR
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (*this)) ;
   }
@@ -4004,8 +3801,8 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE GALGAS_baseline_5F_assembl
                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE result ;
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * p = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_pseudo_ENDOFROUTINE", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4050,7 +3847,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL::objectCompa
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -4090,7 +3887,7 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL GALGAS_baseline_5F_assembly_5F_ps
 
 void GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL::setter_setMLabel (GALGAS_lstring inValue
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL) ;
     p->mProperty_mLabel = inValue ;
@@ -4100,7 +3897,7 @@ void GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL::setter_setMLabel (GALGAS_ls
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL::readProperty_mLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL *) mObjectPtr ;
@@ -4135,7 +3932,7 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::description (C_String & ioStr
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL (mProperty_mLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -4160,7 +3957,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL (*this)) ;
   }
@@ -4174,8 +3971,8 @@ GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL GALGAS_baseline_5F_assembly_5F_ps
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL result ;
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL * p = (const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_pseudo_LABEL", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4223,7 +4020,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_GOTO::objectCompare (const G
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -4265,7 +4062,7 @@ GALGAS_baseline_5F_assembly_5F_GOTO GALGAS_baseline_5F_assembly_5F_GOTO::constru
 
 void GALGAS_baseline_5F_assembly_5F_GOTO::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_GOTO * p = (cPtr_baseline_5F_assembly_5F_GOTO *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_GOTO) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -4275,7 +4072,7 @@ void GALGAS_baseline_5F_assembly_5F_GOTO::setter_setMTargetLabel (GALGAS_lstring
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_assembly_5F_GOTO::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_assembly_5F_GOTO * p = (cPtr_baseline_5F_assembly_5F_GOTO *) mObjectPtr ;
@@ -4313,7 +4110,7 @@ void cPtr_baseline_5F_assembly_5F_GOTO::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_GOTO::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_GOTO (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -4338,7 +4135,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_GOTO::staticType
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_GOTO::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_GOTO (*this)) ;
   }
@@ -4352,8 +4149,8 @@ GALGAS_baseline_5F_assembly_5F_GOTO GALGAS_baseline_5F_assembly_5F_GOTO::extract
                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_GOTO result ;
   const GALGAS_baseline_5F_assembly_5F_GOTO * p = (const GALGAS_baseline_5F_assembly_5F_GOTO *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_GOTO *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_GOTO *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_GOTO", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4401,7 +4198,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_CALL::objectCompare (const G
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -4443,7 +4240,7 @@ GALGAS_baseline_5F_assembly_5F_CALL GALGAS_baseline_5F_assembly_5F_CALL::constru
 
 void GALGAS_baseline_5F_assembly_5F_CALL::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_CALL * p = (cPtr_baseline_5F_assembly_5F_CALL *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_CALL) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -4453,7 +4250,7 @@ void GALGAS_baseline_5F_assembly_5F_CALL::setter_setMTargetLabel (GALGAS_lstring
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_assembly_5F_CALL::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_assembly_5F_CALL * p = (cPtr_baseline_5F_assembly_5F_CALL *) mObjectPtr ;
@@ -4491,7 +4288,7 @@ void cPtr_baseline_5F_assembly_5F_CALL::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_CALL::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_CALL (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -4516,7 +4313,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_CALL::staticType
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_CALL::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_CALL (*this)) ;
   }
@@ -4530,8 +4327,8 @@ GALGAS_baseline_5F_assembly_5F_CALL GALGAS_baseline_5F_assembly_5F_CALL::extract
                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_CALL result ;
   const GALGAS_baseline_5F_assembly_5F_CALL * p = (const GALGAS_baseline_5F_assembly_5F_CALL *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_CALL *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_CALL *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_CALL", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4583,7 +4380,7 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_TRIS::objectCompare (const G
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -4627,7 +4424,7 @@ GALGAS_baseline_5F_assembly_5F_TRIS GALGAS_baseline_5F_assembly_5F_TRIS::constru
 
 void GALGAS_baseline_5F_assembly_5F_TRIS::setter_setMOperand (GALGAS_lstring inValue
                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_TRIS * p = (cPtr_baseline_5F_assembly_5F_TRIS *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_TRIS) ;
     p->mProperty_mOperand = inValue ;
@@ -4638,7 +4435,7 @@ void GALGAS_baseline_5F_assembly_5F_TRIS::setter_setMOperand (GALGAS_lstring inV
 
 void GALGAS_baseline_5F_assembly_5F_TRIS::setter_setMOpcode (GALGAS_uint inValue
                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_baseline_5F_assembly_5F_TRIS * p = (cPtr_baseline_5F_assembly_5F_TRIS *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_TRIS) ;
     p->mProperty_mOpcode = inValue ;
@@ -4648,7 +4445,7 @@ void GALGAS_baseline_5F_assembly_5F_TRIS::setter_setMOpcode (GALGAS_uint inValue
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_baseline_5F_assembly_5F_TRIS::readProperty_mOperand (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_baseline_5F_assembly_5F_TRIS * p = (cPtr_baseline_5F_assembly_5F_TRIS *) mObjectPtr ;
@@ -4660,7 +4457,7 @@ GALGAS_lstring GALGAS_baseline_5F_assembly_5F_TRIS::readProperty_mOperand (void)
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_uint GALGAS_baseline_5F_assembly_5F_TRIS::readProperty_mOpcode (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
   }else{
     cPtr_baseline_5F_assembly_5F_TRIS * p = (cPtr_baseline_5F_assembly_5F_TRIS *) mObjectPtr ;
@@ -4702,7 +4499,7 @@ void cPtr_baseline_5F_assembly_5F_TRIS::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_baseline_5F_assembly_5F_TRIS::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_TRIS (mProperty_mInstructionLocation, mProperty_mOperand, mProperty_mOpcode COMMA_THERE)) ;
   return ptr ;
 }
@@ -4727,7 +4524,7 @@ const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_TRIS::staticType
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_TRIS::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_baseline_5F_assembly_5F_TRIS (*this)) ;
   }
@@ -4741,8 +4538,8 @@ GALGAS_baseline_5F_assembly_5F_TRIS GALGAS_baseline_5F_assembly_5F_TRIS::extract
                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_TRIS result ;
   const GALGAS_baseline_5F_assembly_5F_TRIS * p = (const GALGAS_baseline_5F_assembly_5F_TRIS *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_TRIS *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_TRIS *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_TRIS", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4806,7 +4603,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::objectC
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -4844,7 +4641,7 @@ GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_midrange_5F_instructio
 
 void GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMConstantName (GALGAS_lstring inValue
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
     p->mProperty_mConstantName = inValue ;
@@ -4855,7 +4652,7 @@ void GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMConstantName
 
 void GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMLowerBoundExpression (GALGAS_immediatExpression inValue
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
     p->mProperty_mLowerBoundExpression = inValue ;
@@ -4866,7 +4663,7 @@ void GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMLowerBoundEx
 
 void GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMUpperBoundExpression (GALGAS_immediatExpression inValue
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
     p->mProperty_mUpperBoundExpression = inValue ;
@@ -4877,7 +4674,7 @@ void GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMUpperBoundEx
 
 void GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMInstructionList (GALGAS_midrange_5F_instructionList inValue
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
     p->mProperty_mInstructionList = inValue ;
@@ -4888,7 +4685,7 @@ void GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMInstructionL
 
 void GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMEndOfInstruction (GALGAS_location inValue
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
     p->mProperty_mEndOfInstruction = inValue ;
@@ -4898,7 +4695,7 @@ void GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::setter_setMEndOfInstruc
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_mConstantName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -4910,7 +4707,7 @@ GALGAS_lstring GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpression GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_mLowerBoundExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
   }else{
     cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -4922,7 +4719,7 @@ GALGAS_immediatExpression GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::re
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpression GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_mUpperBoundExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
   }else{
     cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -4934,7 +4731,7 @@ GALGAS_immediatExpression GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::re
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_mInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_instructionList () ;
   }else{
     cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -4946,7 +4743,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instruction_5F_STATIC_5F_R
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_mEndOfInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
   }else{
     cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) mObjectPtr ;
@@ -5000,7 +4797,7 @@ void cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::description (C_String & i
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT (mProperty_mInstructionLocation, mProperty_mConstantName, mProperty_mLowerBoundExpression, mProperty_mUpperBoundExpression, mProperty_mInstructionList, mProperty_mEndOfInstruction COMMA_THERE)) ;
   return ptr ;
 }
@@ -5025,7 +4822,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_STATIC_5F_REP
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT (*this)) ;
   }
@@ -5039,8 +4836,8 @@ GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_midrange_5F_instructio
                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT result ;
   const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT * p = (const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_STATIC_REPEAT", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5088,7 +4885,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_CALL::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -5130,7 +4927,7 @@ GALGAS_midrange_5F_instruction_5F_CALL GALGAS_midrange_5F_instruction_5F_CALL::c
 
 void GALGAS_midrange_5F_instruction_5F_CALL::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_CALL * p = (cPtr_midrange_5F_instruction_5F_CALL *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_CALL) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -5140,7 +4937,7 @@ void GALGAS_midrange_5F_instruction_5F_CALL::setter_setMTargetLabel (GALGAS_lstr
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_midrange_5F_instruction_5F_CALL::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_midrange_5F_instruction_5F_CALL * p = (cPtr_midrange_5F_instruction_5F_CALL *) mObjectPtr ;
@@ -5178,7 +4975,7 @@ void cPtr_midrange_5F_instruction_5F_CALL::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_CALL::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_CALL (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -5203,7 +5000,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_CALL::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_CALL::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_CALL (*this)) ;
   }
@@ -5217,8 +5014,8 @@ GALGAS_midrange_5F_instruction_5F_CALL GALGAS_midrange_5F_instruction_5F_CALL::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_CALL result ;
   const GALGAS_midrange_5F_instruction_5F_CALL * p = (const GALGAS_midrange_5F_instruction_5F_CALL *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CALL *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_CALL *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_CALL", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5266,7 +5063,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_JSR::objectCompare (const
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -5308,7 +5105,7 @@ GALGAS_midrange_5F_instruction_5F_JSR GALGAS_midrange_5F_instruction_5F_JSR::con
 
 void GALGAS_midrange_5F_instruction_5F_JSR::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_JSR * p = (cPtr_midrange_5F_instruction_5F_JSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_JSR) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -5318,7 +5115,7 @@ void GALGAS_midrange_5F_instruction_5F_JSR::setter_setMTargetLabel (GALGAS_lstri
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_midrange_5F_instruction_5F_JSR::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_midrange_5F_instruction_5F_JSR * p = (cPtr_midrange_5F_instruction_5F_JSR *) mObjectPtr ;
@@ -5356,7 +5153,7 @@ void cPtr_midrange_5F_instruction_5F_JSR::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_JSR::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_JSR (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -5381,7 +5178,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_JSR::staticTy
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_JSR::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_JSR (*this)) ;
   }
@@ -5395,8 +5192,8 @@ GALGAS_midrange_5F_instruction_5F_JSR GALGAS_midrange_5F_instruction_5F_JSR::ext
                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_JSR result ;
   const GALGAS_midrange_5F_instruction_5F_JSR * p = (const GALGAS_midrange_5F_instruction_5F_JSR *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_JSR *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_JSR *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_JSR", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5444,7 +5241,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_JUMP::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -5486,7 +5283,7 @@ GALGAS_midrange_5F_instruction_5F_JUMP GALGAS_midrange_5F_instruction_5F_JUMP::c
 
 void GALGAS_midrange_5F_instruction_5F_JUMP::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_JUMP * p = (cPtr_midrange_5F_instruction_5F_JUMP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_JUMP) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -5496,7 +5293,7 @@ void GALGAS_midrange_5F_instruction_5F_JUMP::setter_setMTargetLabel (GALGAS_lstr
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_midrange_5F_instruction_5F_JUMP::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_midrange_5F_instruction_5F_JUMP * p = (cPtr_midrange_5F_instruction_5F_JUMP *) mObjectPtr ;
@@ -5534,7 +5331,7 @@ void cPtr_midrange_5F_instruction_5F_JUMP::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_JUMP::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_JUMP (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -5559,7 +5356,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_JUMP::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_JUMP::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_JUMP (*this)) ;
   }
@@ -5573,8 +5370,8 @@ GALGAS_midrange_5F_instruction_5F_JUMP GALGAS_midrange_5F_instruction_5F_JUMP::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_JUMP result ;
   const GALGAS_midrange_5F_instruction_5F_JUMP * p = (const GALGAS_midrange_5F_instruction_5F_JUMP *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_JUMP *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_JUMP *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_JUMP", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5622,7 +5419,7 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_GOTO::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -5664,7 +5461,7 @@ GALGAS_midrange_5F_instruction_5F_GOTO GALGAS_midrange_5F_instruction_5F_GOTO::c
 
 void GALGAS_midrange_5F_instruction_5F_GOTO::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_instruction_5F_GOTO * p = (cPtr_midrange_5F_instruction_5F_GOTO *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_GOTO) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -5674,7 +5471,7 @@ void GALGAS_midrange_5F_instruction_5F_GOTO::setter_setMTargetLabel (GALGAS_lstr
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_midrange_5F_instruction_5F_GOTO::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_midrange_5F_instruction_5F_GOTO * p = (cPtr_midrange_5F_instruction_5F_GOTO *) mObjectPtr ;
@@ -5712,7 +5509,7 @@ void cPtr_midrange_5F_instruction_5F_GOTO::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_instruction_5F_GOTO::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_GOTO (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -5737,7 +5534,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_instruction_5F_GOTO::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_instruction_5F_GOTO::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_instruction_5F_GOTO (*this)) ;
   }
@@ -5751,8 +5548,8 @@ GALGAS_midrange_5F_instruction_5F_GOTO GALGAS_midrange_5F_instruction_5F_GOTO::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_GOTO result ;
   const GALGAS_midrange_5F_instruction_5F_GOTO * p = (const GALGAS_midrange_5F_instruction_5F_GOTO *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_GOTO *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_instruction_5F_GOTO *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_instruction_GOTO", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5959,7 +5756,7 @@ void GALGAS_midrange_5F_model::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_midrange_5F_model ("midrange_model",
-                                          NULL) ;
+                                          nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -5970,7 +5767,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_model::staticTypeDescriptor 
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_model::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_model (*this)) ;
   }
@@ -5984,8 +5781,8 @@ GALGAS_midrange_5F_model GALGAS_midrange_5F_model::extractObject (const GALGAS_o
                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_model result ;
   const GALGAS_midrange_5F_model * p = (const GALGAS_midrange_5F_model *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_model *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_model *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_model", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6034,7 +5831,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::objectC
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -6076,7 +5873,7 @@ GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL GALGAS_midrange_5F_intermedia
 
 void GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::setter_setMLabel (GALGAS_lstring inValue
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * p = (cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
     p->mProperty_mLabel = inValue ;
@@ -6087,7 +5884,7 @@ void GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::setter_setMLabel (GALGA
 
 void GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::setter_setMIsDeletable (GALGAS_bool inValue
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * p = (cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL) ;
     p->mProperty_mIsDeletable = inValue ;
@@ -6097,7 +5894,7 @@ void GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::setter_setMIsDeletable 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::readProperty_mLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * p = (cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) mObjectPtr ;
@@ -6109,7 +5906,7 @@ GALGAS_lstring GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::readProperty_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::readProperty_mIsDeletable (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * p = (cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) mObjectPtr ;
@@ -6148,7 +5945,7 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::description (C_String & i
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL (mProperty_mLabel, mProperty_mIsDeletable COMMA_THERE)) ;
   return ptr ;
 }
@@ -6173,7 +5970,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LA
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL (*this)) ;
   }
@@ -6187,8 +5984,8 @@ GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL GALGAS_midrange_5F_intermedia
                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL result ;
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL * p = (const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_intermediate_pseudo_LABEL", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6244,7 +6041,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_JUMP::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -6280,7 +6077,7 @@ GALGAS_midrange_5F_intermediate_5F_JUMP GALGAS_midrange_5F_intermediate_5F_JUMP:
 
 void GALGAS_midrange_5F_intermediate_5F_JUMP::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_intermediate_5F_JUMP * p = (cPtr_midrange_5F_intermediate_5F_JUMP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_JUMP) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -6291,7 +6088,7 @@ void GALGAS_midrange_5F_intermediate_5F_JUMP::setter_setMTargetLabel (GALGAS_lst
 
 void GALGAS_midrange_5F_intermediate_5F_JUMP::setter_setMBit_31__31_ (GALGAS_midrange_5F_call_5F_goto_5F_bit inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_intermediate_5F_JUMP * p = (cPtr_midrange_5F_intermediate_5F_JUMP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_JUMP) ;
     p->mProperty_mBit_31__31_ = inValue ;
@@ -6302,7 +6099,7 @@ void GALGAS_midrange_5F_intermediate_5F_JUMP::setter_setMBit_31__31_ (GALGAS_mid
 
 void GALGAS_midrange_5F_intermediate_5F_JUMP::setter_setMBit_31__32_ (GALGAS_midrange_5F_call_5F_goto_5F_bit inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_intermediate_5F_JUMP * p = (cPtr_midrange_5F_intermediate_5F_JUMP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_JUMP) ;
     p->mProperty_mBit_31__32_ = inValue ;
@@ -6312,7 +6109,7 @@ void GALGAS_midrange_5F_intermediate_5F_JUMP::setter_setMBit_31__32_ (GALGAS_mid
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_midrange_5F_intermediate_5F_JUMP::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_midrange_5F_intermediate_5F_JUMP * p = (cPtr_midrange_5F_intermediate_5F_JUMP *) mObjectPtr ;
@@ -6324,7 +6121,7 @@ GALGAS_lstring GALGAS_midrange_5F_intermediate_5F_JUMP::readProperty_mTargetLabe
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_call_5F_goto_5F_bit GALGAS_midrange_5F_intermediate_5F_JUMP::readProperty_mBit_31__31_ (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_call_5F_goto_5F_bit () ;
   }else{
     cPtr_midrange_5F_intermediate_5F_JUMP * p = (cPtr_midrange_5F_intermediate_5F_JUMP *) mObjectPtr ;
@@ -6336,7 +6133,7 @@ GALGAS_midrange_5F_call_5F_goto_5F_bit GALGAS_midrange_5F_intermediate_5F_JUMP::
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_call_5F_goto_5F_bit GALGAS_midrange_5F_intermediate_5F_JUMP::readProperty_mBit_31__32_ (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_call_5F_goto_5F_bit () ;
   }else{
     cPtr_midrange_5F_intermediate_5F_JUMP * p = (cPtr_midrange_5F_intermediate_5F_JUMP *) mObjectPtr ;
@@ -6382,7 +6179,7 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_intermediate_5F_JUMP::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_JUMP (mProperty_mInstructionLocation, mProperty_mTargetLabel, mProperty_mBit_31__31_, mProperty_mBit_31__32_ COMMA_THERE)) ;
   return ptr ;
 }
@@ -6407,7 +6204,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_JUMP::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_JUMP::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_JUMP (*this)) ;
   }
@@ -6421,8 +6218,8 @@ GALGAS_midrange_5F_intermediate_5F_JUMP GALGAS_midrange_5F_intermediate_5F_JUMP:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_JUMP result ;
   const GALGAS_midrange_5F_intermediate_5F_JUMP * p = (const GALGAS_midrange_5F_intermediate_5F_JUMP *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_JUMP *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_JUMP *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_intermediate_JUMP", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6470,7 +6267,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_GOTO::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -6512,7 +6309,7 @@ GALGAS_midrange_5F_intermediate_5F_GOTO GALGAS_midrange_5F_intermediate_5F_GOTO:
 
 void GALGAS_midrange_5F_intermediate_5F_GOTO::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_intermediate_5F_GOTO * p = (cPtr_midrange_5F_intermediate_5F_GOTO *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_GOTO) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -6522,7 +6319,7 @@ void GALGAS_midrange_5F_intermediate_5F_GOTO::setter_setMTargetLabel (GALGAS_lst
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_midrange_5F_intermediate_5F_GOTO::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_midrange_5F_intermediate_5F_GOTO * p = (cPtr_midrange_5F_intermediate_5F_GOTO *) mObjectPtr ;
@@ -6560,7 +6357,7 @@ void cPtr_midrange_5F_intermediate_5F_GOTO::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_intermediate_5F_GOTO::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_GOTO (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -6585,7 +6382,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_GOTO::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_GOTO::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_GOTO (*this)) ;
   }
@@ -6599,8 +6396,8 @@ GALGAS_midrange_5F_intermediate_5F_GOTO GALGAS_midrange_5F_intermediate_5F_GOTO:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_GOTO result ;
   const GALGAS_midrange_5F_intermediate_5F_GOTO * p = (const GALGAS_midrange_5F_intermediate_5F_GOTO *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_GOTO *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_GOTO *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_intermediate_GOTO", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6648,7 +6445,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_CALL::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -6690,7 +6487,7 @@ GALGAS_midrange_5F_intermediate_5F_CALL GALGAS_midrange_5F_intermediate_5F_CALL:
 
 void GALGAS_midrange_5F_intermediate_5F_CALL::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_intermediate_5F_CALL * p = (cPtr_midrange_5F_intermediate_5F_CALL *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_CALL) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -6700,7 +6497,7 @@ void GALGAS_midrange_5F_intermediate_5F_CALL::setter_setMTargetLabel (GALGAS_lst
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_midrange_5F_intermediate_5F_CALL::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_midrange_5F_intermediate_5F_CALL * p = (cPtr_midrange_5F_intermediate_5F_CALL *) mObjectPtr ;
@@ -6738,7 +6535,7 @@ void cPtr_midrange_5F_intermediate_5F_CALL::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_intermediate_5F_CALL::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_CALL (mProperty_mInstructionLocation, mProperty_mTargetLabel COMMA_THERE)) ;
   return ptr ;
 }
@@ -6763,7 +6560,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_CALL::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_CALL::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_CALL (*this)) ;
   }
@@ -6777,8 +6574,8 @@ GALGAS_midrange_5F_intermediate_5F_CALL GALGAS_midrange_5F_intermediate_5F_CALL:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_CALL result ;
   const GALGAS_midrange_5F_intermediate_5F_CALL * p = (const GALGAS_midrange_5F_intermediate_5F_CALL *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_CALL *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_CALL *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_intermediate_CALL", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6834,7 +6631,7 @@ typeComparisonResult GALGAS_midrange_5F_intermediate_5F_JSR::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -6870,7 +6667,7 @@ GALGAS_midrange_5F_intermediate_5F_JSR GALGAS_midrange_5F_intermediate_5F_JSR::c
 
 void GALGAS_midrange_5F_intermediate_5F_JSR::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_intermediate_5F_JSR * p = (cPtr_midrange_5F_intermediate_5F_JSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_JSR) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -6881,7 +6678,7 @@ void GALGAS_midrange_5F_intermediate_5F_JSR::setter_setMTargetLabel (GALGAS_lstr
 
 void GALGAS_midrange_5F_intermediate_5F_JSR::setter_setMBit_31__31_ (GALGAS_midrange_5F_call_5F_goto_5F_bit inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_intermediate_5F_JSR * p = (cPtr_midrange_5F_intermediate_5F_JSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_JSR) ;
     p->mProperty_mBit_31__31_ = inValue ;
@@ -6892,7 +6689,7 @@ void GALGAS_midrange_5F_intermediate_5F_JSR::setter_setMBit_31__31_ (GALGAS_midr
 
 void GALGAS_midrange_5F_intermediate_5F_JSR::setter_setMBit_31__32_ (GALGAS_midrange_5F_call_5F_goto_5F_bit inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_midrange_5F_intermediate_5F_JSR * p = (cPtr_midrange_5F_intermediate_5F_JSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_JSR) ;
     p->mProperty_mBit_31__32_ = inValue ;
@@ -6902,7 +6699,7 @@ void GALGAS_midrange_5F_intermediate_5F_JSR::setter_setMBit_31__32_ (GALGAS_midr
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_midrange_5F_intermediate_5F_JSR::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_midrange_5F_intermediate_5F_JSR * p = (cPtr_midrange_5F_intermediate_5F_JSR *) mObjectPtr ;
@@ -6914,7 +6711,7 @@ GALGAS_lstring GALGAS_midrange_5F_intermediate_5F_JSR::readProperty_mTargetLabel
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_call_5F_goto_5F_bit GALGAS_midrange_5F_intermediate_5F_JSR::readProperty_mBit_31__31_ (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_call_5F_goto_5F_bit () ;
   }else{
     cPtr_midrange_5F_intermediate_5F_JSR * p = (cPtr_midrange_5F_intermediate_5F_JSR *) mObjectPtr ;
@@ -6926,7 +6723,7 @@ GALGAS_midrange_5F_call_5F_goto_5F_bit GALGAS_midrange_5F_intermediate_5F_JSR::r
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_call_5F_goto_5F_bit GALGAS_midrange_5F_intermediate_5F_JSR::readProperty_mBit_31__32_ (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_midrange_5F_call_5F_goto_5F_bit () ;
   }else{
     cPtr_midrange_5F_intermediate_5F_JSR * p = (cPtr_midrange_5F_intermediate_5F_JSR *) mObjectPtr ;
@@ -6972,7 +6769,7 @@ void cPtr_midrange_5F_intermediate_5F_JSR::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_midrange_5F_intermediate_5F_JSR::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_JSR (mProperty_mInstructionLocation, mProperty_mTargetLabel, mProperty_mBit_31__31_, mProperty_mBit_31__32_ COMMA_THERE)) ;
   return ptr ;
 }
@@ -6997,7 +6794,7 @@ const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_JSR::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_JSR::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_JSR (*this)) ;
   }
@@ -7011,8 +6808,8 @@ GALGAS_midrange_5F_intermediate_5F_JSR GALGAS_midrange_5F_intermediate_5F_JSR::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_JSR result ;
   const GALGAS_midrange_5F_intermediate_5F_JSR * p = (const GALGAS_midrange_5F_intermediate_5F_JSR *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_JSR *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_JSR *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("midrange_intermediate_JSR", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7062,7 +6859,7 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GALGAS_sy
     enumGalgasBool test_3 = kBoolTrue ;
     if (kBoolTrue == test_3) {
       GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETURN var__10516 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN *> (var_firstInstruction_10437.ptr ())) ;
-      if (NULL == var__10516.ptr ()) {
+      if (nullptr == var__10516.ptr ()) {
         test_3 = kBoolFalse ;
       }
       if (kBoolTrue == test_3) {
@@ -7078,7 +6875,7 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GALGAS_sy
       enumGalgasBool test_5 = kBoolTrue ;
       if (kBoolTrue == test_5) {
         GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_11005 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_10437.ptr ())) ;
-        if (NULL == var_literalOp_11005.ptr ()) {
+        if (nullptr == var_literalOp_11005.ptr ()) {
           test_5 = kBoolFalse ;
         }
         if (kBoolTrue == test_5) {
@@ -7099,7 +6896,7 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GALGAS_sy
         enumGalgasBool test_7 = kBoolTrue ;
         if (kBoolTrue == test_7) {
           GALGAS_midrange_5F_intermediate_5F_JUMP var_jump_11549 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_JUMP *> (var_firstInstruction_10437.ptr ())) ;
-          if (NULL == var_jump_11549.ptr ()) {
+          if (nullptr == var_jump_11549.ptr ()) {
             test_7 = kBoolFalse ;
           }
           if (kBoolTrue == test_7) {
@@ -7179,7 +6976,7 @@ void cPtr_midrange_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GALGAS_sy
     enumGalgasBool test_3 = kBoolTrue ;
     if (kBoolTrue == test_3) {
       GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETURN var__13415 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN *> (var_firstInstruction_13308.ptr ())) ;
-      if (NULL == var__13415.ptr ()) {
+      if (nullptr == var__13415.ptr ()) {
         test_3 = kBoolFalse ;
       }
       if (kBoolTrue == test_3) {
@@ -7195,7 +6992,7 @@ void cPtr_midrange_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GALGAS_sy
       enumGalgasBool test_5 = kBoolTrue ;
       if (kBoolTrue == test_5) {
         GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_13904 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_13308.ptr ())) ;
-        if (NULL == var_literalOp_13904.ptr ()) {
+        if (nullptr == var_literalOp_13904.ptr ()) {
           test_5 = kBoolFalse ;
         }
         if (kBoolTrue == test_5) {
@@ -7216,7 +7013,7 @@ void cPtr_midrange_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GALGAS_sy
         enumGalgasBool test_7 = kBoolTrue ;
         if (kBoolTrue == test_7) {
           GALGAS_midrange_5F_intermediate_5F_JUMP var_jump_14448 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_JUMP *> (var_firstInstruction_13308.ptr ())) ;
-          if (NULL == var_jump_14448.ptr ()) {
+          if (nullptr == var_jump_14448.ptr ()) {
             test_7 = kBoolFalse ;
           }
           if (kBoolTrue == test_7) {
@@ -7239,7 +7036,7 @@ void cPtr_midrange_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GALGAS_sy
           enumGalgasBool test_11 = kBoolTrue ;
           if (kBoolTrue == test_11) {
             GALGAS_midrange_5F_intermediate_5F_GOTO var_goto_15036 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_GOTO *> (var_firstInstruction_13308.ptr ())) ;
-            if (NULL == var_goto_15036.ptr ()) {
+            if (nullptr == var_goto_15036.ptr ()) {
               test_11 = kBoolFalse ;
             }
             if (kBoolTrue == test_11) {
@@ -7334,7 +7131,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_repetitionStatique::object
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -7372,7 +7169,7 @@ GALGAS_pic_31__38_Instruction_5F_repetitionStatique GALGAS_pic_31__38_Instructio
 
 void GALGAS_pic_31__38_Instruction_5F_repetitionStatique::setter_setMConstantName (GALGAS_lstring inValue
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
     p->mProperty_mConstantName = inValue ;
@@ -7383,7 +7180,7 @@ void GALGAS_pic_31__38_Instruction_5F_repetitionStatique::setter_setMConstantNam
 
 void GALGAS_pic_31__38_Instruction_5F_repetitionStatique::setter_setMLowerBoundExpression (GALGAS_immediatExpression inValue
                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
     p->mProperty_mLowerBoundExpression = inValue ;
@@ -7394,7 +7191,7 @@ void GALGAS_pic_31__38_Instruction_5F_repetitionStatique::setter_setMLowerBoundE
 
 void GALGAS_pic_31__38_Instruction_5F_repetitionStatique::setter_setMUpperBoundExpression (GALGAS_immediatExpression inValue
                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
     p->mProperty_mUpperBoundExpression = inValue ;
@@ -7405,7 +7202,7 @@ void GALGAS_pic_31__38_Instruction_5F_repetitionStatique::setter_setMUpperBoundE
 
 void GALGAS_pic_31__38_Instruction_5F_repetitionStatique::setter_setMInstructionList (GALGAS_pic_31__38_InstructionList inValue
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
     p->mProperty_mInstructionList = inValue ;
@@ -7416,7 +7213,7 @@ void GALGAS_pic_31__38_Instruction_5F_repetitionStatique::setter_setMInstruction
 
 void GALGAS_pic_31__38_Instruction_5F_repetitionStatique::setter_setMEndOfInstruction (GALGAS_location inValue
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
     p->mProperty_mEndOfInstruction = inValue ;
@@ -7426,7 +7223,7 @@ void GALGAS_pic_31__38_Instruction_5F_repetitionStatique::setter_setMEndOfInstru
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_repetitionStatique::readProperty_mConstantName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
@@ -7438,7 +7235,7 @@ GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_repetitionStatique::readProperty
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpression GALGAS_pic_31__38_Instruction_5F_repetitionStatique::readProperty_mLowerBoundExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
@@ -7450,7 +7247,7 @@ GALGAS_immediatExpression GALGAS_pic_31__38_Instruction_5F_repetitionStatique::r
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpression GALGAS_pic_31__38_Instruction_5F_repetitionStatique::readProperty_mUpperBoundExpression (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
@@ -7462,7 +7259,7 @@ GALGAS_immediatExpression GALGAS_pic_31__38_Instruction_5F_repetitionStatique::r
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_Instruction_5F_repetitionStatique::readProperty_mInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_pic_31__38_InstructionList () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
@@ -7474,7 +7271,7 @@ GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_Instruction_5F_repetitionSta
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_pic_31__38_Instruction_5F_repetitionStatique::readProperty_mEndOfInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
@@ -7528,7 +7325,7 @@ void cPtr_pic_31__38_Instruction_5F_repetitionStatique::description (C_String & 
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_repetitionStatique::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_repetitionStatique (mProperty_mInstructionLocation, mProperty_mConstantName, mProperty_mLowerBoundExpression, mProperty_mUpperBoundExpression, mProperty_mInstructionList, mProperty_mEndOfInstruction COMMA_THERE)) ;
   return ptr ;
 }
@@ -7553,7 +7350,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_repetitionStat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_repetitionStatique::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_repetitionStatique (*this)) ;
   }
@@ -7567,8 +7364,8 @@ GALGAS_pic_31__38_Instruction_5F_repetitionStatique GALGAS_pic_31__38_Instructio
                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_repetitionStatique result ;
   const GALGAS_pic_31__38_Instruction_5F_repetitionStatique * p = (const GALGAS_pic_31__38_Instruction_5F_repetitionStatique *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_repetitionStatique *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_repetitionStatique *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_repetitionStatique", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7613,7 +7410,7 @@ typeComparisonResult GALGAS_gotoTerminationForBlockInstruction::objectCompare (c
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -7653,7 +7450,7 @@ GALGAS_gotoTerminationForBlockInstruction GALGAS_gotoTerminationForBlockInstruct
 
 void GALGAS_gotoTerminationForBlockInstruction::setter_setMNextBlock (GALGAS_lstring inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_gotoTerminationForBlockInstruction * p = (cPtr_gotoTerminationForBlockInstruction *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_gotoTerminationForBlockInstruction) ;
     p->mProperty_mNextBlock = inValue ;
@@ -7663,7 +7460,7 @@ void GALGAS_gotoTerminationForBlockInstruction::setter_setMNextBlock (GALGAS_lst
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_gotoTerminationForBlockInstruction::readProperty_mNextBlock (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_gotoTerminationForBlockInstruction * p = (cPtr_gotoTerminationForBlockInstruction *) mObjectPtr ;
@@ -7698,7 +7495,7 @@ void cPtr_gotoTerminationForBlockInstruction::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_gotoTerminationForBlockInstruction::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_gotoTerminationForBlockInstruction (mProperty_mNextBlock COMMA_THERE)) ;
   return ptr ;
 }
@@ -7723,7 +7520,7 @@ const C_galgas_type_descriptor * GALGAS_gotoTerminationForBlockInstruction::stat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_gotoTerminationForBlockInstruction::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_gotoTerminationForBlockInstruction (*this)) ;
   }
@@ -7737,8 +7534,8 @@ GALGAS_gotoTerminationForBlockInstruction GALGAS_gotoTerminationForBlockInstruct
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_gotoTerminationForBlockInstruction result ;
   const GALGAS_gotoTerminationForBlockInstruction * p = (const GALGAS_gotoTerminationForBlockInstruction *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_gotoTerminationForBlockInstruction *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_gotoTerminationForBlockInstruction *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("gotoTerminationForBlockInstruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7795,7 +7592,7 @@ typeComparisonResult GALGAS_testTerminationForBlockInstruction::objectCompare (c
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -7831,7 +7628,7 @@ GALGAS_testTerminationForBlockInstruction GALGAS_testTerminationForBlockInstruct
 
 void GALGAS_testTerminationForBlockInstruction::setter_setMCondition (GALGAS_pic_31__38_ConditionExpression inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
     p->mProperty_mCondition = inValue ;
@@ -7842,7 +7639,7 @@ void GALGAS_testTerminationForBlockInstruction::setter_setMCondition (GALGAS_pic
 
 void GALGAS_testTerminationForBlockInstruction::setter_setMTrueTermination (GALGAS_abstractBlockTerminationForBlockInstruction inValue
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
     p->mProperty_mTrueTermination = inValue ;
@@ -7853,7 +7650,7 @@ void GALGAS_testTerminationForBlockInstruction::setter_setMTrueTermination (GALG
 
 void GALGAS_testTerminationForBlockInstruction::setter_setMFalseTermination (GALGAS_abstractBlockTerminationForBlockInstruction inValue
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
     p->mProperty_mFalseTermination = inValue ;
@@ -7864,7 +7661,7 @@ void GALGAS_testTerminationForBlockInstruction::setter_setMFalseTermination (GAL
 
 void GALGAS_testTerminationForBlockInstruction::setter_setMLocation (GALGAS_location inValue
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
     p->mProperty_mLocation = inValue ;
@@ -7874,7 +7671,7 @@ void GALGAS_testTerminationForBlockInstruction::setter_setMLocation (GALGAS_loca
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_pic_31__38_ConditionExpression GALGAS_testTerminationForBlockInstruction::readProperty_mCondition (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_pic_31__38_ConditionExpression () ;
   }else{
     cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
@@ -7886,7 +7683,7 @@ GALGAS_pic_31__38_ConditionExpression GALGAS_testTerminationForBlockInstruction:
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_testTerminationForBlockInstruction::readProperty_mTrueTermination (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_abstractBlockTerminationForBlockInstruction () ;
   }else{
     cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
@@ -7898,7 +7695,7 @@ GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_testTerminationForBloc
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_testTerminationForBlockInstruction::readProperty_mFalseTermination (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_abstractBlockTerminationForBlockInstruction () ;
   }else{
     cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
@@ -7910,7 +7707,7 @@ GALGAS_abstractBlockTerminationForBlockInstruction GALGAS_testTerminationForBloc
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_testTerminationForBlockInstruction::readProperty_mLocation (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
   }else{
     cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
@@ -7957,7 +7754,7 @@ void cPtr_testTerminationForBlockInstruction::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_testTerminationForBlockInstruction::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_testTerminationForBlockInstruction (mProperty_mCondition, mProperty_mTrueTermination, mProperty_mFalseTermination, mProperty_mLocation COMMA_THERE)) ;
   return ptr ;
 }
@@ -7982,7 +7779,7 @@ const C_galgas_type_descriptor * GALGAS_testTerminationForBlockInstruction::stat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_testTerminationForBlockInstruction::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_testTerminationForBlockInstruction (*this)) ;
   }
@@ -7996,8 +7793,8 @@ GALGAS_testTerminationForBlockInstruction GALGAS_testTerminationForBlockInstruct
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_testTerminationForBlockInstruction result ;
   const GALGAS_testTerminationForBlockInstruction * p = (const GALGAS_testTerminationForBlockInstruction *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_testTerminationForBlockInstruction *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_testTerminationForBlockInstruction *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("testTerminationForBlockInstruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8053,7 +7850,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_block::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -8099,7 +7896,7 @@ GALGAS_pic_31__38_Instruction_5F_block GALGAS_pic_31__38_Instruction_5F_block::c
 
 void GALGAS_pic_31__38_Instruction_5F_block::setter_setMStartBlockName (GALGAS_lstring inValue
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_block) ;
     p->mProperty_mStartBlockName = inValue ;
@@ -8110,7 +7907,7 @@ void GALGAS_pic_31__38_Instruction_5F_block::setter_setMStartBlockName (GALGAS_l
 
 void GALGAS_pic_31__38_Instruction_5F_block::setter_setMBlockList (GALGAS_pic_31__38_BlockInstructionBlockList inValue
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_block) ;
     p->mProperty_mBlockList = inValue ;
@@ -8121,7 +7918,7 @@ void GALGAS_pic_31__38_Instruction_5F_block::setter_setMBlockList (GALGAS_pic_31
 
 void GALGAS_pic_31__38_Instruction_5F_block::setter_setMEndOfBlockInstruction (GALGAS_location inValue
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_block) ;
     p->mProperty_mEndOfBlockInstruction = inValue ;
@@ -8131,7 +7928,7 @@ void GALGAS_pic_31__38_Instruction_5F_block::setter_setMEndOfBlockInstruction (G
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_block::readProperty_mStartBlockName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
@@ -8143,7 +7940,7 @@ GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_block::readProperty_mStartBlockN
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_pic_31__38_BlockInstructionBlockList GALGAS_pic_31__38_Instruction_5F_block::readProperty_mBlockList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_pic_31__38_BlockInstructionBlockList () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
@@ -8155,7 +7952,7 @@ GALGAS_pic_31__38_BlockInstructionBlockList GALGAS_pic_31__38_Instruction_5F_blo
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_pic_31__38_Instruction_5F_block::readProperty_mEndOfBlockInstruction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
@@ -8201,7 +7998,7 @@ void cPtr_pic_31__38_Instruction_5F_block::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_block::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_block (mProperty_mInstructionLocation, mProperty_mStartBlockName, mProperty_mBlockList, mProperty_mEndOfBlockInstruction COMMA_THERE)) ;
   return ptr ;
 }
@@ -8226,7 +8023,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_block::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_block::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_block (*this)) ;
   }
@@ -8240,8 +8037,8 @@ GALGAS_pic_31__38_Instruction_5F_block GALGAS_pic_31__38_Instruction_5F_block::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_block result ;
   const GALGAS_pic_31__38_Instruction_5F_block * p = (const GALGAS_pic_31__38_Instruction_5F_block *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_block *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_block *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_block", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8293,7 +8090,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_JSR::objectCompare (const 
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -8328,7 +8125,7 @@ GALGAS_pic_31__38_Instruction_5F_JSR GALGAS_pic_31__38_Instruction_5F_JSR::const
 
 void GALGAS_pic_31__38_Instruction_5F_JSR::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_JSR * p = (cPtr_pic_31__38_Instruction_5F_JSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_JSR) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -8339,7 +8136,7 @@ void GALGAS_pic_31__38_Instruction_5F_JSR::setter_setMTargetLabel (GALGAS_lstrin
 
 void GALGAS_pic_31__38_Instruction_5F_JSR::setter_setMKind (GALGAS_jumpInstructionKind inValue
                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_JSR * p = (cPtr_pic_31__38_Instruction_5F_JSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_JSR) ;
     p->mProperty_mKind = inValue ;
@@ -8349,7 +8146,7 @@ void GALGAS_pic_31__38_Instruction_5F_JSR::setter_setMKind (GALGAS_jumpInstructi
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_JSR::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_JSR * p = (cPtr_pic_31__38_Instruction_5F_JSR *) mObjectPtr ;
@@ -8361,7 +8158,7 @@ GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_JSR::readProperty_mTargetLabel (
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_jumpInstructionKind GALGAS_pic_31__38_Instruction_5F_JSR::readProperty_mKind (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_jumpInstructionKind () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_JSR * p = (cPtr_pic_31__38_Instruction_5F_JSR *) mObjectPtr ;
@@ -8403,7 +8200,7 @@ void cPtr_pic_31__38_Instruction_5F_JSR::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_JSR::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_JSR (mProperty_mInstructionLocation, mProperty_mTargetLabel, mProperty_mKind COMMA_THERE)) ;
   return ptr ;
 }
@@ -8428,7 +8225,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_JSR::staticTyp
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_JSR::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_JSR (*this)) ;
   }
@@ -8442,8 +8239,8 @@ GALGAS_pic_31__38_Instruction_5F_JSR GALGAS_pic_31__38_Instruction_5F_JSR::extra
                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_JSR result ;
   const GALGAS_pic_31__38_Instruction_5F_JSR * p = (const GALGAS_pic_31__38_Instruction_5F_JSR *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_JSR *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_JSR *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_JSR", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8495,7 +8292,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_macro::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -8539,7 +8336,7 @@ GALGAS_pic_31__38_Instruction_5F_macro GALGAS_pic_31__38_Instruction_5F_macro::c
 
 void GALGAS_pic_31__38_Instruction_5F_macro::setter_setMMacroName (GALGAS_lstring inValue
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_macro * p = (cPtr_pic_31__38_Instruction_5F_macro *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_macro) ;
     p->mProperty_mMacroName = inValue ;
@@ -8550,7 +8347,7 @@ void GALGAS_pic_31__38_Instruction_5F_macro::setter_setMMacroName (GALGAS_lstrin
 
 void GALGAS_pic_31__38_Instruction_5F_macro::setter_setMExpressionList (GALGAS_immediatExpressionList inValue
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_macro * p = (cPtr_pic_31__38_Instruction_5F_macro *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_macro) ;
     p->mProperty_mExpressionList = inValue ;
@@ -8560,7 +8357,7 @@ void GALGAS_pic_31__38_Instruction_5F_macro::setter_setMExpressionList (GALGAS_i
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_macro::readProperty_mMacroName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_macro * p = (cPtr_pic_31__38_Instruction_5F_macro *) mObjectPtr ;
@@ -8572,7 +8369,7 @@ GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_macro::readProperty_mMacroName (
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpressionList GALGAS_pic_31__38_Instruction_5F_macro::readProperty_mExpressionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpressionList () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_macro * p = (cPtr_pic_31__38_Instruction_5F_macro *) mObjectPtr ;
@@ -8614,7 +8411,7 @@ void cPtr_pic_31__38_Instruction_5F_macro::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_macro::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_macro (mProperty_mInstructionLocation, mProperty_mMacroName, mProperty_mExpressionList COMMA_THERE)) ;
   return ptr ;
 }
@@ -8639,7 +8436,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_macro::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_macro::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_macro (*this)) ;
   }
@@ -8653,8 +8450,8 @@ GALGAS_pic_31__38_Instruction_5F_macro GALGAS_pic_31__38_Instruction_5F_macro::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_macro result ;
   const GALGAS_pic_31__38_Instruction_5F_macro * p = (const GALGAS_pic_31__38_Instruction_5F_macro *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_macro *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_macro *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_macro", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8706,7 +8503,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_JUMP::objectCompare (const
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -8741,7 +8538,7 @@ GALGAS_pic_31__38_Instruction_5F_JUMP GALGAS_pic_31__38_Instruction_5F_JUMP::con
 
 void GALGAS_pic_31__38_Instruction_5F_JUMP::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_JUMP * p = (cPtr_pic_31__38_Instruction_5F_JUMP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_JUMP) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -8752,7 +8549,7 @@ void GALGAS_pic_31__38_Instruction_5F_JUMP::setter_setMTargetLabel (GALGAS_lstri
 
 void GALGAS_pic_31__38_Instruction_5F_JUMP::setter_setMKind (GALGAS_jumpInstructionKind inValue
                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_JUMP * p = (cPtr_pic_31__38_Instruction_5F_JUMP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_JUMP) ;
     p->mProperty_mKind = inValue ;
@@ -8762,7 +8559,7 @@ void GALGAS_pic_31__38_Instruction_5F_JUMP::setter_setMKind (GALGAS_jumpInstruct
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_JUMP::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_JUMP * p = (cPtr_pic_31__38_Instruction_5F_JUMP *) mObjectPtr ;
@@ -8774,7 +8571,7 @@ GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_JUMP::readProperty_mTargetLabel 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_jumpInstructionKind GALGAS_pic_31__38_Instruction_5F_JUMP::readProperty_mKind (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_jumpInstructionKind () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_JUMP * p = (cPtr_pic_31__38_Instruction_5F_JUMP *) mObjectPtr ;
@@ -8816,7 +8613,7 @@ void cPtr_pic_31__38_Instruction_5F_JUMP::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_JUMP::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_JUMP (mProperty_mInstructionLocation, mProperty_mTargetLabel, mProperty_mKind COMMA_THERE)) ;
   return ptr ;
 }
@@ -8841,7 +8638,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_JUMP::staticTy
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_JUMP::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_JUMP (*this)) ;
   }
@@ -8855,8 +8652,8 @@ GALGAS_pic_31__38_Instruction_5F_JUMP GALGAS_pic_31__38_Instruction_5F_JUMP::ext
                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_JUMP result ;
   const GALGAS_pic_31__38_Instruction_5F_JUMP * p = (const GALGAS_pic_31__38_Instruction_5F_JUMP *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_JUMP *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_JUMP *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_JUMP", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8912,7 +8709,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_JUMPCC::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -8948,7 +8745,7 @@ GALGAS_pic_31__38_Instruction_5F_JUMPCC GALGAS_pic_31__38_Instruction_5F_JUMPCC:
 
 void GALGAS_pic_31__38_Instruction_5F_JUMPCC::setter_setMTargetLabel (GALGAS_lstring inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_JUMPCC * p = (cPtr_pic_31__38_Instruction_5F_JUMPCC *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_JUMPCC) ;
     p->mProperty_mTargetLabel = inValue ;
@@ -8959,7 +8756,7 @@ void GALGAS_pic_31__38_Instruction_5F_JUMPCC::setter_setMTargetLabel (GALGAS_lst
 
 void GALGAS_pic_31__38_Instruction_5F_JUMPCC::setter_setMConditionalBranch (GALGAS_conditional_5F_branch inValue
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_JUMPCC * p = (cPtr_pic_31__38_Instruction_5F_JUMPCC *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_JUMPCC) ;
     p->mProperty_mConditionalBranch = inValue ;
@@ -8970,7 +8767,7 @@ void GALGAS_pic_31__38_Instruction_5F_JUMPCC::setter_setMConditionalBranch (GALG
 
 void GALGAS_pic_31__38_Instruction_5F_JUMPCC::setter_setMIsBcc (GALGAS_bool inValue
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_JUMPCC * p = (cPtr_pic_31__38_Instruction_5F_JUMPCC *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_JUMPCC) ;
     p->mProperty_mIsBcc = inValue ;
@@ -8980,7 +8777,7 @@ void GALGAS_pic_31__38_Instruction_5F_JUMPCC::setter_setMIsBcc (GALGAS_bool inVa
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_JUMPCC::readProperty_mTargetLabel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_JUMPCC * p = (cPtr_pic_31__38_Instruction_5F_JUMPCC *) mObjectPtr ;
@@ -8992,7 +8789,7 @@ GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_JUMPCC::readProperty_mTargetLabe
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_conditional_5F_branch GALGAS_pic_31__38_Instruction_5F_JUMPCC::readProperty_mConditionalBranch (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_conditional_5F_branch () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_JUMPCC * p = (cPtr_pic_31__38_Instruction_5F_JUMPCC *) mObjectPtr ;
@@ -9004,7 +8801,7 @@ GALGAS_conditional_5F_branch GALGAS_pic_31__38_Instruction_5F_JUMPCC::readProper
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_pic_31__38_Instruction_5F_JUMPCC::readProperty_mIsBcc (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_JUMPCC * p = (cPtr_pic_31__38_Instruction_5F_JUMPCC *) mObjectPtr ;
@@ -9050,7 +8847,7 @@ void cPtr_pic_31__38_Instruction_5F_JUMPCC::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_JUMPCC::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_JUMPCC (mProperty_mInstructionLocation, mProperty_mTargetLabel, mProperty_mConditionalBranch, mProperty_mIsBcc COMMA_THERE)) ;
   return ptr ;
 }
@@ -9075,7 +8872,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_JUMPCC::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_JUMPCC::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_JUMPCC (*this)) ;
   }
@@ -9089,8 +8886,8 @@ GALGAS_pic_31__38_Instruction_5F_JUMPCC GALGAS_pic_31__38_Instruction_5F_JUMPCC:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_JUMPCC result ;
   const GALGAS_pic_31__38_Instruction_5F_JUMPCC * p = (const GALGAS_pic_31__38_Instruction_5F_JUMPCC *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_JUMPCC *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_JUMPCC *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_JUMPCC", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9142,7 +8939,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::objectCompar
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -9186,7 +8983,7 @@ GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR GALGAS_pic_31__38_Instruction_5F_L
 
 void GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::setter_setMDataName (GALGAS_lstring inValue
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR * p = (cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR) ;
     p->mProperty_mDataName = inValue ;
@@ -9197,7 +8994,7 @@ void GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::setter_setMDataName (GALGAS_
 
 void GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::setter_setMDataIndex (GALGAS_luint inValue
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR * p = (cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR) ;
     p->mProperty_mDataIndex = inValue ;
@@ -9207,7 +9004,7 @@ void GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::setter_setMDataIndex (GALGAS
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::readProperty_mDataName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR * p = (cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR *) mObjectPtr ;
@@ -9219,7 +9016,7 @@ GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::readProperty_mData
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_luint GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::readProperty_mDataIndex (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_luint () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR * p = (cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR *) mObjectPtr ;
@@ -9261,7 +9058,7 @@ void cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR::description (C_String & ioStri
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR (mProperty_mInstructionLocation, mProperty_mDataName, mProperty_mDataIndex COMMA_THERE)) ;
   return ptr ;
 }
@@ -9286,7 +9083,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR (*this)) ;
   }
@@ -9300,8 +9097,8 @@ GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR GALGAS_pic_31__38_Instruction_5F_L
                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR result ;
   const GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR * p = (const GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_LDATA8PTR", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9353,7 +9150,7 @@ typeComparisonResult GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::objectCo
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -9397,7 +9194,7 @@ GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR GALGAS_pic_31__38_Instruction_
 
 void GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::setter_setMDataName (GALGAS_lstring inValue
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR * p = (cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR) ;
     p->mProperty_mDataName = inValue ;
@@ -9408,7 +9205,7 @@ void GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::setter_setMDataName (GAL
 
 void GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::setter_setMDataIndex (GALGAS_luint inValue
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR * p = (cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR) ;
     p->mProperty_mDataIndex = inValue ;
@@ -9418,7 +9215,7 @@ void GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::setter_setMDataIndex (GA
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::readProperty_mDataName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR * p = (cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR *) mObjectPtr ;
@@ -9430,7 +9227,7 @@ GALGAS_lstring GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::readProperty_m
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_luint GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::readProperty_mDataIndex (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_luint () ;
   }else{
     cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR * p = (cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR *) mObjectPtr ;
@@ -9472,7 +9269,7 @@ void cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR::description (C_String & io
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR (mProperty_mInstructionLocation, mProperty_mDataName, mProperty_mDataIndex COMMA_THERE)) ;
   return ptr ;
 }
@@ -9497,7 +9294,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_P
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR (*this)) ;
   }
@@ -9511,8 +9308,8 @@ GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR GALGAS_pic_31__38_Instruction_
                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR result ;
   const GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR * p = (const GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_LDATA16PTR", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9752,7 +9549,7 @@ void GALGAS_pic_31__38_AST::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_pic_31__38_AST ("pic18AST",
-                                       NULL) ;
+                                       nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9763,7 +9560,7 @@ const C_galgas_type_descriptor * GALGAS_pic_31__38_AST::staticTypeDescriptor (vo
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_pic_31__38_AST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_pic_31__38_AST (*this)) ;
   }
@@ -9777,8 +9574,8 @@ GALGAS_pic_31__38_AST GALGAS_pic_31__38_AST::extractObject (const GALGAS_object 
                                                             COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_AST result ;
   const GALGAS_pic_31__38_AST * p = (const GALGAS_pic_31__38_AST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_pic_31__38_AST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_AST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("pic18AST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10035,7 +9832,7 @@ static const char * gNonTerminalNames_pic18_grammar [213] = {
 #define ACCEPT (1)
 #define END (-1)
 
-static const int16_t gActionTable_pic18_grammar [] = {
+static const int32_t gActionTable_pic18_grammar [] = {
 // State S0 (index = 0)
   C_Lexique_piccolo_5F_lexique::kToken_pic_31__38_, SHIFT (1)
 , C_Lexique_piccolo_5F_lexique::kToken_midrange, SHIFT (2)
@@ -36267,12 +36064,12 @@ static const uint32_t gActionTableIndex_pic18_grammar [1108] = {
 // Successor tables handle non terminal successors ;
 // an entry is (non_terminal_symbol, n) ; successor is state n.
 
-static const int16_t gSuccessorTable_pic18_grammar_0 [5] = {20, 4,
+static const int32_t gSuccessorTable_pic18_grammar_0 [5] = {20, 4,
   41, 5, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_6 [3] = {112, 12, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_6 [3] = {112, 12, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_20 [15] = {0, 30,
+static const int32_t gSuccessorTable_pic18_grammar_20 [15] = {0, 30,
   1, 31,
   2, 32,
   23, 33,
@@ -36280,7 +36077,7 @@ static const int16_t gSuccessorTable_pic18_grammar_20 [15] = {0, 30,
   113, 35,
   117, 36, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_21 [15] = {0, 39,
+static const int32_t gSuccessorTable_pic18_grammar_21 [15] = {0, 39,
   1, 40,
   2, 41,
   31, 42,
@@ -36288,7 +36085,7 @@ static const int16_t gSuccessorTable_pic18_grammar_21 [15] = {0, 39,
   151, 44,
   155, 45, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_22 [23] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_22 [23] = {0, 56,
   1, 57,
   2, 58,
   7, 59,
@@ -36300,11 +36097,11 @@ static const int16_t gSuccessorTable_pic18_grammar_22 [23] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_23 [7] = {40, 70,
+static const int32_t gSuccessorTable_pic18_grammar_23 [7] = {40, 70,
   184, 71,
   187, 72, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_30 [15] = {0, 30,
+static const int32_t gSuccessorTable_pic18_grammar_30 [15] = {0, 30,
   1, 31,
   2, 32,
   23, 33,
@@ -36312,7 +36109,7 @@ static const int16_t gSuccessorTable_pic18_grammar_30 [15] = {0, 30,
   113, 79,
   117, 36, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_31 [15] = {0, 30,
+static const int32_t gSuccessorTable_pic18_grammar_31 [15] = {0, 30,
   1, 31,
   2, 32,
   23, 33,
@@ -36320,7 +36117,7 @@ static const int16_t gSuccessorTable_pic18_grammar_31 [15] = {0, 30,
   113, 80,
   117, 36, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_32 [15] = {0, 30,
+static const int32_t gSuccessorTable_pic18_grammar_32 [15] = {0, 30,
   1, 31,
   2, 32,
   23, 33,
@@ -36328,7 +36125,7 @@ static const int16_t gSuccessorTable_pic18_grammar_32 [15] = {0, 30,
   113, 81,
   117, 36, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_33 [15] = {0, 30,
+static const int32_t gSuccessorTable_pic18_grammar_33 [15] = {0, 30,
   1, 31,
   2, 32,
   23, 33,
@@ -36336,7 +36133,7 @@ static const int16_t gSuccessorTable_pic18_grammar_33 [15] = {0, 30,
   113, 82,
   117, 36, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_34 [15] = {0, 30,
+static const int32_t gSuccessorTable_pic18_grammar_34 [15] = {0, 30,
   1, 31,
   2, 32,
   23, 33,
@@ -36344,35 +36141,35 @@ static const int16_t gSuccessorTable_pic18_grammar_34 [15] = {0, 30,
   113, 83,
   117, 36, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_39 [13] = {0, 39,
+static const int32_t gSuccessorTable_pic18_grammar_39 [13] = {0, 39,
   1, 40,
   2, 41,
   33, 43,
   151, 88,
   155, 45, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_40 [13] = {0, 39,
+static const int32_t gSuccessorTable_pic18_grammar_40 [13] = {0, 39,
   1, 40,
   2, 41,
   33, 43,
   151, 89,
   155, 45, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_41 [13] = {0, 39,
+static const int32_t gSuccessorTable_pic18_grammar_41 [13] = {0, 39,
   1, 40,
   2, 41,
   33, 43,
   151, 90,
   155, 45, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_43 [13] = {0, 39,
+static const int32_t gSuccessorTable_pic18_grammar_43 [13] = {0, 39,
   1, 40,
   2, 41,
   33, 43,
   151, 92,
   155, 45, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_56 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_56 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -36383,7 +36180,7 @@ static const int16_t gSuccessorTable_pic18_grammar_56 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_57 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_57 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -36394,7 +36191,7 @@ static const int16_t gSuccessorTable_pic18_grammar_57 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_58 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_58 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -36405,7 +36202,7 @@ static const int16_t gSuccessorTable_pic18_grammar_58 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_60 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_60 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -36416,7 +36213,7 @@ static const int16_t gSuccessorTable_pic18_grammar_60 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_61 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_61 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -36427,7 +36224,7 @@ static const int16_t gSuccessorTable_pic18_grammar_61 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_62 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_62 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -36438,7 +36235,7 @@ static const int16_t gSuccessorTable_pic18_grammar_62 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_63 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_63 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -36449,15 +36246,15 @@ static const int16_t gSuccessorTable_pic18_grammar_63 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_70 [7] = {40, 70,
+static const int32_t gSuccessorTable_pic18_grammar_70 [7] = {40, 70,
   184, 114,
   187, 72, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_77 [3] = {191, 122, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_77 [3] = {191, 122, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_96 [3] = {50, 131, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_96 [3] = {50, 131, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_97 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_97 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -36468,19 +36265,19 @@ static const int16_t gSuccessorTable_pic18_grammar_97 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_99 [3] = {52, 135, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_99 [3] = {52, 135, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_101 [3] = {57, 138, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_101 [3] = {57, 138, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_117 [3] = {114, 146, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_117 [3] = {114, 146, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_118 [3] = {115, 148, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_118 [3] = {115, 148, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_120 [7] = {21, 152,
+static const int32_t gSuccessorTable_pic18_grammar_120 [7] = {21, 152,
   193, 153,
   200, 154, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_123 [15] = {3, 163,
+static const int32_t gSuccessorTable_pic18_grammar_123 [15] = {3, 163,
   42, 164,
   43, 165,
   44, 166,
@@ -36488,19 +36285,19 @@ static const int16_t gSuccessorTable_pic18_grammar_123 [15] = {3, 163,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_124 [3] = {118, 171, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_124 [3] = {118, 171, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_125 [3] = {152, 173, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_125 [3] = {152, 173, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_126 [3] = {153, 175, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_126 [3] = {153, 175, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_127 [3] = {156, 177, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_127 [3] = {156, 177, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_128 [3] = {48, 179, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_128 [3] = {48, 179, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_129 [3] = {49, 181, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_129 [3] = {49, 181, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_131 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_131 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -36511,7 +36308,7 @@ static const int16_t gSuccessorTable_pic18_grammar_131 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_136 [15] = {3, 186,
+static const int32_t gSuccessorTable_pic18_grammar_136 [15] = {3, 186,
   42, 164,
   43, 165,
   44, 166,
@@ -36519,7 +36316,7 @@ static const int16_t gSuccessorTable_pic18_grammar_136 [15] = {3, 186,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_139 [15] = {3, 188,
+static const int32_t gSuccessorTable_pic18_grammar_139 [15] = {3, 188,
   42, 164,
   43, 165,
   44, 166,
@@ -36527,19 +36324,19 @@ static const int16_t gSuccessorTable_pic18_grammar_139 [15] = {3, 188,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_140 [3] = {59, 190, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_140 [3] = {59, 190, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_141 [7] = {40, 70,
+static const int32_t gSuccessorTable_pic18_grammar_141 [7] = {40, 70,
   184, 191,
   187, 72, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_143 [7] = {40, 193,
+static const int32_t gSuccessorTable_pic18_grammar_143 [7] = {40, 193,
   185, 194,
   187, 72, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_144 [3] = {188, 196, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_144 [3] = {188, 196, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_146 [15] = {0, 30,
+static const int32_t gSuccessorTable_pic18_grammar_146 [15] = {0, 30,
   1, 31,
   2, 32,
   23, 33,
@@ -36547,7 +36344,7 @@ static const int16_t gSuccessorTable_pic18_grammar_146 [15] = {0, 30,
   113, 198,
   117, 36, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_148 [15] = {0, 30,
+static const int32_t gSuccessorTable_pic18_grammar_148 [15] = {0, 30,
   1, 31,
   2, 32,
   23, 33,
@@ -36555,15 +36352,15 @@ static const int16_t gSuccessorTable_pic18_grammar_148 [15] = {0, 30,
   113, 200,
   117, 36, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_152 [7] = {21, 152,
+static const int32_t gSuccessorTable_pic18_grammar_152 [7] = {21, 152,
   193, 153,
   200, 202, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_155 [3] = {192, 207, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_155 [3] = {192, 207, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_157 [3] = {207, 210, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_157 [3] = {207, 210, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_158 [15] = {3, 211,
+static const int32_t gSuccessorTable_pic18_grammar_158 [15] = {3, 211,
   42, 164,
   43, 165,
   44, 166,
@@ -36571,39 +36368,39 @@ static const int16_t gSuccessorTable_pic18_grammar_158 [15] = {3, 211,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_160 [5] = {46, 212,
+static const int32_t gSuccessorTable_pic18_grammar_160 [5] = {46, 212,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_161 [5] = {46, 213,
+static const int32_t gSuccessorTable_pic18_grammar_161 [5] = {46, 213,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_164 [3] = {201, 216, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_164 [3] = {201, 216, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_165 [3] = {202, 218, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_165 [3] = {202, 218, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_166 [3] = {203, 225, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_166 [3] = {203, 225, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_167 [3] = {204, 230, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_167 [3] = {204, 230, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_168 [3] = {205, 234, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_168 [3] = {205, 234, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_171 [3] = {119, 237, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_171 [3] = {119, 237, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_173 [13] = {0, 39,
+static const int32_t gSuccessorTable_pic18_grammar_173 [13] = {0, 39,
   1, 40,
   2, 41,
   33, 43,
   151, 239,
   155, 45, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_175 [13] = {0, 39,
+static const int32_t gSuccessorTable_pic18_grammar_175 [13] = {0, 39,
   1, 40,
   2, 41,
   33, 43,
   151, 241,
   155, 45, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_179 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_179 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -36614,7 +36411,7 @@ static const int16_t gSuccessorTable_pic18_grammar_179 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_181 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_181 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -36625,15 +36422,15 @@ static const int16_t gSuccessorTable_pic18_grammar_181 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_182 [3] = {50, 248, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_182 [3] = {50, 248, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_184 [3] = {51, 250, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_184 [3] = {51, 250, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_185 [3] = {52, 251, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_185 [3] = {52, 251, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_186 [3] = {55, 253, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_186 [3] = {55, 253, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_187 [25] = {10, 330,
+static const int32_t gSuccessorTable_pic18_grammar_187 [25] = {10, 330,
   17, 331,
   19, 332,
   56, 333,
@@ -36646,23 +36443,23 @@ static const int16_t gSuccessorTable_pic18_grammar_187 [25] = {10, 330,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_188 [3] = {54, 343, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_188 [3] = {54, 343, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_192 [7] = {40, 70,
+static const int32_t gSuccessorTable_pic18_grammar_192 [7] = {40, 70,
   184, 346,
   187, 72, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_193 [7] = {40, 193,
+static const int32_t gSuccessorTable_pic18_grammar_193 [7] = {40, 193,
   185, 347,
   187, 72, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_197 [3] = {114, 350, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_197 [3] = {114, 350, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_199 [3] = {115, 351, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_199 [3] = {115, 351, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_207 [3] = {191, 354, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_207 [3] = {191, 354, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_209 [15] = {3, 356,
+static const int32_t gSuccessorTable_pic18_grammar_209 [15] = {3, 356,
   42, 164,
   43, 165,
   44, 166,
@@ -36670,86 +36467,86 @@ static const int16_t gSuccessorTable_pic18_grammar_209 [15] = {3, 356,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_214 [13] = {42, 358,
+static const int32_t gSuccessorTable_pic18_grammar_214 [13] = {42, 358,
   43, 165,
   44, 166,
   45, 167,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_215 [13] = {42, 359,
+static const int32_t gSuccessorTable_pic18_grammar_215 [13] = {42, 359,
   43, 165,
   44, 166,
   45, 167,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_217 [11] = {43, 360,
+static const int32_t gSuccessorTable_pic18_grammar_217 [11] = {43, 360,
   44, 166,
   45, 167,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_219 [9] = {44, 361,
+static const int32_t gSuccessorTable_pic18_grammar_219 [9] = {44, 361,
   45, 167,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_220 [9] = {44, 362,
+static const int32_t gSuccessorTable_pic18_grammar_220 [9] = {44, 362,
   45, 167,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_221 [9] = {44, 363,
+static const int32_t gSuccessorTable_pic18_grammar_221 [9] = {44, 363,
   45, 167,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_222 [9] = {44, 364,
+static const int32_t gSuccessorTable_pic18_grammar_222 [9] = {44, 364,
   45, 167,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_223 [9] = {44, 365,
+static const int32_t gSuccessorTable_pic18_grammar_223 [9] = {44, 365,
   45, 167,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_224 [9] = {44, 366,
+static const int32_t gSuccessorTable_pic18_grammar_224 [9] = {44, 366,
   45, 167,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_226 [7] = {45, 367,
+static const int32_t gSuccessorTable_pic18_grammar_226 [7] = {45, 367,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_227 [7] = {45, 368,
+static const int32_t gSuccessorTable_pic18_grammar_227 [7] = {45, 368,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_228 [7] = {45, 369,
+static const int32_t gSuccessorTable_pic18_grammar_228 [7] = {45, 369,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_229 [7] = {45, 370,
+static const int32_t gSuccessorTable_pic18_grammar_229 [7] = {45, 370,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_231 [5] = {46, 371,
+static const int32_t gSuccessorTable_pic18_grammar_231 [5] = {46, 371,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_232 [5] = {46, 372,
+static const int32_t gSuccessorTable_pic18_grammar_232 [5] = {46, 372,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_233 [5] = {46, 373,
+static const int32_t gSuccessorTable_pic18_grammar_233 [5] = {46, 373,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_238 [3] = {152, 376, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_238 [3] = {152, 376, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_240 [3] = {153, 377, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_240 [3] = {153, 377, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_243 [21] = {32, 412,
+static const int32_t gSuccessorTable_pic18_grammar_243 [21] = {32, 412,
   34, 413,
   36, 414,
   154, 415,
@@ -36760,11 +36557,11 @@ static const int16_t gSuccessorTable_pic18_grammar_243 [21] = {32, 412,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_244 [3] = {48, 422, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_244 [3] = {48, 422, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_246 [3] = {49, 423, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_246 [3] = {49, 423, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_252 [15] = {3, 426,
+static const int32_t gSuccessorTable_pic18_grammar_252 [15] = {3, 426,
   42, 164,
   43, 165,
   44, 166,
@@ -36772,12 +36569,12 @@ static const int16_t gSuccessorTable_pic18_grammar_252 [15] = {3, 426,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_257 [3] = {69, 430, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_257 [3] = {69, 430, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_259 [5] = {78, 433,
+static const int32_t gSuccessorTable_pic18_grammar_259 [5] = {78, 433,
   96, 434, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_265 [15] = {3, 437,
+static const int32_t gSuccessorTable_pic18_grammar_265 [15] = {3, 437,
   42, 164,
   43, 165,
   44, 166,
@@ -36785,20 +36582,20 @@ static const int16_t gSuccessorTable_pic18_grammar_265 [15] = {3, 437,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_266 [3] = {4, 440, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_266 [3] = {4, 440, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_268 [3] = {4, 441, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_268 [3] = {4, 441, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_273 [3] = {88, 447, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_273 [3] = {88, 447, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_274 [9] = {4, 452,
+static const int32_t gSuccessorTable_pic18_grammar_274 [9] = {4, 452,
   91, 453,
   92, 454,
   94, 455, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_306 [3] = {4, 460, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_306 [3] = {4, 460, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_319 [15] = {3, 463,
+static const int32_t gSuccessorTable_pic18_grammar_319 [15] = {3, 463,
   42, 164,
   43, 165,
   44, 166,
@@ -36806,11 +36603,11 @@ static const int16_t gSuccessorTable_pic18_grammar_319 [15] = {3, 463,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_328 [3] = {110, 469, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_328 [3] = {110, 469, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_329 [3] = {111, 474, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_329 [3] = {111, 474, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_331 [23] = {17, 331,
+static const int32_t gSuccessorTable_pic18_grammar_331 [23] = {17, 331,
   19, 332,
   56, 476,
   68, 334,
@@ -36822,7 +36619,7 @@ static const int16_t gSuccessorTable_pic18_grammar_331 [23] = {17, 331,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_332 [23] = {17, 331,
+static const int32_t gSuccessorTable_pic18_grammar_332 [23] = {17, 331,
   19, 332,
   56, 477,
   68, 334,
@@ -36834,13 +36631,13 @@ static const int16_t gSuccessorTable_pic18_grammar_332 [23] = {17, 331,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_338 [3] = {4, 480, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_338 [3] = {4, 480, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_339 [3] = {4, 481, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_339 [3] = {4, 481, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_340 [3] = {4, 482, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_340 [3] = {4, 482, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_341 [15] = {3, 483,
+static const int32_t gSuccessorTable_pic18_grammar_341 [15] = {3, 483,
   42, 164,
   43, 165,
   44, 166,
@@ -36848,7 +36645,7 @@ static const int16_t gSuccessorTable_pic18_grammar_341 [15] = {3, 483,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_342 [15] = {3, 484,
+static const int32_t gSuccessorTable_pic18_grammar_342 [15] = {3, 484,
   42, 164,
   43, 165,
   44, 166,
@@ -36856,9 +36653,9 @@ static const int16_t gSuccessorTable_pic18_grammar_342 [15] = {3, 484,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_344 [3] = {60, 489, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_344 [3] = {60, 489, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_345 [25] = {10, 490,
+static const int32_t gSuccessorTable_pic18_grammar_345 [25] = {10, 490,
   17, 331,
   19, 332,
   56, 333,
@@ -36871,9 +36668,9 @@ static const int16_t gSuccessorTable_pic18_grammar_345 [25] = {10, 490,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_349 [3] = {189, 495, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_349 [3] = {189, 495, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_352 [21] = {22, 535,
+static const int32_t gSuccessorTable_pic18_grammar_352 [21] = {22, 535,
   25, 536,
   27, 537,
   116, 538,
@@ -36884,31 +36681,31 @@ static const int16_t gSuccessorTable_pic18_grammar_352 [21] = {22, 535,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_353 [3] = {194, 546, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_353 [3] = {194, 546, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_358 [3] = {201, 549, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_358 [3] = {201, 549, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_359 [3] = {201, 550, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_359 [3] = {201, 550, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_360 [3] = {202, 551, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_360 [3] = {202, 551, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_367 [3] = {204, 552, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_367 [3] = {204, 552, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_368 [3] = {204, 553, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_368 [3] = {204, 553, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_369 [3] = {204, 554, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_369 [3] = {204, 554, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_370 [3] = {204, 555, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_370 [3] = {204, 555, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_371 [3] = {205, 556, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_371 [3] = {205, 556, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_372 [3] = {205, 557, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_372 [3] = {205, 557, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_373 [3] = {205, 558, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_373 [3] = {205, 558, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_374 [3] = {120, 562, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_374 [3] = {120, 562, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_375 [21] = {22, 563,
+static const int32_t gSuccessorTable_pic18_grammar_375 [21] = {22, 563,
   25, 536,
   27, 537,
   116, 538,
@@ -36919,17 +36716,17 @@ static const int16_t gSuccessorTable_pic18_grammar_375 [21] = {22, 563,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_380 [5] = {158, 565,
+static const int32_t gSuccessorTable_pic18_grammar_380 [5] = {158, 565,
   167, 566, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_382 [3] = {160, 569, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_382 [3] = {160, 569, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_383 [9] = {4, 574,
+static const int32_t gSuccessorTable_pic18_grammar_383 [9] = {4, 574,
   162, 575,
   163, 576,
   165, 577, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_413 [19] = {34, 413,
+static const int32_t gSuccessorTable_pic18_grammar_413 [19] = {34, 413,
   36, 414,
   154, 585,
   157, 416,
@@ -36939,7 +36736,7 @@ static const int16_t gSuccessorTable_pic18_grammar_413 [19] = {34, 413,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_414 [19] = {34, 413,
+static const int32_t gSuccessorTable_pic18_grammar_414 [19] = {34, 413,
   36, 414,
   154, 586,
   157, 416,
@@ -36949,13 +36746,13 @@ static const int16_t gSuccessorTable_pic18_grammar_414 [19] = {34, 413,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_418 [3] = {4, 587, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_418 [3] = {4, 587, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_419 [3] = {4, 588, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_419 [3] = {4, 588, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_420 [3] = {4, 589, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_420 [3] = {4, 589, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_421 [15] = {3, 590,
+static const int32_t gSuccessorTable_pic18_grammar_421 [15] = {3, 590,
   42, 164,
   43, 165,
   44, 166,
@@ -36963,11 +36760,11 @@ static const int16_t gSuccessorTable_pic18_grammar_421 [15] = {3, 590,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_424 [3] = {51, 591, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_424 [3] = {51, 591, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_426 [3] = {55, 593, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_426 [3] = {55, 593, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_434 [25] = {10, 598,
+static const int32_t gSuccessorTable_pic18_grammar_434 [25] = {10, 598,
   17, 331,
   19, 332,
   56, 333,
@@ -36980,13 +36777,13 @@ static const int16_t gSuccessorTable_pic18_grammar_434 [25] = {10, 598,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_438 [3] = {209, 601, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_438 [3] = {209, 601, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_439 [3] = {81, 603, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_439 [3] = {81, 603, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_440 [3] = {82, 605, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_440 [3] = {82, 605, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_441 [25] = {10, 606,
+static const int32_t gSuccessorTable_pic18_grammar_441 [25] = {10, 606,
   17, 331,
   19, 332,
   56, 333,
@@ -36999,7 +36796,7 @@ static const int16_t gSuccessorTable_pic18_grammar_441 [25] = {10, 606,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_442 [15] = {3, 607,
+static const int32_t gSuccessorTable_pic18_grammar_442 [15] = {3, 607,
   42, 164,
   43, 165,
   44, 166,
@@ -37007,7 +36804,7 @@ static const int16_t gSuccessorTable_pic18_grammar_442 [15] = {3, 607,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_447 [25] = {10, 608,
+static const int32_t gSuccessorTable_pic18_grammar_447 [25] = {10, 608,
   17, 331,
   19, 332,
   56, 333,
@@ -37020,38 +36817,38 @@ static const int16_t gSuccessorTable_pic18_grammar_447 [25] = {10, 608,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_448 [3] = {4, 609, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_448 [3] = {4, 609, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_452 [3] = {90, 615, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_452 [3] = {90, 615, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_454 [3] = {4, 617, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_454 [3] = {4, 617, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_455 [5] = {14, 619,
+static const int32_t gSuccessorTable_pic18_grammar_455 [5] = {14, 619,
   18, 620, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_480 [5] = {5, 627,
+static const int32_t gSuccessorTable_pic18_grammar_480 [5] = {5, 627,
   211, 628, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_484 [3] = {54, 630, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_484 [3] = {54, 630, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_491 [5] = {1, 634,
+static const int32_t gSuccessorTable_pic18_grammar_491 [5] = {1, 634,
   186, 635, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_498 [5] = {123, 639,
+static const int32_t gSuccessorTable_pic18_grammar_498 [5] = {123, 639,
   134, 640, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_501 [3] = {4, 643, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_501 [3] = {4, 643, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_503 [3] = {4, 644, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_503 [3] = {4, 644, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_505 [3] = {127, 647, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_505 [3] = {127, 647, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_506 [9] = {4, 652,
+static const int32_t gSuccessorTable_pic18_grammar_506 [9] = {4, 652,
   129, 653,
   130, 654,
   132, 655, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_536 [19] = {25, 536,
+static const int32_t gSuccessorTable_pic18_grammar_536 [19] = {25, 536,
   27, 537,
   116, 662,
   122, 539,
@@ -37061,7 +36858,7 @@ static const int16_t gSuccessorTable_pic18_grammar_536 [19] = {25, 536,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_537 [19] = {25, 536,
+static const int32_t gSuccessorTable_pic18_grammar_537 [19] = {25, 536,
   27, 537,
   116, 663,
   122, 539,
@@ -37071,13 +36868,13 @@ static const int16_t gSuccessorTable_pic18_grammar_537 [19] = {25, 536,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_541 [3] = {4, 664, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_541 [3] = {4, 664, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_542 [3] = {4, 665, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_542 [3] = {4, 665, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_543 [3] = {4, 666, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_543 [3] = {4, 666, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_544 [15] = {3, 667,
+static const int32_t gSuccessorTable_pic18_grammar_544 [15] = {3, 667,
   42, 164,
   43, 165,
   44, 166,
@@ -37085,7 +36882,7 @@ static const int16_t gSuccessorTable_pic18_grammar_544 [15] = {3, 667,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_545 [15] = {3, 668,
+static const int32_t gSuccessorTable_pic18_grammar_545 [15] = {3, 668,
   42, 164,
   43, 165,
   44, 166,
@@ -37093,9 +36890,9 @@ static const int16_t gSuccessorTable_pic18_grammar_545 [15] = {3, 668,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_546 [3] = {195, 670, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_546 [3] = {195, 670, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_547 [15] = {3, 671,
+static const int32_t gSuccessorTable_pic18_grammar_547 [15] = {3, 671,
   42, 164,
   43, 165,
   44, 166,
@@ -37103,7 +36900,7 @@ static const int16_t gSuccessorTable_pic18_grammar_547 [15] = {3, 671,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_566 [21] = {32, 676,
+static const int32_t gSuccessorTable_pic18_grammar_566 [21] = {32, 676,
   34, 413,
   36, 414,
   154, 415,
@@ -37114,7 +36911,7 @@ static const int16_t gSuccessorTable_pic18_grammar_566 [21] = {32, 676,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_569 [21] = {32, 677,
+static const int32_t gSuccessorTable_pic18_grammar_569 [21] = {32, 677,
   34, 413,
   36, 414,
   154, 415,
@@ -37125,17 +36922,17 @@ static const int16_t gSuccessorTable_pic18_grammar_569 [21] = {32, 677,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_570 [3] = {4, 678, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_570 [3] = {4, 678, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_576 [3] = {4, 681, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_576 [3] = {4, 681, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_577 [5] = {35, 683,
+static const int32_t gSuccessorTable_pic18_grammar_577 [5] = {35, 683,
   38, 684, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_587 [5] = {5, 686,
+static const int32_t gSuccessorTable_pic18_grammar_587 [5] = {5, 686,
   211, 628, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_592 [25] = {10, 688,
+static const int32_t gSuccessorTable_pic18_grammar_592 [25] = {10, 688,
   17, 331,
   19, 332,
   56, 333,
@@ -37148,7 +36945,7 @@ static const int16_t gSuccessorTable_pic18_grammar_592 [25] = {10, 688,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_594 [15] = {3, 689,
+static const int32_t gSuccessorTable_pic18_grammar_594 [15] = {3, 689,
   42, 164,
   43, 165,
   44, 166,
@@ -37156,7 +36953,7 @@ static const int16_t gSuccessorTable_pic18_grammar_594 [15] = {3, 689,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_600 [15] = {3, 695,
+static const int32_t gSuccessorTable_pic18_grammar_600 [15] = {3, 695,
   42, 164,
   43, 165,
   44, 166,
@@ -37164,25 +36961,25 @@ static const int16_t gSuccessorTable_pic18_grammar_600 [15] = {3, 695,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_614 [3] = {6, 708, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_614 [3] = {6, 708, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_616 [13] = {19, 710,
+static const int32_t gSuccessorTable_pic18_grammar_616 [13] = {19, 710,
   105, 337,
   106, 338,
   107, 339,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_617 [3] = {93, 712, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_617 [3] = {93, 712, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_618 [13] = {4, 717,
+static const int32_t gSuccessorTable_pic18_grammar_618 [13] = {4, 717,
   13, 718,
   14, 719,
   15, 720,
   62, 721,
   63, 722, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_619 [25] = {10, 723,
+static const int32_t gSuccessorTable_pic18_grammar_619 [25] = {10, 723,
   17, 331,
   19, 332,
   56, 333,
@@ -37195,11 +36992,11 @@ static const int16_t gSuccessorTable_pic18_grammar_619 [25] = {10, 723,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_622 [3] = {4, 725, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_622 [3] = {4, 725, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_623 [3] = {4, 726, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_623 [3] = {4, 726, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_624 [15] = {3, 727,
+static const int32_t gSuccessorTable_pic18_grammar_624 [15] = {3, 727,
   42, 164,
   43, 165,
   44, 166,
@@ -37207,16 +37004,16 @@ static const int16_t gSuccessorTable_pic18_grammar_624 [15] = {3, 727,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_629 [3] = {6, 730, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_629 [3] = {6, 730, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_631 [3] = {61, 732, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_631 [3] = {61, 732, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_634 [5] = {1, 634,
+static const int32_t gSuccessorTable_pic18_grammar_634 [5] = {1, 634,
   186, 733, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_636 [3] = {190, 736, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_636 [3] = {190, 736, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_640 [21] = {22, 738,
+static const int32_t gSuccessorTable_pic18_grammar_640 [21] = {22, 738,
   25, 536,
   27, 537,
   116, 538,
@@ -37227,11 +37024,11 @@ static const int16_t gSuccessorTable_pic18_grammar_640 [21] = {22, 738,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_642 [3] = {126, 740, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_642 [3] = {126, 740, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_643 [3] = {125, 742, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_643 [3] = {125, 742, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_644 [21] = {22, 743,
+static const int32_t gSuccessorTable_pic18_grammar_644 [21] = {22, 743,
   25, 536,
   27, 537,
   116, 538,
@@ -37242,7 +37039,7 @@ static const int16_t gSuccessorTable_pic18_grammar_644 [21] = {22, 743,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_647 [21] = {22, 744,
+static const int32_t gSuccessorTable_pic18_grammar_647 [21] = {22, 744,
   25, 536,
   27, 537,
   116, 538,
@@ -37253,41 +37050,41 @@ static const int16_t gSuccessorTable_pic18_grammar_647 [21] = {22, 744,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_648 [3] = {4, 745, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_648 [3] = {4, 745, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_654 [3] = {4, 748, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_654 [3] = {4, 748, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_655 [5] = {26, 750,
+static const int32_t gSuccessorTable_pic18_grammar_655 [5] = {26, 750,
   29, 751, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_664 [5] = {5, 753,
+static const int32_t gSuccessorTable_pic18_grammar_664 [5] = {5, 753,
   211, 628, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_669 [3] = {197, 759, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_669 [3] = {197, 759, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_671 [3] = {208, 761, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_671 [3] = {208, 761, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_672 [3] = {121, 763, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_672 [3] = {121, 763, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_679 [3] = {6, 768, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_679 [3] = {6, 768, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_680 [13] = {36, 769,
+static const int32_t gSuccessorTable_pic18_grammar_680 [13] = {36, 769,
   174, 417,
   175, 418,
   176, 419,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_681 [3] = {164, 771, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_681 [3] = {164, 771, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_682 [13] = {4, 775,
+static const int32_t gSuccessorTable_pic18_grammar_682 [13] = {4, 775,
   37, 776,
   38, 777,
   39, 778,
   179, 779,
   180, 780, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_684 [21] = {32, 782,
+static const int32_t gSuccessorTable_pic18_grammar_684 [21] = {32, 782,
   34, 413,
   36, 414,
   154, 415,
@@ -37298,25 +37095,25 @@ static const int16_t gSuccessorTable_pic18_grammar_684 [21] = {32, 782,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_685 [3] = {4, 783, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_685 [3] = {4, 783, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_687 [3] = {6, 784, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_687 [3] = {6, 784, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_689 [3] = {101, 787, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_689 [3] = {101, 787, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_690 [3] = {71, 789, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_690 [3] = {71, 789, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_693 [3] = {98, 793, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_693 [3] = {98, 793, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_699 [3] = {83, 800, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_699 [3] = {83, 800, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_700 [3] = {89, 802, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_700 [3] = {89, 802, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_701 [3] = {6, 803, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_701 [3] = {6, 803, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_705 [3] = {210, 805, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_705 [3] = {210, 805, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_706 [15] = {3, 806,
+static const int32_t gSuccessorTable_pic18_grammar_706 [15] = {3, 806,
   42, 164,
   43, 165,
   44, 166,
@@ -37324,52 +37121,52 @@ static const int16_t gSuccessorTable_pic18_grammar_706 [15] = {3, 806,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_709 [13] = {19, 807,
+static const int32_t gSuccessorTable_pic18_grammar_709 [13] = {19, 807,
   105, 337,
   106, 338,
   107, 339,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_713 [3] = {209, 601, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_713 [3] = {209, 601, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_714 [11] = {4, 717,
+static const int32_t gSuccessorTable_pic18_grammar_714 [11] = {4, 717,
   13, 810,
   14, 719,
   62, 721,
   63, 722, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_717 [3] = {65, 819, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_717 [3] = {65, 819, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_718 [3] = {67, 821, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_718 [3] = {67, 821, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_720 [3] = {66, 823, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_720 [3] = {66, 823, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_722 [3] = {4, 824, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_722 [3] = {4, 824, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_723 [3] = {102, 827, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_723 [3] = {102, 827, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_724 [3] = {95, 829, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_724 [3] = {95, 829, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_746 [3] = {6, 840, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_746 [3] = {6, 840, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_747 [13] = {27, 841,
+static const int32_t gSuccessorTable_pic18_grammar_747 [13] = {27, 841,
   141, 540,
   142, 541,
   143, 542,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_748 [3] = {131, 843, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_748 [3] = {131, 843, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_749 [13] = {4, 847,
+static const int32_t gSuccessorTable_pic18_grammar_749 [13] = {4, 847,
   28, 848,
   29, 849,
   30, 850,
   146, 851,
   147, 852, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_751 [21] = {22, 854,
+static const int32_t gSuccessorTable_pic18_grammar_751 [21] = {22, 854,
   25, 536,
   27, 537,
   116, 538,
@@ -37380,37 +37177,37 @@ static const int16_t gSuccessorTable_pic18_grammar_751 [21] = {22, 854,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_752 [3] = {4, 855, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_752 [3] = {4, 855, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_754 [3] = {6, 856, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_754 [3] = {6, 856, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_756 [3] = {199, 858, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_756 [3] = {199, 858, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_759 [3] = {196, 860, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_759 [3] = {196, 860, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_765 [3] = {169, 866, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_765 [3] = {169, 866, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_766 [3] = {161, 868, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_766 [3] = {161, 868, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_767 [3] = {6, 869, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_767 [3] = {6, 869, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_772 [11] = {4, 775,
+static const int32_t gSuccessorTable_pic18_grammar_772 [11] = {4, 775,
   37, 872,
   38, 777,
   179, 779,
   180, 780, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_776 [3] = {183, 875, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_776 [3] = {183, 875, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_778 [3] = {182, 877, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_778 [3] = {182, 877, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_780 [3] = {4, 878, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_780 [3] = {4, 878, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_781 [3] = {166, 880, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_781 [3] = {166, 880, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_782 [3] = {171, 883, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_782 [3] = {171, 883, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_785 [21] = {0, 56,
+static const int32_t gSuccessorTable_pic18_grammar_785 [21] = {0, 56,
   1, 57,
   2, 58,
   8, 60,
@@ -37421,7 +37218,7 @@ static const int16_t gSuccessorTable_pic18_grammar_785 [21] = {0, 56,
   53, 65,
   58, 66, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_786 [15] = {3, 885,
+static const int32_t gSuccessorTable_pic18_grammar_786 [15] = {3, 885,
   42, 164,
   43, 165,
   44, 166,
@@ -37429,7 +37226,7 @@ static const int16_t gSuccessorTable_pic18_grammar_786 [15] = {3, 885,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_789 [17] = {3, 888,
+static const int32_t gSuccessorTable_pic18_grammar_789 [17] = {3, 888,
   42, 164,
   43, 165,
   44, 166,
@@ -37438,7 +37235,7 @@ static const int16_t gSuccessorTable_pic18_grammar_789 [17] = {3, 888,
   73, 889,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_790 [25] = {10, 890,
+static const int32_t gSuccessorTable_pic18_grammar_790 [25] = {10, 890,
   17, 331,
   19, 332,
   56, 333,
@@ -37451,7 +37248,7 @@ static const int16_t gSuccessorTable_pic18_grammar_790 [25] = {10, 890,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_791 [15] = {3, 891,
+static const int32_t gSuccessorTable_pic18_grammar_791 [15] = {3, 891,
   42, 164,
   43, 165,
   44, 166,
@@ -37459,9 +37256,9 @@ static const int16_t gSuccessorTable_pic18_grammar_791 [15] = {3, 891,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_793 [3] = {14, 892, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_793 [3] = {14, 892, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_796 [15] = {3, 893,
+static const int32_t gSuccessorTable_pic18_grammar_796 [15] = {3, 893,
   42, 164,
   43, 165,
   44, 166,
@@ -37469,54 +37266,54 @@ static const int16_t gSuccessorTable_pic18_grammar_796 [15] = {3, 893,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_818 [3] = {6, 906, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_818 [3] = {6, 906, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_820 [11] = {4, 717,
+static const int32_t gSuccessorTable_pic18_grammar_820 [11] = {4, 717,
   13, 907,
   14, 719,
   62, 721,
   63, 722, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_822 [13] = {4, 717,
+static const int32_t gSuccessorTable_pic18_grammar_822 [13] = {4, 717,
   13, 718,
   14, 719,
   15, 908,
   62, 721,
   63, 722, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_824 [3] = {64, 911, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_824 [3] = {64, 911, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_825 [3] = {104, 913, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_825 [3] = {104, 913, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_826 [3] = {103, 915, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_826 [3] = {103, 915, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_834 [3] = {136, 918, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_834 [3] = {136, 918, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_838 [3] = {128, 920, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_838 [3] = {128, 920, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_839 [3] = {6, 921, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_839 [3] = {6, 921, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_844 [11] = {4, 847,
+static const int32_t gSuccessorTable_pic18_grammar_844 [11] = {4, 847,
   28, 924,
   29, 849,
   146, 851,
   147, 852, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_848 [3] = {150, 927, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_848 [3] = {150, 927, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_850 [3] = {149, 929, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_850 [3] = {149, 929, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_852 [3] = {4, 930, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_852 [3] = {4, 930, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_853 [3] = {133, 932, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_853 [3] = {133, 932, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_854 [3] = {138, 935, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_854 [3] = {138, 935, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_858 [3] = {198, 938, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_858 [3] = {198, 938, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_859 [3] = {197, 939, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_859 [3] = {197, 939, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_864 [15] = {3, 942,
+static const int32_t gSuccessorTable_pic18_grammar_864 [15] = {3, 942,
   42, 164,
   43, 165,
   44, 166,
@@ -37524,32 +37321,32 @@ static const int16_t gSuccessorTable_pic18_grammar_864 [15] = {3, 942,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_866 [3] = {38, 943, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_866 [3] = {38, 943, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_873 [3] = {6, 945, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_873 [3] = {6, 945, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_874 [11] = {4, 775,
+static const int32_t gSuccessorTable_pic18_grammar_874 [11] = {4, 775,
   37, 946,
   38, 777,
   179, 779,
   180, 780, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_876 [13] = {4, 775,
+static const int32_t gSuccessorTable_pic18_grammar_876 [13] = {4, 775,
   37, 776,
   38, 777,
   39, 947,
   179, 779,
   180, 780, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_878 [3] = {181, 950, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_878 [3] = {181, 950, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_881 [3] = {173, 952, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_881 [3] = {173, 952, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_882 [3] = {172, 954, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_882 [3] = {172, 954, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_885 [3] = {101, 955, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_885 [3] = {101, 955, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_887 [15] = {3, 956,
+static const int32_t gSuccessorTable_pic18_grammar_887 [15] = {3, 956,
   42, 164,
   43, 165,
   44, 166,
@@ -37557,9 +37354,9 @@ static const int16_t gSuccessorTable_pic18_grammar_887 [15] = {3, 956,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_889 [3] = {72, 958, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_889 [3] = {72, 958, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_892 [25] = {10, 961,
+static const int32_t gSuccessorTable_pic18_grammar_892 [25] = {10, 961,
   17, 331,
   19, 332,
   56, 333,
@@ -37572,26 +37369,26 @@ static const int16_t gSuccessorTable_pic18_grammar_892 [25] = {10, 961,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_893 [3] = {84, 963, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_893 [3] = {84, 963, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_894 [3] = {85, 965, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_894 [3] = {85, 965, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_895 [3] = {86, 967, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_895 [3] = {86, 967, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_896 [3] = {87, 969, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_896 [3] = {87, 969, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_899 [13] = {19, 971,
+static const int32_t gSuccessorTable_pic18_grammar_899 [13] = {19, 971,
   105, 337,
   106, 338,
   107, 339,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_907 [3] = {67, 972, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_907 [3] = {67, 972, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_908 [3] = {66, 973, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_908 [3] = {66, 973, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_913 [25] = {10, 976,
+static const int32_t gSuccessorTable_pic18_grammar_913 [25] = {10, 976,
   17, 331,
   19, 332,
   56, 333,
@@ -37604,10 +37401,10 @@ static const int16_t gSuccessorTable_pic18_grammar_913 [25] = {10, 976,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_915 [5] = {14, 619,
+static const int32_t gSuccessorTable_pic18_grammar_915 [5] = {14, 619,
   18, 977, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_916 [15] = {3, 978,
+static const int32_t gSuccessorTable_pic18_grammar_916 [15] = {3, 978,
   42, 164,
   43, 165,
   44, 166,
@@ -37615,32 +37412,32 @@ static const int16_t gSuccessorTable_pic18_grammar_916 [15] = {3, 978,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_918 [3] = {29, 979, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_918 [3] = {29, 979, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_925 [3] = {6, 981, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_925 [3] = {6, 981, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_926 [11] = {4, 847,
+static const int32_t gSuccessorTable_pic18_grammar_926 [11] = {4, 847,
   28, 982,
   29, 849,
   146, 851,
   147, 852, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_928 [13] = {4, 847,
+static const int32_t gSuccessorTable_pic18_grammar_928 [13] = {4, 847,
   28, 848,
   29, 849,
   30, 983,
   146, 851,
   147, 852, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_930 [3] = {148, 986, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_930 [3] = {148, 986, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_933 [3] = {140, 988, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_933 [3] = {140, 988, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_934 [3] = {139, 990, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_934 [3] = {139, 990, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_939 [3] = {196, 993, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_939 [3] = {196, 993, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_941 [15] = {3, 994,
+static const int32_t gSuccessorTable_pic18_grammar_941 [15] = {3, 994,
   42, 164,
   43, 165,
   44, 166,
@@ -37648,7 +37445,7 @@ static const int16_t gSuccessorTable_pic18_grammar_941 [15] = {3, 994,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_943 [21] = {32, 996,
+static const int32_t gSuccessorTable_pic18_grammar_943 [21] = {32, 996,
   34, 413,
   36, 414,
   154, 415,
@@ -37659,18 +37456,18 @@ static const int16_t gSuccessorTable_pic18_grammar_943 [21] = {32, 996,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_944 [13] = {36, 997,
+static const int32_t gSuccessorTable_pic18_grammar_944 [13] = {36, 997,
   174, 417,
   175, 418,
   176, 419,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_946 [3] = {183, 998, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_946 [3] = {183, 998, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_947 [3] = {182, 999, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_947 [3] = {182, 999, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_952 [21] = {32, 1002,
+static const int32_t gSuccessorTable_pic18_grammar_952 [21] = {32, 1002,
   34, 413,
   36, 414,
   154, 415,
@@ -37681,10 +37478,10 @@ static const int16_t gSuccessorTable_pic18_grammar_952 [21] = {32, 1002,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_954 [5] = {35, 1003,
+static const int32_t gSuccessorTable_pic18_grammar_954 [5] = {35, 1003,
   38, 684, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_957 [17] = {3, 888,
+static const int32_t gSuccessorTable_pic18_grammar_957 [17] = {3, 888,
   42, 164,
   43, 165,
   44, 166,
@@ -37693,10 +37490,10 @@ static const int16_t gSuccessorTable_pic18_grammar_957 [17] = {3, 888,
   73, 1005,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_959 [5] = {14, 1009,
+static const int32_t gSuccessorTable_pic18_grammar_959 [5] = {14, 1009,
   16, 1010, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_960 [15] = {3, 1011,
+static const int32_t gSuccessorTable_pic18_grammar_960 [15] = {3, 1011,
   42, 164,
   43, 165,
   44, 166,
@@ -37704,9 +37501,9 @@ static const int16_t gSuccessorTable_pic18_grammar_960 [15] = {3, 1011,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_961 [3] = {97, 1013, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_961 [3] = {97, 1013, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_962 [15] = {3, 1014,
+static const int32_t gSuccessorTable_pic18_grammar_962 [15] = {3, 1014,
   42, 164,
   43, 165,
   44, 166,
@@ -37714,7 +37511,7 @@ static const int16_t gSuccessorTable_pic18_grammar_962 [15] = {3, 1014,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_979 [21] = {22, 1019,
+static const int32_t gSuccessorTable_pic18_grammar_979 [21] = {22, 1019,
   25, 536,
   27, 537,
   116, 538,
@@ -37725,18 +37522,18 @@ static const int16_t gSuccessorTable_pic18_grammar_979 [21] = {22, 1019,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_980 [13] = {27, 1020,
+static const int32_t gSuccessorTable_pic18_grammar_980 [13] = {27, 1020,
   141, 540,
   142, 541,
   143, 542,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_982 [3] = {150, 1021, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_982 [3] = {150, 1021, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_983 [3] = {149, 1022, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_983 [3] = {149, 1022, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_988 [21] = {22, 1025,
+static const int32_t gSuccessorTable_pic18_grammar_988 [21] = {22, 1025,
   25, 536,
   27, 537,
   116, 538,
@@ -37747,14 +37544,14 @@ static const int16_t gSuccessorTable_pic18_grammar_988 [21] = {22, 1025,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_990 [5] = {26, 1026,
+static const int32_t gSuccessorTable_pic18_grammar_990 [5] = {26, 1026,
   29, 751, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_992 [3] = {199, 1027, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_992 [3] = {199, 1027, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_994 [3] = {208, 1028, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_994 [3] = {208, 1028, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_995 [15] = {3, 1029,
+static const int32_t gSuccessorTable_pic18_grammar_995 [15] = {3, 1029,
   42, 164,
   43, 165,
   44, 166,
@@ -37762,9 +37559,9 @@ static const int16_t gSuccessorTable_pic18_grammar_995 [15] = {3, 1029,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_996 [3] = {168, 1031, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_996 [3] = {168, 1031, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1004 [15] = {3, 1032,
+static const int32_t gSuccessorTable_pic18_grammar_1004 [15] = {3, 1032,
   42, 164,
   43, 165,
   44, 166,
@@ -37772,9 +37569,9 @@ static const int16_t gSuccessorTable_pic18_grammar_1004 [15] = {3, 1032,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1005 [3] = {72, 1033, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1005 [3] = {72, 1033, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1006 [25] = {10, 1034,
+static const int32_t gSuccessorTable_pic18_grammar_1006 [25] = {10, 1034,
   17, 331,
   19, 332,
   56, 333,
@@ -37787,19 +37584,19 @@ static const int16_t gSuccessorTable_pic18_grammar_1006 [25] = {10, 1034,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1010 [3] = {77, 1037, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1010 [3] = {77, 1037, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1012 [3] = {98, 1039, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1012 [3] = {98, 1039, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1014 [3] = {84, 1041, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1014 [3] = {84, 1041, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1015 [3] = {85, 1042, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1015 [3] = {85, 1042, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1016 [3] = {86, 1043, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1016 [3] = {86, 1043, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1017 [3] = {87, 1044, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1017 [3] = {87, 1044, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1018 [15] = {3, 1045,
+static const int32_t gSuccessorTable_pic18_grammar_1018 [15] = {3, 1045,
   42, 164,
   43, 165,
   44, 166,
@@ -37807,18 +37604,18 @@ static const int16_t gSuccessorTable_pic18_grammar_1018 [15] = {3, 1045,
   46, 168,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1019 [3] = {135, 1047, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1019 [3] = {135, 1047, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1027 [3] = {198, 1048, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1027 [3] = {198, 1048, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1030 [3] = {169, 1050, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1030 [3] = {169, 1050, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1034 [3] = {70, 1054, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1034 [3] = {70, 1054, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1035 [5] = {14, 1009,
+static const int32_t gSuccessorTable_pic18_grammar_1035 [5] = {14, 1009,
   16, 1055, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1038 [25] = {10, 1058,
+static const int32_t gSuccessorTable_pic18_grammar_1038 [25] = {10, 1058,
   17, 331,
   19, 332,
   56, 333,
@@ -37831,13 +37628,13 @@ static const int16_t gSuccessorTable_pic18_grammar_1038 [25] = {10, 1058,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1039 [3] = {14, 1059, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1039 [3] = {14, 1059, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1040 [3] = {99, 1061, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1040 [3] = {99, 1061, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1046 [3] = {136, 1063, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1046 [3] = {136, 1063, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1049 [21] = {32, 1065,
+static const int32_t gSuccessorTable_pic18_grammar_1049 [21] = {32, 1065,
   34, 413,
   36, 414,
   154, 415,
@@ -37848,15 +37645,15 @@ static const int16_t gSuccessorTable_pic18_grammar_1049 [21] = {32, 1065,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1050 [3] = {38, 1066, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1050 [3] = {38, 1066, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1051 [3] = {170, 1068, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1051 [3] = {170, 1068, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1053 [3] = {71, 1069, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1053 [3] = {71, 1069, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1054 [3] = {74, 1071, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1054 [3] = {74, 1071, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1056 [25] = {10, 1073,
+static const int32_t gSuccessorTable_pic18_grammar_1056 [25] = {10, 1073,
   17, 331,
   19, 332,
   56, 333,
@@ -37869,7 +37666,7 @@ static const int16_t gSuccessorTable_pic18_grammar_1056 [25] = {10, 1073,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1059 [25] = {10, 1075,
+static const int32_t gSuccessorTable_pic18_grammar_1059 [25] = {10, 1075,
   17, 331,
   19, 332,
   56, 333,
@@ -37882,7 +37679,7 @@ static const int16_t gSuccessorTable_pic18_grammar_1059 [25] = {10, 1075,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1062 [21] = {22, 1076,
+static const int32_t gSuccessorTable_pic18_grammar_1062 [21] = {22, 1076,
   25, 536,
   27, 537,
   116, 538,
@@ -37893,11 +37690,11 @@ static const int16_t gSuccessorTable_pic18_grammar_1062 [21] = {22, 1076,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1063 [3] = {29, 1077, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1063 [3] = {29, 1077, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1064 [3] = {137, 1079, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1064 [3] = {137, 1079, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1066 [21] = {32, 1081,
+static const int32_t gSuccessorTable_pic18_grammar_1066 [21] = {32, 1081,
   34, 413,
   36, 414,
   154, 415,
@@ -37908,7 +37705,7 @@ static const int16_t gSuccessorTable_pic18_grammar_1066 [21] = {32, 1081,
   177, 420,
   178, 421, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1069 [17] = {3, 888,
+static const int32_t gSuccessorTable_pic18_grammar_1069 [17] = {3, 888,
   42, 164,
   43, 165,
   44, 166,
@@ -37917,16 +37714,16 @@ static const int16_t gSuccessorTable_pic18_grammar_1069 [17] = {3, 888,
   73, 1082,
   206, 169, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1070 [3] = {75, 1084, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1070 [3] = {75, 1084, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1072 [5] = {14, 1009,
+static const int32_t gSuccessorTable_pic18_grammar_1072 [5] = {14, 1009,
   16, 1086, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1074 [3] = {79, 1089, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1074 [3] = {79, 1089, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1075 [3] = {97, 1090, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1075 [3] = {97, 1090, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1077 [21] = {22, 1092,
+static const int32_t gSuccessorTable_pic18_grammar_1077 [21] = {22, 1092,
   25, 536,
   27, 537,
   116, 538,
@@ -37937,13 +37734,13 @@ static const int16_t gSuccessorTable_pic18_grammar_1077 [21] = {22, 1092,
   144, 543,
   145, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1080 [3] = {159, 1094, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1080 [3] = {159, 1094, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1081 [3] = {168, 1095, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1081 [3] = {168, 1095, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1082 [3] = {72, 1096, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1082 [3] = {72, 1096, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1084 [25] = {10, 1097,
+static const int32_t gSuccessorTable_pic18_grammar_1084 [25] = {10, 1097,
   17, 331,
   19, 332,
   56, 333,
@@ -37956,18 +37753,18 @@ static const int16_t gSuccessorTable_pic18_grammar_1084 [25] = {10, 1097,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1085 [3] = {76, 1099, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1085 [3] = {76, 1099, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1087 [5] = {14, 1009,
+static const int32_t gSuccessorTable_pic18_grammar_1087 [5] = {14, 1009,
   16, 1100, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1091 [3] = {124, 1102, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1091 [3] = {124, 1102, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1092 [3] = {135, 1103, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1092 [3] = {135, 1103, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1100 [3] = {77, 1105, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1100 [3] = {77, 1105, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1104 [25] = {10, 1106,
+static const int32_t gSuccessorTable_pic18_grammar_1104 [25] = {10, 1106,
   17, 331,
   19, 332,
   56, 333,
@@ -37980,286 +37777,286 @@ static const int16_t gSuccessorTable_pic18_grammar_1104 [25] = {10, 1106,
   108, 340,
   109, 341, -1} ;
 
-static const int16_t gSuccessorTable_pic18_grammar_1106 [3] = {70, 1107, -1} ;
+static const int32_t gSuccessorTable_pic18_grammar_1106 [3] = {70, 1107, -1} ;
 
-static const int16_t * gSuccessorTable_pic18_grammar [1108] = {
-gSuccessorTable_pic18_grammar_0, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_6, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
+static const int32_t * gSuccessorTable_pic18_grammar [1108] = {
+gSuccessorTable_pic18_grammar_0, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_6, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
   gSuccessorTable_pic18_grammar_20, gSuccessorTable_pic18_grammar_21, gSuccessorTable_pic18_grammar_22, gSuccessorTable_pic18_grammar_23, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_30, gSuccessorTable_pic18_grammar_31, 
-  gSuccessorTable_pic18_grammar_32, gSuccessorTable_pic18_grammar_33, gSuccessorTable_pic18_grammar_34, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_39, 
-  gSuccessorTable_pic18_grammar_40, gSuccessorTable_pic18_grammar_41, NULL, gSuccessorTable_pic18_grammar_43, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_56, gSuccessorTable_pic18_grammar_57, gSuccessorTable_pic18_grammar_58, NULL, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_30, gSuccessorTable_pic18_grammar_31, 
+  gSuccessorTable_pic18_grammar_32, gSuccessorTable_pic18_grammar_33, gSuccessorTable_pic18_grammar_34, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_39, 
+  gSuccessorTable_pic18_grammar_40, gSuccessorTable_pic18_grammar_41, nullptr, gSuccessorTable_pic18_grammar_43, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_56, gSuccessorTable_pic18_grammar_57, gSuccessorTable_pic18_grammar_58, nullptr, 
   gSuccessorTable_pic18_grammar_60, gSuccessorTable_pic18_grammar_61, gSuccessorTable_pic18_grammar_62, gSuccessorTable_pic18_grammar_63, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_70, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_77, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_96, gSuccessorTable_pic18_grammar_97, NULL, gSuccessorTable_pic18_grammar_99, 
-  NULL, gSuccessorTable_pic18_grammar_101, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_117, gSuccessorTable_pic18_grammar_118, NULL, 
-  gSuccessorTable_pic18_grammar_120, NULL, NULL, gSuccessorTable_pic18_grammar_123, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_70, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_77, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_96, gSuccessorTable_pic18_grammar_97, nullptr, gSuccessorTable_pic18_grammar_99, 
+  nullptr, gSuccessorTable_pic18_grammar_101, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_117, gSuccessorTable_pic18_grammar_118, nullptr, 
+  gSuccessorTable_pic18_grammar_120, nullptr, nullptr, gSuccessorTable_pic18_grammar_123, 
   gSuccessorTable_pic18_grammar_124, gSuccessorTable_pic18_grammar_125, gSuccessorTable_pic18_grammar_126, gSuccessorTable_pic18_grammar_127, 
-  gSuccessorTable_pic18_grammar_128, gSuccessorTable_pic18_grammar_129, NULL, gSuccessorTable_pic18_grammar_131, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_136, NULL, NULL, gSuccessorTable_pic18_grammar_139, 
-  gSuccessorTable_pic18_grammar_140, gSuccessorTable_pic18_grammar_141, NULL, gSuccessorTable_pic18_grammar_143, 
-  gSuccessorTable_pic18_grammar_144, NULL, gSuccessorTable_pic18_grammar_146, NULL, 
-  gSuccessorTable_pic18_grammar_148, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_152, NULL, NULL, gSuccessorTable_pic18_grammar_155, 
-  NULL, gSuccessorTable_pic18_grammar_157, gSuccessorTable_pic18_grammar_158, NULL, 
-  gSuccessorTable_pic18_grammar_160, gSuccessorTable_pic18_grammar_161, NULL, NULL, 
+  gSuccessorTable_pic18_grammar_128, gSuccessorTable_pic18_grammar_129, nullptr, gSuccessorTable_pic18_grammar_131, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_136, nullptr, nullptr, gSuccessorTable_pic18_grammar_139, 
+  gSuccessorTable_pic18_grammar_140, gSuccessorTable_pic18_grammar_141, nullptr, gSuccessorTable_pic18_grammar_143, 
+  gSuccessorTable_pic18_grammar_144, nullptr, gSuccessorTable_pic18_grammar_146, nullptr, 
+  gSuccessorTable_pic18_grammar_148, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_152, nullptr, nullptr, gSuccessorTable_pic18_grammar_155, 
+  nullptr, gSuccessorTable_pic18_grammar_157, gSuccessorTable_pic18_grammar_158, nullptr, 
+  gSuccessorTable_pic18_grammar_160, gSuccessorTable_pic18_grammar_161, nullptr, nullptr, 
   gSuccessorTable_pic18_grammar_164, gSuccessorTable_pic18_grammar_165, gSuccessorTable_pic18_grammar_166, gSuccessorTable_pic18_grammar_167, 
-  gSuccessorTable_pic18_grammar_168, NULL, NULL, gSuccessorTable_pic18_grammar_171, 
-  NULL, gSuccessorTable_pic18_grammar_173, NULL, gSuccessorTable_pic18_grammar_175, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_179, 
-  NULL, gSuccessorTable_pic18_grammar_181, gSuccessorTable_pic18_grammar_182, NULL, 
+  gSuccessorTable_pic18_grammar_168, nullptr, nullptr, gSuccessorTable_pic18_grammar_171, 
+  nullptr, gSuccessorTable_pic18_grammar_173, nullptr, gSuccessorTable_pic18_grammar_175, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_179, 
+  nullptr, gSuccessorTable_pic18_grammar_181, gSuccessorTable_pic18_grammar_182, nullptr, 
   gSuccessorTable_pic18_grammar_184, gSuccessorTable_pic18_grammar_185, gSuccessorTable_pic18_grammar_186, gSuccessorTable_pic18_grammar_187, 
-  gSuccessorTable_pic18_grammar_188, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_192, gSuccessorTable_pic18_grammar_193, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_197, NULL, gSuccessorTable_pic18_grammar_199, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_207, 
-  NULL, gSuccessorTable_pic18_grammar_209, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_214, gSuccessorTable_pic18_grammar_215, 
-  NULL, gSuccessorTable_pic18_grammar_217, NULL, gSuccessorTable_pic18_grammar_219, 
+  gSuccessorTable_pic18_grammar_188, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_192, gSuccessorTable_pic18_grammar_193, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_197, nullptr, gSuccessorTable_pic18_grammar_199, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_207, 
+  nullptr, gSuccessorTable_pic18_grammar_209, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_214, gSuccessorTable_pic18_grammar_215, 
+  nullptr, gSuccessorTable_pic18_grammar_217, nullptr, gSuccessorTable_pic18_grammar_219, 
   gSuccessorTable_pic18_grammar_220, gSuccessorTable_pic18_grammar_221, gSuccessorTable_pic18_grammar_222, gSuccessorTable_pic18_grammar_223, 
-  gSuccessorTable_pic18_grammar_224, NULL, gSuccessorTable_pic18_grammar_226, gSuccessorTable_pic18_grammar_227, 
-  gSuccessorTable_pic18_grammar_228, gSuccessorTable_pic18_grammar_229, NULL, gSuccessorTable_pic18_grammar_231, 
-  gSuccessorTable_pic18_grammar_232, gSuccessorTable_pic18_grammar_233, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_238, NULL, 
-  gSuccessorTable_pic18_grammar_240, NULL, NULL, gSuccessorTable_pic18_grammar_243, 
-  gSuccessorTable_pic18_grammar_244, NULL, gSuccessorTable_pic18_grammar_246, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_252, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_257, NULL, gSuccessorTable_pic18_grammar_259, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_265, gSuccessorTable_pic18_grammar_266, NULL, 
-  gSuccessorTable_pic18_grammar_268, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_273, gSuccessorTable_pic18_grammar_274, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_306, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_319, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_328, gSuccessorTable_pic18_grammar_329, NULL, gSuccessorTable_pic18_grammar_331, 
-  gSuccessorTable_pic18_grammar_332, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_338, gSuccessorTable_pic18_grammar_339, 
-  gSuccessorTable_pic18_grammar_340, gSuccessorTable_pic18_grammar_341, gSuccessorTable_pic18_grammar_342, NULL, 
-  gSuccessorTable_pic18_grammar_344, gSuccessorTable_pic18_grammar_345, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_349, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_352, gSuccessorTable_pic18_grammar_353, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_358, gSuccessorTable_pic18_grammar_359, 
-  gSuccessorTable_pic18_grammar_360, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_367, 
+  gSuccessorTable_pic18_grammar_224, nullptr, gSuccessorTable_pic18_grammar_226, gSuccessorTable_pic18_grammar_227, 
+  gSuccessorTable_pic18_grammar_228, gSuccessorTable_pic18_grammar_229, nullptr, gSuccessorTable_pic18_grammar_231, 
+  gSuccessorTable_pic18_grammar_232, gSuccessorTable_pic18_grammar_233, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_238, nullptr, 
+  gSuccessorTable_pic18_grammar_240, nullptr, nullptr, gSuccessorTable_pic18_grammar_243, 
+  gSuccessorTable_pic18_grammar_244, nullptr, gSuccessorTable_pic18_grammar_246, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_252, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_257, nullptr, gSuccessorTable_pic18_grammar_259, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_265, gSuccessorTable_pic18_grammar_266, nullptr, 
+  gSuccessorTable_pic18_grammar_268, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_273, gSuccessorTable_pic18_grammar_274, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_306, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_319, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_328, gSuccessorTable_pic18_grammar_329, nullptr, gSuccessorTable_pic18_grammar_331, 
+  gSuccessorTable_pic18_grammar_332, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_338, gSuccessorTable_pic18_grammar_339, 
+  gSuccessorTable_pic18_grammar_340, gSuccessorTable_pic18_grammar_341, gSuccessorTable_pic18_grammar_342, nullptr, 
+  gSuccessorTable_pic18_grammar_344, gSuccessorTable_pic18_grammar_345, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_349, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_352, gSuccessorTable_pic18_grammar_353, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_358, gSuccessorTable_pic18_grammar_359, 
+  gSuccessorTable_pic18_grammar_360, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_367, 
   gSuccessorTable_pic18_grammar_368, gSuccessorTable_pic18_grammar_369, gSuccessorTable_pic18_grammar_370, gSuccessorTable_pic18_grammar_371, 
   gSuccessorTable_pic18_grammar_372, gSuccessorTable_pic18_grammar_373, gSuccessorTable_pic18_grammar_374, gSuccessorTable_pic18_grammar_375, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_380, NULL, gSuccessorTable_pic18_grammar_382, gSuccessorTable_pic18_grammar_383, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_413, gSuccessorTable_pic18_grammar_414, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_418, gSuccessorTable_pic18_grammar_419, 
-  gSuccessorTable_pic18_grammar_420, gSuccessorTable_pic18_grammar_421, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_424, NULL, gSuccessorTable_pic18_grammar_426, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_434, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_438, gSuccessorTable_pic18_grammar_439, 
-  gSuccessorTable_pic18_grammar_440, gSuccessorTable_pic18_grammar_441, gSuccessorTable_pic18_grammar_442, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_447, 
-  gSuccessorTable_pic18_grammar_448, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_452, NULL, gSuccessorTable_pic18_grammar_454, gSuccessorTable_pic18_grammar_455, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_480, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_484, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_491, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_498, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_501, NULL, gSuccessorTable_pic18_grammar_503, 
-  NULL, gSuccessorTable_pic18_grammar_505, gSuccessorTable_pic18_grammar_506, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_536, gSuccessorTable_pic18_grammar_537, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_541, gSuccessorTable_pic18_grammar_542, gSuccessorTable_pic18_grammar_543, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_380, nullptr, gSuccessorTable_pic18_grammar_382, gSuccessorTable_pic18_grammar_383, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_413, gSuccessorTable_pic18_grammar_414, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_418, gSuccessorTable_pic18_grammar_419, 
+  gSuccessorTable_pic18_grammar_420, gSuccessorTable_pic18_grammar_421, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_424, nullptr, gSuccessorTable_pic18_grammar_426, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_434, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_438, gSuccessorTable_pic18_grammar_439, 
+  gSuccessorTable_pic18_grammar_440, gSuccessorTable_pic18_grammar_441, gSuccessorTable_pic18_grammar_442, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_447, 
+  gSuccessorTable_pic18_grammar_448, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_452, nullptr, gSuccessorTable_pic18_grammar_454, gSuccessorTable_pic18_grammar_455, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_480, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_484, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_491, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_498, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_501, nullptr, gSuccessorTable_pic18_grammar_503, 
+  nullptr, gSuccessorTable_pic18_grammar_505, gSuccessorTable_pic18_grammar_506, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_536, gSuccessorTable_pic18_grammar_537, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_541, gSuccessorTable_pic18_grammar_542, gSuccessorTable_pic18_grammar_543, 
   gSuccessorTable_pic18_grammar_544, gSuccessorTable_pic18_grammar_545, gSuccessorTable_pic18_grammar_546, gSuccessorTable_pic18_grammar_547, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_566, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_569, gSuccessorTable_pic18_grammar_570, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_576, gSuccessorTable_pic18_grammar_577, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_587, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_592, NULL, gSuccessorTable_pic18_grammar_594, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_600, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_614, NULL, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_566, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_569, gSuccessorTable_pic18_grammar_570, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_576, gSuccessorTable_pic18_grammar_577, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_587, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_592, nullptr, gSuccessorTable_pic18_grammar_594, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_600, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_614, nullptr, 
   gSuccessorTable_pic18_grammar_616, gSuccessorTable_pic18_grammar_617, gSuccessorTable_pic18_grammar_618, gSuccessorTable_pic18_grammar_619, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_622, gSuccessorTable_pic18_grammar_623, 
-  gSuccessorTable_pic18_grammar_624, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_629, NULL, gSuccessorTable_pic18_grammar_631, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_634, NULL, 
-  gSuccessorTable_pic18_grammar_636, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_640, NULL, gSuccessorTable_pic18_grammar_642, gSuccessorTable_pic18_grammar_643, 
-  gSuccessorTable_pic18_grammar_644, NULL, NULL, gSuccessorTable_pic18_grammar_647, 
-  gSuccessorTable_pic18_grammar_648, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_654, gSuccessorTable_pic18_grammar_655, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_664, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_669, NULL, gSuccessorTable_pic18_grammar_671, 
-  gSuccessorTable_pic18_grammar_672, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_679, 
-  gSuccessorTable_pic18_grammar_680, gSuccessorTable_pic18_grammar_681, gSuccessorTable_pic18_grammar_682, NULL, 
-  gSuccessorTable_pic18_grammar_684, gSuccessorTable_pic18_grammar_685, NULL, gSuccessorTable_pic18_grammar_687, 
-  NULL, gSuccessorTable_pic18_grammar_689, gSuccessorTable_pic18_grammar_690, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_693, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_699, 
-  gSuccessorTable_pic18_grammar_700, gSuccessorTable_pic18_grammar_701, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_705, gSuccessorTable_pic18_grammar_706, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_709, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_713, gSuccessorTable_pic18_grammar_714, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_717, gSuccessorTable_pic18_grammar_718, NULL, 
-  gSuccessorTable_pic18_grammar_720, NULL, gSuccessorTable_pic18_grammar_722, gSuccessorTable_pic18_grammar_723, 
-  gSuccessorTable_pic18_grammar_724, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_746, gSuccessorTable_pic18_grammar_747, 
-  gSuccessorTable_pic18_grammar_748, gSuccessorTable_pic18_grammar_749, NULL, gSuccessorTable_pic18_grammar_751, 
-  gSuccessorTable_pic18_grammar_752, NULL, gSuccessorTable_pic18_grammar_754, NULL, 
-  gSuccessorTable_pic18_grammar_756, NULL, NULL, gSuccessorTable_pic18_grammar_759, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_765, gSuccessorTable_pic18_grammar_766, gSuccessorTable_pic18_grammar_767, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_772, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_776, NULL, gSuccessorTable_pic18_grammar_778, NULL, 
-  gSuccessorTable_pic18_grammar_780, gSuccessorTable_pic18_grammar_781, gSuccessorTable_pic18_grammar_782, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_785, gSuccessorTable_pic18_grammar_786, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_789, gSuccessorTable_pic18_grammar_790, gSuccessorTable_pic18_grammar_791, 
-  NULL, gSuccessorTable_pic18_grammar_793, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_796, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_818, NULL, 
-  gSuccessorTable_pic18_grammar_820, NULL, gSuccessorTable_pic18_grammar_822, NULL, 
-  gSuccessorTable_pic18_grammar_824, gSuccessorTable_pic18_grammar_825, gSuccessorTable_pic18_grammar_826, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_834, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_838, gSuccessorTable_pic18_grammar_839, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_844, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_848, NULL, gSuccessorTable_pic18_grammar_850, NULL, 
-  gSuccessorTable_pic18_grammar_852, gSuccessorTable_pic18_grammar_853, gSuccessorTable_pic18_grammar_854, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_858, gSuccessorTable_pic18_grammar_859, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_864, NULL, gSuccessorTable_pic18_grammar_866, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_873, gSuccessorTable_pic18_grammar_874, NULL, 
-  gSuccessorTable_pic18_grammar_876, NULL, gSuccessorTable_pic18_grammar_878, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_881, gSuccessorTable_pic18_grammar_882, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_885, NULL, gSuccessorTable_pic18_grammar_887, 
-  NULL, gSuccessorTable_pic18_grammar_889, NULL, NULL, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_622, gSuccessorTable_pic18_grammar_623, 
+  gSuccessorTable_pic18_grammar_624, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_629, nullptr, gSuccessorTable_pic18_grammar_631, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_634, nullptr, 
+  gSuccessorTable_pic18_grammar_636, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_640, nullptr, gSuccessorTable_pic18_grammar_642, gSuccessorTable_pic18_grammar_643, 
+  gSuccessorTable_pic18_grammar_644, nullptr, nullptr, gSuccessorTable_pic18_grammar_647, 
+  gSuccessorTable_pic18_grammar_648, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_654, gSuccessorTable_pic18_grammar_655, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_664, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_669, nullptr, gSuccessorTable_pic18_grammar_671, 
+  gSuccessorTable_pic18_grammar_672, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_679, 
+  gSuccessorTable_pic18_grammar_680, gSuccessorTable_pic18_grammar_681, gSuccessorTable_pic18_grammar_682, nullptr, 
+  gSuccessorTable_pic18_grammar_684, gSuccessorTable_pic18_grammar_685, nullptr, gSuccessorTable_pic18_grammar_687, 
+  nullptr, gSuccessorTable_pic18_grammar_689, gSuccessorTable_pic18_grammar_690, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_693, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_699, 
+  gSuccessorTable_pic18_grammar_700, gSuccessorTable_pic18_grammar_701, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_705, gSuccessorTable_pic18_grammar_706, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_709, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_713, gSuccessorTable_pic18_grammar_714, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_717, gSuccessorTable_pic18_grammar_718, nullptr, 
+  gSuccessorTable_pic18_grammar_720, nullptr, gSuccessorTable_pic18_grammar_722, gSuccessorTable_pic18_grammar_723, 
+  gSuccessorTable_pic18_grammar_724, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_746, gSuccessorTable_pic18_grammar_747, 
+  gSuccessorTable_pic18_grammar_748, gSuccessorTable_pic18_grammar_749, nullptr, gSuccessorTable_pic18_grammar_751, 
+  gSuccessorTable_pic18_grammar_752, nullptr, gSuccessorTable_pic18_grammar_754, nullptr, 
+  gSuccessorTable_pic18_grammar_756, nullptr, nullptr, gSuccessorTable_pic18_grammar_759, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_765, gSuccessorTable_pic18_grammar_766, gSuccessorTable_pic18_grammar_767, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_772, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_776, nullptr, gSuccessorTable_pic18_grammar_778, nullptr, 
+  gSuccessorTable_pic18_grammar_780, gSuccessorTable_pic18_grammar_781, gSuccessorTable_pic18_grammar_782, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_785, gSuccessorTable_pic18_grammar_786, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_789, gSuccessorTable_pic18_grammar_790, gSuccessorTable_pic18_grammar_791, 
+  nullptr, gSuccessorTable_pic18_grammar_793, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_796, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_818, nullptr, 
+  gSuccessorTable_pic18_grammar_820, nullptr, gSuccessorTable_pic18_grammar_822, nullptr, 
+  gSuccessorTable_pic18_grammar_824, gSuccessorTable_pic18_grammar_825, gSuccessorTable_pic18_grammar_826, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_834, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_838, gSuccessorTable_pic18_grammar_839, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_844, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_848, nullptr, gSuccessorTable_pic18_grammar_850, nullptr, 
+  gSuccessorTable_pic18_grammar_852, gSuccessorTable_pic18_grammar_853, gSuccessorTable_pic18_grammar_854, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_858, gSuccessorTable_pic18_grammar_859, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_864, nullptr, gSuccessorTable_pic18_grammar_866, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_873, gSuccessorTable_pic18_grammar_874, nullptr, 
+  gSuccessorTable_pic18_grammar_876, nullptr, gSuccessorTable_pic18_grammar_878, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_881, gSuccessorTable_pic18_grammar_882, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_885, nullptr, gSuccessorTable_pic18_grammar_887, 
+  nullptr, gSuccessorTable_pic18_grammar_889, nullptr, nullptr, 
   gSuccessorTable_pic18_grammar_892, gSuccessorTable_pic18_grammar_893, gSuccessorTable_pic18_grammar_894, gSuccessorTable_pic18_grammar_895, 
-  gSuccessorTable_pic18_grammar_896, NULL, NULL, gSuccessorTable_pic18_grammar_899, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_907, 
-  gSuccessorTable_pic18_grammar_908, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_913, NULL, gSuccessorTable_pic18_grammar_915, 
-  gSuccessorTable_pic18_grammar_916, NULL, gSuccessorTable_pic18_grammar_918, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_925, gSuccessorTable_pic18_grammar_926, NULL, 
-  gSuccessorTable_pic18_grammar_928, NULL, gSuccessorTable_pic18_grammar_930, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_933, gSuccessorTable_pic18_grammar_934, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_939, 
-  NULL, gSuccessorTable_pic18_grammar_941, NULL, gSuccessorTable_pic18_grammar_943, 
-  gSuccessorTable_pic18_grammar_944, NULL, gSuccessorTable_pic18_grammar_946, gSuccessorTable_pic18_grammar_947, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_952, NULL, gSuccessorTable_pic18_grammar_954, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_957, NULL, gSuccessorTable_pic18_grammar_959, 
-  gSuccessorTable_pic18_grammar_960, gSuccessorTable_pic18_grammar_961, gSuccessorTable_pic18_grammar_962, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_979, 
-  gSuccessorTable_pic18_grammar_980, NULL, gSuccessorTable_pic18_grammar_982, gSuccessorTable_pic18_grammar_983, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_988, NULL, gSuccessorTable_pic18_grammar_990, NULL, 
-  gSuccessorTable_pic18_grammar_992, NULL, gSuccessorTable_pic18_grammar_994, gSuccessorTable_pic18_grammar_995, 
-  gSuccessorTable_pic18_grammar_996, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_1004, gSuccessorTable_pic18_grammar_1005, gSuccessorTable_pic18_grammar_1006, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_1010, NULL, 
-  gSuccessorTable_pic18_grammar_1012, NULL, gSuccessorTable_pic18_grammar_1014, gSuccessorTable_pic18_grammar_1015, 
+  gSuccessorTable_pic18_grammar_896, nullptr, nullptr, gSuccessorTable_pic18_grammar_899, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_907, 
+  gSuccessorTable_pic18_grammar_908, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_913, nullptr, gSuccessorTable_pic18_grammar_915, 
+  gSuccessorTable_pic18_grammar_916, nullptr, gSuccessorTable_pic18_grammar_918, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_925, gSuccessorTable_pic18_grammar_926, nullptr, 
+  gSuccessorTable_pic18_grammar_928, nullptr, gSuccessorTable_pic18_grammar_930, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_933, gSuccessorTable_pic18_grammar_934, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_939, 
+  nullptr, gSuccessorTable_pic18_grammar_941, nullptr, gSuccessorTable_pic18_grammar_943, 
+  gSuccessorTable_pic18_grammar_944, nullptr, gSuccessorTable_pic18_grammar_946, gSuccessorTable_pic18_grammar_947, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_952, nullptr, gSuccessorTable_pic18_grammar_954, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_957, nullptr, gSuccessorTable_pic18_grammar_959, 
+  gSuccessorTable_pic18_grammar_960, gSuccessorTable_pic18_grammar_961, gSuccessorTable_pic18_grammar_962, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_979, 
+  gSuccessorTable_pic18_grammar_980, nullptr, gSuccessorTable_pic18_grammar_982, gSuccessorTable_pic18_grammar_983, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_988, nullptr, gSuccessorTable_pic18_grammar_990, nullptr, 
+  gSuccessorTable_pic18_grammar_992, nullptr, gSuccessorTable_pic18_grammar_994, gSuccessorTable_pic18_grammar_995, 
+  gSuccessorTable_pic18_grammar_996, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_1004, gSuccessorTable_pic18_grammar_1005, gSuccessorTable_pic18_grammar_1006, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_1010, nullptr, 
+  gSuccessorTable_pic18_grammar_1012, nullptr, gSuccessorTable_pic18_grammar_1014, gSuccessorTable_pic18_grammar_1015, 
   gSuccessorTable_pic18_grammar_1016, gSuccessorTable_pic18_grammar_1017, gSuccessorTable_pic18_grammar_1018, gSuccessorTable_pic18_grammar_1019, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_1027, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_1030, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_1034, gSuccessorTable_pic18_grammar_1035, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_1038, gSuccessorTable_pic18_grammar_1039, 
-  gSuccessorTable_pic18_grammar_1040, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_1046, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_1049, gSuccessorTable_pic18_grammar_1050, gSuccessorTable_pic18_grammar_1051, 
-  NULL, gSuccessorTable_pic18_grammar_1053, gSuccessorTable_pic18_grammar_1054, NULL, 
-  gSuccessorTable_pic18_grammar_1056, NULL, NULL, gSuccessorTable_pic18_grammar_1059, 
-  NULL, NULL, gSuccessorTable_pic18_grammar_1062, gSuccessorTable_pic18_grammar_1063, 
-  gSuccessorTable_pic18_grammar_1064, NULL, gSuccessorTable_pic18_grammar_1066, NULL, 
-  NULL, gSuccessorTable_pic18_grammar_1069, gSuccessorTable_pic18_grammar_1070, NULL, 
-  gSuccessorTable_pic18_grammar_1072, NULL, gSuccessorTable_pic18_grammar_1074, gSuccessorTable_pic18_grammar_1075, 
-  NULL, gSuccessorTable_pic18_grammar_1077, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_1080, gSuccessorTable_pic18_grammar_1081, gSuccessorTable_pic18_grammar_1082, NULL, 
-  gSuccessorTable_pic18_grammar_1084, gSuccessorTable_pic18_grammar_1085, NULL, gSuccessorTable_pic18_grammar_1087, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_grammar_1091, 
-  gSuccessorTable_pic18_grammar_1092, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_1100, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_grammar_1104, NULL, gSuccessorTable_pic18_grammar_1106, NULL} ;
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_1027, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_1030, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_1034, gSuccessorTable_pic18_grammar_1035, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_1038, gSuccessorTable_pic18_grammar_1039, 
+  gSuccessorTable_pic18_grammar_1040, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_1046, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_1049, gSuccessorTable_pic18_grammar_1050, gSuccessorTable_pic18_grammar_1051, 
+  nullptr, gSuccessorTable_pic18_grammar_1053, gSuccessorTable_pic18_grammar_1054, nullptr, 
+  gSuccessorTable_pic18_grammar_1056, nullptr, nullptr, gSuccessorTable_pic18_grammar_1059, 
+  nullptr, nullptr, gSuccessorTable_pic18_grammar_1062, gSuccessorTable_pic18_grammar_1063, 
+  gSuccessorTable_pic18_grammar_1064, nullptr, gSuccessorTable_pic18_grammar_1066, nullptr, 
+  nullptr, gSuccessorTable_pic18_grammar_1069, gSuccessorTable_pic18_grammar_1070, nullptr, 
+  gSuccessorTable_pic18_grammar_1072, nullptr, gSuccessorTable_pic18_grammar_1074, gSuccessorTable_pic18_grammar_1075, 
+  nullptr, gSuccessorTable_pic18_grammar_1077, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_1080, gSuccessorTable_pic18_grammar_1081, gSuccessorTable_pic18_grammar_1082, nullptr, 
+  gSuccessorTable_pic18_grammar_1084, gSuccessorTable_pic18_grammar_1085, nullptr, gSuccessorTable_pic18_grammar_1087, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_grammar_1091, 
+  gSuccessorTable_pic18_grammar_1092, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_1100, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_grammar_1104, nullptr, gSuccessorTable_pic18_grammar_1106, nullptr} ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
@@ -38267,7 +38064,7 @@ gSuccessorTable_pic18_grammar_0, NULL, NULL, NULL,
 //                                                                                                                      
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const int16_t gProductionsTable_pic18_grammar [598 * 2] = {
+static const int32_t gProductionsTable_pic18_grammar [598 * 2] = {
   7, 1,
   8, 3,
   9, 6,
@@ -38875,34 +38672,26 @@ static const int16_t gProductionsTable_pic18_grammar [598 * 2] = {
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_configuration_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 46 :
-      rule_communs_configuration_5F_definition_i0_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 46) {
+  rule_communs_configuration_5F_definition_i0_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_configuration_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 46 :
-      rule_communs_configuration_5F_definition_i0_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 46) {
+  rule_communs_configuration_5F_definition_i0_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_configuration_5F_definition_ (GALGAS_configDefinitionList &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 46 :
-      rule_communs_configuration_5F_definition_i0_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 46) {
+  rule_communs_configuration_5F_definition_i0_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -38914,34 +38703,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_configuration_5F_definition_ (GALGAS_co
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_ram_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 48 :
-      rule_communs_ram_5F_definition_i2_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 48) {
+  rule_communs_ram_5F_definition_i2_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_ram_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 48 :
-      rule_communs_ram_5F_definition_i2_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 48) {
+  rule_communs_ram_5F_definition_i2_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_ram_5F_definition_ (GALGAS_ramDefinitionList &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 48 :
-      rule_communs_ram_5F_definition_i2_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 48) {
+  rule_communs_ram_5F_definition_i2_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -38953,34 +38734,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_ram_5F_definition_ (GALGAS_ramDefinitio
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_constant_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 49 :
-      rule_communs_constant_5F_definition_i3_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 49) {
+  rule_communs_constant_5F_definition_i3_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_constant_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 49 :
-      rule_communs_constant_5F_definition_i3_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 49) {
+  rule_communs_constant_5F_definition_i3_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_constant_5F_definition_ (GALGAS_constantDefinitionList &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 49 :
-      rule_communs_constant_5F_definition_i3_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 49) {
+  rule_communs_constant_5F_definition_i3_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -38992,34 +38765,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_constant_5F_definition_ (GALGAS_constan
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_expression_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 50 :
-      rule_communs_immediate_5F_expression_i4_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 50) {
+  rule_communs_immediate_5F_expression_i4_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_expression_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 50 :
-      rule_communs_immediate_5F_expression_i4_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 50) {
+  rule_communs_immediate_5F_expression_i4_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_expression_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 50 :
-      rule_communs_immediate_5F_expression_i4_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 50) {
+  rule_communs_immediate_5F_expression_i4_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39031,34 +38796,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_expression_ (GALGAS_immedi
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_register_5F_parsing_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 56 :
-      rule_communs_register_5F_parsing_i10_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 56) {
+  rule_communs_register_5F_parsing_i10_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_register_5F_parsing_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 56 :
-      rule_communs_register_5F_parsing_i10_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 56) {
+  rule_communs_register_5F_parsing_i10_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_register_5F_parsing_ (GALGAS_registerExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 56 :
-      rule_communs_register_5F_parsing_i10_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 56) {
+  rule_communs_register_5F_parsing_i10_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39070,34 +38827,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_register_5F_parsing_ (GALGAS_registerEx
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_optional_5F_w_5F_as_5F_dest_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 60 :
-      rule_communs_optional_5F_w_5F_as_5F_dest_i14_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 60) {
+  rule_communs_optional_5F_w_5F_as_5F_dest_i14_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_optional_5F_w_5F_as_5F_dest_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 60 :
-      rule_communs_optional_5F_w_5F_as_5F_dest_i14_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 60) {
+  rule_communs_optional_5F_w_5F_as_5F_dest_i14_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_optional_5F_w_5F_as_5F_dest_ (GALGAS_bool &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 60 :
-      rule_communs_optional_5F_w_5F_as_5F_dest_i14_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 60) {
+  rule_communs_optional_5F_w_5F_as_5F_dest_i14_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39156,6 +38905,7 @@ void cGrammar_pic_31__38__5F_grammar::nt_bit_5F_number_5F_parsing_ (GALGAS_bitNu
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -39166,24 +38916,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_bit_5F_number_5F_parsing_ (GALGAS_bitNu
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_body_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 0 :
-      rule_pic_31__38__5F_syntax_body_i0_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 0) {
+  rule_pic_31__38__5F_syntax_body_i0_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_body_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 0 :
-      rule_pic_31__38__5F_syntax_body_i0_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 0) {
+  rule_pic_31__38__5F_syntax_body_i0_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -39201,11 +38945,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_body_ (GALGAS_pic_31__38_InterruptDefin
                                 GALGAS_bool &  parameter_12,
                                 GALGAS_bool &  parameter_13,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 0 :
-      rule_pic_31__38__5F_syntax_body_i0_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, parameter_7, parameter_8, parameter_9, parameter_10, parameter_11, parameter_12, parameter_13, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 0) {
+  rule_pic_31__38__5F_syntax_body_i0_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, parameter_7, parameter_8, parameter_9, parameter_10, parameter_11, parameter_12, parameter_13, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39217,34 +38959,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_body_ (GALGAS_pic_31__38_InterruptDefin
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_checkpic_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 1 :
-      rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 1) {
+  rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_checkpic_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 1 :
-      rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 1) {
+  rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_checkpic_5F_definition_ (GALGAS_checkpicList &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 1 :
-      rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 1) {
+  rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39294,6 +39028,7 @@ void cGrammar_pic_31__38__5F_grammar::nt_data_5F_definition_ (GALGAS_dataList & 
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -39304,24 +39039,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_data_5F_definition_ (GALGAS_dataList & 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_instruction_5F_list_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 4 :
-      rule_pic_31__38__5F_syntax_instruction_5F_list_i4_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 4) {
+  rule_pic_31__38__5F_syntax_instruction_5F_list_i4_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_instruction_5F_list_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 4 :
-      rule_pic_31__38__5F_syntax_instruction_5F_list_i4_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 4) {
+  rule_pic_31__38__5F_syntax_instruction_5F_list_i4_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -39330,11 +39059,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_instruction_5F_list_ (GALGAS_pic_31__38
                                 GALGAS_bool &  parameter_3,
                                 GALGAS_labelMap &  parameter_4,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 4 :
-      rule_pic_31__38__5F_syntax_instruction_5F_list_i4_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 4) {
+  rule_pic_31__38__5F_syntax_instruction_5F_list_i4_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39346,24 +39073,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_instruction_5F_list_ (GALGAS_pic_31__38
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_interrupt_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 5 :
-      rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 5) {
+  rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_interrupt_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 5 :
-      rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 5) {
+  rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -39371,11 +39092,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_interrupt_5F_definition_ (GALGAS_pic_31
                                 GALGAS_bool &  parameter_2,
                                 GALGAS_bool &  parameter_3,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 5 :
-      rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_(parameter_1, parameter_2, parameter_3, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 5) {
+  rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_(parameter_1, parameter_2, parameter_3, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39387,24 +39106,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_interrupt_5F_definition_ (GALGAS_pic_31
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_routine_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 6 :
-      rule_pic_31__38__5F_syntax_routine_5F_definition_i6_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 6) {
+  rule_pic_31__38__5F_syntax_routine_5F_definition_i6_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_routine_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 6 :
-      rule_pic_31__38__5F_syntax_routine_5F_definition_i6_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 6) {
+  rule_pic_31__38__5F_syntax_routine_5F_definition_i6_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -39412,11 +39125,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_routine_5F_definition_ (GALGAS_pic_31__
                                 GALGAS_bool &  parameter_2,
                                 GALGAS_bool &  parameter_3,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 6 :
-      rule_pic_31__38__5F_syntax_routine_5F_definition_i6_(parameter_1, parameter_2, parameter_3, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 6) {
+  rule_pic_31__38__5F_syntax_routine_5F_definition_i6_(parameter_1, parameter_2, parameter_3, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39475,6 +39186,7 @@ void cGrammar_pic_31__38__5F_grammar::nt_condition_5F_factor_ (GALGAS_pic_31__38
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -39485,34 +39197,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_condition_5F_factor_ (GALGAS_pic_31__38
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_condition_5F_expression_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 10 :
-      rule_pic_31__38__5F_syntax_condition_5F_expression_i10_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 10) {
+  rule_pic_31__38__5F_syntax_condition_5F_expression_i10_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_condition_5F_expression_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 10 :
-      rule_pic_31__38__5F_syntax_condition_5F_expression_i10_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 10) {
+  rule_pic_31__38__5F_syntax_condition_5F_expression_i10_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_condition_5F_expression_ (GALGAS_pic_31__38_ConditionExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 10 :
-      rule_pic_31__38__5F_syntax_condition_5F_expression_i10_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 10) {
+  rule_pic_31__38__5F_syntax_condition_5F_expression_i10_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39524,34 +39228,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_condition_5F_expression_ (GALGAS_pic_31
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_condition_5F_term_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 11 :
-      rule_pic_31__38__5F_syntax_condition_5F_term_i11_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 11) {
+  rule_pic_31__38__5F_syntax_condition_5F_term_i11_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_condition_5F_term_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 11 :
-      rule_pic_31__38__5F_syntax_condition_5F_term_i11_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 11) {
+  rule_pic_31__38__5F_syntax_condition_5F_term_i11_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_condition_5F_term_ (GALGAS_pic_31__38_ConditionExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 11 :
-      rule_pic_31__38__5F_syntax_condition_5F_term_i11_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 11) {
+  rule_pic_31__38__5F_syntax_condition_5F_term_i11_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39610,6 +39306,7 @@ void cGrammar_pic_31__38__5F_grammar::nt_block_5F_termination_ (GALGAS_abstractB
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -39620,24 +39317,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_block_5F_termination_ (GALGAS_abstractB
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_structured_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 15 :
-      rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 15) {
+  rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_structured_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 15 :
-      rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 15) {
+  rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -39646,11 +39337,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_structured_5F_instruction_ (GALGAS_pic_
                                 GALGAS_bool &  parameter_3,
                                 GALGAS_labelMap &  parameter_4,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 15 :
-      rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 15) {
+  rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39662,24 +39351,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_structured_5F_instruction_ (GALGAS_pic_
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_structured_5F_if_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 16 :
-      rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 16) {
+  rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_structured_5F_if_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 16 :
-      rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 16) {
+  rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -39689,11 +39372,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_structured_5F_if_5F_instruction_ (const
                                 GALGAS_bool &  parameter_4,
                                 GALGAS_labelMap &  parameter_5,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 16 :
-      rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 16) {
+  rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39705,34 +39386,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_structured_5F_if_5F_instruction_ (const
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_simple_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 17 :
-      rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 17) {
+  rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_simple_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 17 :
-      rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 17) {
+  rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_simple_5F_instruction_ (GALGAS_pic_31__38_PiccoloSimpleInstruction &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 17 :
-      rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 17) {
+  rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -39799,6 +39472,7 @@ void cGrammar_pic_31__38__5F_grammar::nt_start_5F_symbol_ (C_Lexique_piccolo_5F_
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -39827,6 +39501,7 @@ void cGrammar_pic_31__38__5F_grammar::nt_start_5F_symbol_importBootloaderSpecifi
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -40027,34 +39702,26 @@ void cGrammar_pic_31__38__5F_grammar::_performSourceStringParsing_importBootload
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_declaration_5F_in_5F_ram_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 47 :
-      rule_communs_declaration_5F_in_5F_ram_i1_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 47) {
+  rule_communs_declaration_5F_in_5F_ram_i1_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_declaration_5F_in_5F_ram_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 47 :
-      rule_communs_declaration_5F_in_5F_ram_i1_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 47) {
+  rule_communs_declaration_5F_in_5F_ram_i1_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_declaration_5F_in_5F_ram_ (GALGAS_declarationInRam &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 47 :
-      rule_communs_declaration_5F_in_5F_ram_i1_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 47) {
+  rule_communs_declaration_5F_in_5F_ram_i1_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40066,24 +39733,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_declaration_5F_in_5F_ram_ (GALGAS_decla
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_instruction_5F_list_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 20 :
-      rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 20) {
+  rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_instruction_5F_list_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 20 :
-      rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 20) {
+  rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -40092,11 +39753,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_instruction_5F_list_ (GALGA
                                 GALGAS_bool &  parameter_3,
                                 GALGAS_labelMap &  parameter_4,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 20 :
-      rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 20) {
+  rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40108,24 +39767,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_instruction_5F_list_ (GALGA
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_interrupt_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 21 :
-      rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 21) {
+  rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_interrupt_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 21 :
-      rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 21) {
+  rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -40133,11 +39786,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_interrupt_5F_definition_ (G
                                 GALGAS_bool &  parameter_2,
                                 GALGAS_bool &  parameter_3,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 21 :
-      rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_(parameter_1, parameter_2, parameter_3, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 21) {
+  rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_(parameter_1, parameter_2, parameter_3, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40149,24 +39800,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_interrupt_5F_definition_ (G
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_routine_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 22 :
-      rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 22) {
+  rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_routine_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 22 :
-      rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 22) {
+  rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -40174,11 +39819,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_routine_5F_definition_ (GAL
                                 GALGAS_bool &  parameter_2,
                                 GALGAS_bool &  parameter_3,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 22 :
-      rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_(parameter_1, parameter_2, parameter_3, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 22) {
+  rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_(parameter_1, parameter_2, parameter_3, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40190,24 +39833,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_routine_5F_definition_ (GAL
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_structured_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 23 :
-      rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 23) {
+  rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_structured_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 23 :
-      rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 23) {
+  rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -40216,11 +39853,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_structured_5F_instruction_ 
                                 GALGAS_bool &  parameter_3,
                                 GALGAS_labelMap &  parameter_4,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 23 :
-      rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 23) {
+  rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40232,24 +39867,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_structured_5F_instruction_ 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_structured_5F_if_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 24 :
-      rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 24) {
+  rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_structured_5F_if_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 24 :
-      rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 24) {
+  rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -40259,11 +39888,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_structured_5F_if_5F_instruc
                                 GALGAS_bool &  parameter_4,
                                 GALGAS_labelMap &  parameter_5,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 24 :
-      rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 24) {
+  rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40275,34 +39902,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_structured_5F_if_5F_instruc
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_simple_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 25 :
-      rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 25) {
+  rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_simple_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 25 :
-      rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 25) {
+  rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_simple_5F_instruction_ (GALGAS_midrange_5F_instruction &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 25 :
-      rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 25) {
+  rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40361,6 +39980,7 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_condition_5F_factor_ (GALGA
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -40371,34 +39991,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_condition_5F_factor_ (GALGA
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_condition_5F_expression_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 29 :
-      rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 29) {
+  rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_condition_5F_expression_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 29 :
-      rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 29) {
+  rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_condition_5F_expression_ (GALGAS_midrange_5F_conditionExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 29 :
-      rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 29) {
+  rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40410,34 +40022,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_condition_5F_expression_ (G
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_condition_5F_term_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 30 :
-      rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 30) {
+  rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_condition_5F_term_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 30 :
-      rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 30) {
+  rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_condition_5F_term_ (GALGAS_midrange_5F_conditionExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 30 :
-      rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 30) {
+  rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40449,24 +40053,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_midrange_5F_condition_5F_term_ (GALGAS_
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_section_5F_list_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 31 :
-      rule_baseline_5F_syntax_section_5F_list_i0_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 31) {
+  rule_baseline_5F_syntax_section_5F_list_i0_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_section_5F_list_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 31 :
-      rule_baseline_5F_syntax_section_5F_list_i0_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 31) {
+  rule_baseline_5F_syntax_section_5F_list_i0_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -40477,11 +40075,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_section_5F_list_ (GALGAS_baseline_5F_ro
                                 GALGAS_configDefinitionList &  parameter_5,
                                 GALGAS_constantDefinitionList &  parameter_6,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 31 :
-      rule_baseline_5F_syntax_section_5F_list_i0_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 31) {
+  rule_baseline_5F_syntax_section_5F_list_i0_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40493,35 +40089,27 @@ void cGrammar_pic_31__38__5F_grammar::nt_section_5F_list_ (GALGAS_baseline_5F_ro
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_instruction_5F_list_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 32 :
-      rule_baseline_5F_syntax_baseline_5F_instruction_5F_list_i1_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 32) {
+  rule_baseline_5F_syntax_baseline_5F_instruction_5F_list_i1_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_instruction_5F_list_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 32 :
-      rule_baseline_5F_syntax_baseline_5F_instruction_5F_list_i1_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 32) {
+  rule_baseline_5F_syntax_baseline_5F_instruction_5F_list_i1_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_instruction_5F_list_ (GALGAS_baseline_5F_instructionList &  parameter_1,
                                 GALGAS_labelMap &  parameter_2,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 32 :
-      rule_baseline_5F_syntax_baseline_5F_instruction_5F_list_i1_(parameter_1, parameter_2, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 32) {
+  rule_baseline_5F_syntax_baseline_5F_instruction_5F_list_i1_(parameter_1, parameter_2, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40533,34 +40121,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_instruction_5F_list_ (GALGA
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_routine_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 33 :
-      rule_baseline_5F_syntax_baseline_5F_routine_5F_definition_i2_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 33) {
+  rule_baseline_5F_syntax_baseline_5F_routine_5F_definition_i2_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_routine_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 33 :
-      rule_baseline_5F_syntax_baseline_5F_routine_5F_definition_i2_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 33) {
+  rule_baseline_5F_syntax_baseline_5F_routine_5F_definition_i2_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_routine_5F_definition_ (GALGAS_baseline_5F_routineDefinitionList &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 33 :
-      rule_baseline_5F_syntax_baseline_5F_routine_5F_definition_i2_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 33) {
+  rule_baseline_5F_syntax_baseline_5F_routine_5F_definition_i2_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40572,35 +40152,27 @@ void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_routine_5F_definition_ (GAL
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_structured_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 34 :
-      rule_baseline_5F_syntax_baseline_5F_structured_5F_instruction_i3_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 34) {
+  rule_baseline_5F_syntax_baseline_5F_structured_5F_instruction_i3_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_structured_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 34 :
-      rule_baseline_5F_syntax_baseline_5F_structured_5F_instruction_i3_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 34) {
+  rule_baseline_5F_syntax_baseline_5F_structured_5F_instruction_i3_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_structured_5F_instruction_ (GALGAS_baseline_5F_instruction &  parameter_1,
                                 GALGAS_labelMap &  parameter_2,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 34 :
-      rule_baseline_5F_syntax_baseline_5F_structured_5F_instruction_i3_(parameter_1, parameter_2, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 34) {
+  rule_baseline_5F_syntax_baseline_5F_structured_5F_instruction_i3_(parameter_1, parameter_2, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40612,24 +40184,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_structured_5F_instruction_ 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_structured_5F_if_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 35 :
-      rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 35) {
+  rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_structured_5F_if_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 35 :
-      rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 35) {
+  rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -40637,11 +40203,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_structured_5F_if_5F_instruc
                                 GALGAS_baseline_5F_instruction &  parameter_2,
                                 GALGAS_labelMap &  parameter_3,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 35 :
-      rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_(parameter_1, parameter_2, parameter_3, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 35) {
+  rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_(parameter_1, parameter_2, parameter_3, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40653,34 +40217,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_structured_5F_if_5F_instruc
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_simple_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 36 :
-      rule_baseline_5F_syntax_baseline_5F_simple_5F_instruction_i5_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 36) {
+  rule_baseline_5F_syntax_baseline_5F_simple_5F_instruction_i5_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_simple_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 36 :
-      rule_baseline_5F_syntax_baseline_5F_simple_5F_instruction_i5_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 36) {
+  rule_baseline_5F_syntax_baseline_5F_simple_5F_instruction_i5_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_simple_5F_instruction_ (GALGAS_baseline_5F_instruction &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 36 :
-      rule_baseline_5F_syntax_baseline_5F_simple_5F_instruction_i5_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 36) {
+  rule_baseline_5F_syntax_baseline_5F_simple_5F_instruction_i5_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40739,6 +40295,7 @@ void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_condition_5F_factor_ (GALGA
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -40749,34 +40306,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_condition_5F_factor_ (GALGA
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_condition_5F_expression_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 40 :
-      rule_baseline_5F_syntax_baseline_5F_condition_5F_expression_i9_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 40) {
+  rule_baseline_5F_syntax_baseline_5F_condition_5F_expression_i9_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_condition_5F_expression_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 40 :
-      rule_baseline_5F_syntax_baseline_5F_condition_5F_expression_i9_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 40) {
+  rule_baseline_5F_syntax_baseline_5F_condition_5F_expression_i9_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_condition_5F_expression_ (GALGAS_baseline_5F_conditionExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 40 :
-      rule_baseline_5F_syntax_baseline_5F_condition_5F_expression_i9_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 40) {
+  rule_baseline_5F_syntax_baseline_5F_condition_5F_expression_i9_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40788,34 +40337,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_condition_5F_expression_ (G
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_condition_5F_term_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 41 :
-      rule_baseline_5F_syntax_baseline_5F_condition_5F_term_i10_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 41) {
+  rule_baseline_5F_syntax_baseline_5F_condition_5F_term_i10_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_condition_5F_term_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 41 :
-      rule_baseline_5F_syntax_baseline_5F_condition_5F_term_i10_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 41) {
+  rule_baseline_5F_syntax_baseline_5F_condition_5F_term_i10_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_condition_5F_term_ (GALGAS_baseline_5F_conditionExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 41 :
-      rule_baseline_5F_syntax_baseline_5F_condition_5F_term_i10_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 41) {
+  rule_baseline_5F_syntax_baseline_5F_condition_5F_term_i10_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40827,34 +40368,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_baseline_5F_condition_5F_term_ (GALGAS_
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_routine_5F_declaration_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 45 :
-      rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 45) {
+  rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_routine_5F_declaration_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 45 :
-      rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 45) {
+  rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_routine_5F_declaration_ (GALGAS_routineDeclarationList &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 45 :
-      rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 45) {
+  rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40866,24 +40399,18 @@ void cGrammar_pic_31__38__5F_grammar::nt_routine_5F_declaration_ (GALGAS_routine
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_parse_5F_bootloader_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 43 :
-      rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 43) {
+  rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_parse_5F_bootloader_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 43 :
-      rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 43) {
+  rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -40900,11 +40427,9 @@ void cGrammar_pic_31__38__5F_grammar::nt_parse_5F_bootloader_ (GALGAS_lstring & 
                                 GALGAS_ramBankTable &  parameter_11,
                                 GALGAS_registerTable &  parameter_12,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 43 :
-      rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, parameter_7, parameter_8, parameter_9, parameter_10, parameter_11, parameter_12, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 43) {
+  rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, parameter_7, parameter_8, parameter_9, parameter_10, parameter_11, parameter_12, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40916,34 +40441,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_parse_5F_bootloader_ (GALGAS_lstring & 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_bitwise_5F_term_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 51 :
-      rule_communs_immediate_5F_bitwise_5F_term_i5_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 51) {
+  rule_communs_immediate_5F_bitwise_5F_term_i5_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_bitwise_5F_term_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 51 :
-      rule_communs_immediate_5F_bitwise_5F_term_i5_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 51) {
+  rule_communs_immediate_5F_bitwise_5F_term_i5_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_bitwise_5F_term_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 51 :
-      rule_communs_immediate_5F_bitwise_5F_term_i5_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 51) {
+  rule_communs_immediate_5F_bitwise_5F_term_i5_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40955,34 +40472,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_bitwise_5F_term_ (GALGAS_i
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_bitwise_5F_factor_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 52 :
-      rule_communs_immediate_5F_bitwise_5F_factor_i6_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 52) {
+  rule_communs_immediate_5F_bitwise_5F_factor_i6_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_bitwise_5F_factor_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 52 :
-      rule_communs_immediate_5F_bitwise_5F_factor_i6_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 52) {
+  rule_communs_immediate_5F_bitwise_5F_factor_i6_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_bitwise_5F_factor_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 52 :
-      rule_communs_immediate_5F_bitwise_5F_factor_i6_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 52) {
+  rule_communs_immediate_5F_bitwise_5F_factor_i6_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -40994,34 +40503,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_bitwise_5F_factor_ (GALGAS
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_term_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 53 :
-      rule_communs_immediate_5F_term_i7_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 53) {
+  rule_communs_immediate_5F_term_i7_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_term_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 53 :
-      rule_communs_immediate_5F_term_i7_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 53) {
+  rule_communs_immediate_5F_term_i7_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_term_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 53 :
-      rule_communs_immediate_5F_term_i7_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 53) {
+  rule_communs_immediate_5F_term_i7_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -41033,34 +40534,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_term_ (GALGAS_immediatExpr
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_factor_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 54 :
-      rule_communs_immediate_5F_factor_i8_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 54) {
+  rule_communs_immediate_5F_factor_i8_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_factor_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 54 :
-      rule_communs_immediate_5F_factor_i8_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 54) {
+  rule_communs_immediate_5F_factor_i8_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_factor_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 54 :
-      rule_communs_immediate_5F_factor_i8_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 54) {
+  rule_communs_immediate_5F_factor_i8_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -41072,34 +40565,26 @@ void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_factor_ (GALGAS_immediatEx
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_primary_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 55 :
-      rule_communs_immediate_5F_primary_i9_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 55) {
+  rule_communs_immediate_5F_primary_i9_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_primary_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 55 :
-      rule_communs_immediate_5F_primary_i9_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 55) {
+  rule_communs_immediate_5F_primary_i9_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_grammar::nt_immediate_5F_primary_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 55 :
-      rule_communs_immediate_5F_primary_i9_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 55) {
+  rule_communs_immediate_5F_primary_i9_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }

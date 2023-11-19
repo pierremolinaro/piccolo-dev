@@ -223,13 +223,10 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (C_
         GALGAS_lstring var_unusedRegister_1428 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 50)) ;
         var_unusedRegisterList_1042.addAssign_operation (var_unusedRegister_1428  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 51)) ;
-        switch (select_midrange_5F_syntax_1 (inCompiler)) {
-        case 2: {
+        if (select_midrange_5F_syntax_1 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 53)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_1 = false ;
-          break ;
         }
       }
     } break ;
@@ -241,13 +238,10 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (C_
         GALGAS_lstring var_unusedRoutine_1595 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 59)) ;
         var_unusedRoutineList_1093.addAssign_operation (var_unusedRoutine_1595  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 60)) ;
-        switch (select_midrange_5F_syntax_2 (inCompiler)) {
-        case 2: {
+        if (select_midrange_5F_syntax_2 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 62)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_2 = false ;
-          break ;
         }
       }
     } break ;
@@ -352,13 +346,10 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_impo
       bool repeatFlag_2 = true ;
       while (repeatFlag_2) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 134)) ;
-        switch (select_midrange_5F_syntax_1 (inCompiler)) {
-        case 2: {
+        if (select_midrange_5F_syntax_1 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 136)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_2 = false ;
-          break ;
         }
       }
     } break ;
@@ -368,13 +359,10 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_impo
       bool repeatFlag_3 = true ;
       while (repeatFlag_3) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 142)) ;
-        switch (select_midrange_5F_syntax_2 (inCompiler)) {
-        case 2: {
+        if (select_midrange_5F_syntax_2 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 144)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_3 = false ;
-          break ;
         }
       }
     } break ;
@@ -417,13 +405,10 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_pars
       bool repeatFlag_1 = true ;
       while (repeatFlag_1) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 50)) ;
-        switch (select_midrange_5F_syntax_1 (inCompiler)) {
-        case 2: {
+        if (select_midrange_5F_syntax_1 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 53)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_1 = false ;
-          break ;
         }
       }
     } break ;
@@ -433,13 +418,10 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_pars
       bool repeatFlag_2 = true ;
       while (repeatFlag_2) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 59)) ;
-        switch (select_midrange_5F_syntax_2 (inCompiler)) {
-        case 2: {
+        if (select_midrange_5F_syntax_2 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 62)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_2 = false ;
-          break ;
         }
       }
     } break ;
@@ -483,13 +465,10 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_inde
       bool repeatFlag_1 = true ;
       while (repeatFlag_1) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 50)) ;
-        switch (select_midrange_5F_syntax_1 (inCompiler)) {
-        case 2: {
+        if (select_midrange_5F_syntax_1 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 53)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_1 = false ;
-          break ;
         }
       }
     } break ;
@@ -499,13 +478,10 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_inde
       bool repeatFlag_2 = true ;
       while (repeatFlag_2) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 59)) ;
-        switch (select_midrange_5F_syntax_2 (inCompiler)) {
-        case 2: {
+        if (select_midrange_5F_syntax_2 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 62)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_2 = false ;
-          break ;
         }
       }
     } break ;
@@ -1260,12 +1236,9 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
       GALGAS_midrange_5F_instructionList var_instructionList_14650 ;
       nt_midrange_5F_instruction_5F_list_ (var_instructionList_14650, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
       var_whilePartList_14124.addAssign_operation (var_whileCondition_14588, var_instructionList_14650, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 542))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 542)) ;
-      switch (select_midrange_5F_syntax_22 (inCompiler)) {
-      case 2: {
-      } break ;
-      default:
+      if (select_midrange_5F_syntax_22 (inCompiler) == 2) {
+      }else{
         repeatFlag_14 = false ;
-        break ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 545)) ;
@@ -1521,12 +1494,9 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
       }
       nt_midrange_5F_condition_5F_expression_parse (inCompiler) ;
       nt_midrange_5F_instruction_5F_list_parse (inCompiler) ;
-      switch (select_midrange_5F_syntax_22 (inCompiler)) {
-      case 2: {
-      } break ;
-      default:
+      if (select_midrange_5F_syntax_22 (inCompiler) == 2) {
+      }else{
         repeatFlag_0 = false ;
-        break ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 545)) ;
@@ -1755,12 +1725,9 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
       }
       nt_midrange_5F_condition_5F_expression_indexing (inCompiler) ;
       nt_midrange_5F_instruction_5F_list_indexing (inCompiler) ;
-      switch (select_midrange_5F_syntax_22 (inCompiler)) {
-      case 2: {
-      } break ;
-      default:
+      if (select_midrange_5F_syntax_22 (inCompiler) == 2) {
+      }else{
         repeatFlag_0 = false ;
-        break ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 545)) ;
@@ -2639,18 +2606,15 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   nt_midrange_5F_condition_5F_term_ (outArgument_outCondition, inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_36 (inCompiler)) {
-    case 2: {
+    if (select_midrange_5F_syntax_36 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 869)) ;
       GALGAS_midrange_5F_conditionExpression var_c_24227 ;
       nt_midrange_5F_condition_5F_term_ (var_c_24227, inCompiler) ;
       GALGAS_midrange_5F_conditionExpression var_rc_24267 = GALGAS_midrange_5F_negateCondition::constructor_new (var_c_24227  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 871)) ;
       GALGAS_midrange_5F_conditionExpression var_lc_24347 = GALGAS_midrange_5F_negateCondition::constructor_new (outArgument_outCondition  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 872)) ;
       outArgument_outCondition = GALGAS_midrange_5F_negateCondition::constructor_new (GALGAS_midrange_5F_andCondition::constructor_new (var_lc_24347, var_rc_24267  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 873))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 873)) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 875)) ;
@@ -2663,14 +2627,11 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   nt_midrange_5F_condition_5F_term_parse (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_36 (inCompiler)) {
-    case 2: {
+    if (select_midrange_5F_syntax_36 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 869)) ;
       nt_midrange_5F_condition_5F_term_parse (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 875)) ;
@@ -2684,14 +2645,11 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   nt_midrange_5F_condition_5F_term_indexing (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_36 (inCompiler)) {
-    case 2: {
+    if (select_midrange_5F_syntax_36 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 869)) ;
       nt_midrange_5F_condition_5F_term_indexing (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 875)) ;
@@ -2705,16 +2663,13 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   nt_midrange_5F_condition_5F_factor_ (outArgument_outCondition, inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_37 (inCompiler)) {
-    case 2: {
+    if (select_midrange_5F_syntax_37 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 885)) ;
       GALGAS_midrange_5F_conditionExpression var_c_24750 ;
       nt_midrange_5F_condition_5F_factor_ (var_c_24750, inCompiler) ;
       outArgument_outCondition = GALGAS_midrange_5F_andCondition::constructor_new (outArgument_outCondition, var_c_24750  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 887)) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
 }
@@ -2725,14 +2680,11 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   nt_midrange_5F_condition_5F_factor_parse (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_37 (inCompiler)) {
-    case 2: {
+    if (select_midrange_5F_syntax_37 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 885)) ;
       nt_midrange_5F_condition_5F_factor_parse (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->resetTemplateString () ;
@@ -2744,14 +2696,11 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   nt_midrange_5F_condition_5F_factor_indexing (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_37 (inCompiler)) {
-    case 2: {
+    if (select_midrange_5F_syntax_37 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 885)) ;
       nt_midrange_5F_condition_5F_factor_indexing (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
 }
@@ -2778,13 +2727,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_section_5F_list_i0_ (GA
         GALGAS_lstring var_unusedRegister_1026 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 40)) ;
         ioArgument_unusedRegisterList.addAssign_operation (var_unusedRegister_1026  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 41)) ;
-        switch (select_baseline_5F_syntax_1 (inCompiler)) {
-        case 2: {
+        if (select_baseline_5F_syntax_1 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 43)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_1 = false ;
-          break ;
         }
       }
     } break ;
@@ -2796,13 +2742,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_section_5F_list_i0_ (GA
         GALGAS_lstring var_unusedRoutine_1193 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 49)) ;
         ioArgument_ioUnusedRoutineList.addAssign_operation (var_unusedRoutine_1193  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 50)) ;
-        switch (select_baseline_5F_syntax_2 (inCompiler)) {
-        case 2: {
+        if (select_baseline_5F_syntax_2 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 52)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_2 = false ;
-          break ;
         }
       }
     } break ;
@@ -2837,13 +2780,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_section_5F_list_i0_pars
       bool repeatFlag_1 = true ;
       while (repeatFlag_1) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 40)) ;
-        switch (select_baseline_5F_syntax_1 (inCompiler)) {
-        case 2: {
+        if (select_baseline_5F_syntax_1 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 43)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_1 = false ;
-          break ;
         }
       }
     } break ;
@@ -2853,13 +2793,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_section_5F_list_i0_pars
       bool repeatFlag_2 = true ;
       while (repeatFlag_2) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 49)) ;
-        switch (select_baseline_5F_syntax_2 (inCompiler)) {
-        case 2: {
+        if (select_baseline_5F_syntax_2 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 52)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_2 = false ;
-          break ;
         }
       }
     } break ;
@@ -2895,13 +2832,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_section_5F_list_i0_inde
       bool repeatFlag_1 = true ;
       while (repeatFlag_1) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 40)) ;
-        switch (select_baseline_5F_syntax_1 (inCompiler)) {
-        case 2: {
+        if (select_baseline_5F_syntax_1 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 43)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_1 = false ;
-          break ;
         }
       }
     } break ;
@@ -2911,13 +2845,10 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_section_5F_list_i0_inde
       bool repeatFlag_2 = true ;
       while (repeatFlag_2) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 49)) ;
-        switch (select_baseline_5F_syntax_2 (inCompiler)) {
-        case 2: {
+        if (select_baseline_5F_syntax_2 (inCompiler) == 2) {
           inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 52)) ;
-        } break ;
-        default:
+        }else{
           repeatFlag_2 = false ;
-          break ;
         }
       }
     } break ;
@@ -3418,12 +3349,9 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       GALGAS_baseline_5F_instructionList var_instructionList_8156 ;
       nt_baseline_5F_instruction_5F_list_ (var_instructionList_8156, ioArgument_ioLabelMap, inCompiler) ;
       var_whilePartList_7637.addAssign_operation (var_whileCondition_8102, var_instructionList_8156, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308)) ;
-      switch (select_baseline_5F_syntax_17 (inCompiler)) {
-      case 2: {
-      } break ;
-      default:
+      if (select_baseline_5F_syntax_17 (inCompiler) == 2) {
+      }else{
         repeatFlag_14 = false ;
-        break ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("baseline_syntax.galgas", 311)) ;
@@ -3629,12 +3557,9 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }
       nt_baseline_5F_condition_5F_expression_parse (inCompiler) ;
       nt_baseline_5F_instruction_5F_list_parse (inCompiler) ;
-      switch (select_baseline_5F_syntax_17 (inCompiler)) {
-      case 2: {
-      } break ;
-      default:
+      if (select_baseline_5F_syntax_17 (inCompiler) == 2) {
+      }else{
         repeatFlag_0 = false ;
-        break ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("baseline_syntax.galgas", 311)) ;
@@ -3819,12 +3744,9 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }
       nt_baseline_5F_condition_5F_expression_indexing (inCompiler) ;
       nt_baseline_5F_instruction_5F_list_indexing (inCompiler) ;
-      switch (select_baseline_5F_syntax_17 (inCompiler)) {
-      case 2: {
-      } break ;
-      default:
+      if (select_baseline_5F_syntax_17 (inCompiler) == 2) {
+      }else{
         repeatFlag_0 = false ;
-        break ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("baseline_syntax.galgas", 311)) ;
@@ -4697,18 +4619,15 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   nt_baseline_5F_condition_5F_term_ (outArgument_outCondition, inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_baseline_5F_syntax_31 (inCompiler)) {
-    case 2: {
+    if (select_baseline_5F_syntax_31 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 608)) ;
       GALGAS_baseline_5F_conditionExpression var_c_17201 ;
       nt_baseline_5F_condition_5F_term_ (var_c_17201, inCompiler) ;
       GALGAS_baseline_5F_conditionExpression var_rc_17241 = GALGAS_baseline_5F_negateCondition::constructor_new (var_c_17201  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 610)) ;
       GALGAS_baseline_5F_conditionExpression var_lc_17321 = GALGAS_baseline_5F_negateCondition::constructor_new (outArgument_outCondition  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 611)) ;
       outArgument_outCondition = GALGAS_baseline_5F_negateCondition::constructor_new (GALGAS_baseline_5F_andCondition::constructor_new (var_lc_17321, var_rc_17241  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 612))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 612)) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 614)) ;
@@ -4721,14 +4640,11 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   nt_baseline_5F_condition_5F_term_parse (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_baseline_5F_syntax_31 (inCompiler)) {
-    case 2: {
+    if (select_baseline_5F_syntax_31 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 608)) ;
       nt_baseline_5F_condition_5F_term_parse (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 614)) ;
@@ -4742,14 +4658,11 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   nt_baseline_5F_condition_5F_term_indexing (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_baseline_5F_syntax_31 (inCompiler)) {
-    case 2: {
+    if (select_baseline_5F_syntax_31 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 608)) ;
       nt_baseline_5F_condition_5F_term_indexing (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 614)) ;
@@ -4763,16 +4676,13 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   nt_baseline_5F_condition_5F_factor_ (outArgument_outCondition, inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_baseline_5F_syntax_32 (inCompiler)) {
-    case 2: {
+    if (select_baseline_5F_syntax_32 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 624)) ;
       GALGAS_baseline_5F_conditionExpression var_c_17724 ;
       nt_baseline_5F_condition_5F_factor_ (var_c_17724, inCompiler) ;
       outArgument_outCondition = GALGAS_baseline_5F_andCondition::constructor_new (outArgument_outCondition, var_c_17724  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 626)) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
 }
@@ -4783,14 +4693,11 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   nt_baseline_5F_condition_5F_factor_parse (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_baseline_5F_syntax_32 (inCompiler)) {
-    case 2: {
+    if (select_baseline_5F_syntax_32 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 624)) ;
       nt_baseline_5F_condition_5F_factor_parse (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->resetTemplateString () ;
@@ -4802,14 +4709,11 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   nt_baseline_5F_condition_5F_factor_indexing (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_baseline_5F_syntax_32 (inCompiler)) {
-    case 2: {
+    if (select_baseline_5F_syntax_32 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 624)) ;
       nt_baseline_5F_condition_5F_factor_indexing (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
 }
@@ -5054,13 +4958,10 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   outArgument_outUserRoutineDeclarationList = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 78)) ;
   bool repeatFlag_11 = true ;
   while (repeatFlag_11) {
-    switch (select_pic_31__38__5F_bootloader_5F_syntax_1 (inCompiler)) {
-    case 2: {
+    if (select_pic_31__38__5F_bootloader_5F_syntax_1 (inCompiler) == 2) {
       nt_routine_5F_declaration_ (outArgument_outUserRoutineDeclarationList, inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_11 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 83)) ;
@@ -5068,13 +4969,10 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 86)) ;
   bool repeatFlag_12 = true ;
   while (repeatFlag_12) {
-    switch (select_pic_31__38__5F_bootloader_5F_syntax_2 (inCompiler)) {
-    case 2: {
+    if (select_pic_31__38__5F_bootloader_5F_syntax_2 (inCompiler) == 2) {
       nt_ram_5F_definition_ (outArgument_outSharedRamDefinitionList, inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_12 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 91)) ;
@@ -5117,26 +5015,20 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 77)) ;
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
-    switch (select_pic_31__38__5F_bootloader_5F_syntax_1 (inCompiler)) {
-    case 2: {
+    if (select_pic_31__38__5F_bootloader_5F_syntax_1 (inCompiler) == 2) {
       nt_routine_5F_declaration_parse (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_1 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 83)) ;
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 86)) ;
   bool repeatFlag_2 = true ;
   while (repeatFlag_2) {
-    switch (select_pic_31__38__5F_bootloader_5F_syntax_2 (inCompiler)) {
-    case 2: {
+    if (select_pic_31__38__5F_bootloader_5F_syntax_2 (inCompiler) == 2) {
       nt_ram_5F_definition_parse (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_2 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 91)) ;
@@ -5177,26 +5069,20 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 77)) ;
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
-    switch (select_pic_31__38__5F_bootloader_5F_syntax_1 (inCompiler)) {
-    case 2: {
+    if (select_pic_31__38__5F_bootloader_5F_syntax_1 (inCompiler) == 2) {
       nt_routine_5F_declaration_indexing (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_1 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 83)) ;
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 86)) ;
   bool repeatFlag_2 = true ;
   while (repeatFlag_2) {
-    switch (select_pic_31__38__5F_bootloader_5F_syntax_2 (inCompiler)) {
-    case 2: {
+    if (select_pic_31__38__5F_bootloader_5F_syntax_2 (inCompiler) == 2) {
       nt_ram_5F_definition_indexing (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_2 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 91)) ;
@@ -5492,8 +5378,7 @@ void cParser_communs::rule_communs_configuration_5F_definition_i0_ (GALGAS_confi
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 11)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_communs_0 (inCompiler)) {
-    case 2: {
+    if (select_communs_0 (inCompiler) == 2) {
       GALGAS_lstring var_settingName_332 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 14)) ;
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 15)) ;
@@ -5511,10 +5396,8 @@ void cParser_communs::rule_communs_configuration_5F_definition_i0_ (GALGAS_confi
         break ;
       }
       var_settingList_234.addAssign_operation (var_settingName_332, var_settingValue_369  COMMA_SOURCE_FILE ("communs.galgas", 22)) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("communs.galgas", 24)) ;
@@ -5528,8 +5411,7 @@ void cParser_communs::rule_communs_configuration_5F_definition_i0_parse (C_Lexiq
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 11)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_communs_0 (inCompiler)) {
-    case 2: {
+    if (select_communs_0 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 14)) ;
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 15)) ;
       switch (select_communs_1 (inCompiler)) {
@@ -5542,10 +5424,8 @@ void cParser_communs::rule_communs_configuration_5F_definition_i0_parse (C_Lexiq
       default:
         break ;
       }
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("communs.galgas", 24)) ;
@@ -5559,8 +5439,7 @@ void cParser_communs::rule_communs_configuration_5F_definition_i0_indexing (C_Le
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 11)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_communs_0 (inCompiler)) {
-    case 2: {
+    if (select_communs_0 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 14)) ;
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 15)) ;
       switch (select_communs_1 (inCompiler)) {
@@ -5573,10 +5452,8 @@ void cParser_communs::rule_communs_configuration_5F_definition_i0_indexing (C_Le
       default:
         break ;
       }
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("communs.galgas", 24)) ;
@@ -5691,14 +5568,11 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
           {
           var_bitSliceTable_1169.setter_insertKey (var_sliceName_1606, var_base_2382, var_sliceWidth_1397, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 89)) ;
           }
-          switch (select_communs_7 (inCompiler)) {
-          case 2: {
+          if (select_communs_7 (inCompiler) == 2) {
             inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("communs.galgas", 91)) ;
             var_bitDefinitionString_1225.plusAssign_operation(GALGAS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 92)) ;
-          } break ;
-          default:
+          }else{
             repeatFlag_1 = false ;
-            break ;
           }
         }
         var_sliceIndex_1341 = var_sliceIndex_1341.substract_operation (var_sliceWidth_1397.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)) ;
@@ -5732,14 +5606,11 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
       default:
         break ;
       }
-      switch (select_communs_5 (inCompiler)) {
-      case 2: {
+      if (select_communs_5 (inCompiler) == 2) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 111)) ;
         var_bitDefinitionString_1225.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 112)) ;
-      } break ;
-      default:
+      }else{
         repeatFlag_0 = false ;
-        break ;
       }
     }
     enumGalgasBool test_10 = kBoolTrue ;
@@ -5811,13 +5682,10 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_parse (C_Lexique_
           default:
             break ;
           }
-          switch (select_communs_7 (inCompiler)) {
-          case 2: {
+          if (select_communs_7 (inCompiler) == 2) {
             inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("communs.galgas", 91)) ;
-          } break ;
-          default:
+          }else{
             repeatFlag_1 = false ;
-            break ;
           }
         }
       } break ;
@@ -5830,13 +5698,10 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_parse (C_Lexique_
       default:
         break ;
       }
-      switch (select_communs_5 (inCompiler)) {
-      case 2: {
+      if (select_communs_5 (inCompiler) == 2) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 111)) ;
-      } break ;
-      default:
+      }else{
         repeatFlag_0 = false ;
-        break ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("communs.galgas", 117)) ;
@@ -5899,13 +5764,10 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_indexing (C_Lexiq
           default:
             break ;
           }
-          switch (select_communs_7 (inCompiler)) {
-          case 2: {
+          if (select_communs_7 (inCompiler) == 2) {
             inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("communs.galgas", 91)) ;
-          } break ;
-          default:
+          }else{
             repeatFlag_1 = false ;
-            break ;
           }
         }
       } break ;
@@ -5918,13 +5780,10 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_indexing (C_Lexiq
       default:
         break ;
       }
-      switch (select_communs_5 (inCompiler)) {
-      case 2: {
+      if (select_communs_5 (inCompiler) == 2) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 111)) ;
-      } break ;
-      default:
+      }else{
         repeatFlag_0 = false ;
-        break ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("communs.galgas", 117)) ;
@@ -5945,15 +5804,12 @@ void cParser_communs::rule_communs_ram_5F_definition_i2_ (GALGAS_ramDefinitionLi
   GALGAS_declarationInRamList var_declarationInRamList_3719 = GALGAS_declarationInRamList::constructor_emptyList (SOURCE_FILE ("communs.galgas", 131)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_communs_9 (inCompiler)) {
-    case 2: {
+    if (select_communs_9 (inCompiler) == 2) {
       GALGAS_declarationInRam var_declaration_3840 ;
       nt_declaration_5F_in_5F_ram_ (var_declaration_3840, inCompiler) ;
       var_declarationInRamList_3719.addAssign_operation (var_declaration_3840  COMMA_SOURCE_FILE ("communs.galgas", 135)) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   ioArgument_ioRamDefinitionList.addAssign_operation (var_bankName_3698, var_declarationInRamList_3719  COMMA_SOURCE_FILE ("communs.galgas", 137)) ;
@@ -5968,13 +5824,10 @@ void cParser_communs::rule_communs_ram_5F_definition_i2_parse (C_Lexique_piccolo
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 130)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_communs_9 (inCompiler)) {
-    case 2: {
+    if (select_communs_9 (inCompiler) == 2) {
       nt_declaration_5F_in_5F_ram_parse (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("communs.galgas", 138)) ;
@@ -5989,13 +5842,10 @@ void cParser_communs::rule_communs_ram_5F_definition_i2_indexing (C_Lexique_picc
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 130)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_communs_9 (inCompiler)) {
-    case 2: {
+    if (select_communs_9 (inCompiler) == 2) {
       nt_declaration_5F_in_5F_ram_indexing (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("communs.galgas", 138)) ;
@@ -6117,16 +5967,13 @@ void cParser_communs::rule_communs_immediate_5F_bitwise_5F_term_i5_ (GALGAS_imme
   nt_immediate_5F_bitwise_5F_factor_ (outArgument_outExpression, inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_communs_11 (inCompiler)) {
-    case 2: {
+    if (select_communs_11 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("communs.galgas", 174)) ;
       GALGAS_immediatExpression var_rightExpression_5037 ;
       nt_immediate_5F_bitwise_5F_factor_ (var_rightExpression_5037, inCompiler) ;
       outArgument_outExpression = GALGAS_immediatAnd::constructor_new (outArgument_outExpression, var_rightExpression_5037  COMMA_SOURCE_FILE ("communs.galgas", 176)) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
 }
@@ -6137,14 +5984,11 @@ void cParser_communs::rule_communs_immediate_5F_bitwise_5F_term_i5_parse (C_Lexi
   nt_immediate_5F_bitwise_5F_factor_parse (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_communs_11 (inCompiler)) {
-    case 2: {
+    if (select_communs_11 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("communs.galgas", 174)) ;
       nt_immediate_5F_bitwise_5F_factor_parse (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
   inCompiler->resetTemplateString () ;
@@ -6156,14 +6000,11 @@ void cParser_communs::rule_communs_immediate_5F_bitwise_5F_term_i5_indexing (C_L
   nt_immediate_5F_bitwise_5F_factor_indexing (inCompiler) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    switch (select_communs_11 (inCompiler)) {
-    case 2: {
+    if (select_communs_11 (inCompiler) == 2) {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("communs.galgas", 174)) ;
       nt_immediate_5F_bitwise_5F_factor_indexing (inCompiler) ;
-    } break ;
-    default:
+    }else{
       repeatFlag_0 = false ;
-      break ;
     }
   }
 }
@@ -6548,13 +6389,10 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GALGAS_immediatExpr
       GALGAS_immediatExpression var_expression_8881 ;
       nt_immediate_5F_expression_ (var_expression_8881, inCompiler) ;
       var_sliceExpressionList_8721.addAssign_operation (var_sliceName_8827, var_expression_8881  COMMA_SOURCE_FILE ("communs.galgas", 305)) ;
-      switch (select_communs_17 (inCompiler)) {
-      case 2: {
+      if (select_communs_17 (inCompiler) == 2) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 307)) ;
-      } break ;
-      default:
+      }else{
         repeatFlag_0 = false ;
-        break ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 309)) ;
@@ -6611,13 +6449,10 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_parse (C_Lexique_picc
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 302)) ;
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 303)) ;
       nt_immediate_5F_expression_parse (inCompiler) ;
-      switch (select_communs_17 (inCompiler)) {
-      case 2: {
+      if (select_communs_17 (inCompiler) == 2) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 307)) ;
-      } break ;
-      default:
+      }else{
         repeatFlag_0 = false ;
-        break ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 309)) ;
@@ -6674,13 +6509,10 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_indexing (C_Lexique_p
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 302)) ;
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 303)) ;
       nt_immediate_5F_expression_indexing (inCompiler) ;
-      switch (select_communs_17 (inCompiler)) {
-      case 2: {
+      if (select_communs_17 (inCompiler) == 2) {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 307)) ;
-      } break ;
-      default:
+      }else{
         repeatFlag_0 = false ;
-        break ;
       }
     }
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 309)) ;
@@ -7064,7 +6896,7 @@ static const char * gNonTerminalNames_pic18_include_grammar [113] = {
 #define ACCEPT (1)
 #define END (-1)
 
-static const int16_t gActionTable_pic18_include_grammar [] = {
+static const int32_t gActionTable_pic18_include_grammar [] = {
 // State S0 (index = 0)
   C_Lexique_piccolo_5F_lexique::kToken_unused, SHIFT (1)
 , C_Lexique_piccolo_5F_lexique::kToken_routine, REDUCE (67)
@@ -25930,7 +25762,7 @@ static const uint32_t gActionTableIndex_pic18_include_grammar [616] = {
 // Successor tables handle non terminal successors ;
 // an entry is (non_terminal_symbol, n) ; successor is state n.
 
-static const int16_t gSuccessorTable_pic18_include_grammar_0 [23] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_0 [23] = {0, 14,
   1, 15,
   2, 16,
   7, 17,
@@ -25942,7 +25774,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_0 [23] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_14 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_14 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -25953,7 +25785,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_14 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_15 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_15 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -25964,7 +25796,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_15 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_16 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_16 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -25975,7 +25807,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_16 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_18 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_18 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -25986,7 +25818,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_18 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_19 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_19 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -25997,7 +25829,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_19 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_20 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_20 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -26008,7 +25840,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_20 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_21 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_21 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -26019,9 +25851,9 @@ static const int16_t gSuccessorTable_pic18_include_grammar_21 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_27 [3] = {29, 48, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_27 [3] = {29, 48, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_28 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_28 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -26032,17 +25864,17 @@ static const int16_t gSuccessorTable_pic18_include_grammar_28 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_30 [3] = {31, 52, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_30 [3] = {31, 52, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_32 [3] = {36, 55, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_32 [3] = {36, 55, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_33 [3] = {91, 57, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_33 [3] = {91, 57, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_45 [3] = {27, 63, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_45 [3] = {27, 63, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_46 [3] = {28, 65, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_46 [3] = {28, 65, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_48 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_48 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -26053,7 +25885,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_48 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_53 [15] = {3, 76,
+static const int32_t gSuccessorTable_pic18_include_grammar_53 [15] = {3, 76,
   21, 77,
   22, 78,
   23, 79,
@@ -26061,11 +25893,11 @@ static const int16_t gSuccessorTable_pic18_include_grammar_53 [15] = {3, 76,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_58 [7] = {20, 88,
+static const int32_t gSuccessorTable_pic18_include_grammar_58 [7] = {20, 88,
   93, 89,
   100, 90, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_59 [15] = {3, 91,
+static const int32_t gSuccessorTable_pic18_include_grammar_59 [15] = {3, 91,
   21, 77,
   22, 78,
   23, 79,
@@ -26073,7 +25905,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_59 [15] = {3, 91,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_60 [15] = {3, 92,
+static const int32_t gSuccessorTable_pic18_include_grammar_60 [15] = {3, 92,
   21, 77,
   22, 78,
   23, 79,
@@ -26081,9 +25913,9 @@ static const int16_t gSuccessorTable_pic18_include_grammar_60 [15] = {3, 92,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_61 [3] = {38, 94, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_61 [3] = {38, 94, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_63 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_63 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -26094,7 +25926,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_63 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_65 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_65 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -26105,15 +25937,15 @@ static const int16_t gSuccessorTable_pic18_include_grammar_65 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_66 [3] = {29, 99, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_66 [3] = {29, 99, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_68 [3] = {30, 101, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_68 [3] = {30, 101, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_69 [3] = {31, 102, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_69 [3] = {31, 102, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_70 [3] = {107, 105, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_70 [3] = {107, 105, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_71 [15] = {3, 106,
+static const int32_t gSuccessorTable_pic18_include_grammar_71 [15] = {3, 106,
   21, 77,
   22, 78,
   23, 79,
@@ -26121,25 +25953,25 @@ static const int16_t gSuccessorTable_pic18_include_grammar_71 [15] = {3, 106,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_73 [5] = {25, 107,
+static const int32_t gSuccessorTable_pic18_include_grammar_73 [5] = {25, 107,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_74 [5] = {25, 108,
+static const int32_t gSuccessorTable_pic18_include_grammar_74 [5] = {25, 108,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_76 [3] = {34, 110, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_76 [3] = {34, 110, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_77 [3] = {101, 113, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_77 [3] = {101, 113, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_78 [3] = {102, 115, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_78 [3] = {102, 115, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_79 [3] = {103, 122, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_79 [3] = {103, 122, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_80 [3] = {104, 127, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_80 [3] = {104, 127, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_81 [3] = {105, 131, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_81 [3] = {105, 131, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_83 [25] = {10, 208,
+static const int32_t gSuccessorTable_pic18_include_grammar_83 [25] = {10, 208,
   17, 209,
   19, 210,
   35, 211,
@@ -26152,19 +25984,19 @@ static const int16_t gSuccessorTable_pic18_include_grammar_83 [25] = {10, 208,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_84 [3] = {92, 222, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_84 [3] = {92, 222, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_88 [7] = {20, 88,
+static const int32_t gSuccessorTable_pic18_include_grammar_88 [7] = {20, 88,
   93, 89,
   100, 223, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_92 [3] = {33, 227, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_92 [3] = {33, 227, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_95 [3] = {27, 230, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_95 [3] = {27, 230, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_97 [3] = {28, 231, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_97 [3] = {28, 231, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_104 [15] = {3, 235,
+static const int32_t gSuccessorTable_pic18_include_grammar_104 [15] = {3, 235,
   21, 77,
   22, 78,
   23, 79,
@@ -26172,7 +26004,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_104 [15] = {3, 235,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_109 [15] = {3, 237,
+static const int32_t gSuccessorTable_pic18_include_grammar_109 [15] = {3, 237,
   21, 77,
   22, 78,
   23, 79,
@@ -26180,87 +26012,87 @@ static const int16_t gSuccessorTable_pic18_include_grammar_109 [15] = {3, 237,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_111 [13] = {21, 239,
+static const int32_t gSuccessorTable_pic18_include_grammar_111 [13] = {21, 239,
   22, 78,
   23, 79,
   24, 80,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_112 [13] = {21, 240,
+static const int32_t gSuccessorTable_pic18_include_grammar_112 [13] = {21, 240,
   22, 78,
   23, 79,
   24, 80,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_114 [11] = {22, 241,
+static const int32_t gSuccessorTable_pic18_include_grammar_114 [11] = {22, 241,
   23, 79,
   24, 80,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_116 [9] = {23, 242,
+static const int32_t gSuccessorTable_pic18_include_grammar_116 [9] = {23, 242,
   24, 80,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_117 [9] = {23, 243,
+static const int32_t gSuccessorTable_pic18_include_grammar_117 [9] = {23, 243,
   24, 80,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_118 [9] = {23, 244,
+static const int32_t gSuccessorTable_pic18_include_grammar_118 [9] = {23, 244,
   24, 80,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_119 [9] = {23, 245,
+static const int32_t gSuccessorTable_pic18_include_grammar_119 [9] = {23, 245,
   24, 80,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_120 [9] = {23, 246,
+static const int32_t gSuccessorTable_pic18_include_grammar_120 [9] = {23, 246,
   24, 80,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_121 [9] = {23, 247,
+static const int32_t gSuccessorTable_pic18_include_grammar_121 [9] = {23, 247,
   24, 80,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_123 [7] = {24, 248,
+static const int32_t gSuccessorTable_pic18_include_grammar_123 [7] = {24, 248,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_124 [7] = {24, 249,
+static const int32_t gSuccessorTable_pic18_include_grammar_124 [7] = {24, 249,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_125 [7] = {24, 250,
+static const int32_t gSuccessorTable_pic18_include_grammar_125 [7] = {24, 250,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_126 [7] = {24, 251,
+static const int32_t gSuccessorTable_pic18_include_grammar_126 [7] = {24, 251,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_128 [5] = {25, 252,
+static const int32_t gSuccessorTable_pic18_include_grammar_128 [5] = {25, 252,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_129 [5] = {25, 253,
+static const int32_t gSuccessorTable_pic18_include_grammar_129 [5] = {25, 253,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_130 [5] = {25, 254,
+static const int32_t gSuccessorTable_pic18_include_grammar_130 [5] = {25, 254,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_135 [3] = {48, 257, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_135 [3] = {48, 257, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_137 [5] = {57, 260,
+static const int32_t gSuccessorTable_pic18_include_grammar_137 [5] = {57, 260,
   75, 261, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_143 [15] = {3, 264,
+static const int32_t gSuccessorTable_pic18_include_grammar_143 [15] = {3, 264,
   21, 77,
   22, 78,
   23, 79,
@@ -26268,20 +26100,20 @@ static const int16_t gSuccessorTable_pic18_include_grammar_143 [15] = {3, 264,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_144 [3] = {4, 267, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_144 [3] = {4, 267, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_146 [3] = {4, 268, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_146 [3] = {4, 268, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_151 [3] = {67, 274, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_151 [3] = {67, 274, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_152 [9] = {4, 279,
+static const int32_t gSuccessorTable_pic18_include_grammar_152 [9] = {4, 279,
   70, 280,
   71, 281,
   73, 282, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_184 [3] = {4, 287, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_184 [3] = {4, 287, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_197 [15] = {3, 290,
+static const int32_t gSuccessorTable_pic18_include_grammar_197 [15] = {3, 290,
   21, 77,
   22, 78,
   23, 79,
@@ -26289,11 +26121,11 @@ static const int16_t gSuccessorTable_pic18_include_grammar_197 [15] = {3, 290,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_206 [3] = {89, 296, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_206 [3] = {89, 296, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_207 [3] = {90, 301, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_207 [3] = {90, 301, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_209 [23] = {17, 209,
+static const int32_t gSuccessorTable_pic18_include_grammar_209 [23] = {17, 209,
   19, 210,
   35, 303,
   47, 212,
@@ -26305,7 +26137,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_209 [23] = {17, 209,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_210 [23] = {17, 209,
+static const int32_t gSuccessorTable_pic18_include_grammar_210 [23] = {17, 209,
   19, 210,
   35, 304,
   47, 212,
@@ -26317,13 +26149,13 @@ static const int16_t gSuccessorTable_pic18_include_grammar_210 [23] = {17, 209,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_216 [3] = {4, 307, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_216 [3] = {4, 307, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_217 [3] = {4, 308, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_217 [3] = {4, 308, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_218 [3] = {4, 309, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_218 [3] = {4, 309, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_219 [15] = {3, 310,
+static const int32_t gSuccessorTable_pic18_include_grammar_219 [15] = {3, 310,
   21, 77,
   22, 78,
   23, 79,
@@ -26331,9 +26163,9 @@ static const int16_t gSuccessorTable_pic18_include_grammar_219 [15] = {3, 310,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_222 [3] = {91, 311, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_222 [3] = {91, 311, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_226 [15] = {3, 313,
+static const int32_t gSuccessorTable_pic18_include_grammar_226 [15] = {3, 313,
   21, 77,
   22, 78,
   23, 79,
@@ -26341,9 +26173,9 @@ static const int16_t gSuccessorTable_pic18_include_grammar_226 [15] = {3, 313,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_228 [3] = {39, 318, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_228 [3] = {39, 318, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_229 [25] = {10, 319,
+static const int32_t gSuccessorTable_pic18_include_grammar_229 [25] = {10, 319,
   17, 209,
   19, 210,
   35, 211,
@@ -26356,31 +26188,31 @@ static const int16_t gSuccessorTable_pic18_include_grammar_229 [25] = {10, 319,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_232 [3] = {30, 320, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_232 [3] = {30, 320, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_237 [3] = {34, 324, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_237 [3] = {34, 324, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_239 [3] = {101, 325, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_239 [3] = {101, 325, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_240 [3] = {101, 326, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_240 [3] = {101, 326, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_241 [3] = {102, 327, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_241 [3] = {102, 327, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_248 [3] = {104, 328, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_248 [3] = {104, 328, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_249 [3] = {104, 329, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_249 [3] = {104, 329, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_250 [3] = {104, 330, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_250 [3] = {104, 330, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_251 [3] = {104, 331, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_251 [3] = {104, 331, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_252 [3] = {105, 332, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_252 [3] = {105, 332, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_253 [3] = {105, 333, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_253 [3] = {105, 333, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_254 [3] = {105, 334, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_254 [3] = {105, 334, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_261 [25] = {10, 339,
+static const int32_t gSuccessorTable_pic18_include_grammar_261 [25] = {10, 339,
   17, 209,
   19, 210,
   35, 211,
@@ -26393,13 +26225,13 @@ static const int16_t gSuccessorTable_pic18_include_grammar_261 [25] = {10, 339,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_265 [3] = {109, 342, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_265 [3] = {109, 342, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_266 [3] = {60, 344, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_266 [3] = {60, 344, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_267 [3] = {61, 346, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_267 [3] = {61, 346, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_268 [25] = {10, 347,
+static const int32_t gSuccessorTable_pic18_include_grammar_268 [25] = {10, 347,
   17, 209,
   19, 210,
   35, 211,
@@ -26412,7 +26244,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_268 [25] = {10, 347,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_269 [15] = {3, 348,
+static const int32_t gSuccessorTable_pic18_include_grammar_269 [15] = {3, 348,
   21, 77,
   22, 78,
   23, 79,
@@ -26420,7 +26252,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_269 [15] = {3, 348,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_274 [25] = {10, 349,
+static const int32_t gSuccessorTable_pic18_include_grammar_274 [25] = {10, 349,
   17, 209,
   19, 210,
   35, 211,
@@ -26433,23 +26265,23 @@ static const int16_t gSuccessorTable_pic18_include_grammar_274 [25] = {10, 349,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_275 [3] = {4, 350, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_275 [3] = {4, 350, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_279 [3] = {69, 356, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_279 [3] = {69, 356, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_281 [3] = {4, 358, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_281 [3] = {4, 358, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_282 [5] = {14, 360,
+static const int32_t gSuccessorTable_pic18_include_grammar_282 [5] = {14, 360,
   18, 361, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_307 [5] = {5, 368,
+static const int32_t gSuccessorTable_pic18_include_grammar_307 [5] = {5, 368,
   111, 369, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_312 [3] = {94, 372, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_312 [3] = {94, 372, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_313 [3] = {33, 373, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_313 [3] = {33, 373, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_321 [25] = {10, 377,
+static const int32_t gSuccessorTable_pic18_include_grammar_321 [25] = {10, 377,
   17, 209,
   19, 210,
   35, 211,
@@ -26462,7 +26294,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_321 [25] = {10, 377,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_322 [15] = {3, 378,
+static const int32_t gSuccessorTable_pic18_include_grammar_322 [15] = {3, 378,
   21, 77,
   22, 78,
   23, 79,
@@ -26470,7 +26302,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_322 [15] = {3, 378,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_335 [15] = {3, 379,
+static const int32_t gSuccessorTable_pic18_include_grammar_335 [15] = {3, 379,
   21, 77,
   22, 78,
   23, 79,
@@ -26478,7 +26310,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_335 [15] = {3, 379,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_341 [15] = {3, 385,
+static const int32_t gSuccessorTable_pic18_include_grammar_341 [15] = {3, 385,
   21, 77,
   22, 78,
   23, 79,
@@ -26486,25 +26318,25 @@ static const int16_t gSuccessorTable_pic18_include_grammar_341 [15] = {3, 385,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_355 [3] = {6, 398, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_355 [3] = {6, 398, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_357 [13] = {19, 400,
+static const int32_t gSuccessorTable_pic18_include_grammar_357 [13] = {19, 400,
   84, 215,
   85, 216,
   86, 217,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_358 [3] = {72, 402, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_358 [3] = {72, 402, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_359 [13] = {4, 407,
+static const int32_t gSuccessorTable_pic18_include_grammar_359 [13] = {4, 407,
   13, 408,
   14, 409,
   15, 410,
   41, 411,
   42, 412, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_360 [25] = {10, 413,
+static const int32_t gSuccessorTable_pic18_include_grammar_360 [25] = {10, 413,
   17, 209,
   19, 210,
   35, 211,
@@ -26517,11 +26349,11 @@ static const int16_t gSuccessorTable_pic18_include_grammar_360 [25] = {10, 413,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_363 [3] = {4, 415, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_363 [3] = {4, 415, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_364 [3] = {4, 416, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_364 [3] = {4, 416, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_365 [15] = {3, 417,
+static const int32_t gSuccessorTable_pic18_include_grammar_365 [15] = {3, 417,
   21, 77,
   22, 78,
   23, 79,
@@ -26529,9 +26361,9 @@ static const int16_t gSuccessorTable_pic18_include_grammar_365 [15] = {3, 417,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_370 [3] = {6, 420, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_370 [3] = {6, 420, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_371 [15] = {3, 421,
+static const int32_t gSuccessorTable_pic18_include_grammar_371 [15] = {3, 421,
   21, 77,
   22, 78,
   23, 79,
@@ -26539,27 +26371,27 @@ static const int16_t gSuccessorTable_pic18_include_grammar_371 [15] = {3, 421,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_372 [3] = {95, 423, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_372 [3] = {95, 423, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_374 [3] = {40, 425, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_374 [3] = {40, 425, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_378 [3] = {108, 428, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_378 [3] = {108, 428, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_379 [3] = {80, 430, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_379 [3] = {80, 430, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_380 [3] = {50, 432, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_380 [3] = {50, 432, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_383 [3] = {77, 436, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_383 [3] = {77, 436, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_389 [3] = {62, 443, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_389 [3] = {62, 443, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_390 [3] = {68, 445, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_390 [3] = {68, 445, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_391 [3] = {6, 446, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_391 [3] = {6, 446, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_395 [3] = {110, 448, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_395 [3] = {110, 448, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_396 [15] = {3, 449,
+static const int32_t gSuccessorTable_pic18_include_grammar_396 [15] = {3, 449,
   21, 77,
   22, 78,
   23, 79,
@@ -26567,36 +26399,36 @@ static const int16_t gSuccessorTable_pic18_include_grammar_396 [15] = {3, 449,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_399 [13] = {19, 450,
+static const int32_t gSuccessorTable_pic18_include_grammar_399 [13] = {19, 450,
   84, 215,
   85, 216,
   86, 217,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_403 [3] = {109, 342, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_403 [3] = {109, 342, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_404 [11] = {4, 407,
+static const int32_t gSuccessorTable_pic18_include_grammar_404 [11] = {4, 407,
   13, 453,
   14, 409,
   41, 411,
   42, 412, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_407 [3] = {44, 462, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_407 [3] = {44, 462, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_408 [3] = {46, 464, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_408 [3] = {46, 464, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_410 [3] = {45, 466, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_410 [3] = {45, 466, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_412 [3] = {4, 467, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_412 [3] = {4, 467, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_413 [3] = {81, 470, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_413 [3] = {81, 470, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_414 [3] = {74, 472, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_414 [3] = {74, 472, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_422 [3] = {97, 478, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_422 [3] = {97, 478, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_426 [21] = {0, 14,
+static const int32_t gSuccessorTable_pic18_include_grammar_426 [21] = {0, 14,
   1, 15,
   2, 16,
   8, 18,
@@ -26607,7 +26439,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_426 [21] = {0, 14,
   32, 23,
   37, 24, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_429 [15] = {3, 483,
+static const int32_t gSuccessorTable_pic18_include_grammar_429 [15] = {3, 483,
   21, 77,
   22, 78,
   23, 79,
@@ -26615,7 +26447,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_429 [15] = {3, 483,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_432 [17] = {3, 486,
+static const int32_t gSuccessorTable_pic18_include_grammar_432 [17] = {3, 486,
   21, 77,
   22, 78,
   23, 79,
@@ -26624,7 +26456,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_432 [17] = {3, 486,
   52, 487,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_433 [25] = {10, 488,
+static const int32_t gSuccessorTable_pic18_include_grammar_433 [25] = {10, 488,
   17, 209,
   19, 210,
   35, 211,
@@ -26637,7 +26469,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_433 [25] = {10, 488,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_434 [15] = {3, 489,
+static const int32_t gSuccessorTable_pic18_include_grammar_434 [15] = {3, 489,
   21, 77,
   22, 78,
   23, 79,
@@ -26645,9 +26477,9 @@ static const int16_t gSuccessorTable_pic18_include_grammar_434 [15] = {3, 489,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_436 [3] = {14, 490, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_436 [3] = {14, 490, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_439 [15] = {3, 491,
+static const int32_t gSuccessorTable_pic18_include_grammar_439 [15] = {3, 491,
   21, 77,
   22, 78,
   23, 79,
@@ -26655,34 +26487,34 @@ static const int16_t gSuccessorTable_pic18_include_grammar_439 [15] = {3, 491,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_461 [3] = {6, 504, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_461 [3] = {6, 504, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_463 [11] = {4, 407,
+static const int32_t gSuccessorTable_pic18_include_grammar_463 [11] = {4, 407,
   13, 505,
   14, 409,
   41, 411,
   42, 412, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_465 [13] = {4, 407,
+static const int32_t gSuccessorTable_pic18_include_grammar_465 [13] = {4, 407,
   13, 408,
   14, 409,
   15, 506,
   41, 411,
   42, 412, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_467 [3] = {43, 509, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_467 [3] = {43, 509, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_468 [3] = {83, 511, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_468 [3] = {83, 511, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_469 [3] = {82, 513, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_469 [3] = {82, 513, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_475 [3] = {99, 515, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_475 [3] = {99, 515, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_478 [3] = {96, 517, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_478 [3] = {96, 517, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_483 [3] = {80, 519, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_483 [3] = {80, 519, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_485 [15] = {3, 520,
+static const int32_t gSuccessorTable_pic18_include_grammar_485 [15] = {3, 520,
   21, 77,
   22, 78,
   23, 79,
@@ -26690,9 +26522,9 @@ static const int16_t gSuccessorTable_pic18_include_grammar_485 [15] = {3, 520,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_487 [3] = {51, 522, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_487 [3] = {51, 522, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_490 [25] = {10, 525,
+static const int32_t gSuccessorTable_pic18_include_grammar_490 [25] = {10, 525,
   17, 209,
   19, 210,
   35, 211,
@@ -26705,26 +26537,26 @@ static const int16_t gSuccessorTable_pic18_include_grammar_490 [25] = {10, 525,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_491 [3] = {63, 527, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_491 [3] = {63, 527, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_492 [3] = {64, 529, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_492 [3] = {64, 529, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_493 [3] = {65, 531, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_493 [3] = {65, 531, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_494 [3] = {66, 533, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_494 [3] = {66, 533, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_497 [13] = {19, 535,
+static const int32_t gSuccessorTable_pic18_include_grammar_497 [13] = {19, 535,
   84, 215,
   85, 216,
   86, 217,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_505 [3] = {46, 536, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_505 [3] = {46, 536, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_506 [3] = {45, 537, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_506 [3] = {45, 537, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_511 [25] = {10, 540,
+static const int32_t gSuccessorTable_pic18_include_grammar_511 [25] = {10, 540,
   17, 209,
   19, 210,
   35, 211,
@@ -26737,14 +26569,14 @@ static const int16_t gSuccessorTable_pic18_include_grammar_511 [25] = {10, 540,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_513 [5] = {14, 360,
+static const int32_t gSuccessorTable_pic18_include_grammar_513 [5] = {14, 360,
   18, 541, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_515 [3] = {98, 544, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_515 [3] = {98, 544, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_516 [3] = {97, 545, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_516 [3] = {97, 545, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_518 [15] = {3, 547,
+static const int32_t gSuccessorTable_pic18_include_grammar_518 [15] = {3, 547,
   21, 77,
   22, 78,
   23, 79,
@@ -26752,7 +26584,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_518 [15] = {3, 547,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_521 [17] = {3, 486,
+static const int32_t gSuccessorTable_pic18_include_grammar_521 [17] = {3, 486,
   21, 77,
   22, 78,
   23, 79,
@@ -26761,10 +26593,10 @@ static const int16_t gSuccessorTable_pic18_include_grammar_521 [17] = {3, 486,
   52, 549,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_523 [5] = {14, 553,
+static const int32_t gSuccessorTable_pic18_include_grammar_523 [5] = {14, 553,
   16, 554, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_524 [15] = {3, 555,
+static const int32_t gSuccessorTable_pic18_include_grammar_524 [15] = {3, 555,
   21, 77,
   22, 78,
   23, 79,
@@ -26772,9 +26604,9 @@ static const int16_t gSuccessorTable_pic18_include_grammar_524 [15] = {3, 555,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_525 [3] = {76, 557, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_525 [3] = {76, 557, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_526 [15] = {3, 558,
+static const int32_t gSuccessorTable_pic18_include_grammar_526 [15] = {3, 558,
   21, 77,
   22, 78,
   23, 79,
@@ -26782,11 +26614,11 @@ static const int16_t gSuccessorTable_pic18_include_grammar_526 [15] = {3, 558,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_545 [3] = {96, 564, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_545 [3] = {96, 564, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_547 [3] = {108, 565, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_547 [3] = {108, 565, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_548 [15] = {3, 566,
+static const int32_t gSuccessorTable_pic18_include_grammar_548 [15] = {3, 566,
   21, 77,
   22, 78,
   23, 79,
@@ -26794,9 +26626,9 @@ static const int16_t gSuccessorTable_pic18_include_grammar_548 [15] = {3, 566,
   25, 81,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_549 [3] = {51, 567, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_549 [3] = {51, 567, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_550 [25] = {10, 568,
+static const int32_t gSuccessorTable_pic18_include_grammar_550 [25] = {10, 568,
   17, 209,
   19, 210,
   35, 211,
@@ -26809,26 +26641,26 @@ static const int16_t gSuccessorTable_pic18_include_grammar_550 [25] = {10, 568,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_554 [3] = {56, 571, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_554 [3] = {56, 571, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_556 [3] = {77, 573, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_556 [3] = {77, 573, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_558 [3] = {63, 575, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_558 [3] = {63, 575, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_559 [3] = {64, 576, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_559 [3] = {64, 576, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_560 [3] = {65, 577, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_560 [3] = {65, 577, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_561 [3] = {66, 578, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_561 [3] = {66, 578, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_563 [3] = {99, 579, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_563 [3] = {99, 579, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_568 [3] = {49, 582, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_568 [3] = {49, 582, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_569 [5] = {14, 553,
+static const int32_t gSuccessorTable_pic18_include_grammar_569 [5] = {14, 553,
   16, 583, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_572 [25] = {10, 586,
+static const int32_t gSuccessorTable_pic18_include_grammar_572 [25] = {10, 586,
   17, 209,
   19, 210,
   35, 211,
@@ -26841,17 +26673,17 @@ static const int16_t gSuccessorTable_pic18_include_grammar_572 [25] = {10, 586,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_573 [3] = {14, 587, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_573 [3] = {14, 587, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_574 [3] = {78, 589, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_574 [3] = {78, 589, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_579 [3] = {98, 590, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_579 [3] = {98, 590, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_581 [3] = {50, 591, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_581 [3] = {50, 591, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_582 [3] = {53, 593, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_582 [3] = {53, 593, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_584 [25] = {10, 595,
+static const int32_t gSuccessorTable_pic18_include_grammar_584 [25] = {10, 595,
   17, 209,
   19, 210,
   35, 211,
@@ -26864,7 +26696,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_584 [25] = {10, 595,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_587 [25] = {10, 597,
+static const int32_t gSuccessorTable_pic18_include_grammar_587 [25] = {10, 597,
   17, 209,
   19, 210,
   35, 211,
@@ -26877,7 +26709,7 @@ static const int16_t gSuccessorTable_pic18_include_grammar_587 [25] = {10, 597,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_591 [17] = {3, 486,
+static const int32_t gSuccessorTable_pic18_include_grammar_591 [17] = {3, 486,
   21, 77,
   22, 78,
   23, 79,
@@ -26886,18 +26718,18 @@ static const int16_t gSuccessorTable_pic18_include_grammar_591 [17] = {3, 486,
   52, 598,
   106, 82, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_592 [3] = {54, 600, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_592 [3] = {54, 600, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_594 [5] = {14, 553,
+static const int32_t gSuccessorTable_pic18_include_grammar_594 [5] = {14, 553,
   16, 602, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_596 [3] = {58, 605, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_596 [3] = {58, 605, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_597 [3] = {76, 606, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_597 [3] = {76, 606, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_598 [3] = {51, 607, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_598 [3] = {51, 607, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_600 [25] = {10, 608,
+static const int32_t gSuccessorTable_pic18_include_grammar_600 [25] = {10, 608,
   17, 209,
   19, 210,
   35, 211,
@@ -26910,14 +26742,14 @@ static const int16_t gSuccessorTable_pic18_include_grammar_600 [25] = {10, 608,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_601 [3] = {55, 610, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_601 [3] = {55, 610, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_603 [5] = {14, 553,
+static const int32_t gSuccessorTable_pic18_include_grammar_603 [5] = {14, 553,
   16, 611, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_611 [3] = {56, 613, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_611 [3] = {56, 613, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_612 [25] = {10, 614,
+static const int32_t gSuccessorTable_pic18_include_grammar_612 [25] = {10, 614,
   17, 209,
   19, 210,
   35, 211,
@@ -26930,163 +26762,163 @@ static const int16_t gSuccessorTable_pic18_include_grammar_612 [25] = {10, 614,
   87, 218,
   88, 219, -1} ;
 
-static const int16_t gSuccessorTable_pic18_include_grammar_614 [3] = {49, 615, -1} ;
+static const int32_t gSuccessorTable_pic18_include_grammar_614 [3] = {49, 615, -1} ;
 
-static const int16_t * gSuccessorTable_pic18_include_grammar [616] = {
-gSuccessorTable_pic18_include_grammar_0, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_14, gSuccessorTable_pic18_include_grammar_15, 
-  gSuccessorTable_pic18_include_grammar_16, NULL, gSuccessorTable_pic18_include_grammar_18, gSuccessorTable_pic18_include_grammar_19, 
-  gSuccessorTable_pic18_include_grammar_20, gSuccessorTable_pic18_include_grammar_21, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_27, 
-  gSuccessorTable_pic18_include_grammar_28, NULL, gSuccessorTable_pic18_include_grammar_30, NULL, 
-  gSuccessorTable_pic18_include_grammar_32, gSuccessorTable_pic18_include_grammar_33, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_45, gSuccessorTable_pic18_include_grammar_46, NULL, 
-  gSuccessorTable_pic18_include_grammar_48, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_53, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_58, gSuccessorTable_pic18_include_grammar_59, 
-  gSuccessorTable_pic18_include_grammar_60, gSuccessorTable_pic18_include_grammar_61, NULL, gSuccessorTable_pic18_include_grammar_63, 
-  NULL, gSuccessorTable_pic18_include_grammar_65, gSuccessorTable_pic18_include_grammar_66, NULL, 
+static const int32_t * gSuccessorTable_pic18_include_grammar [616] = {
+gSuccessorTable_pic18_include_grammar_0, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_14, gSuccessorTable_pic18_include_grammar_15, 
+  gSuccessorTable_pic18_include_grammar_16, nullptr, gSuccessorTable_pic18_include_grammar_18, gSuccessorTable_pic18_include_grammar_19, 
+  gSuccessorTable_pic18_include_grammar_20, gSuccessorTable_pic18_include_grammar_21, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_27, 
+  gSuccessorTable_pic18_include_grammar_28, nullptr, gSuccessorTable_pic18_include_grammar_30, nullptr, 
+  gSuccessorTable_pic18_include_grammar_32, gSuccessorTable_pic18_include_grammar_33, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_45, gSuccessorTable_pic18_include_grammar_46, nullptr, 
+  gSuccessorTable_pic18_include_grammar_48, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_53, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_58, gSuccessorTable_pic18_include_grammar_59, 
+  gSuccessorTable_pic18_include_grammar_60, gSuccessorTable_pic18_include_grammar_61, nullptr, gSuccessorTable_pic18_include_grammar_63, 
+  nullptr, gSuccessorTable_pic18_include_grammar_65, gSuccessorTable_pic18_include_grammar_66, nullptr, 
   gSuccessorTable_pic18_include_grammar_68, gSuccessorTable_pic18_include_grammar_69, gSuccessorTable_pic18_include_grammar_70, gSuccessorTable_pic18_include_grammar_71, 
-  NULL, gSuccessorTable_pic18_include_grammar_73, gSuccessorTable_pic18_include_grammar_74, NULL, 
+  nullptr, gSuccessorTable_pic18_include_grammar_73, gSuccessorTable_pic18_include_grammar_74, nullptr, 
   gSuccessorTable_pic18_include_grammar_76, gSuccessorTable_pic18_include_grammar_77, gSuccessorTable_pic18_include_grammar_78, gSuccessorTable_pic18_include_grammar_79, 
-  gSuccessorTable_pic18_include_grammar_80, gSuccessorTable_pic18_include_grammar_81, NULL, gSuccessorTable_pic18_include_grammar_83, 
-  gSuccessorTable_pic18_include_grammar_84, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_include_grammar_88, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_include_grammar_92, NULL, NULL, gSuccessorTable_pic18_include_grammar_95, 
-  NULL, gSuccessorTable_pic18_include_grammar_97, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_include_grammar_104, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_109, NULL, gSuccessorTable_pic18_include_grammar_111, 
-  gSuccessorTable_pic18_include_grammar_112, NULL, gSuccessorTable_pic18_include_grammar_114, NULL, 
+  gSuccessorTable_pic18_include_grammar_80, gSuccessorTable_pic18_include_grammar_81, nullptr, gSuccessorTable_pic18_include_grammar_83, 
+  gSuccessorTable_pic18_include_grammar_84, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_include_grammar_88, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_include_grammar_92, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_95, 
+  nullptr, gSuccessorTable_pic18_include_grammar_97, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_include_grammar_104, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_109, nullptr, gSuccessorTable_pic18_include_grammar_111, 
+  gSuccessorTable_pic18_include_grammar_112, nullptr, gSuccessorTable_pic18_include_grammar_114, nullptr, 
   gSuccessorTable_pic18_include_grammar_116, gSuccessorTable_pic18_include_grammar_117, gSuccessorTable_pic18_include_grammar_118, gSuccessorTable_pic18_include_grammar_119, 
-  gSuccessorTable_pic18_include_grammar_120, gSuccessorTable_pic18_include_grammar_121, NULL, gSuccessorTable_pic18_include_grammar_123, 
-  gSuccessorTable_pic18_include_grammar_124, gSuccessorTable_pic18_include_grammar_125, gSuccessorTable_pic18_include_grammar_126, NULL, 
-  gSuccessorTable_pic18_include_grammar_128, gSuccessorTable_pic18_include_grammar_129, gSuccessorTable_pic18_include_grammar_130, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_135, 
-  NULL, gSuccessorTable_pic18_include_grammar_137, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_143, 
-  gSuccessorTable_pic18_include_grammar_144, NULL, gSuccessorTable_pic18_include_grammar_146, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_151, 
-  gSuccessorTable_pic18_include_grammar_152, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_include_grammar_184, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_197, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_206, gSuccessorTable_pic18_include_grammar_207, 
-  NULL, gSuccessorTable_pic18_include_grammar_209, gSuccessorTable_pic18_include_grammar_210, NULL, 
-  NULL, NULL, NULL, NULL, 
+  gSuccessorTable_pic18_include_grammar_120, gSuccessorTable_pic18_include_grammar_121, nullptr, gSuccessorTable_pic18_include_grammar_123, 
+  gSuccessorTable_pic18_include_grammar_124, gSuccessorTable_pic18_include_grammar_125, gSuccessorTable_pic18_include_grammar_126, nullptr, 
+  gSuccessorTable_pic18_include_grammar_128, gSuccessorTable_pic18_include_grammar_129, gSuccessorTable_pic18_include_grammar_130, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_135, 
+  nullptr, gSuccessorTable_pic18_include_grammar_137, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_143, 
+  gSuccessorTable_pic18_include_grammar_144, nullptr, gSuccessorTable_pic18_include_grammar_146, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_151, 
+  gSuccessorTable_pic18_include_grammar_152, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_include_grammar_184, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_197, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_206, gSuccessorTable_pic18_include_grammar_207, 
+  nullptr, gSuccessorTable_pic18_include_grammar_209, gSuccessorTable_pic18_include_grammar_210, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
   gSuccessorTable_pic18_include_grammar_216, gSuccessorTable_pic18_include_grammar_217, gSuccessorTable_pic18_include_grammar_218, gSuccessorTable_pic18_include_grammar_219, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_222, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_226, NULL, 
-  gSuccessorTable_pic18_include_grammar_228, gSuccessorTable_pic18_include_grammar_229, NULL, NULL, 
-  gSuccessorTable_pic18_include_grammar_232, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_237, NULL, gSuccessorTable_pic18_include_grammar_239, 
-  gSuccessorTable_pic18_include_grammar_240, gSuccessorTable_pic18_include_grammar_241, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_222, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_226, nullptr, 
+  gSuccessorTable_pic18_include_grammar_228, gSuccessorTable_pic18_include_grammar_229, nullptr, nullptr, 
+  gSuccessorTable_pic18_include_grammar_232, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_237, nullptr, gSuccessorTable_pic18_include_grammar_239, 
+  gSuccessorTable_pic18_include_grammar_240, gSuccessorTable_pic18_include_grammar_241, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
   gSuccessorTable_pic18_include_grammar_248, gSuccessorTable_pic18_include_grammar_249, gSuccessorTable_pic18_include_grammar_250, gSuccessorTable_pic18_include_grammar_251, 
-  gSuccessorTable_pic18_include_grammar_252, gSuccessorTable_pic18_include_grammar_253, gSuccessorTable_pic18_include_grammar_254, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_261, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_265, gSuccessorTable_pic18_include_grammar_266, gSuccessorTable_pic18_include_grammar_267, 
-  gSuccessorTable_pic18_include_grammar_268, gSuccessorTable_pic18_include_grammar_269, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_274, gSuccessorTable_pic18_include_grammar_275, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_279, 
-  NULL, gSuccessorTable_pic18_include_grammar_281, gSuccessorTable_pic18_include_grammar_282, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_307, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_include_grammar_312, gSuccessorTable_pic18_include_grammar_313, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_321, gSuccessorTable_pic18_include_grammar_322, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_335, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_341, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_355, 
-  NULL, gSuccessorTable_pic18_include_grammar_357, gSuccessorTable_pic18_include_grammar_358, gSuccessorTable_pic18_include_grammar_359, 
-  gSuccessorTable_pic18_include_grammar_360, NULL, NULL, gSuccessorTable_pic18_include_grammar_363, 
-  gSuccessorTable_pic18_include_grammar_364, gSuccessorTable_pic18_include_grammar_365, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_370, gSuccessorTable_pic18_include_grammar_371, 
-  gSuccessorTable_pic18_include_grammar_372, NULL, gSuccessorTable_pic18_include_grammar_374, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_378, gSuccessorTable_pic18_include_grammar_379, 
-  gSuccessorTable_pic18_include_grammar_380, NULL, NULL, gSuccessorTable_pic18_include_grammar_383, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_389, gSuccessorTable_pic18_include_grammar_390, gSuccessorTable_pic18_include_grammar_391, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_395, 
-  gSuccessorTable_pic18_include_grammar_396, NULL, NULL, gSuccessorTable_pic18_include_grammar_399, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_403, 
-  gSuccessorTable_pic18_include_grammar_404, NULL, NULL, gSuccessorTable_pic18_include_grammar_407, 
-  gSuccessorTable_pic18_include_grammar_408, NULL, gSuccessorTable_pic18_include_grammar_410, NULL, 
-  gSuccessorTable_pic18_include_grammar_412, gSuccessorTable_pic18_include_grammar_413, gSuccessorTable_pic18_include_grammar_414, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_422, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_426, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_429, NULL, NULL, 
-  gSuccessorTable_pic18_include_grammar_432, gSuccessorTable_pic18_include_grammar_433, gSuccessorTable_pic18_include_grammar_434, NULL, 
-  gSuccessorTable_pic18_include_grammar_436, NULL, NULL, gSuccessorTable_pic18_include_grammar_439, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_461, NULL, gSuccessorTable_pic18_include_grammar_463, 
-  NULL, gSuccessorTable_pic18_include_grammar_465, NULL, gSuccessorTable_pic18_include_grammar_467, 
-  gSuccessorTable_pic18_include_grammar_468, gSuccessorTable_pic18_include_grammar_469, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_475, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_478, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_483, 
-  NULL, gSuccessorTable_pic18_include_grammar_485, NULL, gSuccessorTable_pic18_include_grammar_487, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_490, gSuccessorTable_pic18_include_grammar_491, 
-  gSuccessorTable_pic18_include_grammar_492, gSuccessorTable_pic18_include_grammar_493, gSuccessorTable_pic18_include_grammar_494, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_497, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_505, gSuccessorTable_pic18_include_grammar_506, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_511, 
-  NULL, gSuccessorTable_pic18_include_grammar_513, NULL, gSuccessorTable_pic18_include_grammar_515, 
-  gSuccessorTable_pic18_include_grammar_516, NULL, gSuccessorTable_pic18_include_grammar_518, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_521, NULL, gSuccessorTable_pic18_include_grammar_523, 
-  gSuccessorTable_pic18_include_grammar_524, gSuccessorTable_pic18_include_grammar_525, gSuccessorTable_pic18_include_grammar_526, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_pic18_include_grammar_545, NULL, gSuccessorTable_pic18_include_grammar_547, 
-  gSuccessorTable_pic18_include_grammar_548, gSuccessorTable_pic18_include_grammar_549, gSuccessorTable_pic18_include_grammar_550, NULL, 
-  NULL, NULL, gSuccessorTable_pic18_include_grammar_554, NULL, 
-  gSuccessorTable_pic18_include_grammar_556, NULL, gSuccessorTable_pic18_include_grammar_558, gSuccessorTable_pic18_include_grammar_559, 
-  gSuccessorTable_pic18_include_grammar_560, gSuccessorTable_pic18_include_grammar_561, NULL, gSuccessorTable_pic18_include_grammar_563, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_pic18_include_grammar_568, gSuccessorTable_pic18_include_grammar_569, NULL, NULL, 
-  gSuccessorTable_pic18_include_grammar_572, gSuccessorTable_pic18_include_grammar_573, gSuccessorTable_pic18_include_grammar_574, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_579, 
-  NULL, gSuccessorTable_pic18_include_grammar_581, gSuccessorTable_pic18_include_grammar_582, NULL, 
-  gSuccessorTable_pic18_include_grammar_584, NULL, NULL, gSuccessorTable_pic18_include_grammar_587, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_591, 
-  gSuccessorTable_pic18_include_grammar_592, NULL, gSuccessorTable_pic18_include_grammar_594, NULL, 
-  gSuccessorTable_pic18_include_grammar_596, gSuccessorTable_pic18_include_grammar_597, gSuccessorTable_pic18_include_grammar_598, NULL, 
-  gSuccessorTable_pic18_include_grammar_600, gSuccessorTable_pic18_include_grammar_601, NULL, gSuccessorTable_pic18_include_grammar_603, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_pic18_include_grammar_611, 
-  gSuccessorTable_pic18_include_grammar_612, NULL, gSuccessorTable_pic18_include_grammar_614, NULL} ;
+  gSuccessorTable_pic18_include_grammar_252, gSuccessorTable_pic18_include_grammar_253, gSuccessorTable_pic18_include_grammar_254, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_261, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_265, gSuccessorTable_pic18_include_grammar_266, gSuccessorTable_pic18_include_grammar_267, 
+  gSuccessorTable_pic18_include_grammar_268, gSuccessorTable_pic18_include_grammar_269, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_274, gSuccessorTable_pic18_include_grammar_275, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_279, 
+  nullptr, gSuccessorTable_pic18_include_grammar_281, gSuccessorTable_pic18_include_grammar_282, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_307, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_include_grammar_312, gSuccessorTable_pic18_include_grammar_313, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_321, gSuccessorTable_pic18_include_grammar_322, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_335, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_341, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_355, 
+  nullptr, gSuccessorTable_pic18_include_grammar_357, gSuccessorTable_pic18_include_grammar_358, gSuccessorTable_pic18_include_grammar_359, 
+  gSuccessorTable_pic18_include_grammar_360, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_363, 
+  gSuccessorTable_pic18_include_grammar_364, gSuccessorTable_pic18_include_grammar_365, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_370, gSuccessorTable_pic18_include_grammar_371, 
+  gSuccessorTable_pic18_include_grammar_372, nullptr, gSuccessorTable_pic18_include_grammar_374, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_378, gSuccessorTable_pic18_include_grammar_379, 
+  gSuccessorTable_pic18_include_grammar_380, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_383, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_389, gSuccessorTable_pic18_include_grammar_390, gSuccessorTable_pic18_include_grammar_391, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_395, 
+  gSuccessorTable_pic18_include_grammar_396, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_399, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_403, 
+  gSuccessorTable_pic18_include_grammar_404, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_407, 
+  gSuccessorTable_pic18_include_grammar_408, nullptr, gSuccessorTable_pic18_include_grammar_410, nullptr, 
+  gSuccessorTable_pic18_include_grammar_412, gSuccessorTable_pic18_include_grammar_413, gSuccessorTable_pic18_include_grammar_414, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_422, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_426, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_429, nullptr, nullptr, 
+  gSuccessorTable_pic18_include_grammar_432, gSuccessorTable_pic18_include_grammar_433, gSuccessorTable_pic18_include_grammar_434, nullptr, 
+  gSuccessorTable_pic18_include_grammar_436, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_439, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_461, nullptr, gSuccessorTable_pic18_include_grammar_463, 
+  nullptr, gSuccessorTable_pic18_include_grammar_465, nullptr, gSuccessorTable_pic18_include_grammar_467, 
+  gSuccessorTable_pic18_include_grammar_468, gSuccessorTable_pic18_include_grammar_469, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_475, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_478, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_483, 
+  nullptr, gSuccessorTable_pic18_include_grammar_485, nullptr, gSuccessorTable_pic18_include_grammar_487, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_490, gSuccessorTable_pic18_include_grammar_491, 
+  gSuccessorTable_pic18_include_grammar_492, gSuccessorTable_pic18_include_grammar_493, gSuccessorTable_pic18_include_grammar_494, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_497, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_505, gSuccessorTable_pic18_include_grammar_506, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_511, 
+  nullptr, gSuccessorTable_pic18_include_grammar_513, nullptr, gSuccessorTable_pic18_include_grammar_515, 
+  gSuccessorTable_pic18_include_grammar_516, nullptr, gSuccessorTable_pic18_include_grammar_518, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_521, nullptr, gSuccessorTable_pic18_include_grammar_523, 
+  gSuccessorTable_pic18_include_grammar_524, gSuccessorTable_pic18_include_grammar_525, gSuccessorTable_pic18_include_grammar_526, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_pic18_include_grammar_545, nullptr, gSuccessorTable_pic18_include_grammar_547, 
+  gSuccessorTable_pic18_include_grammar_548, gSuccessorTable_pic18_include_grammar_549, gSuccessorTable_pic18_include_grammar_550, nullptr, 
+  nullptr, nullptr, gSuccessorTable_pic18_include_grammar_554, nullptr, 
+  gSuccessorTable_pic18_include_grammar_556, nullptr, gSuccessorTable_pic18_include_grammar_558, gSuccessorTable_pic18_include_grammar_559, 
+  gSuccessorTable_pic18_include_grammar_560, gSuccessorTable_pic18_include_grammar_561, nullptr, gSuccessorTable_pic18_include_grammar_563, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_pic18_include_grammar_568, gSuccessorTable_pic18_include_grammar_569, nullptr, nullptr, 
+  gSuccessorTable_pic18_include_grammar_572, gSuccessorTable_pic18_include_grammar_573, gSuccessorTable_pic18_include_grammar_574, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_579, 
+  nullptr, gSuccessorTable_pic18_include_grammar_581, gSuccessorTable_pic18_include_grammar_582, nullptr, 
+  gSuccessorTable_pic18_include_grammar_584, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_587, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_591, 
+  gSuccessorTable_pic18_include_grammar_592, nullptr, gSuccessorTable_pic18_include_grammar_594, nullptr, 
+  gSuccessorTable_pic18_include_grammar_596, gSuccessorTable_pic18_include_grammar_597, gSuccessorTable_pic18_include_grammar_598, nullptr, 
+  gSuccessorTable_pic18_include_grammar_600, gSuccessorTable_pic18_include_grammar_601, nullptr, gSuccessorTable_pic18_include_grammar_603, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_pic18_include_grammar_611, 
+  gSuccessorTable_pic18_include_grammar_612, nullptr, gSuccessorTable_pic18_include_grammar_614, nullptr} ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
@@ -27094,7 +26926,7 @@ gSuccessorTable_pic18_include_grammar_0, NULL, NULL, NULL,
 //                                                                                                                      
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const int16_t gProductionsTable_pic18_include_grammar [326 * 2] = {
+static const int32_t gProductionsTable_pic18_include_grammar [326 * 2] = {
   7, 1,
   8, 3,
   9, 6,
@@ -27430,34 +27262,26 @@ static const int16_t gProductionsTable_pic18_include_grammar [326 * 2] = {
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_configuration_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 18 :
-      rule_communs_configuration_5F_definition_i0_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 18) {
+  rule_communs_configuration_5F_definition_i0_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_configuration_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 18 :
-      rule_communs_configuration_5F_definition_i0_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 18) {
+  rule_communs_configuration_5F_definition_i0_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_configuration_5F_definition_ (GALGAS_configDefinitionList &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 18 :
-      rule_communs_configuration_5F_definition_i0_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 18) {
+  rule_communs_configuration_5F_definition_i0_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -27469,34 +27293,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_configuration_5F_definition_
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_ram_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 20 :
-      rule_communs_ram_5F_definition_i2_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 20) {
+  rule_communs_ram_5F_definition_i2_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_ram_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 20 :
-      rule_communs_ram_5F_definition_i2_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 20) {
+  rule_communs_ram_5F_definition_i2_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_ram_5F_definition_ (GALGAS_ramDefinitionList &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 20 :
-      rule_communs_ram_5F_definition_i2_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 20) {
+  rule_communs_ram_5F_definition_i2_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -27508,34 +27324,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_ram_5F_definition_ (GALGAS_r
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_constant_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 21 :
-      rule_communs_constant_5F_definition_i3_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 21) {
+  rule_communs_constant_5F_definition_i3_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_constant_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 21 :
-      rule_communs_constant_5F_definition_i3_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 21) {
+  rule_communs_constant_5F_definition_i3_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_constant_5F_definition_ (GALGAS_constantDefinitionList &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 21 :
-      rule_communs_constant_5F_definition_i3_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 21) {
+  rule_communs_constant_5F_definition_i3_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -27547,34 +27355,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_constant_5F_definition_ (GAL
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_expression_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 22 :
-      rule_communs_immediate_5F_expression_i4_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 22) {
+  rule_communs_immediate_5F_expression_i4_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_expression_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 22 :
-      rule_communs_immediate_5F_expression_i4_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 22) {
+  rule_communs_immediate_5F_expression_i4_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_expression_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 22 :
-      rule_communs_immediate_5F_expression_i4_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 22) {
+  rule_communs_immediate_5F_expression_i4_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -27586,34 +27386,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_expression_ (GA
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_register_5F_parsing_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 28 :
-      rule_communs_register_5F_parsing_i10_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 28) {
+  rule_communs_register_5F_parsing_i10_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_register_5F_parsing_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 28 :
-      rule_communs_register_5F_parsing_i10_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 28) {
+  rule_communs_register_5F_parsing_i10_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_register_5F_parsing_ (GALGAS_registerExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 28 :
-      rule_communs_register_5F_parsing_i10_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 28) {
+  rule_communs_register_5F_parsing_i10_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -27625,34 +27417,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_register_5F_parsing_ (GALGAS
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_optional_5F_w_5F_as_5F_dest_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 32 :
-      rule_communs_optional_5F_w_5F_as_5F_dest_i14_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 32) {
+  rule_communs_optional_5F_w_5F_as_5F_dest_i14_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_optional_5F_w_5F_as_5F_dest_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 32 :
-      rule_communs_optional_5F_w_5F_as_5F_dest_i14_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 32) {
+  rule_communs_optional_5F_w_5F_as_5F_dest_i14_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_optional_5F_w_5F_as_5F_dest_ (GALGAS_bool &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 32 :
-      rule_communs_optional_5F_w_5F_as_5F_dest_i14_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 32) {
+  rule_communs_optional_5F_w_5F_as_5F_dest_i14_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -27711,6 +27495,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_bit_5F_number_5F_parsing_ (G
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -27721,24 +27506,18 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_bit_5F_number_5F_parsing_ (G
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_body_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 0 :
-      rule_pic_31__38__5F_syntax_body_i0_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 0) {
+  rule_pic_31__38__5F_syntax_body_i0_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_body_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 0 :
-      rule_pic_31__38__5F_syntax_body_i0_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 0) {
+  rule_pic_31__38__5F_syntax_body_i0_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -27756,11 +27535,9 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_body_ (GALGAS_pic_31__38_Int
                                 GALGAS_bool &  parameter_12,
                                 GALGAS_bool &  parameter_13,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 0 :
-      rule_pic_31__38__5F_syntax_body_i0_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, parameter_7, parameter_8, parameter_9, parameter_10, parameter_11, parameter_12, parameter_13, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 0) {
+  rule_pic_31__38__5F_syntax_body_i0_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, parameter_7, parameter_8, parameter_9, parameter_10, parameter_11, parameter_12, parameter_13, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -27904,34 +27681,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceStringParsing_ (C
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_checkpic_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 1 :
-      rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 1) {
+  rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_checkpic_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 1 :
-      rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 1) {
+  rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_checkpic_5F_definition_ (GALGAS_checkpicList &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 1 :
-      rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 1) {
+  rule_pic_31__38__5F_syntax_checkpic_5F_definition_i1_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -27981,6 +27750,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_data_5F_definition_ (GALGAS_
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -27991,24 +27761,18 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_data_5F_definition_ (GALGAS_
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_instruction_5F_list_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 4 :
-      rule_pic_31__38__5F_syntax_instruction_5F_list_i4_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 4) {
+  rule_pic_31__38__5F_syntax_instruction_5F_list_i4_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_instruction_5F_list_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 4 :
-      rule_pic_31__38__5F_syntax_instruction_5F_list_i4_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 4) {
+  rule_pic_31__38__5F_syntax_instruction_5F_list_i4_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -28017,11 +27781,9 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_instruction_5F_list_ (GALGAS
                                 GALGAS_bool &  parameter_3,
                                 GALGAS_labelMap &  parameter_4,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 4 :
-      rule_pic_31__38__5F_syntax_instruction_5F_list_i4_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 4) {
+  rule_pic_31__38__5F_syntax_instruction_5F_list_i4_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28033,24 +27795,18 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_instruction_5F_list_ (GALGAS
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_interrupt_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 5 :
-      rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 5) {
+  rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_interrupt_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 5 :
-      rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 5) {
+  rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -28058,11 +27814,9 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_interrupt_5F_definition_ (GA
                                 GALGAS_bool &  parameter_2,
                                 GALGAS_bool &  parameter_3,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 5 :
-      rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_(parameter_1, parameter_2, parameter_3, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 5) {
+  rule_pic_31__38__5F_syntax_interrupt_5F_definition_i5_(parameter_1, parameter_2, parameter_3, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28074,24 +27828,18 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_interrupt_5F_definition_ (GA
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_routine_5F_definition_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 6 :
-      rule_pic_31__38__5F_syntax_routine_5F_definition_i6_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 6) {
+  rule_pic_31__38__5F_syntax_routine_5F_definition_i6_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_routine_5F_definition_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 6 :
-      rule_pic_31__38__5F_syntax_routine_5F_definition_i6_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 6) {
+  rule_pic_31__38__5F_syntax_routine_5F_definition_i6_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -28099,11 +27847,9 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_routine_5F_definition_ (GALG
                                 GALGAS_bool &  parameter_2,
                                 GALGAS_bool &  parameter_3,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 6 :
-      rule_pic_31__38__5F_syntax_routine_5F_definition_i6_(parameter_1, parameter_2, parameter_3, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 6) {
+  rule_pic_31__38__5F_syntax_routine_5F_definition_i6_(parameter_1, parameter_2, parameter_3, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28162,6 +27908,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_factor_ (GALGAS
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -28172,34 +27919,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_factor_ (GALGAS
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_expression_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 10 :
-      rule_pic_31__38__5F_syntax_condition_5F_expression_i10_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 10) {
+  rule_pic_31__38__5F_syntax_condition_5F_expression_i10_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_expression_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 10 :
-      rule_pic_31__38__5F_syntax_condition_5F_expression_i10_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 10) {
+  rule_pic_31__38__5F_syntax_condition_5F_expression_i10_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_expression_ (GALGAS_pic_31__38_ConditionExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 10 :
-      rule_pic_31__38__5F_syntax_condition_5F_expression_i10_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 10) {
+  rule_pic_31__38__5F_syntax_condition_5F_expression_i10_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28211,34 +27950,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_expression_ (GA
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_term_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 11 :
-      rule_pic_31__38__5F_syntax_condition_5F_term_i11_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 11) {
+  rule_pic_31__38__5F_syntax_condition_5F_term_i11_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_term_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 11 :
-      rule_pic_31__38__5F_syntax_condition_5F_term_i11_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 11) {
+  rule_pic_31__38__5F_syntax_condition_5F_term_i11_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_condition_5F_term_ (GALGAS_pic_31__38_ConditionExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 11 :
-      rule_pic_31__38__5F_syntax_condition_5F_term_i11_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 11) {
+  rule_pic_31__38__5F_syntax_condition_5F_term_i11_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28297,6 +28028,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_block_5F_termination_ (GALGA
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -28307,24 +28039,18 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_block_5F_termination_ (GALGA
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 15 :
-      rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 15) {
+  rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 15 :
-      rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 15) {
+  rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -28333,11 +28059,9 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_instruction_ (
                                 GALGAS_bool &  parameter_3,
                                 GALGAS_labelMap &  parameter_4,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 15 :
-      rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 15) {
+  rule_pic_31__38__5F_syntax_structured_5F_instruction_i15_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28349,24 +28073,18 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_instruction_ (
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_if_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 16 :
-      rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 16) {
+  rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_if_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 16 :
-      rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 16) {
+  rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -28376,11 +28094,9 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_if_5F_instruct
                                 GALGAS_bool &  parameter_4,
                                 GALGAS_labelMap &  parameter_5,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 16 :
-      rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 16) {
+  rule_pic_31__38__5F_syntax_structured_5F_if_5F_instruction_i16_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28392,34 +28108,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_structured_5F_if_5F_instruct
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_simple_5F_instruction_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 17 :
-      rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 17) {
+  rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_simple_5F_instruction_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 17 :
-      rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 17) {
+  rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_simple_5F_instruction_ (GALGAS_pic_31__38_PiccoloSimpleInstruction &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 17 :
-      rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 17) {
+  rule_pic_31__38__5F_syntax_simple_5F_instruction_i17_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28431,34 +28139,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_simple_5F_instruction_ (GALG
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_declaration_5F_in_5F_ram_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 19 :
-      rule_communs_declaration_5F_in_5F_ram_i1_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 19) {
+  rule_communs_declaration_5F_in_5F_ram_i1_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_declaration_5F_in_5F_ram_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 19 :
-      rule_communs_declaration_5F_in_5F_ram_i1_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 19) {
+  rule_communs_declaration_5F_in_5F_ram_i1_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_declaration_5F_in_5F_ram_ (GALGAS_declarationInRam &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 19 :
-      rule_communs_declaration_5F_in_5F_ram_i1_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 19) {
+  rule_communs_declaration_5F_in_5F_ram_i1_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28470,34 +28170,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_declaration_5F_in_5F_ram_ (G
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_term_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 23 :
-      rule_communs_immediate_5F_bitwise_5F_term_i5_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 23) {
+  rule_communs_immediate_5F_bitwise_5F_term_i5_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_term_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 23 :
-      rule_communs_immediate_5F_bitwise_5F_term_i5_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 23) {
+  rule_communs_immediate_5F_bitwise_5F_term_i5_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_term_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 23 :
-      rule_communs_immediate_5F_bitwise_5F_term_i5_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 23) {
+  rule_communs_immediate_5F_bitwise_5F_term_i5_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28509,34 +28201,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_term
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_factor_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 24 :
-      rule_communs_immediate_5F_bitwise_5F_factor_i6_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 24) {
+  rule_communs_immediate_5F_bitwise_5F_factor_i6_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_factor_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 24 :
-      rule_communs_immediate_5F_bitwise_5F_factor_i6_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 24) {
+  rule_communs_immediate_5F_bitwise_5F_factor_i6_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_factor_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 24 :
-      rule_communs_immediate_5F_bitwise_5F_factor_i6_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 24) {
+  rule_communs_immediate_5F_bitwise_5F_factor_i6_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28548,34 +28232,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_fact
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_term_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 25 :
-      rule_communs_immediate_5F_term_i7_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 25) {
+  rule_communs_immediate_5F_term_i7_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_term_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 25 :
-      rule_communs_immediate_5F_term_i7_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 25) {
+  rule_communs_immediate_5F_term_i7_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_term_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 25 :
-      rule_communs_immediate_5F_term_i7_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 25) {
+  rule_communs_immediate_5F_term_i7_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28587,34 +28263,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_term_ (GALGAS_i
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_factor_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 26 :
-      rule_communs_immediate_5F_factor_i8_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 26) {
+  rule_communs_immediate_5F_factor_i8_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_factor_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 26 :
-      rule_communs_immediate_5F_factor_i8_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 26) {
+  rule_communs_immediate_5F_factor_i8_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_factor_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 26 :
-      rule_communs_immediate_5F_factor_i8_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 26) {
+  rule_communs_immediate_5F_factor_i8_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -28626,34 +28294,26 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_factor_ (GALGAS
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_primary_parse (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 27 :
-      rule_communs_immediate_5F_primary_i9_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 27) {
+  rule_communs_immediate_5F_primary_i9_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_primary_indexing (C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 27 :
-      rule_communs_immediate_5F_primary_i9_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 27) {
+  rule_communs_immediate_5F_primary_i9_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_primary_ (GALGAS_immediatExpression &  parameter_1,
                                 C_Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 27 :
-      rule_communs_immediate_5F_primary_i9_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 27) {
+  rule_communs_immediate_5F_primary_i9_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }

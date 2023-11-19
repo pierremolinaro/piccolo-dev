@@ -2162,7 +2162,7 @@ void routine_findMidRangeFirstInstructionFromAddress (const GALGAS_uint constinA
         enumGalgasBool test_0 = kBoolTrue ;
         if (kBoolTrue == test_0) {
           GALGAS_midrange_5F_intermediate_5F_actualInstruction var_instr_7143 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_actualInstruction *> (constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_6827, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 172)).ptr ())) ;
-          if (NULL == var_instr_7143.ptr ()) {
+          if (nullptr == var_instr_7143.ptr ()) {
             test_0 = kBoolFalse ;
           }
           if (kBoolTrue == test_0) {
@@ -2215,7 +2215,7 @@ void routine_findMidRangeFirstInstructionOrLabelFromAddress (const GALGAS_uint c
         enumGalgasBool test_0 = kBoolTrue ;
         if (kBoolTrue == test_0) {
           GALGAS_midrange_5F_intermediate_5F_actualInstruction var_instr_8305 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_actualInstruction *> (var_instruction_8215.ptr ())) ;
-          if (NULL == var_instr_8305.ptr ()) {
+          if (nullptr == var_instr_8305.ptr ()) {
             test_0 = kBoolFalse ;
           }
           if (kBoolTrue == test_0) {
@@ -2227,7 +2227,7 @@ void routine_findMidRangeFirstInstructionOrLabelFromAddress (const GALGAS_uint c
           enumGalgasBool test_1 = kBoolTrue ;
           if (kBoolTrue == test_1) {
             GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG var_instr_8578 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *> (var_instruction_8215.ptr ())) ;
-            if (NULL == var_instr_8578.ptr ()) {
+            if (nullptr == var_instr_8578.ptr ()) {
               test_1 = kBoolFalse ;
             }
             if (kBoolTrue == test_1) {
@@ -2239,7 +2239,7 @@ void routine_findMidRangeFirstInstructionOrLabelFromAddress (const GALGAS_uint c
             enumGalgasBool test_2 = kBoolTrue ;
             if (kBoolTrue == test_2) {
               GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL var_instr_8762 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *> (var_instruction_8215.ptr ())) ;
-              if (NULL == var_instr_8762.ptr ()) {
+              if (nullptr == var_instr_8762.ptr ()) {
                 test_2 = kBoolFalse ;
               }
               if (kBoolTrue == test_2) {
@@ -2318,7 +2318,7 @@ void routine_perform_5F_midrange_5F_optimizations (GALGAS_midrange_5F_intermedia
               enumGalgasBool test_0 = kBoolTrue ;
               if (kBoolTrue == test_0) {
                 GALGAS_midrange_5F_intermediate_5F_GOTO var_ipic_5F_GOTO_24589 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_GOTO *> (var_instruction_24508.ptr ())) ;
-                if (NULL == var_ipic_5F_GOTO_24589.ptr ()) {
+                if (nullptr == var_ipic_5F_GOTO_24589.ptr ()) {
                   test_0 = kBoolFalse ;
                 }
                 if (kBoolTrue == test_0) {
@@ -2329,7 +2329,7 @@ void routine_perform_5F_midrange_5F_optimizations (GALGAS_midrange_5F_intermedia
                 enumGalgasBool test_1 = kBoolTrue ;
                 if (kBoolTrue == test_1) {
                   GALGAS_midrange_5F_intermediate_5F_JUMP var_ipic_5F_JUMP_24841 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_JUMP *> (var_instruction_24508.ptr ())) ;
-                  if (NULL == var_ipic_5F_JUMP_24841.ptr ()) {
+                  if (nullptr == var_ipic_5F_JUMP_24841.ptr ()) {
                     test_1 = kBoolFalse ;
                   }
                   if (kBoolTrue == test_1) {
@@ -2340,7 +2340,7 @@ void routine_perform_5F_midrange_5F_optimizations (GALGAS_midrange_5F_intermedia
                   enumGalgasBool test_2 = kBoolTrue ;
                   if (kBoolTrue == test_2) {
                     GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation var_ipic_5F_literal_25259 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation *> (var_instruction_24508.ptr ())) ;
-                    if (NULL == var_ipic_5F_literal_25259.ptr ()) {
+                    if (nullptr == var_ipic_5F_literal_25259.ptr ()) {
                       test_2 = kBoolFalse ;
                     }
                     if (kBoolTrue == test_2) {
@@ -2351,7 +2351,7 @@ void routine_perform_5F_midrange_5F_optimizations (GALGAS_midrange_5F_intermedia
                     enumGalgasBool test_3 = kBoolTrue ;
                     if (kBoolTrue == test_3) {
                       GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition var_ipic_5F_decInc_25556 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition *> (var_instruction_24508.ptr ())) ;
-                      if (NULL == var_ipic_5F_decInc_25556.ptr ()) {
+                      if (nullptr == var_ipic_5F_decInc_25556.ptr ()) {
                         test_3 = kBoolFalse ;
                       }
                       if (kBoolTrue == test_3) {
@@ -2362,7 +2362,7 @@ void routine_perform_5F_midrange_5F_optimizations (GALGAS_midrange_5F_intermedia
                       enumGalgasBool test_4 = kBoolTrue ;
                       if (kBoolTrue == test_4) {
                         GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip var_ipic_5F_bitTestSkip_25862 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip *> (var_instruction_24508.ptr ())) ;
-                        if (NULL == var_ipic_5F_bitTestSkip_25862.ptr ()) {
+                        if (nullptr == var_ipic_5F_bitTestSkip_25862.ptr ()) {
                           test_4 = kBoolFalse ;
                         }
                         if (kBoolTrue == test_4) {
@@ -5603,7 +5603,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_checkBCC [4]
   & kTypeDescriptor_GALGAS_symbolTableForRelativesResolution,
   & kTypeDescriptor_GALGAS_lstring,
   & kTypeDescriptor_GALGAS_uint,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5665,7 +5665,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_checkBRA_5F_
   & kTypeDescriptor_GALGAS_symbolTableForRelativesResolution,
   & kTypeDescriptor_GALGAS_lstring,
   & kTypeDescriptor_GALGAS_uint,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5726,7 +5726,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_BRA_5F_RCALL
   & kTypeDescriptor_GALGAS_symbolTableForRelativesResolution,
   & kTypeDescriptor_GALGAS_lstring,
   & kTypeDescriptor_GALGAS_uint,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5906,7 +5906,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_Bcc_5F_instr
   & kTypeDescriptor_GALGAS_lstring,
   & kTypeDescriptor_GALGAS_conditional_5F_branch,
   & kTypeDescriptor_GALGAS_bool,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5982,7 +5982,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_RCALL_5F_ins
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_lstring,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6050,7 +6050,7 @@ static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_BRA_5F_instr
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_lstring,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6110,7 +6110,7 @@ GALGAS_codeList function_pic_31__38__5F_CALL_5F_instruction_5F_code (const GALGA
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_CALL_5F_instruction_5F_code [3] = {
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_lstring,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6166,7 +6166,7 @@ GALGAS_codeList function_pic_31__38__5F_GOTO_5F_instruction_5F_code (const GALGA
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_GOTO_5F_instruction_5F_code [3] = {
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_lstring,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6217,7 +6217,7 @@ GALGAS_codeList function_pic_31__38__5F_definition_5F_label (const GALGAS_lstrin
 
 static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_definition_5F_label [2] = {
   & kTypeDescriptor_GALGAS_lstring,
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6445,7 +6445,7 @@ GALGAS_bool cPtr_ipic_31__38_RetlwTerminator::getter_isEqualToTerminator (const 
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     GALGAS_ipic_31__38_RetlwTerminator var_t_4553 (dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (constinArgument_inTerminator.ptr ())) ;
-    if (NULL == var_t_4553.ptr ()) {
+    if (nullptr == var_t_4553.ptr ()) {
       test_0 = kBoolFalse ;
     }
     if (kBoolTrue == test_0) {
@@ -6720,7 +6720,7 @@ GALGAS_bool cPtr_ipic_31__38_JumpTerminator::getter_isEqualToTerminator (const G
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     GALGAS_ipic_31__38_JumpTerminator var_t_8755 (dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (constinArgument_inTerminator.ptr ())) ;
-    if (NULL == var_t_8755.ptr ()) {
+    if (nullptr == var_t_8755.ptr ()) {
       test_0 = kBoolFalse ;
     }
     if (kBoolTrue == test_0) {
@@ -6868,7 +6868,7 @@ void cPtr_pic_31__38_RegisterComparisonTerminator::method_performTerminatorRelat
     const GALGAS_pic_31__38_RegisterComparisonTerminator temp_4 = this ;
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_5 ;
     if (var_outModifiedTrueTerminator_12075.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_12075.ptr ())) {
+      if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_12075.ptr ())) {
         temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_12075.ptr () ;
       }else{
         inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_12075.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 385)) ;
@@ -6876,7 +6876,7 @@ void cPtr_pic_31__38_RegisterComparisonTerminator::method_performTerminatorRelat
     }
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_6 ;
     if (var_outModifiedFalseTerminator_12363.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_12363.ptr ())) {
+      if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_12363.ptr ())) {
         temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_12363.ptr () ;
       }else{
         inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_12363.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 386)) ;
@@ -6965,7 +6965,7 @@ GALGAS_bool cPtr_pic_31__38_RegisterComparisonTerminator::getter_isEqualToTermin
     if (kBoolTrue == test_0) {
       GALGAS_pic_31__38_RegisterComparisonTerminator temp_1 ;
       if (constinArgument_inTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_pic_31__38_RegisterComparisonTerminator *> (constinArgument_inTerminator.ptr ())) {
+        if (nullptr != dynamic_cast <const cPtr_pic_31__38_RegisterComparisonTerminator *> (constinArgument_inTerminator.ptr ())) {
           temp_1 = (cPtr_pic_31__38_RegisterComparisonTerminator *) constinArgument_inTerminator.ptr () ;
         }else{
           inCompiler->castError ("pic_31__38_RegisterComparisonTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 446)) ;
@@ -7080,7 +7080,7 @@ void cPtr_pic_31__38_TestRegisterTerminator::method_performTerminatorRelativeBra
     const GALGAS_pic_31__38_TestRegisterTerminator temp_4 = this ;
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_5 ;
     if (var_outModifiedTrueTerminator_16879.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_16879.ptr ())) {
+      if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_16879.ptr ())) {
         temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_16879.ptr () ;
       }else{
         inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_16879.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 520)) ;
@@ -7088,7 +7088,7 @@ void cPtr_pic_31__38_TestRegisterTerminator::method_performTerminatorRelativeBra
     }
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_6 ;
     if (var_outModifiedFalseTerminator_17167.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_17167.ptr ())) {
+      if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_17167.ptr ())) {
         temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_17167.ptr () ;
       }else{
         inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_17167.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 521)) ;
@@ -7152,7 +7152,7 @@ GALGAS_bool cPtr_pic_31__38_TestRegisterTerminator::getter_isEqualToTerminator (
     if (kBoolTrue == test_0) {
       GALGAS_pic_31__38_TestRegisterTerminator temp_1 ;
       if (constinArgument_inTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_pic_31__38_TestRegisterTerminator *> (constinArgument_inTerminator.ptr ())) {
+        if (nullptr != dynamic_cast <const cPtr_pic_31__38_TestRegisterTerminator *> (constinArgument_inTerminator.ptr ())) {
           temp_1 = (cPtr_pic_31__38_TestRegisterTerminator *) constinArgument_inTerminator.ptr () ;
         }else{
           inCompiler->castError ("pic_31__38_TestRegisterTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 567)) ;
@@ -7241,7 +7241,7 @@ void cPtr_pic_31__38_BitTestTerminator::method_performTerminatorRelativeBranchRe
     const GALGAS_pic_31__38_BitTestTerminator temp_4 = this ;
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_5 ;
     if (var_outModifiedTrueTerminator_20972.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_20972.ptr ())) {
+      if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_20972.ptr ())) {
         temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_20972.ptr () ;
       }else{
         inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_20972.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 627)) ;
@@ -7249,7 +7249,7 @@ void cPtr_pic_31__38_BitTestTerminator::method_performTerminatorRelativeBranchRe
     }
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_6 ;
     if (var_outModifiedFalseTerminator_21260.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_21260.ptr ())) {
+      if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_21260.ptr ())) {
         temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_21260.ptr () ;
       }else{
         inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_21260.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 628)) ;
@@ -7348,7 +7348,7 @@ GALGAS_bool cPtr_pic_31__38_BitTestTerminator::getter_isEqualToTerminator (const
     if (kBoolTrue == test_0) {
       GALGAS_pic_31__38_BitTestTerminator temp_1 ;
       if (constinArgument_inTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_pic_31__38_BitTestTerminator *> (constinArgument_inTerminator.ptr ())) {
+        if (nullptr != dynamic_cast <const cPtr_pic_31__38_BitTestTerminator *> (constinArgument_inTerminator.ptr ())) {
           temp_1 = (cPtr_pic_31__38_BitTestTerminator *) constinArgument_inTerminator.ptr () ;
         }else{
           inCompiler->castError ("pic_31__38_BitTestTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 699)) ;
@@ -7467,7 +7467,7 @@ void cPtr_ipic_31__38_IncDecRegisterTerminator::method_performTerminatorRelative
     const GALGAS_ipic_31__38_IncDecRegisterTerminator temp_4 = this ;
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_5 ;
     if (var_outModifiedTrueTerminator_26354.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_26354.ptr ())) {
+      if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedTrueTerminator_26354.ptr ())) {
         temp_5 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedTrueTerminator_26354.ptr () ;
       }else{
         inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedTrueTerminator_26354.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 773)) ;
@@ -7475,7 +7475,7 @@ void cPtr_ipic_31__38_IncDecRegisterTerminator::method_performTerminatorRelative
     }
     GALGAS_ipic_31__38_SingleInstructionTerminator temp_6 ;
     if (var_outModifiedFalseTerminator_26642.isValid ()) {
-      if (NULL != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_26642.ptr ())) {
+      if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_outModifiedFalseTerminator_26642.ptr ())) {
         temp_6 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_outModifiedFalseTerminator_26642.ptr () ;
       }else{
         inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_outModifiedFalseTerminator_26642.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 774)) ;
@@ -7627,7 +7627,7 @@ GALGAS_bool cPtr_ipic_31__38_IncDecRegisterTerminator::getter_isEqualToTerminato
     if (kBoolTrue == test_0) {
       GALGAS_ipic_31__38_IncDecRegisterTerminator temp_1 ;
       if (constinArgument_inTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_ipic_31__38_IncDecRegisterTerminator *> (constinArgument_inTerminator.ptr ())) {
+        if (nullptr != dynamic_cast <const cPtr_ipic_31__38_IncDecRegisterTerminator *> (constinArgument_inTerminator.ptr ())) {
           temp_1 = (cPtr_ipic_31__38_IncDecRegisterTerminator *) constinArgument_inTerminator.ptr () ;
         }else{
           inCompiler->castError ("ipic_31__38_IncDecRegisterTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 857)) ;
@@ -7839,7 +7839,7 @@ GALGAS_bool cPtr_ipic_31__38_ComputedRETLWTerminator::getter_isEqualToTerminator
     if (kBoolTrue == test_0) {
       GALGAS_ipic_31__38_ComputedRETLWTerminator temp_1 ;
       if (constinArgument_inTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_ipic_31__38_ComputedRETLWTerminator *> (constinArgument_inTerminator.ptr ())) {
+        if (nullptr != dynamic_cast <const cPtr_ipic_31__38_ComputedRETLWTerminator *> (constinArgument_inTerminator.ptr ())) {
           temp_1 = (cPtr_ipic_31__38_ComputedRETLWTerminator *) constinArgument_inTerminator.ptr () ;
         }else{
           inCompiler->castError ("ipic_31__38_ComputedRETLWTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 965)) ;
@@ -8046,7 +8046,7 @@ GALGAS_bool cPtr_ipic_31__38_ComputedGotoTerminator::getter_isEqualToTerminator 
     if (kBoolTrue == test_0) {
       GALGAS_ipic_31__38_ComputedGotoTerminator temp_1 ;
       if (constinArgument_inTerminator.isValid ()) {
-        if (NULL != dynamic_cast <const cPtr_ipic_31__38_ComputedGotoTerminator *> (constinArgument_inTerminator.ptr ())) {
+        if (nullptr != dynamic_cast <const cPtr_ipic_31__38_ComputedGotoTerminator *> (constinArgument_inTerminator.ptr ())) {
           temp_1 = (cPtr_ipic_31__38_ComputedGotoTerminator *) constinArgument_inTerminator.ptr () ;
         }else{
           inCompiler->castError ("ipic_31__38_ComputedGotoTerminator", constinArgument_inTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1068)) ;
