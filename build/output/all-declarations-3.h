@@ -5242,7 +5242,7 @@ class GALGAS_pic_31__38_InstructionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_InstructionList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_PiccoloInstruction constinArgument0,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -7620,7 +7620,10 @@ class GALGAS_pic_31__38_BlockInstructionBlockList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_BlockInstructionBlockList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_lstring constinArgument0,
+                                               class GALGAS_pic_31__38_InstructionList constinArgument1,
+                                               class GALGAS_abstractBlockTerminationForBlockInstruction constinArgument2,
+                                               class GALGAS_location constinArgument3,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 

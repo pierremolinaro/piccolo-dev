@@ -41,7 +41,18 @@ override method @byteDeclarationInRam handleDeclaration
     if not [ioDeclaredByteMap hasKey !self.mName.string] then
       [!?ioDeclaredByteMap insertKey !self.mName]
     end
-    [!?ioRegisterTable insertKey !self.mName !addressList ![size uint] !self.mBitSliceTable !self.mBitDefinitionString !self.mProtection]
+    [!?ioRegisterTable insertKey
+      !self.mName
+      !addressList
+      ![size uint]
+      !self.mBitSliceTable
+      !self.mBitDefinitionString
+      !self.mProtection
+    ]
+    log inConstantMap
+    if [inConstantMap hasKey !self.mName] then
+      error self.mName : "this symbol is already declared as a constant"
+    end
     firstFreeAddress = firstFreeAddress + [size uint]
     [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress !inCurrentRamBank.string]
     if firstFreeAddress > lastAddressPlusOne then

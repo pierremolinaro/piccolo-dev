@@ -4890,7 +4890,9 @@ class GALGAS_pic_31__38_DoWhilePartList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_DoWhilePartList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_ConditionExpression constinArgument0,
+                                               class GALGAS_pic_31__38_InstructionList constinArgument1,
+                                               class GALGAS_location constinArgument2,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -5351,7 +5353,10 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_InterruptDefinitionList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_lstring constinArgument0,
+                                               class GALGAS_bool constinArgument1,
+                                               class GALGAS_pic_31__38_InstructionList constinArgument2,
+                                               class GALGAS_location constinArgument3,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -5657,7 +5662,13 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_RoutineDefinitionList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_lstring constinArgument0,
+                                               class GALGAS_luint constinArgument1,
+                                               class GALGAS_luint constinArgument2,
+                                               class GALGAS_bool constinArgument3,
+                                               class GALGAS_bool constinArgument4,
+                                               class GALGAS_pic_31__38_InstructionList constinArgument5,
+                                               class GALGAS_location constinArgument6,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -6032,7 +6043,9 @@ class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_MacroDefinitionList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_lstring constinArgument0,
+                                               class GALGAS_lstringlist constinArgument1,
+                                               class GALGAS_pic_31__38_InstructionList constinArgument2,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -6558,7 +6571,11 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_routineDeclarationList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_lstring constinArgument0,
+                                               class GALGAS_luint constinArgument1,
+                                               class GALGAS_luint constinArgument2,
+                                               class GALGAS_bool constinArgument3,
+                                               class GALGAS_bool constinArgument4,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -6959,7 +6976,9 @@ class GALGAS_dataList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_dataList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_lstring constinArgument0,
+                                               class GALGAS_immediatExpressionList constinArgument1,
+                                               class GALGAS_bool constinArgument2,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -7223,7 +7242,8 @@ class GALGAS_checkpicList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_checkpicList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_location constinArgument0,
+                                               class GALGAS_lstringlist constinArgument1,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -8081,7 +8101,9 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_location constinArgument0,
+                                               class GALGAS_pic_31__38_CaseExpressionList constinArgument1,
+                                               class GALGAS_pic_31__38_InstructionList constinArgument2,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -9328,7 +9350,7 @@ class GALGAS_pic_31__38_CaseExpressionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_CaseExpressionList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_AbstractCaseItem constinArgument0,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
