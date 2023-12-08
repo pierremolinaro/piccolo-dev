@@ -4,9 +4,9 @@
 
 map @baselineSymbolTableForOptimizations {
   public var @uint mDefinitionLineIndex
-  insert insertKey error message "the '%K' label is already declared in %L"
-  search searchKey error message "the '%K' label is not declared"
-  remove removeKey error message "the '%K' label is not declared"
+  %insertSetter insertKey %errorMessage "the '%K' label is already declared in %L"
+  %searchMethod searchKey %errorMessage "the '%K' label is not declared"
+  %removeSetter removeKey %errorMessage "the '%K' label is not declared"
 }
 
 #----------------------------------------------------------------------------*

@@ -7,7 +7,7 @@
 #----------------------------------------------------------------------------*
 
 graph @blockInvocationGraph (@stringlist) {
-  insert addNode error message "the '%K' label is already declared at %L"
+  %insertSetter addNode %errorMessage "the '%K' label is already declared at %L"
 }
 
 #----------------------------------------------------------------------------*
@@ -378,7 +378,7 @@ proc buildOrderedGraph
   ioListFileContents += "  jump count before optimization: " + n + "\n"
 #---
   if @application.verboseOutput then
-    message "Block ordering optimization... "
+    print (!"Block ordering optimization... ")
   end
 #-------------------------------- Build label map
   var symbolTable =@symbolTableForBlockOptimization.emptyMap{}
@@ -476,7 +476,7 @@ proc buildOrderedGraph
   let @uint p = blockDiscontinuityCount (!orderedBlockList)
   ioListFileContents += "  jump count after optimization: " + p + "\n\n"
   if @application.verboseOutput then
-    message [n string] + " -> " + p + ".\n\n"
+    print (![n string] + " -> " + p + ".\n\n")
   end
 #--- Write Graphviz file
   if [option piccolo_options.generateGraphvizFiles value] then

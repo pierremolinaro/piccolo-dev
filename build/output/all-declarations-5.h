@@ -501,7 +501,8 @@ class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
                                                               const class GALGAS_lstringlist & inOperand13,
                                                               const class GALGAS_bool & inOperand14,
                                                               const class GALGAS_bool & inOperand15,
-                                                              const class GALGAS_location & inOperand16
+                                                              const class GALGAS_location & inOperand16,
+                                                              class C_Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -913,7 +914,8 @@ class GALGAS_piccoloDeviceModel : public AC_GALGAS_root {
                                                                   const class GALGAS_uint & inOperand6,
                                                                   const class GALGAS_uint & inOperand7,
                                                                   const class GALGAS_configRegisterMap & inOperand8,
-                                                                  const class GALGAS_string & inOperand9
+                                                                  const class GALGAS_string & inOperand9,
+                                                                  class C_Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -1377,9 +1379,6 @@ class GALGAS_midrange_5F_model : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_midrange_5F_model constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Default constructor
   public: GALGAS_midrange_5F_model (void) ;
 
@@ -1471,7 +1470,8 @@ class GALGAS_midrange_5F_model : public AC_GALGAS_root {
                                                                  const class GALGAS_lstringlist & inOperand8,
                                                                  const class GALGAS_bool & inOperand9,
                                                                  const class GALGAS_bool & inOperand10,
-                                                                 const class GALGAS_location & inOperand11
+                                                                 const class GALGAS_location & inOperand11,
+                                                                 class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -1924,9 +1924,6 @@ class GALGAS_baseline_5F_model : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_model constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_model (void) ;
 
@@ -2000,7 +1997,8 @@ class GALGAS_baseline_5F_model : public AC_GALGAS_root {
                                                                  const class GALGAS_constantDefinitionList & inOperand5,
                                                                  const class GALGAS_baseline_5F_routineDefinitionList & inOperand6,
                                                                  const class GALGAS_lstringlist & inOperand7,
-                                                                 const class GALGAS_location & inOperand8
+                                                                 const class GALGAS_location & inOperand8,
+                                                                 class C_Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'

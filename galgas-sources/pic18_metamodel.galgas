@@ -8,8 +8,8 @@
 
 map @bootloaderReservedRAMmap {
   public var @luint mReservedSize
-  insert insertKey error message "the reserved size for the '%K' bank is already declared"
-  search searchKey error message "the reserved size for the '%K' bank is not declared"
+  %insertSetter insertKey %errorMessage "the reserved size for the '%K' bank is already declared"
+  %searchMethod searchKey %errorMessage "the reserved size for the '%K' bank is not declared"
 }
 
 #----------------------------------------------------*
@@ -516,8 +516,8 @@ list @pic18MacroDefinitionList {
 map @pic18MacroMap {
   public var @lstringlist mConstantNameList
   public var @pic18InstructionList mInstructionList
-  insert insertKey error message "the '%K' macro is already declared in %L"
-  search searchKey error message "there is no '%K' macro"
+  %insertSetter insertKey %errorMessage "the '%K' macro is already declared in %L"
+  %searchMethod searchKey %errorMessage "there is no '%K' macro"
 }
 
 #----------------------------------------------------*

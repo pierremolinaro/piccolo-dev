@@ -153,7 +153,7 @@ rule <checkpic_definition>
 rule <data_definition> ?!@dataList ioDataList {
   select
     $data$
-    warning .here : "obsolete keyword" fixit { replace "data16" }
+    warning .here : "obsolete keyword" fixit { %replaceBy "data16" }
   or
     $data16$
   end
@@ -660,7 +660,7 @@ rule <structured_instruction>
   or
     select
       $ldataptr$
-      warning .here : "obsolete keyword" fixit { replace "ldata16ptr" }
+      warning .here : "obsolete keyword" fixit { %replaceBy "ldata16ptr" }
     or
       $ldata16ptr$
     end

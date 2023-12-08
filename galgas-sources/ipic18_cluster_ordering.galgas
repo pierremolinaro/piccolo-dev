@@ -10,8 +10,8 @@ list @clusterList {
 
 map @neededConversionForClusterOrder {
   public var @uint mConversions
-  insert insertKey error message "the '%K' key is already declared in %L"
-  search searchKey error message "the '%K' key is not declared"
+  %insertSetter insertKey %errorMessage "the '%K' key is already declared in %L"
+  %searchMethod searchKey %errorMessage "the '%K' key is not declared"
 }
 
 #----------------------------------------------------------------------------*
@@ -46,7 +46,7 @@ proc perform_cluster_ordering
     ioListFileContents += s + "\n"
   #---
     if @application.verboseOutput then
-      message s
+      print (!s)
     end
   #------------------- Optimization loop
     var @clusterList clusterList = inInitialClusterList
@@ -103,7 +103,7 @@ proc perform_cluster_ordering
         else
           s += [overflowCount string] + " branch overflows"
         end
-        message s
+        print (!s)
       end
     #--- Correction
       var @bool correctionLoop = true
@@ -121,7 +121,7 @@ proc perform_cluster_ordering
               let @string m = "merge #" + targetCluster + " into #" + sourceCluster + "]"
               ioListFileContents += "  --> " + m + "\n"
               if @application.verboseOutput then
-                message " -> " + m
+                print (!" -> " + m)
               end
             elsif sourceCluster == (targetCluster + 1) then
               correctionLoop = false
@@ -132,7 +132,7 @@ proc perform_cluster_ordering
               let @string m = "merge #" + sourceCluster + " into #" + targetCluster + "]"
               ioListFileContents += "  --> " + m + "\n"
               if @application.verboseOutput then
-                message " -> " + m
+                print (!" -> " + m)
               end
             elsif sourceCluster < targetCluster then
               var @clusterList candidate = clusterList
@@ -145,7 +145,7 @@ proc perform_cluster_ordering
                 let @string m = "roll up [#" + ((targetCluster + sourceCluster) / 2) + ", #" + targetCluster + "]"
                 ioListFileContents += "  --> " + m + "\n"
                 if @application.verboseOutput then
-                  message " -> " + m
+                  print (!" -> " + m)
                 end
               end
             elsif sourceCluster > targetCluster then
@@ -159,7 +159,7 @@ proc perform_cluster_ordering
                 let @string m = "roll up [#" + targetCluster+ ", #" + ((targetCluster + sourceCluster) / 2) + "]"
                 ioListFileContents += "  --> " + m + "\n"
                 if @application.verboseOutput then
-                  message " -> " + m
+                  print (!" -> " + m)
                 end
               end
             end
@@ -167,11 +167,11 @@ proc perform_cluster_ordering
         end
       end
       if @application.verboseOutput then
-        message ".\n"
+        print (!".\n")
       end
     end
     if @application.verboseOutput then
-      message "\n"
+      print (!"\n")
     end
     ioListFileContents += "\n"
   #---------------------------------- Build the new ordered block list

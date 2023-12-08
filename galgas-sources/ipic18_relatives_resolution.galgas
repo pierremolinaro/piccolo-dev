@@ -140,7 +140,7 @@ proc ipic18RelativesResolution
   ?!@ipic18BlockList ioGeneratedBlockList {
 #---
   if @application.verboseOutput then
-    message "Relative branch conversion to absolute:\n"
+    print (!"Relative branch conversion to absolute:\n")
   end
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
   ioListFileContents += "*" + ["RELATIVES RESOLUTION" stringByLeftAndRightPadding !117 !' '] + "*\n"
@@ -175,12 +175,12 @@ proc ipic18RelativesResolution
       else
         s += [conversionCount string] + " conversions"
       end
-      message s + "\n"
+      print (!s + "\n")
     end
   end
   if @application.verboseOutput then
     ioListFileContents += "  No conversion.\n\n"
-    message "\n"
+    print (!"\n")
   end
 }
 

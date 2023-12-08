@@ -49,7 +49,6 @@ override method @byteDeclarationInRam handleDeclaration
       !self.mBitDefinitionString
       !self.mProtection
     ]
-    log inConstantMap
     if [inConstantMap hasKey !self.mName] then
       error self.mName : "this symbol is already declared as a constant"
     end

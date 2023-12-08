@@ -16,9 +16,9 @@ style commentStyle -> "Comments:"
 # keywords can be written in lower or upper case
 # for identifiers, case is significant
 
-$identifier$ ! tokenString error message "an identifier"
+$identifier$ ! tokenString %errorMessage "an identifier"
 
-list controlKeyWordList style keywordStyle error message "the '%K' keyword"{
+list controlKeyWordList style keywordStyle %errorMessage "the '%K' keyword"{
   "controller",
   "processor",
   "romsize",
@@ -44,17 +44,16 @@ rule 'a'->'z' |  'A'->'Z' {
     enterCharacterIntoString ( !?tokenString !* )
   while 'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
   end
-  send
-    search identifierString in controlKeyWordList
+  send %codeFor identifierString in controlKeyWordList
     default $identifier$
 }
 
 #------------------------------- Integer Point Constant ------------------
-$integer$ ! uint32value  style integerStyle error message "a 32-bit unsigned number"
+$integer$ ! uint32value  style integerStyle %errorMessage "a 32-bit unsigned number"
 
-message hexNumberTooLarge : "hex number too large"
-message decimalNumberTooLarge : "decimal number too large"
-message internalError : "internal error"
+%errorMessage hexNumberTooLarge : "hex number too large"
+%errorMessage decimalNumberTooLarge : "decimal number too large"
+%errorMessage internalError : "internal error"
 
 rule "0x" {
   repeat
@@ -80,7 +79,7 @@ rule '0'->'9' {
 }
 
 # ----------------------------- Delimitors ---------------------------------------
-list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
+list delimitorsList style delimitersStyle %errorMessage "the '%K' delimitor"{
   "<",     ">",   ",",
   "-",    "/",   ";",      ":",
   "[",     "]",
@@ -89,11 +88,11 @@ list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
 rule list delimitorsList
 
 # -------------------- Characters string --------------------------------------
-$string$ ! tokenString  style stringStyle error message "a character string constant \"...\""
+$string$ ! tokenString  style stringStyle %errorMessage "a character string constant \"...\""
 
-message incorrectCharConstant : "incorrect literal character"
-message ASCIIcodeTooLargeError : "ASCII code > 255"
-message incorrectStringEnd : "string does not end with '\"'"
+%errorMessage incorrectCharConstant : "incorrect literal character"
+%errorMessage ASCIIcodeTooLargeError : "ASCII code > 255"
+%errorMessage incorrectStringEnd : "string does not end with '\"'"
 
 rule '"' {
   repeat
@@ -138,7 +137,7 @@ rule '"' {
 }
 
 # ------------------------------------ Comment ----------------------------
-$comment$  style commentStyle error message "a comment"
+$comment$  style commentStyle %errorMessage "a comment"
 rule '#' {
   repeat
   while '\u0001' -> '\u0009' | '\u000B' | '\u000C' | '\u000E' -> '\uFFFD' :

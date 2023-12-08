@@ -8,13 +8,3 @@
 
 #include "all-declarations-13.h"
 
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'print'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_print (const class GALGAS_string constinArgument0,
-                    class C_Compiler * inCompiler
-                    COMMA_LOCATION_ARGS) ;
-

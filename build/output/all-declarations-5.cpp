@@ -56,7 +56,7 @@ void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol
   if (kBoolTrue == test_0) {
     test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("pic18_start_symbol.galgas", 69)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_pic_31__38_AST var_piccoloModel_2234 = GALGAS_pic_31__38_AST::constructor_new (var_programName_757, var_programKind_835, var_deviceNameOrBootloaderReference_784, var_configDefinitionList_1496, var_ramDefinitionList_1389, var_unusedRegisterList_1445, var_checkpicList_1662, var_dataList_1624, var_interruptDefinitionList_1140, var_constantDefinitionList_1558, var_routineDefinitionList_1213, var_macroDefinitionList_1308, var_unusedRoutineList_1339, var_inlinedRoutineList_1708, var_needsComputedGoto_32__1765, var_needsComputedGoto_34__1804, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 87))  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 70)) ;
+      GALGAS_pic_31__38_AST var_piccoloModel_2234 = GALGAS_pic_31__38_AST::constructor_new (var_programName_757, var_programKind_835, var_deviceNameOrBootloaderReference_784, var_configDefinitionList_1496, var_ramDefinitionList_1389, var_unusedRegisterList_1445, var_checkpicList_1662, var_dataList_1624, var_interruptDefinitionList_1140, var_constantDefinitionList_1558, var_routineDefinitionList_1213, var_macroDefinitionList_1308, var_unusedRoutineList_1339, var_inlinedRoutineList_1708, var_needsComputedGoto_32__1765, var_needsComputedGoto_34__1804, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 87)), inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 70)) ;
       {
       routine_pic_31__38__5F_analyze (var_piccoloModel_2234, GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 89)), inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 89)) ;
       }
@@ -270,7 +270,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (C_
   if (kBoolTrue == test_3) {
     test_3 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_syntax.galgas", 83)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_3) {
-      GALGAS_midrange_5F_model var_piccoloModel_2184 = GALGAS_midrange_5F_model::constructor_new (var_programName_768, var_deviceName_813, var_configDefinitionList_1143, var_ramDefinitionList_986, var_unusedRegisterList_1042, var_interruptDefinitionList_836, var_constantDefinitionList_1205, var_routineDefinitionList_913, var_unusedRoutineList_1093, var_needsComputedGoto_32__1277, var_needsComputedGoto_34__1316, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 96))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 84)) ;
+      GALGAS_midrange_5F_model var_piccoloModel_2184 = GALGAS_midrange_5F_model::constructor_new (var_programName_768, var_deviceName_813, var_configDefinitionList_1143, var_ramDefinitionList_986, var_unusedRegisterList_1042, var_interruptDefinitionList_836, var_constantDefinitionList_1205, var_routineDefinitionList_913, var_unusedRoutineList_1093, var_needsComputedGoto_32__1277, var_needsComputedGoto_34__1316, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 96)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 84)) ;
       {
       routine_midrange_5F_analyze (var_piccoloModel_2184, GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 98)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 98)) ;
       }
@@ -650,7 +650,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
   GALGAS_luint var_page_6012 ;
   switch (select_midrange_5F_syntax_5 (inCompiler)) {
   case 1: {
-    var_page_6012 = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230)) ;
+    var_page_6012 = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_page COMMA_SOURCE_FILE ("midrange_syntax.galgas", 232)) ;
@@ -665,8 +665,8 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
   GALGAS_bool var_preservesBank_6188 ;
   switch (select_midrange_5F_syntax_6 (inCompiler)) {
   case 1: {
-    var_requiredBank_6137 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 240)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 240))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 240)) ;
-    var_returnedBank_6163 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 241)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 241))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 241)) ;
+    var_requiredBank_6137 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 240)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 240)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 240)) ;
+    var_returnedBank_6163 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 241)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 241)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 241)) ;
     var_preservesBank_6188 = GALGAS_bool (false) ;
   } break ;
   case 2: {
@@ -684,8 +684,8 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
         }
       }
       var_preservesBank_6188 = GALGAS_bool (true) ;
-      var_requiredBank_6137 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 252)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 252))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 252)) ;
-      var_returnedBank_6163 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 253)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 253))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 253)) ;
+      var_requiredBank_6137 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 252)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 252)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 252)) ;
+      var_returnedBank_6163 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 253)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 253)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 253)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_requires COMMA_SOURCE_FILE ("midrange_syntax.galgas", 255)) ;
@@ -694,7 +694,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
       var_preservesBank_6188 = GALGAS_bool (false) ;
       switch (select_midrange_5F_syntax_8 (inCompiler)) {
       case 1: {
-        var_returnedBank_6163 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 259)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 259))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 259)) ;
+        var_returnedBank_6163 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 259)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 259)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 259)) ;
       } break ;
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("midrange_syntax.galgas", 261)) ;
@@ -726,7 +726,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
         }
       }
       var_preservesBank_6188 = GALGAS_bool (false) ;
-      var_requiredBank_6137 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 274)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 274))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 274)) ;
+      var_requiredBank_6137 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 274)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 274)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 274)) ;
     } break ;
     default:
       break ;
@@ -888,7 +888,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     GALGAS_lstring var_doLabel_7947 ;
     switch (select_midrange_5F_syntax_10 (inCompiler)) {
     case 1: {
-      var_doLabel_7947 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 308))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 308)) ;
+      var_doLabel_7947 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 308)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 308)) ;
     } break ;
     case 2: {
       var_doLabel_7947 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -918,7 +918,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     GALGAS_lstring var_endDoLabel_8734 ;
     switch (select_midrange_5F_syntax_11 (inCompiler)) {
     case 1: {
-      var_endDoLabel_8734 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 336))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 336)) ;
+      var_endDoLabel_8734 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 336)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 336)) ;
     } break ;
     case 2: {
       var_endDoLabel_8734 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -1012,7 +1012,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     GALGAS_lstring var_foreverLabel_10645 ;
     switch (select_midrange_5F_syntax_14 (inCompiler)) {
     case 1: {
-      var_foreverLabel_10645 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 399))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 399)) ;
+      var_foreverLabel_10645 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 399)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 399)) ;
     } break ;
     case 2: {
       var_foreverLabel_10645 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -1031,7 +1031,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     GALGAS_lstring var_endForeverLabel_11014 ;
     switch (select_midrange_5F_syntax_15 (inCompiler)) {
     case 1: {
-      var_endForeverLabel_11014 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 413))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 413)) ;
+      var_endForeverLabel_11014 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 413)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 413)) ;
     } break ;
     case 2: {
       var_endForeverLabel_11014 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -1137,7 +1137,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     GALGAS_lstring var_ifLabel_13067 ;
     switch (select_midrange_5F_syntax_19 (inCompiler)) {
     case 1: {
-      var_ifLabel_13067 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 485))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 485)) ;
+      var_ifLabel_13067 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 485)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 485)) ;
     } break ;
     case 2: {
       var_ifLabel_13067 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -1154,7 +1154,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     GALGAS_lstring var_endIfLabel_13380 ;
     switch (select_midrange_5F_syntax_20 (inCompiler)) {
     case 1: {
-      var_endIfLabel_13380 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 499))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 499)) ;
+      var_endIfLabel_13380 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 499)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 499)) ;
     } break ;
     case 2: {
       var_endIfLabel_13380 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -1184,7 +1184,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     GALGAS_lstring var_doLabel_13722 ;
     switch (select_midrange_5F_syntax_21 (inCompiler)) {
     case 1: {
-      var_doLabel_13722 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 511))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 511)) ;
+      var_doLabel_13722 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 511)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 511)) ;
     } break ;
     case 2: {
       var_doLabel_13722 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -1207,7 +1207,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
       GALGAS_lstring var_whileLabel_14214 ;
       switch (select_midrange_5F_syntax_23 (inCompiler)) {
       case 1: {
-        var_whileLabel_14214 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 528))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 528)) ;
+        var_whileLabel_14214 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 528)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 528)) ;
       } break ;
       case 2: {
         var_whileLabel_14214 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -1245,7 +1245,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     GALGAS_lstring var_endDoLabel_14864 ;
     switch (select_midrange_5F_syntax_24 (inCompiler)) {
     case 1: {
-      var_endDoLabel_14864 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 548))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 548)) ;
+      var_endDoLabel_14864 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 548)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 548)) ;
     } break ;
     case 2: {
       var_endDoLabel_14864 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -1782,7 +1782,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     GALGAS_lstring var_elsifIfLabel_16670 ;
     switch (select_midrange_5F_syntax_26 (inCompiler)) {
     case 1: {
-      var_elsifIfLabel_16670 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 607))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 607)) ;
+      var_elsifIfLabel_16670 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 607)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 607)) ;
     } break ;
     case 2: {
       var_elsifIfLabel_16670 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -1816,7 +1816,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     GALGAS_lstring var_elseLabel_17303 ;
     switch (select_midrange_5F_syntax_27 (inCompiler)) {
     case 1: {
-      var_elseLabel_17303 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 627))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 627)) ;
+      var_elseLabel_17303 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 627)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 627)) ;
     } break ;
     case 2: {
       var_elseLabel_17303 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -2960,7 +2960,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_routine_5F_
   GALGAS_luint var_page_2353 ;
   switch (select_baseline_5F_syntax_5 (inCompiler)) {
   case 1: {
-    var_page_2353 = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 100))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 100)) ;
+    var_page_2353 = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 100)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 100)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_page COMMA_SOURCE_FILE ("baseline_syntax.galgas", 102)) ;
@@ -3051,7 +3051,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_lstring var_doLabel_2883 ;
     switch (select_baseline_5F_syntax_7 (inCompiler)) {
     case 1: {
-      var_doLabel_2883 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 130))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 130)) ;
+      var_doLabel_2883 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 130)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 130)) ;
     } break ;
     case 2: {
       var_doLabel_2883 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -3081,7 +3081,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_lstring var_endDoLabel_3606 ;
     switch (select_baseline_5F_syntax_8 (inCompiler)) {
     case 1: {
-      var_endDoLabel_3606 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 155))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 155)) ;
+      var_endDoLabel_3606 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 155)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 155)) ;
     } break ;
     case 2: {
       var_endDoLabel_3606 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -3125,7 +3125,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_lstring var_foreverLabel_4399 ;
     switch (select_baseline_5F_syntax_9 (inCompiler)) {
     case 1: {
-      var_foreverLabel_4399 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 181))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 181)) ;
+      var_foreverLabel_4399 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 181)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 181)) ;
     } break ;
     case 2: {
       var_foreverLabel_4399 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -3144,7 +3144,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_lstring var_endForeverLabel_4688 ;
     switch (select_baseline_5F_syntax_10 (inCompiler)) {
     case 1: {
-      var_endForeverLabel_4688 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 191))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 191)) ;
+      var_endForeverLabel_4688 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 191)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 191)) ;
     } break ;
     case 2: {
       var_endForeverLabel_4688 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -3250,7 +3250,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_lstring var_ifLabel_6746 ;
     switch (select_baseline_5F_syntax_14 (inCompiler)) {
     case 1: {
-      var_ifLabel_6746 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 264))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 264)) ;
+      var_ifLabel_6746 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 264)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 264)) ;
     } break ;
     case 2: {
       var_ifLabel_6746 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -3267,7 +3267,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_lstring var_endIfLabel_6983 ;
     switch (select_baseline_5F_syntax_15 (inCompiler)) {
     case 1: {
-      var_endIfLabel_6983 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 273))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 273)) ;
+      var_endIfLabel_6983 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 273)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 273)) ;
     } break ;
     case 2: {
       var_endIfLabel_6983 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -3297,7 +3297,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_lstring var_doLabel_7325 ;
     switch (select_baseline_5F_syntax_16 (inCompiler)) {
     case 1: {
-      var_doLabel_7325 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 285))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 285)) ;
+      var_doLabel_7325 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 285)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 285)) ;
     } break ;
     case 2: {
       var_doLabel_7325 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -3320,7 +3320,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       GALGAS_lstring var_whileLabel_7728 ;
       switch (select_baseline_5F_syntax_18 (inCompiler)) {
       case 1: {
-        var_whileLabel_7728 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 298))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 298)) ;
+        var_whileLabel_7728 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 298)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 298)) ;
       } break ;
       case 2: {
         var_whileLabel_7728 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -3358,7 +3358,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_lstring var_endDoLabel_8302 ;
     switch (select_baseline_5F_syntax_19 (inCompiler)) {
     case 1: {
-      var_endDoLabel_8302 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 314))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 314)) ;
+      var_endDoLabel_8302 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 314)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 314)) ;
     } break ;
     case 2: {
       var_endDoLabel_8302 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -3791,7 +3791,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_lstring var_elsifIfLabel_9538 ;
     switch (select_baseline_5F_syntax_21 (inCompiler)) {
     case 1: {
-      var_elsifIfLabel_9538 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 352))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 352)) ;
+      var_elsifIfLabel_9538 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 352)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 352)) ;
     } break ;
     case 2: {
       var_elsifIfLabel_9538 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -3825,7 +3825,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_lstring var_elseLabel_10095 ;
     switch (select_baseline_5F_syntax_22 (inCompiler)) {
     case 1: {
-      var_elseLabel_10095 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 367))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 367)) ;
+      var_elseLabel_10095 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 367)), inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 367)) ;
     } break ;
     case 2: {
       var_elseLabel_10095 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -4741,7 +4741,7 @@ void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_ (
   if (kBoolTrue == test_0) {
     test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_program.galgas", 35)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_baseline_5F_model var_piccoloModel_1186 = GALGAS_baseline_5F_model::constructor_new (var_programName_520, var_deviceName_565, var_configDefinitionList_818, var_ramDefinitionList_661, var_unusedRegisterList_717, var_constantDefinitionList_880, var_routineDefinitionList_588, var_unusedRoutineList_768, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 45))  COMMA_SOURCE_FILE ("baseline_program.galgas", 36)) ;
+      GALGAS_baseline_5F_model var_piccoloModel_1186 = GALGAS_baseline_5F_model::constructor_new (var_programName_520, var_deviceName_565, var_configDefinitionList_818, var_ramDefinitionList_661, var_unusedRegisterList_717, var_constantDefinitionList_880, var_routineDefinitionList_588, var_unusedRoutineList_768, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 45)), inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 36)) ;
       {
       routine_baseline_5F_analysis (var_piccoloModel_1186, GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 47)), inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 47)) ;
       }
@@ -4873,7 +4873,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 42)) ;
   outArgument_outBootloaderRoutineDeclarationList = GALGAS_routineDeclarationList::constructor_emptyList (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 43)) ;
   outArgument_outBootloaderReservedRAMmap = GALGAS_bootloaderReservedRAMmap::constructor_emptyMap (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 44)) ;
-  outArgument_outReservedRomSize = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 45))  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 45)) ;
+  outArgument_outReservedRomSize = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 45)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 45)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_pic_31__38__5F_bootloader_5F_syntax_0 (inCompiler)) {
@@ -5190,8 +5190,8 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   GALGAS_bool var_preservesBank_5268 ;
   switch (select_pic_31__38__5F_bootloader_5F_syntax_4 (inCompiler)) {
   case 1: {
-    var_requiredBank_5217 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 178)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 178))  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 178)) ;
-    var_returnedBank_5243 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 179)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 179))  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 179)) ;
+    var_requiredBank_5217 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 178)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 178)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 178)) ;
+    var_returnedBank_5243 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 179)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 179)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 179)) ;
     var_preservesBank_5268 = GALGAS_bool (false) ;
   } break ;
   case 2: {
@@ -5209,8 +5209,8 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
         }
       }
       var_preservesBank_5268 = GALGAS_bool (true) ;
-      var_requiredBank_5217 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 190)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 190))  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 190)) ;
-      var_returnedBank_5243 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 191)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 191))  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 191)) ;
+      var_requiredBank_5217 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 190)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 190)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 190)) ;
+      var_returnedBank_5243 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 191)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 191)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 191)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_requires COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 193)) ;
@@ -5219,7 +5219,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
       var_preservesBank_5268 = GALGAS_bool (false) ;
       switch (select_pic_31__38__5F_bootloader_5F_syntax_6 (inCompiler)) {
       case 1: {
-        var_returnedBank_5243 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 197)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 197))  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 197)) ;
+        var_returnedBank_5243 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 197)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 197)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 197)) ;
       } break ;
       case 2: {
         inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 199)) ;
@@ -5251,7 +5251,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
         }
       }
       var_preservesBank_5268 = GALGAS_bool (false) ;
-      var_requiredBank_5217 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 212)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 212))  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 212)) ;
+      var_requiredBank_5217 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 212)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 212)), inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 212)) ;
     } break ;
     default:
       break ;
@@ -5487,7 +5487,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
   GALGAS_immediatExpression var_sizeExpression_1006 ;
   switch (select_communs_3 (inCompiler)) {
   case 1: {
-    var_sizeExpression_1006 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (1U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 45))  COMMA_SOURCE_FILE ("communs.galgas", 45))  COMMA_SOURCE_FILE ("communs.galgas", 45)) ;
+    var_sizeExpression_1006 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (1U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 45)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 45))  COMMA_SOURCE_FILE ("communs.galgas", 45)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 47)) ;
@@ -6346,7 +6346,7 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GALGAS_immediatExpr
   case 4: {
     GALGAS_lchar var_literalCharValue_7913 = inCompiler->synthetizedAttribute_charValue () ;
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_literal_5F_char COMMA_SOURCE_FILE ("communs.galgas", 272)) ;
-    outArgument_outExpression = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (var_literalCharValue_7913.readProperty_char ().getter_uint (SOURCE_FILE ("communs.galgas", 273)), var_literalCharValue_7913.readProperty_location ()  COMMA_SOURCE_FILE ("communs.galgas", 273))  COMMA_SOURCE_FILE ("communs.galgas", 273)) ;
+    outArgument_outExpression = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (var_literalCharValue_7913.readProperty_char ().getter_uint (SOURCE_FILE ("communs.galgas", 273)), var_literalCharValue_7913.readProperty_location (), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 273))  COMMA_SOURCE_FILE ("communs.galgas", 273)) ;
   } break ;
   case 5: {
     GALGAS_lstring var_registerName_8084 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -6356,7 +6356,7 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GALGAS_immediatExpr
     GALGAS_location var_endOfOffsetExpression_8171 ;
     switch (select_communs_16 (inCompiler)) {
     case 1: {
-      var_offset_8146 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 279))  COMMA_SOURCE_FILE ("communs.galgas", 279))  COMMA_SOURCE_FILE ("communs.galgas", 279)) ;
+      var_offset_8146 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 279)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 279))  COMMA_SOURCE_FILE ("communs.galgas", 279)) ;
       var_endOfOffsetExpression_8171 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 280)) ;
     } break ;
     case 2: {
@@ -6534,7 +6534,7 @@ void cParser_communs::rule_communs_register_5F_parsing_i10_ (GALGAS_registerExpr
   GALGAS_location var_endOfOffsetExpression_9302 ;
   switch (select_communs_18 (inCompiler)) {
   case 1: {
-    var_offset_9279 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 321))  COMMA_SOURCE_FILE ("communs.galgas", 321))  COMMA_SOURCE_FILE ("communs.galgas", 321)) ;
+    var_offset_9279 = GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 321)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 321))  COMMA_SOURCE_FILE ("communs.galgas", 321)) ;
     var_endOfOffsetExpression_9302 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 322)) ;
   } break ;
   case 2: {
@@ -6596,7 +6596,7 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i11_ (GALGAS_bitNumb
   GALGAS_luint var_bitIndex_9809 ;
   switch (select_communs_19 (inCompiler)) {
   case 1: {
-    var_bitIndex_9809 = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 342))  COMMA_SOURCE_FILE ("communs.galgas", 342)) ;
+    var_bitIndex_9809 = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 342)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 342)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 344)) ;

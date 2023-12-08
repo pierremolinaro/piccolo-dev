@@ -739,7 +739,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_pic_31__38_CaseExpressionList  (capCollectionElementArray ()) ;
+  return GALGAS_pic_31__38_CaseExpressionList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1160,7 +1160,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionCaseList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_pic_31__38_SwitchInstructionCaseList  (capCollectionElementArray ()) ;
+  return GALGAS_pic_31__38_SwitchInstructionCaseList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1662,16 +1662,6 @@ GALGAS_pic_31__38_PiccoloInstruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_Instruction_5F_switch GALGAS_pic_31__38_Instruction_5F_switch::constructor_default (LOCATION_ARGS) {
-  return GALGAS_pic_31__38_Instruction_5F_switch::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                   GALGAS_pic_31__38_SwitchInstructionCaseList::constructor_emptyList (HERE),
-                                                                   GALGAS_location::constructor_nowhere (HERE),
-                                                                   GALGAS_pic_31__38_InstructionList::constructor_emptyList (HERE)
-                                                                   COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_pic_31__38_Instruction_5F_switch::GALGAS_pic_31__38_Instruction_5F_switch (const cPtr_pic_31__38_Instruction_5F_switch * inSourcePtr) :
 GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_switch) ;
@@ -1993,7 +1983,7 @@ typeComparisonResult cMapElement_caseConstantMap::compare (const cCollectionElem
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_caseConstantMap::GALGAS_caseConstantMap (void) :
-AC_GALGAS_map (true) {
+AC_GALGAS_map () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2249,7 +2239,7 @@ typeComparisonResult cMapElement_pic_31__38__5F_dataMap::compare (const cCollect
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_pic_31__38__5F_dataMap::GALGAS_pic_31__38__5F_dataMap (void) :
-AC_GALGAS_map (true) {
+AC_GALGAS_map () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -2864,7 +2854,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_ipic_31__38_SequentialInstructionList  (capCollectionElementArray ()) ;
+  return GALGAS_ipic_31__38_SequentialInstructionList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3624,7 +3614,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_ipic_31__38_BlockList  (capCollectionElementArray ()) ;
+  return GALGAS_ipic_31__38_BlockList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4200,13 +4190,6 @@ GALGAS_ipic_31__38_SingleInstructionTerminator () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ReturnTerminator GALGAS_ipic_31__38_ReturnTerminator::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38_ReturnTerminator::constructor_new (GALGAS_location::constructor_nowhere (HERE)
-                                                               COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_ipic_31__38_ReturnTerminator::GALGAS_ipic_31__38_ReturnTerminator (const cPtr_ipic_31__38_ReturnTerminator * inSourcePtr) :
 GALGAS_ipic_31__38_SingleInstructionTerminator (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38_ReturnTerminator) ;
@@ -4456,14 +4439,6 @@ typeComparisonResult GALGAS_ipic_31__38_RetlwTerminator::objectCompare (const GA
 
 GALGAS_ipic_31__38_RetlwTerminator::GALGAS_ipic_31__38_RetlwTerminator (void) :
 GALGAS_ipic_31__38_SingleInstructionTerminator () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38_RetlwTerminator GALGAS_ipic_31__38_RetlwTerminator::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38_RetlwTerminator::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                              GALGAS_uint::constructor_default (HERE)
-                                                              COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4745,14 +4720,6 @@ typeComparisonResult GALGAS_ipic_31__38_RetfieTerminator::objectCompare (const G
 
 GALGAS_ipic_31__38_RetfieTerminator::GALGAS_ipic_31__38_RetfieTerminator (void) :
 GALGAS_ipic_31__38_SingleInstructionTerminator () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38_RetfieTerminator GALGAS_ipic_31__38_RetfieTerminator::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38_RetfieTerminator::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                               GALGAS_bool::constructor_default (HERE)
-                                                               COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5153,15 +5120,6 @@ GALGAS_ipic_31__38_AbstractBlockTerminator () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ComputedGotoTerminator GALGAS_ipic_31__38_ComputedGotoTerminator::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38_ComputedGotoTerminator::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                     GALGAS_lstringlist::constructor_emptyList (HERE),
-                                                                     GALGAS_bool::constructor_default (HERE)
-                                                                     COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_ipic_31__38_ComputedGotoTerminator::GALGAS_ipic_31__38_ComputedGotoTerminator (const cPtr_ipic_31__38_ComputedGotoTerminator * inSourcePtr) :
 GALGAS_ipic_31__38_AbstractBlockTerminator (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38_ComputedGotoTerminator) ;
@@ -5471,15 +5429,6 @@ typeComparisonResult GALGAS_ipic_31__38_ComputedRETLWTerminator::objectCompare (
 
 GALGAS_ipic_31__38_ComputedRETLWTerminator::GALGAS_ipic_31__38_ComputedRETLWTerminator (void) :
 GALGAS_ipic_31__38_AbstractBlockTerminator () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38_ComputedRETLWTerminator GALGAS_ipic_31__38_ComputedRETLWTerminator::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38_ComputedRETLWTerminator::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                      GALGAS_uintlist::constructor_emptyList (HERE),
-                                                                      GALGAS_bool::constructor_default (HERE)
-                                                                      COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6049,15 +5998,6 @@ typeComparisonResult GALGAS_ipic_31__38_ComputedBraTerminator::objectCompare (co
 
 GALGAS_ipic_31__38_ComputedBraTerminator::GALGAS_ipic_31__38_ComputedBraTerminator (void) :
 GALGAS_ipic_31__38_AbstractBlockTerminator () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38_ComputedBraTerminator GALGAS_ipic_31__38_ComputedBraTerminator::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38_ComputedBraTerminator::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                    GALGAS_lstringlist::constructor_emptyList (HERE),
-                                                                    GALGAS_bool::constructor_default (HERE)
-                                                                    COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6746,17 +6686,10 @@ mProperty_mNeedsBSR (inOperand2) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (GALGAS_string::constructor_default (HERE),
-                                                                    GALGAS_uint::constructor_default (HERE),
-                                                                    GALGAS_bool::constructor_default (HERE)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::constructor_new (const GALGAS_string & in_mAssemblyString,
                                                                                                                                       const GALGAS_uint & in_mRegisterAddress,
-                                                                                                                                      const GALGAS_bool & in_mNeedsBSR 
+                                                                                                                                      const GALGAS_bool & in_mNeedsBSR,
+                                                                                                                                      C_Compiler * /* inCompiler */
                                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression result ;
   if (in_mAssemblyString.isValid () && in_mRegisterAddress.isValid () && in_mNeedsBSR.isValid ()) {
@@ -9133,15 +9066,9 @@ mProperty_mRegisterAddress (inOperand1) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (GALGAS_string::constructor_default (HERE),
-                                                                                        GALGAS_uint::constructor_default (HERE)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::constructor_new (const GALGAS_string & in_mAssemblyString,
-                                                                                                                                                                              const GALGAS_uint & in_mRegisterAddress 
+                                                                                                                                                                              const GALGAS_uint & in_mRegisterAddress,
+                                                                                                                                                                              C_Compiler * /* inCompiler */
                                                                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication result ;
   if (in_mAssemblyString.isValid () && in_mRegisterAddress.isValid ()) {
@@ -9287,15 +9214,6 @@ typeComparisonResult GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF
 
 GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF (void) :
 GALGAS_ipic_31__38_SequentialInstruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                                       GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::constructor_default (HERE),
-                                                                                       GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::constructor_default (HERE)
-                                                                                       COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9922,15 +9840,6 @@ typeComparisonResult GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR:
 
 GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR (void) :
 GALGAS_ipic_31__38_SequentialInstruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                                      GALGAS_luint::constructor_default (HERE),
-                                                                                      GALGAS_uint::constructor_default (HERE)
-                                                                                      COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10700,14 +10609,6 @@ GALGAS_ipic_31__38_SequentialInstruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                                       GALGAS_luint::constructor_default (HERE)
-                                                                                       COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB * inSourcePtr) :
 GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB) ;
@@ -10989,14 +10890,6 @@ GALGAS_ipic_31__38_SequentialInstruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                                      GALGAS_uint::constructor_default (HERE)
-                                                                                      COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP * inSourcePtr) :
 GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP) ;
@@ -11274,14 +11167,6 @@ typeComparisonResult GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK
 
 GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK (void) :
 GALGAS_ipic_31__38_SequentialInstruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                                       GALGAS_uint::constructor_default (HERE)
-                                                                                       COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -12129,14 +12014,6 @@ GALGAS_ipic_31__38_SequentialInstruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                                      GALGAS_luint::constructor_default (HERE)
-                                                                                      COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP (const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP * inSourcePtr) :
 GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP) ;
@@ -12414,14 +12291,6 @@ typeComparisonResult GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBR
 
 GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA (void) :
 GALGAS_ipic_31__38_SequentialInstruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                                        GALGAS_luint::constructor_default (HERE)
-                                                                                        COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -12818,15 +12687,6 @@ typeComparisonResult GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_compu
 
 GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall (void) :
 GALGAS_ipic_31__38_SequentialInstruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::constructor_default (LOCATION_ARGS) {
-  return GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                                                   GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (HERE),
-                                                                                                   GALGAS_bool::constructor_default (HERE)
-                                                                                                   COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14320,6 +14180,247 @@ GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_
       result = *p ;
     }else{
       inCompiler->castError ("skip_instruction_FDA_base_code", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// @ipic_31__38__5F_skip_5F_instruction_5F_FDA reference class
+//----------------------------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::printNonNullClassInstanceProperties (void) const {
+    cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction_5F_FDA_5F_base_5F_code.printNonNullClassInstanceProperties ("mInstruction_FDA_base_code") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
+  }
+#endif
+
+//----------------------------------------------------------------------------------------------------------------------
+
+typeComparisonResult cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mInstructionLocation.objectCompare (p->mProperty_mInstructionLocation) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mEmbeddedInstruction.objectCompare (p->mProperty_mEmbeddedInstruction) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mInstruction_5F_FDA_5F_base_5F_code.objectCompare (p->mProperty_mInstruction_5F_FDA_5F_base_5F_code) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRegisterDescription.objectCompare (p->mProperty_mRegisterDescription) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_m_5F_W_5F_isDestination.objectCompare (p->mProperty_m_5F_W_5F_isDestination) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+typeComparisonResult GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::objectCompare (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = kOperandEqual ;
+    }
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (void) :
+GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction () {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * inSourcePtr) :
+GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+}
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                      const GALGAS_ipic_31__38_SequentialInstruction & inAttribute_mEmbeddedInstruction,
+                                                                                                                      const GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inAttribute_mInstruction_5F_FDA_5F_base_5F_code,
+                                                                                                                      const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                                      const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
+                                                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA result ;
+  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mEmbeddedInstruction.isValid () && inAttribute_mInstruction_5F_FDA_5F_base_5F_code.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_m_5F_W_5F_isDestination.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (inAttribute_mInstructionLocation, inAttribute_mEmbeddedInstruction, inAttribute_mInstruction_5F_FDA_5F_base_5F_code, inAttribute_mRegisterDescription, inAttribute_m_5F_W_5F_isDestination COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setter_setMInstruction_5F_FDA_5F_base_5F_code (GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code inValue
+                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  if (nullptr != mObjectPtr) {
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    p->mProperty_mInstruction_5F_FDA_5F_base_5F_code = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setter_setMRegisterDescription (GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inValue
+                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  if (nullptr != mObjectPtr) {
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
+                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  if (nullptr != mObjectPtr) {
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    p->mProperty_m_5F_W_5F_isDestination = inValue ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::readProperty_mInstruction_5F_FDA_5F_base_5F_code (void) const {
+  if (nullptr == mObjectPtr) {
+    return GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code () ;
+  }else{
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    return p->mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::readProperty_mRegisterDescription (void) const {
+  if (nullptr == mObjectPtr) {
+    return GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression () ;
+  }else{
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    return p->mProperty_mRegisterDescription ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::readProperty_m_5F_W_5F_isDestination (void) const {
+  if (nullptr == mObjectPtr) {
+    return GALGAS_bool () ;
+  }else{
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    return p->mProperty_m_5F_W_5F_isDestination ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//Pointer class for @ipic18_skip_instruction_FDA class
+//----------------------------------------------------------------------------------------------------------------------
+
+cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (const GALGAS_location & in_mInstructionLocation,
+                                                                                                  const GALGAS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                                                                                                  const GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
+                                                                                                  const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                  const GALGAS_bool & in_m_5F_W_5F_isDestination
+                                                                                                  COMMA_LOCATION_ARGS) :
+cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (in_mInstructionLocation, in_mEmbeddedInstruction COMMA_THERE),
+mProperty_mInstruction_5F_FDA_5F_base_5F_code (in_mInstruction_5F_FDA_5F_base_5F_code),
+mProperty_mRegisterDescription (in_mRegisterDescription),
+mProperty_m_5F_W_5F_isDestination (in_m_5F_W_5F_isDestination) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ;
+}
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::description (C_String & ioString,
+                                                                   const int32_t inIndentation) const {
+  ioString << "[@ipic18_skip_instruction_FDA:" ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mEmbeddedInstruction.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mInstruction_5F_FDA_5F_base_5F_code.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
+  ioString << ", " ;
+  mProperty_m_5F_W_5F_isDestination.description (ioString, inIndentation+1) ;
+  ioString << "]" ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (mProperty_mInstructionLocation, mProperty_mEmbeddedInstruction, mProperty_mInstruction_5F_FDA_5F_base_5F_code, mProperty_mRegisterDescription, mProperty_m_5F_W_5F_isDestination COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//     @ipic18_skip_instruction_FDA generic code implementation
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ("ipic18_skip_instruction_FDA",
+                                                                   & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (*this)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::extractObject (const GALGAS_object & inObject,
+                                                                                                                    C_Compiler * inCompiler
+                                                                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA result ;
+  const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("ipic18_skip_instruction_FDA", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

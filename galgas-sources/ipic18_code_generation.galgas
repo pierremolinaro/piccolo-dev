@@ -3,8 +3,8 @@
 map @generatedCodeMap { # Key is code address (decimal representation)
   public var @codeList mCode
   public var @ipic18SequentialInstruction mInstruction
-  insert insertKey error message "the '%K' entry is already declared in %L"
-  search searchKey error message "the '%K' entry is not declared"
+  %insertSetter insertKey %errorMessage "the '%K' entry is already declared in %L"
+  %searchMethod searchKey %errorMessage "the '%K' entry is not declared"
 }
 
 #----------------------------------------------------------------------------*
@@ -220,7 +220,7 @@ proc ipic18GenerateCode
   ioListFileContents += "*" + ["CODE GENERATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   if @application.verboseOutput then
-    message "Code generation:\n"
+    print (!"Code generation:\n")
   end
 #--- Build address map
   computeLabelAbsoluteAddressMap (
@@ -308,7 +308,7 @@ proc ipic18GenerateCode
     ioListFileContents += "\n"
   end 
   if @application.verboseOutput then
-    message "  Relocatable code size: " + relocatableCodeSize + " bytes.\n\n"
+    print (!"  Relocatable code size: " + relocatableCodeSize + " bytes.\n\n")
   end
   outUsedROMsize = dataAddress
 #----------------------------- Code too large ?

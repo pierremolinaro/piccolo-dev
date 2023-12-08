@@ -248,17 +248,17 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
       mTokenCode = piccolo_lexique_1_identifier ;
     }
   }else if (scanningOk && ([self testForInputChar:64])) {
-    BOOL loop2887 = YES ;
+    BOOL loop2883 = YES ;
     do {
       scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
       if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90] || [self testForInputChar:95] || [self testForInputFromChar:48 toChar:57])) {
       }else{
-        loop2887 = NO ;
+        loop2883 = NO ;
       }
-    }while (loop2887 && scanningOk) ;
+    }while (loop2883 && scanningOk) ;
     mTokenCode = piccolo_lexique_1_label ;
   }else if (scanningOk && ([self testForInputString:@"0x" advance:YES])) {
-    BOOL loop3402 = YES ;
+    BOOL loop3422 = YES ;
     do {
       if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
         scanner_cocoa_routine_enterHexDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
@@ -268,32 +268,32 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
         scanner_cocoa_routine_enterHexDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
       }else if (scanningOk && ([self testForInputChar:95])) {
       }else{
-        loop3402 = NO ;
+        loop3422 = NO ;
       }
-    }while (loop3402 && scanningOk) ;
+    }while (loop3422 && scanningOk) ;
     mTokenCode = piccolo_lexique_1_integer ;
   }else if (scanningOk && ([self testForInputString:@"0b" advance:YES])) {
-    BOOL loop3778 = YES ;
+    BOOL loop3798 = YES ;
     do {
       if (scanningOk && ([self testForInputFromChar:48 toChar:49])) {
         scanner_cocoa_routine_enterBinDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
       }else if (scanningOk && ([self testForInputChar:95])) {
       }else{
-        loop3778 = NO ;
+        loop3798 = NO ;
       }
-    }while (loop3778 && scanningOk) ;
+    }while (loop3798 && scanningOk) ;
     mTokenCode = piccolo_lexique_1_integer ;
   }else if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
     scanner_cocoa_routine_enterDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
-    BOOL loop4033 = YES ;
+    BOOL loop4053 = YES ;
     do {
       if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
         scanner_cocoa_routine_enterDigitIntoUInt (& scanningOk, mPreviousChar, & mLexicalAttribute_uint32value) ;
       }else if (scanningOk && ([self testForInputChar:95])) {
       }else{
-        loop4033 = NO ;
+        loop4053 = NO ;
       }
-    }while (loop4033 && scanningOk) ;
+    }while (loop4053 && scanningOk) ;
     mTokenCode = piccolo_lexique_1_integer ;
   }else if (scanningOk && ([self testForInputChar:39])) {
     if (scanningOk && ([self testForInputChar:92])) {
@@ -315,14 +315,14 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
         scanner_cocoa_routine_enterCharacterIntoCharacter (& scanningOk, & mLexicalAttribute_charValue, 39) ;
       }else if (scanningOk && ([self testForInputChar:120] || [self testForInputChar:88])) {
         if (scanningOk && ([self testForInputFromChar:48 toChar:57] || [self testForInputFromChar:97 toChar:102] || [self testForInputFromChar:65 toChar:70])) {
-          BOOL loop5180 = YES ;
+          BOOL loop5212 = YES ;
           do {
             scanner_cocoa_routine_enterHexDigitIntoASCIIcharacter (& scanningOk, & mLexicalAttribute_charValue, mPreviousChar) ;
             if (scanningOk && ([self testForInputFromChar:48 toChar:57] || [self testForInputFromChar:97 toChar:102] || [self testForInputFromChar:65 toChar:70])) {
             }else{
-              loop5180 = NO ;
+              loop5212 = NO ;
             }
-          }while (loop5180 && scanningOk) ;
+          }while (loop5212 && scanningOk) ;
         }else{
           scanningOk = NO ;
         }
@@ -408,7 +408,7 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
   }else if (scanningOk && [self testForInputString:@"!" advance:YES]) {
     mTokenCode = piccolo_lexique_1__21_ ;
   }else if (scanningOk && ([self testForInputChar:34])) {
-    BOOL loop6364 = YES ;
+    BOOL loop6402 = YES ;
     do {
       if (scanningOk && ([self testForInputChar:92])) {
         if (scanningOk && ([self testForInputChar:102])) {
@@ -430,14 +430,14 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
         }else if (scanningOk && ([self testForInputChar:39])) {
           scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 39) ;
         }else if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
-          BOOL loop7047 = YES ;
+          BOOL loop7085 = YES ;
           do {
             scanner_cocoa_routine_enterHexDigitIntoASCIIcharacter (& scanningOk, & mLexicalAttribute_charValue, mPreviousChar) ;
             if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
             }else{
-              loop7047 = NO ;
+              loop7085 = NO ;
             }
-          }while (loop7047 && scanningOk) ;
+          }while (loop7085 && scanningOk) ;
           scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mLexicalAttribute_charValue) ;
         }else{
           scanningOk = NO ;
@@ -445,9 +445,9 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
       }else if (scanningOk && ([self testForInputChar:32] || [self testForInputChar:33] || [self testForInputFromChar:35 toChar:126])) {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
       }else{
-        loop6364 = NO ;
+        loop6402 = NO ;
       }
-    }while (loop6364 && scanningOk) ;
+    }while (loop6402 && scanningOk) ;
     if (scanningOk && ([self testForInputChar:34])) {
       mTokenCode = piccolo_lexique_1_literal_5F_string ;
     }else{
@@ -455,22 +455,22 @@ static NSInteger search_into_piccolo_5F_lexique_instructionKeyWordList (NSString
     }
   }else if (scanningOk && ([self testForInputChar:35])) {
     if (scanningOk && ([self testForInputChar:33])) {
-      BOOL loop7762 = YES ;
+      BOOL loop7800 = YES ;
       do {
         if (scanningOk && ([self testForInputFromChar:1 toChar:9] || [self testForInputChar:11] || [self testForInputChar:12] || [self testForInputFromChar:14 toChar:65533])) {
         }else{
-          loop7762 = NO ;
+          loop7800 = NO ;
         }
-      }while (loop7762 && scanningOk) ;
+      }while (loop7800 && scanningOk) ;
       mTokenCode = piccolo_lexique_1_commentMark ;
     }else{
-      BOOL loop7892 = YES ;
+      BOOL loop7930 = YES ;
       do {
         if (scanningOk && ([self testForInputFromChar:1 toChar:9] || [self testForInputChar:11] || [self testForInputChar:12] || [self testForInputFromChar:14 toChar:65533])) {
         }else{
-          loop7892 = NO ;
+          loop7930 = NO ;
         }
-      }while (loop7892 && scanningOk) ;
+      }while (loop7930 && scanningOk) ;
       mTokenCode = piccolo_lexique_1_comment ;
     }
   }else if (scanningOk && ([self testForInputFromChar:1 toChar:32])) {

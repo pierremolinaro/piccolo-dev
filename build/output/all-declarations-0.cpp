@@ -9,6 +9,481 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Class for element of '@_32_lstringlist' list
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cCollectionElement__32_lstringlist : public cCollectionElement {
+  public: GALGAS__32_lstringlist_2D_element mObject ;
+
+//--- Constructors
+  public: cCollectionElement__32_lstringlist (const GALGAS_lstring & in_mValue_30_,
+                                              const GALGAS_lstring & in_mValue_31_
+                                              COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement__32_lstringlist (const GALGAS__32_lstringlist_2D_element & inElement COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public: virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public: virtual cCollectionElement * copy (void) ;
+
+//--- Description
+  public: virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+cCollectionElement__32_lstringlist::cCollectionElement__32_lstringlist (const GALGAS_lstring & in_mValue_30_,
+                                                                        const GALGAS_lstring & in_mValue_31_
+                                                                        COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mValue_30_, in_mValue_31_) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+cCollectionElement__32_lstringlist::cCollectionElement__32_lstringlist (const GALGAS__32_lstringlist_2D_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mValue_30_, inElement.mProperty_mValue_31_) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool cCollectionElement__32_lstringlist::isValid (void) const {
+  return true ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+cCollectionElement * cCollectionElement__32_lstringlist::copy (void) {
+  cCollectionElement * result = nullptr ;
+  macroMyNew (result, cCollectionElement__32_lstringlist (mObject.mProperty_mValue_30_, mObject.mProperty_mValue_31_ COMMA_HERE)) ;
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void cCollectionElement__32_lstringlist::description (C_String & ioString, const int32_t inIndentation) const {
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mValue0" ":" ;
+  mObject.mProperty_mValue_30_.description (ioString, inIndentation) ;
+  ioString << "\n" ;
+  ioString.writeStringMultiple ("| ", inIndentation) ;
+  ioString << "mValue1" ":" ;
+  mObject.mProperty_mValue_31_.description (ioString, inIndentation) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+typeComparisonResult cCollectionElement__32_lstringlist::compare (const cCollectionElement * inOperand) const {
+  cCollectionElement__32_lstringlist * operand = (cCollectionElement__32_lstringlist *) inOperand ;
+  macroValidSharedObject (operand, cCollectionElement__32_lstringlist) ;
+  return mObject.objectCompare (operand->mObject) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS__32_lstringlist::GALGAS__32_lstringlist (void) :
+AC_GALGAS_list () {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS__32_lstringlist::GALGAS__32_lstringlist (const capCollectionElementArray & inSharedArray) :
+AC_GALGAS_list (inSharedArray) {
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS__32_lstringlist GALGAS__32_lstringlist::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+  return GALGAS__32_lstringlist (capCollectionElementArray ()) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS__32_lstringlist GALGAS__32_lstringlist::constructor_listWithValue (const GALGAS_lstring & inOperand0,
+                                                                          const GALGAS_lstring & inOperand1
+                                                                          COMMA_LOCATION_ARGS) {
+  GALGAS__32_lstringlist result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result = GALGAS__32_lstringlist (capCollectionElementArray ()) ;
+    capCollectionElement attributes ;
+    GALGAS__32_lstringlist::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
+    result.appendObject (attributes) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                        const GALGAS_lstring & in_mValue_30_,
+                                                        const GALGAS_lstring & in_mValue_31_
+                                                        COMMA_LOCATION_ARGS) {
+  cCollectionElement__32_lstringlist * p = nullptr ;
+  macroMyNew (p, cCollectionElement__32_lstringlist (in_mValue_30_,
+                                                     in_mValue_31_ COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::addAssign_operation (const GALGAS_lstring & inOperand0,
+                                                  const GALGAS_lstring & inOperand1
+                                                  COMMA_LOCATION_ARGS) {
+  if (isValid ()) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement__32_lstringlist (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::setter_append (const GALGAS_lstring inOperand0,
+                                            const GALGAS_lstring inOperand1,
+                                            C_Compiler * /* inCompiler */
+                                            COMMA_LOCATION_ARGS) {
+  if (isValid ()) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement__32_lstringlist (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::setter_insertAtIndex (const GALGAS_lstring inOperand0,
+                                                   const GALGAS_lstring inOperand1,
+                                                   const GALGAS_uint inInsertionIndex,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
+  if (isValid ()) {
+    if (inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
+      cCollectionElement * p = nullptr ;
+      macroMyNew (p, cCollectionElement__32_lstringlist (inOperand0, inOperand1 COMMA_THERE)) ;
+      capCollectionElement attributes ;
+      attributes.setPointer (p) ;
+      macroDetachSharedObject (p) ;
+      insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+    }else{
+      drop () ;
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::setter_removeAtIndex (GALGAS_lstring & outOperand0,
+                                                   GALGAS_lstring & outOperand1,
+                                                   const GALGAS_uint inRemoveIndex,
+                                                   C_Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
+  if (isValid ()) {
+    if (inRemoveIndex.isValid ()) {
+      capCollectionElement attributes ;
+      removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+      cCollectionElement__32_lstringlist * p = (cCollectionElement__32_lstringlist *) attributes.ptr () ;
+      if (nullptr == p) {
+        outOperand0.drop () ;
+        outOperand1.drop () ;
+        drop () ;
+      }else{
+        macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+        outOperand0 = p->mObject.mProperty_mValue_30_ ;
+        outOperand1 = p->mObject.mProperty_mValue_31_ ;
+      }
+    }else{
+      outOperand0.drop () ;
+      outOperand1.drop () ;
+      drop () ;    
+    }
+  }else{
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::setter_popFirst (GALGAS_lstring & outOperand0,
+                                              GALGAS_lstring & outOperand1,
+                                              C_Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement__32_lstringlist * p = (cCollectionElement__32_lstringlist *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+    outOperand0 = p->mObject.mProperty_mValue_30_ ;
+    outOperand1 = p->mObject.mProperty_mValue_31_ ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::setter_popLast (GALGAS_lstring & outOperand0,
+                                             GALGAS_lstring & outOperand1,
+                                             C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement__32_lstringlist * p = (cCollectionElement__32_lstringlist *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+    outOperand0 = p->mObject.mProperty_mValue_30_ ;
+    outOperand1 = p->mObject.mProperty_mValue_31_ ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::method_first (GALGAS_lstring & outOperand0,
+                                           GALGAS_lstring & outOperand1,
+                                           C_Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement__32_lstringlist * p = (cCollectionElement__32_lstringlist *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+    outOperand0 = p->mObject.mProperty_mValue_30_ ;
+    outOperand1 = p->mObject.mProperty_mValue_31_ ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::method_last (GALGAS_lstring & outOperand0,
+                                          GALGAS_lstring & outOperand1,
+                                          C_Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement__32_lstringlist * p = (cCollectionElement__32_lstringlist *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+    outOperand0 = p->mObject.mProperty_mValue_30_ ;
+    outOperand1 = p->mObject.mProperty_mValue_31_ ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS__32_lstringlist GALGAS__32_lstringlist::add_operation (const GALGAS__32_lstringlist & inOperand,
+                                                              C_Compiler * /* inCompiler */
+                                                              COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS__32_lstringlist result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS__32_lstringlist GALGAS__32_lstringlist::getter_subListWithRange (const GALGAS_range & inRange,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const {
+  GALGAS__32_lstringlist result = GALGAS__32_lstringlist::constructor_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS__32_lstringlist GALGAS__32_lstringlist::getter_subListFromIndex (const GALGAS_uint & inIndex,
+                                                                        C_Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const {
+  GALGAS__32_lstringlist result = GALGAS__32_lstringlist::constructor_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS__32_lstringlist GALGAS__32_lstringlist::getter_subListToIndex (const GALGAS_uint & inIndex,
+                                                                      C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const {
+  GALGAS__32_lstringlist result = GALGAS__32_lstringlist::constructor_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::plusAssign_operation (const GALGAS__32_lstringlist inOperand,
+                                                   C_Compiler * /* inCompiler */
+                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::setter_setMValue_30_AtIndex (GALGAS_lstring inOperand,
+                                                          GALGAS_uint inIndex,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  cCollectionElement__32_lstringlist * p = (cCollectionElement__32_lstringlist *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mValue_30_ = inOperand ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_lstring GALGAS__32_lstringlist::getter_mValue_30_AtIndex (const GALGAS_uint & inIndex,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement__32_lstringlist * p = (cCollectionElement__32_lstringlist *) attributes.ptr () ;
+  GALGAS_lstring result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+    result = p->mObject.mProperty_mValue_30_ ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::setter_setMValue_31_AtIndex (GALGAS_lstring inOperand,
+                                                          GALGAS_uint inIndex,
+                                                          C_Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  cCollectionElement__32_lstringlist * p = (cCollectionElement__32_lstringlist *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mValue_31_ = inOperand ;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_lstring GALGAS__32_lstringlist::getter_mValue_31_AtIndex (const GALGAS_uint & inIndex,
+                                                                 C_Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement__32_lstringlist * p = (cCollectionElement__32_lstringlist *) attributes.ptr () ;
+  GALGAS_lstring result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+    result = p->mObject.mProperty_mValue_31_ ;
+  }
+  return result ;
+}
+
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+cEnumerator__32_lstringlist::cEnumerator__32_lstringlist (const GALGAS__32_lstringlist & inEnumeratedObject,
+                                                          const typeEnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS__32_lstringlist_2D_element cEnumerator__32_lstringlist::current (LOCATION_ARGS) const {
+  const cCollectionElement__32_lstringlist * p = (const cCollectionElement__32_lstringlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+  return p->mObject ;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_lstring cEnumerator__32_lstringlist::current_mValue_30_ (LOCATION_ARGS) const {
+  const cCollectionElement__32_lstringlist * p = (const cCollectionElement__32_lstringlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+  return p->mObject.mProperty_mValue_30_ ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_lstring cEnumerator__32_lstringlist::current_mValue_31_ (LOCATION_ARGS) const {
+  const cCollectionElement__32_lstringlist * p = (const cCollectionElement__32_lstringlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement__32_lstringlist) ;
+  return p->mObject.mProperty_mValue_31_ ;
+}
+
+
+
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//     @2lstringlist generic code implementation
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor
+kTypeDescriptor_GALGAS__32_lstringlist ("2lstringlist",
+                                        nullptr) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS__32_lstringlist::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS__32_lstringlist ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS__32_lstringlist::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS__32_lstringlist (*this)) ;
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS__32_lstringlist GALGAS__32_lstringlist::extractObject (const GALGAS_object & inObject,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  GALGAS__32_lstringlist result ;
+  const GALGAS__32_lstringlist * p = (const GALGAS__32_lstringlist *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS__32_lstringlist *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("2lstringlist", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //     L E X I Q U E                                                                             
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -3135,165 +3610,165 @@ GALGAS_luint C_Lexique_piccolo_5F_lexique::synthetizedAttribute_uint_33__32_valu
 
 GALGAS_stringlist C_Lexique_piccolo_5F_lexique::symbols (LOCATION_ARGS) {
   GALGAS_stringlist result = GALGAS_stringlist::constructor_emptyList (THERE) ;
-  result.addAssign_operation (GALGAS_string ("identifier") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("label") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("integer") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("literal_char") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("literal_string") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("comment") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("commentMark") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bank") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("banksave") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("banksel") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("baseline") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("block") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bootloader") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("byte") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("case") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("checkbank") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("checknobank") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("checkpic") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("computed") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("configuration") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("const") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("contextsave") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("data") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("data16") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("data8") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("do") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("end") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("else") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("elsif") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("ensures") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("fast") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("forever") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("if") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("implements") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("include") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("inline") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("interrupt") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("macro") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("midrange") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("nobank") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("noreturn") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("page") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("pic18") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("preserved") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("protected") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("private") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("ram") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("requires") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("rom") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("routine") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("switch") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("unused") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("uses") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("w") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("while") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("addlw") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("addwf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("addwfc") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("andlw") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("andwf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bc") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bcf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bn") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bnc") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bnn") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bov") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bnov") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bnz") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bsf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bra") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("btg") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("bz") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("call") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("clrf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("clrw") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("clrwdt") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("comf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("daw") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("decf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("incf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("iorlw") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("iorwf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("fnop") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("goto") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("jsr") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("jump") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("lfsr") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("ldataptr") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("ldata8ptr") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("ldata16ptr") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("ltblptr") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("mnop") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("movf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("movff") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("movlw") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("movwf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("mullw") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("mulwf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("negf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("nop") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("nopbra") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("pop") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("option") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("push") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("rcall") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("reset") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("retlw") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("rlcf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("rlf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("rlncf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("rrcf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("rrf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("rrncf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("setf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("sleep") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("subfwb") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("sublw") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("subwf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("subwfb") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("swapf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("tblrd") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("tblwt") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("tris") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("xorlw") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("xorwf") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("*") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("*+") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string (",") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("!=") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("<=") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string (">=") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("*-") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("+*") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string (";") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string (":") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("==") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("<") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string (">") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("[") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("]") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string (".") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("!") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("&") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("|") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("=") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("{") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("}") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("(") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string (")") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("/") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("-") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("+") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("\?") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("^") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("<<") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string (">>") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("~") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("%") COMMA_THERE) ;
-  result.addAssign_operation (GALGAS_string ("...") COMMA_THERE) ;
+  result.addAssign_operation (GALGAS_string ("identifier") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("label") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("integer") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("literal_char") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("literal_string") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("comment") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("commentMark") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bank") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("banksave") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("banksel") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("baseline") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("block") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bootloader") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("byte") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("case") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("checkbank") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("checknobank") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("checkpic") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("computed") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("configuration") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("const") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("contextsave") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("data") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("data16") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("data8") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("do") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("end") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("else") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("elsif") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("ensures") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("fast") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("forever") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("if") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("implements") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("include") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("inline") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("interrupt") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("macro") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("midrange") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("nobank") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("noreturn") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("page") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("pic18") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("preserved") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("protected") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("private") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("ram") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("requires") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("rom") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("routine") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("switch") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("unused") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("uses") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("w") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("while") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("addlw") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("addwf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("addwfc") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("andlw") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("andwf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bc") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bcf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bn") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bnc") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bnn") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bov") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bnov") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bnz") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bsf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bra") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("btg") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("bz") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("call") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("clrf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("clrw") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("clrwdt") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("comf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("daw") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("decf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("incf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("iorlw") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("iorwf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("fnop") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("goto") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("jsr") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("jump") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("lfsr") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("ldataptr") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("ldata8ptr") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("ldata16ptr") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("ltblptr") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("mnop") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("movf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("movff") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("movlw") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("movwf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("mullw") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("mulwf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("negf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("nop") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("nopbra") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("pop") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("option") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("push") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("rcall") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("reset") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("retlw") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("rlcf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("rlf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("rlncf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("rrcf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("rrf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("rrncf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("setf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("sleep") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("subfwb") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("sublw") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("subwf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("subwfb") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("swapf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("tblrd") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("tblwt") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("tris") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("xorlw") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("xorwf") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("*") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("*+") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string (",") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("!=") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("<=") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string (">=") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("*-") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("+*") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string (";") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string (":") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("==") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("<") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string (">") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("[") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("]") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string (".") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("!") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("&") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("|") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("=") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("{") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("}") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("(") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string (")") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("/") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("-") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("+") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("\?") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("^") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("<<") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string (">>") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("~") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("%") COMMA_HERE) ;
+  result.addAssign_operation (GALGAS_string ("...") COMMA_HERE) ;
   return result ;
 }
 
@@ -3729,7 +4204,7 @@ typeComparisonResult cMapElement_bitSliceTable::compare (const cCollectionElemen
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bitSliceTable::GALGAS_bitSliceTable (void) :
-AC_GALGAS_map (true) {
+AC_GALGAS_map () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4767,7 +5242,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_declarationInRamList GALGAS_declarationInRamList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_declarationInRamList  (capCollectionElementArray ()) ;
+  return GALGAS_declarationInRamList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5182,7 +5657,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_ramDefinitionList GALGAS_ramDefinitionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_ramDefinitionList  (capCollectionElementArray ()) ;
+  return GALGAS_ramDefinitionList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5657,7 +6132,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_configSettingList GALGAS_configSettingList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_configSettingList  (capCollectionElementArray ()) ;
+  return GALGAS_configSettingList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6132,7 +6607,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_configDefinitionList GALGAS_configDefinitionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_configDefinitionList  (capCollectionElementArray ()) ;
+  return GALGAS_configDefinitionList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6718,7 +7193,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpressionList GALGAS_immediatExpressionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_immediatExpressionList  (capCollectionElementArray ()) ;
+  return GALGAS_immediatExpressionList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -12859,7 +13334,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_immediatSliceExpressionList GALGAS_immediatSliceExpressionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_immediatSliceExpressionList  (capCollectionElementArray ()) ;
+  return GALGAS_immediatSliceExpressionList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13445,7 +13920,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_constantDefinitionList GALGAS_constantDefinitionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_constantDefinitionList  (capCollectionElementArray ()) ;
+  return GALGAS_constantDefinitionList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13881,7 +14356,7 @@ typeComparisonResult cMapElement_actualConfigurationMap::compare (const cCollect
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_actualConfigurationMap::GALGAS_actualConfigurationMap (void) :
-AC_GALGAS_map (true) {
+AC_GALGAS_map () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14726,13 +15201,6 @@ GALGAS_bitNumberExpression () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_bitNumberLiteralValue GALGAS_bitNumberLiteralValue::constructor_default (LOCATION_ARGS) {
-  return GALGAS_bitNumberLiteralValue::constructor_new (GALGAS_luint::constructor_default (HERE)
-                                                        COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_bitNumberLiteralValue::GALGAS_bitNumberLiteralValue (const cPtr_bitNumberLiteralValue * inSourcePtr) :
 GALGAS_bitNumberExpression (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_bitNumberLiteralValue) ;
@@ -15105,7 +15573,7 @@ typeComparisonResult cMapElement_labelMap::compare (const cCollectionElement * i
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_labelMap::GALGAS_labelMap (void) :
-AC_GALGAS_map (true) {
+AC_GALGAS_map () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -15361,7 +15829,7 @@ typeComparisonResult cMapElement_constantMap::compare (const cCollectionElement 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_constantMap::GALGAS_constantMap (void) :
-AC_GALGAS_map (true) {
+AC_GALGAS_map () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -15673,7 +16141,7 @@ typeComparisonResult cMapElement_routineMap::compare (const cCollectionElement *
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_routineMap::GALGAS_routineMap (void) :
-AC_GALGAS_map (true) {
+AC_GALGAS_map () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -16290,7 +16758,7 @@ typeComparisonResult cMapElement_symbolTableForOptimizations::compare (const cCo
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_symbolTableForOptimizations::GALGAS_symbolTableForOptimizations (void) :
-AC_GALGAS_map (true) {
+AC_GALGAS_map () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -16668,7 +17136,7 @@ typeComparisonResult cMapElement_configFieldMap::compare (const cCollectionEleme
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_configFieldMap::GALGAS_configFieldMap (void) :
-AC_GALGAS_map (true) {
+AC_GALGAS_map () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -17037,345 +17505,6 @@ GALGAS_configFieldMap GALGAS_configFieldMap::extractObject (const GALGAS_object 
       result = *p ;
     }else{
       inCompiler->castError ("configFieldMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-cMapElement_fieldSettingMap::cMapElement_fieldSettingMap (const GALGAS_lstring & inKey,
-                                                          const GALGAS_uint & in_mValue,
-                                                          const GALGAS_uint & in_mMask
-                                                          COMMA_LOCATION_ARGS) :
-cMapElement (inKey COMMA_THERE),
-mProperty_mValue (in_mValue),
-mProperty_mMask (in_mMask) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-bool cMapElement_fieldSettingMap::isValid (void) const {
-  return mProperty_lkey.isValid () ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-cMapElement * cMapElement_fieldSettingMap::copy (void) {
-  cMapElement * result = nullptr ;
-  macroMyNew (result, cMapElement_fieldSettingMap (mProperty_lkey, mProperty_mValue, mProperty_mMask COMMA_HERE)) ;
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void cMapElement_fieldSettingMap::description (C_String & ioString, const int32_t inIndentation) const {
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mValue" ":" ;
-  mProperty_mValue.description (ioString, inIndentation) ;
-  ioString << "\n" ;
-  ioString.writeStringMultiple ("| ", inIndentation) ;
-  ioString << "mMask" ":" ;
-  mProperty_mMask.description (ioString, inIndentation) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cMapElement_fieldSettingMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_fieldSettingMap * operand = (cMapElement_fieldSettingMap *) inOperand ;
-  typeComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mValue.objectCompare (operand->mProperty_mValue) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mMask.objectCompare (operand->mProperty_mMask) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap::GALGAS_fieldSettingMap (void) :
-AC_GALGAS_map (true) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap::GALGAS_fieldSettingMap (const GALGAS_fieldSettingMap & inSource) :
-AC_GALGAS_map (inSource) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap & GALGAS_fieldSettingMap::operator = (const GALGAS_fieldSettingMap & inSource) {
-  * ((AC_GALGAS_map *) this) = inSource ;
-  return * this ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap GALGAS_fieldSettingMap::constructor_emptyMap (LOCATION_ARGS) {
-  GALGAS_fieldSettingMap result ;
-  result.makeNewEmptyMap (THERE) ;
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap GALGAS_fieldSettingMap::constructor_mapWithMapToOverride (const GALGAS_fieldSettingMap & inMapToOverride
-                                                                                 COMMA_LOCATION_ARGS) {
-  GALGAS_fieldSettingMap result ;
-  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap GALGAS_fieldSettingMap::getter_overriddenMap (C_Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_fieldSettingMap result ;
-  getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_fieldSettingMap::addAssign_operation (const GALGAS_lstring & inKey,
-                                                  const GALGAS_uint & inArgument0,
-                                                  const GALGAS_uint & inArgument1,
-                                                  C_Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
-  cMapElement_fieldSettingMap * p = nullptr ;
-  macroMyNew (p, cMapElement_fieldSettingMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@fieldSettingMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap GALGAS_fieldSettingMap::add_operation (const GALGAS_fieldSettingMap & inOperand,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const {
-  GALGAS_fieldSettingMap result = *this ;
-  cEnumerator_fieldSettingMap enumerator (inOperand, kENUMERATION_UP) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mValue (HERE), enumerator.current_mMask (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_fieldSettingMap::setter_insertKey (GALGAS_lstring inKey,
-                                               GALGAS_uint inArgument0,
-                                               GALGAS_uint inArgument1,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) {
-  cMapElement_fieldSettingMap * p = nullptr ;
-  macroMyNew (p, cMapElement_fieldSettingMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "the '%K' configuration register setting is already declared in %L" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const char * kSearchErrorMessage_fieldSettingMap_searchKey = "the '%K' configuration register setting is not declared" ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_fieldSettingMap::method_searchKey (GALGAS_lstring inKey,
-                                               GALGAS_uint & outArgument0,
-                                               GALGAS_uint & outArgument1,
-                                               C_Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) performSearch (inKey,
-                                                                                               inCompiler,
-                                                                                               kSearchErrorMessage_fieldSettingMap_searchKey
-                                                                                               COMMA_THERE) ;
-  if (nullptr == p) {
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }else{
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    outArgument0 = p->mProperty_mValue ;
-    outArgument1 = p->mProperty_mMask ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_uint GALGAS_fieldSettingMap::getter_mValueForKey (const GALGAS_string & inKey,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) attributes ;
-  GALGAS_uint result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    result = p->mProperty_mValue ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_uint GALGAS_fieldSettingMap::getter_mMaskForKey (const GALGAS_string & inKey,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) attributes ;
-  GALGAS_uint result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    result = p->mProperty_mMask ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_fieldSettingMap::setter_setMValueForKey (GALGAS_uint inAttributeValue,
-                                                     GALGAS_string inKey,
-                                                     C_Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) attributes ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    p->mProperty_mValue = inAttributeValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_fieldSettingMap::setter_setMMaskForKey (GALGAS_uint inAttributeValue,
-                                                    GALGAS_string inKey,
-                                                    C_Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) attributes ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    p->mProperty_mMask = inAttributeValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-cMapElement_fieldSettingMap * GALGAS_fieldSettingMap::readWriteAccessForWithInstruction (C_Compiler * inCompiler,
-                                                                                         const GALGAS_string & inKey
-                                                                                         COMMA_LOCATION_ARGS) {
-  cMapElement_fieldSettingMap * result = (cMapElement_fieldSettingMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
-  macroNullOrValidSharedObject (result, cMapElement_fieldSettingMap) ;
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-cEnumerator_fieldSettingMap::cEnumerator_fieldSettingMap (const GALGAS_fieldSettingMap & inEnumeratedObject,
-                                                          const typeEnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap_2D_element cEnumerator_fieldSettingMap::current (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return GALGAS_fieldSettingMap_2D_element (p->mProperty_lkey, p->mProperty_mValue, p->mProperty_mMask) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_lstring cEnumerator_fieldSettingMap::current_lkey (LOCATION_ARGS) const {
-  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement) ;
-  return p->mProperty_lkey ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_uint cEnumerator_fieldSettingMap::current_mValue (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return p->mProperty_mValue ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_uint cEnumerator_fieldSettingMap::current_mMask (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return p->mProperty_mMask ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-bool GALGAS_fieldSettingMap::optional_searchKey (const GALGAS_string & inKey,
-                                                 GALGAS_uint & outArgument0,
-                                                 GALGAS_uint & outArgument1) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    outArgument0 = p->mProperty_mValue ;
-    outArgument1 = p->mProperty_mMask ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @fieldSettingMap generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_fieldSettingMap ("fieldSettingMap",
-                                        nullptr) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_fieldSettingMap::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_fieldSettingMap ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_fieldSettingMap::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_fieldSettingMap (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap GALGAS_fieldSettingMap::extractObject (const GALGAS_object & inObject,
-                                                              C_Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_fieldSettingMap result ;
-  const GALGAS_fieldSettingMap * p = (const GALGAS_fieldSettingMap *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_fieldSettingMap *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("fieldSettingMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

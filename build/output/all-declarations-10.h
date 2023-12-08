@@ -10,6 +10,18 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+//Extension method '@ipic18Block display'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void extensionMethod_display (const class GALGAS_ipic_31__38_Block inObject,
+                              const class GALGAS_string constin_inNextBlockLabel,
+                              class GALGAS_string & io_ioListFileContents,
+                              class C_Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //Extension method '@registerExpression analyzeRegisterExpression'
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -55,6 +67,243 @@ void callExtensionMethod_getRegisterAddress (class cPtr_registerExpression * inO
                                              class GALGAS_uint & out_outRegisterAddress,
                                              C_Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension method '@ipic18Block enterReferencedLabels'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void extensionMethod_enterReferencedLabels (const class GALGAS_ipic_31__38_Block inObject,
+                                            const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
+                                            const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
+                                            class GALGAS_stringset & io_ioReferencedBlockSet,
+                                            class C_Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension method '@ipic18Block optimize'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void extensionMethod_optimize (const class GALGAS_ipic_31__38_Block inObject,
+                               const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
+                               const class GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
+                               const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
+                               class GALGAS_bool & io_ioOptimizationDone,
+                               class GALGAS_string & io_ioListFileContents,
+                               class GALGAS_ipic_31__38_Block & out_outOptimizedBlock,
+                               class C_Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'instructionListOptimization'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_instructionListOptimization (const class GALGAS_symbolTableForBlockOptimization constinArgument0,
+                                          const class GALGAS_optimizeFlagStruct constinArgument1,
+                                          const class GALGAS_ipic_31__38_BlockList constinArgument2,
+                                          const class GALGAS_ipic_31__38_SequentialInstructionList constinArgument3,
+                                          const class GALGAS_lstring constinArgument4,
+                                          class GALGAS_bool & outArgument5,
+                                          class GALGAS_string & ioArgument6,
+                                          class GALGAS_ipic_31__38_SequentialInstructionList & outArgument7,
+                                          class C_Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension method '@ipic18Block performRelativesResolution'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void extensionMethod_performRelativesResolution (const class GALGAS_ipic_31__38_Block inObject,
+                                                 const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                                 const class GALGAS_string constin_inNextBlockLabel,
+                                                 const class GALGAS_uint constin_inBlockStartAddress,
+                                                 class GALGAS_uint & io_ioConversionCount,
+                                                 class GALGAS_string & io_ioListFileContents,
+                                                 class GALGAS_ipic_31__38_Block & out_outModifiedBlock,
+                                                 class C_Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension getter '@ipic18Block blockSize' (as function)
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_uint extensionGetter_blockSize (const class GALGAS_ipic_31__38_Block & inObject,
+                                             const class GALGAS_string & constinArgument0,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension method '@ipic18Block relativeBranchOverflow'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void extensionMethod_relativeBranchOverflow (const class GALGAS_ipic_31__38_Block inObject,
+                                             const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                             const class GALGAS_string constin_inNextBlockLabel,
+                                             const class GALGAS_uint constin_inBlockStartAddress,
+                                             class GALGAS_branchOverflowMap & io_ioOverflowMap,
+                                             class C_Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension method '@ipic18Block generateCodeForBlock'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void extensionMethod_generateCodeForBlock (const class GALGAS_ipic_31__38_Block inObject,
+                                           const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                           const class GALGAS_pic_31__38__5F_dataAddressMap constin_inDataMap,
+                                           const class GALGAS_uint constin_inBlockAddress,
+                                           const class GALGAS_string constin_inNextBlockLabel,
+                                           class GALGAS_string & io_ioListFileContents,
+                                           class GALGAS_string & io_ioAssemblyString,
+                                           class GALGAS_generatedCodeMap & io_ioGeneratedCodeMap,
+                                           class C_Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'emitCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_emitCode (const class GALGAS_uint constinArgument0,
+                       class C_Compiler * inCompiler
+                       COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'generateLineWithCode'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_generateLineWithCode (const class GALGAS_uint constinArgument0,
+                                   const class GALGAS_codeList constinArgument1,
+                                   const class GALGAS_stringlist constinArgument2,
+                                   const class GALGAS_uint constinArgument3,
+                                   const class GALGAS_uint constinArgument4,
+                                   class GALGAS_string & ioArgument5,
+                                   class C_Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Extension method '@ipic18Block computeDuration'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void extensionMethod_computeDuration (const class GALGAS_ipic_31__38_Block inObject,
+                                      class GALGAS_blockDurationMap & io_ioExploredBlockMap,
+                                      class GALGAS_string in_inNextLabel,
+                                      class GALGAS_ipic_31__38_Block & out_outNewBlock,
+                                      class GALGAS_bool & io_ioContinue,
+                                      class C_Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//  GRAMMAR piccoloDevice_grammar
+//----------------------------------------------------------------------------------------------------------------------
+
+class cGrammar_piccoloDevice_5F_grammar : public cParser_piccoloDevice_5F_syntax {
+//------------------------------------- 'start_symbol' non terminal
+//--- 'parse' label
+  public: virtual void nt_start_5F_symbol_parse (C_Lexique_piccoloDevice_5F_lexique * inCompiler) ;
+
+//--- indexing
+  public: virtual void nt_start_5F_symbol_indexing (C_Lexique_piccoloDevice_5F_lexique * inCompiler) ;
+
+//----------- '' label
+  public: virtual void nt_start_5F_symbol_ (GALGAS_piccoloDeviceModel & outArgument0,
+                                            C_Lexique_piccoloDevice_5F_lexique * inCompiler) ;
+
+//--- Start symbol
+  public: static void _performSourceFileParsing_ (C_Compiler * inCompiler,
+                                                  GALGAS_lstring inFileName,
+                                                  GALGAS_piccoloDeviceModel & outArgument0
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: static void _performSourceStringParsing_ (C_Compiler * inCompiler,
+                                                    GALGAS_string inSourceString,
+                                                    GALGAS_string inNameString,
+                                                    GALGAS_piccoloDeviceModel & outArgument0
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--- Indexing
+  public: static void performIndexing (C_Compiler * inCompiler,
+                                       const C_String & inSourceFilePath) ;
+
+//--- Only lexical analysis
+  public: static void performOnlyLexicalAnalysis (C_Compiler * inCompiler,
+                                                  const C_String & inSourceFilePath) ;
+
+//--- Only syntax analysis
+  public: static void performOnlySyntaxAnalysis (C_Compiler * inCompiler,
+                                                 const C_String & inSourceFilePath) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_0 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_1 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_2 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_3 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_4 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_5 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_6 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_7 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_8 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_9 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_10 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_11 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_12 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_13 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_14 (C_Lexique_piccoloDevice_5F_lexique *) ;
+
+  public: virtual int32_t select_piccoloDevice_5F_syntax_15 (C_Lexique_piccoloDevice_5F_lexique *) ;
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'println'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_println (const class GALGAS_string constinArgument0,
+                      class C_Compiler * inCompiler
+                      COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'print'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_print (const class GALGAS_string constinArgument0,
+                    class C_Compiler * inCompiler
+                    COMMA_LOCATION_ARGS) ;
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -334,73 +583,4 @@ void routine_perform_5F_baseline_5F_optimizations (class GALGAS_baseline_5F_inte
 
 class GALGAS_stringset function_acceptableTRISoperand (class C_Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'emitBaselineCodeAtWordAddress'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_emitBaselineCodeAtWordAddress (const class GALGAS_uint constinArgument0,
-                                            class GALGAS_uint & ioArgument1,
-                                            const class GALGAS_baseline_5F_assembly_5F_instruction constinArgument2,
-                                            class GALGAS_string & ioArgument3,
-                                            class C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'emitNoBaselineCodeAtWordAddress'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_emitNoBaselineCodeAtWordAddress (const class GALGAS_uint constinArgument0,
-                                              const class GALGAS_baseline_5F_assembly_5F_instruction constinArgument1,
-                                              class GALGAS_string & ioArgument2,
-                                              class C_Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'addMidRangeUsedRoutinesFromInstructionList'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_addMidRangeUsedRoutinesFromInstructionList (const class GALGAS_midrange_5F_instructionList constinArgument0,
-                                                         class GALGAS_stringset & ioArgument1,
-                                                         class C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Function 'midrange_computeUsedRoutines'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_stringset function_midrange_5F_computeUsedRoutines (const class GALGAS_midrange_5F_interruptDefinitionList & constinArgument0,
-                                                                 const class GALGAS_midrange_5F_routineDefinitionList & constinArgument1,
-                                                                 class C_Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'handleMidrangeInstructionList'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_handleMidrangeInstructionList (const class GALGAS_midrange_5F_instructionList constinArgument0,
-                                            const class GALGAS_routineMap constinArgument1,
-                                            const class GALGAS_registerTable constinArgument2,
-                                            const class GALGAS_constantMap constinArgument3,
-                                            class GALGAS_uint & ioArgument4,
-                                            class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument5,
-                                            class GALGAS_string & ioArgument6,
-                                            const class GALGAS_uint constinArgument7,
-                                            class GALGAS_uint & ioArgument8,
-                                            const class GALGAS_bool constinArgument9,
-                                            class GALGAS_bool & outArgument10,
-                                            const class GALGAS_routineKind constinArgument11,
-                                            class GALGAS_stringset & ioArgument12,
-                                            class C_Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
 

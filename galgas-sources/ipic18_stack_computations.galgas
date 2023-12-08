@@ -1,7 +1,7 @@
 map @blockMapForStackComputation {
   public var @ipic18Block mBlock
-  insert insertKey error message "the '%K' block is already declared in %L"
-  search searchKey error message "the '%K' block is not declared"
+  %insertSetter insertKey %errorMessage "the '%K' block is already declared in %L"
+  %searchMethod searchKey %errorMessage "the '%K' block is not declared"
 }
 
 #------------------------------------------------------------------------------*
@@ -9,15 +9,15 @@ map @blockMapForStackComputation {
 map @routineCallMap {
   public var @stringset mCalledRoutineSet
   public var @uint mTerminatorStackNeeds
-  insert insertKey error message "the '%K' entry is already declared in %L"
+  %insertSetter insertKey %errorMessage "the '%K' entry is already declared in %L"
 }
 
 #------------------------------------------------------------------------------*
 
 map @routineStackRequirementMap {
   public var @uint mLevels
-  insert insertKey error message "the '%K' entry is already declared in %L"
-  search searchKey error message "the '%K' entry is not declared"
+  %insertSetter insertKey %errorMessage "the '%K' entry is already declared in %L"
+  %searchMethod searchKey %errorMessage "the '%K' entry is not declared"
 }
 
 #----------------------------------------------------------------------------*
@@ -304,7 +304,7 @@ proc ipic18StackComputations
       [routineStackRequirementMap searchKey ![".LOW_INTERRUPT" nowhere] ?let @uint lowIntLevels]
       totalLevels = totalLevels + lowIntLevels + 1
     end
-    message "Max stack depth: " + totalLevels + "\n\n"
+    print (!"Max stack depth: " + totalLevels + "\n\n")
     if totalLevels > 31 then
       error @location. nowhere: "Max stack depth is greater than 31"
     end

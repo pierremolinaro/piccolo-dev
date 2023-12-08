@@ -3,8 +3,8 @@
 #----------------------------------------------------------------------------*
 
 map @midrange_declaredRoutineMap {
-  insert insertKey error message "the '%K' routine is already declared"
-  search searchKey error message "the '%K' routine is not declared"
+  %insertSetter insertKey %errorMessage "the '%K' routine is already declared"
+  %searchMethod searchKey %errorMessage "the '%K' routine is not declared"
 }
 
 #----------------------------------------------------------------------------*
@@ -176,7 +176,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
         verboseMessage += [bankSize string] + " bytes ("
         verboseMessage += [(usedSize * 100) / bankSize string] + "%).\n"
       end
-      message verboseMessage
+      print (!verboseMessage)
     end
   #--- Generate asm file, if corresponding option enabled
     if [option piccolo_options.generateAssembly value] then

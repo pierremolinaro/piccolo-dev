@@ -57,13 +57,6 @@ GALGAS_baseline_5F_assembly_5F_instruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::constructor_default (LOCATION_ARGS) {
-  return GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::constructor_new (GALGAS_uint::constructor_default (HERE)
-                                                                        COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * inSourcePtr) :
 GALGAS_baseline_5F_assembly_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG) ;
@@ -1916,16 +1909,6 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::constructor_default (LOCATION_ARGS) {
-  return GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                                     GALGAS_bool::constructor_default (HERE),
-                                                                                     GALGAS_baseline_5F_intermediate_5F_registerExpression::constructor_default (HERE),
-                                                                                     GALGAS_uint::constructor_default (HERE)
-                                                                                     COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip (const cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip * inSourcePtr) :
 GALGAS_baseline_5F_assembly_5F_actualInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip) ;
@@ -2366,13 +2349,6 @@ typeComparisonResult GALGAS_baseline_5F_assembly_5F_SKIP::objectCompare (const G
 
 GALGAS_baseline_5F_assembly_5F_SKIP::GALGAS_baseline_5F_assembly_5F_SKIP (void) :
 GALGAS_baseline_5F_assembly_5F_actualInstruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_baseline_5F_assembly_5F_SKIP GALGAS_baseline_5F_assembly_5F_SKIP::constructor_default (LOCATION_ARGS) {
-  return GALGAS_baseline_5F_assembly_5F_SKIP::constructor_new (GALGAS_location::constructor_nowhere (HERE)
-                                                               COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3454,16 +3430,6 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::constructor_default (LOCATION_ARGS) {
-  return GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                                    GALGAS_baseline_5F_intermediate_5F_registerExpression::constructor_default (HERE),
-                                                                                    GALGAS_bool::constructor_default (HERE),
-                                                                                    GALGAS_bool::constructor_default (HERE)
-                                                                                    COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition (const cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition * inSourcePtr) :
 GALGAS_baseline_5F_assembly_5F_actualInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition) ;
@@ -3846,7 +3812,7 @@ typeComparisonResult cMapElement_baseline_5F_symbolTable::compare (const cCollec
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_symbolTable::GALGAS_baseline_5F_symbolTable (void) :
-AC_GALGAS_map (true) {
+AC_GALGAS_map () {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4447,7 +4413,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_midrange_5F_instructionList  (capCollectionElementArray ()) ;
+  return GALGAS_midrange_5F_instructionList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -4817,13 +4783,6 @@ GALGAS_midrange_5F_instruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_nobanksel GALGAS_midrange_5F_instruction_5F_nobanksel::constructor_default (LOCATION_ARGS) {
-  return GALGAS_midrange_5F_instruction_5F_nobanksel::constructor_new (GALGAS_location::constructor_nowhere (HERE)
-                                                                       COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_midrange_5F_instruction_5F_nobanksel::GALGAS_midrange_5F_instruction_5F_nobanksel (const cPtr_midrange_5F_instruction_5F_nobanksel * inSourcePtr) :
 GALGAS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_nobanksel) ;
@@ -5077,15 +5036,6 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_banksel::objectCompare (c
 
 GALGAS_midrange_5F_instruction_5F_banksel::GALGAS_midrange_5F_instruction_5F_banksel (void) :
 GALGAS_midrange_5F_instruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_instruction_5F_banksel GALGAS_midrange_5F_instruction_5F_banksel::constructor_default (LOCATION_ARGS) {
-  return GALGAS_midrange_5F_instruction_5F_banksel::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                     GALGAS_luint::constructor_default (HERE),
-                                                                     GALGAS_bool::constructor_default (HERE)
-                                                                     COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5399,14 +5349,6 @@ GALGAS_midrange_5F_instruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_midrangeInstruction_5F_checkbank GALGAS_midrangeInstruction_5F_checkbank::constructor_default (LOCATION_ARGS) {
-  return GALGAS_midrangeInstruction_5F_checkbank::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                   GALGAS_uint::constructor_default (HERE)
-                                                                   COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_midrangeInstruction_5F_checkbank::GALGAS_midrangeInstruction_5F_checkbank (const cPtr_midrangeInstruction_5F_checkbank * inSourcePtr) :
 GALGAS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrangeInstruction_5F_checkbank) ;
@@ -5680,13 +5622,6 @@ typeComparisonResult GALGAS_midrangeInstruction_5F_checknobank::objectCompare (c
 
 GALGAS_midrangeInstruction_5F_checknobank::GALGAS_midrangeInstruction_5F_checknobank (void) :
 GALGAS_midrange_5F_instruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_midrangeInstruction_5F_checknobank GALGAS_midrangeInstruction_5F_checknobank::constructor_default (LOCATION_ARGS) {
-  return GALGAS_midrangeInstruction_5F_checknobank::constructor_new (GALGAS_location::constructor_nowhere (HERE)
-                                                                     COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7839,13 +7774,6 @@ GALGAS_midrange_5F_instruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_CLRWDT GALGAS_midrange_5F_instruction_5F_CLRWDT::constructor_default (LOCATION_ARGS) {
-  return GALGAS_midrange_5F_instruction_5F_CLRWDT::constructor_new (GALGAS_location::constructor_nowhere (HERE)
-                                                                    COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_midrange_5F_instruction_5F_CLRWDT::GALGAS_midrange_5F_instruction_5F_CLRWDT (const cPtr_midrange_5F_instruction_5F_CLRWDT * inSourcePtr) :
 GALGAS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_CLRWDT) ;
@@ -8091,13 +8019,6 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_CLRW::objectCompare (cons
 
 GALGAS_midrange_5F_instruction_5F_CLRW::GALGAS_midrange_5F_instruction_5F_CLRW (void) :
 GALGAS_midrange_5F_instruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_instruction_5F_CLRW GALGAS_midrange_5F_instruction_5F_CLRW::constructor_default (LOCATION_ARGS) {
-  return GALGAS_midrange_5F_instruction_5F_CLRW::constructor_new (GALGAS_location::constructor_nowhere (HERE)
-                                                                  COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -8351,13 +8272,6 @@ GALGAS_midrange_5F_instruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_NOP GALGAS_midrange_5F_instruction_5F_NOP::constructor_default (LOCATION_ARGS) {
-  return GALGAS_midrange_5F_instruction_5F_NOP::constructor_new (GALGAS_location::constructor_nowhere (HERE)
-                                                                 COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_midrange_5F_instruction_5F_NOP::GALGAS_midrange_5F_instruction_5F_NOP (const cPtr_midrange_5F_instruction_5F_NOP * inSourcePtr) :
 GALGAS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_NOP) ;
@@ -8603,13 +8517,6 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_SLEEP::objectCompare (con
 
 GALGAS_midrange_5F_instruction_5F_SLEEP::GALGAS_midrange_5F_instruction_5F_SLEEP (void) :
 GALGAS_midrange_5F_instruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_instruction_5F_SLEEP GALGAS_midrange_5F_instruction_5F_SLEEP::constructor_default (LOCATION_ARGS) {
-  return GALGAS_midrange_5F_instruction_5F_SLEEP::constructor_new (GALGAS_location::constructor_nowhere (HERE)
-                                                                   COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9470,14 +9377,6 @@ GALGAS_midrange_5F_instruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_MNOP GALGAS_midrange_5F_instruction_5F_MNOP::constructor_default (LOCATION_ARGS) {
-  return GALGAS_midrange_5F_instruction_5F_MNOP::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                  GALGAS_luint::constructor_default (HERE)
-                                                                  COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_midrange_5F_instruction_5F_MNOP::GALGAS_midrange_5F_instruction_5F_MNOP (const cPtr_midrange_5F_instruction_5F_MNOP * inSourcePtr) :
 GALGAS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_MNOP) ;
@@ -9759,15 +9658,6 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_FOREVER::objectCompare (c
 
 GALGAS_midrange_5F_instruction_5F_FOREVER::GALGAS_midrange_5F_instruction_5F_FOREVER (void) :
 GALGAS_midrange_5F_instruction () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_instruction_5F_FOREVER GALGAS_midrange_5F_instruction_5F_FOREVER::constructor_default (LOCATION_ARGS) {
-  return GALGAS_midrange_5F_instruction_5F_FOREVER::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                     GALGAS_midrange_5F_instructionList::constructor_emptyList (HERE),
-                                                                     GALGAS_location::constructor_nowhere (HERE)
-                                                                     COMMA_THERE) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -11966,7 +11856,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_midrange_5F_partList  (capCollectionElementArray ()) ;
+  return GALGAS_midrange_5F_partList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -12468,16 +12358,6 @@ GALGAS_midrange_5F_instruction () {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_do_5F_while GALGAS_midrange_5F_instruction_5F_do_5F_while::constructor_default (LOCATION_ARGS) {
-  return GALGAS_midrange_5F_instruction_5F_do_5F_while::constructor_new (GALGAS_location::constructor_nowhere (HERE),
-                                                                         GALGAS_midrange_5F_instructionList::constructor_emptyList (HERE),
-                                                                         GALGAS_location::constructor_nowhere (HERE),
-                                                                         GALGAS_midrange_5F_partList::constructor_emptyList (HERE)
-                                                                         COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_midrange_5F_instruction_5F_do_5F_while::GALGAS_midrange_5F_instruction_5F_do_5F_while (const cPtr_midrange_5F_instruction_5F_do_5F_while * inSourcePtr) :
 GALGAS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_do_5F_while) ;
@@ -12874,7 +12754,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_midrange_5F_interruptDefinitionList  (capCollectionElementArray ()) ;
+  return GALGAS_midrange_5F_interruptDefinitionList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -13565,7 +13445,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_midrange_5F_routineDefinitionList  (capCollectionElementArray ()) ;
+  return GALGAS_midrange_5F_routineDefinitionList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -14328,15 +14208,9 @@ mProperty_mRegisterAddress (inOperand1) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_intermediate_5F_registerExpression::constructor_default (UNUSED_LOCATION_ARGS) {
-  return GALGAS_midrange_5F_intermediate_5F_registerExpression (GALGAS_string::constructor_default (HERE),
-                                                                GALGAS_uint::constructor_default (HERE)) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
 GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_intermediate_5F_registerExpression::constructor_new (const GALGAS_string & in_mAssemblyString,
-                                                                                                                              const GALGAS_uint & in_mRegisterAddress 
+                                                                                                                              const GALGAS_uint & in_mRegisterAddress,
+                                                                                                                              C_Compiler * /* inCompiler */
                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_registerExpression result ;
   if (in_mAssemblyString.isValid () && in_mRegisterAddress.isValid ()) {
@@ -14722,7 +14596,7 @@ AC_GALGAS_list (inSharedArray) {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermediate_5F_instructionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_midrange_5F_intermediate_5F_instructionList  (capCollectionElementArray ()) ;
+  return GALGAS_midrange_5F_intermediate_5F_instructionList (capCollectionElementArray ()) ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

@@ -5,8 +5,8 @@
 map @bitSliceTable {
   public var @uint mSliceIndex
   public var @uint mSliceSize
-  insert insertKey error message "the '%K' slice is already declared in %L"
-  search searchKey error message "the '%K' slice is not declared"
+  %insertSetter insertKey %errorMessage "the '%K' slice is already declared in %L"
+  %searchMethod searchKey %errorMessage "the '%K' slice is not declared"
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -241,8 +241,8 @@ list @constantDefinitionList {
 map @actualConfigurationMap {
   public var @uint mRegisterAddress
   public var @uint mRegisterValue
-  insert insertKey error message "the '%K' configuration register is already declared in %L"
-  search searchKey error message "the '%K' configuration register is not declared"
+  %insertSetter insertKey %errorMessage "the '%K' configuration register is already declared in %L"
+  %searchMethod searchKey %errorMessage "the '%K' configuration register is not declared"
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -273,7 +273,7 @@ refclass @bitNumberLabelValue : @bitNumberExpression {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 map @labelMap {
-  insert insertKey error message "the '%K' label is already in use"
+  %insertSetter insertKey %errorMessage "the '%K' label is already in use"
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

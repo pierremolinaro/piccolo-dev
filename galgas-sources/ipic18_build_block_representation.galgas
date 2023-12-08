@@ -2304,8 +2304,8 @@ map @blockInstructionBlockMap {
   public var @pic18InstructionList mInstructionList
   public var @abstractBlockTerminationForBlockInstruction mBlockTerminaisonForBlockInstruction
   public var @location mEndOfBlock
-  insert insertKey error message "the '%K' block is already declared"
-  search searchKey error message "the '%K' block is not declared"
+  %insertSetter insertKey %errorMessage "the '%K' block is already declared"
+  %searchMethod searchKey %errorMessage "the '%K' block is not declared"
 }
 
 #----------------------------------------------------*
@@ -2313,8 +2313,8 @@ map @blockInstructionBlockMap {
 map @blockInitialBankSelectionMap {
   public var @uint mInitialBankSelection
   public var @string mSourceBlock
-  insert insertKey error message "the '%K' block is already declared (internal error)"
-  search searchKey error message "the '%K' block is not declared (internal error)"
+  %insertSetter insertKey %errorMessage "the '%K' block is already declared (internal error)"
+  %searchMethod searchKey %errorMessage "the '%K' block is not declared (internal error)"
 }
 
 #----------------------------------------------------*
@@ -3641,7 +3641,7 @@ proc build_ipic18_block_representation_list
         verboseMessage += [bankSize string] + " bytes ("
         verboseMessage += [(usedSize * 100) / bankSize string] + "%)\n"
       end
-      message verboseMessage
+      print (!verboseMessage)
     end
   end
 #----------------------------------------------------------- Compute durations

@@ -1107,7 +1107,7 @@ proc ipic18OptimizeBlocks
   ioListFileContents += "  [R] Call to RETLW replaced by MOVLW: " + [optimizeFlagStruct.mJSRtoRETLWreplacedByMOVLW flagValue] + "\n"
   ioListFileContents += "  [U] Useless test elimination: always enabled\n"
   if @application.verboseOutput then
-    message "Optimizations:\n"
+    print (!"Optimizations:\n")
   end
 #--- Optimizations loops
   var @bool optimizationDone = true
@@ -1119,7 +1119,7 @@ proc ipic18OptimizeBlocks
     ioListFileContents += "\n--- Pass " + optimizationPass + " (" + [ioGeneratedBlockList length] + " blocks)\n"
     let @uint blockCountBeforeOptimization = [ioGeneratedBlockList length]
     if @application.verboseOutput then
-      message "  Pass " + optimizationPass + " : " + blockCountBeforeOptimization + " blocks.\n"
+      print (!"  Pass " + optimizationPass + " : " + blockCountBeforeOptimization + " blocks.\n")
     end
   #-------------------------------- Build label map
     var symbolTable =@symbolTableForBlockOptimization.emptyMap{}
@@ -1159,7 +1159,7 @@ proc ipic18OptimizeBlocks
   end
   ioListFileContents += "  No optimization.\n\n"
   if @application.verboseOutput then
-    message "\n"
+    print (!"\n")
   end
 }
 

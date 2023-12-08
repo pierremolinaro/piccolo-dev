@@ -10,6 +10,129 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 //
+// Phase 2: class for element of '@fieldSettingMap' map
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class cMapElement_fieldSettingMap : public cMapElement {
+//--- Map attributes
+  public: GALGAS_uint mProperty_mValue ;
+  public: GALGAS_uint mProperty_mMask ;
+
+//--- Constructor
+  public: cMapElement_fieldSettingMap (const GALGAS_lstring & inKey,
+                                       const GALGAS_uint & in_mValue,
+                                       const GALGAS_uint & in_mMask
+                                       COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public: virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public: virtual cMapElement * copy (void) ;
+
+//--- Description
+ public: virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+// Phase 1: @fieldSettingMap_2D_element struct
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+class GALGAS_fieldSettingMap_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GALGAS_lstring mProperty_lkey ;
+  public: inline GALGAS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
+
+  public: GALGAS_uint mProperty_mValue ;
+  public: inline GALGAS_uint readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
+
+  public: GALGAS_uint mProperty_mMask ;
+  public: inline GALGAS_uint readProperty_mMask (void) const {
+    return mProperty_mMask ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GALGAS_fieldSettingMap_2D_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setLkey (const GALGAS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_lkey = inValue ;
+  }
+
+  public: inline void setter_setMValue (const GALGAS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mValue = inValue ;
+  }
+
+  public: inline void setter_setMMask (const GALGAS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mMask = inValue ;
+  }
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public: virtual ~ GALGAS_fieldSettingMap_2D_element (void) ;
+
+//--------------------------------- Native constructor
+  public: GALGAS_fieldSettingMap_2D_element (const GALGAS_lstring & in_lkey,
+                                             const GALGAS_uint & in_mValue,
+                                             const GALGAS_uint & in_mMask) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_fieldSettingMap_2D_element extractObject (const GALGAS_object & inObject,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_fieldSettingMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                          const class GALGAS_uint & inOperand1,
+                                                                          const class GALGAS_uint & inOperand2,
+                                                                          class C_Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
+                                              const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_fieldSettingMap_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_fieldSettingMap_2D_element class
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fieldSettingMap_2D_element ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
 //                             Phase 1: @baseline_5F_instruction_5F_FD_5F_base_5F_code enum                            *
 //
 //----------------------------------------------------------------------------------------------------------------------
@@ -665,9 +788,6 @@ class GALGAS_baseline_5F_instruction_2D_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_2D_weak (const class GALGAS_baseline_5F_instruction & inSource) ;
 
@@ -887,7 +1007,8 @@ class GALGAS_baseline_5F_instructionList_2D_element : public AC_GALGAS_root {
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public: static class GALGAS_baseline_5F_instructionList_2D_element constructor_new (const class GALGAS_baseline_5F_instruction & inOperand0
+  public: static class GALGAS_baseline_5F_instructionList_2D_element constructor_new (const class GALGAS_baseline_5F_instruction & inOperand0,
+                                                                                      class C_Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -1047,9 +1168,6 @@ class cPtr_baseline_5F_instruction_5F_FD : public cPtr_baseline_5F_instruction {
 class GALGAS_baseline_5F_instruction_5F_FD_2D_weak : public GALGAS_baseline_5F_instruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_FD_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_FD_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_FD_2D_weak (const class GALGAS_baseline_5F_instruction_5F_FD & inSource) ;
@@ -1218,9 +1336,6 @@ class cPtr_baseline_5F_instruction_5F_F : public cPtr_baseline_5F_instruction {
 class GALGAS_baseline_5F_instruction_5F_F_2D_weak : public GALGAS_baseline_5F_instruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_F_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_F_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_F_2D_weak (const class GALGAS_baseline_5F_instruction_5F_F & inSource) ;
@@ -1398,9 +1513,6 @@ class GALGAS_baseline_5F_instruction_5F_FB_2D_weak : public GALGAS_baseline_5F_i
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_FB_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_FB_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_FB_2D_weak (const class GALGAS_baseline_5F_instruction_5F_FB & inSource) ;
 
@@ -1453,9 +1565,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 class GALGAS_baseline_5F_instruction_5F_CALL : public GALGAS_baseline_5F_instruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_CALL (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_CALL constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_instruction_5F_CALL (const class cPtr_baseline_5F_instruction_5F_CALL * inSourcePtr) ;
@@ -1568,9 +1677,6 @@ class GALGAS_baseline_5F_instruction_5F_CALL_2D_weak : public GALGAS_baseline_5F
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_CALL_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_CALL_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_CALL_2D_weak (const class GALGAS_baseline_5F_instruction_5F_CALL & inSource) ;
 
@@ -1623,9 +1729,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 class GALGAS_baseline_5F_instruction_5F_JSR : public GALGAS_baseline_5F_instruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_JSR (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_JSR constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_instruction_5F_JSR (const class cPtr_baseline_5F_instruction_5F_JSR * inSourcePtr) ;
@@ -1734,9 +1837,6 @@ class GALGAS_baseline_5F_instruction_5F_JSR_2D_weak : public GALGAS_baseline_5F_
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_JSR_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_JSR_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_JSR_2D_weak (const class GALGAS_baseline_5F_instruction_5F_JSR & inSource) ;
 
@@ -1789,9 +1889,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 class GALGAS_baseline_5F_instruction_5F_GOTO : public GALGAS_baseline_5F_instruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_GOTO (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_GOTO constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_instruction_5F_GOTO (const class cPtr_baseline_5F_instruction_5F_GOTO * inSourcePtr) ;
@@ -1904,9 +2001,6 @@ class GALGAS_baseline_5F_instruction_5F_GOTO_2D_weak : public GALGAS_baseline_5F
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_GOTO_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_GOTO_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_GOTO_2D_weak (const class GALGAS_baseline_5F_instruction_5F_GOTO & inSource) ;
 
@@ -1959,9 +2053,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 class GALGAS_baseline_5F_instruction_5F_JUMP : public GALGAS_baseline_5F_instruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_JUMP (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_JUMP constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_instruction_5F_JUMP (const class cPtr_baseline_5F_instruction_5F_JUMP * inSourcePtr) ;
@@ -2073,9 +2164,6 @@ class cPtr_baseline_5F_instruction_5F_JUMP : public cPtr_baseline_5F_instruction
 class GALGAS_baseline_5F_instruction_5F_JUMP_2D_weak : public GALGAS_baseline_5F_instruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_JUMP_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_JUMP_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_JUMP_2D_weak (const class GALGAS_baseline_5F_instruction_5F_JUMP & inSource) ;
@@ -2237,9 +2325,6 @@ class GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND_2D_weak : public GALGAS_ba
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND_2D_weak (const class GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND & inSource) ;
 
@@ -2292,9 +2377,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 class GALGAS_baseline_5F_instruction_5F_TRIS : public GALGAS_baseline_5F_instruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_TRIS (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_TRIS constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_instruction_5F_TRIS (const class cPtr_baseline_5F_instruction_5F_TRIS * inSourcePtr) ;
@@ -2402,9 +2484,6 @@ class cPtr_baseline_5F_instruction_5F_TRIS : public cPtr_baseline_5F_instruction
 class GALGAS_baseline_5F_instruction_5F_TRIS_2D_weak : public GALGAS_baseline_5F_instruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_TRIS_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_TRIS_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_TRIS_2D_weak (const class GALGAS_baseline_5F_instruction_5F_TRIS & inSource) ;
@@ -2578,9 +2657,6 @@ class GALGAS_baseline_5F_instruction_5F_literalOperation_2D_weak : public GALGAS
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_literalOperation_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_literalOperation_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_literalOperation_2D_weak (const class GALGAS_baseline_5F_instruction_5F_literalOperation & inSource) ;
 
@@ -2633,9 +2709,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 class GALGAS_baseline_5F_instruction_5F_MNOP : public GALGAS_baseline_5F_instruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_MNOP (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_MNOP constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_instruction_5F_MNOP (const class cPtr_baseline_5F_instruction_5F_MNOP * inSourcePtr) ;
@@ -2744,9 +2817,6 @@ class GALGAS_baseline_5F_instruction_5F_MNOP_2D_weak : public GALGAS_baseline_5F
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_MNOP_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_MNOP_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_MNOP_2D_weak (const class GALGAS_baseline_5F_instruction_5F_MNOP & inSource) ;
 
@@ -2799,9 +2869,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruc
 class GALGAS_baseline_5F_instruction_5F_FOREVER : public GALGAS_baseline_5F_instruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_FOREVER (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_FOREVER constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_instruction_5F_FOREVER (const class cPtr_baseline_5F_instruction_5F_FOREVER * inSourcePtr) ;
@@ -2921,9 +2988,6 @@ class cPtr_baseline_5F_instruction_5F_FOREVER : public cPtr_baseline_5F_instruct
 class GALGAS_baseline_5F_instruction_5F_FOREVER_2D_weak : public GALGAS_baseline_5F_instruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_FOREVER_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_FOREVER_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_FOREVER_2D_weak (const class GALGAS_baseline_5F_instruction_5F_FOREVER & inSource) ;
@@ -3117,9 +3181,6 @@ class GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak : public GALGAS
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak (const class GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT & inSource) ;
 
@@ -3257,9 +3318,6 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_baseline
 class GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak : public GALGAS_baseline_5F_instruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak (const class GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON & inSource) ;
@@ -3447,9 +3505,6 @@ class GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest_2D_weak : public GALGAS_ba
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest_2D_weak (const class GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest & inSource) ;
 
@@ -3628,9 +3683,6 @@ class GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec_2D_weak : public GALGAS_bas
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec_2D_weak (const class GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec & inSource) ;
 
@@ -3768,9 +3820,6 @@ class cPtr_baseline_5F_conditionExpression : public acStrongPtr_class {
 class GALGAS_baseline_5F_conditionExpression_2D_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_conditionExpression_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_conditionExpression_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_conditionExpression_2D_weak (const class GALGAS_baseline_5F_conditionExpression & inSource) ;
@@ -3948,9 +3997,6 @@ class GALGAS_baseline_5F_incDecRegisterInCondition_2D_weak : public GALGAS_basel
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_incDecRegisterInCondition_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_incDecRegisterInCondition_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_incDecRegisterInCondition_2D_weak (const class GALGAS_baseline_5F_incDecRegisterInCondition & inSource) ;
 
@@ -4102,9 +4148,6 @@ class cPtr_baseline_5F_negateCondition : public cPtr_baseline_5F_conditionExpres
 class GALGAS_baseline_5F_negateCondition_2D_weak : public GALGAS_baseline_5F_conditionExpression_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_negateCondition_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_negateCondition_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_negateCondition_2D_weak (const class GALGAS_baseline_5F_negateCondition & inSource) ;
@@ -4266,9 +4309,6 @@ class GALGAS_baseline_5F_andCondition_2D_weak : public GALGAS_baseline_5F_condit
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_andCondition_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_andCondition_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_andCondition_2D_weak (const class GALGAS_baseline_5F_andCondition & inSource) ;
 
@@ -4428,9 +4468,6 @@ class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
 class GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak : public GALGAS_baseline_5F_conditionExpression_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak (const class GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition & inSource) ;
@@ -4619,9 +4656,6 @@ class cPtr_baseline_5F_instruction_5F_structured_5F_if : public cPtr_baseline_5F
 class GALGAS_baseline_5F_instruction_5F_structured_5F_if_2D_weak : public GALGAS_baseline_5F_instruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_structured_5F_if_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_structured_5F_if_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_structured_5F_if_2D_weak (const class GALGAS_baseline_5F_instruction_5F_structured_5F_if & inSource) ;
@@ -4904,7 +4938,8 @@ class GALGAS_baseline_5F_partList_2D_element : public AC_GALGAS_root {
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_baseline_5F_partList_2D_element constructor_new (const class GALGAS_baseline_5F_conditionExpression & inOperand0,
                                                                                const class GALGAS_baseline_5F_instructionList & inOperand1,
-                                                                               const class GALGAS_location & inOperand2
+                                                                               const class GALGAS_location & inOperand2,
+                                                                               class C_Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -4941,9 +4976,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_partLis
 class GALGAS_baseline_5F_instruction_5F_do_5F_while : public GALGAS_baseline_5F_instruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_do_5F_while (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_do_5F_while constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_instruction_5F_do_5F_while (const class cPtr_baseline_5F_instruction_5F_do_5F_while * inSourcePtr) ;
@@ -5067,9 +5099,6 @@ class cPtr_baseline_5F_instruction_5F_do_5F_while : public cPtr_baseline_5F_inst
 class GALGAS_baseline_5F_instruction_5F_do_5F_while_2D_weak : public GALGAS_baseline_5F_instruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_instruction_5F_do_5F_while_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_instruction_5F_do_5F_while_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_instruction_5F_do_5F_while_2D_weak (const class GALGAS_baseline_5F_instruction_5F_do_5F_while & inSource) ;
@@ -5365,9 +5394,6 @@ class GALGAS_baseline_5F_routineDefinitionList_2D_element : public AC_GALGAS_roo
   public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_routineDefinitionList_2D_element constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_routineDefinitionList_2D_element (void) ;
 
@@ -5417,7 +5443,8 @@ class GALGAS_baseline_5F_routineDefinitionList_2D_element : public AC_GALGAS_roo
                                                                                             const class GALGAS_luint & inOperand1,
                                                                                             const class GALGAS_bool & inOperand2,
                                                                                             const class GALGAS_baseline_5F_instructionList & inOperand3,
-                                                                                            const class GALGAS_location & inOperand4
+                                                                                            const class GALGAS_location & inOperand4,
+                                                                                            class C_Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -5599,9 +5626,6 @@ class GALGAS_baseline_5F_declaredRoutineMap_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_declaredRoutineMap_2D_element constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_declaredRoutineMap_2D_element (void) ;
 
@@ -5627,7 +5651,8 @@ class GALGAS_baseline_5F_declaredRoutineMap_2D_element : public AC_GALGAS_root {
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public: static class GALGAS_baseline_5F_declaredRoutineMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0
+  public: static class GALGAS_baseline_5F_declaredRoutineMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                                         class C_Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -5699,9 +5724,6 @@ class GALGAS_baseline_5F_intermediate_5F_registerExpression : public AC_GALGAS_r
   public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_registerExpression constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_registerExpression (void) ;
 
@@ -5733,7 +5755,8 @@ class GALGAS_baseline_5F_intermediate_5F_registerExpression : public AC_GALGAS_r
 
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_baseline_5F_intermediate_5F_registerExpression constructor_new (const class GALGAS_string & inOperand0,
-                                                                                              const class GALGAS_uint & inOperand1
+                                                                                              const class GALGAS_uint & inOperand1,
+                                                                                              class C_Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -5881,9 +5904,6 @@ class cPtr_baseline_5F_intermediate_5F_instruction : public acStrongPtr_class {
 class GALGAS_baseline_5F_intermediate_5F_instruction_2D_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_instruction_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_instruction_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_instruction_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_instruction & inSource) ;
@@ -6104,7 +6124,8 @@ class GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element : public AC_
                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public: static class GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element constructor_new (const class GALGAS_baseline_5F_intermediate_5F_instruction & inOperand0
+  public: static class GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element constructor_new (const class GALGAS_baseline_5F_intermediate_5F_instruction & inOperand0,
+                                                                                                      class C_Compiler * inCompiler
                                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -6141,9 +6162,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_NULL : public GALGAS_baseline_5F_intermediate_5F_instruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_NULL (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_NULL constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_NULL (const class cPtr_baseline_5F_intermediate_5F_NULL * inSourcePtr) ;
@@ -6239,9 +6257,6 @@ class cPtr_baseline_5F_intermediate_5F_NULL : public cPtr_baseline_5F_intermedia
 class GALGAS_baseline_5F_intermediate_5F_NULL_2D_weak : public GALGAS_baseline_5F_intermediate_5F_instruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_NULL_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_NULL_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_NULL_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_NULL & inSource) ;
@@ -6369,9 +6384,6 @@ class GALGAS_baseline_5F_intermediate_5F_pseudo_2D_weak : public GALGAS_baseline
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_pseudo_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_pseudo & inSource) ;
 
@@ -6424,9 +6436,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public GALGAS_baseline_5F_intermediate_5F_pseudo {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE (const class cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE * inSourcePtr) ;
@@ -6535,9 +6544,6 @@ class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2D_weak : public GALGAS_
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE & inSource) ;
 
@@ -6590,9 +6596,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public GALGAS_baseline_5F_intermediate_5F_pseudo {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL (const class cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL * inSourcePtr) ;
@@ -6702,9 +6705,6 @@ class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak : public GALGAS
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL & inSource) ;
 
@@ -6757,9 +6757,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public GALGAS_baseline_5F_intermediate_5F_pseudo {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE (const class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * inSourcePtr) ;
@@ -6876,9 +6873,6 @@ class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2D_weak : pu
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE & inSource) ;
 
@@ -6931,9 +6925,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public GALGAS_baseline_5F_intermediate_5F_pseudo {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE (const class cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE * inSourcePtr) ;
@@ -7048,9 +7039,6 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public cPtr_ba
 class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2D_weak : public GALGAS_baseline_5F_intermediate_5F_pseudo_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE & inSource) ;
@@ -7187,9 +7175,6 @@ class cPtr_baseline_5F_intermediate_5F_actualInstruction : public cPtr_baseline_
 class GALGAS_baseline_5F_intermediate_5F_actualInstruction_2D_weak : public GALGAS_baseline_5F_intermediate_5F_instruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_actualInstruction_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_actualInstruction_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_actualInstruction_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_actualInstruction & inSource) ;
@@ -7359,9 +7344,6 @@ class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD_2D_weak : public GALG
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD & inSource) ;
 
@@ -7521,9 +7503,6 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_F : public cPtr_baseline_5
 class GALGAS_baseline_5F_intermediate_5F_instruction_5F_F_2D_weak : public GALGAS_baseline_5F_intermediate_5F_actualInstruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_F_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_instruction_5F_F_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_F_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_instruction_5F_F & inSource) ;
@@ -7693,9 +7672,6 @@ class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB_2D_weak : public GALG
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB & inSource) ;
 
@@ -7748,9 +7724,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (const class cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * inSourcePtr) ;
@@ -7870,9 +7843,6 @@ class GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2D_weak : pu
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip & inSource) ;
 
@@ -7925,9 +7895,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_GOTO : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_GOTO (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_GOTO constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_GOTO (const class cPtr_baseline_5F_intermediate_5F_GOTO * inSourcePtr) ;
@@ -8043,9 +8010,6 @@ class GALGAS_baseline_5F_intermediate_5F_GOTO_2D_weak : public GALGAS_baseline_5
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_GOTO_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_GOTO_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_GOTO_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_GOTO & inSource) ;
 
@@ -8098,9 +8062,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_JUMP : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_JUMP (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_JUMP constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_JUMP (const class cPtr_baseline_5F_intermediate_5F_JUMP * inSourcePtr) ;
@@ -8235,9 +8196,6 @@ class GALGAS_baseline_5F_intermediate_5F_JUMP_2D_weak : public GALGAS_baseline_5
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_JUMP_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_JUMP_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_JUMP_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_JUMP & inSource) ;
 
@@ -8290,9 +8248,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_CALL : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_CALL (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_CALL constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_CALL (const class cPtr_baseline_5F_intermediate_5F_CALL * inSourcePtr) ;
@@ -8405,9 +8360,6 @@ class GALGAS_baseline_5F_intermediate_5F_CALL_2D_weak : public GALGAS_baseline_5
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_CALL_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_CALL_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_CALL_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_CALL & inSource) ;
 
@@ -8460,9 +8412,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_JSR : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_JSR (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_JSR constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_JSR (const class cPtr_baseline_5F_intermediate_5F_JSR * inSourcePtr) ;
@@ -8593,9 +8542,6 @@ class cPtr_baseline_5F_intermediate_5F_JSR : public cPtr_baseline_5F_intermediat
 class GALGAS_baseline_5F_intermediate_5F_JSR_2D_weak : public GALGAS_baseline_5F_intermediate_5F_actualInstruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_JSR_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_JSR_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_JSR_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_JSR & inSource) ;
@@ -8749,9 +8695,6 @@ class GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2D_weak : public GALGAS_b
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND & inSource) ;
 
@@ -8804,9 +8747,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_TRIS : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_TRIS (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_TRIS constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_TRIS (const class cPtr_baseline_5F_intermediate_5F_TRIS * inSourcePtr) ;
@@ -8914,9 +8854,6 @@ class cPtr_baseline_5F_intermediate_5F_TRIS : public cPtr_baseline_5F_intermedia
 class GALGAS_baseline_5F_intermediate_5F_TRIS_2D_weak : public GALGAS_baseline_5F_intermediate_5F_actualInstruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_TRIS_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_TRIS_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_TRIS_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_TRIS & inSource) ;
@@ -9081,9 +9018,6 @@ class GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2D_weak
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation & inSource) ;
 
@@ -9136,9 +9070,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP (const class cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * inSourcePtr) ;
@@ -9242,9 +9173,6 @@ class GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2D_weak : public GA
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP & inSource) ;
 
@@ -9297,9 +9225,6 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_interme
 class GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition : public GALGAS_baseline_5F_intermediate_5F_actualInstruction {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor from pointer
   public: GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition (const class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * inSourcePtr) ;
@@ -9446,9 +9371,6 @@ class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition : public cPtr_b
 class GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2D_weak : public GALGAS_baseline_5F_intermediate_5F_actualInstruction_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2D_weak (const class GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition & inSource) ;
@@ -9678,9 +9600,6 @@ class GALGAS_baselineRoutineMap_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baselineRoutineMap_2D_element constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Default constructor
   public: GALGAS_baselineRoutineMap_2D_element (void) ;
 
@@ -9718,7 +9637,8 @@ class GALGAS_baselineRoutineMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_baselineRoutineMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
                                                                              const class GALGAS_bool & inOperand1,
-                                                                             const class GALGAS_luint & inOperand2
+                                                                             const class GALGAS_luint & inOperand2,
+                                                                             class C_Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -9976,9 +9896,6 @@ class GALGAS_baselineSymbolTableForOptimizations_2D_element : public AC_GALGAS_r
   public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baselineSymbolTableForOptimizations_2D_element constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Default constructor
   public: GALGAS_baselineSymbolTableForOptimizations_2D_element (void) ;
 
@@ -10010,7 +9927,8 @@ class GALGAS_baselineSymbolTableForOptimizations_2D_element : public AC_GALGAS_r
 
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_baselineSymbolTableForOptimizations_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                              const class GALGAS_uint & inOperand1
+                                                                                              const class GALGAS_uint & inOperand1,
+                                                                                              class C_Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
@@ -10240,9 +10158,6 @@ class GALGAS_baseline_5F_assembly_5F_instruction_2D_weak : public AC_GALGAS_weak
 //--------------------------------- Default constructor
   public: GALGAS_baseline_5F_assembly_5F_instruction_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_baseline_5F_assembly_5F_instruction_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_baseline_5F_assembly_5F_instruction_2D_weak (const class GALGAS_baseline_5F_assembly_5F_instruction & inSource) ;
 
@@ -10462,7 +10377,8 @@ class GALGAS_baseline_5F_assembly_5F_instructionList_2D_element : public AC_GALG
                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public: static class GALGAS_baseline_5F_assembly_5F_instructionList_2D_element constructor_new (const class GALGAS_baseline_5F_assembly_5F_instruction & inOperand0
+  public: static class GALGAS_baseline_5F_assembly_5F_instructionList_2D_element constructor_new (const class GALGAS_baseline_5F_assembly_5F_instruction & inOperand0,
+                                                                                                  class C_Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'

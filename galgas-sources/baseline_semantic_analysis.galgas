@@ -5,8 +5,8 @@
 map @baselineRoutineMap {
   public var @bool mIsNoReturn
   public var @luint mPage
-  insert insertKey error message "the '%K' routine is already declared in %L"
-  search searchKey error message "the '%K' routine is not declared"
+  %insertSetter insertKey %errorMessage "the '%K' routine is already declared in %L"
+  %searchMethod searchKey %errorMessage "the '%K' routine is not declared"
 }
 
 #----------------------------------------------------*

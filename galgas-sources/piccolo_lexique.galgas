@@ -25,9 +25,9 @@ indexing constantDeclaration : "Constant Declaration"
 # keywords can be written in lower or upper case
 # for identifiers, case is significant
 
-$identifier$ ! tokenString error message "an identifier"
+$identifier$ ! tokenString %errorMessage "an identifier"
 
-list controlKeyWordList style keywordStyle error message "the '%K' keyword"{
+list controlKeyWordList style keywordStyle %errorMessage "the '%K' keyword"{
   "bank",
   "banksave",
   "banksel",
@@ -78,7 +78,7 @@ list controlKeyWordList style keywordStyle error message "the '%K' keyword"{
   "while"
  }
 
-list instructionKeyWordList style instructionStyle error message "the '%K' instruction"{
+list instructionKeyWordList style instructionStyle %errorMessage "the '%K' instruction"{
   "addlw",
   "addwf",
   "addwfc",
@@ -158,14 +158,13 @@ rule isUnicodeLetter {
     enterCharacterIntoString (!?tokenString !* )
   while isUnicodeLetter | '_' | '0'->'9' :
   end
-  send
-    search identifierString in instructionKeyWordList
-    default search identifierString in controlKeyWordList
-    default $identifier$
+  send %codeFor identifierString in instructionKeyWordList
+  default %codeFor identifierString in controlKeyWordList
+  default $identifier$
 }
 
 #------------------------------- Label ------------------
-$label$ ! tokenString  style labelStyle error message "a label beginning with '@'"
+$label$ ! tokenString  style labelStyle %errorMessage "a label beginning with '@'"
 rule '@' {
   repeat
     enterCharacterIntoString (!?tokenString !* )
@@ -175,12 +174,12 @@ rule '@' {
 }
 
 #------------------------------- Integer, floating Point Constant ------------------
-$integer$ ! uint32value  style integerStyle error message "a 32-bit unsigned number"
+$integer$ ! uint32value  style integerStyle %errorMessage "a 32-bit unsigned number"
 
-message hexNumberTooLarge : "hex number too large"
-message binNumberTooLarge : "bin number too large"
-message decimalNumberTooLarge : "decimal number too large"
-message internalError : "internal error"
+%errorMessage hexNumberTooLarge : "hex number too large"
+%errorMessage binNumberTooLarge : "bin number too large"
+%errorMessage decimalNumberTooLarge : "decimal number too large"
+%errorMessage internalError : "internal error"
 
 rule "0x" {
   repeat
@@ -215,11 +214,11 @@ rule '0'->'9' {
 }
 
 #--------------------------------- Character constant ------------------------------------
-$literal_char$ ! charValue  style characterStyle error message "a character constant"
+$literal_char$ ! charValue  style characterStyle %errorMessage "a character constant"
 
-message incorrectCharConstant : "incorrect literal character"
+%errorMessage incorrectCharConstant : "incorrect literal character"
 
-message ASCIIcodeTooLargeError : "ASCII code > 255"
+%errorMessage ASCIIcodeTooLargeError : "ASCII code > 255"
 
 rule '\'' {
   select
@@ -268,7 +267,7 @@ rule '\'' {
 }
 
 # ----------------------------- Delimitors ---------------------------------------
-list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
+list delimitorsList style delimitersStyle %errorMessage "the '%K' delimitor"{
   "*",  "*+",   ",",  "!=", "<=", ">=",
   "*-", "+*",   ";",  ":",  "==", "<", ">",
   "[",  "]",    ".",  "!", "&", "|", "=",
@@ -279,9 +278,9 @@ list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
 rule list delimitorsList
 
 # -------------------- Characters string --------------------------------------
-$literal_string$ ! tokenString  style stringStyle %nonAtomicSelection error message "a character string constant \"...\""
+$literal_string$ ! tokenString  style stringStyle %nonAtomicSelection %errorMessage "a character string constant \"...\""
 
-message incorrectStringEnd : "string does not end with '\"'"
+%errorMessage incorrectStringEnd : "string does not end with '\"'"
 
 rule '"' {
   repeat
@@ -326,8 +325,8 @@ rule '"' {
 }
 
 # ------------------------------------ Comment ----------------------------
-$comment$  style commentStyle %nonAtomicSelection error message "a comment"
-$commentMark$  style commentStyle %nonAtomicSelection error message "a comment"
+$comment$  style commentStyle %nonAtomicSelection %errorMessage "a comment"
+$commentMark$  style commentStyle %nonAtomicSelection %errorMessage "a comment"
 rule '#' {
   select
   case '!' :
