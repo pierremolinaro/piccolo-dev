@@ -1,21 +1,21 @@
-#include "galgas2/C_Compiler.h"
+#include "galgas2/Compiler.h"
 #include "galgas2/C_galgas_io.h"
 #include "galgas2/C_galgas_CLI_Options.h"
 #include "utilities/C_PrologueEpilogue.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 #include "all-declarations-14.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'parseDeviceDefinition'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_parseDeviceDefinition (const GALGAS_lstring constinArgument_inDeviceName,
                                     GALGAS_piccoloDeviceModel & outArgument_outPiccoloDeviceModel,
-                                    C_Compiler * inCompiler
+                                    Compiler * inCompiler
                                     COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outPiccoloDeviceModel.drop () ; // Release 'out' argument
   GALGAS_filewrapper var_fw_319 = GALGAS_filewrapper (gWrapperDirectory_0_embeddedDevices) ;
@@ -46,43 +46,43 @@ void routine_parseDeviceDefinition (const GALGAS_lstring constinArgument_inDevic
 #include "galgas2/cLexiqueIntrospection.h"
 #include "utilities/F_DisplayException.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //                      print_tool_help_message                                                  
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 static void print_tool_help_message (void) {
-  co << "Compiled with GALGAS revision NUMERO_REVISION_GALGAS\n" ;
+  gCout.addString ("Compiled with GALGAS revision NUMERO_REVISION_GALGAS\n") ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 static const char * kSourceFileExtensions [] = {
   "piccolo",
   nullptr
 } ;    
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 static const char * kSourceFileHelpMessages [] = {
   "a source text file with the .piccolo extension",
   nullptr
 } ;    
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 const char * projectVersionString (void) {
   return "3.1.10" ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'before'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-static void routine_before (C_Compiler * inCompiler
+static void routine_before (Compiler * inCompiler
                             COMMA_UNUSED_LOCATION_ARGS) {
   {
     enumGalgasBool test_0 = kBoolTrue ;
@@ -465,39 +465,39 @@ static void routine_before (C_Compiler * inCompiler
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'after'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-static void routine_after (C_Compiler * /* inCompiler */
+static void routine_after (Compiler * /* inCompiler */
                            COMMA_UNUSED_LOCATION_ARGS) {
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'programRule_0'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 static void routine_programRule_5F__30_ (const GALGAS_lstring constinArgument_inSourceFile,
-                                         C_Compiler * inCompiler
+                                         Compiler * inCompiler
                                          COMMA_UNUSED_LOCATION_ARGS) {
   cGrammar_pic_31__38__5F_grammar::_performSourceFileParsing_ (inCompiler, constinArgument_inSourceFile  COMMA_SOURCE_FILE ("piccolo_program.galgas", 197)) ;
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //                      M A I N    F O R    L I B P M                                            
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 int mainForLIBPM (int inArgc, const char * inArgv []) {
 //--- Analyze Command Line Options
-  TC_UniqueArray <C_String> sourceFilesArray ;
+  TC_UniqueArray <String> sourceFilesArray ;
   F_Analyze_CLI_Options (inArgc, inArgv,
                          sourceFilesArray,
                          kSourceFileExtensions,
@@ -506,21 +506,21 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
 //---
   int returnCode = 0 ; // No error
 //--- Set Execution mode
-  C_String executionModeOptionErrorMessage ;
+  String executionModeOptionErrorMessage ;
   setExecutionMode (executionModeOptionErrorMessage) ;
   if (executionModeOptionErrorMessage.length () > 0) {
-    co << executionModeOptionErrorMessage ;
+    gCout.addString (executionModeOptionErrorMessage) ;
     returnCode = 1 ;
   }else{
   //--- Common lexique object
-    C_Compiler * commonCompiler = nullptr ;
-    macroMyNew (commonCompiler, C_Compiler (nullptr COMMA_HERE)) ;
+    Compiler * commonCompiler = nullptr ;
+    macroMyNew (commonCompiler, Compiler (nullptr COMMA_HERE)) ;
     try{
       routine_before (commonCompiler COMMA_HERE) ;
       cLexiqueIntrospection::handleGetKeywordListOption (commonCompiler) ;
       const bool verboseOptionOn = verboseOutput () ;
       for (int32_t i=0 ; i<sourceFilesArray.count () ; i++) {
-        const C_String fileExtension = sourceFilesArray (i COMMA_HERE).pathExtension () ;
+        const String fileExtension = sourceFilesArray (i COMMA_HERE).pathExtension () ;
         const GALGAS_string sfp = GALGAS_string (sourceFilesArray (i COMMA_HERE)) ;
         const GALGAS_location location = commonCompiler->here () ;
         const GALGAS_lstring sourceFilePath (sfp, location) ;
@@ -570,23 +570,25 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
       }
     //--- Display error and warnings count
       if (verboseOptionOn || (totalWarningCount () > 0) || (totalErrorCount () > 0)) {
-        C_String message ;
+        String message ;
         if (totalWarningCount () == 0) {
-          message << "No warning" ;
+          message.addString ("No warning") ;
         }else if (totalWarningCount () == 1) {
-          message << "1 warning" ;
+          message.addString ("1 warning") ;
         }else{
-          message << cStringWithSigned (totalWarningCount ()) << " warnings" ;
+          message.addSigned (totalWarningCount ()) ;
+          message.addString (" warnings") ;
         }
-        message << ", " ;
+        message.addString (", ") ;
         if (totalErrorCount () == 0) {
-          message << "no error" ;
+          message.addString ("no error") ;
         }else if (totalErrorCount () == 1) {
-          message << "1 error" ;
+          message.addString ("1 error") ;
         }else{
-          message << cStringWithSigned (totalErrorCount ()) << " errors" ;
+          message.addSigned (totalErrorCount ()) ;
+          message.addString (" errors") ;
         }
-        message << ".\n" ;
+        message.addString (".\n") ;
         ggs_printMessage (message COMMA_HERE) ;
       }
     }catch (const ::std::exception & e) {

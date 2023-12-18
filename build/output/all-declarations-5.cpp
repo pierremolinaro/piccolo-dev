@@ -1,2709 +1,11 @@
-#include "galgas2/C_Compiler.h"
+#include "galgas2/Compiler.h"
 #include "galgas2/C_galgas_io.h"
 #include "galgas2/C_galgas_CLI_Options.h"
 #include "utilities/C_PrologueEpilogue.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 #include "all-declarations-5.h"
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_ (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_pic_31__38_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 23)) ;
-  GALGAS_lstring var_programName_757 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 24)) ;
-  GALGAS_lstring var_deviceNameOrBootloaderReference_784 ;
-  GALGAS_programKind var_programKind_835 ;
-  switch (select_pic_31__38__5F_start_5F_symbol_0 (inCompiler)) {
-  case 1: {
-    var_programKind_835 = GALGAS_programKind::constructor_regularProgram (SOURCE_FILE ("pic18_start_symbol.galgas", 28)) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_implements COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 30)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 31)) ;
-    var_programKind_835 = GALGAS_programKind::constructor_bootloaderProgram (SOURCE_FILE ("pic18_start_symbol.galgas", 32)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_uses COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 34)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 35)) ;
-    var_programKind_835 = GALGAS_programKind::constructor_userProgram (SOURCE_FILE ("pic18_start_symbol.galgas", 36)) ;
-  } break ;
-  default:
-    break ;
-  }
-  var_deviceNameOrBootloaderReference_784 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 38)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 39)) ;
-  GALGAS_pic_31__38_InterruptDefinitionList var_interruptDefinitionList_1140 = GALGAS_pic_31__38_InterruptDefinitionList::constructor_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 40)) ;
-  GALGAS_pic_31__38_RoutineDefinitionList var_routineDefinitionList_1213 = GALGAS_pic_31__38_RoutineDefinitionList::constructor_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 41)) ;
-  GALGAS_pic_31__38_MacroDefinitionList var_macroDefinitionList_1308 = GALGAS_pic_31__38_MacroDefinitionList::constructor_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 42)) ;
-  GALGAS_lstringlist var_unusedRoutineList_1339 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 43)) ;
-  GALGAS_ramDefinitionList var_ramDefinitionList_1389 = GALGAS_ramDefinitionList::constructor_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 44)) ;
-  GALGAS_lstringlist var_unusedRegisterList_1445 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 45)) ;
-  GALGAS_configDefinitionList var_configDefinitionList_1496 = GALGAS_configDefinitionList::constructor_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 46)) ;
-  GALGAS_constantDefinitionList var_constantDefinitionList_1558 = GALGAS_constantDefinitionList::constructor_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 47)) ;
-  GALGAS_dataList var_dataList_1624 = GALGAS_dataList::constructor_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 48)) ;
-  GALGAS_checkpicList var_checkpicList_1662 = GALGAS_checkpicList::constructor_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 49)) ;
-  GALGAS_lstringlist var_inlinedRoutineList_1708 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 50)) ;
-  GALGAS_bool var_needsComputedGoto_32__1765 = GALGAS_bool (false) ;
-  GALGAS_bool var_needsComputedGoto_34__1804 = GALGAS_bool (false) ;
-  nt_body_ (var_interruptDefinitionList_1140, var_routineDefinitionList_1213, var_macroDefinitionList_1308, var_unusedRoutineList_1339, var_inlinedRoutineList_1708, var_ramDefinitionList_1389, var_unusedRegisterList_1445, var_configDefinitionList_1496, var_constantDefinitionList_1558, var_checkpicList_1662, var_dataList_1624, var_needsComputedGoto_32__1765, var_needsComputedGoto_34__1804, inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 67)) ;
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("pic18_start_symbol.galgas", 69)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_0) {
-      GALGAS_pic_31__38_AST var_piccoloModel_2234 = GALGAS_pic_31__38_AST::constructor_new (var_programName_757, var_programKind_835, var_deviceNameOrBootloaderReference_784, var_configDefinitionList_1496, var_ramDefinitionList_1389, var_unusedRegisterList_1445, var_checkpicList_1662, var_dataList_1624, var_interruptDefinitionList_1140, var_constantDefinitionList_1558, var_routineDefinitionList_1213, var_macroDefinitionList_1308, var_unusedRoutineList_1339, var_inlinedRoutineList_1708, var_needsComputedGoto_32__1765, var_needsComputedGoto_34__1804, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 87)), inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 70)) ;
-      {
-      routine_pic_31__38__5F_analyze (var_piccoloModel_2234, GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 89)), inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 89)) ;
-      }
-    }
-  }
-  if (kBoolFalse == test_0) {
-    GALGAS_string var_hexDestinationFile_2795 = GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 91)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_start_symbol.galgas", 91)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 91)) ;
-    enumGalgasBool test_1 = kBoolTrue ;
-    if (kBoolTrue == test_1) {
-      test_1 = var_hexDestinationFile_2795.getter_fileExists (SOURCE_FILE ("pic18_start_symbol.galgas", 92)).boolEnum () ;
-      if (kBoolTrue == test_1) {
-        {
-        GALGAS_string::class_method_deleteFile (var_hexDestinationFile_2795, inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 93)) ;
-        }
-      }
-    }
-    GALGAS_string var_asmDestinationFile_3006 = GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 95)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_start_symbol.galgas", 95)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 95)) ;
-    enumGalgasBool test_2 = kBoolTrue ;
-    if (kBoolTrue == test_2) {
-      test_2 = var_asmDestinationFile_3006.getter_fileExists (SOURCE_FILE ("pic18_start_symbol.galgas", 96)).boolEnum () ;
-      if (kBoolTrue == test_2) {
-        {
-        GALGAS_string::class_method_deleteFile (var_asmDestinationFile_3006, inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 97)) ;
-        }
-      }
-    }
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_importBootloaderSpecification (GALGAS_piccoloDeviceModel & outArgument_outPiccoloDeviceModel,
-                                                                                                                                   GALGAS_string & outArgument_outDeviceName,
-                                                                                                                                   GALGAS_uint & outArgument_outAccessBankSplitOffset,
-                                                                                                                                   GALGAS_ramBankTable & outArgument_outRamBank,
-                                                                                                                                   GALGAS_registerTable & outArgument_outRegisterTable,
-                                                                                                                                   GALGAS_bootloaderReservedRAMmap & outArgument_outBootloaderReservedRAMmap,
-                                                                                                                                   GALGAS_routineDeclarationList & outArgument_outBootloaderRoutineDeclarationList,
-                                                                                                                                   GALGAS_routineDeclarationList & outArgument_outUserRoutineDeclarationList,
-                                                                                                                                   GALGAS_luint & outArgument_outBootloaderReservedROMsize,
-                                                                                                                                   C_Lexique_piccolo_5F_lexique * inCompiler) {
-  outArgument_outPiccoloDeviceModel.drop () ; // Release 'out' argument
-  outArgument_outDeviceName.drop () ; // Release 'out' argument
-  outArgument_outAccessBankSplitOffset.drop () ; // Release 'out' argument
-  outArgument_outRamBank.drop () ; // Release 'out' argument
-  outArgument_outRegisterTable.drop () ; // Release 'out' argument
-  outArgument_outBootloaderReservedRAMmap.drop () ; // Release 'out' argument
-  outArgument_outBootloaderRoutineDeclarationList.drop () ; // Release 'out' argument
-  outArgument_outUserRoutineDeclarationList.drop () ; // Release 'out' argument
-  outArgument_outBootloaderReservedROMsize.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_pic_31__38_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 111)) ;
-  GALGAS_lstring var_programName_3669 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 112)) ;
-  TC_Array <C_FixItDescription> fixItArray0 ;
-  inCompiler->emitSemanticError (var_programName_3669.readProperty_location (), GALGAS_string ("this file does not define a bootloader specification"), fixItArray0  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 113)) ;
-  outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
-  outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
-  outArgument_outRamBank.drop () ; // Release error dropped variable
-  outArgument_outRegisterTable.drop () ; // Release error dropped variable
-  outArgument_outBootloaderReservedRAMmap.drop () ; // Release error dropped variable
-  outArgument_outDeviceName.drop () ; // Release error dropped variable
-  outArgument_outBootloaderRoutineDeclarationList.drop () ; // Release error dropped variable
-  outArgument_outUserRoutineDeclarationList.drop () ; // Release error dropped variable
-  outArgument_outBootloaderReservedROMsize.drop () ; // Release error dropped variable
-  switch (select_pic_31__38__5F_start_5F_symbol_0 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_implements COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 121)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 122)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_uses COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 124)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 125)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 127)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 128)) ;
-  nt_body_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 130)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_pic_31__38_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 23)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 24)) ;
-  switch (select_pic_31__38__5F_start_5F_symbol_0 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_implements COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 30)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 31)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_uses COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 34)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 35)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 38)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 39)) ;
-  nt_body_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 67)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_pic_31__38_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 23)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 24)) ;
-  switch (select_pic_31__38__5F_start_5F_symbol_0 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_implements COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 30)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 31)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_uses COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 34)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 35)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 38)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 39)) ;
-  nt_body_indexing (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 67)) ;
-}
-
-
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_midrange COMMA_SOURCE_FILE ("midrange_syntax.galgas", 32)) ;
-  GALGAS_lstring var_programName_768 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 33)) ;
-  GALGAS_lstring var_deviceName_813 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("midrange_syntax.galgas", 34)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 35)) ;
-  GALGAS_midrange_5F_interruptDefinitionList var_interruptDefinitionList_836 = GALGAS_midrange_5F_interruptDefinitionList::constructor_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 36)) ;
-  GALGAS_midrange_5F_routineDefinitionList var_routineDefinitionList_913 = GALGAS_midrange_5F_routineDefinitionList::constructor_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 37)) ;
-  GALGAS_ramDefinitionList var_ramDefinitionList_986 = GALGAS_ramDefinitionList::constructor_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 38)) ;
-  GALGAS_lstringlist var_unusedRegisterList_1042 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 39)) ;
-  GALGAS_lstringlist var_unusedRoutineList_1093 = GALGAS_lstringlist::constructor_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 40)) ;
-  GALGAS_configDefinitionList var_configDefinitionList_1143 = GALGAS_configDefinitionList::constructor_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 41)) ;
-  GALGAS_constantDefinitionList var_constantDefinitionList_1205 = GALGAS_constantDefinitionList::constructor_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 42)) ;
-  GALGAS_bool var_needsComputedGoto_32__1277 = GALGAS_bool (false) ;
-  GALGAS_bool var_needsComputedGoto_34__1316 = GALGAS_bool (false) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_0 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_unused COMMA_SOURCE_FILE ("midrange_syntax.galgas", 47)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_byte COMMA_SOURCE_FILE ("midrange_syntax.galgas", 48)) ;
-      bool repeatFlag_1 = true ;
-      while (repeatFlag_1) {
-        GALGAS_lstring var_unusedRegister_1428 = inCompiler->synthetizedAttribute_tokenString () ;
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 50)) ;
-        var_unusedRegisterList_1042.addAssign_operation (var_unusedRegister_1428  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 51)) ;
-        if (select_midrange_5F_syntax_1 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 53)) ;
-        }else{
-          repeatFlag_1 = false ;
-        }
-      }
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_unused COMMA_SOURCE_FILE ("midrange_syntax.galgas", 56)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_routine COMMA_SOURCE_FILE ("midrange_syntax.galgas", 57)) ;
-      bool repeatFlag_2 = true ;
-      while (repeatFlag_2) {
-        GALGAS_lstring var_unusedRoutine_1595 = inCompiler->synthetizedAttribute_tokenString () ;
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 59)) ;
-        var_unusedRoutineList_1093.addAssign_operation (var_unusedRoutine_1595  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 60)) ;
-        if (select_midrange_5F_syntax_2 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 62)) ;
-        }else{
-          repeatFlag_2 = false ;
-        }
-      }
-    } break ;
-    case 4: {
-      nt_configuration_5F_definition_ (var_configDefinitionList_1143, inCompiler) ;
-    } break ;
-    case 5: {
-      nt_ram_5F_definition_ (var_ramDefinitionList_986, inCompiler) ;
-    } break ;
-    case 6: {
-      nt_constant_5F_definition_ (var_constantDefinitionList_1205, inCompiler) ;
-    } break ;
-    case 7: {
-      nt_midrange_5F_interrupt_5F_definition_ (var_interruptDefinitionList_836, var_needsComputedGoto_32__1277, var_needsComputedGoto_34__1316, inCompiler) ;
-    } break ;
-    case 8: {
-      nt_midrange_5F_routine_5F_definition_ (var_routineDefinitionList_913, var_needsComputedGoto_32__1277, var_needsComputedGoto_34__1316, inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 81)) ;
-  enumGalgasBool test_3 = kBoolTrue ;
-  if (kBoolTrue == test_3) {
-    test_3 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("midrange_syntax.galgas", 83)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_3) {
-      GALGAS_midrange_5F_model var_piccoloModel_2184 = GALGAS_midrange_5F_model::constructor_new (var_programName_768, var_deviceName_813, var_configDefinitionList_1143, var_ramDefinitionList_986, var_unusedRegisterList_1042, var_interruptDefinitionList_836, var_constantDefinitionList_1205, var_routineDefinitionList_913, var_unusedRoutineList_1093, var_needsComputedGoto_32__1277, var_needsComputedGoto_34__1316, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 96)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 84)) ;
-      {
-      routine_midrange_5F_analyze (var_piccoloModel_2184, GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 98)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 98)) ;
-      }
-    }
-  }
-  if (kBoolFalse == test_3) {
-    GALGAS_string var_hexDestinationFile_2628 = GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 100)).getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_syntax.galgas", 100)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 100)) ;
-    enumGalgasBool test_4 = kBoolTrue ;
-    if (kBoolTrue == test_4) {
-      test_4 = var_hexDestinationFile_2628.getter_fileExists (SOURCE_FILE ("midrange_syntax.galgas", 101)).boolEnum () ;
-      if (kBoolTrue == test_4) {
-        {
-        GALGAS_string::class_method_deleteFile (var_hexDestinationFile_2628, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 102)) ;
-        }
-      }
-    }
-    GALGAS_string var_asmDestinationFile_2839 = GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 104)).getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_syntax.galgas", 104)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 104)) ;
-    enumGalgasBool test_5 = kBoolTrue ;
-    if (kBoolTrue == test_5) {
-      test_5 = var_asmDestinationFile_2839.getter_fileExists (SOURCE_FILE ("midrange_syntax.galgas", 105)).boolEnum () ;
-      if (kBoolTrue == test_5) {
-        {
-        GALGAS_string::class_method_deleteFile (var_asmDestinationFile_2839, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 106)) ;
-        }
-      }
-    }
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_importBootloaderSpecification (GALGAS_piccoloDeviceModel & outArgument_outPiccoloDeviceModel,
-                                                                                                           GALGAS_string & outArgument_outDeviceName,
-                                                                                                           GALGAS_uint & outArgument_outAccessBankSplitOffset,
-                                                                                                           GALGAS_ramBankTable & outArgument_outRamBank,
-                                                                                                           GALGAS_registerTable & outArgument_outRegisterTable,
-                                                                                                           GALGAS_bootloaderReservedRAMmap & outArgument_outBootloaderReservedRAMmap,
-                                                                                                           GALGAS_routineDeclarationList & outArgument_outBootloaderRoutineDeclarationList,
-                                                                                                           GALGAS_routineDeclarationList & outArgument_outUserRoutineDeclarationList,
-                                                                                                           GALGAS_luint & outArgument_outBootloaderReservedROMsize,
-                                                                                                           C_Lexique_piccolo_5F_lexique * inCompiler) {
-  outArgument_outPiccoloDeviceModel.drop () ; // Release 'out' argument
-  outArgument_outDeviceName.drop () ; // Release 'out' argument
-  outArgument_outAccessBankSplitOffset.drop () ; // Release 'out' argument
-  outArgument_outRamBank.drop () ; // Release 'out' argument
-  outArgument_outRegisterTable.drop () ; // Release 'out' argument
-  outArgument_outBootloaderReservedRAMmap.drop () ; // Release 'out' argument
-  outArgument_outBootloaderRoutineDeclarationList.drop () ; // Release 'out' argument
-  outArgument_outUserRoutineDeclarationList.drop () ; // Release 'out' argument
-  outArgument_outBootloaderReservedROMsize.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_midrange COMMA_SOURCE_FILE ("midrange_syntax.galgas", 120)) ;
-  GALGAS_lstring var_programName_3505 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 121)) ;
-  TC_Array <C_FixItDescription> fixItArray0 ;
-  inCompiler->emitSemanticError (var_programName_3505.readProperty_location (), GALGAS_string ("this file does not define a bootloader specification"), fixItArray0  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 122)) ;
-  outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
-  outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
-  outArgument_outRamBank.drop () ; // Release error dropped variable
-  outArgument_outRegisterTable.drop () ; // Release error dropped variable
-  outArgument_outBootloaderReservedRAMmap.drop () ; // Release error dropped variable
-  outArgument_outBootloaderRoutineDeclarationList.drop () ; // Release error dropped variable
-  outArgument_outUserRoutineDeclarationList.drop () ; // Release error dropped variable
-  outArgument_outDeviceName.drop () ; // Release error dropped variable
-  outArgument_outBootloaderReservedROMsize.drop () ; // Release error dropped variable
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("midrange_syntax.galgas", 127)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 128)) ;
-  bool repeatFlag_1 = true ;
-  while (repeatFlag_1) {
-    switch (select_midrange_5F_syntax_0 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_unused COMMA_SOURCE_FILE ("midrange_syntax.galgas", 131)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_byte COMMA_SOURCE_FILE ("midrange_syntax.galgas", 132)) ;
-      bool repeatFlag_2 = true ;
-      while (repeatFlag_2) {
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 134)) ;
-        if (select_midrange_5F_syntax_1 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 136)) ;
-        }else{
-          repeatFlag_2 = false ;
-        }
-      }
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_unused COMMA_SOURCE_FILE ("midrange_syntax.galgas", 139)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_routine COMMA_SOURCE_FILE ("midrange_syntax.galgas", 140)) ;
-      bool repeatFlag_3 = true ;
-      while (repeatFlag_3) {
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 142)) ;
-        if (select_midrange_5F_syntax_2 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 144)) ;
-        }else{
-          repeatFlag_3 = false ;
-        }
-      }
-    } break ;
-    case 4: {
-      nt_configuration_5F_definition_parse (inCompiler) ;
-    } break ;
-    case 5: {
-      nt_ram_5F_definition_parse (inCompiler) ;
-    } break ;
-    case 6: {
-      nt_constant_5F_definition_parse (inCompiler) ;
-    } break ;
-    case 7: {
-      nt_midrange_5F_interrupt_5F_definition_parse (inCompiler) ;
-    } break ;
-    case 8: {
-      nt_midrange_5F_routine_5F_definition_parse (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_1 = false ;
-      break ;
-    }
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 157)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_midrange COMMA_SOURCE_FILE ("midrange_syntax.galgas", 32)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 33)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("midrange_syntax.galgas", 34)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 35)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_0 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_unused COMMA_SOURCE_FILE ("midrange_syntax.galgas", 47)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_byte COMMA_SOURCE_FILE ("midrange_syntax.galgas", 48)) ;
-      bool repeatFlag_1 = true ;
-      while (repeatFlag_1) {
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 50)) ;
-        if (select_midrange_5F_syntax_1 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 53)) ;
-        }else{
-          repeatFlag_1 = false ;
-        }
-      }
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_unused COMMA_SOURCE_FILE ("midrange_syntax.galgas", 56)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_routine COMMA_SOURCE_FILE ("midrange_syntax.galgas", 57)) ;
-      bool repeatFlag_2 = true ;
-      while (repeatFlag_2) {
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 59)) ;
-        if (select_midrange_5F_syntax_2 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 62)) ;
-        }else{
-          repeatFlag_2 = false ;
-        }
-      }
-    } break ;
-    case 4: {
-      nt_configuration_5F_definition_parse (inCompiler) ;
-    } break ;
-    case 5: {
-      nt_ram_5F_definition_parse (inCompiler) ;
-    } break ;
-    case 6: {
-      nt_constant_5F_definition_parse (inCompiler) ;
-    } break ;
-    case 7: {
-      nt_midrange_5F_interrupt_5F_definition_parse (inCompiler) ;
-    } break ;
-    case 8: {
-      nt_midrange_5F_routine_5F_definition_parse (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 81)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_midrange COMMA_SOURCE_FILE ("midrange_syntax.galgas", 32)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 33)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("midrange_syntax.galgas", 34)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 35)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_0 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_unused COMMA_SOURCE_FILE ("midrange_syntax.galgas", 47)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_byte COMMA_SOURCE_FILE ("midrange_syntax.galgas", 48)) ;
-      bool repeatFlag_1 = true ;
-      while (repeatFlag_1) {
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 50)) ;
-        if (select_midrange_5F_syntax_1 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 53)) ;
-        }else{
-          repeatFlag_1 = false ;
-        }
-      }
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_unused COMMA_SOURCE_FILE ("midrange_syntax.galgas", 56)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_routine COMMA_SOURCE_FILE ("midrange_syntax.galgas", 57)) ;
-      bool repeatFlag_2 = true ;
-      while (repeatFlag_2) {
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 59)) ;
-        if (select_midrange_5F_syntax_2 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 62)) ;
-        }else{
-          repeatFlag_2 = false ;
-        }
-      }
-    } break ;
-    case 4: {
-      nt_configuration_5F_definition_indexing (inCompiler) ;
-    } break ;
-    case 5: {
-      nt_ram_5F_definition_indexing (inCompiler) ;
-    } break ;
-    case 6: {
-      nt_constant_5F_definition_indexing (inCompiler) ;
-    } break ;
-    case 7: {
-      nt_midrange_5F_interrupt_5F_definition_indexing (inCompiler) ;
-    } break ;
-    case 8: {
-      nt_midrange_5F_routine_5F_definition_indexing (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 81)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_ (GALGAS_midrange_5F_instructionList & outArgument_outInstructionList,
-                                                                                              GALGAS_bool & ioArgument_ioNeedsComputedGoto_32_,
-                                                                                              GALGAS_bool & ioArgument_ioNeedsComputedGoto_34_,
-                                                                                              GALGAS_labelMap & ioArgument_ioLabelMap,
-                                                                                              C_Lexique_piccolo_5F_lexique * inCompiler) {
-  outArgument_outInstructionList.drop () ; // Release 'out' argument
-  outArgument_outInstructionList = GALGAS_midrange_5F_instructionList::constructor_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 168)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_3 (inCompiler)) {
-    case 2: {
-      GALGAS_midrange_5F_instruction var_instruction_4644 ;
-      nt_midrange_5F_simple_5F_instruction_ (var_instruction_4644, inCompiler) ;
-      outArgument_outInstructionList.addAssign_operation (var_instruction_4644  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 172)) ;
-    } break ;
-    case 3: {
-      GALGAS_midrange_5F_instruction var_instruction_4752 ;
-      nt_midrange_5F_structured_5F_instruction_ (var_instruction_4752, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-      outArgument_outInstructionList.addAssign_operation (var_instruction_4752  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 179)) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_3 (inCompiler)) {
-    case 2: {
-      nt_midrange_5F_simple_5F_instruction_parse (inCompiler) ;
-    } break ;
-    case 3: {
-      nt_midrange_5F_structured_5F_instruction_parse (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_midrange_5F_syntax_3 (inCompiler)) {
-    case 2: {
-      nt_midrange_5F_simple_5F_instruction_indexing (inCompiler) ;
-    } break ;
-    case 3: {
-      nt_midrange_5F_structured_5F_instruction_indexing (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_ (GALGAS_midrange_5F_interruptDefinitionList & ioArgument_ioInterruptDefinitionList,
-                                                                                                  GALGAS_bool & ioArgument_ioNeedsComputedGoto_32_,
-                                                                                                  GALGAS_bool & ioArgument_ioNeedsComputedGoto_34_,
-                                                                                                  C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_interrupt COMMA_SOURCE_FILE ("midrange_syntax.galgas", 189)) ;
-  GALGAS_location var_interruptionLocation_5141 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 190)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_contextsave COMMA_SOURCE_FILE ("midrange_syntax.galgas", 191)) ;
-  GALGAS_lstring var_firstSaveRegister_5224 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 192)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 193)) ;
-  GALGAS_lstring var_secondSaveRegister_5277 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 194)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 195)) ;
-  GALGAS_labelMap var_labelMap_5318 = GALGAS_labelMap::constructor_emptyMap (SOURCE_FILE ("midrange_syntax.galgas", 196)) ;
-  GALGAS_midrange_5F_instructionList var_instructionList_5371 ;
-  nt_midrange_5F_instruction_5F_list_ (var_instructionList_5371, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, var_labelMap_5318, inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 202)) ;
-  ioArgument_ioInterruptDefinitionList.addAssign_operation (var_interruptionLocation_5141, var_instructionList_5371, var_firstSaveRegister_5224, var_secondSaveRegister_5277, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 208))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 203)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_interrupt COMMA_SOURCE_FILE ("midrange_syntax.galgas", 189)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_contextsave COMMA_SOURCE_FILE ("midrange_syntax.galgas", 191)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 192)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 193)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 194)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 195)) ;
-  nt_midrange_5F_instruction_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 202)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_interrupt COMMA_SOURCE_FILE ("midrange_syntax.galgas", 189)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_contextsave COMMA_SOURCE_FILE ("midrange_syntax.galgas", 191)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 192)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 193)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 194)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 195)) ;
-  nt_midrange_5F_instruction_5F_list_indexing (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 202)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_ (GALGAS_midrange_5F_routineDefinitionList & ioArgument_ioRoutineDefinitionList,
-                                                                                                GALGAS_bool & ioArgument_ioNeedsComputedGoto_32_,
-                                                                                                GALGAS_bool & ioArgument_ioNeedsComputedGoto_34_,
-                                                                                                C_Lexique_piccolo_5F_lexique * inCompiler) {
-  GALGAS_bool var_noreturn_5824 ;
-  switch (select_midrange_5F_syntax_4 (inCompiler)) {
-  case 1: {
-    var_noreturn_5824 = GALGAS_bool (false) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_noreturn COMMA_SOURCE_FILE ("midrange_syntax.galgas", 222)) ;
-    var_noreturn_5824 = GALGAS_bool (true) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_routine COMMA_SOURCE_FILE ("midrange_syntax.galgas", 225)) ;
-  GALGAS_lstring var_routineName_5950 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineDefinition, "") ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 226)) ;
-  GALGAS_luint var_page_6012 ;
-  switch (select_midrange_5F_syntax_5 (inCompiler)) {
-  case 1: {
-    var_page_6012 = GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230)) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_page COMMA_SOURCE_FILE ("midrange_syntax.galgas", 232)) ;
-    var_page_6012 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 233)) ;
-  } break ;
-  default:
-    break ;
-  }
-  GALGAS_luint var_requiredBank_6137 ;
-  GALGAS_luint var_returnedBank_6163 ;
-  GALGAS_bool var_preservesBank_6188 ;
-  switch (select_midrange_5F_syntax_6 (inCompiler)) {
-  case 1: {
-    var_requiredBank_6137 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 240)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 240)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 240)) ;
-    var_returnedBank_6163 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 241)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 241)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 241)) ;
-    var_preservesBank_6188 = GALGAS_bool (false) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 244)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 245)) ;
-    switch (select_midrange_5F_syntax_7 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_preserved COMMA_SOURCE_FILE ("midrange_syntax.galgas", 247)) ;
-      enumGalgasBool test_0 = kBoolTrue ;
-      if (kBoolTrue == test_0) {
-        test_0 = var_noreturn_5824.boolEnum () ;
-        if (kBoolTrue == test_0) {
-          TC_Array <C_FixItDescription> fixItArray1 ;
-          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 249)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:preserved\" setting"), fixItArray1  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 249)) ;
-        }
-      }
-      var_preservesBank_6188 = GALGAS_bool (true) ;
-      var_requiredBank_6137 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 252)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 252)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 252)) ;
-      var_returnedBank_6163 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 253)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 253)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 253)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_requires COMMA_SOURCE_FILE ("midrange_syntax.galgas", 255)) ;
-      var_requiredBank_6137 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 256)) ;
-      var_preservesBank_6188 = GALGAS_bool (false) ;
-      switch (select_midrange_5F_syntax_8 (inCompiler)) {
-      case 1: {
-        var_returnedBank_6163 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 259)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 259)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 259)) ;
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("midrange_syntax.galgas", 261)) ;
-        var_returnedBank_6163 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 262)) ;
-        enumGalgasBool test_2 = kBoolTrue ;
-        if (kBoolTrue == test_2) {
-          test_2 = var_noreturn_5824.boolEnum () ;
-          if (kBoolTrue == test_2) {
-            TC_Array <C_FixItDescription> fixItArray3 ;
-            inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 264)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:returned\" setting"), fixItArray3  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 264)) ;
-          }
-        }
-      } break ;
-      default:
-        break ;
-      }
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("midrange_syntax.galgas", 268)) ;
-      var_returnedBank_6163 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 269)) ;
-      enumGalgasBool test_4 = kBoolTrue ;
-      if (kBoolTrue == test_4) {
-        test_4 = var_noreturn_5824.boolEnum () ;
-        if (kBoolTrue == test_4) {
-          TC_Array <C_FixItDescription> fixItArray5 ;
-          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 271)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:returned\" setting"), fixItArray5  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 271)) ;
-        }
-      }
-      var_preservesBank_6188 = GALGAS_bool (false) ;
-      var_requiredBank_6137 = GALGAS_luint::constructor_new (GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_syntax.galgas", 274)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 274)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 274)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 277)) ;
-  GALGAS_labelMap var_labelMap_7374 = GALGAS_labelMap::constructor_emptyMap (SOURCE_FILE ("midrange_syntax.galgas", 278)) ;
-  GALGAS_midrange_5F_instructionList var_instructionList_7427 ;
-  nt_midrange_5F_instruction_5F_list_ (var_instructionList_7427, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, var_labelMap_7374, inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 284)) ;
-  ioArgument_ioRoutineDefinitionList.addAssign_operation (var_routineName_5950, var_page_6012, var_requiredBank_6137, var_returnedBank_6163, var_preservesBank_6188, var_noreturn_5824, var_instructionList_7427, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 293))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 285)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  switch (select_midrange_5F_syntax_4 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_noreturn COMMA_SOURCE_FILE ("midrange_syntax.galgas", 222)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_routine COMMA_SOURCE_FILE ("midrange_syntax.galgas", 225)) ;
-  inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineDefinition, "") ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 226)) ;
-  switch (select_midrange_5F_syntax_5 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_page COMMA_SOURCE_FILE ("midrange_syntax.galgas", 232)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 233)) ;
-  } break ;
-  default:
-    break ;
-  }
-  switch (select_midrange_5F_syntax_6 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 244)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 245)) ;
-    switch (select_midrange_5F_syntax_7 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_preserved COMMA_SOURCE_FILE ("midrange_syntax.galgas", 247)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_requires COMMA_SOURCE_FILE ("midrange_syntax.galgas", 255)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 256)) ;
-      switch (select_midrange_5F_syntax_8 (inCompiler)) {
-      case 1: {
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("midrange_syntax.galgas", 261)) ;
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 262)) ;
-      } break ;
-      default:
-        break ;
-      }
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("midrange_syntax.galgas", 268)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 269)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 277)) ;
-  nt_midrange_5F_instruction_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 284)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  switch (select_midrange_5F_syntax_4 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_noreturn COMMA_SOURCE_FILE ("midrange_syntax.galgas", 222)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_routine COMMA_SOURCE_FILE ("midrange_syntax.galgas", 225)) ;
-  inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineDefinition, "") ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 226)) ;
-  switch (select_midrange_5F_syntax_5 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_page COMMA_SOURCE_FILE ("midrange_syntax.galgas", 232)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 233)) ;
-  } break ;
-  default:
-    break ;
-  }
-  switch (select_midrange_5F_syntax_6 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 244)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 245)) ;
-    switch (select_midrange_5F_syntax_7 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_preserved COMMA_SOURCE_FILE ("midrange_syntax.galgas", 247)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_requires COMMA_SOURCE_FILE ("midrange_syntax.galgas", 255)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 256)) ;
-      switch (select_midrange_5F_syntax_8 (inCompiler)) {
-      case 1: {
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("midrange_syntax.galgas", 261)) ;
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 262)) ;
-      } break ;
-      default:
-        break ;
-      }
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("midrange_syntax.galgas", 268)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 269)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 277)) ;
-  nt_midrange_5F_instruction_5F_list_indexing (inCompiler) ;
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 284)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_ (GALGAS_midrange_5F_instruction & outArgument_outInstruction,
-                                                                                                    GALGAS_bool & ioArgument_ioNeedsComputedGoto_32_,
-                                                                                                    GALGAS_bool & ioArgument_ioNeedsComputedGoto_34_,
-                                                                                                    GALGAS_labelMap & ioArgument_ioLabelMap,
-                                                                                                    C_Lexique_piccolo_5F_lexique * inCompiler) {
-  outArgument_outInstruction.drop () ; // Release 'out' argument
-  switch (select_midrange_5F_syntax_9 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_do COMMA_SOURCE_FILE ("midrange_syntax.galgas", 305)) ;
-    GALGAS_lstring var_doLabel_7947 ;
-    switch (select_midrange_5F_syntax_10 (inCompiler)) {
-    case 1: {
-      var_doLabel_7947 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 308)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 308)) ;
-    } break ;
-    case 2: {
-      var_doLabel_7947 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 310)) ;
-      {
-      ioArgument_ioLabelMap.setter_insertKey (var_doLabel_7947, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 311)) ;
-      }
-    } break ;
-    default:
-      break ;
-    }
-    GALGAS_location var_instructionLocation_8086 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 313)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 314)) ;
-    GALGAS_lstring var_constantName_8153 = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 315)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 316)) ;
-    GALGAS_immediatExpression var_lowBoundExpression_8226 ;
-    nt_immediate_5F_expression_ (var_lowBoundExpression_8226, inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 318)) ;
-    GALGAS_immediatExpression var_highBoundExpression_8307 ;
-    nt_immediate_5F_expression_ (var_highBoundExpression_8307, inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 320)) ;
-    GALGAS_midrange_5F_instructionList var_instructionList_8404 ;
-    nt_midrange_5F_instruction_5F_list_ (var_instructionList_8404, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::constructor_new (var_instructionLocation_8086, var_constantName_8153, var_lowBoundExpression_8226, var_highBoundExpression_8307, var_instructionList_8404, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 332))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 326)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 333)) ;
-    GALGAS_lstring var_endDoLabel_8734 ;
-    switch (select_midrange_5F_syntax_11 (inCompiler)) {
-    case 1: {
-      var_endDoLabel_8734 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 336)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 336)) ;
-    } break ;
-    case 2: {
-      var_endDoLabel_8734 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 338)) ;
-    } break ;
-    default:
-      break ;
-    }
-    enumGalgasBool test_0 = kBoolTrue ;
-    if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsNotEqual, var_doLabel_7947.readProperty_string ().objectCompare (var_endDoLabel_8734.readProperty_string ())).boolEnum () ;
-      if (kBoolTrue == test_0) {
-        GALGAS_string temp_1 ;
-        const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_doLabel_7947.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-        if (kBoolTrue == test_2) {
-          temp_1 = var_doLabel_7947.readProperty_string () ;
-        }else if (kBoolFalse == test_2) {
-          temp_1 = GALGAS_string ("empty") ;
-        }
-        TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (var_endDoLabel_8734.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 341)), fixItArray3  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 341)) ;
-      }
-    }
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_checkbank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 345)) ;
-    GALGAS_luint var_bankIndex_9092 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 346)) ;
-    outArgument_outInstruction = GALGAS_midrangeInstruction_5F_checkbank::constructor_new (var_bankIndex_9092.readProperty_location (), var_bankIndex_9092.readProperty_uint ()  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 347)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_checknobank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 349)) ;
-    outArgument_outInstruction = GALGAS_midrangeInstruction_5F_checknobank::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 350))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 350)) ;
-  } break ;
-  case 4: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_banksel COMMA_SOURCE_FILE ("midrange_syntax.galgas", 352)) ;
-    GALGAS_location var_instructionLocation_9336 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 353)) ;
-    GALGAS_registerExpression var_register_9421 ;
-    nt_register_5F_parsing_ (var_register_9421, inCompiler) ;
-    GALGAS_bool var_warningOnUselessBanksel_9444 ;
-    switch (select_midrange_5F_syntax_12 (inCompiler)) {
-    case 1: {
-      var_warningOnUselessBanksel_9444 = GALGAS_bool (true) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 359)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 360)) ;
-      var_warningOnUselessBanksel_9444 = GALGAS_bool (false) ;
-    } break ;
-    default:
-      break ;
-    }
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_banksel_5F_register::constructor_new (var_instructionLocation_9336, var_register_9421, var_warningOnUselessBanksel_9444  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 363)) ;
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_banksel COMMA_SOURCE_FILE ("midrange_syntax.galgas", 365)) ;
-    GALGAS_location var_instructionLocation_9750 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 366)) ;
-    GALGAS_luint var_bank_9813 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 367)) ;
-    GALGAS_bool var_warningOnUselessBanksel_9832 ;
-    switch (select_midrange_5F_syntax_13 (inCompiler)) {
-    case 1: {
-      var_warningOnUselessBanksel_9832 = GALGAS_bool (true) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 372)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 373)) ;
-      var_warningOnUselessBanksel_9832 = GALGAS_bool (false) ;
-    } break ;
-    default:
-      break ;
-    }
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_banksel::constructor_new (var_instructionLocation_9750, var_bank_9813, var_warningOnUselessBanksel_9832  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 376)) ;
-  } break ;
-  case 6: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_banksave COMMA_SOURCE_FILE ("midrange_syntax.galgas", 378)) ;
-    GALGAS_location var_instructionLocation_10126 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 379)) ;
-    GALGAS_registerExpression var_register_10211 ;
-    nt_register_5F_parsing_ (var_register_10211, inCompiler) ;
-    GALGAS_midrange_5F_instructionList var_instructionList_10263 ;
-    nt_midrange_5F_instruction_5F_list_ (var_instructionList_10263, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 386)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_savebank::constructor_new (var_instructionLocation_10126, var_register_10211, var_instructionList_10263, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 391))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 387)) ;
-  } break ;
-  case 7: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_nobank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 393)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_nobanksel::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 394))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 394)) ;
-  } break ;
-  case 8: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_forever COMMA_SOURCE_FILE ("midrange_syntax.galgas", 396)) ;
-    GALGAS_lstring var_foreverLabel_10645 ;
-    switch (select_midrange_5F_syntax_14 (inCompiler)) {
-    case 1: {
-      var_foreverLabel_10645 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 399)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 399)) ;
-    } break ;
-    case 2: {
-      var_foreverLabel_10645 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 401)) ;
-      {
-      ioArgument_ioLabelMap.setter_insertKey (var_foreverLabel_10645, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 402)) ;
-      }
-    } break ;
-    default:
-      break ;
-    }
-    GALGAS_location var_instructionLocation_10814 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 404)) ;
-    GALGAS_midrange_5F_instructionList var_instructionList_10894 ;
-    nt_midrange_5F_instruction_5F_list_ (var_instructionList_10894, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 410)) ;
-    GALGAS_lstring var_endForeverLabel_11014 ;
-    switch (select_midrange_5F_syntax_15 (inCompiler)) {
-    case 1: {
-      var_endForeverLabel_11014 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 413)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 413)) ;
-    } break ;
-    case 2: {
-      var_endForeverLabel_11014 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 415)) ;
-    } break ;
-    default:
-      break ;
-    }
-    enumGalgasBool test_4 = kBoolTrue ;
-    if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (kIsNotEqual, var_foreverLabel_10645.readProperty_string ().objectCompare (var_endForeverLabel_11014.readProperty_string ())).boolEnum () ;
-      if (kBoolTrue == test_4) {
-        GALGAS_string temp_5 ;
-        const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_foreverLabel_10645.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-        if (kBoolTrue == test_6) {
-          temp_5 = var_foreverLabel_10645.readProperty_string () ;
-        }else if (kBoolFalse == test_6) {
-          temp_5 = GALGAS_string ("empty") ;
-        }
-        TC_Array <C_FixItDescription> fixItArray7 ;
-        inCompiler->emitSemanticError (var_endForeverLabel_11014.readProperty_location (), GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 418)), fixItArray7  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 418)) ;
-      }
-    }
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FOREVER::constructor_new (var_instructionLocation_10814, var_instructionList_10894, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 424))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 421)) ;
-  } break ;
-  case 9: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 426)) ;
-    GALGAS_location var_instructionLocation_11533 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 427)) ;
-    GALGAS_registerExpression var_registerExpression_11598 ;
-    GALGAS_bitNumberExpression var_bitNumberExpression_11646 ;
-    GALGAS_bool var_skipIfSet_11680 ;
-    switch (select_midrange_5F_syntax_16 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 432)) ;
-      nt_register_5F_parsing_ (var_registerExpression_11598, inCompiler) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 434)) ;
-      nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_11646, inCompiler) ;
-      var_skipIfSet_11680 = GALGAS_bool (true) ;
-    } break ;
-    case 2: {
-      nt_register_5F_parsing_ (var_registerExpression_11598, inCompiler) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 439)) ;
-      nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_11646, inCompiler) ;
-      var_skipIfSet_11680 = GALGAS_bool (false) ;
-    } break ;
-    default:
-      break ;
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 443)) ;
-    GALGAS_midrange_5F_instruction var_instruction_12030 ;
-    nt_midrange_5F_simple_5F_instruction_ (var_instruction_12030, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest::constructor_new (var_instructionLocation_11533, var_instruction_12030, var_skipIfSet_11680, var_registerExpression_11598, var_bitNumberExpression_11646  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 445)) ;
-  } break ;
-  case 10: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 452)) ;
-    GALGAS_location var_instructionLocation_12252 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 453)) ;
-    GALGAS_bool var_increment_12303 ;
-    switch (select_midrange_5F_syntax_17 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 456)) ;
-      var_increment_12303 = GALGAS_bool (false) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 458)) ;
-      var_increment_12303 = GALGAS_bool (true) ;
-    } break ;
-    default:
-      break ;
-    }
-    GALGAS_registerExpression var_registerExpression_12432 ;
-    nt_register_5F_parsing_ (var_registerExpression_12432, inCompiler) ;
-    GALGAS_bool var_w_5F_isTarget_12465 ;
-    switch (select_midrange_5F_syntax_18 (inCompiler)) {
-    case 1: {
-      var_w_5F_isTarget_12465 = GALGAS_bool (false) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 465)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_w COMMA_SOURCE_FILE ("midrange_syntax.galgas", 465)) ;
-      var_w_5F_isTarget_12465 = GALGAS_bool (true) ;
-    } break ;
-    default:
-      break ;
-    }
-    GALGAS_lstring var_conditionString_12594 = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 467)) ;
-    GALGAS_string var_condition_12626 = var_conditionString_12594.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("midrange_syntax.galgas", 468)) ;
-    enumGalgasBool test_8 = kBoolTrue ;
-    if (kBoolTrue == test_8) {
-      test_8 = GALGAS_bool (kIsNotEqual, var_condition_12626.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
-      if (kBoolTrue == test_8) {
-        TC_Array <C_FixItDescription> fixItArray9 ;
-        inCompiler->emitSemanticError (var_conditionString_12594.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_condition_12626, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)), fixItArray9  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)) ;
-      }
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 472)) ;
-    GALGAS_midrange_5F_instruction var_instruction_12851 ;
-    nt_midrange_5F_simple_5F_instruction_ (var_instruction_12851, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec::constructor_new (var_instructionLocation_12252, var_instruction_12851, var_increment_12303, var_registerExpression_12432, var_w_5F_isTarget_12465  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 474)) ;
-  } break ;
-  case 11: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 482)) ;
-    GALGAS_lstring var_ifLabel_13067 ;
-    switch (select_midrange_5F_syntax_19 (inCompiler)) {
-    case 1: {
-      var_ifLabel_13067 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 485)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 485)) ;
-    } break ;
-    case 2: {
-      var_ifLabel_13067 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 487)) ;
-      {
-      ioArgument_ioLabelMap.setter_insertKey (var_ifLabel_13067, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 488)) ;
-      }
-    } break ;
-    default:
-      break ;
-    }
-    nt_midrange_5F_structured_5F_if_5F_instruction_ (var_ifLabel_13067, outArgument_outInstruction, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 496)) ;
-    GALGAS_lstring var_endIfLabel_13380 ;
-    switch (select_midrange_5F_syntax_20 (inCompiler)) {
-    case 1: {
-      var_endIfLabel_13380 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 499)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 499)) ;
-    } break ;
-    case 2: {
-      var_endIfLabel_13380 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 501)) ;
-    } break ;
-    default:
-      break ;
-    }
-    enumGalgasBool test_10 = kBoolTrue ;
-    if (kBoolTrue == test_10) {
-      test_10 = GALGAS_bool (kIsNotEqual, var_ifLabel_13067.readProperty_string ().objectCompare (var_endIfLabel_13380.readProperty_string ())).boolEnum () ;
-      if (kBoolTrue == test_10) {
-        GALGAS_string temp_11 ;
-        const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_ifLabel_13067.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-        if (kBoolTrue == test_12) {
-          temp_11 = var_ifLabel_13067.readProperty_string () ;
-        }else if (kBoolFalse == test_12) {
-          temp_11 = GALGAS_string ("empty") ;
-        }
-        TC_Array <C_FixItDescription> fixItArray13 ;
-        inCompiler->emitSemanticError (var_endIfLabel_13380.readProperty_location (), GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 504)), fixItArray13  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 504)) ;
-      }
-    }
-  } break ;
-  case 12: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_do COMMA_SOURCE_FILE ("midrange_syntax.galgas", 508)) ;
-    GALGAS_lstring var_doLabel_13722 ;
-    switch (select_midrange_5F_syntax_21 (inCompiler)) {
-    case 1: {
-      var_doLabel_13722 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 511)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 511)) ;
-    } break ;
-    case 2: {
-      var_doLabel_13722 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 513)) ;
-      {
-      ioArgument_ioLabelMap.setter_insertKey (var_doLabel_13722, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 514)) ;
-      }
-    } break ;
-    default:
-      break ;
-    }
-    GALGAS_location var_instructionLocation_13871 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 516)) ;
-    GALGAS_midrange_5F_instructionList var_repeatedInstructionList_13951 ;
-    nt_midrange_5F_instruction_5F_list_ (var_repeatedInstructionList_13951, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-    GALGAS_location var_endOfRepeatedInstructionList_14070 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 522)) ;
-    GALGAS_midrange_5F_partList var_whilePartList_14124 = GALGAS_midrange_5F_partList::constructor_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 523)) ;
-    bool repeatFlag_14 = true ;
-    while (repeatFlag_14) {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_while COMMA_SOURCE_FILE ("midrange_syntax.galgas", 525)) ;
-      GALGAS_lstring var_whileLabel_14214 ;
-      switch (select_midrange_5F_syntax_23 (inCompiler)) {
-      case 1: {
-        var_whileLabel_14214 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 528)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 528)) ;
-      } break ;
-      case 2: {
-        var_whileLabel_14214 = inCompiler->synthetizedAttribute_tokenString () ;
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 530)) ;
-      } break ;
-      default:
-        break ;
-      }
-      enumGalgasBool test_15 = kBoolTrue ;
-      if (kBoolTrue == test_15) {
-        test_15 = GALGAS_bool (kIsNotEqual, var_doLabel_13722.readProperty_string ().objectCompare (var_whileLabel_14214.readProperty_string ())).boolEnum () ;
-        if (kBoolTrue == test_15) {
-          GALGAS_string temp_16 ;
-          const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, var_doLabel_13722.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-          if (kBoolTrue == test_17) {
-            temp_16 = var_doLabel_13722.readProperty_string () ;
-          }else if (kBoolFalse == test_17) {
-            temp_16 = GALGAS_string ("empty") ;
-          }
-          TC_Array <C_FixItDescription> fixItArray18 ;
-          inCompiler->emitSemanticError (var_whileLabel_14214.readProperty_location (), GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 533)), fixItArray18  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 533)) ;
-        }
-      }
-      GALGAS_midrange_5F_conditionExpression var_whileCondition_14588 ;
-      nt_midrange_5F_condition_5F_expression_ (var_whileCondition_14588, inCompiler) ;
-      GALGAS_midrange_5F_instructionList var_instructionList_14650 ;
-      nt_midrange_5F_instruction_5F_list_ (var_instructionList_14650, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-      var_whilePartList_14124.addAssign_operation (var_whileCondition_14588, var_instructionList_14650, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 542))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 542)) ;
-      if (select_midrange_5F_syntax_22 (inCompiler) == 2) {
-      }else{
-        repeatFlag_14 = false ;
-      }
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 545)) ;
-    GALGAS_lstring var_endDoLabel_14864 ;
-    switch (select_midrange_5F_syntax_24 (inCompiler)) {
-    case 1: {
-      var_endDoLabel_14864 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 548)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 548)) ;
-    } break ;
-    case 2: {
-      var_endDoLabel_14864 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 550)) ;
-    } break ;
-    default:
-      break ;
-    }
-    enumGalgasBool test_19 = kBoolTrue ;
-    if (kBoolTrue == test_19) {
-      test_19 = GALGAS_bool (kIsNotEqual, var_doLabel_13722.readProperty_string ().objectCompare (var_endDoLabel_14864.readProperty_string ())).boolEnum () ;
-      if (kBoolTrue == test_19) {
-        GALGAS_string temp_20 ;
-        const enumGalgasBool test_21 = GALGAS_bool (kIsNotEqual, var_doLabel_13722.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-        if (kBoolTrue == test_21) {
-          temp_20 = var_doLabel_13722.readProperty_string () ;
-        }else if (kBoolFalse == test_21) {
-          temp_20 = GALGAS_string ("empty") ;
-        }
-        TC_Array <C_FixItDescription> fixItArray22 ;
-        inCompiler->emitSemanticError (var_endDoLabel_14864.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 553)), fixItArray22  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 553)) ;
-      }
-    }
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_do_5F_while::constructor_new (var_instructionLocation_13871, var_repeatedInstructionList_13951, var_endOfRepeatedInstructionList_14070, var_whilePartList_14124  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 556)) ;
-  } break ;
-  case 13: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_mnop COMMA_SOURCE_FILE ("midrange_syntax.galgas", 562)) ;
-    GALGAS_location var_instructionLocation_15384 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 563)) ;
-    GALGAS_luint var_occurrenceFactor_15447 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 564)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_MNOP::constructor_new (var_instructionLocation_15384, var_occurrenceFactor_15447  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 565)) ;
-  } break ;
-  case 14: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_jsr COMMA_SOURCE_FILE ("midrange_syntax.galgas", 567)) ;
-    GALGAS_location var_instructionLocation_15592 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 568)) ;
-    GALGAS_lstring var_targetLabelName_15660 = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 569)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_JSR::constructor_new (var_instructionLocation_15592, var_targetLabelName_15660  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 570)) ;
-  } break ;
-  case 15: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_jump COMMA_SOURCE_FILE ("midrange_syntax.galgas", 574)) ;
-    GALGAS_location var_instructionLocation_15815 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 575)) ;
-    GALGAS_lstring var_targetLabelName_15883 = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 576)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_JUMP::constructor_new (var_instructionLocation_15815, var_targetLabelName_15883  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 577)) ;
-  } break ;
-  default:
-    break ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  switch (select_midrange_5F_syntax_9 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_do COMMA_SOURCE_FILE ("midrange_syntax.galgas", 305)) ;
-    switch (select_midrange_5F_syntax_10 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 310)) ;
-    } break ;
-    default:
-      break ;
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 314)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 315)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 316)) ;
-    nt_immediate_5F_expression_parse (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 318)) ;
-    nt_immediate_5F_expression_parse (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 320)) ;
-    nt_midrange_5F_instruction_5F_list_parse (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 333)) ;
-    switch (select_midrange_5F_syntax_11 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 338)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_checkbank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 345)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 346)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_checknobank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 349)) ;
-  } break ;
-  case 4: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_banksel COMMA_SOURCE_FILE ("midrange_syntax.galgas", 352)) ;
-    nt_register_5F_parsing_parse (inCompiler) ;
-    switch (select_midrange_5F_syntax_12 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 359)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 360)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_banksel COMMA_SOURCE_FILE ("midrange_syntax.galgas", 365)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 367)) ;
-    switch (select_midrange_5F_syntax_13 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 372)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 373)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 6: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_banksave COMMA_SOURCE_FILE ("midrange_syntax.galgas", 378)) ;
-    nt_register_5F_parsing_parse (inCompiler) ;
-    nt_midrange_5F_instruction_5F_list_parse (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 386)) ;
-  } break ;
-  case 7: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_nobank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 393)) ;
-  } break ;
-  case 8: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_forever COMMA_SOURCE_FILE ("midrange_syntax.galgas", 396)) ;
-    switch (select_midrange_5F_syntax_14 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 401)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_midrange_5F_instruction_5F_list_parse (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 410)) ;
-    switch (select_midrange_5F_syntax_15 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 415)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 9: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 426)) ;
-    switch (select_midrange_5F_syntax_16 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 432)) ;
-      nt_register_5F_parsing_parse (inCompiler) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 434)) ;
-      nt_bit_5F_number_5F_parsing_parse (inCompiler) ;
-    } break ;
-    case 2: {
-      nt_register_5F_parsing_parse (inCompiler) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 439)) ;
-      nt_bit_5F_number_5F_parsing_parse (inCompiler) ;
-    } break ;
-    default:
-      break ;
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 443)) ;
-    nt_midrange_5F_simple_5F_instruction_parse (inCompiler) ;
-  } break ;
-  case 10: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 452)) ;
-    switch (select_midrange_5F_syntax_17 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 456)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 458)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_register_5F_parsing_parse (inCompiler) ;
-    switch (select_midrange_5F_syntax_18 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 465)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_w COMMA_SOURCE_FILE ("midrange_syntax.galgas", 465)) ;
-    } break ;
-    default:
-      break ;
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 467)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 472)) ;
-    nt_midrange_5F_simple_5F_instruction_parse (inCompiler) ;
-  } break ;
-  case 11: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 482)) ;
-    switch (select_midrange_5F_syntax_19 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 487)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_midrange_5F_structured_5F_if_5F_instruction_parse (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 496)) ;
-    switch (select_midrange_5F_syntax_20 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 501)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 12: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_do COMMA_SOURCE_FILE ("midrange_syntax.galgas", 508)) ;
-    switch (select_midrange_5F_syntax_21 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 513)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_midrange_5F_instruction_5F_list_parse (inCompiler) ;
-    bool repeatFlag_0 = true ;
-    while (repeatFlag_0) {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_while COMMA_SOURCE_FILE ("midrange_syntax.galgas", 525)) ;
-      switch (select_midrange_5F_syntax_23 (inCompiler)) {
-      case 1: {
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 530)) ;
-      } break ;
-      default:
-        break ;
-      }
-      nt_midrange_5F_condition_5F_expression_parse (inCompiler) ;
-      nt_midrange_5F_instruction_5F_list_parse (inCompiler) ;
-      if (select_midrange_5F_syntax_22 (inCompiler) == 2) {
-      }else{
-        repeatFlag_0 = false ;
-      }
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 545)) ;
-    switch (select_midrange_5F_syntax_24 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 550)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 13: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_mnop COMMA_SOURCE_FILE ("midrange_syntax.galgas", 562)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 564)) ;
-  } break ;
-  case 14: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_jsr COMMA_SOURCE_FILE ("midrange_syntax.galgas", 567)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 569)) ;
-  } break ;
-  case 15: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_jump COMMA_SOURCE_FILE ("midrange_syntax.galgas", 574)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 576)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  switch (select_midrange_5F_syntax_9 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_do COMMA_SOURCE_FILE ("midrange_syntax.galgas", 305)) ;
-    switch (select_midrange_5F_syntax_10 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 310)) ;
-    } break ;
-    default:
-      break ;
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 314)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 315)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 316)) ;
-    nt_immediate_5F_expression_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 318)) ;
-    nt_immediate_5F_expression_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 320)) ;
-    nt_midrange_5F_instruction_5F_list_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 333)) ;
-    switch (select_midrange_5F_syntax_11 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 338)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_checkbank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 345)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 346)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_checknobank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 349)) ;
-  } break ;
-  case 4: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_banksel COMMA_SOURCE_FILE ("midrange_syntax.galgas", 352)) ;
-    nt_register_5F_parsing_indexing (inCompiler) ;
-    switch (select_midrange_5F_syntax_12 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 359)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 360)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_banksel COMMA_SOURCE_FILE ("midrange_syntax.galgas", 365)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 367)) ;
-    switch (select_midrange_5F_syntax_13 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 372)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 373)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 6: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_banksave COMMA_SOURCE_FILE ("midrange_syntax.galgas", 378)) ;
-    nt_register_5F_parsing_indexing (inCompiler) ;
-    nt_midrange_5F_instruction_5F_list_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 386)) ;
-  } break ;
-  case 7: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_nobank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 393)) ;
-  } break ;
-  case 8: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_forever COMMA_SOURCE_FILE ("midrange_syntax.galgas", 396)) ;
-    switch (select_midrange_5F_syntax_14 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 401)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_midrange_5F_instruction_5F_list_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 410)) ;
-    switch (select_midrange_5F_syntax_15 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 415)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 9: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 426)) ;
-    switch (select_midrange_5F_syntax_16 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 432)) ;
-      nt_register_5F_parsing_indexing (inCompiler) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 434)) ;
-      nt_bit_5F_number_5F_parsing_indexing (inCompiler) ;
-    } break ;
-    case 2: {
-      nt_register_5F_parsing_indexing (inCompiler) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 439)) ;
-      nt_bit_5F_number_5F_parsing_indexing (inCompiler) ;
-    } break ;
-    default:
-      break ;
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 443)) ;
-    nt_midrange_5F_simple_5F_instruction_indexing (inCompiler) ;
-  } break ;
-  case 10: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 452)) ;
-    switch (select_midrange_5F_syntax_17 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 456)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 458)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_register_5F_parsing_indexing (inCompiler) ;
-    switch (select_midrange_5F_syntax_18 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 465)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_w COMMA_SOURCE_FILE ("midrange_syntax.galgas", 465)) ;
-    } break ;
-    default:
-      break ;
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 467)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 472)) ;
-    nt_midrange_5F_simple_5F_instruction_indexing (inCompiler) ;
-  } break ;
-  case 11: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 482)) ;
-    switch (select_midrange_5F_syntax_19 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 487)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_midrange_5F_structured_5F_if_5F_instruction_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 496)) ;
-    switch (select_midrange_5F_syntax_20 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 501)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 12: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_do COMMA_SOURCE_FILE ("midrange_syntax.galgas", 508)) ;
-    switch (select_midrange_5F_syntax_21 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 513)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_midrange_5F_instruction_5F_list_indexing (inCompiler) ;
-    bool repeatFlag_0 = true ;
-    while (repeatFlag_0) {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_while COMMA_SOURCE_FILE ("midrange_syntax.galgas", 525)) ;
-      switch (select_midrange_5F_syntax_23 (inCompiler)) {
-      case 1: {
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 530)) ;
-      } break ;
-      default:
-        break ;
-      }
-      nt_midrange_5F_condition_5F_expression_indexing (inCompiler) ;
-      nt_midrange_5F_instruction_5F_list_indexing (inCompiler) ;
-      if (select_midrange_5F_syntax_22 (inCompiler) == 2) {
-      }else{
-        repeatFlag_0 = false ;
-      }
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 545)) ;
-    switch (select_midrange_5F_syntax_24 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 550)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 13: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_mnop COMMA_SOURCE_FILE ("midrange_syntax.galgas", 562)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 564)) ;
-  } break ;
-  case 14: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_jsr COMMA_SOURCE_FILE ("midrange_syntax.galgas", 567)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 569)) ;
-  } break ;
-  case 15: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_jump COMMA_SOURCE_FILE ("midrange_syntax.galgas", 574)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 576)) ;
-  } break ;
-  default:
-    break ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_ (const GALGAS_lstring constinArgument_ifLabel,
-                                                                                                          GALGAS_midrange_5F_instruction & outArgument_outInstruction,
-                                                                                                          GALGAS_bool & ioArgument_ioNeedsComputedGoto_32_,
-                                                                                                          GALGAS_bool & ioArgument_ioNeedsComputedGoto_34_,
-                                                                                                          GALGAS_labelMap & ioArgument_ioLabelMap,
-                                                                                                          C_Lexique_piccolo_5F_lexique * inCompiler) {
-  outArgument_outInstruction.drop () ; // Release 'out' argument
-  GALGAS_location var_instructionLocation_16282 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 593)) ;
-  GALGAS_midrange_5F_conditionExpression var_structured_5F_if_5F_condition_16358 ;
-  nt_midrange_5F_condition_5F_expression_ (var_structured_5F_if_5F_condition_16358, inCompiler) ;
-  GALGAS_midrange_5F_instructionList var_thenInstructionList_16421 ;
-  nt_midrange_5F_instruction_5F_list_ (var_thenInstructionList_16421, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-  GALGAS_midrange_5F_instructionList var_elseInstructionList_16544 ;
-  switch (select_midrange_5F_syntax_25 (inCompiler)) {
-  case 1: {
-    var_elseInstructionList_16544 = GALGAS_midrange_5F_instructionList::constructor_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 602)) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_elsif COMMA_SOURCE_FILE ("midrange_syntax.galgas", 604)) ;
-    GALGAS_lstring var_elsifIfLabel_16670 ;
-    switch (select_midrange_5F_syntax_26 (inCompiler)) {
-    case 1: {
-      var_elsifIfLabel_16670 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 607)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 607)) ;
-    } break ;
-    case 2: {
-      var_elsifIfLabel_16670 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 609)) ;
-    } break ;
-    default:
-      break ;
-    }
-    enumGalgasBool test_0 = kBoolTrue ;
-    if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elsifIfLabel_16670.readProperty_string ())).boolEnum () ;
-      if (kBoolTrue == test_0) {
-        GALGAS_string temp_1 ;
-        const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-        if (kBoolTrue == test_2) {
-          temp_1 = constinArgument_ifLabel.readProperty_string () ;
-        }else if (kBoolFalse == test_2) {
-          temp_1 = GALGAS_string ("empty") ;
-        }
-        TC_Array <C_FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (var_elsifIfLabel_16670.readProperty_location (), GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 612)), fixItArray3  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 612)) ;
-      }
-    }
-    GALGAS_midrange_5F_instruction var_elsifPartInstruction_17060 ;
-    nt_midrange_5F_structured_5F_if_5F_instruction_ (constinArgument_ifLabel, var_elsifPartInstruction_17060, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-    var_elseInstructionList_16544 = GALGAS_midrange_5F_instructionList::constructor_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 621)) ;
-    var_elseInstructionList_16544.addAssign_operation (var_elsifPartInstruction_17060  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 622)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_else COMMA_SOURCE_FILE ("midrange_syntax.galgas", 624)) ;
-    GALGAS_lstring var_elseLabel_17303 ;
-    switch (select_midrange_5F_syntax_27 (inCompiler)) {
-    case 1: {
-      var_elseLabel_17303 = GALGAS_lstring::constructor_new (GALGAS_string::makeEmptyString (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 627)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 627)) ;
-    } break ;
-    case 2: {
-      var_elseLabel_17303 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 629)) ;
-    } break ;
-    default:
-      break ;
-    }
-    enumGalgasBool test_4 = kBoolTrue ;
-    if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elseLabel_17303.readProperty_string ())).boolEnum () ;
-      if (kBoolTrue == test_4) {
-        GALGAS_string temp_5 ;
-        const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-        if (kBoolTrue == test_6) {
-          temp_5 = constinArgument_ifLabel.readProperty_string () ;
-        }else if (kBoolFalse == test_6) {
-          temp_5 = GALGAS_string ("empty") ;
-        }
-        TC_Array <C_FixItDescription> fixItArray7 ;
-        inCompiler->emitSemanticError (var_elseLabel_17303.readProperty_location (), GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 632)), fixItArray7  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 632)) ;
-      }
-    }
-    nt_midrange_5F_instruction_5F_list_ (var_elseInstructionList_16544, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-  GALGAS_location var_endOfElsePartLocation_17768 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 641)) ;
-  outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_structured_5F_if::constructor_new (var_instructionLocation_16282, var_structured_5F_if_5F_condition_16358, var_thenInstructionList_16421, var_elseInstructionList_16544, var_endOfElsePartLocation_17768  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 642)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  nt_midrange_5F_condition_5F_expression_parse (inCompiler) ;
-  nt_midrange_5F_instruction_5F_list_parse (inCompiler) ;
-  switch (select_midrange_5F_syntax_25 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_elsif COMMA_SOURCE_FILE ("midrange_syntax.galgas", 604)) ;
-    switch (select_midrange_5F_syntax_26 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 609)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_midrange_5F_structured_5F_if_5F_instruction_parse (inCompiler) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_else COMMA_SOURCE_FILE ("midrange_syntax.galgas", 624)) ;
-    switch (select_midrange_5F_syntax_27 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 629)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_midrange_5F_instruction_5F_list_parse (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  nt_midrange_5F_condition_5F_expression_indexing (inCompiler) ;
-  nt_midrange_5F_instruction_5F_list_indexing (inCompiler) ;
-  switch (select_midrange_5F_syntax_25 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_elsif COMMA_SOURCE_FILE ("midrange_syntax.galgas", 604)) ;
-    switch (select_midrange_5F_syntax_26 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 609)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_midrange_5F_structured_5F_if_5F_instruction_indexing (inCompiler) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_else COMMA_SOURCE_FILE ("midrange_syntax.galgas", 624)) ;
-    switch (select_midrange_5F_syntax_27 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 629)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_midrange_5F_instruction_5F_list_indexing (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_ (GALGAS_midrange_5F_instruction & outArgument_outInstruction,
-                                                                                                C_Lexique_piccolo_5F_lexique * inCompiler) {
-  outArgument_outInstruction.drop () ; // Release 'out' argument
-  switch (select_midrange_5F_syntax_28 (inCompiler)) {
-  case 1: {
-    GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code var_baseCode_18187 ;
-    switch (select_midrange_5F_syntax_29 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_addwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 656)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_ADDWF (SOURCE_FILE ("midrange_syntax.galgas", 657)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_andwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 659)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_ANDWF (SOURCE_FILE ("midrange_syntax.galgas", 660)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_comf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 662)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_COMF (SOURCE_FILE ("midrange_syntax.galgas", 663)) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 665)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_DECF (SOURCE_FILE ("midrange_syntax.galgas", 666)) ;
-    } break ;
-    case 5: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 668)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_INCF (SOURCE_FILE ("midrange_syntax.galgas", 669)) ;
-    } break ;
-    case 6: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_iorwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 671)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_IORWF (SOURCE_FILE ("midrange_syntax.galgas", 672)) ;
-    } break ;
-    case 7: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 674)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_MOVF (SOURCE_FILE ("midrange_syntax.galgas", 675)) ;
-    } break ;
-    case 8: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_rlf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 677)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_RLF (SOURCE_FILE ("midrange_syntax.galgas", 678)) ;
-    } break ;
-    case 9: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_rrf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 680)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_RRF (SOURCE_FILE ("midrange_syntax.galgas", 681)) ;
-    } break ;
-    case 10: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_subwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 683)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SUBWF (SOURCE_FILE ("midrange_syntax.galgas", 684)) ;
-    } break ;
-    case 11: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_swapf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 686)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (SOURCE_FILE ("midrange_syntax.galgas", 687)) ;
-    } break ;
-    case 12: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_xorwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 689)) ;
-      var_baseCode_18187 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_XORWF (SOURCE_FILE ("midrange_syntax.galgas", 690)) ;
-    } break ;
-    default:
-      break ;
-    }
-    GALGAS_location var_instructionLocation_18740 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 692)) ;
-    GALGAS_registerExpression var_registerExpression_18805 ;
-    nt_register_5F_parsing_ (var_registerExpression_18805, inCompiler) ;
-    GALGAS_bool var_W_5F_isDestination_18854 ;
-    nt_optional_5F_w_5F_as_5F_dest_ (var_W_5F_isDestination_18854, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FD::constructor_new (var_instructionLocation_18740, var_baseCode_18187, var_registerExpression_18805, var_W_5F_isDestination_18854  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 695)) ;
-    enumGalgasBool test_0 = kBoolTrue ;
-    if (kBoolTrue == test_0) {
-      GALGAS_bool test_1 = GALGAS_bool (kIsEqual, var_baseCode_18187.objectCompare (GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_MOVF (SOURCE_FILE ("midrange_syntax.galgas", 702)))) ;
-      if (kBoolTrue == test_1.boolEnum ()) {
-        test_1 = var_W_5F_isDestination_18854.operator_not (SOURCE_FILE ("midrange_syntax.galgas", 702)) ;
-      }
-      test_0 = test_1.boolEnum () ;
-      if (kBoolTrue == test_0) {
-        TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticWarning (var_instructionLocation_18740, GALGAS_string ("This instruction does not move data, it only sets flags. Use 'movf *, reg' instead of 'movf reg' to suppress this warning"), fixItArray2  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 703)) ;
-      }
-    }
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 707)) ;
-    GALGAS_location var_instructionLocation_19363 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 708)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 709)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 710)) ;
-    GALGAS_registerExpression var_registerName_19435 ;
-    nt_register_5F_parsing_ (var_registerName_19435, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FD::constructor_new (var_instructionLocation_19363, GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_MOVF (SOURCE_FILE ("midrange_syntax.galgas", 714)), var_registerName_19435, GALGAS_bool (false)  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 712)) ;
-  } break ;
-  case 3: {
-    GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code var_FAinstruction_19649 ;
-    switch (select_midrange_5F_syntax_30 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_clrf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 721)) ;
-      var_FAinstruction_19649 = GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_CLRF (SOURCE_FILE ("midrange_syntax.galgas", 722)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 724)) ;
-      var_FAinstruction_19649 = GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_syntax.galgas", 725)) ;
-    } break ;
-    default:
-      break ;
-    }
-    GALGAS_location var_instructionLocation_19859 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 727)) ;
-    GALGAS_registerExpression var_registerExpression_19924 ;
-    nt_register_5F_parsing_ (var_registerExpression_19924, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_F::constructor_new (var_instructionLocation_19859, var_FAinstruction_19649, var_registerExpression_19924  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 729)) ;
-  } break ;
-  case 4: {
-    GALGAS_midrange_5F_bit_5F_oriented_5F_op var_bitOrientedOp_20109 ;
-    switch (select_midrange_5F_syntax_31 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bcf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 736)) ;
-      var_bitOrientedOp_20109 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BCF (SOURCE_FILE ("midrange_syntax.galgas", 736)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bsf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 738)) ;
-      var_bitOrientedOp_20109 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BSF (SOURCE_FILE ("midrange_syntax.galgas", 738)) ;
-    } break ;
-    default:
-      break ;
-    }
-    GALGAS_location var_instructionLocation_20289 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 740)) ;
-    GALGAS_registerExpression var_registerExpression_20354 ;
-    nt_register_5F_parsing_ (var_registerExpression_20354, inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 742)) ;
-    GALGAS_bitNumberExpression var_bitNumberExpression_20411 ;
-    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_20411, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FB::constructor_new (var_instructionLocation_20289, var_bitOrientedOp_20109, var_registerExpression_20354, var_bitNumberExpression_20411  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 744)) ;
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_goto COMMA_SOURCE_FILE ("midrange_syntax.galgas", 750)) ;
-    GALGAS_location var_instructionLocation_20620 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 751)) ;
-    GALGAS_lstring var_targetLabelName_20688 = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 752)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_GOTO::constructor_new (var_instructionLocation_20620, var_targetLabelName_20688  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 753)) ;
-  } break ;
-  case 6: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_call COMMA_SOURCE_FILE ("midrange_syntax.galgas", 757)) ;
-    GALGAS_location var_instructionLocation_20865 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 758)) ;
-    GALGAS_lstring var_targetLabelName_20933 = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 759)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_CALL::constructor_new (var_instructionLocation_20865, var_targetLabelName_20933  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 760)) ;
-  } break ;
-  case 7: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_clrw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 764)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_CLRW::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 765))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 765)) ;
-  } break ;
-  case 8: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_clrwdt COMMA_SOURCE_FILE ("midrange_syntax.galgas", 767)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_CLRWDT::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 768))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 768)) ;
-  } break ;
-  case 9: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_nop COMMA_SOURCE_FILE ("midrange_syntax.galgas", 770)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_NOP::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 771))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 771)) ;
-  } break ;
-  case 10: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_sleep COMMA_SOURCE_FILE ("midrange_syntax.galgas", 773)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_SLEEP::constructor_new (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 774))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 774)) ;
-  } break ;
-  case 11: {
-    GALGAS_midrange_5F_literal_5F_instruction_5F_opcode var_literalInstruction_21482 ;
-    switch (select_midrange_5F_syntax_32 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_addlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 778)) ;
-      var_literalInstruction_21482 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_ADDLW (SOURCE_FILE ("midrange_syntax.galgas", 778)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_andlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 780)) ;
-      var_literalInstruction_21482 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_ANDLW (SOURCE_FILE ("midrange_syntax.galgas", 780)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_iorlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 782)) ;
-      var_literalInstruction_21482 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_IORLW (SOURCE_FILE ("midrange_syntax.galgas", 782)) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 784)) ;
-      var_literalInstruction_21482 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_MOVLW (SOURCE_FILE ("midrange_syntax.galgas", 784)) ;
-    } break ;
-    case 5: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_sublw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 786)) ;
-      var_literalInstruction_21482 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_SUBLW (SOURCE_FILE ("midrange_syntax.galgas", 786)) ;
-    } break ;
-    case 6: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_xorlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 788)) ;
-      var_literalInstruction_21482 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_XORLW (SOURCE_FILE ("midrange_syntax.galgas", 788)) ;
-    } break ;
-    default:
-      break ;
-    }
-    GALGAS_location var_instructionLocation_22059 = GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 790)) ;
-    GALGAS_immediatExpression var_expression_22128 ;
-    nt_immediate_5F_expression_ (var_expression_22128, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_literalOperation::constructor_new (var_instructionLocation_22059, var_literalInstruction_21482, var_expression_22128  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 792)) ;
-  } break ;
-  default:
-    break ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  switch (select_midrange_5F_syntax_28 (inCompiler)) {
-  case 1: {
-    switch (select_midrange_5F_syntax_29 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_addwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 656)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_andwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 659)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_comf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 662)) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 665)) ;
-    } break ;
-    case 5: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 668)) ;
-    } break ;
-    case 6: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_iorwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 671)) ;
-    } break ;
-    case 7: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 674)) ;
-    } break ;
-    case 8: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_rlf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 677)) ;
-    } break ;
-    case 9: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_rrf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 680)) ;
-    } break ;
-    case 10: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_subwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 683)) ;
-    } break ;
-    case 11: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_swapf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 686)) ;
-    } break ;
-    case 12: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_xorwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 689)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_register_5F_parsing_parse (inCompiler) ;
-    nt_optional_5F_w_5F_as_5F_dest_parse (inCompiler) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 707)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 709)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 710)) ;
-    nt_register_5F_parsing_parse (inCompiler) ;
-  } break ;
-  case 3: {
-    switch (select_midrange_5F_syntax_30 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_clrf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 721)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 724)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_register_5F_parsing_parse (inCompiler) ;
-  } break ;
-  case 4: {
-    switch (select_midrange_5F_syntax_31 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bcf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 736)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bsf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 738)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_register_5F_parsing_parse (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 742)) ;
-    nt_bit_5F_number_5F_parsing_parse (inCompiler) ;
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_goto COMMA_SOURCE_FILE ("midrange_syntax.galgas", 750)) ;
-    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 752)) ;
-  } break ;
-  case 6: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_call COMMA_SOURCE_FILE ("midrange_syntax.galgas", 757)) ;
-    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 759)) ;
-  } break ;
-  case 7: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_clrw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 764)) ;
-  } break ;
-  case 8: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_clrwdt COMMA_SOURCE_FILE ("midrange_syntax.galgas", 767)) ;
-  } break ;
-  case 9: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_nop COMMA_SOURCE_FILE ("midrange_syntax.galgas", 770)) ;
-  } break ;
-  case 10: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_sleep COMMA_SOURCE_FILE ("midrange_syntax.galgas", 773)) ;
-  } break ;
-  case 11: {
-    switch (select_midrange_5F_syntax_32 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_addlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 778)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_andlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 780)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_iorlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 782)) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 784)) ;
-    } break ;
-    case 5: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_sublw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 786)) ;
-    } break ;
-    case 6: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_xorlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 788)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_immediate_5F_expression_parse (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  switch (select_midrange_5F_syntax_28 (inCompiler)) {
-  case 1: {
-    switch (select_midrange_5F_syntax_29 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_addwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 656)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_andwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 659)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_comf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 662)) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 665)) ;
-    } break ;
-    case 5: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 668)) ;
-    } break ;
-    case 6: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_iorwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 671)) ;
-    } break ;
-    case 7: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 674)) ;
-    } break ;
-    case 8: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_rlf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 677)) ;
-    } break ;
-    case 9: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_rrf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 680)) ;
-    } break ;
-    case 10: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_subwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 683)) ;
-    } break ;
-    case 11: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_swapf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 686)) ;
-    } break ;
-    case 12: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_xorwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 689)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_register_5F_parsing_indexing (inCompiler) ;
-    nt_optional_5F_w_5F_as_5F_dest_indexing (inCompiler) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 707)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 709)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 710)) ;
-    nt_register_5F_parsing_indexing (inCompiler) ;
-  } break ;
-  case 3: {
-    switch (select_midrange_5F_syntax_30 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_clrf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 721)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 724)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_register_5F_parsing_indexing (inCompiler) ;
-  } break ;
-  case 4: {
-    switch (select_midrange_5F_syntax_31 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bcf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 736)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_bsf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 738)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_register_5F_parsing_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 742)) ;
-    nt_bit_5F_number_5F_parsing_indexing (inCompiler) ;
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_goto COMMA_SOURCE_FILE ("midrange_syntax.galgas", 750)) ;
-    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 752)) ;
-  } break ;
-  case 6: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_call COMMA_SOURCE_FILE ("midrange_syntax.galgas", 757)) ;
-    inCompiler->enterIndexing (C_Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 759)) ;
-  } break ;
-  case 7: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_clrw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 764)) ;
-  } break ;
-  case 8: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_clrwdt COMMA_SOURCE_FILE ("midrange_syntax.galgas", 767)) ;
-  } break ;
-  case 9: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_nop COMMA_SOURCE_FILE ("midrange_syntax.galgas", 770)) ;
-  } break ;
-  case 10: {
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_sleep COMMA_SOURCE_FILE ("midrange_syntax.galgas", 773)) ;
-  } break ;
-  case 11: {
-    switch (select_midrange_5F_syntax_32 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_addlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 778)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_andlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 780)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_iorlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 782)) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_movlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 784)) ;
-    } break ;
-    case 5: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_sublw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 786)) ;
-    } break ;
-    case 6: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_xorlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 788)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_immediate_5F_expression_indexing (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_ (GALGAS_midrange_5F_conditionExpression & outArgument_outCondition,
-                                                                                              C_Lexique_piccolo_5F_lexique * inCompiler) {
-  outArgument_outCondition.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 803)) ;
-  GALGAS_midrange_5F_conditionExpression var_condition_22465 ;
-  nt_midrange_5F_condition_5F_factor_ (var_condition_22465, inCompiler) ;
-  outArgument_outCondition = GALGAS_midrange_5F_negateCondition::constructor_new (var_condition_22465  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 805)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 803)) ;
-  nt_midrange_5F_condition_5F_factor_parse (inCompiler) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 803)) ;
-  nt_midrange_5F_condition_5F_factor_indexing (inCompiler) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_ (GALGAS_midrange_5F_conditionExpression & outArgument_outCondition,
-                                                                                              C_Lexique_piccolo_5F_lexique * inCompiler) {
-  outArgument_outCondition.drop () ; // Release 'out' argument
-  nt_midrange_5F_condition_5F_expression_ (outArgument_outCondition, inCompiler) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  nt_midrange_5F_condition_5F_expression_parse (inCompiler) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  nt_midrange_5F_condition_5F_expression_indexing (inCompiler) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_ (GALGAS_midrange_5F_conditionExpression & outArgument_outCondition,
-                                                                                              C_Lexique_piccolo_5F_lexique * inCompiler) {
-  outArgument_outCondition.drop () ; // Release 'out' argument
-  switch (select_midrange_5F_syntax_33 (inCompiler)) {
-  case 1: {
-    GALGAS_bool var_isIncrement_22889 ;
-    switch (select_midrange_5F_syntax_34 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 822)) ;
-      var_isIncrement_22889 = GALGAS_bool (true) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 824)) ;
-      var_isIncrement_22889 = GALGAS_bool (false) ;
-    } break ;
-    default:
-      break ;
-    }
-    GALGAS_registerExpression var_registerExpression_23024 ;
-    nt_register_5F_parsing_ (var_registerExpression_23024, inCompiler) ;
-    GALGAS_bool var_W_5F_isDestination_23057 ;
-    switch (select_midrange_5F_syntax_35 (inCompiler)) {
-    case 1: {
-      var_W_5F_isDestination_23057 = GALGAS_bool (false) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 831)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_w COMMA_SOURCE_FILE ("midrange_syntax.galgas", 831)) ;
-      var_W_5F_isDestination_23057 = GALGAS_bool (true) ;
-    } break ;
-    default:
-      break ;
-    }
-    GALGAS_lstring var_conditionString_23201 = inCompiler->synthetizedAttribute_tokenString () ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 833)) ;
-    GALGAS_string var_condition_23233 = var_conditionString_23201.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("midrange_syntax.galgas", 834)) ;
-    GALGAS_bool var_branchIfZero_23300 ;
-    enumGalgasBool test_0 = kBoolTrue ;
-    if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsEqual, var_condition_23233.objectCompare (GALGAS_string ("Z"))).boolEnum () ;
-      if (kBoolTrue == test_0) {
-        var_branchIfZero_23300 = GALGAS_bool (true) ;
-      }
-    }
-    if (kBoolFalse == test_0) {
-      enumGalgasBool test_1 = kBoolTrue ;
-      if (kBoolTrue == test_1) {
-        test_1 = GALGAS_bool (kIsEqual, var_condition_23233.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
-        if (kBoolTrue == test_1) {
-          var_branchIfZero_23300 = GALGAS_bool (false) ;
-        }
-      }
-      if (kBoolFalse == test_1) {
-        TC_Array <C_FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (var_conditionString_23201.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_conditionString_23201.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)), fixItArray2  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)) ;
-        var_branchIfZero_23300.drop () ; // Release error dropped variable
-      }
-    }
-    outArgument_outCondition = GALGAS_midrange_5F_incDecRegisterInCondition::constructor_new (var_registerExpression_23024, var_isIncrement_22889, var_W_5F_isDestination_23057, var_branchIfZero_23300  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 845)) ;
-  } break ;
-  case 2: {
-    GALGAS_registerExpression var_registerExpression_23761 ;
-    nt_register_5F_parsing_ (var_registerExpression_23761, inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 852)) ;
-    GALGAS_bitNumberExpression var_bitNumberExpression_23818 ;
-    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_23818, inCompiler) ;
-    outArgument_outCondition = GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::constructor_new (var_registerExpression_23761, var_bitNumberExpression_23818  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 854)) ;
-  } break ;
-  default:
-    break ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  switch (select_midrange_5F_syntax_33 (inCompiler)) {
-  case 1: {
-    switch (select_midrange_5F_syntax_34 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 822)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 824)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_register_5F_parsing_parse (inCompiler) ;
-    switch (select_midrange_5F_syntax_35 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 831)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_w COMMA_SOURCE_FILE ("midrange_syntax.galgas", 831)) ;
-    } break ;
-    default:
-      break ;
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 833)) ;
-  } break ;
-  case 2: {
-    nt_register_5F_parsing_parse (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 852)) ;
-    nt_bit_5F_number_5F_parsing_parse (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  switch (select_midrange_5F_syntax_33 (inCompiler)) {
-  case 1: {
-    switch (select_midrange_5F_syntax_34 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 822)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 824)) ;
-    } break ;
-    default:
-      break ;
-    }
-    nt_register_5F_parsing_indexing (inCompiler) ;
-    switch (select_midrange_5F_syntax_35 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 831)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_w COMMA_SOURCE_FILE ("midrange_syntax.galgas", 831)) ;
-    } break ;
-    default:
-      break ;
-    }
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 833)) ;
-  } break ;
-  case 2: {
-    nt_register_5F_parsing_indexing (inCompiler) ;
-    inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 852)) ;
-    nt_bit_5F_number_5F_parsing_indexing (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_ (GALGAS_midrange_5F_conditionExpression & outArgument_outCondition,
-                                                                                                   C_Lexique_piccolo_5F_lexique * inCompiler) {
-  outArgument_outCondition.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 865)) ;
-  nt_midrange_5F_condition_5F_term_ (outArgument_outCondition, inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_midrange_5F_syntax_36 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 869)) ;
-      GALGAS_midrange_5F_conditionExpression var_c_24227 ;
-      nt_midrange_5F_condition_5F_term_ (var_c_24227, inCompiler) ;
-      GALGAS_midrange_5F_conditionExpression var_rc_24267 = GALGAS_midrange_5F_negateCondition::constructor_new (var_c_24227  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 871)) ;
-      GALGAS_midrange_5F_conditionExpression var_lc_24347 = GALGAS_midrange_5F_negateCondition::constructor_new (outArgument_outCondition  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 872)) ;
-      outArgument_outCondition = GALGAS_midrange_5F_negateCondition::constructor_new (GALGAS_midrange_5F_andCondition::constructor_new (var_lc_24347, var_rc_24267  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 873))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 873)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 875)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 865)) ;
-  nt_midrange_5F_condition_5F_term_parse (inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_midrange_5F_syntax_36 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 869)) ;
-      nt_midrange_5F_condition_5F_term_parse (inCompiler) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 875)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 865)) ;
-  nt_midrange_5F_condition_5F_term_indexing (inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_midrange_5F_syntax_36 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 869)) ;
-      nt_midrange_5F_condition_5F_term_indexing (inCompiler) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 875)) ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_ (GALGAS_midrange_5F_conditionExpression & outArgument_outCondition,
-                                                                                             C_Lexique_piccolo_5F_lexique * inCompiler) {
-  outArgument_outCondition.drop () ; // Release 'out' argument
-  nt_midrange_5F_condition_5F_factor_ (outArgument_outCondition, inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_midrange_5F_syntax_37 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 885)) ;
-      GALGAS_midrange_5F_conditionExpression var_c_24750 ;
-      nt_midrange_5F_condition_5F_factor_ (var_c_24750, inCompiler) ;
-      outArgument_outCondition = GALGAS_midrange_5F_andCondition::constructor_new (outArgument_outCondition, var_c_24750  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 887)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_parse (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  nt_midrange_5F_condition_5F_factor_parse (inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_midrange_5F_syntax_37 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 885)) ;
-      nt_midrange_5F_condition_5F_factor_parse (inCompiler) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//---------------------------------------------------------------------------------------------------------------------*
-
-void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_indexing (C_Lexique_piccolo_5F_lexique * inCompiler) {
-  nt_midrange_5F_condition_5F_factor_indexing (inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_midrange_5F_syntax_37 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 885)) ;
-      nt_midrange_5F_condition_5F_factor_indexing (inCompiler) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-}
 
 
 
@@ -27542,8 +24844,8 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_body_ (GALGAS_pic_31__38_Int
   }
 }
 
-void cGrammar_pic_31__38__5F_include_5F_grammar::performIndexing (C_Compiler * inCompiler,
-             const C_String & inSourceFilePath) {
+void cGrammar_pic_31__38__5F_include_5F_grammar::performIndexing (Compiler * inCompiler,
+             const String & inSourceFilePath) {
   C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
   macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   scanner->enableIndexing () ;
@@ -27560,8 +24862,8 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::performIndexing (C_Compiler * i
   macroDetachSharedObject (scanner) ;
 }
 
-void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlyLexicalAnalysis (C_Compiler * inCompiler,
-             const C_String & inSourceFilePath) {
+void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlyLexicalAnalysis (Compiler * inCompiler,
+             const String & inSourceFilePath) {
   C_Lexique_piccolo_5F_lexique * scanner = NULL ;
   macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   if (scanner->sourceText ().isValid ()) {
@@ -27570,8 +24872,8 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlyLexicalAnalysis (C_C
   macroDetachSharedObject (scanner) ;
 }
 
-void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlySyntaxAnalysis (C_Compiler * inCompiler,
-             const C_String & inSourceFilePath) {
+void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlySyntaxAnalysis (Compiler * inCompiler,
+             const String & inSourceFilePath) {
   C_Lexique_piccolo_5F_lexique * scanner = NULL ;
   macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   if (scanner->sourceText ().isValid ()) {
@@ -27588,7 +24890,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlySyntaxAnalysis (C_Co
 //                                                                                                                      
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceFileParsing_ (C_Compiler * inCompiler,
+void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceFileParsing_ (Compiler * inCompiler,
                                 GALGAS_lstring inFilePath,
                                 GALGAS_pic_31__38_InterruptDefinitionList &  parameter_1,
                                 GALGAS_pic_31__38_RoutineDefinitionList &  parameter_2,
@@ -27606,7 +24908,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceFileParsing_ (C_C
                                 COMMA_LOCATION_ARGS) {
   if (inFilePath.isValid ()) {
     const GALGAS_string filePathAsString = inFilePath.readProperty_string () ;
-    C_String filePath = filePathAsString.stringValue () ;
+    String filePath = filePathAsString.stringValue () ;
     if (! C_FileManager::isAbsolutePath (filePath)) {
       filePath = inCompiler->sourceFilePath ().stringByDeletingLastPathComponent ().stringByAppendingPathComponent (filePath) ;
     }
@@ -27622,15 +24924,19 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceFileParsing_ (C_C
           grammar.nt_body_ (parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, parameter_7, parameter_8, parameter_9, parameter_10, parameter_11, parameter_12, parameter_13, scanner) ;
         }
       }else{
-        C_String message ;
-        message << "the '" << filePath << "' file exists, but cannot be read" ;
+        String message ;
+        message.addString ("the '") ;
+        message.addString (filePath) ;
+        message.addString ("' file exists, but cannot be read") ;
         const GALGAS_location errorLocation (inFilePath.readProperty_location ()) ;
         inCompiler->semanticErrorAtLocation (errorLocation, message, TC_Array <C_FixItDescription> () COMMA_THERE) ;
       }
       macroDetachSharedObject (scanner) ;
     }else{
-      C_String message ;
-      message << "the '" << filePath << "' file does not exist" ;
+      String message ;
+      message.addString ("the '") ;
+      message.addString (filePath) ;
+      message.addString ("' file does not exist") ;
       const GALGAS_location errorLocation (inFilePath.readProperty_location ()) ;
       inCompiler->semanticErrorAtLocation (errorLocation, message, TC_Array <C_FixItDescription> () COMMA_THERE) ;
     }
@@ -27639,7 +24945,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceFileParsing_ (C_C
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceStringParsing_ (C_Compiler * inCompiler,
+void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceStringParsing_ (Compiler * inCompiler,
                                 GALGAS_string inSourceString,
                                 GALGAS_string inNameString,
                                 GALGAS_pic_31__38_InterruptDefinitionList &  parameter_1,
@@ -27657,8 +24963,8 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceStringParsing_ (C
                                 GALGAS_bool &  parameter_13
                                 COMMA_UNUSED_LOCATION_ARGS) {
   if (inSourceString.isValid () && inNameString.isValid ()) {
-    const C_String sourceString = inSourceString.stringValue () ;
-    const C_String nameString = inNameString.stringValue () ;
+    const String sourceString = inSourceString.stringValue () ;
+    const String nameString = inNameString.stringValue () ;
     C_Lexique_piccolo_5F_lexique * scanner = NULL ;
     macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, sourceString, nameString COMMA_HERE)) ;
     if (scanner->sourceText ().isValid ()) {
@@ -28325,7 +25631,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::nt_immediate_5F_primary_ (GALGA
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_0 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 33 34 35 36 37 38 39 40 41 42 43 44 45
+// Productions numbers:  33 34 35 36 37 38 39 40 41 42 43 44 45
   return inLexique->nextProductionIndex () - 32 ;
 }
 
@@ -28336,7 +25642,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_1 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 46 47
+// Productions numbers:  46 47
   return inLexique->nextProductionIndex () - 45 ;
 }
 
@@ -28347,7 +25653,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_2 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 48 49
+// Productions numbers:  48 49
   return inLexique->nextProductionIndex () - 47 ;
 }
 
@@ -28358,7 +25664,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_3 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 50 51
+// Productions numbers:  50 51
   return inLexique->nextProductionIndex () - 49 ;
 }
 
@@ -28369,7 +25675,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_4 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 52 53
+// Productions numbers:  52 53
   return inLexique->nextProductionIndex () - 51 ;
 }
 
@@ -28380,7 +25686,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_5 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 54 55
+// Productions numbers:  54 55
   return inLexique->nextProductionIndex () - 53 ;
 }
 
@@ -28391,7 +25697,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_6 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 56 57
+// Productions numbers:  56 57
   return inLexique->nextProductionIndex () - 55 ;
 }
 
@@ -28402,7 +25708,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_7 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 58 59
+// Productions numbers:  58 59
   return inLexique->nextProductionIndex () - 57 ;
 }
 
@@ -28413,7 +25719,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_8 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 60 61
+// Productions numbers:  60 61
   return inLexique->nextProductionIndex () - 59 ;
 }
 
@@ -28424,7 +25730,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_9 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 62 63 64
+// Productions numbers:  62 63 64
   return inLexique->nextProductionIndex () - 61 ;
 }
 
@@ -28435,7 +25741,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_10 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 65 66
+// Productions numbers:  65 66
   return inLexique->nextProductionIndex () - 64 ;
 }
 
@@ -28446,7 +25752,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_11 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 67 68
+// Productions numbers:  67 68
   return inLexique->nextProductionIndex () - 66 ;
 }
 
@@ -28457,7 +25763,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_12 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 69 70
+// Productions numbers:  69 70
   return inLexique->nextProductionIndex () - 68 ;
 }
 
@@ -28468,7 +25774,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_13 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 71 72 73
+// Productions numbers:  71 72 73
   return inLexique->nextProductionIndex () - 70 ;
 }
 
@@ -28479,7 +25785,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_14 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 74 75
+// Productions numbers:  74 75
   return inLexique->nextProductionIndex () - 73 ;
 }
 
@@ -28490,7 +25796,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_15 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 76 77 78 79 80
+// Productions numbers:  76 77 78 79 80
   return inLexique->nextProductionIndex () - 75 ;
 }
 
@@ -28501,7 +25807,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_16 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 81 82
+// Productions numbers:  81 82
   return inLexique->nextProductionIndex () - 80 ;
 }
 
@@ -28512,7 +25818,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_17 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 83 84
+// Productions numbers:  83 84
   return inLexique->nextProductionIndex () - 82 ;
 }
 
@@ -28523,7 +25829,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_18 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 85 86 87 88 89 90
+// Productions numbers:  85 86 87 88 89 90
   return inLexique->nextProductionIndex () - 84 ;
 }
 
@@ -28534,7 +25840,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_19 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 91 92
+// Productions numbers:  91 92
   return inLexique->nextProductionIndex () - 90 ;
 }
 
@@ -28545,7 +25851,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_20 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 93 94
+// Productions numbers:  93 94
   return inLexique->nextProductionIndex () - 92 ;
 }
 
@@ -28556,7 +25862,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_21 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121
+// Productions numbers:  95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121
   return inLexique->nextProductionIndex () - 94 ;
 }
 
@@ -28567,7 +25873,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_22 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 122 123
+// Productions numbers:  122 123
   return inLexique->nextProductionIndex () - 121 ;
 }
 
@@ -28578,7 +25884,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_23 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 124 125
+// Productions numbers:  124 125
   return inLexique->nextProductionIndex () - 123 ;
 }
 
@@ -28589,7 +25895,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_24 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 126 127
+// Productions numbers:  126 127
   return inLexique->nextProductionIndex () - 125 ;
 }
 
@@ -28600,7 +25906,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_25 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 128 129
+// Productions numbers:  128 129
   return inLexique->nextProductionIndex () - 127 ;
 }
 
@@ -28611,7 +25917,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_26 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 130 131
+// Productions numbers:  130 131
   return inLexique->nextProductionIndex () - 129 ;
 }
 
@@ -28622,7 +25928,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_27 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 132 133
+// Productions numbers:  132 133
   return inLexique->nextProductionIndex () - 131 ;
 }
 
@@ -28633,7 +25939,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_28 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 134 135
+// Productions numbers:  134 135
   return inLexique->nextProductionIndex () - 133 ;
 }
 
@@ -28644,7 +25950,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_29 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 136 137
+// Productions numbers:  136 137
   return inLexique->nextProductionIndex () - 135 ;
 }
 
@@ -28655,7 +25961,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_30 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 138 139
+// Productions numbers:  138 139
   return inLexique->nextProductionIndex () - 137 ;
 }
 
@@ -28666,7 +25972,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_31 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 140 141
+// Productions numbers:  140 141
   return inLexique->nextProductionIndex () - 139 ;
 }
 
@@ -28677,7 +25983,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_32 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 142 143
+// Productions numbers:  142 143
   return inLexique->nextProductionIndex () - 141 ;
 }
 
@@ -28688,7 +25994,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_33 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 144 145
+// Productions numbers:  144 145
   return inLexique->nextProductionIndex () - 143 ;
 }
 
@@ -28699,7 +26005,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_34 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 146 147
+// Productions numbers:  146 147
   return inLexique->nextProductionIndex () - 145 ;
 }
 
@@ -28710,7 +26016,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_35 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 148 149
+// Productions numbers:  148 149
   return inLexique->nextProductionIndex () - 147 ;
 }
 
@@ -28721,7 +26027,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_36 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 150 151 152 153
+// Productions numbers:  150 151 152 153
   return inLexique->nextProductionIndex () - 149 ;
 }
 
@@ -28732,7 +26038,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_37 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 154 155
+// Productions numbers:  154 155
   return inLexique->nextProductionIndex () - 153 ;
 }
 
@@ -28743,7 +26049,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_38 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 156 157
+// Productions numbers:  156 157
   return inLexique->nextProductionIndex () - 155 ;
 }
 
@@ -28754,7 +26060,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_39 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 158 159
+// Productions numbers:  158 159
   return inLexique->nextProductionIndex () - 157 ;
 }
 
@@ -28765,7 +26071,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_40 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 160 161
+// Productions numbers:  160 161
   return inLexique->nextProductionIndex () - 159 ;
 }
 
@@ -28776,7 +26082,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_41 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 162 163
+// Productions numbers:  162 163
   return inLexique->nextProductionIndex () - 161 ;
 }
 
@@ -28787,7 +26093,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_42 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 164 165
+// Productions numbers:  164 165
   return inLexique->nextProductionIndex () - 163 ;
 }
 
@@ -28798,7 +26104,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_43 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 166 167 168 169
+// Productions numbers:  166 167 168 169
   return inLexique->nextProductionIndex () - 165 ;
 }
 
@@ -28809,7 +26115,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_44 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 170 171
+// Productions numbers:  170 171
   return inLexique->nextProductionIndex () - 169 ;
 }
 
@@ -28820,7 +26126,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_45 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 172 173
+// Productions numbers:  172 173
   return inLexique->nextProductionIndex () - 171 ;
 }
 
@@ -28831,7 +26137,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_46 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 174 175
+// Productions numbers:  174 175
   return inLexique->nextProductionIndex () - 173 ;
 }
 
@@ -28842,7 +26148,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_47 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 176 177
+// Productions numbers:  176 177
   return inLexique->nextProductionIndex () - 175 ;
 }
 
@@ -28853,7 +26159,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_48 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 178 179
+// Productions numbers:  178 179
   return inLexique->nextProductionIndex () - 177 ;
 }
 
@@ -28864,7 +26170,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_49 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 180 181
+// Productions numbers:  180 181
   return inLexique->nextProductionIndex () - 179 ;
 }
 
@@ -28875,7 +26181,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_50 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 182 183
+// Productions numbers:  182 183
   return inLexique->nextProductionIndex () - 181 ;
 }
 
@@ -28886,7 +26192,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_51 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 184 185
+// Productions numbers:  184 185
   return inLexique->nextProductionIndex () - 183 ;
 }
 
@@ -28897,7 +26203,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_52 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 186 187
+// Productions numbers:  186 187
   return inLexique->nextProductionIndex () - 185 ;
 }
 
@@ -28908,7 +26214,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_53 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 188 189 190 191 192 193 194 195
+// Productions numbers:  188 189 190 191 192 193 194 195
   return inLexique->nextProductionIndex () - 187 ;
 }
 
@@ -28919,7 +26225,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_54 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 196 197
+// Productions numbers:  196 197
   return inLexique->nextProductionIndex () - 195 ;
 }
 
@@ -28930,7 +26236,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_55 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 198 199 200
+// Productions numbers:  198 199 200
   return inLexique->nextProductionIndex () - 197 ;
 }
 
@@ -28941,7 +26247,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_56 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 201 202
+// Productions numbers:  201 202
   return inLexique->nextProductionIndex () - 200 ;
 }
 
@@ -28952,7 +26258,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_57 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 203 204
+// Productions numbers:  203 204
   return inLexique->nextProductionIndex () - 202 ;
 }
 
@@ -28963,7 +26269,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_58 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224
+// Productions numbers:  205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224
   return inLexique->nextProductionIndex () - 204 ;
 }
 
@@ -28974,7 +26280,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_59 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241
+// Productions numbers:  225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241
   return inLexique->nextProductionIndex () - 224 ;
 }
 
@@ -28985,7 +26291,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_60 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 242 243 244 245 246
+// Productions numbers:  242 243 244 245 246
   return inLexique->nextProductionIndex () - 241 ;
 }
 
@@ -28996,7 +26302,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_61 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 247 248 249
+// Productions numbers:  247 248 249
   return inLexique->nextProductionIndex () - 246 ;
 }
 
@@ -29007,7 +26313,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_62 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 250 251 252 253 254 255 256
+// Productions numbers:  250 251 252 253 254 255 256
   return inLexique->nextProductionIndex () - 249 ;
 }
 
@@ -29018,7 +26324,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_63 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 257 258 259 260
+// Productions numbers:  257 258 259 260
   return inLexique->nextProductionIndex () - 256 ;
 }
 
@@ -29029,7 +26335,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax_64 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 261 262 263 264
+// Productions numbers:  261 262 263 264
   return inLexique->nextProductionIndex () - 260 ;
 }
 
@@ -29040,7 +26346,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_pic_31__38__5F_syntax
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_0 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 265 266
+// Productions numbers:  265 266
   return inLexique->nextProductionIndex () - 264 ;
 }
 
@@ -29051,7 +26357,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_0 (C_Lexique_
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_1 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 267 268
+// Productions numbers:  267 268
   return inLexique->nextProductionIndex () - 266 ;
 }
 
@@ -29062,7 +26368,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_1 (C_Lexique_
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_2 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 269 270 271
+// Productions numbers:  269 270 271
   return inLexique->nextProductionIndex () - 268 ;
 }
 
@@ -29073,7 +26379,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_2 (C_Lexique_
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_3 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 272 273
+// Productions numbers:  272 273
   return inLexique->nextProductionIndex () - 271 ;
 }
 
@@ -29084,7 +26390,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_3 (C_Lexique_
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_4 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 274 275
+// Productions numbers:  274 275
   return inLexique->nextProductionIndex () - 273 ;
 }
 
@@ -29095,7 +26401,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_4 (C_Lexique_
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_5 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 276 277
+// Productions numbers:  276 277
   return inLexique->nextProductionIndex () - 275 ;
 }
 
@@ -29106,7 +26412,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_5 (C_Lexique_
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_6 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 278 279 280
+// Productions numbers:  278 279 280
   return inLexique->nextProductionIndex () - 277 ;
 }
 
@@ -29117,7 +26423,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_6 (C_Lexique_
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_7 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 281 282
+// Productions numbers:  281 282
   return inLexique->nextProductionIndex () - 280 ;
 }
 
@@ -29128,7 +26434,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_7 (C_Lexique_
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_8 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 283 284
+// Productions numbers:  283 284
   return inLexique->nextProductionIndex () - 282 ;
 }
 
@@ -29139,7 +26445,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_8 (C_Lexique_
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_9 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 285 286
+// Productions numbers:  285 286
   return inLexique->nextProductionIndex () - 284 ;
 }
 
@@ -29150,7 +26456,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_9 (C_Lexique_
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_10 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 287 288 289
+// Productions numbers:  287 288 289
   return inLexique->nextProductionIndex () - 286 ;
 }
 
@@ -29161,7 +26467,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_10 (C_Lexique
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_11 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 290 291
+// Productions numbers:  290 291
   return inLexique->nextProductionIndex () - 289 ;
 }
 
@@ -29172,7 +26478,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_11 (C_Lexique
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_12 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 292 293 294 295 296 297 298
+// Productions numbers:  292 293 294 295 296 297 298
   return inLexique->nextProductionIndex () - 291 ;
 }
 
@@ -29183,7 +26489,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_12 (C_Lexique
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_13 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 299 300 301 302 303
+// Productions numbers:  299 300 301 302 303
   return inLexique->nextProductionIndex () - 298 ;
 }
 
@@ -29194,7 +26500,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_13 (C_Lexique
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_14 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 304 305 306 307
+// Productions numbers:  304 305 306 307
   return inLexique->nextProductionIndex () - 303 ;
 }
 
@@ -29205,7 +26511,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_14 (C_Lexique
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_15 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 308 309 310 311 312 313 314
+// Productions numbers:  308 309 310 311 312 313 314
   return inLexique->nextProductionIndex () - 307 ;
 }
 
@@ -29216,7 +26522,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_15 (C_Lexique
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_16 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 315 316
+// Productions numbers:  315 316
   return inLexique->nextProductionIndex () - 314 ;
 }
 
@@ -29227,7 +26533,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_16 (C_Lexique
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_17 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 317 318
+// Productions numbers:  317 318
   return inLexique->nextProductionIndex () - 316 ;
 }
 
@@ -29238,7 +26544,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_17 (C_Lexique
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_18 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 319 320
+// Productions numbers:  319 320
   return inLexique->nextProductionIndex () - 318 ;
 }
 
@@ -29249,7 +26555,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_18 (C_Lexique
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_19 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 321 322
+// Productions numbers:  321 322
   return inLexique->nextProductionIndex () - 320 ;
 }
 
@@ -29260,7 +26566,7 @@ int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_19 (C_Lexique
 //---------------------------------------------------------------------------------------------------------------------*
 
 int32_t cGrammar_pic_31__38__5F_include_5F_grammar::select_communs_20 (C_Lexique_piccolo_5F_lexique * inLexique) {
-// Productions numbers : 323 324
+// Productions numbers:  323 324
   return inLexique->nextProductionIndex () - 322 ;
 }
 

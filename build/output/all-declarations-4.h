@@ -1,1611 +1,18 @@
 #pragma once
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 #include "all-declarations-3.h"
 
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_fnop_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak : public GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_fnop & inSource) ;
-
-  public: GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_fnop & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_fnop bang_pic_31__38_Instruction_5F_fnop_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_LFSR reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_LFSR : public GALGAS_pic_31__38_PiccoloSimpleInstruction {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_LFSR (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GALGAS_pic_31__38_Instruction_5F_LFSR (const class cPtr_pic_31__38_Instruction_5F_LFSR * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_luint readProperty_mFSRindex (void) const ;
-
-  public: class GALGAS_immediatExpression readProperty_mImmediatExpression (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_LFSR extractObject (const GALGAS_object & inObject,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_LFSR constructor_new (const class GALGAS_location & inOperand0,
-                                                                              const class GALGAS_luint & inOperand1,
-                                                                              const class GALGAS_immediatExpression & inOperand2
-                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_LFSR & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMFSRindex (class GALGAS_luint inArgument0
-                                                     COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMImmediatExpression (class GALGAS_immediatExpression inArgument0
-                                                               COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_LFSR class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @pic18Instruction_LFSR class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_Instruction_5F_LFSR : public cPtr_pic_31__38_PiccoloSimpleInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-//--- Extension method addUsedRoutines
-  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method analyzeSimpleInstruction
-  public: virtual void method_analyzeSimpleInstruction (const class GALGAS_uint inAccessBankSplitOffset,
-           const class GALGAS_routineMap inRoutineMap,
-           const class GALGAS_registerTable inRegisterTable,
-           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
-           const class GALGAS_constantMap inConstantMap,
-           class GALGAS_uint & ioCurrentBank,
-           const class GALGAS_bool inShouldPreserveBSR,
-           class GALGAS_stringset & ioUsedRegisters,
-           class GALGAS_ipic_31__38_SequentialInstruction & outInstruction,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GALGAS_luint mProperty_mFSRindex ;
-  public: GALGAS_immediatExpression mProperty_mImmediatExpression ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_Instruction_5F_LFSR (const GALGAS_location & in_mInstructionLocation,
-                                               const GALGAS_luint & in_mFSRindex,
-                                               const GALGAS_immediatExpression & in_mImmediatExpression
-                                               COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_LFSR_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_LFSR_2D_weak : public GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_LFSR_2D_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_pic_31__38_Instruction_5F_LFSR_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_LFSR & inSource) ;
-
-  public: GALGAS_pic_31__38_Instruction_5F_LFSR_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_LFSR & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_LFSR bang_pic_31__38_Instruction_5F_LFSR_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_LFSR_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_LFSR_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_LFSR_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_LFSR_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_LTBLPTR reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_LTBLPTR : public GALGAS_pic_31__38_PiccoloInstruction {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_LTBLPTR (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GALGAS_pic_31__38_Instruction_5F_LTBLPTR (const class cPtr_pic_31__38_Instruction_5F_LTBLPTR * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_immediatExpression readProperty_mImmediatExpression (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_LTBLPTR extractObject (const GALGAS_object & inObject,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_LTBLPTR constructor_new (const class GALGAS_location & inOperand0,
-                                                                                 const class GALGAS_immediatExpression & inOperand1
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_LTBLPTR & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMImmediatExpression (class GALGAS_immediatExpression inArgument0
-                                                               COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_LTBLPTR class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LTBLPTR ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @pic18Instruction_LTBLPTR class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_Instruction_5F_LTBLPTR : public cPtr_pic_31__38_PiccoloInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-//--- Extension method addUsedRoutines
-  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method analyze
-  public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
-           class GALGAS_ipic_31__38_BlockList & ioGeneratedBlockList,
-           const class GALGAS_routineMap inRoutineMap,
-           const class GALGAS_registerTable inRegisterTable,
-           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
-           const class GALGAS_constantMap inConstantMap,
-           const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_uint & ioLocalLabelIndex,
-           class GALGAS_ipic_31__38_SequentialInstructionList & ioGeneratedInstructionList,
-           class GALGAS_lstring & ioBlockLabel,
-           class GALGAS_string & ioListFileContents,
-           class GALGAS_uint & ioCurrentBank,
-           const class GALGAS_bool inShouldPreserveBSR,
-           const class GALGAS_routineKind inRoutineKind,
-           class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GALGAS_immediatExpression mProperty_mImmediatExpression ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_Instruction_5F_LTBLPTR (const GALGAS_location & in_mInstructionLocation,
-                                                  const GALGAS_immediatExpression & in_mImmediatExpression
-                                                  COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_LTBLPTR_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_LTBLPTR_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_LTBLPTR_2D_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_pic_31__38_Instruction_5F_LTBLPTR_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_LTBLPTR & inSource) ;
-
-  public: GALGAS_pic_31__38_Instruction_5F_LTBLPTR_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_LTBLPTR & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_LTBLPTR bang_pic_31__38_Instruction_5F_LTBLPTR_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_LTBLPTR_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                 C_Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_LTBLPTR_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_LTBLPTR_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_LTBLPTR_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LTBLPTR_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_LDATA_38_PTR reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR : public GALGAS_pic_31__38_PiccoloInstruction {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR (const class cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_lstring readProperty_mDataName (void) const ;
-
-  public: class GALGAS_luint readProperty_mDataIndex (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR constructor_new (const class GALGAS_location & inOperand0,
-                                                                                      const class GALGAS_lstring & inOperand1,
-                                                                                      const class GALGAS_luint & inOperand2
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMDataIndex (class GALGAS_luint inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMDataName (class GALGAS_lstring inArgument0
-                                                     COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @pic18Instruction_LDATA8PTR class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR : public cPtr_pic_31__38_PiccoloInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-//--- Extension method addUsedRoutines
-  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method analyze
-  public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
-           class GALGAS_ipic_31__38_BlockList & ioGeneratedBlockList,
-           const class GALGAS_routineMap inRoutineMap,
-           const class GALGAS_registerTable inRegisterTable,
-           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
-           const class GALGAS_constantMap inConstantMap,
-           const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_uint & ioLocalLabelIndex,
-           class GALGAS_ipic_31__38_SequentialInstructionList & ioGeneratedInstructionList,
-           class GALGAS_lstring & ioBlockLabel,
-           class GALGAS_string & ioListFileContents,
-           class GALGAS_uint & ioCurrentBank,
-           const class GALGAS_bool inShouldPreserveBSR,
-           const class GALGAS_routineKind inRoutineKind,
-           class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GALGAS_lstring mProperty_mDataName ;
-  public: GALGAS_luint mProperty_mDataIndex ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR (const GALGAS_location & in_mInstructionLocation,
-                                                       const GALGAS_lstring & in_mDataName,
-                                                       const GALGAS_luint & in_mDataIndex
-                                                       COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_LDATA_38_PTR_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR_2D_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR & inSource) ;
-
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR bang_pic_31__38_Instruction_5F_LDATA_38_PTR_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                      C_Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_LDATA_31__36_PTR reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR : public GALGAS_pic_31__38_PiccoloInstruction {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR (const class cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_lstring readProperty_mDataName (void) const ;
-
-  public: class GALGAS_luint readProperty_mDataIndex (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR extractObject (const GALGAS_object & inObject,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR constructor_new (const class GALGAS_location & inOperand0,
-                                                                                          const class GALGAS_lstring & inOperand1,
-                                                                                          const class GALGAS_luint & inOperand2
-                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMDataIndex (class GALGAS_luint inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMDataName (class GALGAS_lstring inArgument0
-                                                     COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @pic18Instruction_LDATA16PTR class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR : public cPtr_pic_31__38_PiccoloInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-//--- Extension method addUsedRoutines
-  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method analyze
-  public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
-           class GALGAS_ipic_31__38_BlockList & ioGeneratedBlockList,
-           const class GALGAS_routineMap inRoutineMap,
-           const class GALGAS_registerTable inRegisterTable,
-           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
-           const class GALGAS_constantMap inConstantMap,
-           const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_uint & ioLocalLabelIndex,
-           class GALGAS_ipic_31__38_SequentialInstructionList & ioGeneratedInstructionList,
-           class GALGAS_lstring & ioBlockLabel,
-           class GALGAS_string & ioListFileContents,
-           class GALGAS_uint & ioCurrentBank,
-           const class GALGAS_bool inShouldPreserveBSR,
-           const class GALGAS_routineKind inRoutineKind,
-           class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GALGAS_lstring mProperty_mDataName ;
-  public: GALGAS_luint mProperty_mDataIndex ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR (const GALGAS_location & in_mInstructionLocation,
-                                                           const GALGAS_lstring & in_mDataName,
-                                                           const GALGAS_luint & in_mDataIndex
-                                                           COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR & inSource) ;
-
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR bang_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//                                           Phase 1: @tableAccessOption enum                                          *
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_tableAccessOption : public AC_GALGAS_root {
-//--------------------------------- Default constructor
-  public: GALGAS_tableAccessOption (void) ;
-
-//--------------------------------- Enumeration
-  public: typedef enum {
-    kNotBuilt,
-    kEnum_simpleAccess,
-    kEnum_postIncrement,
-    kEnum_postDecrement,
-    kEnum_preIncrement
-  } enumeration ;
-  
-//--------------------------------- Private data member
-  private: enumeration mEnum ;
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return kNotBuilt != mEnum ; }
-  public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
-  public: inline enumeration enumValue (void) const { return mEnum ; }
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_tableAccessOption extractObject (const GALGAS_object & inObject,
-                                                         C_Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_tableAccessOption constructor_postDecrement (LOCATION_ARGS) ;
-
-  public: static class GALGAS_tableAccessOption constructor_postIncrement (LOCATION_ARGS) ;
-
-  public: static class GALGAS_tableAccessOption constructor_preIncrement (LOCATION_ARGS) ;
-
-  public: static class GALGAS_tableAccessOption constructor_simpleAccess (LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_tableAccessOption & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPostDecrement (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPostIncrement (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPreIncrement (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSimpleAccess (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Optional Methods
-  public: VIRTUAL_IN_DEBUG bool optional_postDecrement () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_postIncrement () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_preIncrement () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_simpleAccess () const ;
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_tableAccessOption class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableAccessOption ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_TBLRD reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_TBLRD : public GALGAS_pic_31__38_PiccoloSimpleInstruction {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_TBLRD (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GALGAS_pic_31__38_Instruction_5F_TBLRD (const class cPtr_pic_31__38_Instruction_5F_TBLRD * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_tableAccessOption readProperty_mOption (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_TBLRD extractObject (const GALGAS_object & inObject,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_TBLRD constructor_new (const class GALGAS_location & inOperand0,
-                                                                               const class GALGAS_tableAccessOption & inOperand1
-                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_TBLRD & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMOption (class GALGAS_tableAccessOption inArgument0
-                                                   COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_TBLRD class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_TBLRD ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @pic18Instruction_TBLRD class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_Instruction_5F_TBLRD : public cPtr_pic_31__38_PiccoloSimpleInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-//--- Extension method addUsedRoutines
-  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method analyzeSimpleInstruction
-  public: virtual void method_analyzeSimpleInstruction (const class GALGAS_uint inAccessBankSplitOffset,
-           const class GALGAS_routineMap inRoutineMap,
-           const class GALGAS_registerTable inRegisterTable,
-           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
-           const class GALGAS_constantMap inConstantMap,
-           class GALGAS_uint & ioCurrentBank,
-           const class GALGAS_bool inShouldPreserveBSR,
-           class GALGAS_stringset & ioUsedRegisters,
-           class GALGAS_ipic_31__38_SequentialInstruction & outInstruction,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GALGAS_tableAccessOption mProperty_mOption ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_Instruction_5F_TBLRD (const GALGAS_location & in_mInstructionLocation,
-                                                const GALGAS_tableAccessOption & in_mOption
-                                                COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_TBLRD_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_TBLRD_2D_weak : public GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_TBLRD_2D_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_pic_31__38_Instruction_5F_TBLRD_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_TBLRD & inSource) ;
-
-  public: GALGAS_pic_31__38_Instruction_5F_TBLRD_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_TBLRD & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_TBLRD bang_pic_31__38_Instruction_5F_TBLRD_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_TBLRD_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_TBLRD_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_TBLRD_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_TBLRD_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_TBLRD_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_TBLWT reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_TBLWT : public GALGAS_pic_31__38_PiccoloSimpleInstruction {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_TBLWT (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GALGAS_pic_31__38_Instruction_5F_TBLWT (const class cPtr_pic_31__38_Instruction_5F_TBLWT * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_tableAccessOption readProperty_mOption (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_TBLWT extractObject (const GALGAS_object & inObject,
-                                                                       C_Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_TBLWT constructor_new (const class GALGAS_location & inOperand0,
-                                                                               const class GALGAS_tableAccessOption & inOperand1
-                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_TBLWT & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMOption (class GALGAS_tableAccessOption inArgument0
-                                                   COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_TBLWT class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_TBLWT ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @pic18Instruction_TBLWT class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_Instruction_5F_TBLWT : public cPtr_pic_31__38_PiccoloSimpleInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-//--- Extension method addUsedRoutines
-  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method analyzeSimpleInstruction
-  public: virtual void method_analyzeSimpleInstruction (const class GALGAS_uint inAccessBankSplitOffset,
-           const class GALGAS_routineMap inRoutineMap,
-           const class GALGAS_registerTable inRegisterTable,
-           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
-           const class GALGAS_constantMap inConstantMap,
-           class GALGAS_uint & ioCurrentBank,
-           const class GALGAS_bool inShouldPreserveBSR,
-           class GALGAS_stringset & ioUsedRegisters,
-           class GALGAS_ipic_31__38_SequentialInstruction & outInstruction,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GALGAS_tableAccessOption mProperty_mOption ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_Instruction_5F_TBLWT (const GALGAS_location & in_mInstructionLocation,
-                                                const GALGAS_tableAccessOption & in_mOption
-                                                COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_TBLWT_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak : public GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_TBLWT & inSource) ;
-
-  public: GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_TBLWT & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_TBLWT bang_pic_31__38_Instruction_5F_TBLWT_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                               C_Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_MNOP reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_MNOP : public GALGAS_pic_31__38_PiccoloInstruction {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_MNOP (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GALGAS_pic_31__38_Instruction_5F_MNOP (const class cPtr_pic_31__38_Instruction_5F_MNOP * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_luint readProperty_mOccurrenceFactor (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_MNOP extractObject (const GALGAS_object & inObject,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_MNOP constructor_new (const class GALGAS_location & inOperand0,
-                                                                              const class GALGAS_luint & inOperand1
-                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_MNOP & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMOccurrenceFactor (class GALGAS_luint inArgument0
-                                                             COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_MNOP class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_MNOP ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @pic18Instruction_MNOP class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_Instruction_5F_MNOP : public cPtr_pic_31__38_PiccoloInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-//--- Extension method addUsedRoutines
-  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method analyze
-  public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
-           class GALGAS_ipic_31__38_BlockList & ioGeneratedBlockList,
-           const class GALGAS_routineMap inRoutineMap,
-           const class GALGAS_registerTable inRegisterTable,
-           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
-           const class GALGAS_constantMap inConstantMap,
-           const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_uint & ioLocalLabelIndex,
-           class GALGAS_ipic_31__38_SequentialInstructionList & ioGeneratedInstructionList,
-           class GALGAS_lstring & ioBlockLabel,
-           class GALGAS_string & ioListFileContents,
-           class GALGAS_uint & ioCurrentBank,
-           const class GALGAS_bool inShouldPreserveBSR,
-           const class GALGAS_routineKind inRoutineKind,
-           class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GALGAS_luint mProperty_mOccurrenceFactor ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_Instruction_5F_MNOP (const GALGAS_location & in_mInstructionLocation,
-                                               const GALGAS_luint & in_mOccurrenceFactor
-                                               COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_MNOP_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_MNOP & inSource) ;
-
-  public: GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_MNOP & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_MNOP bang_pic_31__38_Instruction_5F_MNOP_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_NOPBRA reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_NOPBRA : public GALGAS_pic_31__38_PiccoloInstruction {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_NOPBRA (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GALGAS_pic_31__38_Instruction_5F_NOPBRA (const class cPtr_pic_31__38_Instruction_5F_NOPBRA * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_luint readProperty_mOccurrenceFactor (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_NOPBRA extractObject (const GALGAS_object & inObject,
-                                                                        C_Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_NOPBRA constructor_new (const class GALGAS_location & inOperand0,
-                                                                                const class GALGAS_luint & inOperand1
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_NOPBRA & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMOccurrenceFactor (class GALGAS_luint inArgument0
-                                                             COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_NOPBRA class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_NOPBRA ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @pic18Instruction_NOPBRA class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_Instruction_5F_NOPBRA : public cPtr_pic_31__38_PiccoloInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-//--- Extension method addUsedRoutines
-  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method analyze
-  public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
-           class GALGAS_ipic_31__38_BlockList & ioGeneratedBlockList,
-           const class GALGAS_routineMap inRoutineMap,
-           const class GALGAS_registerTable inRegisterTable,
-           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
-           const class GALGAS_constantMap inConstantMap,
-           const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_uint & ioLocalLabelIndex,
-           class GALGAS_ipic_31__38_SequentialInstructionList & ioGeneratedInstructionList,
-           class GALGAS_lstring & ioBlockLabel,
-           class GALGAS_string & ioListFileContents,
-           class GALGAS_uint & ioCurrentBank,
-           const class GALGAS_bool inShouldPreserveBSR,
-           const class GALGAS_routineKind inRoutineKind,
-           class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GALGAS_luint mProperty_mOccurrenceFactor ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_Instruction_5F_NOPBRA (const GALGAS_location & in_mInstructionLocation,
-                                                 const GALGAS_luint & in_mOccurrenceFactor
-                                                 COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_NOPBRA_2D_weak weak reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_NOPBRA & inSource) ;
-
-  public: GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_NOPBRA & inSource) ;
-
-//--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_NOPBRA bang_pic_31__38_Instruction_5F_NOPBRA_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                C_Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak constructor_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_Instruction_5F_FOREVER reference class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_Instruction_5F_FOREVER : public GALGAS_pic_31__38_PiccoloInstruction {
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_Instruction_5F_FOREVER (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GALGAS_pic_31__38_Instruction_5F_FOREVER (const class cPtr_pic_31__38_Instruction_5F_FOREVER * inSourcePtr) ;
-
-//--------------------------------- Property read access
-  public: class GALGAS_pic_31__38_InstructionList readProperty_mInstructionList (void) const ;
-
-  public: class GALGAS_location readProperty_mEndOfInstructionList (void) const ;
-
-//-- Start of generic part --*
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_Instruction_5F_FOREVER extractObject (const GALGAS_object & inObject,
-                                                                         C_Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_pic_31__38_Instruction_5F_FOREVER constructor_new (const class GALGAS_location & inOperand0,
-                                                                                 const class GALGAS_pic_31__38_InstructionList & inOperand1,
-                                                                                 const class GALGAS_location & inOperand2
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_FOREVER & inOperand) const ;
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMEndOfInstructionList (class GALGAS_location inArgument0
-                                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMInstructionList (class GALGAS_pic_31__38_InstructionList inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_Instruction_5F_FOREVER class
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_FOREVER ;
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @pic18Instruction_FOREVER class
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_Instruction_5F_FOREVER : public cPtr_pic_31__38_PiccoloInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-//--- Extension method addUsedRoutines
-  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method analyze
-  public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
-           class GALGAS_ipic_31__38_BlockList & ioGeneratedBlockList,
-           const class GALGAS_routineMap inRoutineMap,
-           const class GALGAS_registerTable inRegisterTable,
-           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
-           const class GALGAS_constantMap inConstantMap,
-           const class GALGAS_pic_31__38_MacroMap inMacroMap,
-           class GALGAS_uint & ioLocalLabelIndex,
-           class GALGAS_ipic_31__38_SequentialInstructionList & ioGeneratedInstructionList,
-           class GALGAS_lstring & ioBlockLabel,
-           class GALGAS_string & ioListFileContents,
-           class GALGAS_uint & ioCurrentBank,
-           const class GALGAS_bool inShouldPreserveBSR,
-           const class GALGAS_routineKind inRoutineKind,
-           class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performInlining
-  public: virtual void method_performInlining (const class GALGAS_stringset inInlinedRoutineSet,
-           const class GALGAS_declaredRoutineMap inDeclaredRoutineMap,
-           const class GALGAS_stringset inCurrentlyInlinedRoutineSet,
-           class GALGAS_pic_31__38_InstructionList & ioInstructionList,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
-  public: GALGAS_location mProperty_mEndOfInstructionList ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_Instruction_5F_FOREVER (const GALGAS_location & in_mInstructionLocation,
-                                                  const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                  const GALGAS_location & in_mEndOfInstructionList
-                                                  COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (C_String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
-
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_FOREVER_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
 //--------------------------------- Default constructor
@@ -1617,7 +24,7 @@ class GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak : public GALGAS_pic_31__3
   public: GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_FOREVER & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_FOREVER bang_pic_31__38_Instruction_5F_FOREVER_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_Instruction_5F_FOREVER bang_pic_31__38_Instruction_5F_FOREVER_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -1626,7 +33,7 @@ class GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak : public GALGAS_pic_31__3
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                 C_Compiler * inCompiler
+                                                                                 Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -1650,15 +57,15 @@ class GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak : public GALGAS_pic_31__3
 } ; // End of GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //                                       Phase 1: @if_5F_semi_5F_colon_5F_op enum                                      *
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_if_5F_semi_5F_colon_5F_op : public AC_GALGAS_root {
 //--------------------------------- Default constructor
@@ -1688,7 +95,7 @@ class GALGAS_if_5F_semi_5F_colon_5F_op : public AC_GALGAS_root {
 
 //--------------------------------- Object extraction
   public: static GALGAS_if_5F_semi_5F_colon_5F_op extractObject (const GALGAS_object & inObject,
-                                                                 C_Compiler * inCompiler
+                                                                 Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -1701,8 +108,8 @@ class GALGAS_if_5F_semi_5F_colon_5F_op : public AC_GALGAS_root {
   public: static class GALGAS_if_5F_semi_5F_colon_5F_op constructor_TSTFSZ (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_if_5F_semi_5F_colon_5F_op & inOperand) const ;
 
@@ -1737,15 +144,15 @@ class GALGAS_if_5F_semi_5F_colon_5F_op : public AC_GALGAS_root {
 } ; // End of GALGAS_if_5F_semi_5F_colon_5F_op class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_if_5F_semi_5F_colon_5F_op ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON : public GALGAS_pic_31__38_PiccoloInstruction {
 //--------------------------------- Default constructor
@@ -1764,7 +171,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON : public GALGAS_pic_3
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON extractObject (const GALGAS_object & inObject,
-                                                                                     C_Compiler * inCompiler
+                                                                                     Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -1788,15 +195,15 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON : public GALGAS_pic_3
 } ; // End of GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18Instruction_IF_SEMI_COLON class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_pic_31__38_PiccoloInstruction {
 
@@ -1813,7 +220,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_pic_31__3
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override = 0 ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override = 0 ;
@@ -1822,11 +229,11 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_pic_31__3
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
 //--------------------------------- Default constructor
@@ -1838,7 +245,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak : public GALG
   public: GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON bang_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON bang_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -1847,7 +254,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak : public GALG
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                             C_Compiler * inCompiler
+                                                                                             Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -1871,15 +278,15 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak : public GALG
 } ; // End of GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON {
 //--------------------------------- Default constructor
@@ -1900,7 +307,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public GALGAS
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON extractObject (const GALGAS_object & inObject,
-                                                                                           C_Compiler * inCompiler
+                                                                                           Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -1934,15 +341,15 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public GALGAS
 } ; // End of GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18Instruction_IF_FA_SEMI_COLON class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON {
 
@@ -1952,7 +359,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public cPtr_pic
 //--- Extension method addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
            class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method analyze
   public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
@@ -1970,7 +377,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public cPtr_pic
            const class GALGAS_bool inShouldPreserveBSR,
            const class GALGAS_routineKind inRoutineKind,
            class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_if_5F_semi_5F_colon_5F_op mProperty_mOpCode ;
@@ -1988,7 +395,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public cPtr_pic
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -1997,11 +404,11 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public cPtr_pic
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak : public GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak {
 //--------------------------------- Default constructor
@@ -2013,7 +420,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak : publi
   public: GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON bang_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON bang_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -2022,7 +429,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak : publi
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                                   C_Compiler * inCompiler
+                                                                                                   Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2046,15 +453,15 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak : publi
 } ; // End of GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_IF_5F_BitTest reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest : public GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON {
 //--------------------------------- Default constructor
@@ -2077,7 +484,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest : public GALGAS_pic_31__38_
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest extractObject (const GALGAS_object & inObject,
-                                                                               C_Compiler * inCompiler
+                                                                               Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2115,15 +522,15 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest : public GALGAS_pic_31__38_
 } ; // End of GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18Instruction_IF_BitTest class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest : public cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON {
 
@@ -2133,7 +540,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest : public cPtr_pic_31__38_Inst
 //--- Extension method addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
            class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method analyze
   public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
@@ -2151,7 +558,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest : public cPtr_pic_31__38_Inst
            const class GALGAS_bool inShouldPreserveBSR,
            const class GALGAS_routineKind inRoutineKind,
            class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_bool mProperty_mSkipIfSet ;
@@ -2171,7 +578,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest : public cPtr_pic_31__38_Inst
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -2180,11 +587,11 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest : public cPtr_pic_31__38_Inst
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak : public GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak {
 //--------------------------------- Default constructor
@@ -2196,7 +603,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak : public GALGAS_pic
   public: GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest bang_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest bang_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -2205,7 +612,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak : public GALGAS_pic
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                       C_Compiler * inCompiler
+                                                                                       Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2229,15 +636,15 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak : public GALGAS_pic
 } ; // End of GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_IF_5F_IncDec reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec : public GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON {
 //--------------------------------- Default constructor
@@ -2262,7 +669,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec : public GALGAS_pic_31__38_I
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
+                                                                              Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2304,15 +711,15 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec : public GALGAS_pic_31__38_I
 } ; // End of GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18Instruction_IF_IncDec class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec : public cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON {
 
@@ -2322,7 +729,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec : public cPtr_pic_31__38_Instr
 //--- Extension method addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
            class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method analyze
   public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
@@ -2340,7 +747,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec : public cPtr_pic_31__38_Instr
            const class GALGAS_bool inShouldPreserveBSR,
            const class GALGAS_routineKind inRoutineKind,
            class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_bool mProperty_mIncrement ;
@@ -2362,7 +769,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec : public cPtr_pic_31__38_Instr
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -2371,11 +778,11 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec : public cPtr_pic_31__38_Instr
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak : public GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak {
 //--------------------------------- Default constructor
@@ -2387,7 +794,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak : public GALGAS_pic_
   public: GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec bang_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec bang_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -2396,7 +803,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak : public GALGAS_pic_
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                      C_Compiler * inCompiler
+                                                                                      Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2420,15 +827,15 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak : public GALGAS_pic_
 } ; // End of GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_computed_5F_retlw reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw : public GALGAS_pic_31__38_PiccoloInstruction {
 //--------------------------------- Default constructor
@@ -2451,7 +858,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw : public GALGAS_pic_31_
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw extractObject (const GALGAS_object & inObject,
-                                                                                   C_Compiler * inCompiler
+                                                                                   Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2488,15 +895,15 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw : public GALGAS_pic_31_
 } ; // End of GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18Instruction_computed_retlw class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_computed_5F_retlw : public cPtr_pic_31__38_PiccoloInstruction {
 
@@ -2506,7 +913,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_retlw : public cPtr_pic_31__38_
 //--- Extension method addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
            class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method analyze
   public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
@@ -2524,7 +931,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_retlw : public cPtr_pic_31__38_
            const class GALGAS_bool inShouldPreserveBSR,
            const class GALGAS_routineKind inRoutineKind,
            class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mSizeExpression ;
@@ -2543,7 +950,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_retlw : public cPtr_pic_31__38_
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -2552,11 +959,11 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_retlw : public cPtr_pic_31__38_
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
 //--------------------------------- Default constructor
@@ -2568,7 +975,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak : public GALGAS
   public: GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw bang_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw bang_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -2577,7 +984,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak : public GALGAS
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                           C_Compiler * inCompiler
+                                                                                           Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2601,15 +1008,15 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak : public GALGAS
 } ; // End of GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_computed_5F_bra reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_computed_5F_bra : public GALGAS_pic_31__38_PiccoloInstruction {
 //--------------------------------- Default constructor
@@ -2632,7 +1039,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_bra : public GALGAS_pic_31__3
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_computed_5F_bra extractObject (const GALGAS_object & inObject,
-                                                                                 C_Compiler * inCompiler
+                                                                                 Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2669,15 +1076,15 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_bra : public GALGAS_pic_31__3
 } ; // End of GALGAS_pic_31__38_Instruction_5F_computed_5F_bra class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_bra ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18Instruction_computed_bra class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_computed_5F_bra : public cPtr_pic_31__38_PiccoloInstruction {
 
@@ -2687,7 +1094,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_bra : public cPtr_pic_31__38_Pi
 //--- Extension method addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
            class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method analyze
   public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
@@ -2705,7 +1112,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_bra : public cPtr_pic_31__38_Pi
            const class GALGAS_bool inShouldPreserveBSR,
            const class GALGAS_routineKind inRoutineKind,
            class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mSizeExpression ;
@@ -2724,7 +1131,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_bra : public cPtr_pic_31__38_Pi
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -2733,11 +1140,11 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_bra : public cPtr_pic_31__38_Pi
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_computed_5F_bra_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
 //--------------------------------- Default constructor
@@ -2749,7 +1156,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak : public GALGAS_p
   public: GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_computed_5F_bra & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_computed_5F_bra bang_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_Instruction_5F_computed_5F_bra bang_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -2758,7 +1165,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak : public GALGAS_p
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                         C_Compiler * inCompiler
+                                                                                         Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2782,15 +1189,15 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak : public GALGAS_p
 } ; // End of GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_computed_5F_goto reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_computed_5F_goto : public GALGAS_pic_31__38_PiccoloInstruction {
 //--------------------------------- Default constructor
@@ -2813,7 +1220,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_goto : public GALGAS_pic_31__
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_computed_5F_goto extractObject (const GALGAS_object & inObject,
-                                                                                  C_Compiler * inCompiler
+                                                                                  Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2850,15 +1257,15 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_goto : public GALGAS_pic_31__
 } ; // End of GALGAS_pic_31__38_Instruction_5F_computed_5F_goto class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_goto ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18Instruction_computed_goto class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_computed_5F_goto : public cPtr_pic_31__38_PiccoloInstruction {
 
@@ -2868,7 +1275,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_goto : public cPtr_pic_31__38_P
 //--- Extension method addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
            class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method analyze
   public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
@@ -2886,7 +1293,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_goto : public cPtr_pic_31__38_P
            const class GALGAS_bool inShouldPreserveBSR,
            const class GALGAS_routineKind inRoutineKind,
            class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mSizeExpression ;
@@ -2905,7 +1312,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_goto : public cPtr_pic_31__38_P
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -2914,11 +1321,11 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_goto : public cPtr_pic_31__38_P
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_computed_5F_goto_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
 //--------------------------------- Default constructor
@@ -2930,7 +1337,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak : public GALGAS_
   public: GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_computed_5F_goto & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_computed_5F_goto bang_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_Instruction_5F_computed_5F_goto bang_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -2939,7 +1346,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak : public GALGAS_
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
+                                                                                          Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2963,15 +1370,15 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak : public GALGAS_
 } ; // End of GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_computed_5F_rcall reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall : public GALGAS_pic_31__38_PiccoloInstruction {
 //--------------------------------- Default constructor
@@ -2994,7 +1401,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall : public GALGAS_pic_31_
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall extractObject (const GALGAS_object & inObject,
-                                                                                   C_Compiler * inCompiler
+                                                                                   Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3031,15 +1438,15 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall : public GALGAS_pic_31_
 } ; // End of GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18Instruction_computed_rcall class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_computed_5F_rcall : public cPtr_pic_31__38_PiccoloInstruction {
 
@@ -3049,7 +1456,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_rcall : public cPtr_pic_31__38_
 //--- Extension method addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
            class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method analyze
   public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
@@ -3067,7 +1474,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_rcall : public cPtr_pic_31__38_
            const class GALGAS_bool inShouldPreserveBSR,
            const class GALGAS_routineKind inRoutineKind,
            class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mSizeExpression ;
@@ -3086,7 +1493,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_rcall : public cPtr_pic_31__38_
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -3095,11 +1502,11 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_rcall : public cPtr_pic_31__38_
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
 //--------------------------------- Default constructor
@@ -3111,7 +1518,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak : public GALGAS
   public: GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall bang_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall bang_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -3120,7 +1527,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak : public GALGAS
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                           C_Compiler * inCompiler
+                                                                                           Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3144,15 +1551,15 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak : public GALGAS
 } ; // End of GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_ConditionExpression_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_ConditionExpression_2D_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- Default constructor
@@ -3164,7 +1571,7 @@ class GALGAS_pic_31__38_ConditionExpression_2D_weak : public AC_GALGAS_weak_refe
   public: GALGAS_pic_31__38_ConditionExpression_2D_weak & operator = (const class GALGAS_pic_31__38_ConditionExpression & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_ConditionExpression bang_pic_31__38_ConditionExpression_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_ConditionExpression bang_pic_31__38_ConditionExpression_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -3173,7 +1580,7 @@ class GALGAS_pic_31__38_ConditionExpression_2D_weak : public AC_GALGAS_weak_refe
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_ConditionExpression_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
+                                                                              Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3197,15 +1604,15 @@ class GALGAS_pic_31__38_ConditionExpression_2D_weak : public AC_GALGAS_weak_refe
 } ; // End of GALGAS_pic_31__38_ConditionExpression_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_ConditionExpression_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_RegisterTestCondition reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_RegisterTestCondition : public GALGAS_pic_31__38_ConditionExpression {
 //--------------------------------- Default constructor
@@ -3226,7 +1633,7 @@ class GALGAS_pic_31__38_RegisterTestCondition : public GALGAS_pic_31__38_Conditi
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_RegisterTestCondition extractObject (const GALGAS_object & inObject,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3258,15 +1665,15 @@ class GALGAS_pic_31__38_RegisterTestCondition : public GALGAS_pic_31__38_Conditi
 } ; // End of GALGAS_pic_31__38_RegisterTestCondition class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterTestCondition ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18RegisterTestCondition class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_RegisterTestCondition : public cPtr_pic_31__38_ConditionExpression {
 
@@ -3284,7 +1691,7 @@ class cPtr_pic_31__38_RegisterTestCondition : public cPtr_pic_31__38_ConditionEx
            const class GALGAS_lstring inConditionFalseLabel,
            class GALGAS_stringset & ioUsedRegisters,
            class GALGAS_ipic_31__38_AbstractBlockTerminator & outCurrentBlockTerminator,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -3300,7 +1707,7 @@ class cPtr_pic_31__38_RegisterTestCondition : public cPtr_pic_31__38_ConditionEx
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -3309,11 +1716,11 @@ class cPtr_pic_31__38_RegisterTestCondition : public cPtr_pic_31__38_ConditionEx
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_RegisterTestCondition_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_RegisterTestCondition_2D_weak : public GALGAS_pic_31__38_ConditionExpression_2D_weak {
 //--------------------------------- Default constructor
@@ -3325,7 +1732,7 @@ class GALGAS_pic_31__38_RegisterTestCondition_2D_weak : public GALGAS_pic_31__38
   public: GALGAS_pic_31__38_RegisterTestCondition_2D_weak & operator = (const class GALGAS_pic_31__38_RegisterTestCondition & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_RegisterTestCondition bang_pic_31__38_RegisterTestCondition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_RegisterTestCondition bang_pic_31__38_RegisterTestCondition_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -3334,7 +1741,7 @@ class GALGAS_pic_31__38_RegisterTestCondition_2D_weak : public GALGAS_pic_31__38
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_RegisterTestCondition_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3358,15 +1765,15 @@ class GALGAS_pic_31__38_RegisterTestCondition_2D_weak : public GALGAS_pic_31__38
 } ; // End of GALGAS_pic_31__38_RegisterTestCondition_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterTestCondition_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //                                     Phase 1: @pic_31__38_RegisterComparison enum                                    *
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_RegisterComparison : public AC_GALGAS_root {
 //--------------------------------- Default constructor
@@ -3398,7 +1805,7 @@ class GALGAS_pic_31__38_RegisterComparison : public AC_GALGAS_root {
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_RegisterComparison extractObject (const GALGAS_object & inObject,
-                                                                     C_Compiler * inCompiler
+                                                                     Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3415,8 +1822,8 @@ class GALGAS_pic_31__38_RegisterComparison : public AC_GALGAS_root {
   public: static class GALGAS_pic_31__38_RegisterComparison constructor_notEqual (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterComparison & inOperand) const ;
 
@@ -3459,15 +1866,15 @@ class GALGAS_pic_31__38_RegisterComparison : public AC_GALGAS_root {
 } ; // End of GALGAS_pic_31__38_RegisterComparison class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparison ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_RegisterComparisonCondition reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_RegisterComparisonCondition : public GALGAS_pic_31__38_ConditionExpression {
 //--------------------------------- Default constructor
@@ -3488,7 +1895,7 @@ class GALGAS_pic_31__38_RegisterComparisonCondition : public GALGAS_pic_31__38_C
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_RegisterComparisonCondition extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
+                                                                              Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3520,15 +1927,15 @@ class GALGAS_pic_31__38_RegisterComparisonCondition : public GALGAS_pic_31__38_C
 } ; // End of GALGAS_pic_31__38_RegisterComparisonCondition class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonCondition ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18RegisterComparisonCondition class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_RegisterComparisonCondition : public cPtr_pic_31__38_ConditionExpression {
 
@@ -3546,7 +1953,7 @@ class cPtr_pic_31__38_RegisterComparisonCondition : public cPtr_pic_31__38_Condi
            const class GALGAS_lstring inConditionFalseLabel,
            class GALGAS_stringset & ioUsedRegisters,
            class GALGAS_ipic_31__38_AbstractBlockTerminator & outCurrentBlockTerminator,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -3562,7 +1969,7 @@ class cPtr_pic_31__38_RegisterComparisonCondition : public cPtr_pic_31__38_Condi
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -3571,11 +1978,11 @@ class cPtr_pic_31__38_RegisterComparisonCondition : public cPtr_pic_31__38_Condi
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_RegisterComparisonCondition_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak : public GALGAS_pic_31__38_ConditionExpression_2D_weak {
 //--------------------------------- Default constructor
@@ -3587,7 +1994,7 @@ class GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak : public GALGAS_pic_
   public: GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak & operator = (const class GALGAS_pic_31__38_RegisterComparisonCondition & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_RegisterComparisonCondition bang_pic_31__38_RegisterComparisonCondition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_RegisterComparisonCondition bang_pic_31__38_RegisterComparisonCondition_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -3596,7 +2003,7 @@ class GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak : public GALGAS_pic_
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                      C_Compiler * inCompiler
+                                                                                      Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3620,15 +2027,15 @@ class GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak : public GALGAS_pic_
 } ; // End of GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_IncDecRegisterInCondition reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_IncDecRegisterInCondition : public GALGAS_pic_31__38_ConditionExpression {
 //--------------------------------- Default constructor
@@ -3653,7 +2060,7 @@ class GALGAS_pic_31__38_IncDecRegisterInCondition : public GALGAS_pic_31__38_Con
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_IncDecRegisterInCondition extractObject (const GALGAS_object & inObject,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3693,15 +2100,15 @@ class GALGAS_pic_31__38_IncDecRegisterInCondition : public GALGAS_pic_31__38_Con
 } ; // End of GALGAS_pic_31__38_IncDecRegisterInCondition class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_IncDecRegisterInCondition ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18IncDecRegisterInCondition class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_IncDecRegisterInCondition : public cPtr_pic_31__38_ConditionExpression {
 
@@ -3719,7 +2126,7 @@ class cPtr_pic_31__38_IncDecRegisterInCondition : public cPtr_pic_31__38_Conditi
            const class GALGAS_lstring inConditionFalseLabel,
            class GALGAS_stringset & ioUsedRegisters,
            class GALGAS_ipic_31__38_AbstractBlockTerminator & outCurrentBlockTerminator,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -3739,7 +2146,7 @@ class cPtr_pic_31__38_IncDecRegisterInCondition : public cPtr_pic_31__38_Conditi
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -3748,11 +2155,11 @@ class cPtr_pic_31__38_IncDecRegisterInCondition : public cPtr_pic_31__38_Conditi
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_IncDecRegisterInCondition_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak : public GALGAS_pic_31__38_ConditionExpression_2D_weak {
 //--------------------------------- Default constructor
@@ -3764,7 +2171,7 @@ class GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak : public GALGAS_pic_31
   public: GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak & operator = (const class GALGAS_pic_31__38_IncDecRegisterInCondition & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_IncDecRegisterInCondition bang_pic_31__38_IncDecRegisterInCondition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_IncDecRegisterInCondition bang_pic_31__38_IncDecRegisterInCondition_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -3773,7 +2180,7 @@ class GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak : public GALGAS_pic_31
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                    C_Compiler * inCompiler
+                                                                                    Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3797,15 +2204,15 @@ class GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak : public GALGAS_pic_31
 } ; // End of GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_BccInStructuredCondition reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_BccInStructuredCondition : public GALGAS_pic_31__38_ConditionExpression {
 //--------------------------------- Default constructor
@@ -3826,7 +2233,7 @@ class GALGAS_pic_31__38_BccInStructuredCondition : public GALGAS_pic_31__38_Cond
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_BccInStructuredCondition extractObject (const GALGAS_object & inObject,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3858,15 +2265,15 @@ class GALGAS_pic_31__38_BccInStructuredCondition : public GALGAS_pic_31__38_Cond
 } ; // End of GALGAS_pic_31__38_BccInStructuredCondition class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BccInStructuredCondition ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18BccInStructuredCondition class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_BccInStructuredCondition : public cPtr_pic_31__38_ConditionExpression {
 
@@ -3884,7 +2291,7 @@ class cPtr_pic_31__38_BccInStructuredCondition : public cPtr_pic_31__38_Conditio
            const class GALGAS_lstring inConditionFalseLabel,
            class GALGAS_stringset & ioUsedRegisters,
            class GALGAS_ipic_31__38_AbstractBlockTerminator & outCurrentBlockTerminator,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_location mProperty_mConditionLocation ;
@@ -3900,7 +2307,7 @@ class cPtr_pic_31__38_BccInStructuredCondition : public cPtr_pic_31__38_Conditio
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -3909,11 +2316,11 @@ class cPtr_pic_31__38_BccInStructuredCondition : public cPtr_pic_31__38_Conditio
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_BccInStructuredCondition_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_BccInStructuredCondition_2D_weak : public GALGAS_pic_31__38_ConditionExpression_2D_weak {
 //--------------------------------- Default constructor
@@ -3925,7 +2332,7 @@ class GALGAS_pic_31__38_BccInStructuredCondition_2D_weak : public GALGAS_pic_31_
   public: GALGAS_pic_31__38_BccInStructuredCondition_2D_weak & operator = (const class GALGAS_pic_31__38_BccInStructuredCondition & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_BccInStructuredCondition bang_pic_31__38_BccInStructuredCondition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_BccInStructuredCondition bang_pic_31__38_BccInStructuredCondition_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -3934,7 +2341,7 @@ class GALGAS_pic_31__38_BccInStructuredCondition_2D_weak : public GALGAS_pic_31_
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_BccInStructuredCondition_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                   C_Compiler * inCompiler
+                                                                                   Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -3958,15 +2365,15 @@ class GALGAS_pic_31__38_BccInStructuredCondition_2D_weak : public GALGAS_pic_31_
 } ; // End of GALGAS_pic_31__38_BccInStructuredCondition_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BccInStructuredCondition_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_NegateCondition reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_NegateCondition : public GALGAS_pic_31__38_ConditionExpression {
 //--------------------------------- Default constructor
@@ -3985,7 +2392,7 @@ class GALGAS_pic_31__38_NegateCondition : public GALGAS_pic_31__38_ConditionExpr
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_NegateCondition extractObject (const GALGAS_object & inObject,
-                                                                  C_Compiler * inCompiler
+                                                                  Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -4013,15 +2420,15 @@ class GALGAS_pic_31__38_NegateCondition : public GALGAS_pic_31__38_ConditionExpr
 } ; // End of GALGAS_pic_31__38_NegateCondition class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_NegateCondition ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18NegateCondition class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_NegateCondition : public cPtr_pic_31__38_ConditionExpression {
 
@@ -4039,7 +2446,7 @@ class cPtr_pic_31__38_NegateCondition : public cPtr_pic_31__38_ConditionExpressi
            const class GALGAS_lstring inConditionFalseLabel,
            class GALGAS_stringset & ioUsedRegisters,
            class GALGAS_ipic_31__38_AbstractBlockTerminator & outCurrentBlockTerminator,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_pic_31__38_ConditionExpression mProperty_mCondition ;
@@ -4053,7 +2460,7 @@ class cPtr_pic_31__38_NegateCondition : public cPtr_pic_31__38_ConditionExpressi
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -4062,11 +2469,11 @@ class cPtr_pic_31__38_NegateCondition : public cPtr_pic_31__38_ConditionExpressi
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_NegateCondition_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_NegateCondition_2D_weak : public GALGAS_pic_31__38_ConditionExpression_2D_weak {
 //--------------------------------- Default constructor
@@ -4078,7 +2485,7 @@ class GALGAS_pic_31__38_NegateCondition_2D_weak : public GALGAS_pic_31__38_Condi
   public: GALGAS_pic_31__38_NegateCondition_2D_weak & operator = (const class GALGAS_pic_31__38_NegateCondition & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_NegateCondition bang_pic_31__38_NegateCondition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_NegateCondition bang_pic_31__38_NegateCondition_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -4087,7 +2494,7 @@ class GALGAS_pic_31__38_NegateCondition_2D_weak : public GALGAS_pic_31__38_Condi
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_NegateCondition_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                          C_Compiler * inCompiler
+                                                                          Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -4111,15 +2518,15 @@ class GALGAS_pic_31__38_NegateCondition_2D_weak : public GALGAS_pic_31__38_Condi
 } ; // End of GALGAS_pic_31__38_NegateCondition_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_NegateCondition_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_AndCondition reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_AndCondition : public GALGAS_pic_31__38_ConditionExpression {
 //--------------------------------- Default constructor
@@ -4140,7 +2547,7 @@ class GALGAS_pic_31__38_AndCondition : public GALGAS_pic_31__38_ConditionExpress
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_AndCondition extractObject (const GALGAS_object & inObject,
-                                                               C_Compiler * inCompiler
+                                                               Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -4172,15 +2579,15 @@ class GALGAS_pic_31__38_AndCondition : public GALGAS_pic_31__38_ConditionExpress
 } ; // End of GALGAS_pic_31__38_AndCondition class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_AndCondition ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18AndCondition class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_AndCondition : public cPtr_pic_31__38_ConditionExpression {
 
@@ -4198,7 +2605,7 @@ class cPtr_pic_31__38_AndCondition : public cPtr_pic_31__38_ConditionExpression 
            const class GALGAS_lstring inConditionFalseLabel,
            class GALGAS_stringset & ioUsedRegisters,
            class GALGAS_ipic_31__38_AbstractBlockTerminator & outCurrentBlockTerminator,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_pic_31__38_ConditionExpression mProperty_mLeftExpression ;
@@ -4214,7 +2621,7 @@ class cPtr_pic_31__38_AndCondition : public cPtr_pic_31__38_ConditionExpression 
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -4223,11 +2630,11 @@ class cPtr_pic_31__38_AndCondition : public cPtr_pic_31__38_ConditionExpression 
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_AndCondition_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_AndCondition_2D_weak : public GALGAS_pic_31__38_ConditionExpression_2D_weak {
 //--------------------------------- Default constructor
@@ -4239,7 +2646,7 @@ class GALGAS_pic_31__38_AndCondition_2D_weak : public GALGAS_pic_31__38_Conditio
   public: GALGAS_pic_31__38_AndCondition_2D_weak & operator = (const class GALGAS_pic_31__38_AndCondition & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_AndCondition bang_pic_31__38_AndCondition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_AndCondition bang_pic_31__38_AndCondition_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -4248,7 +2655,7 @@ class GALGAS_pic_31__38_AndCondition_2D_weak : public GALGAS_pic_31__38_Conditio
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_AndCondition_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                       C_Compiler * inCompiler
+                                                                       Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -4272,15 +2679,15 @@ class GALGAS_pic_31__38_AndCondition_2D_weak : public GALGAS_pic_31__38_Conditio
 } ; // End of GALGAS_pic_31__38_AndCondition_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_AndCondition_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_BitTestInStructuredCondition reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_BitTestInStructuredCondition : public GALGAS_pic_31__38_ConditionExpression {
 //--------------------------------- Default constructor
@@ -4301,7 +2708,7 @@ class GALGAS_pic_31__38_BitTestInStructuredCondition : public GALGAS_pic_31__38_
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_BitTestInStructuredCondition extractObject (const GALGAS_object & inObject,
-                                                                               C_Compiler * inCompiler
+                                                                               Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -4333,15 +2740,15 @@ class GALGAS_pic_31__38_BitTestInStructuredCondition : public GALGAS_pic_31__38_
 } ; // End of GALGAS_pic_31__38_BitTestInStructuredCondition class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestInStructuredCondition ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18BitTestInStructuredCondition class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_BitTestInStructuredCondition : public cPtr_pic_31__38_ConditionExpression {
 
@@ -4359,7 +2766,7 @@ class cPtr_pic_31__38_BitTestInStructuredCondition : public cPtr_pic_31__38_Cond
            const class GALGAS_lstring inConditionFalseLabel,
            class GALGAS_stringset & ioUsedRegisters,
            class GALGAS_ipic_31__38_AbstractBlockTerminator & outCurrentBlockTerminator,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_registerExpression mProperty_mRegisterExpression ;
@@ -4375,7 +2782,7 @@ class cPtr_pic_31__38_BitTestInStructuredCondition : public cPtr_pic_31__38_Cond
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -4384,11 +2791,11 @@ class cPtr_pic_31__38_BitTestInStructuredCondition : public cPtr_pic_31__38_Cond
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_BitTestInStructuredCondition_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak : public GALGAS_pic_31__38_ConditionExpression_2D_weak {
 //--------------------------------- Default constructor
@@ -4400,7 +2807,7 @@ class GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak : public GALGAS_pic
   public: GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak & operator = (const class GALGAS_pic_31__38_BitTestInStructuredCondition & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_BitTestInStructuredCondition bang_pic_31__38_BitTestInStructuredCondition_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_BitTestInStructuredCondition bang_pic_31__38_BitTestInStructuredCondition_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -4409,7 +2816,7 @@ class GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak : public GALGAS_pic
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                       C_Compiler * inCompiler
+                                                                                       Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -4433,15 +2840,15 @@ class GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak : public GALGAS_pic
 } ; // End of GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_structured_5F_if reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_structured_5F_if : public GALGAS_pic_31__38_PiccoloInstruction {
 //--------------------------------- Default constructor
@@ -4466,7 +2873,7 @@ class GALGAS_pic_31__38_Instruction_5F_structured_5F_if : public GALGAS_pic_31__
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_structured_5F_if extractObject (const GALGAS_object & inObject,
-                                                                                  C_Compiler * inCompiler
+                                                                                  Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -4507,15 +2914,15 @@ class GALGAS_pic_31__38_Instruction_5F_structured_5F_if : public GALGAS_pic_31__
 } ; // End of GALGAS_pic_31__38_Instruction_5F_structured_5F_if class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_structured_5F_if ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18Instruction_structured_if class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_structured_5F_if : public cPtr_pic_31__38_PiccoloInstruction {
 
@@ -4525,7 +2932,7 @@ class cPtr_pic_31__38_Instruction_5F_structured_5F_if : public cPtr_pic_31__38_P
 //--- Extension method addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
            class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method analyze
   public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
@@ -4543,14 +2950,14 @@ class cPtr_pic_31__38_Instruction_5F_structured_5F_if : public cPtr_pic_31__38_P
            const class GALGAS_bool inShouldPreserveBSR,
            const class GALGAS_routineKind inRoutineKind,
            class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method performInlining
   public: virtual void method_performInlining (const class GALGAS_stringset inInlinedRoutineSet,
            const class GALGAS_declaredRoutineMap inDeclaredRoutineMap,
            const class GALGAS_stringset inCurrentlyInlinedRoutineSet,
            class GALGAS_pic_31__38_InstructionList & ioInstructionList,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_pic_31__38_ConditionExpression mProperty_mIfCondition ;
@@ -4571,7 +2978,7 @@ class cPtr_pic_31__38_Instruction_5F_structured_5F_if : public cPtr_pic_31__38_P
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -4580,11 +2987,11 @@ class cPtr_pic_31__38_Instruction_5F_structured_5F_if : public cPtr_pic_31__38_P
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_structured_5F_if_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
 //--------------------------------- Default constructor
@@ -4596,7 +3003,7 @@ class GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak : public GALGAS_
   public: GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_structured_5F_if & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_structured_5F_if bang_pic_31__38_Instruction_5F_structured_5F_if_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_Instruction_5F_structured_5F_if bang_pic_31__38_Instruction_5F_structured_5F_if_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -4605,7 +3012,7 @@ class GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak : public GALGAS_
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                          C_Compiler * inCompiler
+                                                                                          Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -4629,15 +3036,15 @@ class GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak : public GALGAS_
 } ; // End of GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic18DoWhilePartList list
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_DoWhilePartList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -4660,7 +3067,7 @@ class GALGAS_pic_31__38_DoWhilePartList : public AC_GALGAS_list {
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_DoWhilePartList extractObject (const GALGAS_object & inObject,
-                                                                  C_Compiler * inCompiler
+                                                                  Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -4673,7 +3080,7 @@ class GALGAS_pic_31__38_DoWhilePartList : public AC_GALGAS_list {
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_pic_31__38_DoWhilePartList inOperand,
-                                                       class C_Compiler * inCompiler
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
@@ -4683,7 +3090,7 @@ class GALGAS_pic_31__38_DoWhilePartList : public AC_GALGAS_list {
                                                      COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GALGAS_pic_31__38_DoWhilePartList add_operation (const GALGAS_pic_31__38_DoWhilePartList & inOperand,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const ;
 
 
@@ -4691,48 +3098,48 @@ class GALGAS_pic_31__38_DoWhilePartList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_ConditionExpression constinArgument0,
                                                class GALGAS_pic_31__38_InstructionList constinArgument1,
                                                class GALGAS_location constinArgument2,
-                                               C_Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_pic_31__38_ConditionExpression constinArgument0,
                                                       class GALGAS_pic_31__38_InstructionList constinArgument1,
                                                       class GALGAS_location constinArgument2,
                                                       class GALGAS_uint constinArgument3,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_pic_31__38_ConditionExpression & outArgument0,
                                                  class GALGAS_pic_31__38_InstructionList & outArgument1,
                                                  class GALGAS_location & outArgument2,
-                                                 C_Compiler * inCompiler
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_pic_31__38_ConditionExpression & outArgument0,
                                                 class GALGAS_pic_31__38_InstructionList & outArgument1,
                                                 class GALGAS_location & outArgument2,
-                                                C_Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_pic_31__38_ConditionExpression & outArgument0,
                                                       class GALGAS_pic_31__38_InstructionList & outArgument1,
                                                       class GALGAS_location & outArgument2,
                                                       class GALGAS_uint constinArgument3,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMConditionAtIndex (class GALGAS_pic_31__38_ConditionExpression constinArgument0,
                                                              class GALGAS_uint constinArgument1,
-                                                             C_Compiler * inCompiler
+                                                             Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMEndOfPartLocationAtIndex (class GALGAS_location constinArgument0,
                                                                      class GALGAS_uint constinArgument1,
-                                                                     C_Compiler * inCompiler
+                                                                     Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMInstructionListAtIndex (class GALGAS_pic_31__38_InstructionList constinArgument0,
                                                                    class GALGAS_uint constinArgument1,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
 
@@ -4740,40 +3147,40 @@ class GALGAS_pic_31__38_DoWhilePartList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG void method_first (class GALGAS_pic_31__38_ConditionExpression & outArgument0,
                                               class GALGAS_pic_31__38_InstructionList & outArgument1,
                                               class GALGAS_location & outArgument2,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG void method_last (class GALGAS_pic_31__38_ConditionExpression & outArgument0,
                                              class GALGAS_pic_31__38_InstructionList & outArgument1,
                                              class GALGAS_location & outArgument2,
-                                             C_Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_ConditionExpression getter_mConditionAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                 C_Compiler * inCompiler
+                                                                                                 Compiler * inCompiler
                                                                                                  COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_location getter_mEndOfPartLocationAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                   C_Compiler * inCompiler
+                                                                                   Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList getter_mInstructionListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                   C_Compiler * inCompiler
+                                                                                                   Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_DoWhilePartList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                            C_Compiler * inCompiler
+                                                                                            Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_DoWhilePartList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                                          C_Compiler * inCompiler
+                                                                                          Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_DoWhilePartList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                            C_Compiler * inCompiler
+                                                                                            Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) const ;
 
 
@@ -4787,9 +3194,9 @@ class GALGAS_pic_31__38_DoWhilePartList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_pic_31__38_DoWhilePartList class
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   Enumerator declaration                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cEnumerator_pic_31__38_DoWhilePartList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_DoWhilePartList (const GALGAS_pic_31__38_DoWhilePartList & inEnumeratedObject,
@@ -4803,15 +3210,15 @@ class cEnumerator_pic_31__38_DoWhilePartList : public cGenericAbstractEnumerator
   public: class GALGAS_pic_31__38_DoWhilePartList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_DoWhilePartList ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_DoWhilePartList_2D_element struct
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_DoWhilePartList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -4865,19 +3272,19 @@ class GALGAS_pic_31__38_DoWhilePartList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_DoWhilePartList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                             C_Compiler * inCompiler
+                                                                             Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_pic_31__38_DoWhilePartList_2D_element constructor_new (const class GALGAS_pic_31__38_ConditionExpression & inOperand0,
                                                                                      const class GALGAS_pic_31__38_InstructionList & inOperand1,
                                                                                      const class GALGAS_location & inOperand2,
-                                                                                     class C_Compiler * inCompiler
+                                                                                     class Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_DoWhilePartList_2D_element & inOperand) const ;
 
@@ -4896,15 +3303,15 @@ class GALGAS_pic_31__38_DoWhilePartList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_pic_31__38_DoWhilePartList_2D_element class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_DoWhilePartList_2D_element ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_do_5F_while reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_do_5F_while : public GALGAS_pic_31__38_PiccoloInstruction {
 //--------------------------------- Default constructor
@@ -4927,7 +3334,7 @@ class GALGAS_pic_31__38_Instruction_5F_do_5F_while : public GALGAS_pic_31__38_Pi
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_do_5F_while extractObject (const GALGAS_object & inObject,
-                                                                             C_Compiler * inCompiler
+                                                                             Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -4964,15 +3371,15 @@ class GALGAS_pic_31__38_Instruction_5F_do_5F_while : public GALGAS_pic_31__38_Pi
 } ; // End of GALGAS_pic_31__38_Instruction_5F_do_5F_while class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_do_5F_while ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18Instruction_do_while class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_do_5F_while : public cPtr_pic_31__38_PiccoloInstruction {
 
@@ -4982,7 +3389,7 @@ class cPtr_pic_31__38_Instruction_5F_do_5F_while : public cPtr_pic_31__38_Piccol
 //--- Extension method addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
            class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method analyze
   public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
@@ -5000,14 +3407,14 @@ class cPtr_pic_31__38_Instruction_5F_do_5F_while : public cPtr_pic_31__38_Piccol
            const class GALGAS_bool inShouldPreserveBSR,
            const class GALGAS_routineKind inRoutineKind,
            class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method performInlining
   public: virtual void method_performInlining (const class GALGAS_stringset inInlinedRoutineSet,
            const class GALGAS_declaredRoutineMap inDeclaredRoutineMap,
            const class GALGAS_stringset inCurrentlyInlinedRoutineSet,
            class GALGAS_pic_31__38_InstructionList & ioInstructionList,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_pic_31__38_InstructionList mProperty_mRepeatedInstructionList ;
@@ -5026,7 +3433,7 @@ class cPtr_pic_31__38_Instruction_5F_do_5F_while : public cPtr_pic_31__38_Piccol
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -5035,11 +3442,11 @@ class cPtr_pic_31__38_Instruction_5F_do_5F_while : public cPtr_pic_31__38_Piccol
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_do_5F_while_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
 //--------------------------------- Default constructor
@@ -5051,7 +3458,7 @@ class GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak : public GALGAS_pic_3
   public: GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_do_5F_while & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_pic_31__38_Instruction_5F_do_5F_while bang_pic_31__38_Instruction_5F_do_5F_while_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_pic_31__38_Instruction_5F_do_5F_while bang_pic_31__38_Instruction_5F_do_5F_while_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -5060,7 +3467,7 @@ class GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak : public GALGAS_pic_3
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                                     C_Compiler * inCompiler
+                                                                                     Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -5084,15 +3491,15 @@ class GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak : public GALGAS_pic_3
 } ; // End of GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic18InterruptDefinitionList list
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -5116,7 +3523,7 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_InterruptDefinitionList extractObject (const GALGAS_object & inObject,
-                                                                          C_Compiler * inCompiler
+                                                                          Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -5130,7 +3537,7 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_pic_31__38_InterruptDefinitionList inOperand,
-                                                       class C_Compiler * inCompiler
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
@@ -5141,7 +3548,7 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
                                                      COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GALGAS_pic_31__38_InterruptDefinitionList add_operation (const GALGAS_pic_31__38_InterruptDefinitionList & inOperand,
-                                                                                    C_Compiler * inCompiler
+                                                                                    Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const ;
 
 
@@ -5150,7 +3557,7 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
                                                class GALGAS_bool constinArgument1,
                                                class GALGAS_pic_31__38_InstructionList constinArgument2,
                                                class GALGAS_location constinArgument3,
-                                               C_Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
@@ -5158,21 +3565,21 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
                                                       class GALGAS_pic_31__38_InstructionList constinArgument2,
                                                       class GALGAS_location constinArgument3,
                                                       class GALGAS_uint constinArgument4,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
                                                  class GALGAS_bool & outArgument1,
                                                  class GALGAS_pic_31__38_InstructionList & outArgument2,
                                                  class GALGAS_location & outArgument3,
-                                                 C_Compiler * inCompiler
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
                                                 class GALGAS_bool & outArgument1,
                                                 class GALGAS_pic_31__38_InstructionList & outArgument2,
                                                 class GALGAS_location & outArgument3,
-                                                C_Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
@@ -5180,27 +3587,27 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
                                                       class GALGAS_pic_31__38_InstructionList & outArgument2,
                                                       class GALGAS_location & outArgument3,
                                                       class GALGAS_uint constinArgument4,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMEndOfInterruptLocationAtIndex (class GALGAS_location constinArgument0,
                                                                           class GALGAS_uint constinArgument1,
-                                                                          C_Compiler * inCompiler
+                                                                          Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMFastReturnAtIndex (class GALGAS_bool constinArgument0,
                                                               class GALGAS_uint constinArgument1,
-                                                              C_Compiler * inCompiler
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMInstructionListAtIndex (class GALGAS_pic_31__38_InstructionList constinArgument0,
                                                                    class GALGAS_uint constinArgument1,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMInterruptNameAtIndex (class GALGAS_lstring constinArgument0,
                                                                  class GALGAS_uint constinArgument1,
-                                                                 C_Compiler * inCompiler
+                                                                 Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
 
@@ -5209,45 +3616,45 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
                                               class GALGAS_bool & outArgument1,
                                               class GALGAS_pic_31__38_InstructionList & outArgument2,
                                               class GALGAS_location & outArgument3,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
                                              class GALGAS_bool & outArgument1,
                                              class GALGAS_pic_31__38_InstructionList & outArgument2,
                                              class GALGAS_location & outArgument3,
-                                             C_Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GALGAS_location getter_mEndOfInterruptLocationAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                        C_Compiler * inCompiler
+                                                                                        Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mFastReturnAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList getter_mInstructionListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                   C_Compiler * inCompiler
+                                                                                                   Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mInterruptNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                              C_Compiler * inCompiler
+                                                                              Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InterruptDefinitionList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                    C_Compiler * inCompiler
+                                                                                                    Compiler * inCompiler
                                                                                                     COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InterruptDefinitionList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                  C_Compiler * inCompiler
+                                                                                                  Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InterruptDefinitionList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                                    C_Compiler * inCompiler
+                                                                                                    Compiler * inCompiler
                                                                                                     COMMA_LOCATION_ARGS) const ;
 
 
@@ -5261,9 +3668,9 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_pic_31__38_InterruptDefinitionList class
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   Enumerator declaration                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cEnumerator_pic_31__38_InterruptDefinitionList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_InterruptDefinitionList (const GALGAS_pic_31__38_InterruptDefinitionList & inEnumeratedObject,
@@ -5278,15 +3685,15 @@ class cEnumerator_pic_31__38_InterruptDefinitionList : public cGenericAbstractEn
   public: class GALGAS_pic_31__38_InterruptDefinitionList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_InterruptDefinitionList ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_InterruptDefinitionList_2D_element struct
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_InterruptDefinitionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -5350,7 +3757,7 @@ class GALGAS_pic_31__38_InterruptDefinitionList_2D_element : public AC_GALGAS_ro
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_InterruptDefinitionList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                                     C_Compiler * inCompiler
+                                                                                     Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -5358,12 +3765,12 @@ class GALGAS_pic_31__38_InterruptDefinitionList_2D_element : public AC_GALGAS_ro
                                                                                              const class GALGAS_bool & inOperand1,
                                                                                              const class GALGAS_pic_31__38_InstructionList & inOperand2,
                                                                                              const class GALGAS_location & inOperand3,
-                                                                                             class C_Compiler * inCompiler
+                                                                                             class Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_InterruptDefinitionList_2D_element & inOperand) const ;
 
@@ -5382,15 +3789,15 @@ class GALGAS_pic_31__38_InterruptDefinitionList_2D_element : public AC_GALGAS_ro
 } ; // End of GALGAS_pic_31__38_InterruptDefinitionList_2D_element class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_InterruptDefinitionList_2D_element ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic18RoutineDefinitionList list
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -5417,7 +3824,7 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_RoutineDefinitionList extractObject (const GALGAS_object & inObject,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -5434,7 +3841,7 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_pic_31__38_RoutineDefinitionList inOperand,
-                                                       class C_Compiler * inCompiler
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
@@ -5448,7 +3855,7 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
                                                      COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GALGAS_pic_31__38_RoutineDefinitionList add_operation (const GALGAS_pic_31__38_RoutineDefinitionList & inOperand,
-                                                                                  C_Compiler * inCompiler
+                                                                                  Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const ;
 
 
@@ -5460,7 +3867,7 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
                                                class GALGAS_bool constinArgument4,
                                                class GALGAS_pic_31__38_InstructionList constinArgument5,
                                                class GALGAS_location constinArgument6,
-                                               C_Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
@@ -5471,7 +3878,7 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
                                                       class GALGAS_pic_31__38_InstructionList constinArgument5,
                                                       class GALGAS_location constinArgument6,
                                                       class GALGAS_uint constinArgument7,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
@@ -5481,7 +3888,7 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
                                                  class GALGAS_bool & outArgument4,
                                                  class GALGAS_pic_31__38_InstructionList & outArgument5,
                                                  class GALGAS_location & outArgument6,
-                                                 C_Compiler * inCompiler
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
@@ -5491,7 +3898,7 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
                                                 class GALGAS_bool & outArgument4,
                                                 class GALGAS_pic_31__38_InstructionList & outArgument5,
                                                 class GALGAS_location & outArgument6,
-                                                C_Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
@@ -5502,42 +3909,42 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
                                                       class GALGAS_pic_31__38_InstructionList & outArgument5,
                                                       class GALGAS_location & outArgument6,
                                                       class GALGAS_uint constinArgument7,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMEndOfRoutineLocationAtIndex (class GALGAS_location constinArgument0,
                                                                         class GALGAS_uint constinArgument1,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMInstructionListAtIndex (class GALGAS_pic_31__38_InstructionList constinArgument0,
                                                                    class GALGAS_uint constinArgument1,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMIsNoReturnAtIndex (class GALGAS_bool constinArgument0,
                                                               class GALGAS_uint constinArgument1,
-                                                              C_Compiler * inCompiler
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMPreservesBankAtIndex (class GALGAS_bool constinArgument0,
                                                                  class GALGAS_uint constinArgument1,
-                                                                 C_Compiler * inCompiler
+                                                                 Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMRequiredBankAtIndex (class GALGAS_luint constinArgument0,
                                                                 class GALGAS_uint constinArgument1,
-                                                                C_Compiler * inCompiler
+                                                                Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMReturnedBankAtIndex (class GALGAS_luint constinArgument0,
                                                                 class GALGAS_uint constinArgument1,
-                                                                C_Compiler * inCompiler
+                                                                Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMRoutineNameAtIndex (class GALGAS_lstring constinArgument0,
                                                                class GALGAS_uint constinArgument1,
-                                                               C_Compiler * inCompiler
+                                                               Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
 
@@ -5549,7 +3956,7 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
                                               class GALGAS_bool & outArgument4,
                                               class GALGAS_pic_31__38_InstructionList & outArgument5,
                                               class GALGAS_location & outArgument6,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
@@ -5559,50 +3966,50 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
                                              class GALGAS_bool & outArgument4,
                                              class GALGAS_pic_31__38_InstructionList & outArgument5,
                                              class GALGAS_location & outArgument6,
-                                             C_Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GALGAS_location getter_mEndOfRoutineLocationAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                      C_Compiler * inCompiler
+                                                                                      Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList getter_mInstructionListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                   C_Compiler * inCompiler
+                                                                                                   Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsNoReturnAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mPreservesBankAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_luint getter_mRequiredBankAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_luint getter_mReturnedBankAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mRoutineNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_RoutineDefinitionList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                  C_Compiler * inCompiler
+                                                                                                  Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_RoutineDefinitionList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                C_Compiler * inCompiler
+                                                                                                Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_RoutineDefinitionList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                                  C_Compiler * inCompiler
+                                                                                                  Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) const ;
 
 
@@ -5616,9 +4023,9 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_pic_31__38_RoutineDefinitionList class
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   Enumerator declaration                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cEnumerator_pic_31__38_RoutineDefinitionList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_RoutineDefinitionList (const GALGAS_pic_31__38_RoutineDefinitionList & inEnumeratedObject,
@@ -5636,15 +4043,15 @@ class cEnumerator_pic_31__38_RoutineDefinitionList : public cGenericAbstractEnum
   public: class GALGAS_pic_31__38_RoutineDefinitionList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RoutineDefinitionList ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_RoutineDefinitionList_2D_element struct
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_RoutineDefinitionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -5738,7 +4145,7 @@ class GALGAS_pic_31__38_RoutineDefinitionList_2D_element : public AC_GALGAS_root
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_RoutineDefinitionList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                                   C_Compiler * inCompiler
+                                                                                   Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -5749,12 +4156,12 @@ class GALGAS_pic_31__38_RoutineDefinitionList_2D_element : public AC_GALGAS_root
                                                                                            const class GALGAS_bool & inOperand4,
                                                                                            const class GALGAS_pic_31__38_InstructionList & inOperand5,
                                                                                            const class GALGAS_location & inOperand6,
-                                                                                           class C_Compiler * inCompiler
+                                                                                           class Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_RoutineDefinitionList_2D_element & inOperand) const ;
 
@@ -5773,15 +4180,15 @@ class GALGAS_pic_31__38_RoutineDefinitionList_2D_element : public AC_GALGAS_root
 } ; // End of GALGAS_pic_31__38_RoutineDefinitionList_2D_element class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RoutineDefinitionList_2D_element ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic18MacroDefinitionList list
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -5804,7 +4211,7 @@ class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_MacroDefinitionList extractObject (const GALGAS_object & inObject,
-                                                                      C_Compiler * inCompiler
+                                                                      Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -5817,7 +4224,7 @@ class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_pic_31__38_MacroDefinitionList inOperand,
-                                                       class C_Compiler * inCompiler
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
@@ -5827,7 +4234,7 @@ class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
                                                      COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GALGAS_pic_31__38_MacroDefinitionList add_operation (const GALGAS_pic_31__38_MacroDefinitionList & inOperand,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) const ;
 
 
@@ -5835,48 +4242,48 @@ class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_lstring constinArgument0,
                                                class GALGAS_lstringlist constinArgument1,
                                                class GALGAS_pic_31__38_InstructionList constinArgument2,
-                                               C_Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
                                                       class GALGAS_lstringlist constinArgument1,
                                                       class GALGAS_pic_31__38_InstructionList constinArgument2,
                                                       class GALGAS_uint constinArgument3,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
                                                  class GALGAS_lstringlist & outArgument1,
                                                  class GALGAS_pic_31__38_InstructionList & outArgument2,
-                                                 C_Compiler * inCompiler
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
                                                 class GALGAS_lstringlist & outArgument1,
                                                 class GALGAS_pic_31__38_InstructionList & outArgument2,
-                                                C_Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
                                                       class GALGAS_lstringlist & outArgument1,
                                                       class GALGAS_pic_31__38_InstructionList & outArgument2,
                                                       class GALGAS_uint constinArgument3,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMConstantNameListAtIndex (class GALGAS_lstringlist constinArgument0,
                                                                     class GALGAS_uint constinArgument1,
-                                                                    C_Compiler * inCompiler
+                                                                    Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMInstructionListAtIndex (class GALGAS_pic_31__38_InstructionList constinArgument0,
                                                                    class GALGAS_uint constinArgument1,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMMacroNameAtIndex (class GALGAS_lstring constinArgument0,
                                                              class GALGAS_uint constinArgument1,
-                                                             C_Compiler * inCompiler
+                                                             Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
 
@@ -5884,40 +4291,40 @@ class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
                                               class GALGAS_lstringlist & outArgument1,
                                               class GALGAS_pic_31__38_InstructionList & outArgument2,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
                                              class GALGAS_lstringlist & outArgument1,
                                              class GALGAS_pic_31__38_InstructionList & outArgument2,
-                                             C_Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mConstantNameListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                     C_Compiler * inCompiler
+                                                                                     Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList getter_mInstructionListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                   C_Compiler * inCompiler
+                                                                                                   Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mMacroNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                          C_Compiler * inCompiler
+                                                                          Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_MacroDefinitionList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                C_Compiler * inCompiler
+                                                                                                Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_MacroDefinitionList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                                              C_Compiler * inCompiler
+                                                                                              Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_MacroDefinitionList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                                C_Compiler * inCompiler
+                                                                                                Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const ;
 
 
@@ -5931,9 +4338,9 @@ class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_pic_31__38_MacroDefinitionList class
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   Enumerator declaration                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cEnumerator_pic_31__38_MacroDefinitionList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_MacroDefinitionList (const GALGAS_pic_31__38_MacroDefinitionList & inEnumeratedObject,
@@ -5947,15 +4354,15 @@ class cEnumerator_pic_31__38_MacroDefinitionList : public cGenericAbstractEnumer
   public: class GALGAS_pic_31__38_MacroDefinitionList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroDefinitionList ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_MacroDefinitionList_2D_element struct
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_MacroDefinitionList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -6009,19 +4416,19 @@ class GALGAS_pic_31__38_MacroDefinitionList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_MacroDefinitionList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                                 C_Compiler * inCompiler
+                                                                                 Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_pic_31__38_MacroDefinitionList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
                                                                                          const class GALGAS_lstringlist & inOperand1,
                                                                                          const class GALGAS_pic_31__38_InstructionList & inOperand2,
-                                                                                         class C_Compiler * inCompiler
+                                                                                         class Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_MacroDefinitionList_2D_element & inOperand) const ;
 
@@ -6040,23 +4447,23 @@ class GALGAS_pic_31__38_MacroDefinitionList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_pic_31__38_MacroDefinitionList_2D_element class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroDefinitionList_2D_element ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic18MacroMap map
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cMapElement_pic_31__38_MacroMap ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const char * kSearchErrorMessage_pic_31__38_MacroMap_searchKey ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
 //--------------------------------- Default constructor
@@ -6073,7 +4480,7 @@ class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_MacroMap extractObject (const GALGAS_object & inObject,
-                                                           C_Compiler * inCompiler
+                                                           Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -6086,11 +4493,11 @@ class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
   public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
                                                      const class GALGAS_lstringlist & inOperand1,
                                                      const class GALGAS_pic_31__38_InstructionList & inOperand2,
-                                                     C_Compiler * inCompiler
+                                                     Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GALGAS_pic_31__38_MacroMap add_operation (const GALGAS_pic_31__38_MacroMap & inOperand,
-                                                                     C_Compiler * inCompiler
+                                                                     Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) const ;
 
 
@@ -6098,17 +4505,17 @@ class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
                                                   class GALGAS_lstringlist constinArgument1,
                                                   class GALGAS_pic_31__38_InstructionList constinArgument2,
-                                                  C_Compiler * inCompiler
+                                                  Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMConstantNameListForKey (class GALGAS_lstringlist constinArgument0,
                                                                    class GALGAS_string constinArgument1,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMInstructionListForKey (class GALGAS_pic_31__38_InstructionList constinArgument0,
                                                                   class GALGAS_string constinArgument1,
-                                                                  C_Compiler * inCompiler
+                                                                  Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
 
@@ -6116,21 +4523,21 @@ class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
   public: VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
                                                   class GALGAS_lstringlist & outArgument1,
                                                   class GALGAS_pic_31__38_InstructionList & outArgument2,
-                                                  C_Compiler * inCompiler
+                                                  Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mConstantNameListForKey (const class GALGAS_string & constinOperand0,
-                                                                                    C_Compiler * inCompiler
+                                                                                    Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList getter_mInstructionListForKey (const class GALGAS_string & constinOperand0,
-                                                                                                  C_Compiler * inCompiler
+                                                                                                  Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_MacroMap getter_overriddenMap (C_Compiler * inCompiler
+  public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_MacroMap getter_overriddenMap (Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const ;
 
 
@@ -6142,7 +4549,7 @@ class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_pic_31__38_MacroMap * readWriteAccessForWithInstruction (C_Compiler * inCompiler,
+  public: VIRTUAL_IN_DEBUG cMapElement_pic_31__38_MacroMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
                                                                                                 const GALGAS_string & inKey
                                                                                                 COMMA_LOCATION_ARGS) ;
 
@@ -6152,9 +4559,9 @@ class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
  
 } ; // End of GALGAS_pic_31__38_MacroMap class
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   Enumerator declaration                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cEnumerator_pic_31__38_MacroMap : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_MacroMap (const GALGAS_pic_31__38_MacroMap & inEnumeratedObject,
@@ -6168,15 +4575,15 @@ class cEnumerator_pic_31__38_MacroMap : public cGenericAbstractEnumerator {
   public: class GALGAS_pic_31__38_MacroMap_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroMap ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: class for element of '@pic18MacroMap' map
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cMapElement_pic_31__38_MacroMap : public cMapElement {
 //--- Map attributes
@@ -6199,14 +4606,14 @@ class cMapElement_pic_31__38_MacroMap : public cMapElement {
   public: virtual cMapElement * copy (void) ;
 
 //--- Description
- public: virtual void description (C_String & ioString, const int32_t inIndentation) const ;
+ public: virtual void description (String & ioString, const int32_t inIndentation) const ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_MacroMap_2D_element struct
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_MacroMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -6260,19 +4667,19 @@ class GALGAS_pic_31__38_MacroMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_MacroMap_2D_element extractObject (const GALGAS_object & inObject,
-                                                                      C_Compiler * inCompiler
+                                                                      Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_pic_31__38_MacroMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
                                                                               const class GALGAS_lstringlist & inOperand1,
                                                                               const class GALGAS_pic_31__38_InstructionList & inOperand2,
-                                                                              class C_Compiler * inCompiler
+                                                                              class Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_MacroMap_2D_element & inOperand) const ;
 
@@ -6291,15 +4698,15 @@ class GALGAS_pic_31__38_MacroMap_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_pic_31__38_MacroMap_2D_element class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroMap_2D_element ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @routineDeclarationList list
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_routineDeclarationList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -6324,7 +4731,7 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
 
 //--------------------------------- Object extraction
   public: static GALGAS_routineDeclarationList extractObject (const GALGAS_object & inObject,
-                                                              C_Compiler * inCompiler
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -6339,7 +4746,7 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_routineDeclarationList inOperand,
-                                                       class C_Compiler * inCompiler
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
@@ -6351,7 +4758,7 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
                                                      COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GALGAS_routineDeclarationList add_operation (const GALGAS_routineDeclarationList & inOperand,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
 
 
@@ -6361,7 +4768,7 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
                                                class GALGAS_luint constinArgument2,
                                                class GALGAS_bool constinArgument3,
                                                class GALGAS_bool constinArgument4,
-                                               C_Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
@@ -6370,7 +4777,7 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
                                                       class GALGAS_bool constinArgument3,
                                                       class GALGAS_bool constinArgument4,
                                                       class GALGAS_uint constinArgument5,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
@@ -6378,7 +4785,7 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
                                                  class GALGAS_luint & outArgument2,
                                                  class GALGAS_bool & outArgument3,
                                                  class GALGAS_bool & outArgument4,
-                                                 C_Compiler * inCompiler
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
@@ -6386,7 +4793,7 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
                                                 class GALGAS_luint & outArgument2,
                                                 class GALGAS_bool & outArgument3,
                                                 class GALGAS_bool & outArgument4,
-                                                C_Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
@@ -6395,32 +4802,32 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
                                                       class GALGAS_bool & outArgument3,
                                                       class GALGAS_bool & outArgument4,
                                                       class GALGAS_uint constinArgument5,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMIsNoReturnAtIndex (class GALGAS_bool constinArgument0,
                                                               class GALGAS_uint constinArgument1,
-                                                              C_Compiler * inCompiler
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMPreservesBankAtIndex (class GALGAS_bool constinArgument0,
                                                                  class GALGAS_uint constinArgument1,
-                                                                 C_Compiler * inCompiler
+                                                                 Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMRequiredBankAtIndex (class GALGAS_luint constinArgument0,
                                                                 class GALGAS_uint constinArgument1,
-                                                                C_Compiler * inCompiler
+                                                                Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMReturnedBankAtIndex (class GALGAS_luint constinArgument0,
                                                                 class GALGAS_uint constinArgument1,
-                                                                C_Compiler * inCompiler
+                                                                Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMRoutineNameAtIndex (class GALGAS_lstring constinArgument0,
                                                                class GALGAS_uint constinArgument1,
-                                                               C_Compiler * inCompiler
+                                                               Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
 
@@ -6430,7 +4837,7 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
                                               class GALGAS_luint & outArgument2,
                                               class GALGAS_bool & outArgument3,
                                               class GALGAS_bool & outArgument4,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
@@ -6438,42 +4845,42 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
                                              class GALGAS_luint & outArgument2,
                                              class GALGAS_bool & outArgument3,
                                              class GALGAS_bool & outArgument4,
-                                             C_Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsNoReturnAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mPreservesBankAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_luint getter_mRequiredBankAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_luint getter_mReturnedBankAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mRoutineNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_routineDeclarationList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                        C_Compiler * inCompiler
+                                                                                        Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_routineDeclarationList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                                      C_Compiler * inCompiler
+                                                                                      Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_routineDeclarationList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                        C_Compiler * inCompiler
+                                                                                        Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const ;
 
 
@@ -6487,9 +4894,9 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_routineDeclarationList class
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   Enumerator declaration                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cEnumerator_routineDeclarationList : public cGenericAbstractEnumerator {
   public: cEnumerator_routineDeclarationList (const GALGAS_routineDeclarationList & inEnumeratedObject,
@@ -6505,15 +4912,15 @@ class cEnumerator_routineDeclarationList : public cGenericAbstractEnumerator {
   public: class GALGAS_routineDeclarationList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineDeclarationList ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @routineDeclarationList_2D_element struct
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_routineDeclarationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -6587,7 +4994,7 @@ class GALGAS_routineDeclarationList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Object extraction
   public: static GALGAS_routineDeclarationList_2D_element extractObject (const GALGAS_object & inObject,
-                                                                         C_Compiler * inCompiler
+                                                                         Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -6596,12 +5003,12 @@ class GALGAS_routineDeclarationList_2D_element : public AC_GALGAS_root {
                                                                                  const class GALGAS_luint & inOperand2,
                                                                                  const class GALGAS_bool & inOperand3,
                                                                                  const class GALGAS_bool & inOperand4,
-                                                                                 class C_Compiler * inCompiler
+                                                                                 class Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_routineDeclarationList_2D_element & inOperand) const ;
 
@@ -6620,15 +5027,15 @@ class GALGAS_routineDeclarationList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_routineDeclarationList_2D_element class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineDeclarationList_2D_element ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //                                              Phase 1: @programKind enum                                             *
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_programKind : public AC_GALGAS_root {
 //--------------------------------- Default constructor
@@ -6657,7 +5064,7 @@ class GALGAS_programKind : public AC_GALGAS_root {
 
 //--------------------------------- Object extraction
   public: static GALGAS_programKind extractObject (const GALGAS_object & inObject,
-                                                   C_Compiler * inCompiler
+                                                   Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -6668,8 +5075,8 @@ class GALGAS_programKind : public AC_GALGAS_root {
   public: static class GALGAS_programKind constructor_userProgram (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_programKind & inOperand) const ;
 
@@ -6700,15 +5107,15 @@ class GALGAS_programKind : public AC_GALGAS_root {
 } ; // End of GALGAS_programKind class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_programKind ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @dataList list
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_dataList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -6731,7 +5138,7 @@ class GALGAS_dataList : public AC_GALGAS_list {
 
 //--------------------------------- Object extraction
   public: static GALGAS_dataList extractObject (const GALGAS_object & inObject,
-                                                C_Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -6744,7 +5151,7 @@ class GALGAS_dataList : public AC_GALGAS_list {
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_dataList inOperand,
-                                                       class C_Compiler * inCompiler
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
@@ -6754,7 +5161,7 @@ class GALGAS_dataList : public AC_GALGAS_list {
                                                      COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GALGAS_dataList add_operation (const GALGAS_dataList & inOperand,
-                                                          C_Compiler * inCompiler
+                                                          Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) const ;
 
 
@@ -6762,48 +5169,48 @@ class GALGAS_dataList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_lstring constinArgument0,
                                                class GALGAS_immediatExpressionList constinArgument1,
                                                class GALGAS_bool constinArgument2,
-                                               C_Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_lstring constinArgument0,
                                                       class GALGAS_immediatExpressionList constinArgument1,
                                                       class GALGAS_bool constinArgument2,
                                                       class GALGAS_uint constinArgument3,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_lstring & outArgument0,
                                                  class GALGAS_immediatExpressionList & outArgument1,
                                                  class GALGAS_bool & outArgument2,
-                                                 C_Compiler * inCompiler
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_lstring & outArgument0,
                                                 class GALGAS_immediatExpressionList & outArgument1,
                                                 class GALGAS_bool & outArgument2,
-                                                C_Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_lstring & outArgument0,
                                                       class GALGAS_immediatExpressionList & outArgument1,
                                                       class GALGAS_bool & outArgument2,
                                                       class GALGAS_uint constinArgument3,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMDataNameAtIndex (class GALGAS_lstring constinArgument0,
                                                             class GALGAS_uint constinArgument1,
-                                                            C_Compiler * inCompiler
+                                                            Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMIsByteListAtIndex (class GALGAS_bool constinArgument0,
                                                               class GALGAS_uint constinArgument1,
-                                                              C_Compiler * inCompiler
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMValueListAtIndex (class GALGAS_immediatExpressionList constinArgument0,
                                                              class GALGAS_uint constinArgument1,
-                                                             C_Compiler * inCompiler
+                                                             Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
 
@@ -6811,40 +5218,40 @@ class GALGAS_dataList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG void method_first (class GALGAS_lstring & outArgument0,
                                               class GALGAS_immediatExpressionList & outArgument1,
                                               class GALGAS_bool & outArgument2,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG void method_last (class GALGAS_lstring & outArgument0,
                                              class GALGAS_immediatExpressionList & outArgument1,
                                              class GALGAS_bool & outArgument2,
-                                             C_Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mDataNameAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                         C_Compiler * inCompiler
+                                                                         Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mIsByteListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_immediatExpressionList getter_mValueListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                         C_Compiler * inCompiler
+                                                                                         Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_dataList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                          C_Compiler * inCompiler
+                                                                          Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_dataList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_dataList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                          C_Compiler * inCompiler
+                                                                          Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) const ;
 
 
@@ -6858,9 +5265,9 @@ class GALGAS_dataList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_dataList class
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   Enumerator declaration                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cEnumerator_dataList : public cGenericAbstractEnumerator {
   public: cEnumerator_dataList (const GALGAS_dataList & inEnumeratedObject,
@@ -6874,15 +5281,15 @@ class cEnumerator_dataList : public cGenericAbstractEnumerator {
   public: class GALGAS_dataList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_dataList ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @dataList_2D_element struct
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_dataList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -6936,19 +5343,19 @@ class GALGAS_dataList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Object extraction
   public: static GALGAS_dataList_2D_element extractObject (const GALGAS_object & inObject,
-                                                           C_Compiler * inCompiler
+                                                           Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_dataList_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
                                                                    const class GALGAS_immediatExpressionList & inOperand1,
                                                                    const class GALGAS_bool & inOperand2,
-                                                                   class C_Compiler * inCompiler
+                                                                   class Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_dataList_2D_element & inOperand) const ;
 
@@ -6967,15 +5374,15 @@ class GALGAS_dataList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_dataList_2D_element class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_dataList_2D_element ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @checkpicList list
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_checkpicList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -6997,7 +5404,7 @@ class GALGAS_checkpicList : public AC_GALGAS_list {
 
 //--------------------------------- Object extraction
   public: static GALGAS_checkpicList extractObject (const GALGAS_object & inObject,
-                                                    C_Compiler * inCompiler
+                                                    Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -7009,7 +5416,7 @@ class GALGAS_checkpicList : public AC_GALGAS_list {
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_checkpicList inOperand,
-                                                       class C_Compiler * inCompiler
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
@@ -7018,81 +5425,81 @@ class GALGAS_checkpicList : public AC_GALGAS_list {
                                                      COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GALGAS_checkpicList add_operation (const GALGAS_checkpicList & inOperand,
-                                                              C_Compiler * inCompiler
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_location constinArgument0,
                                                class GALGAS_lstringlist constinArgument1,
-                                               C_Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_location constinArgument0,
                                                       class GALGAS_lstringlist constinArgument1,
                                                       class GALGAS_uint constinArgument2,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_location & outArgument0,
                                                  class GALGAS_lstringlist & outArgument1,
-                                                 C_Compiler * inCompiler
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_location & outArgument0,
                                                 class GALGAS_lstringlist & outArgument1,
-                                                C_Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_location & outArgument0,
                                                       class GALGAS_lstringlist & outArgument1,
                                                       class GALGAS_uint constinArgument2,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMErrorLocationAtIndex (class GALGAS_location constinArgument0,
                                                                  class GALGAS_uint constinArgument1,
-                                                                 C_Compiler * inCompiler
+                                                                 Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMValueListAtIndex (class GALGAS_lstringlist constinArgument0,
                                                              class GALGAS_uint constinArgument1,
-                                                             C_Compiler * inCompiler
+                                                             Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
   public: VIRTUAL_IN_DEBUG void method_first (class GALGAS_location & outArgument0,
                                               class GALGAS_lstringlist & outArgument1,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG void method_last (class GALGAS_location & outArgument0,
                                              class GALGAS_lstringlist & outArgument1,
-                                             C_Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GALGAS_location getter_mErrorLocationAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                               C_Compiler * inCompiler
+                                                                               Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_mValueListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                              C_Compiler * inCompiler
+                                                                              Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_checkpicList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                              C_Compiler * inCompiler
+                                                                              Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_checkpicList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_checkpicList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                              C_Compiler * inCompiler
+                                                                              Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const ;
 
 
@@ -7106,9 +5513,9 @@ class GALGAS_checkpicList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_checkpicList class
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   Enumerator declaration                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cEnumerator_checkpicList : public cGenericAbstractEnumerator {
   public: cEnumerator_checkpicList (const GALGAS_checkpicList & inEnumeratedObject,
@@ -7121,15 +5528,15 @@ class cEnumerator_checkpicList : public cGenericAbstractEnumerator {
   public: class GALGAS_checkpicList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_checkpicList ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @checkpicList_2D_element struct
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_checkpicList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -7173,18 +5580,18 @@ class GALGAS_checkpicList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Object extraction
   public: static GALGAS_checkpicList_2D_element extractObject (const GALGAS_object & inObject,
-                                                               C_Compiler * inCompiler
+                                                               Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_checkpicList_2D_element constructor_new (const class GALGAS_location & inOperand0,
                                                                        const class GALGAS_lstringlist & inOperand1,
-                                                                       class C_Compiler * inCompiler
+                                                                       class Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_checkpicList_2D_element & inOperand) const ;
 
@@ -7203,95 +5610,95 @@ class GALGAS_checkpicList_2D_element : public AC_GALGAS_root {
 } ; // End of GALGAS_checkpicList_2D_element class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_checkpicList_2D_element ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Extension getter '@pic18RegisterComparison mnemonic' (as function)
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_mnemonic (const class GALGAS_pic_31__38_RegisterComparison & inObject,
-                                              class C_Compiler * inCompiler
+                                              class Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Extension getter '@conditional_branch condition' (as function)
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_condition (const class GALGAS_conditional_5F_branch & inObject,
-                                               class C_Compiler * inCompiler
+                                               class Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Extension getter '@pic18InstructionWithNoOperandKind assemblyCode' (as function)
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_assemblyCode (const class GALGAS_pic_31__38_InstructionWithNoOperandKind & inObject,
-                                                  class C_Compiler * inCompiler
+                                                  class Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Extension getter '@FA_instruction_base_code mnemonic' (as function)
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_mnemonic (const class GALGAS_FA_5F_instruction_5F_base_5F_code & inObject,
-                                              class C_Compiler * inCompiler
+                                              class Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Extension getter '@bit_oriented_op mnemonic' (as function)
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_mnemonic (const class GALGAS_bit_5F_oriented_5F_op & inObject,
-                                              class C_Compiler * inCompiler
+                                              class Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Extension getter '@conditional_branch mnemonic' (as function)
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_mnemonic (const class GALGAS_conditional_5F_branch & inObject,
-                                              class C_Compiler * inCompiler
+                                              class Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Extension getter '@literal_instruction_opcode mnemonic' (as function)
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_mnemonic (const class GALGAS_literal_5F_instruction_5F_opcode & inObject,
-                                              class C_Compiler * inCompiler
+                                              class Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Extension getter '@tableAccessOption mnemonic' (as function)
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_string extensionGetter_mnemonic (const class GALGAS_tableAccessOption & inObject,
-                                              class C_Compiler * inCompiler
+                                              class Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Parser class 'pic18_syntax' declaration
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cParser_pic_31__38__5F_syntax {
 //--- Virtual destructor
@@ -7754,11 +6161,11 @@ class cParser_pic_31__38__5F_syntax {
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_Instruction_5F_switch reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_Instruction_5F_switch : public GALGAS_pic_31__38_PiccoloInstruction {
 //--------------------------------- Default constructor
@@ -7781,7 +6188,7 @@ class GALGAS_pic_31__38_Instruction_5F_switch : public GALGAS_pic_31__38_Piccolo
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_Instruction_5F_switch extractObject (const GALGAS_object & inObject,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -7818,15 +6225,15 @@ class GALGAS_pic_31__38_Instruction_5F_switch : public GALGAS_pic_31__38_Piccolo
 } ; // End of GALGAS_pic_31__38_Instruction_5F_switch class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_switch ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic18SwitchInstructionCaseList list
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -7849,7 +6256,7 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_SwitchInstructionCaseList extractObject (const GALGAS_object & inObject,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -7862,7 +6269,7 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_pic_31__38_SwitchInstructionCaseList inOperand,
-                                                       class C_Compiler * inCompiler
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
@@ -7872,7 +6279,7 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
                                                      COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GALGAS_pic_31__38_SwitchInstructionCaseList add_operation (const GALGAS_pic_31__38_SwitchInstructionCaseList & inOperand,
-                                                                                      C_Compiler * inCompiler
+                                                                                      Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const ;
 
 
@@ -7880,48 +6287,48 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_location constinArgument0,
                                                class GALGAS_pic_31__38_CaseExpressionList constinArgument1,
                                                class GALGAS_pic_31__38_InstructionList constinArgument2,
-                                               C_Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_location constinArgument0,
                                                       class GALGAS_pic_31__38_CaseExpressionList constinArgument1,
                                                       class GALGAS_pic_31__38_InstructionList constinArgument2,
                                                       class GALGAS_uint constinArgument3,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_location & outArgument0,
                                                  class GALGAS_pic_31__38_CaseExpressionList & outArgument1,
                                                  class GALGAS_pic_31__38_InstructionList & outArgument2,
-                                                 C_Compiler * inCompiler
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_location & outArgument0,
                                                 class GALGAS_pic_31__38_CaseExpressionList & outArgument1,
                                                 class GALGAS_pic_31__38_InstructionList & outArgument2,
-                                                C_Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_location & outArgument0,
                                                       class GALGAS_pic_31__38_CaseExpressionList & outArgument1,
                                                       class GALGAS_pic_31__38_InstructionList & outArgument2,
                                                       class GALGAS_uint constinArgument3,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMCaseExpressionListAtIndex (class GALGAS_pic_31__38_CaseExpressionList constinArgument0,
                                                                       class GALGAS_uint constinArgument1,
-                                                                      C_Compiler * inCompiler
+                                                                      Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMInstructionListAtIndex (class GALGAS_pic_31__38_InstructionList constinArgument0,
                                                                    class GALGAS_uint constinArgument1,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMStartOfCaseAtIndex (class GALGAS_location constinArgument0,
                                                                class GALGAS_uint constinArgument1,
-                                                               C_Compiler * inCompiler
+                                                               Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
 
@@ -7929,40 +6336,40 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG void method_first (class GALGAS_location & outArgument0,
                                               class GALGAS_pic_31__38_CaseExpressionList & outArgument1,
                                               class GALGAS_pic_31__38_InstructionList & outArgument2,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG void method_last (class GALGAS_location & outArgument0,
                                              class GALGAS_pic_31__38_CaseExpressionList & outArgument1,
                                              class GALGAS_pic_31__38_InstructionList & outArgument2,
-                                             C_Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_CaseExpressionList getter_mCaseExpressionListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                         C_Compiler * inCompiler
+                                                                                                         Compiler * inCompiler
                                                                                                          COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_InstructionList getter_mInstructionListAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                   C_Compiler * inCompiler
+                                                                                                   Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_location getter_mStartOfCaseAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                             C_Compiler * inCompiler
+                                                                             Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_SwitchInstructionCaseList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                      C_Compiler * inCompiler
+                                                                                                      Compiler * inCompiler
                                                                                                       COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_SwitchInstructionCaseList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                                                    C_Compiler * inCompiler
+                                                                                                    Compiler * inCompiler
                                                                                                     COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_SwitchInstructionCaseList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                                      C_Compiler * inCompiler
+                                                                                                      Compiler * inCompiler
                                                                                                       COMMA_LOCATION_ARGS) const ;
 
 
@@ -7976,9 +6383,9 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_pic_31__38_SwitchInstructionCaseList class
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   Enumerator declaration                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cEnumerator_pic_31__38_SwitchInstructionCaseList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_SwitchInstructionCaseList (const GALGAS_pic_31__38_SwitchInstructionCaseList & inEnumeratedObject,
@@ -7992,15 +6399,15 @@ class cEnumerator_pic_31__38_SwitchInstructionCaseList : public cGenericAbstract
   public: class GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18Instruction_switch class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_Instruction_5F_switch : public cPtr_pic_31__38_PiccoloInstruction {
 
@@ -8010,7 +6417,7 @@ class cPtr_pic_31__38_Instruction_5F_switch : public cPtr_pic_31__38_PiccoloInst
 //--- Extension method addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
            class GALGAS_stringset & ioUsedRoutines,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method analyze
   public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
@@ -8028,7 +6435,7 @@ class cPtr_pic_31__38_Instruction_5F_switch : public cPtr_pic_31__38_PiccoloInst
            const class GALGAS_bool inShouldPreserveBSR,
            const class GALGAS_routineKind inRoutineKind,
            class GALGAS_stringset & ioUsedRegisters,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_pic_31__38_SwitchInstructionCaseList mProperty_mCaseList ;
@@ -8047,7 +6454,7 @@ class cPtr_pic_31__38_Instruction_5F_switch : public cPtr_pic_31__38_PiccoloInst
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -8056,11 +6463,11 @@ class cPtr_pic_31__38_Instruction_5F_switch : public cPtr_pic_31__38_PiccoloInst
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_IntervalCaseItem reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_IntervalCaseItem : public GALGAS_pic_31__38_AbstractCaseItem {
 //--------------------------------- Default constructor
@@ -8083,7 +6490,7 @@ class GALGAS_pic_31__38_IntervalCaseItem : public GALGAS_pic_31__38_AbstractCase
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_IntervalCaseItem extractObject (const GALGAS_object & inObject,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -8119,15 +6526,15 @@ class GALGAS_pic_31__38_IntervalCaseItem : public GALGAS_pic_31__38_AbstractCase
 } ; // End of GALGAS_pic_31__38_IntervalCaseItem class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_IntervalCaseItem ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18IntervalCaseItem class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_IntervalCaseItem : public cPtr_pic_31__38_AbstractCaseItem {
 
@@ -8145,7 +6552,7 @@ class cPtr_pic_31__38_IntervalCaseItem : public cPtr_pic_31__38_AbstractCaseItem
            class GALGAS_ipic_31__38_BlockList & ioGeneratedBlockList,
            class GALGAS_lstring & ioBlockLabel,
            class GALGAS_sint_36__34_ & ioLastComparisonValue,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mMinExpression ;
@@ -8163,7 +6570,7 @@ class cPtr_pic_31__38_IntervalCaseItem : public cPtr_pic_31__38_AbstractCaseItem
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -8172,11 +6579,11 @@ class cPtr_pic_31__38_IntervalCaseItem : public cPtr_pic_31__38_AbstractCaseItem
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic_31__38_SimpleConstantCaseItem reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_SimpleConstantCaseItem : public GALGAS_pic_31__38_AbstractCaseItem {
 //--------------------------------- Default constructor
@@ -8197,7 +6604,7 @@ class GALGAS_pic_31__38_SimpleConstantCaseItem : public GALGAS_pic_31__38_Abstra
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_SimpleConstantCaseItem extractObject (const GALGAS_object & inObject,
-                                                                         C_Compiler * inCompiler
+                                                                         Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -8229,15 +6636,15 @@ class GALGAS_pic_31__38_SimpleConstantCaseItem : public GALGAS_pic_31__38_Abstra
 } ; // End of GALGAS_pic_31__38_SimpleConstantCaseItem class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SimpleConstantCaseItem ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @pic18SimpleConstantCaseItem class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_pic_31__38_SimpleConstantCaseItem : public cPtr_pic_31__38_AbstractCaseItem {
 
@@ -8255,7 +6662,7 @@ class cPtr_pic_31__38_SimpleConstantCaseItem : public cPtr_pic_31__38_AbstractCa
            class GALGAS_ipic_31__38_BlockList & ioGeneratedBlockList,
            class GALGAS_lstring & ioBlockLabel,
            class GALGAS_sint_36__34_ & ioLastComparisonValue,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_immediatExpression mProperty_mCaseExpression ;
@@ -8271,7 +6678,7 @@ class cPtr_pic_31__38_SimpleConstantCaseItem : public cPtr_pic_31__38_AbstractCa
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -8280,11 +6687,11 @@ class cPtr_pic_31__38_SimpleConstantCaseItem : public cPtr_pic_31__38_AbstractCa
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Parser class 'communs' declaration
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cParser_communs {
 //--- Virtual destructor
@@ -8537,9 +6944,9 @@ class cParser_communs {
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //  GRAMMAR pic18_include_grammar
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F_syntax,
                                                    public cParser_communs {
@@ -8589,7 +6996,7 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
                                  C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //--- Start symbol
-  public: static void _performSourceFileParsing_ (C_Compiler * inCompiler,
+  public: static void _performSourceFileParsing_ (Compiler * inCompiler,
                                                   GALGAS_lstring inFileName,
                                                   GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
                                                   GALGAS_pic_31__38_RoutineDefinitionList & ioArgument1,
@@ -8606,7 +7013,7 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
                                                   GALGAS_bool & ioArgument12
                                                   COMMA_LOCATION_ARGS) ;
 
-  public: static void _performSourceStringParsing_ (C_Compiler * inCompiler,
+  public: static void _performSourceStringParsing_ (Compiler * inCompiler,
                                                     GALGAS_string inSourceString,
                                                     GALGAS_string inNameString,
                                                     GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
@@ -8625,16 +7032,16 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Indexing
-  public: static void performIndexing (C_Compiler * inCompiler,
-                                       const C_String & inSourceFilePath) ;
+  public: static void performIndexing (Compiler * inCompiler,
+                                       const String & inSourceFilePath) ;
 
 //--- Only lexical analysis
-  public: static void performOnlyLexicalAnalysis (C_Compiler * inCompiler,
-                                                  const C_String & inSourceFilePath) ;
+  public: static void performOnlyLexicalAnalysis (Compiler * inCompiler,
+                                                  const String & inSourceFilePath) ;
 
 //--- Only syntax analysis
-  public: static void performOnlySyntaxAnalysis (C_Compiler * inCompiler,
-                                                 const C_String & inSourceFilePath) ;
+  public: static void performOnlySyntaxAnalysis (Compiler * inCompiler,
+                                                 const String & inSourceFilePath) ;
 
 //------------------------------------- 'checkpic_definition' non terminal
 //--- 'parse' label
@@ -9076,12 +7483,12 @@ class cGrammar_pic_31__38__5F_include_5F_grammar : public cParser_pic_31__38__5F
   public: virtual int32_t select_communs_20 (C_Lexique_piccolo_5F_lexique *) ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @pic18CaseExpressionList list
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_pic_31__38_CaseExpressionList : public AC_GALGAS_list {
 //--------------------------------- Default constructor
@@ -9102,7 +7509,7 @@ class GALGAS_pic_31__38_CaseExpressionList : public AC_GALGAS_list {
 
 //--------------------------------- Object extraction
   public: static GALGAS_pic_31__38_CaseExpressionList extractObject (const GALGAS_object & inObject,
-                                                                     C_Compiler * inCompiler
+                                                                     Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -9113,7 +7520,7 @@ class GALGAS_pic_31__38_CaseExpressionList : public AC_GALGAS_list {
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_pic_31__38_CaseExpressionList inOperand,
-                                                       class C_Compiler * inCompiler
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
@@ -9121,65 +7528,65 @@ class GALGAS_pic_31__38_CaseExpressionList : public AC_GALGAS_list {
                                                      COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GALGAS_pic_31__38_CaseExpressionList add_operation (const GALGAS_pic_31__38_CaseExpressionList & inOperand,
-                                                                               C_Compiler * inCompiler
+                                                                               Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_pic_31__38_AbstractCaseItem constinArgument0,
-                                               C_Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_pic_31__38_AbstractCaseItem constinArgument0,
                                                       class GALGAS_uint constinArgument1,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_pic_31__38_AbstractCaseItem & outArgument0,
-                                                 C_Compiler * inCompiler
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_pic_31__38_AbstractCaseItem & outArgument0,
-                                                C_Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_pic_31__38_AbstractCaseItem & outArgument0,
                                                       class GALGAS_uint constinArgument1,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMCaseItemAtIndex (class GALGAS_pic_31__38_AbstractCaseItem constinArgument0,
                                                             class GALGAS_uint constinArgument1,
-                                                            C_Compiler * inCompiler
+                                                            Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
   public: VIRTUAL_IN_DEBUG void method_first (class GALGAS_pic_31__38_AbstractCaseItem & outArgument0,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG void method_last (class GALGAS_pic_31__38_AbstractCaseItem & outArgument0,
-                                             C_Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_AbstractCaseItem getter_mCaseItemAtIndex (const class GALGAS_uint & constinOperand0,
-                                                                                             C_Compiler * inCompiler
+                                                                                             Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_CaseExpressionList getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
-                                                                                               C_Compiler * inCompiler
+                                                                                               Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_CaseExpressionList getter_subListToIndex (const class GALGAS_uint & constinOperand0,
-                                                                                             C_Compiler * inCompiler
+                                                                                             Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_pic_31__38_CaseExpressionList getter_subListWithRange (const class GALGAS_range & constinOperand0,
-                                                                                               C_Compiler * inCompiler
+                                                                                               Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) const ;
 
 
@@ -9193,9 +7600,9 @@ class GALGAS_pic_31__38_CaseExpressionList : public AC_GALGAS_list {
  
 } ; // End of GALGAS_pic_31__38_CaseExpressionList class
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   Enumerator declaration                                                                      
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cEnumerator_pic_31__38_CaseExpressionList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_CaseExpressionList (const GALGAS_pic_31__38_CaseExpressionList & inEnumeratedObject,
@@ -9207,7 +7614,1498 @@ class cEnumerator_pic_31__38_CaseExpressionList : public cGenericAbstractEnumera
   public: class GALGAS_pic_31__38_CaseExpressionList_2D_element current (LOCATION_ARGS) const ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Parser class 'pic18_start_symbol' declaration
+//
+//--------------------------------------------------------------------------------------------------
+
+class cParser_pic_31__38__5F_start_5F_symbol {
+//--- Virtual destructor
+  public: virtual ~ cParser_pic_31__38__5F_start_5F_symbol (void) {}
+
+//--- Non terminal declarations
+  protected: virtual void nt_body_ (class GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
+                                    class GALGAS_pic_31__38_RoutineDefinitionList & ioArgument1,
+                                    class GALGAS_pic_31__38_MacroDefinitionList & ioArgument2,
+                                    class GALGAS_lstringlist & ioArgument3,
+                                    class GALGAS_lstringlist & ioArgument4,
+                                    class GALGAS_ramDefinitionList & ioArgument5,
+                                    class GALGAS_lstringlist & ioArgument6,
+                                    class GALGAS_configDefinitionList & ioArgument7,
+                                    class GALGAS_constantDefinitionList & ioArgument8,
+                                    class GALGAS_checkpicList & ioArgument9,
+                                    class GALGAS_dataList & ioArgument10,
+                                    class GALGAS_bool & ioArgument11,
+                                    class GALGAS_bool & ioArgument12,
+                                    class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_body_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_body_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_ (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_importBootloaderSpecification (class GALGAS_piccoloDeviceModel & outArgument0,
+                                                                            class GALGAS_string & outArgument1,
+                                                                            class GALGAS_uint & outArgument2,
+                                                                            class GALGAS_ramBankTable & outArgument3,
+                                                                            class GALGAS_registerTable & outArgument4,
+                                                                            class GALGAS_bootloaderReservedRAMmap & outArgument5,
+                                                                            class GALGAS_routineDeclarationList & outArgument6,
+                                                                            class GALGAS_routineDeclarationList & outArgument7,
+                                                                            class GALGAS_luint & outArgument8,
+                                                                            class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+
+//--- Rule declarations
+  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_ (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_importBootloaderSpecification (GALGAS_piccoloDeviceModel & outArgument0,
+                                                                                                        GALGAS_string & outArgument1,
+                                                                                                        GALGAS_uint & outArgument2,
+                                                                                                        GALGAS_ramBankTable & outArgument3,
+                                                                                                        GALGAS_registerTable & outArgument4,
+                                                                                                        GALGAS_bootloaderReservedRAMmap & outArgument5,
+                                                                                                        GALGAS_routineDeclarationList & outArgument6,
+                                                                                                        GALGAS_routineDeclarationList & outArgument7,
+                                                                                                        GALGAS_luint & outArgument8,
+                                                                                                        C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+
+
+//--- Select methods
+  protected: virtual int32_t select_pic_31__38__5F_start_5F_symbol_0 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @ramBankTable map
+//
+//--------------------------------------------------------------------------------------------------
+
+class cMapElement_ramBankTable ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const char * kSearchErrorMessage_ramBankTable_searchKey ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_ramBankTable : public AC_GALGAS_map {
+//--------------------------------- Default constructor
+  public: GALGAS_ramBankTable (void) ;
+
+//--------------------------------- Handle copy
+  public: GALGAS_ramBankTable (const GALGAS_ramBankTable & inSource) ;
+  public: GALGAS_ramBankTable & operator = (const GALGAS_ramBankTable & inSource) ;
+  
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_ramBankTable extractObject (const GALGAS_object & inObject,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_ramBankTable constructor_emptyMap (LOCATION_ARGS) ;
+
+  public: static class GALGAS_ramBankTable constructor_mapWithMapToOverride (const class GALGAS_ramBankTable & inOperand0
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
+                                                     const class GALGAS_uint & inOperand1,
+                                                     const class GALGAS_uint & inOperand2,
+                                                     const class GALGAS_uint & inOperand3,
+                                                     const class GALGAS_uintlist & inOperand4,
+                                                     Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_ramBankTable add_operation (const GALGAS_ramBankTable & inOperand,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
+                                                  class GALGAS_uint constinArgument1,
+                                                  class GALGAS_uint constinArgument2,
+                                                  class GALGAS_uint constinArgument3,
+                                                  class GALGAS_uintlist constinArgument4,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMFirstAddressForKey (class GALGAS_uint constinArgument0,
+                                                               class GALGAS_string constinArgument1,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMFirstFreeAddressForKey (class GALGAS_uint constinArgument0,
+                                                                   class GALGAS_string constinArgument1,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMLastAddressPlusOneForKey (class GALGAS_uint constinArgument0,
+                                                                     class GALGAS_string constinArgument1,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMMirrorOffsetListForKey (class GALGAS_uintlist constinArgument0,
+                                                                   class GALGAS_string constinArgument1,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
+                                                  class GALGAS_uint & outArgument1,
+                                                  class GALGAS_uint & outArgument2,
+                                                  class GALGAS_uint & outArgument3,
+                                                  class GALGAS_uintlist & outArgument4,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_mFirstAddressForKey (const class GALGAS_string & constinOperand0,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_mFirstFreeAddressForKey (const class GALGAS_string & constinOperand0,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_mLastAddressPlusOneForKey (const class GALGAS_string & constinOperand0,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_uintlist getter_mMirrorOffsetListForKey (const class GALGAS_string & constinOperand0,
+                                                                                 Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_ramBankTable getter_overriddenMap (Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+  public: VIRTUAL_IN_DEBUG bool optional_searchKey (const class GALGAS_string & constinOperand0,
+                                                    class GALGAS_uint & outOperand1,
+                                                    class GALGAS_uint & outOperand2,
+                                                    class GALGAS_uint & outOperand3,
+                                                    class GALGAS_uintlist & outOperand4) const ;
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG cMapElement_ramBankTable * readWriteAccessForWithInstruction (Compiler * inCompiler,
+                                                                                         const GALGAS_string & inKey
+                                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
+
+  friend class cEnumerator_ramBankTable ;
+ 
+} ; // End of GALGAS_ramBankTable class
+
+//--------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//--------------------------------------------------------------------------------------------------
+
+class cEnumerator_ramBankTable : public cGenericAbstractEnumerator {
+  public: cEnumerator_ramBankTable (const GALGAS_ramBankTable & inEnumeratedObject,
+                                    const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public: class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GALGAS_uint current_mFirstAddress (LOCATION_ARGS) const ;
+  public: class GALGAS_uint current_mFirstFreeAddress (LOCATION_ARGS) const ;
+  public: class GALGAS_uint current_mLastAddressPlusOne (LOCATION_ARGS) const ;
+  public: class GALGAS_uintlist current_mMirrorOffsetList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GALGAS_ramBankTable_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ramBankTable ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 2: class for element of '@ramBankTable' map
+//
+//--------------------------------------------------------------------------------------------------
+
+class cMapElement_ramBankTable : public cMapElement {
+//--- Map attributes
+  public: GALGAS_uint mProperty_mFirstAddress ;
+  public: GALGAS_uint mProperty_mFirstFreeAddress ;
+  public: GALGAS_uint mProperty_mLastAddressPlusOne ;
+  public: GALGAS_uintlist mProperty_mMirrorOffsetList ;
+
+//--- Constructor
+  public: cMapElement_ramBankTable (const GALGAS_lstring & inKey,
+                                    const GALGAS_uint & in_mFirstAddress,
+                                    const GALGAS_uint & in_mFirstFreeAddress,
+                                    const GALGAS_uint & in_mLastAddressPlusOne,
+                                    const GALGAS_uintlist & in_mMirrorOffsetList
+                                    COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+
+//--- Virtual method that checks that all attributes are valid
+  public: virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public: virtual cMapElement * copy (void) ;
+
+//--- Description
+ public: virtual void description (String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'pic18_analyze'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_pic_31__38__5F_analyze (const class GALGAS_pic_31__38_AST constinArgument0,
+                                     const class GALGAS_string constinArgument1,
+                                     class Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @pic_31__38_AST struct
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GALGAS_lstring mProperty_mProgramName ;
+  public: inline GALGAS_lstring readProperty_mProgramName (void) const {
+    return mProperty_mProgramName ;
+  }
+
+  public: GALGAS_programKind mProperty_mProgramKind ;
+  public: inline GALGAS_programKind readProperty_mProgramKind (void) const {
+    return mProperty_mProgramKind ;
+  }
+
+  public: GALGAS_lstring mProperty_mDeviceNameOrBootLoaderReference ;
+  public: inline GALGAS_lstring readProperty_mDeviceNameOrBootLoaderReference (void) const {
+    return mProperty_mDeviceNameOrBootLoaderReference ;
+  }
+
+  public: GALGAS_configDefinitionList mProperty_mConfigDefinitionList ;
+  public: inline GALGAS_configDefinitionList readProperty_mConfigDefinitionList (void) const {
+    return mProperty_mConfigDefinitionList ;
+  }
+
+  public: GALGAS_ramDefinitionList mProperty_mRamDefinitionList ;
+  public: inline GALGAS_ramDefinitionList readProperty_mRamDefinitionList (void) const {
+    return mProperty_mRamDefinitionList ;
+  }
+
+  public: GALGAS_lstringlist mProperty_mUnusedRegisterList ;
+  public: inline GALGAS_lstringlist readProperty_mUnusedRegisterList (void) const {
+    return mProperty_mUnusedRegisterList ;
+  }
+
+  public: GALGAS_checkpicList mProperty_mCheckpicList ;
+  public: inline GALGAS_checkpicList readProperty_mCheckpicList (void) const {
+    return mProperty_mCheckpicList ;
+  }
+
+  public: GALGAS_dataList mProperty_mDataList ;
+  public: inline GALGAS_dataList readProperty_mDataList (void) const {
+    return mProperty_mDataList ;
+  }
+
+  public: GALGAS_pic_31__38_InterruptDefinitionList mProperty_mInterruptDefinitionList ;
+  public: inline GALGAS_pic_31__38_InterruptDefinitionList readProperty_mInterruptDefinitionList (void) const {
+    return mProperty_mInterruptDefinitionList ;
+  }
+
+  public: GALGAS_constantDefinitionList mProperty_mConstantDefinitionList ;
+  public: inline GALGAS_constantDefinitionList readProperty_mConstantDefinitionList (void) const {
+    return mProperty_mConstantDefinitionList ;
+  }
+
+  public: GALGAS_pic_31__38_RoutineDefinitionList mProperty_mRoutineDefinitionList ;
+  public: inline GALGAS_pic_31__38_RoutineDefinitionList readProperty_mRoutineDefinitionList (void) const {
+    return mProperty_mRoutineDefinitionList ;
+  }
+
+  public: GALGAS_pic_31__38_MacroDefinitionList mProperty_mMacroDefinitionList ;
+  public: inline GALGAS_pic_31__38_MacroDefinitionList readProperty_mMacroDefinitionList (void) const {
+    return mProperty_mMacroDefinitionList ;
+  }
+
+  public: GALGAS_lstringlist mProperty_mUnusedRoutineList ;
+  public: inline GALGAS_lstringlist readProperty_mUnusedRoutineList (void) const {
+    return mProperty_mUnusedRoutineList ;
+  }
+
+  public: GALGAS_lstringlist mProperty_mInlinedRoutineList ;
+  public: inline GALGAS_lstringlist readProperty_mInlinedRoutineList (void) const {
+    return mProperty_mInlinedRoutineList ;
+  }
+
+  public: GALGAS_bool mProperty_mNeedsComputedGoto_32_ ;
+  public: inline GALGAS_bool readProperty_mNeedsComputedGoto_32_ (void) const {
+    return mProperty_mNeedsComputedGoto_32_ ;
+  }
+
+  public: GALGAS_bool mProperty_mNeedsComputedGoto_34_ ;
+  public: inline GALGAS_bool readProperty_mNeedsComputedGoto_34_ (void) const {
+    return mProperty_mNeedsComputedGoto_34_ ;
+  }
+
+  public: GALGAS_location mProperty_mEndOfProgram ;
+  public: inline GALGAS_location readProperty_mEndOfProgram (void) const {
+    return mProperty_mEndOfProgram ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GALGAS_pic_31__38_AST (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMProgramName (const GALGAS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mProgramName = inValue ;
+  }
+
+  public: inline void setter_setMProgramKind (const GALGAS_programKind & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mProgramKind = inValue ;
+  }
+
+  public: inline void setter_setMDeviceNameOrBootLoaderReference (const GALGAS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDeviceNameOrBootLoaderReference = inValue ;
+  }
+
+  public: inline void setter_setMConfigDefinitionList (const GALGAS_configDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConfigDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMRamDefinitionList (const GALGAS_ramDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRamDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMUnusedRegisterList (const GALGAS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mUnusedRegisterList = inValue ;
+  }
+
+  public: inline void setter_setMCheckpicList (const GALGAS_checkpicList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mCheckpicList = inValue ;
+  }
+
+  public: inline void setter_setMDataList (const GALGAS_dataList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDataList = inValue ;
+  }
+
+  public: inline void setter_setMInterruptDefinitionList (const GALGAS_pic_31__38_InterruptDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInterruptDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMConstantDefinitionList (const GALGAS_constantDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConstantDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMRoutineDefinitionList (const GALGAS_pic_31__38_RoutineDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRoutineDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMMacroDefinitionList (const GALGAS_pic_31__38_MacroDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mMacroDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMUnusedRoutineList (const GALGAS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mUnusedRoutineList = inValue ;
+  }
+
+  public: inline void setter_setMInlinedRoutineList (const GALGAS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInlinedRoutineList = inValue ;
+  }
+
+  public: inline void setter_setMNeedsComputedGoto_32_ (const GALGAS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mNeedsComputedGoto_32_ = inValue ;
+  }
+
+  public: inline void setter_setMNeedsComputedGoto_34_ (const GALGAS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mNeedsComputedGoto_34_ = inValue ;
+  }
+
+  public: inline void setter_setMEndOfProgram (const GALGAS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEndOfProgram = inValue ;
+  }
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public: virtual ~ GALGAS_pic_31__38_AST (void) ;
+
+//--------------------------------- Native constructor
+  public: GALGAS_pic_31__38_AST (const GALGAS_lstring & in_mProgramName,
+                                 const GALGAS_programKind & in_mProgramKind,
+                                 const GALGAS_lstring & in_mDeviceNameOrBootLoaderReference,
+                                 const GALGAS_configDefinitionList & in_mConfigDefinitionList,
+                                 const GALGAS_ramDefinitionList & in_mRamDefinitionList,
+                                 const GALGAS_lstringlist & in_mUnusedRegisterList,
+                                 const GALGAS_checkpicList & in_mCheckpicList,
+                                 const GALGAS_dataList & in_mDataList,
+                                 const GALGAS_pic_31__38_InterruptDefinitionList & in_mInterruptDefinitionList,
+                                 const GALGAS_constantDefinitionList & in_mConstantDefinitionList,
+                                 const GALGAS_pic_31__38_RoutineDefinitionList & in_mRoutineDefinitionList,
+                                 const GALGAS_pic_31__38_MacroDefinitionList & in_mMacroDefinitionList,
+                                 const GALGAS_lstringlist & in_mUnusedRoutineList,
+                                 const GALGAS_lstringlist & in_mInlinedRoutineList,
+                                 const GALGAS_bool & in_mNeedsComputedGoto_32_,
+                                 const GALGAS_bool & in_mNeedsComputedGoto_34_,
+                                 const GALGAS_location & in_mEndOfProgram) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_pic_31__38_AST extractObject (const GALGAS_object & inObject,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_pic_31__38_AST constructor_new (const class GALGAS_lstring & inOperand0,
+                                                              const class GALGAS_programKind & inOperand1,
+                                                              const class GALGAS_lstring & inOperand2,
+                                                              const class GALGAS_configDefinitionList & inOperand3,
+                                                              const class GALGAS_ramDefinitionList & inOperand4,
+                                                              const class GALGAS_lstringlist & inOperand5,
+                                                              const class GALGAS_checkpicList & inOperand6,
+                                                              const class GALGAS_dataList & inOperand7,
+                                                              const class GALGAS_pic_31__38_InterruptDefinitionList & inOperand8,
+                                                              const class GALGAS_constantDefinitionList & inOperand9,
+                                                              const class GALGAS_pic_31__38_RoutineDefinitionList & inOperand10,
+                                                              const class GALGAS_pic_31__38_MacroDefinitionList & inOperand11,
+                                                              const class GALGAS_lstringlist & inOperand12,
+                                                              const class GALGAS_lstringlist & inOperand13,
+                                                              const class GALGAS_bool & inOperand14,
+                                                              const class GALGAS_bool & inOperand15,
+                                                              const class GALGAS_location & inOperand16,
+                                                              class Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_AST & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_pic_31__38_AST class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_AST ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//                                             Phase 1: @processorType enum                                            *
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_processorType : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public: GALGAS_processorType (void) ;
+
+//--------------------------------- Enumeration
+  public: typedef enum {
+    kNotBuilt,
+    kEnum_pic_31__38__5F__36__30_,
+    kEnum_pic_31__38__5F__38__30_,
+    kEnum_midrange,
+    kEnum_baseline
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private: enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return kNotBuilt != mEnum ; }
+  public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
+  public: inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_processorType extractObject (const GALGAS_object & inObject,
+                                                     Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_processorType constructor_baseline (LOCATION_ARGS) ;
+
+  public: static class GALGAS_processorType constructor_midrange (LOCATION_ARGS) ;
+
+  public: static class GALGAS_processorType constructor_pic_31__38__5F__36__30_ (LOCATION_ARGS) ;
+
+  public: static class GALGAS_processorType constructor_pic_31__38__5F__38__30_ (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_processorType & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBaseline (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isMidrange (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPic_31__38__5F__36__30_ (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPic_31__38__5F__38__30_ (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+  public: VIRTUAL_IN_DEBUG bool optional_baseline () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_midrange () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_pic_31__38__5F__36__30_ () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_pic_31__38__5F__38__30_ () const ;
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_processorType class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_processorType ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @configRegisterMap map
+//
+//--------------------------------------------------------------------------------------------------
+
+class cMapElement_configRegisterMap ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const char * kSearchErrorMessage_configRegisterMap_searchKey ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_configRegisterMap : public AC_GALGAS_map {
+//--------------------------------- Default constructor
+  public: GALGAS_configRegisterMap (void) ;
+
+//--------------------------------- Handle copy
+  public: GALGAS_configRegisterMap (const GALGAS_configRegisterMap & inSource) ;
+  public: GALGAS_configRegisterMap & operator = (const GALGAS_configRegisterMap & inSource) ;
+  
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_configRegisterMap extractObject (const GALGAS_object & inObject,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_configRegisterMap constructor_emptyMap (LOCATION_ARGS) ;
+
+  public: static class GALGAS_configRegisterMap constructor_mapWithMapToOverride (const class GALGAS_configRegisterMap & inOperand0
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
+                                                     const class GALGAS_luint & inOperand1,
+                                                     const class GALGAS_luint & inOperand2,
+                                                     const class GALGAS_configRegisterMaskMap & inOperand3,
+                                                     const class GALGAS_illegalMaskList & inOperand4,
+                                                     Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_configRegisterMap add_operation (const GALGAS_configRegisterMap & inOperand,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
+                                                  class GALGAS_luint constinArgument1,
+                                                  class GALGAS_luint constinArgument2,
+                                                  class GALGAS_configRegisterMaskMap constinArgument3,
+                                                  class GALGAS_illegalMaskList constinArgument4,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMConfigRegisterMaskMapForKey (class GALGAS_configRegisterMaskMap constinArgument0,
+                                                                        class GALGAS_string constinArgument1,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMIllegalMaskListForKey (class GALGAS_illegalMaskList constinArgument0,
+                                                                  class GALGAS_string constinArgument1,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMRegisterAddressForKey (class GALGAS_luint constinArgument0,
+                                                                  class GALGAS_string constinArgument1,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMRegisterWidthForKey (class GALGAS_luint constinArgument0,
+                                                                class GALGAS_string constinArgument1,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
+                                                  class GALGAS_luint & outArgument1,
+                                                  class GALGAS_luint & outArgument2,
+                                                  class GALGAS_configRegisterMaskMap & outArgument3,
+                                                  class GALGAS_illegalMaskList & outArgument4,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GALGAS_configRegisterMaskMap getter_mConfigRegisterMaskMapForKey (const class GALGAS_string & constinOperand0,
+                                                                                                   Compiler * inCompiler
+                                                                                                   COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_illegalMaskList getter_mIllegalMaskListForKey (const class GALGAS_string & constinOperand0,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_luint getter_mRegisterAddressForKey (const class GALGAS_string & constinOperand0,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_luint getter_mRegisterWidthForKey (const class GALGAS_string & constinOperand0,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_configRegisterMap getter_overriddenMap (Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+  public: VIRTUAL_IN_DEBUG bool optional_searchKey (const class GALGAS_string & constinOperand0,
+                                                    class GALGAS_luint & outOperand1,
+                                                    class GALGAS_luint & outOperand2,
+                                                    class GALGAS_configRegisterMaskMap & outOperand3,
+                                                    class GALGAS_illegalMaskList & outOperand4) const ;
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG cMapElement_configRegisterMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
+                                                                                              const GALGAS_string & inKey
+                                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
+
+  friend class cEnumerator_configRegisterMap ;
+ 
+} ; // End of GALGAS_configRegisterMap class
+
+//--------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//--------------------------------------------------------------------------------------------------
+
+class cEnumerator_configRegisterMap : public cGenericAbstractEnumerator {
+  public: cEnumerator_configRegisterMap (const GALGAS_configRegisterMap & inEnumeratedObject,
+                                         const typeEnumerationOrder inOrder) ;
+
+//--- Current element access
+  public: class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GALGAS_luint current_mRegisterAddress (LOCATION_ARGS) const ;
+  public: class GALGAS_luint current_mRegisterWidth (LOCATION_ARGS) const ;
+  public: class GALGAS_configRegisterMaskMap current_mConfigRegisterMaskMap (LOCATION_ARGS) const ;
+  public: class GALGAS_illegalMaskList current_mIllegalMaskList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GALGAS_configRegisterMap_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configRegisterMap ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @piccoloDeviceModel struct
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_piccoloDeviceModel : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GALGAS_lstring mProperty_mDeviceName ;
+  public: inline GALGAS_lstring readProperty_mDeviceName (void) const {
+    return mProperty_mDeviceName ;
+  }
+
+  public: GALGAS_processorType mProperty_mProcessorType ;
+  public: inline GALGAS_processorType readProperty_mProcessorType (void) const {
+    return mProperty_mProcessorType ;
+  }
+
+  public: GALGAS_luint mProperty_mRomSize ;
+  public: inline GALGAS_luint readProperty_mRomSize (void) const {
+    return mProperty_mRomSize ;
+  }
+
+  public: GALGAS_luint mProperty_mBankCount ;
+  public: inline GALGAS_luint readProperty_mBankCount (void) const {
+    return mProperty_mBankCount ;
+  }
+
+  public: GALGAS_registerTable mProperty_mRegisterTable ;
+  public: inline GALGAS_registerTable readProperty_mRegisterTable (void) const {
+    return mProperty_mRegisterTable ;
+  }
+
+  public: GALGAS_ramBankTable mProperty_mRamBankTable ;
+  public: inline GALGAS_ramBankTable readProperty_mRamBankTable (void) const {
+    return mProperty_mRamBankTable ;
+  }
+
+  public: GALGAS_uint mProperty_mEepromSize ;
+  public: inline GALGAS_uint readProperty_mEepromSize (void) const {
+    return mProperty_mEepromSize ;
+  }
+
+  public: GALGAS_uint mProperty_mEepromAddress ;
+  public: inline GALGAS_uint readProperty_mEepromAddress (void) const {
+    return mProperty_mEepromAddress ;
+  }
+
+  public: GALGAS_configRegisterMap mProperty_mConfigRegisterMap ;
+  public: inline GALGAS_configRegisterMap readProperty_mConfigRegisterMap (void) const {
+    return mProperty_mConfigRegisterMap ;
+  }
+
+  public: GALGAS_string mProperty_mSharedBankName ;
+  public: inline GALGAS_string readProperty_mSharedBankName (void) const {
+    return mProperty_mSharedBankName ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GALGAS_piccoloDeviceModel (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMDeviceName (const GALGAS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDeviceName = inValue ;
+  }
+
+  public: inline void setter_setMProcessorType (const GALGAS_processorType & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mProcessorType = inValue ;
+  }
+
+  public: inline void setter_setMRomSize (const GALGAS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRomSize = inValue ;
+  }
+
+  public: inline void setter_setMBankCount (const GALGAS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mBankCount = inValue ;
+  }
+
+  public: inline void setter_setMRegisterTable (const GALGAS_registerTable & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRegisterTable = inValue ;
+  }
+
+  public: inline void setter_setMRamBankTable (const GALGAS_ramBankTable & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRamBankTable = inValue ;
+  }
+
+  public: inline void setter_setMEepromSize (const GALGAS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEepromSize = inValue ;
+  }
+
+  public: inline void setter_setMEepromAddress (const GALGAS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEepromAddress = inValue ;
+  }
+
+  public: inline void setter_setMConfigRegisterMap (const GALGAS_configRegisterMap & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConfigRegisterMap = inValue ;
+  }
+
+  public: inline void setter_setMSharedBankName (const GALGAS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mSharedBankName = inValue ;
+  }
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public: virtual ~ GALGAS_piccoloDeviceModel (void) ;
+
+//--------------------------------- Native constructor
+  public: GALGAS_piccoloDeviceModel (const GALGAS_lstring & in_mDeviceName,
+                                     const GALGAS_processorType & in_mProcessorType,
+                                     const GALGAS_luint & in_mRomSize,
+                                     const GALGAS_luint & in_mBankCount,
+                                     const GALGAS_registerTable & in_mRegisterTable,
+                                     const GALGAS_ramBankTable & in_mRamBankTable,
+                                     const GALGAS_uint & in_mEepromSize,
+                                     const GALGAS_uint & in_mEepromAddress,
+                                     const GALGAS_configRegisterMap & in_mConfigRegisterMap,
+                                     const GALGAS_string & in_mSharedBankName) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_piccoloDeviceModel extractObject (const GALGAS_object & inObject,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_piccoloDeviceModel constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                  const class GALGAS_processorType & inOperand1,
+                                                                  const class GALGAS_luint & inOperand2,
+                                                                  const class GALGAS_luint & inOperand3,
+                                                                  const class GALGAS_registerTable & inOperand4,
+                                                                  const class GALGAS_ramBankTable & inOperand5,
+                                                                  const class GALGAS_uint & inOperand6,
+                                                                  const class GALGAS_uint & inOperand7,
+                                                                  const class GALGAS_configRegisterMap & inOperand8,
+                                                                  const class GALGAS_string & inOperand9,
+                                                                  class Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_piccoloDeviceModel & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_piccoloDeviceModel class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_piccoloDeviceModel ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Parser class 'midrange_syntax' declaration
+//
+//--------------------------------------------------------------------------------------------------
+
+class cParser_midrange_5F_syntax {
+//--- Virtual destructor
+  public: virtual ~ cParser_midrange_5F_syntax (void) {}
+
+//--- Non terminal declarations
+  protected: virtual void nt_bit_5F_number_5F_parsing_ (class GALGAS_bitNumberExpression & outArgument0,
+                                                        class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_bit_5F_number_5F_parsing_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_bit_5F_number_5F_parsing_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_configuration_5F_definition_ (class GALGAS_configDefinitionList & ioArgument0,
+                                                           class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_configuration_5F_definition_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_configuration_5F_definition_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_constant_5F_definition_ (class GALGAS_constantDefinitionList & ioArgument0,
+                                                      class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_constant_5F_definition_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_constant_5F_definition_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_declaration_5F_in_5F_ram_ (class GALGAS_declarationInRam & outArgument0,
+                                                        class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_declaration_5F_in_5F_ram_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_declaration_5F_in_5F_ram_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_immediate_5F_expression_ (class GALGAS_immediatExpression & outArgument0,
+                                                       class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_immediate_5F_expression_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_immediate_5F_expression_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_expression_ (class GALGAS_midrange_5F_conditionExpression & outArgument0,
+                                                                   class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_expression_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_expression_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_factor_ (class GALGAS_midrange_5F_conditionExpression & outArgument0,
+                                                               class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_factor_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_factor_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_term_ (class GALGAS_midrange_5F_conditionExpression & outArgument0,
+                                                             class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_term_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_term_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_instruction_5F_list_ (class GALGAS_midrange_5F_instructionList & outArgument0,
+                                                               class GALGAS_bool & ioArgument1,
+                                                               class GALGAS_bool & ioArgument2,
+                                                               class GALGAS_labelMap & ioArgument3,
+                                                               class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_instruction_5F_list_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_instruction_5F_list_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_interrupt_5F_definition_ (class GALGAS_midrange_5F_interruptDefinitionList & ioArgument0,
+                                                                   class GALGAS_bool & ioArgument1,
+                                                                   class GALGAS_bool & ioArgument2,
+                                                                   class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_interrupt_5F_definition_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_interrupt_5F_definition_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_routine_5F_definition_ (class GALGAS_midrange_5F_routineDefinitionList & ioArgument0,
+                                                                 class GALGAS_bool & ioArgument1,
+                                                                 class GALGAS_bool & ioArgument2,
+                                                                 class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_routine_5F_definition_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_routine_5F_definition_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_simple_5F_instruction_ (class GALGAS_midrange_5F_instruction & outArgument0,
+                                                                 class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_simple_5F_instruction_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_simple_5F_instruction_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_ (const class GALGAS_lstring constinArgument0,
+                                                                           class GALGAS_midrange_5F_instruction & outArgument1,
+                                                                           class GALGAS_bool & ioArgument2,
+                                                                           class GALGAS_bool & ioArgument3,
+                                                                           class GALGAS_labelMap & ioArgument4,
+                                                                           class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_instruction_ (class GALGAS_midrange_5F_instruction & outArgument0,
+                                                                     class GALGAS_bool & ioArgument1,
+                                                                     class GALGAS_bool & ioArgument2,
+                                                                     class GALGAS_labelMap & ioArgument3,
+                                                                     class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_instruction_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_instruction_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_optional_5F_w_5F_as_5F_dest_ (class GALGAS_bool & outArgument0,
+                                                           class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_optional_5F_w_5F_as_5F_dest_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_optional_5F_w_5F_as_5F_dest_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_ram_5F_definition_ (class GALGAS_ramDefinitionList & ioArgument0,
+                                                 class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_ram_5F_definition_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_ram_5F_definition_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_register_5F_parsing_ (class GALGAS_registerExpression & outArgument0,
+                                                   class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_register_5F_parsing_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_register_5F_parsing_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_ (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_importBootloaderSpecification (class GALGAS_piccoloDeviceModel & outArgument0,
+                                                                            class GALGAS_string & outArgument1,
+                                                                            class GALGAS_uint & outArgument2,
+                                                                            class GALGAS_ramBankTable & outArgument3,
+                                                                            class GALGAS_registerTable & outArgument4,
+                                                                            class GALGAS_bootloaderReservedRAMmap & outArgument5,
+                                                                            class GALGAS_routineDeclarationList & outArgument6,
+                                                                            class GALGAS_routineDeclarationList & outArgument7,
+                                                                            class GALGAS_luint & outArgument8,
+                                                                            class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_parse (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_indexing (class C_Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+
+//--- Rule declarations
+  protected: void rule_midrange_5F_syntax_start_5F_symbol_i0_ (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_start_5F_symbol_i0_importBootloaderSpecification (GALGAS_piccoloDeviceModel & outArgument0,
+                                                                                            GALGAS_string & outArgument1,
+                                                                                            GALGAS_uint & outArgument2,
+                                                                                            GALGAS_ramBankTable & outArgument3,
+                                                                                            GALGAS_registerTable & outArgument4,
+                                                                                            GALGAS_bootloaderReservedRAMmap & outArgument5,
+                                                                                            GALGAS_routineDeclarationList & outArgument6,
+                                                                                            GALGAS_routineDeclarationList & outArgument7,
+                                                                                            GALGAS_luint & outArgument8,
+                                                                                            C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_start_5F_symbol_i0_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_start_5F_symbol_i0_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_ (GALGAS_midrange_5F_instructionList & outArgument0,
+                                                                               GALGAS_bool & ioArgument1,
+                                                                               GALGAS_bool & ioArgument2,
+                                                                               GALGAS_labelMap & ioArgument3,
+                                                                               C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_ (GALGAS_midrange_5F_interruptDefinitionList & ioArgument0,
+                                                                                   GALGAS_bool & ioArgument1,
+                                                                                   GALGAS_bool & ioArgument2,
+                                                                                   C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_ (GALGAS_midrange_5F_routineDefinitionList & ioArgument0,
+                                                                                 GALGAS_bool & ioArgument1,
+                                                                                 GALGAS_bool & ioArgument2,
+                                                                                 C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_ (GALGAS_midrange_5F_instruction & outArgument0,
+                                                                                     GALGAS_bool & ioArgument1,
+                                                                                     GALGAS_bool & ioArgument2,
+                                                                                     GALGAS_labelMap & ioArgument3,
+                                                                                     C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_ (const GALGAS_lstring constinArgument0,
+                                                                                           GALGAS_midrange_5F_instruction & outArgument1,
+                                                                                           GALGAS_bool & ioArgument2,
+                                                                                           GALGAS_bool & ioArgument3,
+                                                                                           GALGAS_labelMap & ioArgument4,
+                                                                                           C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_ (GALGAS_midrange_5F_instruction & outArgument0,
+                                                                                 C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_ (GALGAS_midrange_5F_conditionExpression & outArgument0,
+                                                                               C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_ (GALGAS_midrange_5F_conditionExpression & outArgument0,
+                                                                               C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_ (GALGAS_midrange_5F_conditionExpression & outArgument0,
+                                                                               C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_ (GALGAS_midrange_5F_conditionExpression & outArgument0,
+                                                                                    C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_ (GALGAS_midrange_5F_conditionExpression & outArgument0,
+                                                                              C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_parse (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_indexing (C_Lexique_piccolo_5F_lexique * inLexique) ;
+
+
+
+//--- Select methods
+  protected: virtual int32_t select_midrange_5F_syntax_0 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_1 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_2 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_3 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_4 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_5 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_6 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_7 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_8 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_9 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_10 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_11 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_12 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_13 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_14 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_15 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_16 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_17 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_18 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_19 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_20 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_21 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_22 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_23 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_24 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_25 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_26 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_27 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_28 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_29 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_30 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_31 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_32 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_33 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_34 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_35 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_36 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_37 (C_Lexique_piccolo_5F_lexique *) = 0 ;
+
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'midrange_analyze'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_midrange_5F_analyze (const class GALGAS_midrange_5F_model constinArgument0,
+                                  const class GALGAS_string constinArgument1,
+                                  class Compiler * inCompiler
+                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @midrange_5F_model struct
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_midrange_5F_model : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GALGAS_lstring mProperty_mProgramName ;
+  public: inline GALGAS_lstring readProperty_mProgramName (void) const {
+    return mProperty_mProgramName ;
+  }
+
+  public: GALGAS_lstring mProperty_mDeviceName ;
+  public: inline GALGAS_lstring readProperty_mDeviceName (void) const {
+    return mProperty_mDeviceName ;
+  }
+
+  public: GALGAS_configDefinitionList mProperty_mConfigDefinitionList ;
+  public: inline GALGAS_configDefinitionList readProperty_mConfigDefinitionList (void) const {
+    return mProperty_mConfigDefinitionList ;
+  }
+
+  public: GALGAS_ramDefinitionList mProperty_mRamDefinitionList ;
+  public: inline GALGAS_ramDefinitionList readProperty_mRamDefinitionList (void) const {
+    return mProperty_mRamDefinitionList ;
+  }
+
+  public: GALGAS_lstringlist mProperty_mUnusedRegisterList ;
+  public: inline GALGAS_lstringlist readProperty_mUnusedRegisterList (void) const {
+    return mProperty_mUnusedRegisterList ;
+  }
+
+  public: GALGAS_midrange_5F_interruptDefinitionList mProperty_mInterruptDefinitionList ;
+  public: inline GALGAS_midrange_5F_interruptDefinitionList readProperty_mInterruptDefinitionList (void) const {
+    return mProperty_mInterruptDefinitionList ;
+  }
+
+  public: GALGAS_constantDefinitionList mProperty_mConstantDefinitionList ;
+  public: inline GALGAS_constantDefinitionList readProperty_mConstantDefinitionList (void) const {
+    return mProperty_mConstantDefinitionList ;
+  }
+
+  public: GALGAS_midrange_5F_routineDefinitionList mProperty_mRoutineDefinitionList ;
+  public: inline GALGAS_midrange_5F_routineDefinitionList readProperty_mRoutineDefinitionList (void) const {
+    return mProperty_mRoutineDefinitionList ;
+  }
+
+  public: GALGAS_lstringlist mProperty_mUnusedRoutineList ;
+  public: inline GALGAS_lstringlist readProperty_mUnusedRoutineList (void) const {
+    return mProperty_mUnusedRoutineList ;
+  }
+
+  public: GALGAS_bool mProperty_mNeedsComputedGoto_32_ ;
+  public: inline GALGAS_bool readProperty_mNeedsComputedGoto_32_ (void) const {
+    return mProperty_mNeedsComputedGoto_32_ ;
+  }
+
+  public: GALGAS_bool mProperty_mNeedsComputedGoto_34_ ;
+  public: inline GALGAS_bool readProperty_mNeedsComputedGoto_34_ (void) const {
+    return mProperty_mNeedsComputedGoto_34_ ;
+  }
+
+  public: GALGAS_location mProperty_mEndOfProgram ;
+  public: inline GALGAS_location readProperty_mEndOfProgram (void) const {
+    return mProperty_mEndOfProgram ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GALGAS_midrange_5F_model (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMProgramName (const GALGAS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mProgramName = inValue ;
+  }
+
+  public: inline void setter_setMDeviceName (const GALGAS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDeviceName = inValue ;
+  }
+
+  public: inline void setter_setMConfigDefinitionList (const GALGAS_configDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConfigDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMRamDefinitionList (const GALGAS_ramDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRamDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMUnusedRegisterList (const GALGAS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mUnusedRegisterList = inValue ;
+  }
+
+  public: inline void setter_setMInterruptDefinitionList (const GALGAS_midrange_5F_interruptDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInterruptDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMConstantDefinitionList (const GALGAS_constantDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConstantDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMRoutineDefinitionList (const GALGAS_midrange_5F_routineDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRoutineDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMUnusedRoutineList (const GALGAS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mUnusedRoutineList = inValue ;
+  }
+
+  public: inline void setter_setMNeedsComputedGoto_32_ (const GALGAS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mNeedsComputedGoto_32_ = inValue ;
+  }
+
+  public: inline void setter_setMNeedsComputedGoto_34_ (const GALGAS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mNeedsComputedGoto_34_ = inValue ;
+  }
+
+  public: inline void setter_setMEndOfProgram (const GALGAS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEndOfProgram = inValue ;
+  }
+
+//--------------------------------- Virtual destructor (in debug mode)
+  public: virtual ~ GALGAS_midrange_5F_model (void) ;
+
+//--------------------------------- Native constructor
+  public: GALGAS_midrange_5F_model (const GALGAS_lstring & in_mProgramName,
+                                    const GALGAS_lstring & in_mDeviceName,
+                                    const GALGAS_configDefinitionList & in_mConfigDefinitionList,
+                                    const GALGAS_ramDefinitionList & in_mRamDefinitionList,
+                                    const GALGAS_lstringlist & in_mUnusedRegisterList,
+                                    const GALGAS_midrange_5F_interruptDefinitionList & in_mInterruptDefinitionList,
+                                    const GALGAS_constantDefinitionList & in_mConstantDefinitionList,
+                                    const GALGAS_midrange_5F_routineDefinitionList & in_mRoutineDefinitionList,
+                                    const GALGAS_lstringlist & in_mUnusedRoutineList,
+                                    const GALGAS_bool & in_mNeedsComputedGoto_32_,
+                                    const GALGAS_bool & in_mNeedsComputedGoto_34_,
+                                    const GALGAS_location & in_mEndOfProgram) ;
+
+//-- Start of generic part --*
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_midrange_5F_model extractObject (const GALGAS_object & inObject,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS constructors
+  public: static class GALGAS_midrange_5F_model constructor_new (const class GALGAS_lstring & inOperand0,
+                                                                 const class GALGAS_lstring & inOperand1,
+                                                                 const class GALGAS_configDefinitionList & inOperand2,
+                                                                 const class GALGAS_ramDefinitionList & inOperand3,
+                                                                 const class GALGAS_lstringlist & inOperand4,
+                                                                 const class GALGAS_midrange_5F_interruptDefinitionList & inOperand5,
+                                                                 const class GALGAS_constantDefinitionList & inOperand6,
+                                                                 const class GALGAS_midrange_5F_routineDefinitionList & inOperand7,
+                                                                 const class GALGAS_lstringlist & inOperand8,
+                                                                 const class GALGAS_bool & inOperand9,
+                                                                 const class GALGAS_bool & inOperand10,
+                                                                 const class GALGAS_location & inOperand11,
+                                                                 class Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: typeComparisonResult objectCompare (const GALGAS_midrange_5F_model & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_midrange_5F_model class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_model ;
 

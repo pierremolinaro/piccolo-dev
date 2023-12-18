@@ -1,168 +1,17 @@
-#include "galgas2/C_Compiler.h"
+#include "galgas2/Compiler.h"
 #include "galgas2/C_galgas_io.h"
 #include "galgas2/C_galgas_CLI_Options.h"
 #include "utilities/C_PrologueEpilogue.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 #include "all-declarations-11.h"
 
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@baseline_instruction_STATIC_REPEAT build_baseline_intermediate_instructionList'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::method_build_5F_baseline_5F_intermediate_5F_instructionList (const GALGAS_uint constinArgument_inCurrentPage,
-                                                                                                                    const GALGAS_baselineRoutineMap constinArgument_inRoutineMap,
-                                                                                                                    const GALGAS_registerTable constinArgument_inRegisterTable,
-                                                                                                                    const GALGAS_constantMap constinArgument_inConstantMap,
-                                                                                                                    GALGAS_uint & ioArgument_ioLocalLabelIndex,
-                                                                                                                    GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                                                                                    GALGAS_string & ioArgument_ioListFileContents,
-                                                                                                                    GALGAS_bool & ioArgument_ioContinuesInSequence,
-                                                                                                                    const GALGAS_routineKind constinArgument_inRoutineKind,
-                                                                                                                    const GALGAS_bool /* constinArgument_inLastInstructionShouldReturn */,
-                                                                                                                    GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                                    C_Compiler * inCompiler
-                                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_sint_36__34_ var_lowerBound_23320 ;
-  const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT temp_0 = this ;
-  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mLowerBoundExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_lowerBound_23320, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 627)) ;
-  GALGAS_sint_36__34_ var_upperBound_23430 ;
-  const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT temp_1 = this ;
-  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_1.readProperty_mUpperBoundExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_upperBound_23430, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 628)) ;
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
-    test_2 = GALGAS_bool (kIsStrictSup, var_lowerBound_23320.objectCompare (var_upperBound_23430)).boolEnum () ;
-    if (kBoolTrue == test_2) {
-      const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT temp_3 = this ;
-      TC_Array <C_FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (temp_3.readProperty_mInstructionLocation (), GALGAS_string ("lower bound (").add_operation (var_lowerBound_23320.getter_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 631)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 631)).add_operation (GALGAS_string (") greater then upper bound ("), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 631)).add_operation (var_upperBound_23430.getter_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 631)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 631)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 631)), fixItArray4  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 631)) ;
-    }
-  }
-  if (kBoolFalse == test_2) {
-    enumGalgasBool test_5 = kBoolTrue ;
-    if (kBoolTrue == test_5) {
-      test_5 = GALGAS_bool (kIsStrictSup, var_upperBound_23430.substract_operation (var_lowerBound_23320, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 632)).objectCompare (GALGAS_sint_36__34_ (int64_t (65535LL)))).boolEnum () ;
-      if (kBoolTrue == test_5) {
-        const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT temp_6 = this ;
-        TC_Array <C_FixItDescription> fixItArray7 ;
-        inCompiler->emitSemanticError (temp_6.readProperty_mInstructionLocation (), GALGAS_string ("repeat count (").add_operation (var_upperBound_23430.substract_operation (var_lowerBound_23320, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 633)).getter_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 633)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 633)).add_operation (GALGAS_string (") too large (should be <= 0xFFFF)"), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 633)), fixItArray7  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 633)) ;
-      }
-    }
-  }
-  GALGAS_constantMap var_tempConstantMap_23812 = constinArgument_inConstantMap ;
-  {
-  const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT temp_8 = this ;
-  var_tempConstantMap_23812.setter_insertKey (temp_8.readProperty_mConstantName (), var_lowerBound_23320, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 637)) ;
-  }
-  {
-  const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT temp_9 = this ;
-  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, temp_9.readProperty_mInstructionList (), constinArgument_inRoutineMap, constinArgument_inRegisterTable, var_tempConstantMap_23812, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, GALGAS_bool (false), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 638)) ;
-  }
-  enumGalgasBool test_10 = kBoolTrue ;
-  if (kBoolTrue == test_10) {
-    test_10 = ioArgument_ioContinuesInSequence.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 652)).boolEnum () ;
-    if (kBoolTrue == test_10) {
-      const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT temp_11 = this ;
-      TC_Array <C_FixItDescription> fixItArray12 ;
-      inCompiler->emitSemanticError (temp_11.readProperty_mEndOfInstruction (), GALGAS_string ("enclosed instruction list contains an endless loop"), fixItArray12  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 653)) ;
-    }
-  }
-  GALGAS_sint_36__34_ var_idx_24417 = var_lowerBound_23320.add_operation (GALGAS_sint_36__34_ (int64_t (1LL)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 656)) ;
-  if (var_upperBound_23430.substract_operation (var_lowerBound_23320, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)).add_operation (GALGAS_sint_36__34_ (int64_t (1LL)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)).getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)).isValid ()) {
-    uint32_t variant_24440 = var_upperBound_23430.substract_operation (var_lowerBound_23320, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)).add_operation (GALGAS_sint_36__34_ (int64_t (1LL)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)).getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)).uintValue () ;
-    bool loop_24440 = true ;
-    while (loop_24440) {
-      GALGAS_bool test_13 = GALGAS_bool (kIsInfOrEqual, var_idx_24417.objectCompare (var_upperBound_23430)) ;
-      if (kBoolTrue == test_13.boolEnum ()) {
-        test_13 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)).objectCompare (GALGAS_uint (uint32_t (0U)))) ;
-      }
-      loop_24440 = test_13.isValid () ;
-      if (loop_24440) {
-        loop_24440 = test_13.boolValue () ;
-      }
-      if (loop_24440 && (0 == variant_24440)) {
-        loop_24440 = false ;
-        inCompiler->loopRunTimeVariantError (SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)) ;
-      }
-      if (loop_24440) {
-        variant_24440 -- ;
-        GALGAS_constantMap var_constantMap_24546 = constinArgument_inConstantMap ;
-        {
-        const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT temp_14 = this ;
-        var_constantMap_24546.setter_insertKey (temp_14.readProperty_mConstantName (), var_idx_24417, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 659)) ;
-        }
-        {
-        const GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT temp_15 = this ;
-        routine_handleBaselineInstructionList (constinArgument_inCurrentPage, temp_15.readProperty_mInstructionList (), constinArgument_inRoutineMap, constinArgument_inRegisterTable, var_constantMap_24546, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, GALGAS_bool (false), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 660)) ;
-        }
-        var_idx_24417.plusAssign_operation(GALGAS_sint_36__34_ (int64_t (1LL)), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 674)) ;
-      }
-    }
-  }
-}
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Overriding extension method '@baseline_instruction_do_while build_baseline_intermediate_instructionList'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void cPtr_baseline_5F_instruction_5F_do_5F_while::method_build_5F_baseline_5F_intermediate_5F_instructionList (const GALGAS_uint constinArgument_inCurrentPage,
-                                                                                                               const GALGAS_baselineRoutineMap constinArgument_inRoutineMap,
-                                                                                                               const GALGAS_registerTable constinArgument_inRegisterTable,
-                                                                                                               const GALGAS_constantMap constinArgument_inConstantMap,
-                                                                                                               GALGAS_uint & ioArgument_ioLocalLabelIndex,
-                                                                                                               GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                                                                               GALGAS_string & ioArgument_ioListFileContents,
-                                                                                                               GALGAS_bool & ioArgument_ioContinuesInSequence,
-                                                                                                               const GALGAS_routineKind constinArgument_inRoutineKind,
-                                                                                                               const GALGAS_bool constinArgument_inLastInstructionShouldReturn,
-                                                                                                               GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                               C_Compiler * inCompiler
-                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_labelInstructionBegin_25647 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 693)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 693)) ;
-  ioArgument_ioLocalLabelIndex.plusAssign_operation(GALGAS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 693)) ;
-  const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_0 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_labelInstructionBegin_25647, temp_0.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 695))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 695))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 695)) ;
-  {
-  const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_1 = this ;
-  routine_handleBaselineInstructionList (constinArgument_inCurrentPage, temp_1.readProperty_mRepeatedInstructionList (), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 697)) ;
-  }
-  const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_2 = this ;
-  cEnumerator_baseline_5F_partList enumerator_26307 (temp_2.readProperty_mWhilePartList (), kENUMERATION_UP) ;
-  while (enumerator_26307.hasCurrentObject ()) {
-    enumGalgasBool test_3 = kBoolTrue ;
-    if (kBoolTrue == test_3) {
-      test_3 = GALGAS_bool (kIsEqual, enumerator_26307.current_mInstructionList (HERE).getter_count (SOURCE_FILE ("baseline_semantic_analysis.galgas", 713)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
-      if (kBoolTrue == test_3) {
-        const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_4 = this ;
-        callExtensionMethod_build_5F_intermediate_5F_condition_5F_instructions ((cPtr_baseline_5F_conditionExpression *) enumerator_26307.current_mCondition (HERE).ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (false), temp_4.readProperty_mInstructionLocation (), var_labelInstructionBegin_25647, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 714)) ;
-      }
-    }
-    if (kBoolFalse == test_3) {
-      GALGAS_string var_nextBranchLabel_26718 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 726)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 726)) ;
-      ioArgument_ioLocalLabelIndex.plusAssign_operation(GALGAS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 726)) ;
-      const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_5 = this ;
-      callExtensionMethod_build_5F_intermediate_5F_condition_5F_instructions ((cPtr_baseline_5F_conditionExpression *) enumerator_26307.current_mCondition (HERE).ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, GALGAS_bool (true), temp_5.readProperty_mInstructionLocation (), var_nextBranchLabel_26718, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 727)) ;
-      {
-      routine_handleBaselineInstructionList (constinArgument_inCurrentPage, enumerator_26307.current_mInstructionList (HERE), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 738)) ;
-      }
-      const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_6 = this ;
-      const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_7 = this ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (temp_6.readProperty_mInstructionLocation (), GALGAS_lstring::constructor_new (var_labelInstructionBegin_25647, temp_7.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 754))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 752))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 752)) ;
-      const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_8 = this ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_nextBranchLabel_26718, temp_8.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 755))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 755))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 755)) ;
-    }
-    enumerator_26307.gotoNextObject () ;
-  }
-}
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_instruction_structured_if build_baseline_intermediate_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_instruction_5F_structured_5F_if::method_build_5F_baseline_5F_intermediate_5F_instructionList (const GALGAS_uint constinArgument_inCurrentPage,
                                                                                                                     const GALGAS_baselineRoutineMap constinArgument_inRoutineMap,
@@ -175,7 +24,7 @@ void cPtr_baseline_5F_instruction_5F_structured_5F_if::method_build_5F_baseline_
                                                                                                                     const GALGAS_routineKind constinArgument_inRoutineKind,
                                                                                                                     const GALGAS_bool constinArgument_inLastInstructionShouldReturn,
                                                                                                                     GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                                    C_Compiler * inCompiler
+                                                                                                                    Compiler * inCompiler
                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string var_label_5F_nextCondition_28429 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 775)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 775)) ;
   ioArgument_ioLocalLabelIndex.plusAssign_operation(GALGAS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 775)) ;
@@ -217,11 +66,11 @@ void cPtr_baseline_5F_instruction_5F_structured_5F_if::method_build_5F_baseline_
   }
   ioArgument_ioContinuesInSequence = var_thenContinuesInSequence_29170.operator_or (var_elseContinuesInSequence_29955 COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 829)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_incDecRegisterInCondition build_intermediate_condition_instructions'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_incDecRegisterInCondition::method_build_5F_intermediate_5F_condition_5F_instructions (const GALGAS_uint /* constinArgument_inCurrentPage */,
                                                                                                             const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -232,7 +81,7 @@ void cPtr_baseline_5F_incDecRegisterInCondition::method_build_5F_intermediate_5F
                                                                                                             const GALGAS_string constinArgument_inTargetLabel,
                                                                                                             GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                                                                             GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                            C_Compiler * inCompiler
+                                                                                                            Compiler * inCompiler
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_registerExpression var_intermediateRegisterDescription_31855 ;
   GALGAS_bitSliceTable var_bitSliceTable_31918 ;
@@ -243,11 +92,11 @@ void cPtr_baseline_5F_incDecRegisterInCondition::method_build_5F_intermediate_5F
   const GALGAS_baseline_5F_incDecRegisterInCondition temp_3 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::constructor_new (constinArgument_inInstructionLocation, var_intermediateRegisterDescription_31855, constinArgument_inTargetLabel, temp_1.readProperty_mIncrement (), temp_2.readProperty_m_5F_W_5F_isDestination (), temp_3.readProperty_mBranchIfZero ().operator_xor (constinArgument_inComplementaryBranch COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 875))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 869))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 869)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_negateCondition build_intermediate_condition_instructions'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_negateCondition::method_build_5F_intermediate_5F_condition_5F_instructions (const GALGAS_uint constinArgument_inCurrentPage,
                                                                                                   const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -258,16 +107,16 @@ void cPtr_baseline_5F_negateCondition::method_build_5F_intermediate_5F_condition
                                                                                                   const GALGAS_string constinArgument_inTargetLabel,
                                                                                                   GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                                                                   GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                  C_Compiler * inCompiler
+                                                                                                  Compiler * inCompiler
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_negateCondition temp_0 = this ;
   callExtensionMethod_build_5F_intermediate_5F_condition_5F_instructions ((cPtr_baseline_5F_conditionExpression *) temp_0.readProperty_mCondition ().ptr (), constinArgument_inCurrentPage, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, constinArgument_inComplementaryBranch.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas", 895)), constinArgument_inInstructionLocation, constinArgument_inTargetLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 890)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_andCondition build_intermediate_condition_instructions'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_andCondition::method_build_5F_intermediate_5F_condition_5F_instructions (const GALGAS_uint constinArgument_inCurrentPage,
                                                                                                const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -278,7 +127,7 @@ void cPtr_baseline_5F_andCondition::method_build_5F_intermediate_5F_condition_5F
                                                                                                const GALGAS_string constinArgument_inTargetLabel,
                                                                                                GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                                                                GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                               C_Compiler * inCompiler
+                                                                                               Compiler * inCompiler
                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -300,11 +149,11 @@ void cPtr_baseline_5F_andCondition::method_build_5F_intermediate_5F_condition_5F
     ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_30__34090, constinArgument_inInstructionLocation, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 962))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 962))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 962)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_bitTest_in_structured_if_condition build_intermediate_condition_instructions'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::method_build_5F_intermediate_5F_condition_5F_instructions (const GALGAS_uint /* constinArgument_inCurrentPage */,
                                                                                                                                  const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -315,7 +164,7 @@ void cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::method_bui
                                                                                                                                  const GALGAS_string constinArgument_inTargetLabel,
                                                                                                                                  GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                                                                                                  GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                                                 C_Compiler * inCompiler
+                                                                                                                                 Compiler * inCompiler
                                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_registerExpression var_intermediateRegisterDescription_35509 ;
   GALGAS_bitSliceTable var_bitSliceTable_35565 ;
@@ -327,74 +176,74 @@ void cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::method_bui
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::constructor_new (constinArgument_inInstructionLocation, constinArgument_inComplementaryBranch, var_intermediateRegisterDescription_35509, var_bitNumber_35727  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 993))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 993)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (constinArgument_inInstructionLocation, GALGAS_lstring::constructor_new (constinArgument_inTargetLabel, constinArgument_inInstructionLocation, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 1001))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 999))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 999)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_NULL print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_NULL::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                          C_Compiler * inCompiler
+                                                          Compiler * inCompiler
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 10)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_pseudo_PAGE print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                    C_Compiler * inCompiler
+                                                                    Compiler * inCompiler
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("ORG ").add_operation (temp_0.readProperty_mPage ().multiply_operation (GALGAS_uint (uint32_t (512U)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16)).getter_hexString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 16)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_pseudo_BEGIN_ROUTINE print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("BEGIN OF ROUTINE ").add_operation (temp_0.readProperty_mRoutineName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 22)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 22)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_pseudo_END_ROUTINE print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                              C_Compiler * inCompiler
+                                                                              Compiler * inCompiler
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE temp_1 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("END OF ROUTINE ").add_operation (temp_0.readProperty_mRoutineName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)).add_operation (GALGAS_string (" IN PAGE "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)).add_operation (temp_1.readProperty_mPage ().getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 28)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_pseudo_LABEL print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                     C_Compiler * inCompiler
+                                                                     Compiler * inCompiler
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("LABEL ").add_operation (temp_0.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 34)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 34)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_FD print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                       C_Compiler * inCompiler
+                                                                       Compiler * inCompiler
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD temp_1 = this ;
@@ -408,41 +257,41 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::method_print (GALGAS_st
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_F print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_F::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                      C_Compiler * inCompiler
+                                                                      Compiler * inCompiler
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_F temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_F temp_1 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (temp_0.readProperty_mInstruction (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)).add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 49)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_FB print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                       C_Compiler * inCompiler
+                                                                       Compiler * inCompiler
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB temp_1 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB temp_2 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (temp_0.readProperty_mInstruction (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)).add_operation (temp_2.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 55)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_BitTestSkip print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -459,87 +308,87 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::method_print (
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip temp_3 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" ").add_operation (temp_2.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)).add_operation (temp_3.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 66)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_GOTO print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_GOTO::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                          C_Compiler * inCompiler
+                                                          Compiler * inCompiler
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_GOTO temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("GOTO ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 72)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 72)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_JUMP print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_JUMP::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                          C_Compiler * inCompiler
+                                                          Compiler * inCompiler
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_JUMP temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JUMP ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 78)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 78)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_CALL print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_CALL::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                          C_Compiler * inCompiler
+                                                          Compiler * inCompiler
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_CALL temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("CALL ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 85)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 85)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_JSR print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_JSR::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                         C_Compiler * inCompiler
+                                                         Compiler * inCompiler
                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_JSR temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JSR ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 92)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 92)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_literalOperation print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                                     C_Compiler * inCompiler
+                                                                                     Compiler * inCompiler
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation temp_1 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (temp_0.readProperty_mInstruction (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)).add_operation (temp_1.readProperty_mLiteralValue ().getter_hexString (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 98)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_MNOP print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                         C_Compiler * inCompiler
+                                                                         Compiler * inCompiler
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("MNOP ").add_operation (temp_0.readProperty_mOccurrenceFactor ().readProperty_uint ().getter_string (SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 104)), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 104)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 104)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_incDecRegisterInCondition print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                               C_Compiler * inCompiler
+                                                                               Compiler * inCompiler
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JUMP "), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 110)) ;
   enumGalgasBool test_0 = kBoolTrue ;
@@ -577,37 +426,37 @@ void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_print (G
   const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_7 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" ").add_operation (temp_7.readProperty_mTargetLabel (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 125)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 125)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_WO_OPERAND print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (temp_0.readProperty_mInstruction (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 131)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 131)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_TRIS print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_TRIS::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                          C_Compiler * inCompiler
+                                                          Compiler * inCompiler
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_TRIS temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("TRIS ").add_operation (temp_0.readProperty_mOperand ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 137)), inCompiler  COMMA_SOURCE_FILE ("baseline_intermediate_instruction_print.galgas", 137)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_NULL length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_NULL::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_NULL::getter_length (Compiler */* inCompiler */
                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -616,13 +465,13 @@ GALGAS_uint cPtr_baseline_5F_intermediate_5F_NULL::getter_length (C_Compiler */*
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_pseudo_PAGE length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::getter_length (Compiler */* inCompiler */
                                                                             COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -631,13 +480,13 @@ GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::getter_length (C_Co
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_pseudo_BEGIN_ROUTINE length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::getter_length (Compiler */* inCompiler */
                                                                                         COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -646,13 +495,13 @@ GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::getter_
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_pseudo_END_ROUTINE length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_length (Compiler */* inCompiler */
                                                                                       COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -661,13 +510,13 @@ GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_le
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_pseudo_LABEL length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::getter_length (Compiler */* inCompiler */
                                                                              COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -676,13 +525,13 @@ GALGAS_uint cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::getter_length (C_C
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_actualInstruction length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_actualInstruction::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_actualInstruction::getter_length (Compiler */* inCompiler */
                                                                                COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (1U)) ;
@@ -691,13 +540,13 @@ GALGAS_uint cPtr_baseline_5F_intermediate_5F_actualInstruction::getter_length (C
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_JUMP length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_JUMP::getter_length (C_Compiler * inCompiler
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_JUMP::getter_length (Compiler * inCompiler
                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   const GALGAS_baseline_5F_intermediate_5F_JUMP temp_0 = this ;
@@ -708,13 +557,13 @@ GALGAS_uint cPtr_baseline_5F_intermediate_5F_JUMP::getter_length (C_Compiler * i
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_JSR length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_JSR::getter_length (C_Compiler * inCompiler
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_JSR::getter_length (Compiler * inCompiler
                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   const GALGAS_baseline_5F_intermediate_5F_JSR temp_0 = this ;
@@ -725,13 +574,13 @@ GALGAS_uint cPtr_baseline_5F_intermediate_5F_JSR::getter_length (C_Compiler * in
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_instruction_MNOP length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::getter_length (Compiler */* inCompiler */
                                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP temp_0 = this ;
@@ -741,13 +590,13 @@ GALGAS_uint cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::getter_length 
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_incDecRegisterInCondition length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_length (Compiler */* inCompiler */
                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   enumGalgasBool test_0 = kBoolTrue ;
@@ -766,25 +615,25 @@ GALGAS_uint cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::getter_l
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_pseudo_PAGE setCurrentAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::method_setCurrentAddress (GALGAS_uint & ioArgument_ioCurrentWordAdress,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE temp_0 = this ;
   ioArgument_ioCurrentWordAdress = temp_0.readProperty_mPage ().multiply_operation (GALGAS_uint (uint32_t (512U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 27)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_pseudo_LABEL isLABEL'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::getter_isLABEL (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::getter_isLABEL (Compiler */* inCompiler */
                                                                               COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsLABEL ; // Returned variable
   result_outIsLABEL = GALGAS_bool (true) ;
@@ -793,13 +642,13 @@ GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::getter_isLABEL (C_
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_pseudo_PAGE isLABEL'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::getter_isLABEL (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::getter_isLABEL (Compiler */* inCompiler */
                                                                              COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsLABEL ; // Returned variable
   result_outIsLABEL = GALGAS_bool (true) ;
@@ -808,13 +657,13 @@ GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::getter_isLABEL (C_C
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_pseudo_END_ROUTINE isLABEL'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_isLABEL (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_isLABEL (Compiler */* inCompiler */
                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsLABEL ; // Returned variable
   result_outIsLABEL = GALGAS_bool (true) ;
@@ -823,13 +672,13 @@ GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_is
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_NULL isNULL'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_NULL::getter_isNULL (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_NULL::getter_isNULL (Compiler */* inCompiler */
                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsNULL ; // Returned variable
   result_outIsNULL = GALGAS_bool (true) ;
@@ -838,13 +687,13 @@ GALGAS_bool cPtr_baseline_5F_intermediate_5F_NULL::getter_isNULL (C_Compiler */*
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_instruction_BitTestSkip isSkippingInstruction'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_isSkippingInstruction (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_isSkippingInstruction (Compiler */* inCompiler */
                                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsSkipping ; // Returned variable
   result_outIsSkipping = GALGAS_bool (true) ;
@@ -853,13 +702,13 @@ GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_GOTO nextInstructionIsReachable'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_GOTO::getter_nextInstructionIsReachable (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_GOTO::getter_nextInstructionIsReachable (Compiler */* inCompiler */
                                                                                       COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsReachable ; // Returned variable
   result_outIsReachable = GALGAS_bool (false) ;
@@ -868,13 +717,13 @@ GALGAS_bool cPtr_baseline_5F_intermediate_5F_GOTO::getter_nextInstructionIsReach
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_JUMP nextInstructionIsReachable'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_JUMP::getter_nextInstructionIsReachable (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_JUMP::getter_nextInstructionIsReachable (Compiler */* inCompiler */
                                                                                       COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsReachable ; // Returned variable
   result_outIsReachable = GALGAS_bool (false) ;
@@ -883,13 +732,13 @@ GALGAS_bool cPtr_baseline_5F_intermediate_5F_JUMP::getter_nextInstructionIsReach
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_pseudo_END_ROUTINE nextInstructionIsReachable'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_nextInstructionIsReachable (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_nextInstructionIsReachable (Compiler */* inCompiler */
                                                                                                           COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsReachable ; // Returned variable
   result_outIsReachable = GALGAS_bool (false) ;
@@ -898,13 +747,13 @@ GALGAS_bool cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::getter_ne
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_intermediate_instruction_literalOperation nextInstructionIsReachable'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::getter_nextInstructionIsReachable (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::getter_nextInstructionIsReachable (Compiler */* inCompiler */
                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsReachable ; // Returned variable
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation temp_0 = this ;
@@ -914,91 +763,91 @@ GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::ge
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_GOTO enterReferencedLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_GOTO::method_enterReferencedLabel (GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                         C_Compiler * /* inCompiler */
+                                                                         Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_GOTO temp_0 = this ;
   ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 143)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_JUMP enterReferencedLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_JUMP::method_enterReferencedLabel (GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                         C_Compiler * /* inCompiler */
+                                                                         Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_JUMP temp_0 = this ;
   ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 150)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_CALL enterReferencedLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_CALL::method_enterReferencedLabel (GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                         C_Compiler * /* inCompiler */
+                                                                         Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_CALL temp_0 = this ;
   ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 157)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_JSR enterReferencedLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_JSR::method_enterReferencedLabel (GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                        C_Compiler * /* inCompiler */
+                                                                        Compiler * /* inCompiler */
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_JSR temp_0 = this ;
   ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 164)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_incDecRegisterInCondition enterReferencedLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_enterReferencedLabel (GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                                              C_Compiler * /* inCompiler */
+                                                                                              Compiler * /* inCompiler */
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_0 = this ;
   ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 171)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_pseudo_LABEL defineLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::method_defineLabel (GALGAS_baselineSymbolTableForOptimizations & ioArgument_ioRoutineSymbolTable,
                                                                            const GALGAS_uint constinArgument_inLineIndex,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = this ;
   ioArgument_ioRoutineSymbolTable.setter_insertKey (temp_0.readProperty_mLabel (), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 191)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'findBaselineFirstInstructionFromAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_findBaselineFirstInstructionFromAddress (const GALGAS_uint constinArgument_inLineIndex,
                                                       const GALGAS_baseline_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
                                                       GALGAS_baseline_5F_intermediate_5F_instruction & outArgument_outFirstInstruction,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outFirstInstruction.drop () ; // Release 'out' argument
   GALGAS_uint var_currentAddress_7937 = constinArgument_inLineIndex ;
@@ -1038,17 +887,17 @@ void routine_findBaselineFirstInstructionFromAddress (const GALGAS_uint constinA
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'findBaselineFirstInstructionOrLabelFromAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_findBaselineFirstInstructionOrLabelFromAddress (const GALGAS_uint constinArgument_inLineIndex,
                                                              const GALGAS_baseline_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
                                                              GALGAS_baseline_5F_intermediate_5F_instruction & outArgument_outFirstInstruction,
                                                              GALGAS_stringset & outArgument_outReachedLabelSet,
-                                                             C_Compiler * inCompiler
+                                                             Compiler * inCompiler
                                                              COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outFirstInstruction.drop () ; // Release 'out' argument
   outArgument_outReachedLabelSet.drop () ; // Release 'out' argument
@@ -1118,15 +967,15 @@ void routine_findBaselineFirstInstructionOrLabelFromAddress (const GALGAS_uint c
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'perform_baseline_optimizations'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_perform_5F_baseline_5F_optimizations (GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                    GALGAS_string & ioArgument_ioListFileContents,
-                                                   C_Compiler * inCompiler
+                                                   Compiler * inCompiler
                                                    COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (119U)), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 533)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 533)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 533)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("CODE OPTIMIZATION").getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (117U)), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 534)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 534)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 534)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 534)) ;
@@ -1322,63 +1171,63 @@ void routine_perform_5F_baseline_5F_optimizations (GALGAS_baseline_5F_intermedia
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_pseudo_ORG print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                               C_Compiler * inCompiler
+                                                               Compiler * inCompiler
                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ORG ").add_operation (temp_0.readProperty_mOrigin ().getter_hexString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 10)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 10)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 10)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_pseudo_BEGINOFROUTINE print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                          C_Compiler * inCompiler
+                                                                          Compiler * inCompiler
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (";  BEGIN OF ROUTINE ").add_operation (temp_0.readProperty_mRoutineName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 16)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 16)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_pseudo_ENDOFROUTINE print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE temp_0 = this ;
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE temp_1 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (";  END OF ROUTINE ").add_operation (temp_0.readProperty_mRoutineName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)).add_operation (GALGAS_string (" IN PAGE "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)).add_operation (temp_1.readProperty_mPage ().getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 22)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_pseudo_LABEL print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                 C_Compiler * inCompiler
+                                                                 Compiler * inCompiler
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(temp_0.readProperty_mLabel ().readProperty_string ().add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 28)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 28)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_instruction_FD print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_instruction_5F_FD::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD temp_0 = this ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD temp_1 = this ;
@@ -1395,41 +1244,41 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_FD::method_print (GALGAS_string
     ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", 1"), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 38)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_instruction_F print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_instruction_5F_F::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                  C_Compiler * inCompiler
+                                                                  Compiler * inCompiler
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_F temp_0 = this ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_F temp_1 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.readProperty_mInstruction (), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)).add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 45)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_instruction_FB print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_instruction_5F_FB::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB temp_0 = this ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB temp_1 = this ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB temp_2 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.readProperty_mInstruction (), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)).add_operation (temp_2.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 51)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_instruction_BitTestSkip print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -1446,62 +1295,62 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::method_print (GALG
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip temp_3 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(temp_2.readProperty_mRegisterDescription ().readProperty_mAssemblyString ().add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)).add_operation (temp_3.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 62)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_GOTO print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_GOTO::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_GOTO temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 68)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 68)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_SKIP print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_SKIP::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  GOTO * + 2"), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 74)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_CALL print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_CALL::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_CALL temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  CALL ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 81)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 81)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_instruction_literalOperation print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                                 C_Compiler * inCompiler
+                                                                                 Compiler * inCompiler
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation temp_0 = this ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation temp_1 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.readProperty_mInstruction (), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)).add_operation (temp_1.readProperty_mLiteralValue ().getter_hexString (SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 87)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_incDecRegisterInCondition print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -1528,37 +1377,37 @@ void cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::method_print (GALGA
     ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", 1"), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 102)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_WO_OPERAND print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                               C_Compiler * inCompiler
+                                                               Compiler * inCompiler
                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.readProperty_mInstruction (), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 109)), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 109)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 109)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_TRIS print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_TRIS::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_TRIS temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  TRIS ").add_operation (temp_0.readProperty_mOperand ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 115)), inCompiler  COMMA_SOURCE_FILE ("baseline_print_assembly_instructions.galgas", 115)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_assembly_pseudo_ORG length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::getter_length (Compiler */* inCompiler */
                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -1567,13 +1416,13 @@ GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::getter_length (C_Compile
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_assembly_pseudo_BEGINOFROUTINE length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::getter_length (Compiler */* inCompiler */
                                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -1582,13 +1431,13 @@ GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::getter_length
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_assembly_pseudo_ENDOFROUTINE length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::getter_length (Compiler */* inCompiler */
                                                                                 COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -1597,13 +1446,13 @@ GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::getter_length (
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_assembly_pseudo_LABEL length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::getter_length (Compiler */* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -1612,13 +1461,13 @@ GALGAS_uint cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::getter_length (C_Compi
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@baseline_assembly_actualInstruction length'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_baseline_5F_assembly_5F_actualInstruction::getter_length (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_baseline_5F_assembly_5F_actualInstruction::getter_length (Compiler */* inCompiler */
                                                                            COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (1U)) ;
@@ -1627,72 +1476,72 @@ GALGAS_uint cPtr_baseline_5F_assembly_5F_actualInstruction::getter_length (C_Com
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_NULL generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_NULL::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                          const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                          GALGAS_baseline_5F_assembly_5F_instructionList & /* ioArgument_ioAssemblyInstructionList */,
-                                                                         C_Compiler * /* inCompiler */
+                                                                         Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_pseudo_PAGE generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                    const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                    GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                   C_Compiler * inCompiler
+                                                                                   Compiler * inCompiler
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE temp_0 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG::constructor_new (temp_0.readProperty_mPage ().multiply_operation (GALGAS_uint (uint32_t (512U)), inCompiler COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 28))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 28))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 28)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_pseudo_BEGIN_ROUTINE generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                                const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                                GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                               C_Compiler * /* inCompiler */
+                                                                                               Compiler * /* inCompiler */
                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE temp_1 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::constructor_new (temp_0.readProperty_mRoutineName (), temp_1.readProperty_mIsRegular ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 37))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 37)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_pseudo_END_ROUTINE generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                              const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                              GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                             C_Compiler * /* inCompiler */
+                                                                                             Compiler * /* inCompiler */
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE temp_1 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::constructor_new (temp_0.readProperty_mRoutineName (), temp_1.readProperty_mPage ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 46))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 46)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_FD generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                       const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                       GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                      C_Compiler * /* inCompiler */
+                                                                                      Compiler * /* inCompiler */
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD temp_1 = this ;
@@ -1700,32 +1549,32 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::method_generateAssembly
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD temp_3 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::constructor_new (temp_0.readProperty_mInstructionLocation (), temp_1.readProperty_mInstruction (), temp_2.readProperty_mRegisterDescription (), temp_3.readProperty_m_5F_W_5F_isDestination ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 55))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 55)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_F generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_F::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                      const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                      GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                     C_Compiler * /* inCompiler */
+                                                                                     Compiler * /* inCompiler */
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_F temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_F temp_1 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_F temp_2 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_instruction_5F_F::constructor_new (temp_0.readProperty_mInstructionLocation (), temp_1.readProperty_mInstruction (), temp_2.readProperty_mRegisterDescription ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 68))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 68)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_FB generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                       const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                       GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                      C_Compiler * /* inCompiler */
+                                                                                      Compiler * /* inCompiler */
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB temp_1 = this ;
@@ -1733,16 +1582,16 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::method_generateAssembly
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB temp_3 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::constructor_new (temp_0.readProperty_mInstructionLocation (), temp_1.readProperty_mInstruction (), temp_2.readProperty_mRegisterDescription (), temp_3.readProperty_mBitNumber ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 80))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 80)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_BitTestSkip generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                                const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                                GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                               C_Compiler * /* inCompiler */
+                                                                                               Compiler * /* inCompiler */
                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip temp_1 = this ;
@@ -1750,77 +1599,77 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::method_generat
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip temp_3 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::constructor_new (temp_0.readProperty_mInstructionLocation (), temp_1.readProperty_mSkipIfSet (), temp_2.readProperty_mRegisterDescription (), temp_3.readProperty_mBitNumber ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 93))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 93)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_WO_OPERAND generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                   const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                   GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                  C_Compiler * /* inCompiler */
+                                                                                  Compiler * /* inCompiler */
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND temp_1 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND::constructor_new (temp_0.readProperty_mInstructionLocation (), temp_1.readProperty_mInstruction ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 106))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 106)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_TRIS generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_TRIS::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                          const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                          GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                         C_Compiler * /* inCompiler */
+                                                                         Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_TRIS temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_TRIS temp_1 = this ;
   const GALGAS_baseline_5F_intermediate_5F_TRIS temp_2 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_TRIS::constructor_new (temp_0.readProperty_mInstructionLocation (), temp_1.readProperty_mOperand (), temp_2.readProperty_mOpcode ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 117))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 117)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_literalOperation generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                                     const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                                     GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                                    C_Compiler * /* inCompiler */
+                                                                                                    Compiler * /* inCompiler */
                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation temp_1 = this ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation temp_2 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::constructor_new (temp_0.readProperty_mInstructionLocation (), temp_1.readProperty_mInstruction (), temp_2.readProperty_mLiteralValue ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 129))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 129)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_pseudo_LABEL generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                     const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                     GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                    C_Compiler * /* inCompiler */
+                                                                                    Compiler * /* inCompiler */
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL::constructor_new (temp_0.readProperty_mLabel ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 141))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 141)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_instruction_MNOP generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                         const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                         GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                        C_Compiler * inCompiler
+                                                                                        Compiler * inCompiler
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -1856,31 +1705,31 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::method_generateAssemb
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_GOTO generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_GOTO::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                          const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                          GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                         C_Compiler * /* inCompiler */
+                                                                         Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_GOTO temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_GOTO temp_1 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_GOTO::constructor_new (temp_0.readProperty_mInstructionLocation (), temp_1.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 171))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 171)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_JUMP generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_JUMP::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression constinArgument_inSTATUSregister,
                                                                          const GALGAS_bitSliceTable constinArgument_inStatusRegisterBitSliceTable,
                                                                          GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                         C_Compiler * inCompiler
+                                                                         Compiler * inCompiler
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_JUMP temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_JUMP temp_1 = this ;
@@ -1976,31 +1825,31 @@ void cPtr_baseline_5F_intermediate_5F_JUMP::method_generateAssemblyCode (const G
   const GALGAS_baseline_5F_intermediate_5F_JUMP temp_20 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_GOTO::constructor_new (temp_19.readProperty_mInstructionLocation (), temp_20.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 222))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 222)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_CALL generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_CALL::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                          const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                          GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                         C_Compiler * /* inCompiler */
+                                                                         Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_CALL temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_CALL temp_1 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_CALL::constructor_new (temp_0.readProperty_mInstructionLocation (), temp_1.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 233))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 233)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_JSR generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_JSR::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression constinArgument_inSTATUSregister,
                                                                         const GALGAS_bitSliceTable constinArgument_inStatusRegisterBitSliceTable,
                                                                         GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_JSR temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_JSR temp_1 = this ;
@@ -2111,16 +1960,16 @@ void cPtr_baseline_5F_intermediate_5F_JSR::method_generateAssemblyCode (const GA
     enumerator_12640.gotoNextObject () ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_intermediate_incDecRegisterInCondition generateAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_generateAssemblyCode (const GALGAS_baseline_5F_intermediate_5F_registerExpression /* constinArgument_inSTATUSregister */,
                                                                                               const GALGAS_bitSliceTable /* constinArgument_inStatusRegisterBitSliceTable */,
                                                                                               GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                                                              C_Compiler * inCompiler
+                                                                                              Compiler * inCompiler
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_0 = this ;
   const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_1 = this ;
@@ -2141,18 +1990,18 @@ void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_generate
   const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_9 = this ;
   ioArgument_ioAssemblyInstructionList.addAssign_operation (GALGAS_baseline_5F_assembly_5F_GOTO::constructor_new (temp_7.readProperty_mInstructionLocation (), GALGAS_lstring::constructor_new (temp_8.readProperty_mTargetLabel (), temp_9.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 317))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 315))  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 315)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'build_baseline_assembly_code'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_build_5F_baseline_5F_assembly_5F_code (const GALGAS_baseline_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
                                                     const GALGAS_actualConfigurationMap constinArgument_inActualConfigurationMap,
                                                     const GALGAS_baseline_5F_intermediate_5F_registerExpression constinArgument_inSTATUSregister,
                                                     const GALGAS_bitSliceTable constinArgument_inStatusRegisterBitSliceTable,
                                                     GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument_ioAssemblyInstructionList,
-                                                    C_Compiler * inCompiler
+                                                    Compiler * inCompiler
                                                     COMMA_UNUSED_LOCATION_ARGS) {
   cEnumerator_baseline_5F_intermediate_5F_instructionList enumerator_14340 (constinArgument_inGeneratedInstructionList, kENUMERATION_UP) ;
   while (enumerator_14340.hasCurrentObject ()) {
@@ -2172,17 +2021,17 @@ void routine_build_5F_baseline_5F_assembly_5F_code (const GALGAS_baseline_5F_int
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'emitBaselineCodeAtWordAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_emitBaselineCodeAtWordAddress (const GALGAS_uint constinArgument_inCode,
                                             GALGAS_uint & ioArgument_ioWordAddress,
                                             const GALGAS_baseline_5F_assembly_5F_instruction constinArgument_inInstruction,
                                             GALGAS_string & ioArgument_ioListFileContents,
-                                            C_Compiler * inCompiler
+                                            Compiler * inCompiler
                                             COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("   ").add_operation (extensionGetter_x_34_String (ioArgument_ioWordAddress.multiply_operation (GALGAS_uint (uint32_t (2U)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 10)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 10)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 10)), inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 10)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" ").add_operation (extensionGetter_x_34_String (constinArgument_inCode, inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 11)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 11)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 11)), inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 11)) ;
@@ -2195,16 +2044,16 @@ void routine_emitBaselineCodeAtWordAddress (const GALGAS_uint constinArgument_in
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'emitNoBaselineCodeAtWordAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_emitNoBaselineCodeAtWordAddress (const GALGAS_uint constinArgument_inWordAddress,
                                               const GALGAS_baseline_5F_assembly_5F_instruction constinArgument_inInstruction,
                                               GALGAS_string & ioArgument_ioListFileContents,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("   ").add_operation (extensionGetter_x_34_String (constinArgument_inWordAddress.multiply_operation (GALGAS_uint (uint32_t (2U)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 24)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 24)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 24)), inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 24)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("      "), inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 25)) ;
@@ -2213,57 +2062,57 @@ void routine_emitNoBaselineCodeAtWordAddress (const GALGAS_uint constinArgument_
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_pseudo_LABEL enterLabelAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::method_enterLabelAtAddress (GALGAS_baseline_5F_symbolTable & ioArgument_ioRoutineSymbolTable,
                                                                                GALGAS_uint & ioArgument_ioWordAddress,
-                                                                               C_Compiler * inCompiler
+                                                                               Compiler * inCompiler
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL temp_0 = this ;
   ioArgument_ioRoutineSymbolTable.setter_insertKey (temp_0.readProperty_mLabel (), ioArgument_ioWordAddress, inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 54)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_pseudo_ORG enterLabelAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::method_enterLabelAtAddress (GALGAS_baseline_5F_symbolTable & /* ioArgument_ioRoutineSymbolTable */,
                                                                              GALGAS_uint & ioArgument_ioWordAddress,
-                                                                             C_Compiler * /* inCompiler */
+                                                                             Compiler * /* inCompiler */
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG temp_0 = this ;
   ioArgument_ioWordAddress = temp_0.readProperty_mOrigin () ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_actualInstruction enterLabelAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_actualInstruction::method_enterLabelAtAddress (GALGAS_baseline_5F_symbolTable & /* ioArgument_ioRoutineSymbolTable */,
                                                                                  GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                 C_Compiler * inCompiler
+                                                                                 Compiler * inCompiler
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_actualInstruction temp_0 = this ;
   ioArgument_ioWordAddress = ioArgument_ioWordAddress.add_operation (callExtensionGetter_length ((const cPtr_baseline_5F_assembly_5F_actualInstruction *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 70)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 70)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_pseudo_BEGINOFROUTINE generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                                 GALGAS_string & ioArgument_ioListFileContents,
                                                                                                 GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                                C_Compiler * inCompiler
+                                                                                                Compiler * inCompiler
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -2280,16 +2129,16 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::method_generateBinar
   routine_emitNoBaselineCodeAtWordAddress (ioArgument_ioWordAddress, temp_4, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 93)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_pseudo_ENDOFROUTINE generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                               GALGAS_string & ioArgument_ioListFileContents,
                                                                                               GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                              C_Compiler * inCompiler
+                                                                                              Compiler * inCompiler
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -2308,16 +2157,16 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::method_generateBinaryC
   routine_emitNoBaselineCodeAtWordAddress (ioArgument_ioWordAddress, temp_6, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 105)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_pseudo_ORG generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                      GALGAS_string & ioArgument_ioListFileContents,
                                                                                      GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                     C_Compiler * inCompiler
+                                                                                     Compiler * inCompiler
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG temp_0 = this ;
   ioArgument_ioWordAddress = temp_0.readProperty_mOrigin () ;
@@ -2330,16 +2179,16 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::method_generateBinaryCodeAtAddr
   routine_emitNoBaselineCodeAtWordAddress (ioArgument_ioWordAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 116)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_instruction_FD generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_instruction_5F_FD::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                          GALGAS_string & ioArgument_ioListFileContents,
                                                                                          GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                         C_Compiler * inCompiler
+                                                                                         Compiler * inCompiler
                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_code_5037 ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD temp_0 = this ;
@@ -2432,16 +2281,16 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_FD::method_generateBinaryCodeAt
   routine_emitBaselineCodeAtWordAddress (var_code_5037, ioArgument_ioWordAddress, temp_4, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 147)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_instruction_F generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_instruction_5F_F::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                         GALGAS_string & ioArgument_ioListFileContents,
                                                                                         GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                        C_Compiler * inCompiler
+                                                                                        Compiler * inCompiler
                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_code_6000 ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_F temp_0 = this ;
@@ -2466,16 +2315,16 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_F::method_generateBinaryCodeAtA
   routine_emitBaselineCodeAtWordAddress (var_code_6000, ioArgument_ioWordAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 162)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_instruction_FB generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_instruction_5F_FB::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                          GALGAS_string & ioArgument_ioListFileContents,
                                                                                          GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                         C_Compiler * inCompiler
+                                                                                         Compiler * inCompiler
                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_code_6542 ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_FB temp_0 = this ;
@@ -2502,16 +2351,16 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_FB::method_generateBinaryCodeAt
   routine_emitBaselineCodeAtWordAddress (var_code_6542, ioArgument_ioWordAddress, temp_3, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 178)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_instruction_BitTestSkip generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                                   GALGAS_string & ioArgument_ioListFileContents,
                                                                                                   GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                                  C_Compiler * inCompiler
+                                                                                                  Compiler * inCompiler
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_code_7141 ;
   enumGalgasBool test_0 = kBoolTrue ;
@@ -2534,16 +2383,16 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::method_generateBin
   routine_emitBaselineCodeAtWordAddress (var_code_7141, ioArgument_ioWordAddress, temp_4, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 196)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_GOTO generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_GOTO::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable constinArgument_inRoutineSymbolTable,
                                                                             GALGAS_string & ioArgument_ioListFileContents,
                                                                             GALGAS_uint & ioArgument_ioWordAddress,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_targetAddress_7758 ;
   const GALGAS_baseline_5F_assembly_5F_GOTO temp_0 = this ;
@@ -2553,32 +2402,32 @@ void cPtr_baseline_5F_assembly_5F_GOTO::method_generateBinaryCodeAtAddress (cons
   routine_emitBaselineCodeAtWordAddress (GALGAS_uint (uint32_t (2560U)).operator_or (var_targetAddress_7758.operator_and (GALGAS_uint (uint32_t (511U)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 208)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 208)), ioArgument_ioWordAddress, temp_1, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 208)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_SKIP generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_SKIP::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                             GALGAS_string & ioArgument_ioListFileContents,
                                                                             GALGAS_uint & ioArgument_ioWordAddress,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_baseline_5F_assembly_5F_SKIP temp_0 = this ;
   routine_emitBaselineCodeAtWordAddress (GALGAS_uint (uint32_t (2560U)).operator_or (ioArgument_ioWordAddress.add_operation (GALGAS_uint (uint32_t (2U)), inCompiler COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 217)).operator_and (GALGAS_uint (uint32_t (511U)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 217)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 217)), ioArgument_ioWordAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 217)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_CALL generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_CALL::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable constinArgument_inRoutineSymbolTable,
                                                                             GALGAS_string & ioArgument_ioListFileContents,
                                                                             GALGAS_uint & ioArgument_ioWordAddress,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_targetAddress_8596 ;
   const GALGAS_baseline_5F_assembly_5F_CALL temp_0 = this ;
@@ -2588,16 +2437,16 @@ void cPtr_baseline_5F_assembly_5F_CALL::method_generateBinaryCodeAtAddress (cons
   routine_emitBaselineCodeAtWordAddress (GALGAS_uint (uint32_t (2304U)).operator_or (var_targetAddress_8596.operator_and (GALGAS_uint (uint32_t (255U)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 229)) COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 229)), ioArgument_ioWordAddress, temp_1, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 229)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_incDecRegisterInCondition generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                                  GALGAS_string & ioArgument_ioListFileContents,
                                                                                                  GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                                 C_Compiler * inCompiler
+                                                                                                 Compiler * inCompiler
                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_code_9002 ;
   enumGalgasBool test_0 = kBoolTrue ;
@@ -2626,16 +2475,16 @@ void cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::method_generateBina
   routine_emitBaselineCodeAtWordAddress (var_code_9002, ioArgument_ioWordAddress, temp_5, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 248)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                      GALGAS_string & ioArgument_ioListFileContents,
                                                                                      GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                     C_Compiler * inCompiler
+                                                                                     Compiler * inCompiler
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_code_9604 ;
   const GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND temp_0 = this ;
@@ -2673,16 +2522,16 @@ void cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND::method_generateBinaryCodeAtAddr
   routine_emitBaselineCodeAtWordAddress (var_code_9604, ioArgument_ioWordAddress, temp_1, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 265)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_TRIS generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_TRIS::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                             GALGAS_string & ioArgument_ioListFileContents,
                                                                             GALGAS_uint & ioArgument_ioWordAddress,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_baseline_5F_assembly_5F_TRIS temp_0 = this ;
@@ -2690,16 +2539,16 @@ void cPtr_baseline_5F_assembly_5F_TRIS::method_generateBinaryCodeAtAddress (cons
   routine_emitBaselineCodeAtWordAddress (temp_0.readProperty_mOpcode (), ioArgument_ioWordAddress, temp_1, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 274)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_instruction_literalOperation generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                                        GALGAS_string & ioArgument_ioListFileContents,
                                                                                                        GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                                       C_Compiler * inCompiler
+                                                                                                       Compiler * inCompiler
                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_code_10541 ;
   const GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation temp_0 = this ;
@@ -2739,16 +2588,16 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::method_genera
   routine_emitBaselineCodeAtWordAddress (var_code_10541, ioArgument_ioWordAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 292)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::method_generateBinaryCodeAtAddress (const GALGAS_baseline_5F_symbolTable constinArgument_inRoutineSymbolTable,
                                                                                        GALGAS_string & ioArgument_ioListFileContents,
                                                                                        GALGAS_uint & ioArgument_ioWordAddress,
-                                                                                       C_Compiler * inCompiler
+                                                                                       Compiler * inCompiler
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_targetAddress_11162 ;
   const GALGAS_baseline_5F_assembly_5F_pseudo_5F_LABEL temp_0 = this ;
@@ -2768,17 +2617,17 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::method_generateBinaryCodeAtAd
   routine_emitNoBaselineCodeAtWordAddress (ioArgument_ioWordAddress, temp_5, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("baseline_build_binary_code.galgas", 307)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'build_baseline_binary_code'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_build_5F_baseline_5F_binary_5F_code (const GALGAS_baseline_5F_assembly_5F_instructionList constinArgument_inAssemblyInstructionList,
                                                   const GALGAS_uint constinArgument_inROMsize,
                                                   GALGAS_string & ioArgument_ioListFileContents,
                                                   GALGAS_uint & outArgument_outUsedROMsize,
-                                                  C_Compiler * inCompiler
+                                                  Compiler * inCompiler
                                                   COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outUsedROMsize.drop () ; // Release 'out' argument
   GALGAS_baseline_5F_symbolTable var_symbolTable_12169 = GALGAS_baseline_5F_symbolTable::constructor_emptyMap (SOURCE_FILE ("baseline_build_binary_code.galgas", 322)) ;
@@ -2823,224 +2672,224 @@ void routine_build_5F_baseline_5F_binary_5F_code (const GALGAS_baseline_5F_assem
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_IF_BitTest addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_IF_5F_BitTest::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                            C_Compiler * inCompiler
+                                                                            Compiler * inCompiler
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest temp_0 = this ;
   callExtensionMethod_addUsedRoutines ((cPtr_midrange_5F_instruction *) temp_0.readProperty_mInstruction ().ptr (), ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 12)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_IF_SEMI_COLON addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                                  C_Compiler * inCompiler
+                                                                                  Compiler * inCompiler
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON temp_0 = this ;
   callExtensionMethod_addUsedRoutines ((cPtr_midrange_5F_instruction *) temp_0.readProperty_mInstruction ().ptr (), ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 19)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_IF_IncDec addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_IF_5F_IncDec::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec temp_0 = this ;
   callExtensionMethod_addUsedRoutines ((cPtr_midrange_5F_instruction *) temp_0.readProperty_mInstruction ().ptr (), ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 26)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_JUMP addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_JUMP::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                   C_Compiler * /* inCompiler */
+                                                                   Compiler * /* inCompiler */
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_instruction_5F_JUMP temp_0 = this ;
   ioArgument_ioUsedRoutines.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 33)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_GOTO addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_GOTO::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                   C_Compiler * /* inCompiler */
+                                                                   Compiler * /* inCompiler */
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_instruction_5F_GOTO temp_0 = this ;
   ioArgument_ioUsedRoutines.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 40)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_CALL addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_CALL::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                   C_Compiler * /* inCompiler */
+                                                                   Compiler * /* inCompiler */
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_instruction_5F_CALL temp_0 = this ;
   ioArgument_ioUsedRoutines.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 47)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_FOREVER addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_FOREVER::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                      C_Compiler * inCompiler
+                                                                      Compiler * inCompiler
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_midrange_5F_instruction_5F_FOREVER temp_0 = this ;
   routine_addMidRangeUsedRoutinesFromInstructionList (temp_0.readProperty_mInstructionList (), ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 54)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_STATIC_REPEAT addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                               C_Compiler * inCompiler
+                                                                               Compiler * inCompiler
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT temp_0 = this ;
   routine_addMidRangeUsedRoutinesFromInstructionList (temp_0.readProperty_mInstructionList (), ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 61)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_MNOP addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_MNOP::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                   C_Compiler * /* inCompiler */
+                                                                   Compiler * /* inCompiler */
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_F addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_F::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                C_Compiler * /* inCompiler */
+                                                                Compiler * /* inCompiler */
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_CLRW addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_CLRW::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                   C_Compiler * /* inCompiler */
+                                                                   Compiler * /* inCompiler */
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_CLRWDT addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_CLRWDT::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                     C_Compiler * /* inCompiler */
+                                                                     Compiler * /* inCompiler */
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_SLEEP addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_SLEEP::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                    C_Compiler * /* inCompiler */
+                                                                    Compiler * /* inCompiler */
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_FB addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_FB::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                 C_Compiler * /* inCompiler */
+                                                                 Compiler * /* inCompiler */
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_NOP addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_NOP::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                  C_Compiler * /* inCompiler */
+                                                                  Compiler * /* inCompiler */
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_banksel addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_banksel::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                      C_Compiler * /* inCompiler */
+                                                                      Compiler * /* inCompiler */
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrangeInstruction_checkbank addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrangeInstruction_5F_checkbank::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                    C_Compiler * /* inCompiler */
+                                                                    Compiler * /* inCompiler */
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrangeInstruction_checknobank addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrangeInstruction_5F_checknobank::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                      C_Compiler * /* inCompiler */
+                                                                      Compiler * /* inCompiler */
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_banksel_register addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_banksel_5F_register::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                                  C_Compiler * /* inCompiler */
+                                                                                  Compiler * /* inCompiler */
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_do_while addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_do_5F_while::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                          C_Compiler * inCompiler
+                                                                          Compiler * inCompiler
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_midrange_5F_instruction_5F_do_5F_while temp_0 = this ;
@@ -3055,38 +2904,38 @@ void cPtr_midrange_5F_instruction_5F_do_5F_while::method_addUsedRoutines (GALGAS
     enumerator_4362.gotoNextObject () ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_nobanksel addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_nobanksel::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                        C_Compiler * /* inCompiler */
+                                                                        Compiler * /* inCompiler */
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_savebank addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_savebank::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                       C_Compiler * inCompiler
+                                                                       Compiler * inCompiler
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_midrange_5F_instruction_5F_savebank temp_0 = this ;
   routine_addMidRangeUsedRoutinesFromInstructionList (temp_0.readProperty_mInstructionList (), ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 150)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_structured_if addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_structured_5F_if::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                               C_Compiler * inCompiler
+                                                                               Compiler * inCompiler
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_midrange_5F_instruction_5F_structured_5F_if temp_0 = this ;
@@ -3097,47 +2946,47 @@ void cPtr_midrange_5F_instruction_5F_structured_5F_if::method_addUsedRoutines (G
   routine_addMidRangeUsedRoutinesFromInstructionList (temp_1.readProperty_mElseInstructionList (), ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 158)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_FD addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_FD::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                 C_Compiler * /* inCompiler */
+                                                                 Compiler * /* inCompiler */
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_JSR addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_JSR::method_addUsedRoutines (GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                                  C_Compiler * /* inCompiler */
+                                                                  Compiler * /* inCompiler */
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_instruction_5F_JSR temp_0 = this ;
   ioArgument_ioUsedRoutines.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 171)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_literalOperation addUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_literalOperation::method_addUsedRoutines (GALGAS_stringset & /* ioArgument_ioUsedRoutines */,
-                                                                               C_Compiler * /* inCompiler */
+                                                                               Compiler * /* inCompiler */
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'addMidRangeUsedRoutinesFromInstructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_addMidRangeUsedRoutinesFromInstructionList (const GALGAS_midrange_5F_instructionList constinArgument_inInstructionList,
                                                          GALGAS_stringset & ioArgument_ioUsedRoutines,
-                                                         C_Compiler * inCompiler
+                                                         Compiler * inCompiler
                                                          COMMA_UNUSED_LOCATION_ARGS) {
   cEnumerator_midrange_5F_instructionList enumerator_6111 (constinArgument_inInstructionList, kENUMERATION_UP) ;
   while (enumerator_6111.hasCurrentObject ()) {
@@ -3147,15 +2996,15 @@ void routine_addMidRangeUsedRoutinesFromInstructionList (const GALGAS_midrange_5
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Function 'midrange_computeUsedRoutines'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 GALGAS_stringset function_midrange_5F_computeUsedRoutines (const GALGAS_midrange_5F_interruptDefinitionList & constinArgument_inInterruptDefinitionList,
                                                            const GALGAS_midrange_5F_routineDefinitionList & constinArgument_inRoutineDefinitionList,
-                                                           C_Compiler * inCompiler
+                                                           Compiler * inCompiler
                                                            COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset result_outUsedRoutineSet ; // Returned variable
   result_outUsedRoutineSet = GALGAS_stringset::constructor_setWithString (GALGAS_string ("main")  COMMA_SOURCE_FILE ("midrange_used_routines.galgas", 197)) ;
@@ -3203,9 +3052,9 @@ GALGAS_stringset function_midrange_5F_computeUsedRoutines (const GALGAS_midrange
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //  Function introspection                                                                       
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_midrange_5F_computeUsedRoutines [3] = {
   & kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList,
@@ -3213,9 +3062,9 @@ static const C_galgas_type_descriptor * functionArgs_midrange_5F_computeUsedRout
   nullptr
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-static GALGAS_object functionWithGenericHeader_midrange_5F_computeUsedRoutines (C_Compiler * inCompiler,
+static GALGAS_object functionWithGenericHeader_midrange_5F_computeUsedRoutines (Compiler * inCompiler,
                                                                                 const cObjectArray & inEffectiveParameterArray,
                                                                                 const GALGAS_location & /* inErrorLocation */
                                                                                 COMMA_LOCATION_ARGS) {
@@ -3231,7 +3080,7 @@ static GALGAS_object functionWithGenericHeader_midrange_5F_computeUsedRoutines (
                                                    COMMA_THERE).getter_object (THERE) ;
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 C_galgas_function_descriptor functionDescriptor_midrange_5F_computeUsedRoutines ("midrange_computeUsedRoutines",
                                                                                  functionWithGenericHeader_midrange_5F_computeUsedRoutines,
@@ -3239,13 +3088,13 @@ C_galgas_function_descriptor functionDescriptor_midrange_5F_computeUsedRoutines 
                                                                                  2,
                                                                                  functionArgs_midrange_5F_computeUsedRoutines) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_NULL instructionLength'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_midrange_5F_intermediate_5F_NULL::getter_instructionLength (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_midrange_5F_intermediate_5F_NULL::getter_instructionLength (Compiler */* inCompiler */
                                                                              COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -3254,13 +3103,13 @@ GALGAS_uint cPtr_midrange_5F_intermediate_5F_NULL::getter_instructionLength (C_C
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_pseudo_ORG instructionLength'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::getter_instructionLength (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::getter_instructionLength (Compiler */* inCompiler */
                                                                                       COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -3269,13 +3118,13 @@ GALGAS_uint cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::getter_instructionLe
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_pseudo_LABEL instructionLength'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::getter_instructionLength (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::getter_instructionLength (Compiler */* inCompiler */
                                                                                         COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (0U)) ;
@@ -3284,13 +3133,13 @@ GALGAS_uint cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::getter_instruction
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_actualInstruction instructionLength'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_midrange_5F_intermediate_5F_actualInstruction::getter_instructionLength (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_midrange_5F_intermediate_5F_actualInstruction::getter_instructionLength (Compiler */* inCompiler */
                                                                                           COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (1U)) ;
@@ -3299,13 +3148,13 @@ GALGAS_uint cPtr_midrange_5F_intermediate_5F_actualInstruction::getter_instructi
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_JUMP instructionLength'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_midrange_5F_intermediate_5F_JUMP::getter_instructionLength (C_Compiler * inCompiler
+GALGAS_uint cPtr_midrange_5F_intermediate_5F_JUMP::getter_instructionLength (Compiler * inCompiler
                                                                              COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (1U)) ;
@@ -3330,13 +3179,13 @@ GALGAS_uint cPtr_midrange_5F_intermediate_5F_JUMP::getter_instructionLength (C_C
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_JSR instructionLength'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_midrange_5F_intermediate_5F_JSR::getter_instructionLength (C_Compiler * inCompiler
+GALGAS_uint cPtr_midrange_5F_intermediate_5F_JSR::getter_instructionLength (Compiler * inCompiler
                                                                             COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   result_outLength = GALGAS_uint (uint32_t (1U)) ;
@@ -3361,13 +3210,13 @@ GALGAS_uint cPtr_midrange_5F_intermediate_5F_JSR::getter_instructionLength (C_Co
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_instruction_MNOP instructionLength'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::getter_instructionLength (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::getter_instructionLength (Compiler */* inCompiler */
                                                                                             COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_0 = this ;
@@ -3377,13 +3226,13 @@ GALGAS_uint cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::getter_instruc
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_incDecRegisterInCondition instructionLength'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_uint cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::getter_instructionLength (C_Compiler */* inCompiler */
+GALGAS_uint cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::getter_instructionLength (Compiler */* inCompiler */
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_uint result_outLength ; // Returned variable
   enumGalgasBool test_0 = kBoolTrue ;
@@ -3402,49 +3251,49 @@ GALGAS_uint cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::getter_i
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_NULL print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_NULL::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                          C_Compiler * inCompiler
+                                                          Compiler * inCompiler
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 11)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_ORG print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("ORG ").add_operation (temp_0.readProperty_mOrigin ().getter_hexString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 18)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_LABEL print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                     C_Compiler * inCompiler
+                                                                     Compiler * inCompiler
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(temp_0.readProperty_mLabel ().readProperty_string ().add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 25)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_FD print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                       C_Compiler * inCompiler
+                                                                       Compiler * inCompiler
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_0 = this ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_1 = this ;
@@ -3458,41 +3307,41 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::method_print (GALGAS_st
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_F print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_F::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                      C_Compiler * inCompiler
+                                                                      Compiler * inCompiler
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F temp_0 = this ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F temp_1 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (temp_0.readProperty_mFinstruction (), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)).add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 42)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_FB print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                       C_Compiler * inCompiler
+                                                                       Compiler * inCompiler
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_0 = this ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_1 = this ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_2 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (temp_0.readProperty_mBitOrientedOp (), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)).add_operation (temp_2.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 49)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_BitTestSkip print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -3509,153 +3358,153 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::method_print (
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_3 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" ").add_operation (temp_2.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)).add_operation (GALGAS_string (", "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)).add_operation (temp_3.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 61)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_JUMP print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_JUMP::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                          C_Compiler * inCompiler
+                                                          Compiler * inCompiler
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JUMP ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 68)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 68)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_GOTO print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_GOTO::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                          C_Compiler * inCompiler
+                                                          Compiler * inCompiler
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_GOTO temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("GOTO ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 75)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 75)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_CALL print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_CALL::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                          C_Compiler * inCompiler
+                                                          Compiler * inCompiler
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_CALL temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("CALL ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 82)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 82)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_JSR print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_JSR::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                         C_Compiler * inCompiler
+                                                         Compiler * inCompiler
                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JSR ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 89)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 89)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_CLRWDT print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("CLRWDT"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 96)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_CLRW print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                         C_Compiler * inCompiler
+                                                                         Compiler * inCompiler
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("CLRW"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 103)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_NOP print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                        C_Compiler * inCompiler
+                                                                        Compiler * inCompiler
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("NOP"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 111)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_RETURN print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("RETURN"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 118)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_RETFIE print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("RETFIE"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 125)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_SLEEP print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                          C_Compiler * inCompiler
+                                                                          Compiler * inCompiler
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("SLEEP"), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 132)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_literalOperation print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                                     C_Compiler * inCompiler
+                                                                                     Compiler * inCompiler
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_0 = this ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_1 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_mnemonic (temp_0.readProperty_mLiteralInstruction (), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)).add_operation (temp_1.readProperty_mLiteralValue ().getter_hexString (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 139)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_MNOP print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                         C_Compiler * inCompiler
+                                                                         Compiler * inCompiler
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_0 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("MNOP ").add_operation (temp_0.readProperty_mOccurrenceFactor ().readProperty_uint ().getter_string (SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 146)), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 146)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 146)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_incDecRegisterInCondition print'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_print (GALGAS_string & ioArgument_ioListFileContents,
-                                                                               C_Compiler * inCompiler
+                                                                               Compiler * inCompiler
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("JUMP "), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 153)) ;
   enumGalgasBool test_0 = kBoolTrue ;
@@ -3693,89 +3542,89 @@ void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_print (G
   const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_7 = this ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" ").add_operation (temp_7.readProperty_mTargetLabel (), inCompiler COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 168)), inCompiler  COMMA_SOURCE_FILE ("midrange_display_intermediate_instruction.galgas", 168)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_ORG setCurrentAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_setCurrentAddress (GALGAS_uint & ioArgument_ioCurrentAddress,
-                                                                               C_Compiler * /* inCompiler */
+                                                                               Compiler * /* inCompiler */
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_0 = this ;
   ioArgument_ioCurrentAddress = temp_0.readProperty_mOrigin () ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_FOREVER instructionUsesGOTOorCALL'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_FOREVER::method_instructionUsesGOTOorCALL (GALGAS_bool & ioArgument_ioUsesGOTOorCALL,
-                                                                                C_Compiler * /* inCompiler */
+                                                                                Compiler * /* inCompiler */
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioUsesGOTOorCALL = GALGAS_bool (true) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_structured_if instructionUsesGOTOorCALL'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_structured_5F_if::method_instructionUsesGOTOorCALL (GALGAS_bool & ioArgument_ioUsesGOTOorCALL,
-                                                                                         C_Compiler * /* inCompiler */
+                                                                                         Compiler * /* inCompiler */
                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioUsesGOTOorCALL = GALGAS_bool (true) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_CALL instructionUsesGOTOorCALL'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_CALL::method_instructionUsesGOTOorCALL (GALGAS_bool & ioArgument_ioUsesGOTOorCALL,
-                                                                             C_Compiler * /* inCompiler */
+                                                                             Compiler * /* inCompiler */
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioUsesGOTOorCALL = GALGAS_bool (true) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_JSR instructionUsesGOTOorCALL'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_JSR::method_instructionUsesGOTOorCALL (GALGAS_bool & ioArgument_ioUsesGOTOorCALL,
-                                                                            C_Compiler * /* inCompiler */
+                                                                            Compiler * /* inCompiler */
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioUsesGOTOorCALL = GALGAS_bool (true) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_GOTO instructionUsesGOTOorCALL'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_GOTO::method_instructionUsesGOTOorCALL (GALGAS_bool & ioArgument_ioUsesGOTOorCALL,
-                                                                             C_Compiler * /* inCompiler */
+                                                                             Compiler * /* inCompiler */
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioUsesGOTOorCALL = GALGAS_bool (true) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_JUMP instructionUsesGOTOorCALL'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_JUMP::method_instructionUsesGOTOorCALL (GALGAS_bool & ioArgument_ioUsesGOTOorCALL,
-                                                                             C_Compiler * /* inCompiler */
+                                                                             Compiler * /* inCompiler */
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioUsesGOTOorCALL = GALGAS_bool (true) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'handleMidrangeInstructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_handleMidrangeInstructionList (const GALGAS_midrange_5F_instructionList constinArgument_inInstructionList,
                                             const GALGAS_routineMap constinArgument_inRoutineMap,
@@ -3790,7 +3639,7 @@ void routine_handleMidrangeInstructionList (const GALGAS_midrange_5F_instruction
                                             GALGAS_bool & outArgument_outContinuesInSequence,
                                             const GALGAS_routineKind constinArgument_inRoutineKind,
                                             GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                            C_Compiler * inCompiler
+                                            Compiler * inCompiler
                                             COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outContinuesInSequence.drop () ; // Release 'out' argument
   outArgument_outContinuesInSequence = GALGAS_bool (true) ;
@@ -3811,11 +3660,11 @@ void routine_handleMidrangeInstructionList (const GALGAS_midrange_5F_instruction
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_nobanksel build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_nobanksel::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                                      const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -3829,7 +3678,7 @@ void cPtr_midrange_5F_instruction_5F_nobanksel::method_build_5F_midrange_5F_ipic
                                                                                                      GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                      const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                      GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                     C_Compiler * inCompiler
+                                                                                                     Compiler * inCompiler
                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -3842,11 +3691,11 @@ void cPtr_midrange_5F_instruction_5F_nobanksel::method_build_5F_midrange_5F_ipic
   }
   ioArgument_ioCurrentBank = GALGAS_uint::constructor_max (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 128)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_savebank build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_savebank::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
                                                                                                     const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -3860,7 +3709,7 @@ void cPtr_midrange_5F_instruction_5F_savebank::method_build_5F_midrange_5F_ipic_
                                                                                                     GALGAS_bool & ioArgument_ioContinuesInSequence,
                                                                                                     const GALGAS_routineKind constinArgument_inRoutineKind,
                                                                                                     GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                    C_Compiler * inCompiler
+                                                                                                    Compiler * inCompiler
                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_registerExpression var_STATUS_5F_register_5003 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("STATUS"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 149)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 149)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 150)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 150))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 150)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 151))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 148)) ;
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_STATUS_5F_IPICregisterDescription_5185 ;
@@ -3893,11 +3742,11 @@ void cPtr_midrange_5F_instruction_5F_savebank::method_build_5F_midrange_5F_ipic_
   const GALGAS_midrange_5F_instruction_5F_savebank temp_8 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (temp_8.readProperty_mInstructionLocation (), GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 214)), var_STATUS_5F_IPICregisterDescription_5185  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 212))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 212)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_banksel build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_banksel::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                                    const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -3911,7 +3760,7 @@ void cPtr_midrange_5F_instruction_5F_banksel::method_build_5F_midrange_5F_ipic_5
                                                                                                    GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                    const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                    GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                   C_Compiler * inCompiler
+                                                                                                   Compiler * inCompiler
                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -4070,11 +3919,11 @@ void cPtr_midrange_5F_instruction_5F_banksel::method_build_5F_midrange_5F_ipic_5
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_banksel_register build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_banksel_5F_register::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                                                const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -4088,7 +3937,7 @@ void cPtr_midrange_5F_instruction_5F_banksel_5F_register::method_build_5F_midran
                                                                                                                GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                                const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                                GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                               C_Compiler * inCompiler
+                                                                                                               Compiler * inCompiler
                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -4274,11 +4123,11 @@ void cPtr_midrange_5F_instruction_5F_banksel_5F_register::method_build_5F_midran
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_FD build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_FD::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                               const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -4292,7 +4141,7 @@ void cPtr_midrange_5F_instruction_5F_FD::method_build_5F_midrange_5F_ipic_5F_ins
                                                                                               GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                               const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                               GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                              C_Compiler * inCompiler
+                                                                                              Compiler * inCompiler
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription_16329 ;
   const GALGAS_midrange_5F_instruction_5F_FD temp_0 = this ;
@@ -4303,11 +4152,11 @@ void cPtr_midrange_5F_instruction_5F_FD::method_build_5F_midrange_5F_ipic_5F_ins
   const GALGAS_midrange_5F_instruction_5F_FD temp_3 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (temp_1.readProperty_mInstructionLocation (), temp_2.readProperty_mInstruction_5F_FD_5F_base_5F_code (), var_IPICregisterDescription_16329, temp_3.readProperty_m_5F_W_5F_isDestination ()  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 452))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 452)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_F build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_F::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                              const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -4321,7 +4170,7 @@ void cPtr_midrange_5F_instruction_5F_F::method_build_5F_midrange_5F_ipic_5F_inst
                                                                                              GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                              const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                              GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                             C_Compiler * inCompiler
+                                                                                             Compiler * inCompiler
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription_17261 ;
   const GALGAS_midrange_5F_instruction_5F_F temp_0 = this ;
@@ -4331,11 +4180,11 @@ void cPtr_midrange_5F_instruction_5F_F::method_build_5F_midrange_5F_ipic_5F_inst
   const GALGAS_midrange_5F_instruction_5F_F temp_2 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (temp_1.readProperty_mInstructionLocation (), temp_2.readProperty_mFAinstruction (), var_IPICregisterDescription_17261  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 485))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 485)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_FB build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_FB::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                               const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -4349,7 +4198,7 @@ void cPtr_midrange_5F_instruction_5F_FB::method_build_5F_midrange_5F_ipic_5F_ins
                                                                                               GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                               const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                               GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                              C_Compiler * inCompiler
+                                                                                              Compiler * inCompiler
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription_18406 ;
   GALGAS_bitSliceTable var_bitSliceTable_18439 ;
@@ -4362,11 +4211,11 @@ void cPtr_midrange_5F_instruction_5F_FB::method_build_5F_midrange_5F_ipic_5F_ins
   const GALGAS_midrange_5F_instruction_5F_FB temp_3 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB::constructor_new (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mBitOrientedOp (), var_IPICregisterDescription_18406, var_bitNumber_18601  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 524))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 524)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_JSR build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_JSR::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
                                                                                                const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -4380,7 +4229,7 @@ void cPtr_midrange_5F_instruction_5F_JSR::method_build_5F_midrange_5F_ipic_5F_in
                                                                                                GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                               C_Compiler * inCompiler
+                                                                                               Compiler * inCompiler
                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bool var_isNoReturn_19514 ;
   GALGAS_uint var_requiredBank_19530 ;
@@ -4430,11 +4279,11 @@ void cPtr_midrange_5F_instruction_5F_JSR::method_build_5F_midrange_5F_ipic_5F_in
   const GALGAS_midrange_5F_instruction_5F_JSR temp_11 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_JSR::constructor_new (temp_10.readProperty_mInstructionLocation (), temp_11.readProperty_mTargetLabel (), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 569)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 570))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 566))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 566)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrangeInstruction_checkbank build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrangeInstruction_5F_checkbank::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                                  const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -4448,7 +4297,7 @@ void cPtr_midrangeInstruction_5F_checkbank::method_build_5F_midrange_5F_ipic_5F_
                                                                                                  GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                  const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                  GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                 C_Compiler * inCompiler
+                                                                                                 Compiler * inCompiler
                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -4487,11 +4336,11 @@ void cPtr_midrangeInstruction_5F_checkbank::method_build_5F_midrange_5F_ipic_5F_
   const GALGAS_midrangeInstruction_5F_checkbank temp_12 = this ;
   ioArgument_ioCurrentBank = temp_12.readProperty_mBankIndex () ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrangeInstruction_checknobank build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrangeInstruction_5F_checknobank::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                                    const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -4505,7 +4354,7 @@ void cPtr_midrangeInstruction_5F_checknobank::method_build_5F_midrange_5F_ipic_5
                                                                                                    GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                    const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                    GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                   C_Compiler * inCompiler
+                                                                                                   Compiler * inCompiler
                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -4518,11 +4367,11 @@ void cPtr_midrangeInstruction_5F_checknobank::method_build_5F_midrange_5F_ipic_5
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_CALL build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_CALL::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
                                                                                                 const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -4536,7 +4385,7 @@ void cPtr_midrange_5F_instruction_5F_CALL::method_build_5F_midrange_5F_ipic_5F_i
                                                                                                 GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                 const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                 GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                C_Compiler * inCompiler
+                                                                                                Compiler * inCompiler
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bool var_isNoReturn_23109 ;
   GALGAS_uint var_requiredBank_23125 ;
@@ -4586,11 +4435,11 @@ void cPtr_midrange_5F_instruction_5F_CALL::method_build_5F_midrange_5F_ipic_5F_i
   const GALGAS_midrange_5F_instruction_5F_CALL temp_11 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_CALL::constructor_new (temp_10.readProperty_mInstructionLocation (), temp_11.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 655))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 655)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_JUMP build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_JUMP::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
                                                                                                 const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -4604,7 +4453,7 @@ void cPtr_midrange_5F_instruction_5F_JUMP::method_build_5F_midrange_5F_ipic_5F_i
                                                                                                 GALGAS_bool & ioArgument_ioContinuesInSequence,
                                                                                                 const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                 GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                C_Compiler * inCompiler
+                                                                                                Compiler * inCompiler
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bool var_isNoReturn_24683 ;
   GALGAS_uint var_requiredBank_24699 ;
@@ -4648,11 +4497,11 @@ void cPtr_midrange_5F_instruction_5F_JUMP::method_build_5F_midrange_5F_ipic_5F_i
   const GALGAS_midrange_5F_instruction_5F_JUMP temp_10 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_JUMP::constructor_new (temp_9.readProperty_mInstructionLocation (), temp_10.readProperty_mTargetLabel (), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 695)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 696))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 692))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 692)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_GOTO build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_GOTO::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
                                                                                                 const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -4666,7 +4515,7 @@ void cPtr_midrange_5F_instruction_5F_GOTO::method_build_5F_midrange_5F_ipic_5F_i
                                                                                                 GALGAS_bool & ioArgument_ioContinuesInSequence,
                                                                                                 const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                 GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                C_Compiler * inCompiler
+                                                                                                Compiler * inCompiler
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bool var_isNoReturn_26267 ;
   GALGAS_uint var_requiredBank_26283 ;
@@ -4710,11 +4559,11 @@ void cPtr_midrange_5F_instruction_5F_GOTO::method_build_5F_midrange_5F_ipic_5F_i
   const GALGAS_midrange_5F_instruction_5F_GOTO temp_10 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_GOTO::constructor_new (temp_9.readProperty_mInstructionLocation (), temp_10.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 731))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 731)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_CLRWDT build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_CLRWDT::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                                   const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -4728,16 +4577,16 @@ void cPtr_midrange_5F_instruction_5F_CLRWDT::method_build_5F_midrange_5F_ipic_5F
                                                                                                   GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                   const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                   GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                  C_Compiler * /* inCompiler */
+                                                                                                  Compiler * /* inCompiler */
                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_instruction_5F_CLRWDT temp_0 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_CLRWDT::constructor_new (temp_0.readProperty_mInstructionLocation ()  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 751))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 751)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_CLRW build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_CLRW::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                                 const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -4751,16 +4600,16 @@ void cPtr_midrange_5F_instruction_5F_CLRW::method_build_5F_midrange_5F_ipic_5F_i
                                                                                                 GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                 const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                 GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                C_Compiler * /* inCompiler */
+                                                                                                Compiler * /* inCompiler */
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_instruction_5F_CLRW temp_0 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_CLRW::constructor_new (temp_0.readProperty_mInstructionLocation ()  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 770))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 770)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_NOP build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_NOP::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                                const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -4774,16 +4623,16 @@ void cPtr_midrange_5F_instruction_5F_NOP::method_build_5F_midrange_5F_ipic_5F_in
                                                                                                GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                               C_Compiler * /* inCompiler */
+                                                                                               Compiler * /* inCompiler */
                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_instruction_5F_NOP temp_0 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_NOP::constructor_new (temp_0.readProperty_mInstructionLocation ()  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 789))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 789)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_SLEEP build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_SLEEP::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                                  const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -4797,16 +4646,16 @@ void cPtr_midrange_5F_instruction_5F_SLEEP::method_build_5F_midrange_5F_ipic_5F_
                                                                                                  GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                  const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                  GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                 C_Compiler * /* inCompiler */
+                                                                                                 Compiler * /* inCompiler */
                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_instruction_5F_SLEEP temp_0 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_SLEEP::constructor_new (temp_0.readProperty_mInstructionLocation ()  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 808))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 808)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_literalOperation build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_literalOperation::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                                             const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -4820,7 +4669,7 @@ void cPtr_midrange_5F_instruction_5F_literalOperation::method_build_5F_midrange_
                                                                                                             GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                             const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                             GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                            C_Compiler * inCompiler
+                                                                                                            Compiler * inCompiler
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_sint_36__34_ var_result_30878 ;
   const GALGAS_midrange_5F_instruction_5F_literalOperation temp_0 = this ;
@@ -4838,11 +4687,11 @@ void cPtr_midrange_5F_instruction_5F_literalOperation::method_build_5F_midrange_
   const GALGAS_midrange_5F_instruction_5F_literalOperation temp_5 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (temp_4.readProperty_mInstructionLocation (), temp_5.readProperty_mLiteralInstruction (), var_result_30878.operator_and (GALGAS_sint_36__34_ (int64_t (255LL)) COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 836)).getter_uint (inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 836))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 833))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 833)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_MNOP build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_MNOP::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap /* constinArgument_inRoutineMap */,
                                                                                                 const GALGAS_registerTable /* constinArgument_inRegisterTable */,
@@ -4856,7 +4705,7 @@ void cPtr_midrange_5F_instruction_5F_MNOP::method_build_5F_midrange_5F_ipic_5F_i
                                                                                                 GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                 const GALGAS_routineKind /* constinArgument_inRoutineKind */,
                                                                                                 GALGAS_stringset & /* ioArgument_ioUsedRegisters */,
-                                                                                                C_Compiler * inCompiler
+                                                                                                Compiler * inCompiler
                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -4872,11 +4721,11 @@ void cPtr_midrange_5F_instruction_5F_MNOP::method_build_5F_midrange_5F_ipic_5F_i
   const GALGAS_midrange_5F_instruction_5F_MNOP temp_5 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP::constructor_new (temp_4.readProperty_mInstructionLocation (), temp_5.readProperty_mOccurrenceFactor ()  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 859))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 859)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_FOREVER build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_FOREVER::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
                                                                                                    const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -4890,7 +4739,7 @@ void cPtr_midrange_5F_instruction_5F_FOREVER::method_build_5F_midrange_5F_ipic_5
                                                                                                    GALGAS_bool & ioArgument_ioContinuesInSequence,
                                                                                                    const GALGAS_routineKind constinArgument_inRoutineKind,
                                                                                                    GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                   C_Compiler * inCompiler
+                                                                                                   Compiler * inCompiler
                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   switch (constinArgument_inRoutineKind.enumValue ()) {
   case GALGAS_routineKind::kNotBuilt:
@@ -4937,11 +4786,11 @@ void cPtr_midrange_5F_instruction_5F_FOREVER::method_build_5F_midrange_5F_ipic_5
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_GOTO::constructor_new (temp_9.readProperty_mInstructionLocation (), GALGAS_lstring::constructor_new (var_label_30__33222, temp_10.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 912))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 910))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 910)) ;
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_STATIC_REPEAT build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
                                                                                                             const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -4955,7 +4804,7 @@ void cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::method_build_5F_midrange_
                                                                                                             GALGAS_bool & ioArgument_ioContinuesInSequence,
                                                                                                             const GALGAS_routineKind constinArgument_inRoutineKind,
                                                                                                             GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                            C_Compiler * inCompiler
+                                                                                                            Compiler * inCompiler
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_sint_36__34_ var_lowerBound_34833 ;
   const GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT temp_0 = this ;
@@ -5044,11 +4893,11 @@ void cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::method_build_5F_midrange_
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_IF_BitTest build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_IF_5F_BitTest::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
                                                                                                          const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -5062,7 +4911,7 @@ void cPtr_midrange_5F_instruction_5F_IF_5F_BitTest::method_build_5F_midrange_5F_
                                                                                                          GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                          const GALGAS_routineKind constinArgument_inRoutineKind,
                                                                                                          GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                         C_Compiler * inCompiler
+                                                                                                         Compiler * inCompiler
                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription_37448 ;
   GALGAS_bitSliceTable var_bitSliceTable_37481 ;
@@ -5078,11 +4927,11 @@ void cPtr_midrange_5F_instruction_5F_IF_5F_BitTest::method_build_5F_midrange_5F_
   const GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest temp_4 = this ;
   callExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList ((cPtr_midrange_5F_instruction *) temp_4.readProperty_mInstruction ().ptr (), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inShouldPreserveBank, var_unusedContinuesInSequence_37880, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1029)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_incDecRegisterInCondition buildIPICinstructionForCondition'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_incDecRegisterInCondition::method_buildIPICinstructionForCondition (const GALGAS_uint constinArgument_inTotalBankCount,
                                                                                           const GALGAS_uint constinArgument_inCurrentBank,
@@ -5095,7 +4944,7 @@ void cPtr_midrange_5F_incDecRegisterInCondition::method_buildIPICinstructionForC
                                                                                           GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                                                           GALGAS_string & /* ioArgument_ioListFileContents */,
                                                                                           GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                          C_Compiler * inCompiler
+                                                                                          Compiler * inCompiler
                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription_39757 ;
   const GALGAS_midrange_5F_incDecRegisterInCondition temp_0 = this ;
@@ -5106,15 +4955,15 @@ void cPtr_midrange_5F_incDecRegisterInCondition::method_buildIPICinstructionForC
   const GALGAS_midrange_5F_incDecRegisterInCondition temp_3 = this ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition::constructor_new (constinArgument_inInstructionLocation, var_IPICregisterDescription_39757, constinArgument_inTargetLabel, temp_1.readProperty_mIncrement (), temp_2.readProperty_m_5F_W_5F_isDestination (), temp_3.readProperty_mBranchIfZero ().operator_xor (constinArgument_inComplementaryBranch COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1097))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1091))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1091)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_incDecRegisterInCondition computeInstructionCountForCondition'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_incDecRegisterInCondition::method_computeInstructionCountForCondition (const GALGAS_bool constinArgument_inComplementaryBranch,
                                                                                              GALGAS_uint & outArgument_outInstructionCount,
-                                                                                             C_Compiler * /* inCompiler */
+                                                                                             Compiler * /* inCompiler */
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -5128,11 +4977,11 @@ void cPtr_midrange_5F_incDecRegisterInCondition::method_computeInstructionCountF
     outArgument_outInstructionCount = GALGAS_uint (uint32_t (2U)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_negateCondition buildIPICinstructionForCondition'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_negateCondition::method_buildIPICinstructionForCondition (const GALGAS_uint constinArgument_inTotalBankCount,
                                                                                 const GALGAS_uint constinArgument_inCurrentBank,
@@ -5145,29 +4994,29 @@ void cPtr_midrange_5F_negateCondition::method_buildIPICinstructionForCondition (
                                                                                 GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                                                 GALGAS_string & ioArgument_ioListFileContents,
                                                                                 GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_negateCondition temp_0 = this ;
   callExtensionMethod_buildIPICinstructionForCondition ((cPtr_midrange_5F_conditionExpression *) temp_0.readProperty_mCondition ().ptr (), constinArgument_inTotalBankCount, constinArgument_inCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, constinArgument_inComplementaryBranch.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1132)), constinArgument_inInstructionLocation, constinArgument_inTargetLabel, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1126)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_negateCondition computeInstructionCountForCondition'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_negateCondition::method_computeInstructionCountForCondition (const GALGAS_bool constinArgument_inComplementaryBranch,
                                                                                    GALGAS_uint & outArgument_outInstructionCount,
-                                                                                   C_Compiler * inCompiler
+                                                                                   Compiler * inCompiler
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_negateCondition temp_0 = this ;
   callExtensionMethod_computeInstructionCountForCondition ((cPtr_midrange_5F_conditionExpression *) temp_0.readProperty_mCondition ().ptr (), constinArgument_inComplementaryBranch.operator_not (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1147)), outArgument_outInstructionCount, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1146)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_andCondition buildIPICinstructionForCondition'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_andCondition::method_buildIPICinstructionForCondition (const GALGAS_uint constinArgument_inTotalBankCount,
                                                                              const GALGAS_uint constinArgument_inCurrentBank,
@@ -5180,7 +5029,7 @@ void cPtr_midrange_5F_andCondition::method_buildIPICinstructionForCondition (con
                                                                              GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                                              GALGAS_string & ioArgument_ioListFileContents,
                                                                              GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                             C_Compiler * inCompiler
+                                                                             Compiler * inCompiler
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -5202,15 +5051,15 @@ void cPtr_midrange_5F_andCondition::method_buildIPICinstructionForCondition (con
     ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_30__42913, constinArgument_inInstructionLocation, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1221)), GALGAS_bool (true)  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1221))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1221)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_andCondition computeInstructionCountForCondition'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_andCondition::method_computeInstructionCountForCondition (const GALGAS_bool constinArgument_inComplementaryBranch,
                                                                                 GALGAS_uint & outArgument_outInstructionCount,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_countLeft_44092 ;
   const GALGAS_midrange_5F_andCondition temp_0 = this ;
@@ -5220,11 +5069,11 @@ void cPtr_midrange_5F_andCondition::method_computeInstructionCountForCondition (
   callExtensionMethod_computeInstructionCountForCondition ((cPtr_midrange_5F_conditionExpression *) temp_1.readProperty_mLeftExpression ().ptr (), constinArgument_inComplementaryBranch, var_countRight_44202, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1234)) ;
   outArgument_outInstructionCount = var_countLeft_44092.add_operation (var_countRight_44202, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1238)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_bitTest_in_structured_if_condition buildIPICinstructionForCondition'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::method_buildIPICinstructionForCondition (const GALGAS_uint constinArgument_inTotalBankCount,
                                                                                                                const GALGAS_uint constinArgument_inCurrentBank,
@@ -5237,7 +5086,7 @@ void cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::method_bui
                                                                                                                GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                                                                                GALGAS_string & /* ioArgument_ioListFileContents */,
                                                                                                                GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                               C_Compiler * inCompiler
+                                                                                                               Compiler * inCompiler
                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_registerExpression var_IPICregisterDescription_44989 ;
   GALGAS_bitSliceTable var_bitSliceTable_45022 ;
@@ -5249,23 +5098,23 @@ void cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::method_bui
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::constructor_new (constinArgument_inInstructionLocation, constinArgument_inComplementaryBranch, var_IPICregisterDescription_44989, var_bitNumber_45184  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1271))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1271)) ;
   ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_midrange_5F_intermediate_5F_JUMP::constructor_new (constinArgument_inInstructionLocation, GALGAS_lstring::constructor_new (constinArgument_inTargetLabel, constinArgument_inInstructionLocation, inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1279)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1280)), GALGAS_midrange_5F_call_5F_goto_5F_bit::constructor_noChange (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1281))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1277))  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1277)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_bitTest_in_structured_if_condition computeInstructionCountForCondition'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::method_computeInstructionCountForCondition (const GALGAS_bool /* constinArgument_inComplementaryBranch */,
                                                                                                                   GALGAS_uint & outArgument_outInstructionCount,
-                                                                                                                  C_Compiler * /* inCompiler */
+                                                                                                                  Compiler * /* inCompiler */
                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outInstructionCount = GALGAS_uint (uint32_t (2U)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_structured_if build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_structured_5F_if::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
                                                                                                             const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -5279,7 +5128,7 @@ void cPtr_midrange_5F_instruction_5F_structured_5F_if::method_build_5F_midrange_
                                                                                                             GALGAS_bool & ioArgument_ioContinuesInSequence,
                                                                                                             const GALGAS_routineKind constinArgument_inRoutineKind,
                                                                                                             GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                            C_Compiler * inCompiler
+                                                                                                            Compiler * inCompiler
                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bool var_generateComplementaryCondition_46546 = GALGAS_bool (false) ;
   enumGalgasBool test_0 = kBoolTrue ;
@@ -5425,11 +5274,11 @@ void cPtr_midrange_5F_instruction_5F_structured_5F_if::method_build_5F_midrange_
   }
   ioArgument_ioContinuesInSequence = var_thenContinuesInSequence_47649.operator_or (var_elseContinuesInSequence_47613 COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1455)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_do_while build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_do_5F_while::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
                                                                                                        const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -5443,7 +5292,7 @@ void cPtr_midrange_5F_instruction_5F_do_5F_while::method_build_5F_midrange_5F_ip
                                                                                                        GALGAS_bool & ioArgument_ioContinuesInSequence,
                                                                                                        const GALGAS_routineKind constinArgument_inRoutineKind,
                                                                                                        GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                       C_Compiler * inCompiler
+                                                                                                       Compiler * inCompiler
                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_string var_labelInstructionBegin_52696 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1474)), inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1474)) ;
   ioArgument_ioLocalLabelIndex.plusAssign_operation(GALGAS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1474)) ;
@@ -5500,11 +5349,11 @@ void cPtr_midrange_5F_instruction_5F_do_5F_while::method_build_5F_midrange_5F_ip
     enumerator_53558.gotoNextObject () ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_instruction_IF_IncDec build_midrange_ipic_instructionList'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction_5F_IF_5F_IncDec::method_build_5F_midrange_5F_ipic_5F_instructionList (const GALGAS_routineMap constinArgument_inRoutineMap,
                                                                                                         const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -5518,7 +5367,7 @@ void cPtr_midrange_5F_instruction_5F_IF_5F_IncDec::method_build_5F_midrange_5F_i
                                                                                                         GALGAS_bool & /* ioArgument_ioContinuesInSequence */,
                                                                                                         const GALGAS_routineKind constinArgument_inRoutineKind,
                                                                                                         GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                                                        C_Compiler * inCompiler
+                                                                                                        Compiler * inCompiler
                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code var_baseCode_55993 ;
   enumGalgasBool test_0 = kBoolTrue ;
@@ -5543,11 +5392,11 @@ void cPtr_midrange_5F_instruction_5F_IF_5F_IncDec::method_build_5F_midrange_5F_i
   const GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec temp_5 = this ;
   callExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList ((cPtr_midrange_5F_instruction *) temp_5.readProperty_mInstruction ().ptr (), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, constinArgument_inTotalBankCount, ioArgument_ioCurrentBank, constinArgument_inShouldPreserveBank, var_unusedContinuesInSequence_56565, constinArgument_inRoutineKind, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1594)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'build_midrange_assembly_instruction_list'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (const GALGAS_uint constinArgument_inTotalPageCount,
                                                                    const GALGAS_uint constinArgument_inTotalBankCount,
@@ -5559,7 +5408,7 @@ void routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (const GALGAS_
                                                                    GALGAS_midrange_5F_intermediate_5F_instructionList & outArgument_outGeneratedInstructionList,
                                                                    GALGAS_string & ioArgument_ioListFileContents,
                                                                    GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                   C_Compiler * inCompiler
+                                                                   Compiler * inCompiler
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outGeneratedInstructionList.drop () ; // Release 'out' argument
   GALGAS_string var_generationOptimizationMessages_57474 = GALGAS_string::makeEmptyString () ;
@@ -5736,17 +5585,17 @@ void routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list (const GALGAS_
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'interruptRoutineShouldSavePCLATH'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_interruptRoutineShouldSavePCLATH (const GALGAS_midrange_5F_model constinArgument_inPiccoloModel,
                                                const GALGAS_uint constinArgument_inTotalPageCount,
                                                GALGAS_string & ioArgument_ioListFileContents,
                                                GALGAS_bool & outArgument_outShouldSavePCLATH,
-                                               C_Compiler * inCompiler
+                                               Compiler * inCompiler
                                                COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outShouldSavePCLATH.drop () ; // Release 'out' argument
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("PCLATH should be saved \?\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1761)) ;
@@ -5819,11 +5668,11 @@ void routine_interruptRoutineShouldSavePCLATH (const GALGAS_midrange_5F_model co
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'handleInterruptRoutine'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_handleInterruptRoutine (const GALGAS_midrange_5F_model constinArgument_inPiccoloModel,
                                      const GALGAS_bool constinArgument_inHasInterrupt,
@@ -5838,7 +5687,7 @@ void routine_handleInterruptRoutine (const GALGAS_midrange_5F_model constinArgum
                                      GALGAS_string & ioArgument_ioListFileContents,
                                      GALGAS_midrange_5F_intermediate_5F_instructionList & outArgument_outGeneratedInstructionList,
                                      GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                     C_Compiler * inCompiler
+                                     Compiler * inCompiler
                                      COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outGeneratedInstructionList.drop () ; // Release 'out' argument
   outArgument_outGeneratedInstructionList = GALGAS_midrange_5F_intermediate_5F_instructionList::constructor_emptyList (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1813)) ;
@@ -5878,11 +5727,11 @@ void routine_handleInterruptRoutine (const GALGAS_midrange_5F_model constinArgum
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'generateInterruptRoutineForControllerWithSharedRAM'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_generateInterruptRoutineForControllerWithSharedRAM (const GALGAS_uint constinArgument_inTotalBankCount,
                                                                  const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -5897,7 +5746,7 @@ void routine_generateInterruptRoutineForControllerWithSharedRAM (const GALGAS_ui
                                                                  GALGAS_uint & ioArgument_ioLocalLabelIndex,
                                                                  GALGAS_string & ioArgument_ioGenerationOptimizationMessages,
                                                                  GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                 C_Compiler * inCompiler
+                                                                 Compiler * inCompiler
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uintlist var_registerAddressList_68615 ;
   GALGAS_uint var_size_68642 ;
@@ -6041,11 +5890,11 @@ void routine_generateInterruptRoutineForControllerWithSharedRAM (const GALGAS_ui
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'generateInterruptRoutineForControllerWithoutSharedRAM'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_generateInterruptRoutineForControllerWithoutSharedRAM (const GALGAS_uint constinArgument_inTotalBankCount,
                                                                     const GALGAS_registerTable constinArgument_inRegisterTable,
@@ -6060,7 +5909,7 @@ void routine_generateInterruptRoutineForControllerWithoutSharedRAM (const GALGAS
                                                                     GALGAS_uint & ioArgument_ioLocalLabelIndex,
                                                                     GALGAS_string & ioArgument_ioGenerationOptimizationMessages,
                                                                     GALGAS_stringset & ioArgument_ioUsedRegisters,
-                                                                    C_Compiler * inCompiler
+                                                                    Compiler * inCompiler
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioUsedRegisters.addAssign_operation (constinArgument_inFirstSaveRegister.readProperty_string ()  COMMA_SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 2081)) ;
   GALGAS_uintlist var_registerAddressList_77234 ;
@@ -6242,13 +6091,13 @@ void routine_generateInterruptRoutineForControllerWithoutSharedRAM (const GALGAS
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_pseudo_ORG isLABELorORG'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::getter_isLABELorORG (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::getter_isLABELorORG (Compiler */* inCompiler */
                                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsLABELorORG ; // Returned variable
   result_outIsLABELorORG = GALGAS_bool (true) ;
@@ -6257,13 +6106,13 @@ GALGAS_bool cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::getter_isLABELorORG 
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_pseudo_LABEL isLABELorORG'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::getter_isLABELorORG (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::getter_isLABELorORG (Compiler */* inCompiler */
                                                                                    COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsLABELorORG ; // Returned variable
   result_outIsLABELorORG = GALGAS_bool (true) ;
@@ -6272,13 +6121,13 @@ GALGAS_bool cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::getter_isLABELorOR
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_NULL isNULL'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_midrange_5F_intermediate_5F_NULL::getter_isNULL (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_midrange_5F_intermediate_5F_NULL::getter_isNULL (Compiler */* inCompiler */
                                                                   COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsNULL ; // Returned variable
   result_outIsNULL = GALGAS_bool (true) ;
@@ -6287,73 +6136,73 @@ GALGAS_bool cPtr_midrange_5F_intermediate_5F_NULL::getter_isNULL (C_Compiler */*
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_JUMP enterReferencedLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_JUMP::method_enterReferencedLabel (GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                         C_Compiler * /* inCompiler */
+                                                                         Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_0 = this ;
   ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 53)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_GOTO enterReferencedLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_GOTO::method_enterReferencedLabel (GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                         C_Compiler * /* inCompiler */
+                                                                         Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_GOTO temp_0 = this ;
   ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 59)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_CALL enterReferencedLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_CALL::method_enterReferencedLabel (GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                         C_Compiler * /* inCompiler */
+                                                                         Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_CALL temp_0 = this ;
   ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 65)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_JSR enterReferencedLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_JSR::method_enterReferencedLabel (GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                        C_Compiler * /* inCompiler */
+                                                                        Compiler * /* inCompiler */
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_0 = this ;
   ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 71)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_incDecRegisterInCondition enterReferencedLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_enterReferencedLabel (GALGAS_stringset & ioArgument_ioReferencedLabelSet,
-                                                                                              C_Compiler * /* inCompiler */
+                                                                                              Compiler * /* inCompiler */
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_0 = this ;
   ioArgument_ioReferencedLabelSet.addAssign_operation (temp_0.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 77)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_instruction_BitTestSkip isSkippingInstruction'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_isSkippingInstruction (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_isSkippingInstruction (Compiler */* inCompiler */
                                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsSkipping ; // Returned variable
   result_outIsSkipping = GALGAS_bool (true) ;
@@ -6362,13 +6211,13 @@ GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::getter_
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_JUMP nextInstructionIsReachable'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_midrange_5F_intermediate_5F_JUMP::getter_nextInstructionIsReachable (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_midrange_5F_intermediate_5F_JUMP::getter_nextInstructionIsReachable (Compiler */* inCompiler */
                                                                                       COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsReachable ; // Returned variable
   result_outIsReachable = GALGAS_bool (false) ;
@@ -6377,13 +6226,13 @@ GALGAS_bool cPtr_midrange_5F_intermediate_5F_JUMP::getter_nextInstructionIsReach
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_GOTO nextInstructionIsReachable'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_midrange_5F_intermediate_5F_GOTO::getter_nextInstructionIsReachable (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_midrange_5F_intermediate_5F_GOTO::getter_nextInstructionIsReachable (Compiler */* inCompiler */
                                                                                       COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsReachable ; // Returned variable
   result_outIsReachable = GALGAS_bool (false) ;
@@ -6392,13 +6241,13 @@ GALGAS_bool cPtr_midrange_5F_intermediate_5F_GOTO::getter_nextInstructionIsReach
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_instruction_RETURN nextInstructionIsReachable'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::getter_nextInstructionIsReachable (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::getter_nextInstructionIsReachable (Compiler */* inCompiler */
                                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsReachable ; // Returned variable
   result_outIsReachable = GALGAS_bool (false) ;
@@ -6407,13 +6256,13 @@ GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::getter_nextI
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_instruction_RETFIE nextInstructionIsReachable'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::getter_nextInstructionIsReachable (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::getter_nextInstructionIsReachable (Compiler */* inCompiler */
                                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsReachable ; // Returned variable
   result_outIsReachable = GALGAS_bool (false) ;
@@ -6422,13 +6271,13 @@ GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::getter_nextI
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@midrange_intermediate_instruction_literalOperation nextInstructionIsReachable'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::getter_nextInstructionIsReachable (C_Compiler */* inCompiler */
+GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::getter_nextInstructionIsReachable (Compiler */* inCompiler */
                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
   GALGAS_bool result_outIsReachable ; // Returned variable
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_0 = this ;
@@ -6438,15 +6287,15 @@ GALGAS_bool cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::ge
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_LABEL defineLabel'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_defineLabel (GALGAS_symbolTableForOptimizations & ioArgument_ioRoutineSymbolTable,
                                                                            const GALGAS_uint constinArgument_inLineIndex,
-                                                                           C_Compiler * inCompiler
+                                                                           Compiler * inCompiler
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = this ;
@@ -6454,16 +6303,16 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_defineLabel (GALGA
   ioArgument_ioRoutineSymbolTable.setter_insertKey (temp_0.readProperty_mLabel (), constinArgument_inLineIndex, temp_1.readProperty_mIsDeletable (), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 155)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'findMidRangeFirstInstructionFromAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_findMidRangeFirstInstructionFromAddress (const GALGAS_uint constinArgument_inLineIndex,
                                                       const GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
                                                       GALGAS_midrange_5F_intermediate_5F_instruction & outArgument_outFirstInstruction,
-                                                      C_Compiler * inCompiler
+                                                      Compiler * inCompiler
                                                       COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outFirstInstruction.drop () ; // Release 'out' argument
   GALGAS_uint var_currentAddress_6827 = constinArgument_inLineIndex ;
@@ -6503,17 +6352,17 @@ void routine_findMidRangeFirstInstructionFromAddress (const GALGAS_uint constinA
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'findMidRangeFirstInstructionOrLabelFromAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_findMidRangeFirstInstructionOrLabelFromAddress (const GALGAS_uint constinArgument_inLineIndex,
                                                              const GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
                                                              GALGAS_midrange_5F_intermediate_5F_instruction & outArgument_outFirstInstruction,
                                                              GALGAS_stringset & outArgument_outReachedLabelSet,
-                                                             C_Compiler * inCompiler
+                                                             Compiler * inCompiler
                                                              COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outFirstInstruction.drop () ; // Release 'out' argument
   outArgument_outReachedLabelSet.drop () ; // Release 'out' argument
@@ -6583,15 +6432,15 @@ void routine_findMidRangeFirstInstructionOrLabelFromAddress (const GALGAS_uint c
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'perform_midrange_optimizations'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_perform_5F_midrange_5F_optimizations (GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                    GALGAS_string & ioArgument_ioListFileContents,
-                                                   C_Compiler * inCompiler
+                                                   Compiler * inCompiler
                                                    COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (119U)), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 541)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 541)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 541)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("CODE OPTIMIZATION").getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (117U)), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 542)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 542)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 542)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 542)) ;
@@ -6791,30 +6640,30 @@ void routine_perform_5F_midrange_5F_optimizations (GALGAS_midrange_5F_intermedia
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_LABEL defineLabelAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_defineLabelAtAddress (GALGAS_midrange_5F_symbolTableForConvertingRelatives & ioArgument_ioRoutineSymbolTable,
                                                                                     GALGAS_uint & ioArgument_ioAddress,
-                                                                                    C_Compiler * inCompiler
+                                                                                    Compiler * inCompiler
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = this ;
   ioArgument_ioRoutineSymbolTable.setter_insertKey (temp_0.readProperty_mLabel (), ioArgument_ioAddress, inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 28)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_ORG defineLabelAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_defineLabelAtAddress (GALGAS_midrange_5F_symbolTableForConvertingRelatives & /* ioArgument_ioRoutineSymbolTable */,
                                                                                   GALGAS_uint & ioArgument_ioAddress,
-                                                                                  C_Compiler * inCompiler
+                                                                                  Compiler * inCompiler
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -6829,15 +6678,15 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_defineLabelAtAddress
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_4 = this ;
   ioArgument_ioAddress = temp_4.readProperty_mOrigin () ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_actualInstruction defineLabelAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_actualInstruction::method_defineLabelAtAddress (GALGAS_midrange_5F_symbolTableForConvertingRelatives & /* ioArgument_ioRoutineSymbolTable */,
                                                                                       GALGAS_uint & ioArgument_ioAddress,
-                                                                                      C_Compiler * inCompiler
+                                                                                      Compiler * inCompiler
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_actualInstruction temp_0 = this ;
   GALGAS_uint var_nextAddress_1946 = ioArgument_ioAddress.add_operation (callExtensionGetter_instructionLength ((const cPtr_midrange_5F_intermediate_5F_actualInstruction *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 50)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 50)) ;
@@ -6852,11 +6701,11 @@ void cPtr_midrange_5F_intermediate_5F_actualInstruction::method_defineLabelAtAdd
   }
   ioArgument_ioAddress = var_nextAddress_1946 ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_NULL compute'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_NULL::method_compute (const GALGAS_midrange_5F_symbolTableForConvertingRelatives /* constinArgument_inRoutineSymbolTable */,
                                                             GALGAS_uint & /* ioArgument_ioAddress */,
@@ -6864,14 +6713,14 @@ void cPtr_midrange_5F_intermediate_5F_NULL::method_compute (const GALGAS_midrang
                                                             GALGAS_midrange_5F_intermediate_5F_instructionList & /* ioArgument_ioGeneratedInstructionList */,
                                                             const GALGAS_uint /* constinArgument_inIndex */,
                                                             GALGAS_string & /* ioArgument_ioListFileContents */,
-                                                            C_Compiler * /* inCompiler */
+                                                            Compiler * /* inCompiler */
                                                             COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_actualInstruction compute'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_actualInstruction::method_compute (const GALGAS_midrange_5F_symbolTableForConvertingRelatives /* constinArgument_inRoutineSymbolTable */,
                                                                          GALGAS_uint & /* ioArgument_ioAddress */,
@@ -6879,14 +6728,14 @@ void cPtr_midrange_5F_intermediate_5F_actualInstruction::method_compute (const G
                                                                          GALGAS_midrange_5F_intermediate_5F_instructionList & /* ioArgument_ioGeneratedInstructionList */,
                                                                          const GALGAS_uint /* constinArgument_inIndex */,
                                                                          GALGAS_string & /* ioArgument_ioListFileContents */,
-                                                                         C_Compiler * /* inCompiler */
+                                                                         Compiler * /* inCompiler */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_ORG compute'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_compute (const GALGAS_midrange_5F_symbolTableForConvertingRelatives /* constinArgument_inRoutineSymbolTable */,
                                                                      GALGAS_uint & ioArgument_ioAddress,
@@ -6894,16 +6743,16 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_compute (const GALGA
                                                                      GALGAS_midrange_5F_intermediate_5F_instructionList & /* ioArgument_ioGeneratedInstructionList */,
                                                                      const GALGAS_uint /* constinArgument_inIndex */,
                                                                      GALGAS_string & /* ioArgument_ioListFileContents */,
-                                                                     C_Compiler * /* inCompiler */
+                                                                     Compiler * /* inCompiler */
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_0 = this ;
   ioArgument_ioAddress = temp_0.readProperty_mOrigin () ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_JUMP compute'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_JUMP::method_compute (const GALGAS_midrange_5F_symbolTableForConvertingRelatives constinArgument_inRoutineSymbolTable,
                                                             GALGAS_uint & ioArgument_ioAddress,
@@ -6911,7 +6760,7 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::method_compute (const GALGAS_midrang
                                                             GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                             const GALGAS_uint constinArgument_inIndex,
                                                             GALGAS_string & ioArgument_ioListFileContents,
-                                                            C_Compiler * inCompiler
+                                                            Compiler * inCompiler
                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_targetAddress_4695 ;
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_0 = this ;
@@ -6974,11 +6823,11 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::method_compute (const GALGAS_midrang
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_JSR compute'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_JSR::method_compute (const GALGAS_midrange_5F_symbolTableForConvertingRelatives constinArgument_inRoutineSymbolTable,
                                                            GALGAS_uint & ioArgument_ioAddress,
@@ -6986,7 +6835,7 @@ void cPtr_midrange_5F_intermediate_5F_JSR::method_compute (const GALGAS_midrange
                                                            GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                            const GALGAS_uint constinArgument_inIndex,
                                                            GALGAS_string & ioArgument_ioListFileContents,
-                                                           C_Compiler * inCompiler
+                                                           Compiler * inCompiler
                                                            COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_targetAddress_6246 ;
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_0 = this ;
@@ -7049,11 +6898,11 @@ void cPtr_midrange_5F_intermediate_5F_JSR::method_compute (const GALGAS_midrange
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_LABEL compute'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_compute (const GALGAS_midrange_5F_symbolTableForConvertingRelatives constinArgument_inRoutineSymbolTable,
                                                                        GALGAS_uint & ioArgument_ioAddress,
@@ -7061,7 +6910,7 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_compute (const GAL
                                                                        GALGAS_midrange_5F_intermediate_5F_instructionList & /* ioArgument_ioGeneratedInstructionList */,
                                                                        const GALGAS_uint /* constinArgument_inIndex */,
                                                                        GALGAS_string & /* ioArgument_ioListFileContents */,
-                                                                       C_Compiler * inCompiler
+                                                                       Compiler * inCompiler
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_targetAddress_7800 ;
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = this ;
@@ -7077,15 +6926,15 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_compute (const GAL
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'midrange_compute_JSR_JUMP'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_midrange_5F_compute_5F_JSR_5F_JUMP (GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
                                                  GALGAS_string & ioArgument_ioListFileContents,
-                                                 C_Compiler * inCompiler
+                                                 Compiler * inCompiler
                                                  COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (119U)), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 315)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 315)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 315)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("COMPUTE JSR and JUMP").getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (117U)), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 316)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 316)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 316)), inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 316)) ;
@@ -7148,52 +6997,52 @@ void routine_midrange_5F_compute_5F_JSR_5F_JUMP (GALGAS_midrange_5F_intermediate
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_NULL buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_NULL::method_buildAssemblyCode (GALGAS_string & /* ioArgument_ioString */,
                                                                       GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                      C_Compiler * /* inCompiler */
+                                                                      Compiler * /* inCompiler */
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_ORG buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                               C_Compiler * inCompiler
+                                                                               Compiler * inCompiler
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_0 = this ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ORG ").add_operation (temp_0.readProperty_mOrigin ().getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 23)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_LABEL buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                  GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                 C_Compiler * inCompiler
+                                                                                 Compiler * inCompiler
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = this ;
   ioArgument_ioString.plusAssign_operation(temp_0.readProperty_mLabel ().readProperty_string ().add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 31)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_FD buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                    GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                   C_Compiler * inCompiler
+                                                                                   Compiler * inCompiler
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_0 = this ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_1 = this ;
@@ -7211,15 +7060,15 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::method_buildAssemblyCod
   }
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 45)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_FB buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                    GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                   C_Compiler * inCompiler
+                                                                                   Compiler * inCompiler
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_0 = this ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.readProperty_mBitOrientedOp (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 53)) ;
@@ -7229,15 +7078,15 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::method_buildAssemblyCod
   ioArgument_ioString.plusAssign_operation(GALGAS_string (", ").add_operation (temp_2.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 55)) ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 56)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_BitTestSkip buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                             GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                            C_Compiler * inCompiler
+                                                                                            Compiler * inCompiler
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 64)) ;
   enumGalgasBool test_0 = kBoolTrue ;
@@ -7257,30 +7106,30 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::method_buildAs
   ioArgument_ioString.plusAssign_operation(GALGAS_string (", ").add_operation (temp_3.readProperty_mBitNumber ().getter_string (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 71)) ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 72)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_F buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_F::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                   GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                  C_Compiler * inCompiler
+                                                                                  Compiler * inCompiler
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F temp_0 = this ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F temp_1 = this ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.readProperty_mFinstruction (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)).add_operation (temp_1.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 80)) ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 81)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_incDecRegisterInCondition buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                            GALGAS_uint & ioArgument_ioLocalLabelIndex,
-                                                                                           C_Compiler * inCompiler
+                                                                                           Compiler * inCompiler
                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -7325,15 +7174,15 @@ void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_buildAss
     ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO ").add_operation (temp_8.readProperty_mTargetLabel (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 107)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_JUMP buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_JUMP::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                       GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                      C_Compiler * inCompiler
+                                                                      Compiler * inCompiler
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_0 = this ;
   switch (temp_0.readProperty_mBit_31__31_ ().enumValue ()) {
@@ -7376,28 +7225,28 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::method_buildAssemblyCode (GALGAS_str
   const GALGAS_midrange_5F_intermediate_5F_JUMP temp_2 = this ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO   ").add_operation (temp_2.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 126)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_GOTO buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_GOTO::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                       GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                      C_Compiler * inCompiler
+                                                                      Compiler * inCompiler
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_GOTO temp_0 = this ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  GOTO   ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 134)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_JSR buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_JSR::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                      GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                     C_Compiler * inCompiler
+                                                                     Compiler * inCompiler
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_JSR temp_0 = this ;
   switch (temp_0.readProperty_mBit_31__31_ ().enumValue ()) {
@@ -7478,114 +7327,114 @@ void cPtr_midrange_5F_intermediate_5F_JSR::method_buildAssemblyCode (GALGAS_stri
     break ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_CALL buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_CALL::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                       GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                      C_Compiler * inCompiler
+                                                                      Compiler * inCompiler
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_CALL temp_0 = this ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  CALL  ").add_operation (temp_0.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 170)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_CLRWDT buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                        GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                       C_Compiler * inCompiler
+                                                                                       Compiler * inCompiler
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  CLRWDT\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 178)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_CLRW buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                      GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                     C_Compiler * inCompiler
+                                                                                     Compiler * inCompiler
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  CLRW\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 186)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_NOP buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                     GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                    C_Compiler * inCompiler
+                                                                                    Compiler * inCompiler
                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  NOP\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 194)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_RETURN buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                        GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                       C_Compiler * inCompiler
+                                                                                       Compiler * inCompiler
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  RETURN\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 202)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_RETFIE buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                        GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                       C_Compiler * inCompiler
+                                                                                       Compiler * inCompiler
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  RETFIE\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 210)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_SLEEP buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                       GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                      C_Compiler * inCompiler
+                                                                                      Compiler * inCompiler
                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  SLEEP\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 218)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_literalOperation buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                                  GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                                 C_Compiler * inCompiler
+                                                                                                 Compiler * inCompiler
                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_0 = this ;
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_1 = this ;
   ioArgument_ioString.plusAssign_operation(GALGAS_string ("  ").add_operation (extensionGetter_mnemonic (temp_0.readProperty_mLiteralInstruction (), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (temp_1.readProperty_mLiteralValue ().getter_hexString (SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)), inCompiler  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 226)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_MNOP buildAssemblyCode'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::method_buildAssemblyCode (GALGAS_string & ioArgument_ioString,
                                                                                      GALGAS_uint & /* ioArgument_ioLocalLabelIndex */,
-                                                                                     C_Compiler * inCompiler
+                                                                                     Compiler * inCompiler
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -7620,11 +7469,11 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::method_buildAssemblyC
     }
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'midrange_build_assembly_code'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_midrange_5F_build_5F_assembly_5F_code (const GALGAS_string constinArgument_inProcessorName,
                                                     const GALGAS_registerTable constinArgument_inPredefinedRegisters,
@@ -7632,7 +7481,7 @@ void routine_midrange_5F_build_5F_assembly_5F_code (const GALGAS_string constinA
                                                     const GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument_inInstructionList,
                                                     const GALGAS_actualConfigurationMap constinArgument_inActualConfigurationMap,
                                                     GALGAS_string & outArgument_outAssemblyCode,
-                                                    C_Compiler * inCompiler
+                                                    Compiler * inCompiler
                                                     COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outAssemblyCode.drop () ; // Release 'out' argument
   outArgument_outAssemblyCode = GALGAS_string ("  errorlevel -302 ; No Warning on registers not in bank 0\n") ;
@@ -7690,17 +7539,17 @@ void routine_midrange_5F_build_5F_assembly_5F_code (const GALGAS_string constinA
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'emitMidrangeCodeAtWordAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_emitMidrangeCodeAtWordAddress (const GALGAS_uint constinArgument_inCode,
                                             GALGAS_uint & ioArgument_ioWordAddress,
                                             const GALGAS_midrange_5F_intermediate_5F_instruction constinArgument_inInstruction,
                                             GALGAS_string & ioArgument_ioListFileContents,
-                                            C_Compiler * inCompiler
+                                            Compiler * inCompiler
                                             COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("   ").add_operation (extensionGetter_x_34_String (ioArgument_ioWordAddress.multiply_operation (GALGAS_uint (uint32_t (2U)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 10)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 10)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 10)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 10)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" ").add_operation (extensionGetter_x_34_String (constinArgument_inCode, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 11)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 11)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 11)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 11)) ;
@@ -7713,17 +7562,17 @@ void routine_emitMidrangeCodeAtWordAddress (const GALGAS_uint constinArgument_in
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'emitMidrangeDirectCodeAtWordAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_emitMidrangeDirectCodeAtWordAddress (const GALGAS_uint constinArgument_inCode,
                                                   GALGAS_uint & ioArgument_ioWordAddress,
                                                   const GALGAS_string constinArgument_inInstructionDescriptionString,
                                                   GALGAS_string & ioArgument_ioListFileContents,
-                                                  C_Compiler * inCompiler
+                                                  Compiler * inCompiler
                                                   COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("   ").add_operation (extensionGetter_x_34_String (ioArgument_ioWordAddress.multiply_operation (GALGAS_uint (uint32_t (2U)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 25)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 25)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 25)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 25)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" ").add_operation (extensionGetter_x_34_String (constinArgument_inCode, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 26)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 26)) ;
@@ -7735,16 +7584,16 @@ void routine_emitMidrangeDirectCodeAtWordAddress (const GALGAS_uint constinArgum
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'emitNoMidrangeCodeAtWordAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_emitNoMidrangeCodeAtWordAddress (const GALGAS_uint constinArgument_inWordAddress,
                                               const GALGAS_midrange_5F_intermediate_5F_instruction constinArgument_inInstruction,
                                               GALGAS_string & ioArgument_ioListFileContents,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("   ").add_operation (extensionGetter_x_34_String (constinArgument_inWordAddress.multiply_operation (GALGAS_uint (uint32_t (2U)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 38)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 38)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 38)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 38)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("      "), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 39)) ;
@@ -7753,52 +7602,52 @@ void routine_emitNoMidrangeCodeAtWordAddress (const GALGAS_uint constinArgument_
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_LABEL enterLabelAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_enterLabelAtAddress (GALGAS_midrange_5F_symbolTable & ioArgument_ioRoutineSymbolTable,
                                                                                    GALGAS_uint & ioArgument_ioAddress,
-                                                                                   C_Compiler * inCompiler
+                                                                                   Compiler * inCompiler
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = this ;
   ioArgument_ioRoutineSymbolTable.setter_insertKey (temp_0.readProperty_mLabel (), ioArgument_ioAddress, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 68)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_ORG enterLabelAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_enterLabelAtAddress (GALGAS_midrange_5F_symbolTable & /* ioArgument_ioRoutineSymbolTable */,
                                                                                  GALGAS_uint & ioArgument_ioAddress,
-                                                                                 C_Compiler * /* inCompiler */
+                                                                                 Compiler * /* inCompiler */
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_0 = this ;
   ioArgument_ioAddress = temp_0.readProperty_mOrigin () ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_actualInstruction enterLabelAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_actualInstruction::method_enterLabelAtAddress (GALGAS_midrange_5F_symbolTable & /* ioArgument_ioRoutineSymbolTable */,
                                                                                      GALGAS_uint & ioArgument_ioAddress,
-                                                                                     C_Compiler * inCompiler
+                                                                                     Compiler * inCompiler
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_actualInstruction temp_0 = this ;
   ioArgument_ioAddress = ioArgument_ioAddress.add_operation (callExtensionGetter_instructionLength ((const cPtr_midrange_5F_intermediate_5F_actualInstruction *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 86)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 86)) ;
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_NULL generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_NULL::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
                                                                                 const GALGAS_constantMap /* constinArgument_inConstantMap */,
@@ -7806,14 +7655,14 @@ void cPtr_midrange_5F_intermediate_5F_NULL::method_generateBinaryCodeAtAddress (
                                                                                 const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                 GALGAS_string & /* ioArgument_ioListFileContents */,
                                                                                 GALGAS_uint & /* ioArgument_ioAddress */,
-                                                                                C_Compiler * /* inCompiler */
+                                                                                Compiler * /* inCompiler */
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_pseudo_ORG generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
                                                                                          const GALGAS_constantMap /* constinArgument_inConstantMap */,
@@ -7821,7 +7670,7 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_generateBinaryCodeAt
                                                                                          const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                          GALGAS_string & ioArgument_ioListFileContents,
                                                                                          GALGAS_uint & ioArgument_ioAddress,
-                                                                                         C_Compiler * inCompiler
+                                                                                         Compiler * inCompiler
                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_0 = this ;
   ioArgument_ioAddress = temp_0.readProperty_mOrigin () ;
@@ -7835,11 +7684,11 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_generateBinaryCodeAt
   routine_emitNoMidrangeCodeAtWordAddress (ioArgument_ioAddress, temp_3, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 126)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_FD generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
                                                                                              const GALGAS_constantMap /* constinArgument_inConstantMap */,
@@ -7847,7 +7696,7 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::method_generateBinaryCo
                                                                                              const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                              GALGAS_string & ioArgument_ioListFileContents,
                                                                                              GALGAS_uint & ioArgument_ioAddress,
-                                                                                             C_Compiler * inCompiler
+                                                                                             Compiler * inCompiler
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD temp_0 = this ;
   GALGAS_uint var_code_5779 = extensionGetter_basecode (temp_0.readProperty_mInstruction_5F_FD_5F_base_5F_code (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 160)) ;
@@ -7866,11 +7715,11 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::method_generateBinaryCo
   routine_emitMidrangeCodeAtWordAddress (var_code_5779, ioArgument_ioAddress, temp_4, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 165)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_F generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_F::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
                                                                                             const GALGAS_constantMap /* constinArgument_inConstantMap */,
@@ -7878,7 +7727,7 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_F::method_generateBinaryCod
                                                                                             const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                             GALGAS_string & ioArgument_ioListFileContents,
                                                                                             GALGAS_uint & ioArgument_ioAddress,
-                                                                                            C_Compiler * inCompiler
+                                                                                            Compiler * inCompiler
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F temp_0 = this ;
   GALGAS_uint var_code_6692 = extensionGetter_baseCode (temp_0.readProperty_mFinstruction (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 187)) ;
@@ -7889,11 +7738,11 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_F::method_generateBinaryCod
   routine_emitMidrangeCodeAtWordAddress (var_code_6692, ioArgument_ioAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 189)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_FB generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
                                                                                              const GALGAS_constantMap /* constinArgument_inConstantMap */,
@@ -7901,7 +7750,7 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::method_generateBinaryCo
                                                                                              const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                              GALGAS_string & ioArgument_ioListFileContents,
                                                                                              GALGAS_uint & ioArgument_ioAddress,
-                                                                                             C_Compiler * inCompiler
+                                                                                             Compiler * inCompiler
                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FB temp_0 = this ;
   GALGAS_uint var_code_7515 = extensionGetter_baseCode (temp_0.readProperty_mBitOrientedOp (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 212)) ;
@@ -7914,11 +7763,11 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::method_generateBinaryCo
   routine_emitMidrangeCodeAtWordAddress (var_code_7515, ioArgument_ioAddress, temp_3, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 215)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_instruction_BitTestSkip generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
                                                                                                       const GALGAS_constantMap /* constinArgument_inConstantMap */,
@@ -7926,7 +7775,7 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::method_generat
                                                                                                       const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
                                                                                                       GALGAS_string & ioArgument_ioListFileContents,
                                                                                                       GALGAS_uint & ioArgument_ioAddress,
-                                                                                                      C_Compiler * inCompiler
+                                                                                                      Compiler * inCompiler
                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_code_8174 ;
   enumGalgasBool test_0 = kBoolTrue ;
@@ -7949,17 +7798,17 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::method_generat
   routine_emitMidrangeCodeAtWordAddress (var_code_8174, ioArgument_ioAddress, temp_4, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 236)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'emit_midrange_GOTOinstruction_nocheck'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_emit_5F_midrange_5F_GOTOinstruction_5F_nocheck (const GALGAS_string constinArgument_inTargetLabel,
                                                              const GALGAS_uint constinArgument_inTargetAddress,
                                                              GALGAS_uint & ioArgument_ioAddress,
                                                              GALGAS_string & ioArgument_ioListFileContents,
-                                                             C_Compiler * inCompiler
+                                                             Compiler * inCompiler
                                                              COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_code_8706 = GALGAS_uint (uint32_t (10240U)).operator_or (constinArgument_inTargetAddress.operator_and (GALGAS_uint (uint32_t (2047U)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 246)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 246)) ;
   {
@@ -7968,18 +7817,18 @@ void routine_emit_5F_midrange_5F_GOTOinstruction_5F_nocheck (const GALGAS_string
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'emit_midrange_GOTOinstruction'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_emit_5F_midrange_5F_GOTOinstruction (const GALGAS_location constinArgument_inIntructionLocation,
                                                   GALGAS_uint & ioArgument_ioAddress,
                                                   const GALGAS_string constinArgument_inTargetLabel,
                                                   const GALGAS_uint constinArgument_inTargetAddress,
                                                   GALGAS_string & ioArgument_ioListFileContents,
-                                                  C_Compiler * inCompiler
+                                                  Compiler * inCompiler
                                                   COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -7995,17 +7844,17 @@ void routine_emit_5F_midrange_5F_GOTOinstruction (const GALGAS_location constinA
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'emit_midrange_CALLinstruction_nocheck'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_emit_5F_midrange_5F_CALLinstruction_5F_nocheck (const GALGAS_string constinArgument_inTargetLabel,
                                                              const GALGAS_uint constinArgument_inTargetAddress,
                                                              GALGAS_uint & ioArgument_ioAddress,
                                                              GALGAS_string & ioArgument_ioListFileContents,
-                                                             C_Compiler * inCompiler
+                                                             Compiler * inCompiler
                                                              COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_code_9679 = GALGAS_uint (uint32_t (8192U)).operator_or (constinArgument_inTargetAddress.operator_and (GALGAS_uint (uint32_t (2047U)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 271)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 271)) ;
   {
@@ -8014,18 +7863,18 @@ void routine_emit_5F_midrange_5F_CALLinstruction_5F_nocheck (const GALGAS_string
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Routine 'emit_midrange_CALLinstruction'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void routine_emit_5F_midrange_5F_CALLinstruction (const GALGAS_location constinArgument_inIntructionLocation,
                                                   GALGAS_uint & ioArgument_ioAddress,
                                                   const GALGAS_string constinArgument_inTargetLabel,
                                                   const GALGAS_uint constinArgument_inTargetAddress,
                                                   GALGAS_string & ioArgument_ioListFileContents,
-                                                  C_Compiler * inCompiler
+                                                  Compiler * inCompiler
                                                   COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -8041,11 +7890,11 @@ void routine_emit_5F_midrange_5F_CALLinstruction (const GALGAS_location constinA
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_JUMP generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_JUMP::method_generateBinaryCodeAtAddress (const GALGAS_registerTable constinArgument_inRegisterTable,
                                                                                 const GALGAS_constantMap constinArgument_inConstantMap,
@@ -8053,7 +7902,7 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::method_generateBinaryCodeAtAddress (
                                                                                 const GALGAS_midrange_5F_symbolTable constinArgument_inRoutineSymbolTable,
                                                                                 GALGAS_string & ioArgument_ioListFileContents,
                                                                                 GALGAS_uint & ioArgument_ioAddress,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset var_usedRegisters_10774 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_build_binary_code.galgas", 299)) ;
   GALGAS_uint var_targetAddress_10869 ;
@@ -8114,11 +7963,11 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::method_generateBinaryCodeAtAddress (
   routine_emit_5F_midrange_5F_GOTOinstruction_5F_nocheck (temp_3.readProperty_mTargetLabel ().readProperty_string (), var_targetAddress_10869, ioArgument_ioAddress, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 352)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_GOTO generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_GOTO::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
                                                                                 const GALGAS_constantMap /* constinArgument_inConstantMap */,
@@ -8126,7 +7975,7 @@ void cPtr_midrange_5F_intermediate_5F_GOTO::method_generateBinaryCodeAtAddress (
                                                                                 const GALGAS_midrange_5F_symbolTable constinArgument_inRoutineSymbolTable,
                                                                                 GALGAS_string & ioArgument_ioListFileContents,
                                                                                 GALGAS_uint & ioArgument_ioAddress,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_targetAddress_12821 ;
   const GALGAS_midrange_5F_intermediate_5F_GOTO temp_0 = this ;
@@ -8137,11 +7986,11 @@ void cPtr_midrange_5F_intermediate_5F_GOTO::method_generateBinaryCodeAtAddress (
   routine_emit_5F_midrange_5F_GOTOinstruction (temp_1.readProperty_mInstructionLocation (), ioArgument_ioAddress, temp_2.readProperty_mTargetLabel ().readProperty_string (), var_targetAddress_12821, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 367)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_JSR generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_JSR::method_generateBinaryCodeAtAddress (const GALGAS_registerTable constinArgument_inRegisterTable,
                                                                                const GALGAS_constantMap constinArgument_inConstantMap,
@@ -8149,7 +7998,7 @@ void cPtr_midrange_5F_intermediate_5F_JSR::method_generateBinaryCodeAtAddress (c
                                                                                const GALGAS_midrange_5F_symbolTable constinArgument_inRoutineSymbolTable,
                                                                                GALGAS_string & ioArgument_ioListFileContents,
                                                                                GALGAS_uint & ioArgument_ioAddress,
-                                                                               C_Compiler * inCompiler
+                                                                               Compiler * inCompiler
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset var_usedRegisters_13343 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("midrange_build_binary_code.galgas", 379)) ;
   GALGAS_uint var_targetAddress_13443 ;
@@ -8256,11 +8105,11 @@ void cPtr_midrange_5F_intermediate_5F_JSR::method_generateBinaryCodeAtAddress (c
     break ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_CALL generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_CALL::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
                                                                                 const GALGAS_constantMap /* constinArgument_inConstantMap */,
@@ -8268,7 +8117,7 @@ void cPtr_midrange_5F_intermediate_5F_CALL::method_generateBinaryCodeAtAddress (
                                                                                 const GALGAS_midrange_5F_symbolTable constinArgument_inRoutineSymbolTable,
                                                                                 GALGAS_string & ioArgument_ioListFileContents,
                                                                                 GALGAS_uint & ioArgument_ioAddress,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_targetAddress_16349 ;
   const GALGAS_midrange_5F_intermediate_5F_CALL temp_0 = this ;
@@ -8279,11 +8128,11 @@ void cPtr_midrange_5F_intermediate_5F_CALL::method_generateBinaryCodeAtAddress (
   routine_emit_5F_midrange_5F_CALLinstruction (temp_1.readProperty_mInstructionLocation (), ioArgument_ioAddress, temp_2.readProperty_mTargetLabel ().readProperty_string (), var_targetAddress_16349, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 481)) ;
   }
 }
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension method '@midrange_intermediate_incDecRegisterInCondition generateBinaryCodeAtAddress'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
                                                                                                      const GALGAS_constantMap /* constinArgument_inConstantMap */,
@@ -8291,7 +8140,7 @@ void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_generate
                                                                                                      const GALGAS_midrange_5F_symbolTable constinArgument_inRoutineSymbolTable,
                                                                                                      GALGAS_string & ioArgument_ioListFileContents,
                                                                                                      GALGAS_uint & ioArgument_ioAddress,
-                                                                                                     C_Compiler * inCompiler
+                                                                                                     Compiler * inCompiler
                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_uint var_code_16896 ;
   GALGAS_string var_s_16915 ;
@@ -8343,3 +8192,297 @@ void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_generate
   routine_emit_5F_midrange_5F_GOTOinstruction (temp_10.readProperty_mInstructionLocation (), ioArgument_ioAddress, temp_11.readProperty_mTargetLabel (), var_targetAddress_17581, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 512)) ;
   }
 }
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@midrange_intermediate_instruction_CLRWDT generateBinaryCodeAtAddress'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
+                                                                                                 const GALGAS_constantMap /* constinArgument_inConstantMap */,
+                                                                                                 const GALGAS_uint /* constinArgument_inTotalBankCount */,
+                                                                                                 const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                                 GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                 GALGAS_uint & ioArgument_ioAddress,
+                                                                                                 Compiler * inCompiler
+                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  {
+  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_CLRWDT temp_0 = this ;
+  routine_emitMidrangeCodeAtWordAddress (GALGAS_uint (uint32_t (100U)), ioArgument_ioAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 524)) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@midrange_intermediate_instruction_CLRW generateBinaryCodeAtAddress'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
+                                                                                               const GALGAS_constantMap /* constinArgument_inConstantMap */,
+                                                                                               const GALGAS_uint /* constinArgument_inTotalBankCount */,
+                                                                                               const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                               GALGAS_string & ioArgument_ioListFileContents,
+                                                                                               GALGAS_uint & ioArgument_ioAddress,
+                                                                                               Compiler * inCompiler
+                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  {
+  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_CLRW temp_0 = this ;
+  routine_emitMidrangeCodeAtWordAddress (GALGAS_uint (uint32_t (256U)), ioArgument_ioAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 536)) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@midrange_intermediate_instruction_NOP generateBinaryCodeAtAddress'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
+                                                                                              const GALGAS_constantMap /* constinArgument_inConstantMap */,
+                                                                                              const GALGAS_uint /* constinArgument_inTotalBankCount */,
+                                                                                              const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                              GALGAS_string & ioArgument_ioListFileContents,
+                                                                                              GALGAS_uint & ioArgument_ioAddress,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  {
+  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_NOP temp_0 = this ;
+  routine_emitMidrangeCodeAtWordAddress (GALGAS_uint (uint32_t (0U)), ioArgument_ioAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 548)) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@midrange_intermediate_instruction_RETURN generateBinaryCodeAtAddress'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
+                                                                                                 const GALGAS_constantMap /* constinArgument_inConstantMap */,
+                                                                                                 const GALGAS_uint /* constinArgument_inTotalBankCount */,
+                                                                                                 const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                                 GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                 GALGAS_uint & ioArgument_ioAddress,
+                                                                                                 Compiler * inCompiler
+                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  {
+  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETURN temp_0 = this ;
+  routine_emitMidrangeCodeAtWordAddress (GALGAS_uint (uint32_t (8U)), ioArgument_ioAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 560)) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@midrange_intermediate_instruction_RETFIE generateBinaryCodeAtAddress'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
+                                                                                                 const GALGAS_constantMap /* constinArgument_inConstantMap */,
+                                                                                                 const GALGAS_uint /* constinArgument_inTotalBankCount */,
+                                                                                                 const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                                 GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                 GALGAS_uint & ioArgument_ioAddress,
+                                                                                                 Compiler * inCompiler
+                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  {
+  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_RETFIE temp_0 = this ;
+  routine_emitMidrangeCodeAtWordAddress (GALGAS_uint (uint32_t (9U)), ioArgument_ioAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 572)) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@midrange_intermediate_instruction_SLEEP generateBinaryCodeAtAddress'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
+                                                                                                const GALGAS_constantMap /* constinArgument_inConstantMap */,
+                                                                                                const GALGAS_uint /* constinArgument_inTotalBankCount */,
+                                                                                                const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                                GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                GALGAS_uint & ioArgument_ioAddress,
+                                                                                                Compiler * inCompiler
+                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+  {
+  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_SLEEP temp_0 = this ;
+  routine_emitMidrangeCodeAtWordAddress (GALGAS_uint (uint32_t (99U)), ioArgument_ioAddress, temp_0, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 584)) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@midrange_intermediate_instruction_literalOperation generateBinaryCodeAtAddress'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
+                                                                                                           const GALGAS_constantMap /* constinArgument_inConstantMap */,
+                                                                                                           const GALGAS_uint /* constinArgument_inTotalBankCount */,
+                                                                                                           const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                                           GALGAS_string & ioArgument_ioListFileContents,
+                                                                                                           GALGAS_uint & ioArgument_ioAddress,
+                                                                                                           Compiler * inCompiler
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_0 = this ;
+  GALGAS_uint var_code_21476 = extensionGetter_baseCode (temp_0.readProperty_mLiteralInstruction (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 611)) ;
+  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_1 = this ;
+  var_code_21476 = var_code_21476.operator_or (temp_1.readProperty_mLiteralValue () COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 612)) ;
+  {
+  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_2 = this ;
+  routine_emitMidrangeCodeAtWordAddress (var_code_21476, ioArgument_ioAddress, temp_2, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 613)) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@midrange_intermediate_pseudo_LABEL generateBinaryCodeAtAddress'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
+                                                                                           const GALGAS_constantMap /* constinArgument_inConstantMap */,
+                                                                                           const GALGAS_uint /* constinArgument_inTotalBankCount */,
+                                                                                           const GALGAS_midrange_5F_symbolTable constinArgument_inRoutineSymbolTable,
+                                                                                           GALGAS_string & ioArgument_ioListFileContents,
+                                                                                           GALGAS_uint & ioArgument_ioAddress,
+                                                                                           Compiler * inCompiler
+                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_uint var_targetAddress_22082 ;
+  const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_0 = this ;
+  constinArgument_inRoutineSymbolTable.method_searchKey (temp_0.readProperty_mLabel (), var_targetAddress_22082, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 625)) ;
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    test_1 = GALGAS_bool (kIsNotEqual, var_targetAddress_22082.objectCompare (ioArgument_ioAddress)).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_2 = this ;
+      const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_3 = this ;
+      TC_Array <C_FixItDescription> fixItArray4 ;
+      inCompiler->emitSemanticError (temp_2.readProperty_mLabel ().readProperty_location (), GALGAS_string ("Internal second pass error: the '").add_operation (temp_3.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 627)).add_operation (GALGAS_string ("' label gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 627)).add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 628)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 628)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 628)).add_operation (var_targetAddress_22082.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 629)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 628)).add_operation (GALGAS_string (" in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 629)), fixItArray4  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 627)) ;
+    }
+  }
+  {
+  const GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_5 = this ;
+  routine_emitNoMidrangeCodeAtWordAddress (ioArgument_ioAddress, temp_5, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 631)) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@midrange_intermediate_instruction_MNOP generateBinaryCodeAtAddress'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::method_generateBinaryCodeAtAddress (const GALGAS_registerTable /* constinArgument_inRegisterTable */,
+                                                                                               const GALGAS_constantMap /* constinArgument_inConstantMap */,
+                                                                                               const GALGAS_uint /* constinArgument_inTotalBankCount */,
+                                                                                               const GALGAS_midrange_5F_symbolTable /* constinArgument_inRoutineSymbolTable */,
+                                                                                               GALGAS_string & ioArgument_ioListFileContents,
+                                                                                               GALGAS_uint & ioArgument_ioAddress,
+                                                                                               Compiler * inCompiler
+                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_1 = this ;
+    test_0 = GALGAS_bool (kIsEqual, temp_1.readProperty_mOccurrenceFactor ().readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_2 = this ;
+      TC_Array <C_FixItDescription> fixItArray3 ;
+      inCompiler->emitSemanticWarning (temp_2.readProperty_mOccurrenceFactor ().readProperty_location (), GALGAS_string ("No generated code"), fixItArray3  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 644)) ;
+    }
+  }
+  GALGAS_uint var_idx_22947 = GALGAS_uint (uint32_t (0U)) ;
+  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_4 = this ;
+  if (temp_4.readProperty_mOccurrenceFactor ().readProperty_uint ().isValid ()) {
+    uint32_t variant_22957 = temp_4.readProperty_mOccurrenceFactor ().readProperty_uint ().uintValue () ;
+    bool loop_22957 = true ;
+    while (loop_22957) {
+      const GALGAS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_5 = this ;
+      loop_22957 = GALGAS_bool (kIsStrictInf, var_idx_22947.objectCompare (temp_5.readProperty_mOccurrenceFactor ().readProperty_uint ())).isValid () ;
+      if (loop_22957) {
+        loop_22957 = GALGAS_bool (kIsStrictInf, var_idx_22947.objectCompare (temp_5.readProperty_mOccurrenceFactor ().readProperty_uint ())).boolValue () ;
+      }
+      if (loop_22957 && (0 == variant_22957)) {
+        loop_22957 = false ;
+        inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_build_binary_code.galgas", 647)) ;
+      }
+      if (loop_22957) {
+        variant_22957 -- ;
+        {
+        routine_emitMidrangeDirectCodeAtWordAddress (GALGAS_uint (uint32_t (0U)), ioArgument_ioAddress, GALGAS_string ("NOP"), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 650)) ;
+        }
+        var_idx_22947.plusAssign_operation(GALGAS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 651)) ;
+      }
+    }
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'build_midrange_ipic_binary_code'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_build_5F_midrange_5F_ipic_5F_binary_5F_code (const GALGAS_registerTable constinArgument_inRegisterTable,
+                                                          const GALGAS_constantMap constinArgument_inConstantMap,
+                                                          const GALGAS_uint constinArgument_inTotalBankCount,
+                                                          const GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument_inGeneratedInstructionList,
+                                                          const GALGAS_uint constinArgument_inROMsize,
+                                                          const GALGAS_actualConfigurationMap constinArgument_inActualConfigurationMap,
+                                                          GALGAS_string & ioArgument_ioListFileContents,
+                                                          GALGAS_uint & outArgument_outUsedROMsize,
+                                                          Compiler * inCompiler
+                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outUsedROMsize.drop () ; // Release 'out' argument
+  GALGAS_midrange_5F_symbolTable var_symbolTable_23965 = GALGAS_midrange_5F_symbolTable::constructor_emptyMap (SOURCE_FILE ("midrange_build_binary_code.galgas", 671)) ;
+  GALGAS_uint var_currentAddress_24023 = GALGAS_uint (uint32_t (0U)) ;
+  cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_24049 (constinArgument_inGeneratedInstructionList, kENUMERATION_UP) ;
+  while (enumerator_24049.hasCurrentObject ()) {
+    callExtensionMethod_enterLabelAtAddress ((cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_24049.current_mInstruction (HERE).ptr (), var_symbolTable_23965, var_currentAddress_24023, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 674)) ;
+    enumerator_24049.gotoNextObject () ;
+  }
+  GALGAS_uint var_lastAddressForFirstPass_24185 = var_currentAddress_24023 ;
+  outArgument_outUsedROMsize = var_currentAddress_24023 ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (119U)), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 679)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 679)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 679)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("GENERATED CODE").getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (117U)), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 680)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 680)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 680)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 680)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (119U)), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 681)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 681)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 681)) ;
+  ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("Address Code Mnemonic\n"), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 682)) ;
+  {
+  routine_initCodeGenerator (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 683)) ;
+  }
+  var_currentAddress_24023 = GALGAS_uint (uint32_t (0U)) ;
+  {
+  routine_setEmitAddress (GALGAS_uint (uint32_t (0U)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 685)) ;
+  }
+  cEnumerator_midrange_5F_intermediate_5F_instructionList enumerator_24692 (constinArgument_inGeneratedInstructionList, kENUMERATION_UP) ;
+  while (enumerator_24692.hasCurrentObject ()) {
+    callExtensionMethod_generateBinaryCodeAtAddress ((cPtr_midrange_5F_intermediate_5F_instruction *) enumerator_24692.current_mInstruction (HERE).ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, constinArgument_inTotalBankCount, var_symbolTable_23965, ioArgument_ioListFileContents, var_currentAddress_24023, inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 687)) ;
+    {
+    routine_checkCurrentEmitAddress (var_currentAddress_24023.multiply_operation (GALGAS_uint (uint32_t (2U)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 696)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 696)) ;
+    }
+    enumerator_24692.gotoNextObject () ;
+  }
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    test_0 = GALGAS_bool (kIsNotEqual, var_lastAddressForFirstPass_24185.objectCompare (var_currentAddress_24023)).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      TC_Array <C_FixItDescription> fixItArray1 ;
+      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 699)), GALGAS_string ("Internal second pass error: the last address gets ").add_operation (var_currentAddress_24023.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 699)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 699)).add_operation (GALGAS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 699)).add_operation (var_lastAddressForFirstPass_24185.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 701)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 700)).add_operation (GALGAS_string (" value in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 701)), fixItArray1  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 699)) ;
+    }
+  }
+  if (kBoolFalse == test_0) {
+    enumGalgasBool test_2 = kBoolTrue ;
+    if (kBoolTrue == test_2) {
+      test_2 = GALGAS_bool (kIsStrictSup, var_lastAddressForFirstPass_24185.objectCompare (constinArgument_inROMsize)).boolEnum () ;
+      if (kBoolTrue == test_2) {
+        TC_Array <C_FixItDescription> fixItArray3 ;
+        inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)), GALGAS_string ("Program too large: ").add_operation (var_lastAddressForFirstPass_24185.getter_string (SOURCE_FILE ("midrange_build_binary_code.galgas", 703)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)).add_operation (GALGAS_string (" bytes (rom size is "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)).add_operation (constinArgument_inROMsize.getter_string (SOURCE_FILE ("midrange_build_binary_code.galgas", 705)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 704)).add_operation (GALGAS_string (" bytes)"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 705)), fixItArray3  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)) ;
+      }
+    }
+  }
+  cEnumerator_actualConfigurationMap enumerator_25618 (constinArgument_inActualConfigurationMap, kENUMERATION_UP) ;
+  while (enumerator_25618.hasCurrentObject ()) {
+    {
+    routine_setEmitAddress (enumerator_25618.current_mRegisterAddress (HERE).add_operation (enumerator_25618.current_mRegisterAddress (HERE), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 709)), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 709)) ;
+    }
+    {
+    routine_emitCode (enumerator_25618.current_mRegisterValue (HERE), inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 710)) ;
+    }
+    enumerator_25618.gotoNextObject () ;
+  }
+}
+
+

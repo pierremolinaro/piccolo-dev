@@ -31,14 +31,14 @@
 
 class GALGAS_object ;
 class GALGAS_objectlist ;
-class C_Compiler ;
+class Compiler ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 class cObjectArray {
 //--- Default constructor
   public : cObjectArray (const GALGAS_objectlist & inObjectList,
-                         C_Compiler * inCompiler
+                         Compiler * inCompiler
                          COMMA_LOCATION_ARGS) ;
 
 //--- Virtual destructor

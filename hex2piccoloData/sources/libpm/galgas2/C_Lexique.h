@@ -26,7 +26,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "galgas2/C_Compiler.h"
+#include "galgas2/Compiler.h"
 #include "galgas2/cProductionNameDescriptor.h"
 #include "galgas2/cTemplateDelimiter.h"
 #include "galgas2/C_galgas_io.h"
@@ -41,13 +41,13 @@ class cIndexingDictionary ;
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-class C_Lexique : public C_Compiler {
+class C_Lexique : public Compiler {
 //--- Constructors and destructor
-  public : C_Lexique (C_Compiler * inCallerCompiler,
+  public : C_Lexique (Compiler * inCallerCompiler,
                       const C_String & inSourceFileName
                       COMMA_LOCATION_ARGS) ;
 
-  public : C_Lexique (C_Compiler * inCallerCompiler,
+  public : C_Lexique (Compiler * inCallerCompiler,
                       const C_String & inSourceString,
                       const C_String & inStringForError
                       COMMA_LOCATION_ARGS) ;
@@ -230,7 +230,7 @@ class C_Lexique : public C_Compiler {
   private : void appendCharacterToLatexFile (const utf32 inUnicodeCharacter) ;
   protected : void enterDroppedTerminal (const int32_t inTerminalIndex) ;
   protected : void signalLexicalErrorInLatexOutput (void) ;
-//--- Style name 
+//--- Style name
   protected : virtual uint32_t styleIndexForTerminal (const int32_t inTerminalIndex) const = 0 ;
   protected : virtual C_String styleNameForIndex (const uint32_t inStyleIndex) const = 0 ;
 } ;

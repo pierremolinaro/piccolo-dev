@@ -1,16 +1,16 @@
 #pragma once
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 #include "all-declarations-8.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //  GRAMMAR pic18_grammar
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
                                         public cParser_pic_31__38__5F_start_5F_symbol,
@@ -567,11 +567,11 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_start_5F_symbol_ (C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //--- Start symbol
-  public: static void _performSourceFileParsing_ (C_Compiler * inCompiler,
+  public: static void _performSourceFileParsing_ (Compiler * inCompiler,
                                                   GALGAS_lstring inFileName
                                                   COMMA_LOCATION_ARGS) ;
 
-  public: static void _performSourceStringParsing_ (C_Compiler * inCompiler,
+  public: static void _performSourceStringParsing_ (Compiler * inCompiler,
                                                     GALGAS_string inSourceString,
                                                     GALGAS_string inNameString
                                                     COMMA_LOCATION_ARGS) ;
@@ -589,7 +589,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
                                                                          C_Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //--- Start symbol
-  public: static void _performSourceFileParsing_importBootloaderSpecification (C_Compiler * inCompiler,
+  public: static void _performSourceFileParsing_importBootloaderSpecification (Compiler * inCompiler,
                                                                                GALGAS_lstring inFileName,
                                                                                GALGAS_piccoloDeviceModel & outArgument0,
                                                                                GALGAS_string & outArgument1,
@@ -602,7 +602,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
                                                                                GALGAS_luint & outArgument8
                                                                                COMMA_LOCATION_ARGS) ;
 
-  public: static void _performSourceStringParsing_importBootloaderSpecification (C_Compiler * inCompiler,
+  public: static void _performSourceStringParsing_importBootloaderSpecification (Compiler * inCompiler,
                                                                                  GALGAS_string inSourceString,
                                                                                  GALGAS_string inNameString,
                                                                                  GALGAS_piccoloDeviceModel & outArgument0,
@@ -617,16 +617,16 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Indexing
-  public: static void performIndexing (C_Compiler * inCompiler,
-                                       const C_String & inSourceFilePath) ;
+  public: static void performIndexing (Compiler * inCompiler,
+                                       const String & inSourceFilePath) ;
 
 //--- Only lexical analysis
-  public: static void performOnlyLexicalAnalysis (C_Compiler * inCompiler,
-                                                  const C_String & inSourceFilePath) ;
+  public: static void performOnlyLexicalAnalysis (Compiler * inCompiler,
+                                                  const String & inSourceFilePath) ;
 
 //--- Only syntax analysis
-  public: static void performOnlySyntaxAnalysis (C_Compiler * inCompiler,
-                                                 const C_String & inSourceFilePath) ;
+  public: static void performOnlySyntaxAnalysis (Compiler * inCompiler,
+                                                 const String & inSourceFilePath) ;
 
 //------------------------------------- 'structured_if_instruction' non terminal
 //--- 'parse' label
@@ -988,4 +988,4 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual int32_t select_communs_20 (C_Lexique_piccolo_5F_lexique *) ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------

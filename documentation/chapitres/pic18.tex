@@ -1021,6 +1021,8 @@ Ce sont les instructions listées dans le \refTableau{operationsPic18NommantUnRe
     \textbf{Assembleur} & \textbf{Description} & \textbf{Écriture en Piccolo}\\
     \assembleur{CLRF f, a} & Clear f & \pic!clrf f! \\
     \hdashline
+    \assembleur{MOVWF f, a} & Move WREG to f & \pic!movwf f! \\
+    \hdashline
     \assembleur{MULWF f, a} & Multiply WREG with f & \pic!mulwf f! \\
     \hdashline
     \assembleur{NEGF f, a} & Negate f & \pic!negf f! \\
@@ -1039,7 +1041,7 @@ Ce sont les instructions listées dans le \refTableau{operationsPic18NommantUnRe
 
 
 
-\subsectionLabel{Instructions nommant un registre, et optionellement \texttt{W}}{instructionsNommantRegistreEtW}
+\subsectionLabel{Instructions nommant un registre, et optionnellement \texttt{W}}{instructionsNommantRegistreEtW}
 
 Ces instructions, ainsi que leur traduction en Piccolo, sont listées dans le \refTableau{instructionsPic18RegistreEtW}. En assembleur, elles nomment trois opérandes :
 \begin{itemize}
@@ -1090,7 +1092,7 @@ Ces instructions, ainsi que leur traduction en Piccolo, sont listées dans le \r
     \hdashline
     \assembleur{XORWF f, d, a} & Exclusive OR WREG with f & \pic!xorwf f! & \pic!xorwf f, W!\\
   \end{tabular}
-  \caption{Instructions \emph{pic18} nommant un registre, et optionellement \assembleur{W}}
+  \caption{Instructions \emph{pic18} nommant un registre, et optionnellement \assembleur{W}}
   \labelTableau{instructionsPic18RegistreEtW}
   \ligne
 \end{table}

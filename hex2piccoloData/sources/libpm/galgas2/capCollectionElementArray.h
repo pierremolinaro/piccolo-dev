@@ -29,7 +29,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-class C_Compiler ;
+class Compiler ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -55,28 +55,28 @@ class capCollectionElementArray {
 
   public : void insertObjectAtIndex (const capCollectionElement & inObject,
                                      const uint32_t inInsertionIndex,
-                                     C_Compiler * inCompiler
+                                     Compiler * inCompiler
                                      COMMA_LOCATION_ARGS) ;
 
   public : void removeObjectAtIndex (capCollectionElement & outObject,
                                      const uint32_t inInsertionIndex,
-                                     C_Compiler * inCompiler
+                                     Compiler * inCompiler
                                      COMMA_LOCATION_ARGS) ;
 
   public : void removeFirstObject (capCollectionElement & outObject,
-                                   C_Compiler * inCompiler
+                                   Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
 
   public : void readFirstObject (capCollectionElement & outObject,
-                                 C_Compiler * inCompiler
+                                 Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) const ;
 
   public : void removeLastObject (capCollectionElement & outObject,
-                                  C_Compiler * inCompiler
+                                  Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) ;
 
   public : void readLastObject (capCollectionElement & outObject,
-                                C_Compiler * inCompiler
+                                Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) const ;
 
   public : void replaceObjectAtIndex (const capCollectionElement & inObject,
@@ -115,20 +115,20 @@ class capCollectionElementArray {
   public : void subListToIndex (capCollectionElementArray & outSubList,
                                 const uint32_t inIndex,
                                 bool & outOk,
-                                C_Compiler * inCompiler
+                                Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) const ;
 
   public : void subListWithRange (capCollectionElementArray & ioSubList,
                                   const uint32_t inStartIndex,
                                   const uint32_t inLength,
                                   bool & outOk,
-                                  C_Compiler * inCompiler
+                                  Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) const ;
 
   public : void subListFromIndex (capCollectionElementArray & ioSubList,
                                   const uint32_t inIndex,
                                   bool & outOk,
-                                  C_Compiler * inCompiler
+                                  Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) const ;
 
 //--- Compare

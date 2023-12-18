@@ -12,11 +12,11 @@
 
 //---------------------------------------------------------------------------*
 
-#include "C_String.h"
+#include "String-class.h"
 
 //---------------------------------------------------------------------------*
 
-void analyzeHexFile (const C_String & inFilePath, int & ioReturnCode) ;
+void analyzeHexFile (const String & inFilePath, int & ioReturnCode) ;
 
 //---------------------------------------------------------------------------*
 
