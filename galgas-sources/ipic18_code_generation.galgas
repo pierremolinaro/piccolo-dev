@@ -3,8 +3,8 @@
 map @generatedCodeMap { # Key is code address (decimal representation)
   public var @codeList mCode
   public var @ipic18SequentialInstruction mInstruction
-  %insertSetter insertKey %errorMessage "the '%K' entry is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' entry is not declared"
+  insert insertKey error message "the '%K' entry is already declared in %L"
+  search searchKey error message "the '%K' entry is not declared"
 }
 
 #----------------------------------------------------------------------------*

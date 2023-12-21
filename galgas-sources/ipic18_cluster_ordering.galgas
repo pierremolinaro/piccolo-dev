@@ -10,8 +10,8 @@ list @clusterList {
 
 map @neededConversionForClusterOrder {
   public var @uint mConversions
-  %insertSetter insertKey %errorMessage "the '%K' key is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' key is not declared"
+  insert insertKey error message "the '%K' key is already declared in %L"
+  search searchKey error message "the '%K' key is not declared"
 }
 
 #----------------------------------------------------------------------------*

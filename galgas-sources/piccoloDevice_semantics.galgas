@@ -3,8 +3,8 @@
 #----------------------------------------------------------------------------*
 
 map @declaredByteMap {
-  %insertSetter insertKey %errorMessage "the '%K' byte is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' byte is not declared"
+  insert insertKey error message "the '%K' byte is already declared in %L"
+  search searchKey error message "the '%K' byte is not declared"
 }
 
 #----------------------------------------------------*
@@ -15,8 +15,8 @@ map @registerTable {
   public var @bitSliceTable mBitSliceTable
   public var @string mBitDefinitionString
   public var @registerProtection mProtection
-  %insertSetter insertKey %errorMessage "the '%K' register is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' register is not declared"
+  insert insertKey error message "the '%K' register is already declared in %L"
+  search searchKey error message "the '%K' register is not declared"
 }
 
 #----------------------------------------------------*
@@ -52,8 +52,8 @@ map @ramBankTable {
   public var @uint mFirstFreeAddress
   public var @uint mLastAddressPlusOne
   public var @uintlist mMirrorOffsetList
-  %insertSetter insertKey %errorMessage "the '%K' bank ram is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' bank ram is not declared"
+  insert insertKey error message "the '%K' bank ram is already declared in %L"
+  search searchKey error message "the '%K' bank ram is not declared"
 }
 
 #----------------------------------------------------*
@@ -75,8 +75,8 @@ list @illegalMaskList {
 map @fieldSettingMap {
   public var @uint mValue
   public var @uint mMask
-  %insertSetter insertKey %errorMessage "the '%K' configuration register setting is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' configuration register setting is not declared"
+  insert insertKey error message "the '%K' configuration register setting is already declared in %L"
+  search searchKey error message "the '%K' configuration register setting is not declared"
 }
 
 #----------------------------------------------------*
@@ -85,8 +85,8 @@ map @configRegisterMaskMap {
   public var @luint mMaskValue
   public var @lstring mDescription
   public var @fieldSettingMap mFieldSettingMap
-  %insertSetter insertKey %errorMessage "the '%K' configuration register mask is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' configuration register mask is not declared"
+  insert insertKey error message "the '%K' configuration register mask is already declared in %L"
+  search searchKey error message "the '%K' configuration register mask is not declared"
 }
 
 #----------------------------------------------------*
@@ -96,8 +96,8 @@ map @configRegisterMap {
   public var @luint mRegisterWidth
   public var @configRegisterMaskMap mConfigRegisterMaskMap
   public var @illegalMaskList mIllegalMaskList
-  %insertSetter insertKey %errorMessage "the '%K' configuration register is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' configuration register is not declared"
+  insert insertKey error message "the '%K' configuration register is already declared in %L"
+  search searchKey error message "the '%K' configuration register is not declared"
 }
 
 #----------------------------------------------------*

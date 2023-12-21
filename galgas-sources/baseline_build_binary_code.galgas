@@ -31,8 +31,8 @@ proc emitNoBaselineCodeAtWordAddress
 
 map @baseline_symbolTable {
   public var @uint mRoutineAddress
-  %insertSetter insertKey %errorMessage "the '%K' label is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' label is not declared"
+  insert insertKey error message "the '%K' label is already declared in %L"
+  search searchKey error message "the '%K' label is not declared"
 }
 
 #----------------------------------------------------------------------------*

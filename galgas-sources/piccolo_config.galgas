@@ -7,8 +7,8 @@ map @configFieldMap {
   public var @luint mMaskValue
   public var @lstring mDescription
   public var @fieldSettingMap mFieldSettingMap
-  %insertSetter insertKey %errorMessage "the '%K' configuration field is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' configuration field is not declared"
+  insert insertKey error message "the '%K' configuration field is already declared in %L"
+  search searchKey error message "the '%K' configuration field is not declared"
 }
 
 #----------------------------------------------------*
@@ -53,7 +53,7 @@ proc actualBuildConfig
         for (lkey * *) in  fieldSettingMap do
           replacementSuggestions += !"\"" + lkey + "\""
         end
-        error mSettingValue: errorMessage fixit { %replaceBy replacementSuggestions }
+        error mSettingValue: errorMessage fixit { replace replacementSuggestions }
       end
     end
   end

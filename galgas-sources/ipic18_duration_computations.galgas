@@ -2,8 +2,8 @@
 map @blockDurationMap {
   public var @uint mMinDuration
   public var @uint mMaxDuration
-  %insertSetter insertKey %errorMessage "the '%K' entry is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' entry is not declared"
+  insert insertKey error message "the '%K' entry is already declared in %L"
+  search searchKey error message "the '%K' entry is not declared"
 }
 
 #----------------------------------------------------------------------------------------------------------------------*

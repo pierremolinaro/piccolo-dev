@@ -191,7 +191,7 @@ override method @pic18Instruction_switch analyze
 #·······················································································································
 
 map @caseConstantMap {
-  %insertSetter insertKey %errorMessage "the '%K' constant is already declared in %L"
+  insert insertKey error message "the '%K' constant is already declared in %L"
 }
 
 #·······················································································································

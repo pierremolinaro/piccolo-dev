@@ -24,7 +24,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-#include "utilities/MF_Assert.h"
+#include "utilities/macroAssert.h"
 #include "utilities/M_SourceLocation.h"
 #include "utilities/TF_Swap.h"
 
@@ -271,8 +271,8 @@ template <typename TYPE> bool TC_UniqueSparseArray <TYPE>::findFirstEntryWithInd
     indexU -- ;
   //--- High
     if (! found) {
-      MF_Assert (primaryIndex < 256, "primaryIndex (%ld) should be <= 255", (int32_t) primaryIndex, 0) ;
-      MF_Assert (indexU      == 255, "indexU (%ld) should be == 255", (int32_t) indexU, 0) ;
+      macroAssert (primaryIndex < 256, "primaryIndex (%ld) should be <= 255", (int32_t) primaryIndex, 0) ;
+      macroAssert (indexU      == 255, "indexU (%ld) should be == 255", (int32_t) indexU, 0) ;
       ioIndex = (primaryIndex << 24) | (indexU << 16) ;
       ioIndex += 1 << 16 ;
       found = findFirstEntryWithIndexAfterNotFound (ioIndex) ;
@@ -290,9 +290,9 @@ template <typename TYPE> bool TC_UniqueSparseArray <TYPE>::findFirstEntryWithInd
       indexH -- ;
     //--- Low
       if (! found) {
-        MF_Assert (primaryIndex < 256, "primaryIndex (%ld) should be <= 255", (int32_t) primaryIndex, 0) ;
-        MF_Assert (indexU       < 256, "indexU (%ld) should be <= 255", (int32_t) indexU, 0) ;
-        MF_Assert (indexH      == 255, "indexH (%ld) should be == 255", (int32_t) indexH, 0) ;
+        macroAssert (primaryIndex < 256, "primaryIndex (%ld) should be <= 255", (int32_t) primaryIndex, 0) ;
+        macroAssert (indexU       < 256, "indexU (%ld) should be <= 255", (int32_t) indexU, 0) ;
+        macroAssert (indexH      == 255, "indexH (%ld) should be == 255", (int32_t) indexH, 0) ;
         ioIndex = (primaryIndex << 24) | (indexU << 16) | (indexH << 8) ;
         ioIndex += 256 ;
         found = findFirstEntryWithIndexAfterNotFound (ioIndex) ;
@@ -306,13 +306,13 @@ template <typename TYPE> bool TC_UniqueSparseArray <TYPE>::findFirstEntryWithInd
         }
         indexL -- ;
       //--- Computing result index
-        MF_Assert (primaryIndex < 256, "primaryIndex (%ld) should be <= 255", (int32_t) primaryIndex, 0) ;
-        MF_Assert (indexU       < 256, "indexU (%ld) should be <= 255", (int32_t) indexU, 0) ;
-        MF_Assert (indexH       < 256, "indexH (%ld) should be <= 255", (int32_t) indexH, 0) ;
-        MF_Assert (indexL       < 256, "indexL (%ld) should be <= 255", (int32_t) indexL, 0) ;
+        macroAssert (primaryIndex < 256, "primaryIndex (%ld) should be <= 255", (int32_t) primaryIndex, 0) ;
+        macroAssert (indexU       < 256, "indexU (%ld) should be <= 255", (int32_t) indexU, 0) ;
+        macroAssert (indexH       < 256, "indexH (%ld) should be <= 255", (int32_t) indexH, 0) ;
+        macroAssert (indexL       < 256, "indexL (%ld) should be <= 255", (int32_t) indexL, 0) ;
         ioIndex = (primaryIndex << 24) | (indexU << 16) | (indexH << 8) | indexL ;
         if (! found) {
-          MF_Assert (indexL == 255, "indexL (%ld) should be == 255", (int32_t) indexL, 0) ;
+          macroAssert (indexL == 255, "indexL (%ld) should be == 255", (int32_t) indexL, 0) ;
           ioIndex ++ ;
           found = findFirstEntryWithIndexAfterNotFound (ioIndex) ;
         }

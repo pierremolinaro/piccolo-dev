@@ -7,7 +7,7 @@
 #----------------------------------------------------------------------------*
 
 graph @blockInvocationGraph (@stringlist) {
-  %insertSetter addNode %errorMessage "the '%K' label is already declared at %L"
+  insert addNode error message "the '%K' label is already declared at %L"
 }
 
 #----------------------------------------------------------------------------*

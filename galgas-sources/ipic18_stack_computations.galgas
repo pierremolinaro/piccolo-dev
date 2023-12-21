@@ -1,7 +1,7 @@
 map @blockMapForStackComputation {
   public var @ipic18Block mBlock
-  %insertSetter insertKey %errorMessage "the '%K' block is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' block is not declared"
+  insert insertKey error message "the '%K' block is already declared in %L"
+  search searchKey error message "the '%K' block is not declared"
 }
 
 #------------------------------------------------------------------------------*
@@ -9,15 +9,15 @@ map @blockMapForStackComputation {
 map @routineCallMap {
   public var @stringset mCalledRoutineSet
   public var @uint mTerminatorStackNeeds
-  %insertSetter insertKey %errorMessage "the '%K' entry is already declared in %L"
+  insert insertKey error message "the '%K' entry is already declared in %L"
 }
 
 #------------------------------------------------------------------------------*
 
 map @routineStackRequirementMap {
   public var @uint mLevels
-  %insertSetter insertKey %errorMessage "the '%K' entry is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' entry is not declared"
+  insert insertKey error message "the '%K' entry is already declared in %L"
+  search searchKey error message "the '%K' entry is not declared"
 }
 
 #----------------------------------------------------------------------------*

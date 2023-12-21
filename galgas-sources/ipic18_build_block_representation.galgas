@@ -2304,8 +2304,8 @@ map @blockInstructionBlockMap {
   public var @pic18InstructionList mInstructionList
   public var @abstractBlockTerminationForBlockInstruction mBlockTerminaisonForBlockInstruction
   public var @location mEndOfBlock
-  %insertSetter insertKey %errorMessage "the '%K' block is already declared"
-  %searchMethod searchKey %errorMessage "the '%K' block is not declared"
+  insert insertKey error message "the '%K' block is already declared"
+  search searchKey error message "the '%K' block is not declared"
 }
 
 #----------------------------------------------------*
@@ -2313,8 +2313,8 @@ map @blockInstructionBlockMap {
 map @blockInitialBankSelectionMap {
   public var @uint mInitialBankSelection
   public var @string mSourceBlock
-  %insertSetter insertKey %errorMessage "the '%K' block is already declared (internal error)"
-  %searchMethod searchKey %errorMessage "the '%K' block is not declared (internal error)"
+  insert insertKey error message "the '%K' block is already declared (internal error)"
+  search searchKey error message "the '%K' block is not declared (internal error)"
 }
 
 #----------------------------------------------------*

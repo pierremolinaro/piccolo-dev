@@ -5,8 +5,8 @@
 map @pic18_dataMap {
   public var @uintlist mData
   public var @bool mIsData8 # true: data8, false: data16
-  %insertSetter insertKey %errorMessage "the '%K' data is already declared"
-  %searchMethod searchKey %errorMessage "the '%K' data is not declared"
+  insert insertKey error message "the '%K' data is already declared"
+  search searchKey error message "the '%K' data is not declared"
 }
 
 #----------------------------------------------------------------------------*
@@ -362,8 +362,8 @@ refclass @ipic18_skip_instruction_FDA : @ipic18_condition_skip_instruction {
 
 map @symbolTableForBlockOptimization {
   public var @uint mDefinitionBlockIndex
-  %insertSetter insertKey %errorMessage "the '%K' label is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' label is not declared"
+  insert insertKey error message "the '%K' label is already declared in %L"
+  search searchKey error message "the '%K' label is not declared"
 }
 
 #----------------------------------------------------------------------------*
@@ -374,8 +374,8 @@ map @symbolTableForBlockOptimization {
 
 map @symbolTableForClusterOrdering {
   public var @uint mCluster
-  %insertSetter insertKey %errorMessage "the '%K' label is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' label is not declared"
+  insert insertKey error message "the '%K' label is already declared in %L"
+  search searchKey error message "the '%K' label is not declared"
 }
 
 #----------------------------------------------------------------------------*
@@ -422,8 +422,8 @@ method @ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution
 
 map @symbolTableForRelativesResolution {
   public var @uint mLabelAddress
-  %insertSetter insertKey %errorMessage "the '%K' label is already declared in %L"
-  %searchMethod searchKey %errorMessage "the '%K' label is not declared"
+  insert insertKey error message "the '%K' label is already declared in %L"
+  search searchKey error message "the '%K' label is not declared"
 }
 
 #----------------------------------------------------------------------------*
@@ -437,8 +437,8 @@ list @codeList {
 
 map @pic18_dataAddressMap {
   public var @uint mDataAddress
-  %insertSetter insertKey %errorMessage "the '%K' data is already declared"
-  %searchMethod searchKey %errorMessage "the '%K' data is not declared"
+  insert insertKey error message "the '%K' data is already declared"
+  search searchKey error message "the '%K' data is not declared"
 }
 
 #----------------------------------------------------------------------------*

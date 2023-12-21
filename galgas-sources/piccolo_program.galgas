@@ -191,7 +191,7 @@ before {
 #----------------------------------------------------------------------------*
 
 case . "piccolo"
-%errorMessage "a source text file with the .piccolo extension"
+message "a source text file with the .piccolo extension"
 %useGrammar pic18_grammar
 ?sourceFilePath:@lstring inSourceFile {
   grammar pic18_grammar () in inSourceFile
