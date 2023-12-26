@@ -318,7 +318,7 @@ C_PrologueEpilogue freeSparseArrayOnEpilogue (NULL, freeSparseArray) ;
 
 //---------------------------------------------------------------------------*
 
-void routine_setEmitAddress (const GALGAS_uint inAddress,
+void routine_setEmitAddress_3F_ (const GALGAS_uint inAddress,
                              Compiler * /* inCompiler */
                              COMMA_UNUSED_LOCATION_ARGS) {
   gCurrentAddress = inAddress.uintValue () ;
@@ -326,7 +326,7 @@ void routine_setEmitAddress (const GALGAS_uint inAddress,
 
 //---------------------------------------------------------------------------*
 
-void routine_currentEmitAddress (GALGAS_uint & outAddress,
+void routine_currentEmitAddress_21_ (GALGAS_uint & outAddress,
                                  Compiler * /* inCompiler */
                                  COMMA_UNUSED_LOCATION_ARGS) {
   outAddress = GALGAS_uint (gCurrentAddress) ;
@@ -334,7 +334,7 @@ void routine_currentEmitAddress (GALGAS_uint & outAddress,
 
 //---------------------------------------------------------------------------*
 
-void routine_emitCode (const GALGAS_uint inCode,
+void routine_emitCode_3F_ (const GALGAS_uint inCode,
                        Compiler * inCompiler
                        COMMA_LOCATION_ARGS) {
   if (inCode.uintValue () > 0xFFFF) {
@@ -368,7 +368,7 @@ void routine_emitCode (const GALGAS_uint inCode,
 
 //---------------------------------------------------------------------------*
 
-void routine_emitByte (const GALGAS_uint inCode,
+void routine_emitByte_3F_ (const GALGAS_uint inCode,
                        Compiler * inCompiler
                        COMMA_LOCATION_ARGS) {
   if (inCode.uintValue () > 0xFF) {
@@ -391,7 +391,7 @@ void routine_emitByte (const GALGAS_uint inCode,
 
 //---------------------------------------------------------------------------*
 
-void routine_getGeneratedContents (GALGAS_string & outHexFileContents,
+void routine_getGeneratedContents_21_ (GALGAS_string & outHexFileContents,
                                    Compiler * /* inCompiler */
                                    COMMA_UNUSED_LOCATION_ARGS) {
   outHexFileContents = GALGAS_string (generateHexCodeFromSpareArray (gSparseArray)) ;
@@ -399,7 +399,7 @@ void routine_getGeneratedContents (GALGAS_string & outHexFileContents,
 
 //---------------------------------------------------------------------------*
 
-void routine_get_5F_C_5F_ArrayImplementation (const GALGAS_string inSourceName,
+void routine_get_5F_C_5F_ArrayImplementation_3F__21_ (const GALGAS_string inSourceName,
                                               GALGAS_string & outHexFileContents,
                                               Compiler * /* inCompiler */
                                               COMMA_UNUSED_LOCATION_ARGS) {
@@ -408,7 +408,7 @@ void routine_get_5F_C_5F_ArrayImplementation (const GALGAS_string inSourceName,
 
 //---------------------------------------------------------------------------*
 
-void routine_get_5F_C_5F_ArrayHeader (GALGAS_string inSourceName,
+void routine_get_5F_C_5F_ArrayHeader_3F__21_ (GALGAS_string inSourceName,
                                       GALGAS_string & outHexFileContents,
                                       Compiler * /* inCompiler */
                                       COMMA_UNUSED_LOCATION_ARGS) {

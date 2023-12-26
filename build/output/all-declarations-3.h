@@ -2838,15 +2838,15 @@ void callExtensionMethod_optimizeMOVLW (class cPtr_midrange_5F_intermediate_5F_i
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'findMidRangeFirstInstructionFromAddress'
+//Routine 'findMidRangeFirstInstructionFromAddress??!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_findMidRangeFirstInstructionFromAddress (const class GALGAS_uint constinArgument0,
-                                                      const class GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument1,
-                                                      class GALGAS_midrange_5F_intermediate_5F_instruction & outArgument2,
-                                                      class Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+void routine_findMidRangeFirstInstructionFromAddress_3F__3F__21_ (const class GALGAS_uint constinArgument0,
+                                                                  const class GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument1,
+                                                                  class GALGAS_midrange_5F_intermediate_5F_instruction & outArgument2,
+                                                                  class Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -2879,16 +2879,16 @@ void callExtensionMethod_optimizeBitTestSkip (class cPtr_midrange_5F_intermediat
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'findMidRangeFirstInstructionOrLabelFromAddress'
+//Routine 'findMidRangeFirstInstructionOrLabelFromAddress??!!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_findMidRangeFirstInstructionOrLabelFromAddress (const class GALGAS_uint constinArgument0,
-                                                             const class GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument1,
-                                                             class GALGAS_midrange_5F_intermediate_5F_instruction & outArgument2,
-                                                             class GALGAS_stringset & outArgument3,
-                                                             class Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
+void routine_findMidRangeFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (const class GALGAS_uint constinArgument0,
+                                                                             const class GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument1,
+                                                                             class GALGAS_midrange_5F_intermediate_5F_instruction & outArgument2,
+                                                                             class GALGAS_stringset & outArgument3,
+                                                                             class Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //

@@ -99,20 +99,20 @@ void extensionMethod_optimize (const class GALGAS_ipic_31__38_Block inObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'instructionListOptimization'
+//Routine 'instructionListOptimization?????!&!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_instructionListOptimization (const class GALGAS_symbolTableForBlockOptimization constinArgument0,
-                                          const class GALGAS_optimizeFlagStruct constinArgument1,
-                                          const class GALGAS_ipic_31__38_BlockList constinArgument2,
-                                          const class GALGAS_ipic_31__38_SequentialInstructionList constinArgument3,
-                                          const class GALGAS_lstring constinArgument4,
-                                          class GALGAS_bool & outArgument5,
-                                          class GALGAS_string & ioArgument6,
-                                          class GALGAS_ipic_31__38_SequentialInstructionList & outArgument7,
-                                          class Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) ;
+void routine_instructionListOptimization_3F__3F__3F__3F__3F__21__26__21_ (const class GALGAS_symbolTableForBlockOptimization constinArgument0,
+                                                                          const class GALGAS_optimizeFlagStruct constinArgument1,
+                                                                          const class GALGAS_ipic_31__38_BlockList constinArgument2,
+                                                                          const class GALGAS_ipic_31__38_SequentialInstructionList constinArgument3,
+                                                                          const class GALGAS_lstring constinArgument4,
+                                                                          class GALGAS_bool & outArgument5,
+                                                                          class GALGAS_string & ioArgument6,
+                                                                          class GALGAS_ipic_31__38_SequentialInstructionList & outArgument7,
+                                                                          class Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -174,28 +174,28 @@ void extensionMethod_generateCodeForBlock (const class GALGAS_ipic_31__38_Block 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'emitCode'
+//Routine 'emitCode?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_emitCode (const class GALGAS_uint constinArgument0,
-                       class Compiler * inCompiler
-                       COMMA_LOCATION_ARGS) ;
+void routine_emitCode_3F_ (const class GALGAS_uint constinArgument0,
+                           class Compiler * inCompiler
+                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateLineWithCode'
+//Routine 'generateLineWithCode?????&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateLineWithCode (const class GALGAS_uint constinArgument0,
-                                   const class GALGAS_codeList constinArgument1,
-                                   const class GALGAS_stringlist constinArgument2,
-                                   const class GALGAS_uint constinArgument3,
-                                   const class GALGAS_uint constinArgument4,
-                                   class GALGAS_string & ioArgument5,
-                                   class Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const class GALGAS_uint constinArgument0,
+                                                           const class GALGAS_codeList constinArgument1,
+                                                           const class GALGAS_stringlist constinArgument2,
+                                                           const class GALGAS_uint constinArgument3,
+                                                           const class GALGAS_uint constinArgument4,
+                                                           class GALGAS_string & ioArgument5,
+                                                           class Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -287,23 +287,23 @@ class cGrammar_piccoloDevice_5F_grammar : public cParser_piccoloDevice_5F_syntax
 //--------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'println'
+//Routine 'println?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_println (const class GALGAS_string constinArgument0,
-                      class Compiler * inCompiler
-                      COMMA_LOCATION_ARGS) ;
+void routine_println_3F_ (const class GALGAS_string constinArgument0,
+                          class Compiler * inCompiler
+                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'print'
+//Routine 'print?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_print (const class GALGAS_string constinArgument0,
-                    class Compiler * inCompiler
-                    COMMA_LOCATION_ARGS) ;
+void routine_print_3F_ (const class GALGAS_string constinArgument0,
+                        class Compiler * inCompiler
+                        COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------------------------------------------------------------------------
@@ -359,123 +359,123 @@ void routine_initCodeGenerator (class Compiler * inCompiler
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'setEmitAddress'
+//Routine 'setEmitAddress?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_setEmitAddress (const class GALGAS_uint constinArgument0,
-                             class Compiler * inCompiler
-                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'currentEmitAddress'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_currentEmitAddress (class GALGAS_uint & outArgument0,
+void routine_setEmitAddress_3F_ (const class GALGAS_uint constinArgument0,
                                  class Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'emitByte'
+//Routine 'currentEmitAddress!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_emitByte (const class GALGAS_uint constinArgument0,
-                       class Compiler * inCompiler
-                       COMMA_LOCATION_ARGS) ;
+void routine_currentEmitAddress_21_ (class GALGAS_uint & outArgument0,
+                                     class Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'getGeneratedContents'
+//Routine 'emitByte?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_getGeneratedContents (class GALGAS_string & outArgument0,
-                                   class Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+void routine_emitByte_3F_ (const class GALGAS_uint constinArgument0,
+                           class Compiler * inCompiler
+                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'get_C_ArrayImplementation'
+//Routine 'getGeneratedContents!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_get_5F_C_5F_ArrayImplementation (const class GALGAS_string constinArgument0,
+void routine_getGeneratedContents_21_ (class GALGAS_string & outArgument0,
+                                       class Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'get_C_ArrayImplementation?!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_get_5F_C_5F_ArrayImplementation_3F__21_ (const class GALGAS_string constinArgument0,
+                                                      class GALGAS_string & outArgument1,
+                                                      class Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'get_C_ArrayHeader?!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_get_5F_C_5F_ArrayHeader_3F__21_ (const class GALGAS_string constinArgument0,
                                               class GALGAS_string & outArgument1,
                                               class Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'get_C_ArrayHeader'
+//Routine 'checkCurrentEmitAddress?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_get_5F_C_5F_ArrayHeader (const class GALGAS_string constinArgument0,
-                                      class GALGAS_string & outArgument1,
-                                      class Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void routine_checkCurrentEmitAddress_3F_ (const class GALGAS_uint constinArgument0,
+                                          class Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'checkCurrentEmitAddress'
+//Routine 'print_constant_definition?&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_checkCurrentEmitAddress (const class GALGAS_uint constinArgument0,
-                                      class Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
+void routine_print_5F_constant_5F_definition_3F__26_ (const class GALGAS_constantMap constinArgument0,
+                                                      class GALGAS_string & ioArgument1,
+                                                      class Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'print_constant_definition'
+//Routine 'actualBuildConfig??&!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_print_5F_constant_5F_definition (const class GALGAS_constantMap constinArgument0,
-                                              class GALGAS_string & ioArgument1,
-                                              class Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
+void routine_actualBuildConfig_3F__3F__26__21_ (const class GALGAS_configRegisterMap constinArgument0,
+                                                const class GALGAS_configDefinitionList constinArgument1,
+                                                class GALGAS_string & ioArgument2,
+                                                class GALGAS_actualConfigurationMap & outArgument3,
+                                                class Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'actualBuildConfig'
+//Routine 'buildConfig??&!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_actualBuildConfig (const class GALGAS_configRegisterMap constinArgument0,
-                                const class GALGAS_configDefinitionList constinArgument1,
-                                class GALGAS_string & ioArgument2,
-                                class GALGAS_actualConfigurationMap & outArgument3,
-                                class Compiler * inCompiler
-                                COMMA_LOCATION_ARGS) ;
+void routine_buildConfig_3F__3F__26__21_ (const class GALGAS_configRegisterMap constinArgument0,
+                                          const class GALGAS_configDefinitionList constinArgument1,
+                                          class GALGAS_string & ioArgument2,
+                                          class GALGAS_actualConfigurationMap & outArgument3,
+                                          class Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'buildConfig'
+//Routine 'addBaselineUsedRoutinesFromInstructionList?&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_buildConfig (const class GALGAS_configRegisterMap constinArgument0,
-                          const class GALGAS_configDefinitionList constinArgument1,
-                          class GALGAS_string & ioArgument2,
-                          class GALGAS_actualConfigurationMap & outArgument3,
-                          class Compiler * inCompiler
-                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'addBaselineUsedRoutinesFromInstructionList'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_addBaselineUsedRoutinesFromInstructionList (const class GALGAS_baseline_5F_instructionList constinArgument0,
-                                                         class GALGAS_stringset & ioArgument1,
-                                                         class Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
+void routine_addBaselineUsedRoutinesFromInstructionList_3F__26_ (const class GALGAS_baseline_5F_instructionList constinArgument0,
+                                                                 class GALGAS_stringset & ioArgument1,
+                                                                 class Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -489,91 +489,91 @@ class GALGAS_stringset function_baseline_5F_computeUsedRoutines (const class GAL
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyze_ram_sections'
+//Routine 'analyze_ram_sections???&&?&&!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyze_5F_ram_5F_sections (const class GALGAS_string constinArgument0,
-                                         const class GALGAS_ramDefinitionList constinArgument1,
-                                         const class GALGAS_constantMap constinArgument2,
-                                         class GALGAS_stringset & ioArgument3,
-                                         class GALGAS_ramBankTable & ioArgument4,
-                                         const class GALGAS_registerTable constinArgument5,
-                                         class GALGAS_string & ioArgument6,
-                                         class GALGAS_registerTable & ioArgument7,
-                                         class GALGAS_declaredByteMap & outArgument8,
-                                         class Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
+void routine_analyze_5F_ram_5F_sections_3F__3F__3F__26__26__3F__26__26__21_ (const class GALGAS_string constinArgument0,
+                                                                             const class GALGAS_ramDefinitionList constinArgument1,
+                                                                             const class GALGAS_constantMap constinArgument2,
+                                                                             class GALGAS_stringset & ioArgument3,
+                                                                             class GALGAS_ramBankTable & ioArgument4,
+                                                                             const class GALGAS_registerTable constinArgument5,
+                                                                             class GALGAS_string & ioArgument6,
+                                                                             class GALGAS_registerTable & ioArgument7,
+                                                                             class GALGAS_declaredByteMap & outArgument8,
+                                                                             class Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'build_baseline_assembly_code'
+//Routine 'build_baseline_assembly_code????&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_build_5F_baseline_5F_assembly_5F_code (const class GALGAS_baseline_5F_intermediate_5F_instructionList constinArgument0,
-                                                    const class GALGAS_actualConfigurationMap constinArgument1,
-                                                    const class GALGAS_baseline_5F_intermediate_5F_registerExpression constinArgument2,
-                                                    const class GALGAS_bitSliceTable constinArgument3,
-                                                    class GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument4,
-                                                    class Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
+void routine_build_5F_baseline_5F_assembly_5F_code_3F__3F__3F__3F__26_ (const class GALGAS_baseline_5F_intermediate_5F_instructionList constinArgument0,
+                                                                        const class GALGAS_actualConfigurationMap constinArgument1,
+                                                                        const class GALGAS_baseline_5F_intermediate_5F_registerExpression constinArgument2,
+                                                                        const class GALGAS_bitSliceTable constinArgument3,
+                                                                        class GALGAS_baseline_5F_assembly_5F_instructionList & ioArgument4,
+                                                                        class Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'build_baseline_binary_code'
+//Routine 'build_baseline_binary_code??&!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_build_5F_baseline_5F_binary_5F_code (const class GALGAS_baseline_5F_assembly_5F_instructionList constinArgument0,
-                                                  const class GALGAS_uint constinArgument1,
-                                                  class GALGAS_string & ioArgument2,
-                                                  class GALGAS_uint & outArgument3,
-                                                  class Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+void routine_build_5F_baseline_5F_binary_5F_code_3F__3F__26__21_ (const class GALGAS_baseline_5F_assembly_5F_instructionList constinArgument0,
+                                                                  const class GALGAS_uint constinArgument1,
+                                                                  class GALGAS_string & ioArgument2,
+                                                                  class GALGAS_uint & outArgument3,
+                                                                  class Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'handleBaselineInstructionList'
+//Routine 'handleBaselineInstructionList?????&&&!??&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_handleBaselineInstructionList (const class GALGAS_uint constinArgument0,
-                                            const class GALGAS_baseline_5F_instructionList constinArgument1,
-                                            const class GALGAS_baselineRoutineMap constinArgument2,
-                                            const class GALGAS_registerTable constinArgument3,
-                                            const class GALGAS_constantMap constinArgument4,
-                                            class GALGAS_uint & ioArgument5,
-                                            class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument6,
-                                            class GALGAS_string & ioArgument7,
-                                            class GALGAS_bool & outArgument8,
-                                            const class GALGAS_routineKind constinArgument9,
-                                            const class GALGAS_bool constinArgument10,
-                                            class GALGAS_stringset & ioArgument11,
+void routine_handleBaselineInstructionList_3F__3F__3F__3F__3F__26__26__26__21__3F__3F__26_ (const class GALGAS_uint constinArgument0,
+                                                                                            const class GALGAS_baseline_5F_instructionList constinArgument1,
+                                                                                            const class GALGAS_baselineRoutineMap constinArgument2,
+                                                                                            const class GALGAS_registerTable constinArgument3,
+                                                                                            const class GALGAS_constantMap constinArgument4,
+                                                                                            class GALGAS_uint & ioArgument5,
+                                                                                            class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument6,
+                                                                                            class GALGAS_string & ioArgument7,
+                                                                                            class GALGAS_bool & outArgument8,
+                                                                                            const class GALGAS_routineKind constinArgument9,
+                                                                                            const class GALGAS_bool constinArgument10,
+                                                                                            class GALGAS_stringset & ioArgument11,
+                                                                                            class Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'parseDeviceDefinition?!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_parseDeviceDefinition_3F__21_ (const class GALGAS_lstring constinArgument0,
+                                            class GALGAS_piccoloDeviceModel & outArgument1,
                                             class Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'parseDeviceDefinition'
+//Routine 'perform_baseline_optimizations&&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_parseDeviceDefinition (const class GALGAS_lstring constinArgument0,
-                                    class GALGAS_piccoloDeviceModel & outArgument1,
-                                    class Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'perform_baseline_optimizations'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_perform_5F_baseline_5F_optimizations (class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument0,
-                                                   class GALGAS_string & ioArgument1,
-                                                   class Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
+void routine_perform_5F_baseline_5F_optimizations_26__26_ (class GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument0,
+                                                           class GALGAS_string & ioArgument1,
+                                                           class Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //

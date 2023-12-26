@@ -3,7 +3,7 @@
 
 //--- END OF USER ZONE 1
 
-#import "lexique-piccolo-44-evice-5F-lexique-cocoa.h"
+#import "lexique-piccolo+device-5Flexique-cocoa.h"
 #import "PMDebug.h"
 
 //--------------------------------------------------------------------------------------------------

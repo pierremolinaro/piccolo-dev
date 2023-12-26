@@ -6910,8 +6910,8 @@ String C_Lexique_piccoloDevice_5F_lexique::getCurrentTokenString (const cToken *
 void C_Lexique_piccoloDevice_5F_lexique::internalParseLexicalToken (cTokenFor_piccoloDevice_5F_lexique & token) {
   bool loop = true ;
   token.mLexicalAttribute_charValue = TO_UNICODE (0) ;
-  token.mLexicalAttribute_identifierString.setLengthToZero () ;
-  token.mLexicalAttribute_tokenString.setLengthToZero () ;
+  token.mLexicalAttribute_identifierString.removeAllKeepingCapacity () ;
+  token.mLexicalAttribute_tokenString.removeAllKeepingCapacity () ;
   token.mLexicalAttribute_uint_33__32_value = 0 ;
   mTokenStartLocation = mCurrentLocation ;
   try{
@@ -7089,7 +7089,6 @@ void C_Lexique_piccoloDevice_5F_lexique::enterToken (cTokenFor_piccoloDevice_5F_
   cTokenFor_piccoloDevice_5F_lexique * ptr = nullptr ;
   macroMyNew (ptr, cTokenFor_piccoloDevice_5F_lexique ()) ;
   ptr->mTokenCode = ioToken.mTokenCode ;
-  // ptr->mIsOptional = ioToken.mIsOptional ;
   ptr->mStartLocation = mTokenStartLocation ;
   ptr->mEndLocation = mTokenEndLocation ;
   ptr->mTemplateStringBeforeToken = ioToken.mTemplateStringBeforeToken ;

@@ -4131,7 +4131,7 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::method_op
     if (kBoolTrue == test_0) {
       GALGAS_midrange_5F_intermediate_5F_instruction var_firstInstruction_17085 ;
       {
-      routine_findMidRangeFirstInstructionFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 377)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_17085, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 377)) ;
+      routine_findMidRangeFirstInstructionFromAddress_3F__3F__21_ (constinArgument_inLineIndex.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 377)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_17085, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 377)) ;
       }
       enumGalgasBool test_2 = kBoolTrue ;
       if (kBoolTrue == test_2) {
@@ -4186,7 +4186,7 @@ void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
   constinArgument_inSymbolTable.method_searchKey (GALGAS_lstring::constructor_new (temp_0.readProperty_mTargetLabel (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 403)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 403)), var_line_18303, joker_18308, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 403)) ;
   GALGAS_midrange_5F_intermediate_5F_instruction var_firstInstruction_18438 ;
   {
-  routine_findMidRangeFirstInstructionFromAddress (var_line_18303.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 405)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_18438, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 405)) ;
+  routine_findMidRangeFirstInstructionFromAddress_3F__3F__21_ (var_line_18303.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 405)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_18438, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 405)) ;
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
@@ -4364,7 +4364,7 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::method_optimiz
       GALGAS_stringset var_reachedLabelSet_22061 ;
       {
       GALGAS_midrange_5F_intermediate_5F_instruction joker_22053 ; // Joker input parameter
-      routine_findMidRangeFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint (uint32_t (3U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 504)), ioArgument_ioGeneratedInstructionList, joker_22053, var_reachedLabelSet_22061, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 504)) ;
+      routine_findMidRangeFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (constinArgument_inLineIndex.add_operation (GALGAS_uint (uint32_t (3U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 504)), ioArgument_ioGeneratedInstructionList, joker_22053, var_reachedLabelSet_22061, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 504)) ;
       }
       var_ok_21068 = var_reachedLabelSet_22061.getter_hasKey (var_jumpLabel_21031 COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 505)) ;
     }

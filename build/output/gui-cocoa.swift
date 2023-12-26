@@ -34,7 +34,7 @@ NSDictionary * indexingDescriptorDictionary (void) {
 //
 //--------------------------------------------------------------------------------------------------
 
-// #import "option-piccolo-5F-options-cocoa.h"
+// #import "option-piccolo-5Foptions-cocoa.h"
 
 //--------------------------------------------------------------------------------------------------
 

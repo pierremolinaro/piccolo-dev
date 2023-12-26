@@ -6,7 +6,7 @@
 #import "OC_Token.h"
 #import "F_CocoaWrapperForGalgas.h"
 #import "OC_GGS_CommandLineOption.h"
-#import "lexique-piccolo-5F-lexique-cocoa.h"
+#import "lexique-piccolo-5Flexique-cocoa.h"
 #import "PMPiccoloCocoa.h"
 #import "installCLITools.h"
 
@@ -46,7 +46,7 @@ NSDictionary * indexingDescriptorDictionary (void) {
 //                       Command Line Options                                                    
 //--------------------------------------------------------------------------------------------------
 
-#import "option-piccolo-5F-options-cocoa.h"
+#import "option-piccolo-5Foptions-cocoa.h"
 
 //--------------------------------------------------------------------------------------------------
 

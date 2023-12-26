@@ -13532,7 +13532,7 @@ void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
   constinArgument_inSymbolTable.method_searchKey (GALGAS_lstring::constructor_new (temp_0.readProperty_mTargetLabel (), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)), var_line_19689, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)) ;
   GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_19868 ;
   {
-  routine_findBaselineFirstInstructionFromAddress (var_line_19689.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 483)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_19868, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 482)) ;
+  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_19689.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 483)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_19868, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 482)) ;
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {

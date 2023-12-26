@@ -367,14 +367,14 @@ class cParser_baseline_5F_program {
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'baseline_analysis'
+//Routine 'baseline_analysis??'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_baseline_5F_analysis (const class GALGAS_baseline_5F_model constinArgument0,
-                                   const class GALGAS_string constinArgument1,
-                                   class Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+void routine_baseline_5F_analysis_3F__3F_ (const class GALGAS_baseline_5F_model constinArgument0,
+                                           const class GALGAS_string constinArgument1,
+                                           class Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -704,23 +704,23 @@ extern C_StringCommandLineOption gOption_piccolo_5F_options_optimizationFlags ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'pic18BootloaderSpecificationAnalysis'
+//Routine 'pic18BootloaderSpecificationAnalysis????????!!!!!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_pic_31__38_BootloaderSpecificationAnalysis (const class GALGAS_string constinArgument0,
-                                                         const class GALGAS_lstring constinArgument1,
-                                                         const class GALGAS_lstring constinArgument2,
-                                                         const class GALGAS_routineDeclarationList constinArgument3,
-                                                         const class GALGAS_bootloaderReservedRAMmap constinArgument4,
-                                                         const class GALGAS_luint constinArgument5,
-                                                         const class GALGAS_routineDeclarationList constinArgument6,
-                                                         const class GALGAS_ramDefinitionList constinArgument7,
-                                                         class GALGAS_string & outArgument8,
-                                                         class GALGAS_piccoloDeviceModel & outArgument9,
-                                                         class GALGAS_uint & outArgument10,
-                                                         class GALGAS_ramBankTable & outArgument11,
-                                                         class GALGAS_registerTable & outArgument12,
-                                                         class Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
+void routine_pic_31__38_BootloaderSpecificationAnalysis_3F__3F__3F__3F__3F__3F__3F__3F__21__21__21__21__21_ (const class GALGAS_string constinArgument0,
+                                                                                                             const class GALGAS_lstring constinArgument1,
+                                                                                                             const class GALGAS_lstring constinArgument2,
+                                                                                                             const class GALGAS_routineDeclarationList constinArgument3,
+                                                                                                             const class GALGAS_bootloaderReservedRAMmap constinArgument4,
+                                                                                                             const class GALGAS_luint constinArgument5,
+                                                                                                             const class GALGAS_routineDeclarationList constinArgument6,
+                                                                                                             const class GALGAS_ramDefinitionList constinArgument7,
+                                                                                                             class GALGAS_string & outArgument8,
+                                                                                                             class GALGAS_piccoloDeviceModel & outArgument9,
+                                                                                                             class GALGAS_uint & outArgument10,
+                                                                                                             class GALGAS_ramBankTable & outArgument11,
+                                                                                                             class GALGAS_registerTable & outArgument12,
+                                                                                                             class Compiler * inCompiler
+                                                                                                             COMMA_LOCATION_ARGS) ;
 

@@ -928,7 +928,7 @@ GALGAS_pic_31__38_AST GALGAS_pic_31__38_AST::extractObject (const GALGAS_object 
 #include "utilities/MF_MemoryControl.h"
 #include "galgas2/C_galgas_CLI_Options.h"
 
-#include "files/C_FileManager.h"
+#include "files/FileManager.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -30864,7 +30864,7 @@ void cGrammar_pic_31__38__5F_grammar::performIndexing (Compiler * inCompiler,
 
 void cGrammar_pic_31__38__5F_grammar::performOnlyLexicalAnalysis (Compiler * inCompiler,
              const String & inSourceFilePath) {
-  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+  C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
   macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   if (scanner->sourceText ().isValid ()) {
     scanner->performLexicalAnalysis () ;
@@ -30874,7 +30874,7 @@ void cGrammar_pic_31__38__5F_grammar::performOnlyLexicalAnalysis (Compiler * inC
 
 void cGrammar_pic_31__38__5F_grammar::performOnlySyntaxAnalysis (Compiler * inCompiler,
              const String & inSourceFilePath) {
-  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+  C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
   macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   if (scanner->sourceText ().isValid ()) {
     scanner->performBottomUpParsing (gActionTable_pic18_grammar, gNonTerminalNames_pic18_grammar,
@@ -30896,11 +30896,11 @@ void cGrammar_pic_31__38__5F_grammar::_performSourceFileParsing_ (Compiler * inC
   if (inFilePath.isValid ()) {
     const GALGAS_string filePathAsString = inFilePath.readProperty_string () ;
     String filePath = filePathAsString.stringValue () ;
-    if (! C_FileManager::isAbsolutePath (filePath)) {
+    if (! FileManager::isAbsolutePath (filePath)) {
       filePath = inCompiler->sourceFilePath ().stringByDeletingLastPathComponent ().stringByAppendingPathComponent (filePath) ;
     }
-    if (C_FileManager::fileExistsAtPath (filePath)) {
-      C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+    if (FileManager::fileExistsAtPath (filePath)) {
+      C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
       macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, filePath COMMA_HERE)) ;
       if (scanner->sourceText ().isValid ()) {
         const bool ok = scanner->performBottomUpParsing (gActionTable_pic18_grammar, gNonTerminalNames_pic18_grammar,
@@ -30939,7 +30939,7 @@ void cGrammar_pic_31__38__5F_grammar::_performSourceStringParsing_ (Compiler * i
   if (inSourceString.isValid () && inNameString.isValid ()) {
     const String sourceString = inSourceString.stringValue () ;
     const String nameString = inNameString.stringValue () ;
-    C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+    C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
     macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, sourceString, nameString COMMA_HERE)) ;
     if (scanner->sourceText ().isValid ()) {
       const bool ok = scanner->performBottomUpParsing (gActionTable_pic18_grammar, gNonTerminalNames_pic18_grammar,
@@ -30975,11 +30975,11 @@ void cGrammar_pic_31__38__5F_grammar::_performSourceFileParsing_importBootloader
   if (inFilePath.isValid ()) {
     const GALGAS_string filePathAsString = inFilePath.readProperty_string () ;
     String filePath = filePathAsString.stringValue () ;
-    if (! C_FileManager::isAbsolutePath (filePath)) {
+    if (! FileManager::isAbsolutePath (filePath)) {
       filePath = inCompiler->sourceFilePath ().stringByDeletingLastPathComponent ().stringByAppendingPathComponent (filePath) ;
     }
-    if (C_FileManager::fileExistsAtPath (filePath)) {
-      C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+    if (FileManager::fileExistsAtPath (filePath)) {
+      C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
       macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, filePath COMMA_HERE)) ;
       if (scanner->sourceText ().isValid ()) {
         const bool ok = scanner->performBottomUpParsing (gActionTable_pic18_grammar, gNonTerminalNames_pic18_grammar,
@@ -31027,7 +31027,7 @@ void cGrammar_pic_31__38__5F_grammar::_performSourceStringParsing_importBootload
   if (inSourceString.isValid () && inNameString.isValid ()) {
     const String sourceString = inSourceString.stringValue () ;
     const String nameString = inNameString.stringValue () ;
-    C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+    C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
     macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, sourceString, nameString COMMA_HERE)) ;
     if (scanner->sourceText ().isValid ()) {
       const bool ok = scanner->performBottomUpParsing (gActionTable_pic18_grammar, gNonTerminalNames_pic18_grammar,

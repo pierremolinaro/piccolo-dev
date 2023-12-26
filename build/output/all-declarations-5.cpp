@@ -2045,7 +2045,7 @@ void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_ (
     if (kBoolTrue == test_0) {
       GALGAS_baseline_5F_model var_piccoloModel_1186 = GALGAS_baseline_5F_model::constructor_new (var_programName_520, var_deviceName_565, var_configDefinitionList_818, var_ramDefinitionList_661, var_unusedRegisterList_717, var_constantDefinitionList_880, var_routineDefinitionList_588, var_unusedRoutineList_768, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 45)), inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 36)) ;
       {
-      routine_baseline_5F_analysis (var_piccoloModel_1186, GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 47)), inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 47)) ;
+      routine_baseline_5F_analysis_3F__3F_ (var_piccoloModel_1186, GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 47)), inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 47)) ;
       }
     }
   }
@@ -2279,7 +2279,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   }
   inCompiler->acceptTerminal (C_Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 91)) ;
   {
-  routine_pic_31__38_BootloaderSpecificationAnalysis (GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 94)), outArgument_outBootloaderName, outArgument_outDeviceName, outArgument_outBootloaderRoutineDeclarationList, outArgument_outBootloaderReservedRAMmap, outArgument_outReservedRomSize, outArgument_outUserRoutineDeclarationList, outArgument_outSharedRamDefinitionList, outArgument_outListFileContents, outArgument_outPiccoloDeviceModel, outArgument_outAccessBankSplitOffset, outArgument_outRamBank, outArgument_outRegisterTable, inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 93)) ;
+  routine_pic_31__38_BootloaderSpecificationAnalysis_3F__3F__3F__3F__3F__3F__3F__3F__21__21__21__21__21_ (GALGAS_string::constructor_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 94)), outArgument_outBootloaderName, outArgument_outDeviceName, outArgument_outBootloaderRoutineDeclarationList, outArgument_outBootloaderReservedRAMmap, outArgument_outReservedRomSize, outArgument_outUserRoutineDeclarationList, outArgument_outSharedRamDefinitionList, outArgument_outListFileContents, outArgument_outPiccoloDeviceModel, outArgument_outAccessBankSplitOffset, outArgument_outRamBank, outArgument_outRegisterTable, inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 93)) ;
   }
 }
 
@@ -4055,7 +4055,7 @@ void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i14_indexing (C_L
 #include "utilities/MF_MemoryControl.h"
 #include "galgas2/C_galgas_CLI_Options.h"
 
-#include "files/C_FileManager.h"
+#include "files/FileManager.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -24864,7 +24864,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::performIndexing (Compiler * inC
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlyLexicalAnalysis (Compiler * inCompiler,
              const String & inSourceFilePath) {
-  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+  C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
   macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   if (scanner->sourceText ().isValid ()) {
     scanner->performLexicalAnalysis () ;
@@ -24874,7 +24874,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlyLexicalAnalysis (Com
 
 void cGrammar_pic_31__38__5F_include_5F_grammar::performOnlySyntaxAnalysis (Compiler * inCompiler,
              const String & inSourceFilePath) {
-  C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+  C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
   macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   if (scanner->sourceText ().isValid ()) {
     scanner->performBottomUpParsing (gActionTable_pic18_include_grammar, gNonTerminalNames_pic18_include_grammar,
@@ -24909,11 +24909,11 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceFileParsing_ (Com
   if (inFilePath.isValid ()) {
     const GALGAS_string filePathAsString = inFilePath.readProperty_string () ;
     String filePath = filePathAsString.stringValue () ;
-    if (! C_FileManager::isAbsolutePath (filePath)) {
+    if (! FileManager::isAbsolutePath (filePath)) {
       filePath = inCompiler->sourceFilePath ().stringByDeletingLastPathComponent ().stringByAppendingPathComponent (filePath) ;
     }
-    if (C_FileManager::fileExistsAtPath (filePath)) {
-      C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+    if (FileManager::fileExistsAtPath (filePath)) {
+      C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
       macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, filePath COMMA_HERE)) ;
       if (scanner->sourceText ().isValid ()) {
         const bool ok = scanner->performBottomUpParsing (gActionTable_pic18_include_grammar, gNonTerminalNames_pic18_include_grammar,
@@ -24965,7 +24965,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceStringParsing_ (C
   if (inSourceString.isValid () && inNameString.isValid ()) {
     const String sourceString = inSourceString.stringValue () ;
     const String nameString = inNameString.stringValue () ;
-    C_Lexique_piccolo_5F_lexique * scanner = NULL ;
+    C_Lexique_piccolo_5F_lexique * scanner = nullptr ;
     macroMyNew (scanner, C_Lexique_piccolo_5F_lexique (inCompiler, sourceString, nameString COMMA_HERE)) ;
     if (scanner->sourceText ().isValid ()) {
       const bool ok = scanner->performBottomUpParsing (gActionTable_pic18_include_grammar, gNonTerminalNames_pic18_include_grammar,

@@ -7884,14 +7884,14 @@ class cMapElement_ramBankTable : public cMapElement {
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'pic18_analyze'
+//Routine 'pic18_analyze??'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_pic_31__38__5F_analyze (const class GALGAS_pic_31__38_AST constinArgument0,
-                                     const class GALGAS_string constinArgument1,
-                                     class Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
+void routine_pic_31__38__5F_analyze_3F__3F_ (const class GALGAS_pic_31__38_AST constinArgument0,
+                                             const class GALGAS_string constinArgument1,
+                                             class Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -8908,14 +8908,14 @@ class cParser_midrange_5F_syntax {
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'midrange_analyze'
+//Routine 'midrange_analyze??'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_midrange_5F_analyze (const class GALGAS_midrange_5F_model constinArgument0,
-                                  const class GALGAS_string constinArgument1,
-                                  class Compiler * inCompiler
-                                  COMMA_LOCATION_ARGS) ;
+void routine_midrange_5F_analyze_3F__3F_ (const class GALGAS_midrange_5F_model constinArgument0,
+                                          const class GALGAS_string constinArgument1,
+                                          class Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //

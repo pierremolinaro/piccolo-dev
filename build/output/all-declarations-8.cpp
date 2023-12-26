@@ -3839,7 +3839,7 @@ void cPtr_baseline_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GALGAS_ba
   GALGAS_stringset var_reachedLabelSet_10626 ;
   {
   GALGAS_baseline_5F_intermediate_5F_instruction joker_10618 ; // Joker input parameter
-  routine_findBaselineFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 265)), ioArgument_ioGeneratedInstructionList, joker_10618, var_reachedLabelSet_10626, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 265)) ;
+  routine_findBaselineFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (constinArgument_inLineIndex.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 265)), ioArgument_ioGeneratedInstructionList, joker_10618, var_reachedLabelSet_10626, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 265)) ;
   }
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -3858,7 +3858,7 @@ void cPtr_baseline_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GALGAS_ba
     constinArgument_inSymbolTable.method_searchKey (temp_2.readProperty_mTargetLabel (), var_line_11038, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 271)) ;
     GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_11174 ;
     {
-    routine_findBaselineFirstInstructionFromAddress (var_line_11038.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 273)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_11174, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 273)) ;
+    routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_11038.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 273)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_11174, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 273)) ;
     }
     enumGalgasBool test_3 = kBoolTrue ;
     if (kBoolTrue == test_3) {
@@ -3941,7 +3941,7 @@ void cPtr_baseline_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GALGAS_ba
   constinArgument_inSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_line_12910, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 312)) ;
   GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_13089 ;
   {
-  routine_findBaselineFirstInstructionFromAddress (var_line_12910.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 315)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_13089, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 314)) ;
+  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_12910.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 315)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_13089, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 314)) ;
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
@@ -4051,7 +4051,7 @@ void cPtr_baseline_5F_intermediate_5F_CALL::method_optimizeCALL (const GALGAS_ba
   constinArgument_inSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_line_15496, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 376)) ;
   GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_15675 ;
   {
-  routine_findBaselineFirstInstructionFromAddress (var_line_15496.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 379)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_15675, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 378)) ;
+  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_15496.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 379)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_15675, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 378)) ;
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
@@ -4110,7 +4110,7 @@ void cPtr_baseline_5F_intermediate_5F_JSR::method_optimizeJSR (const GALGAS_base
   constinArgument_inSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_line_17004, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 413)) ;
   GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_17183 ;
   {
-  routine_findBaselineFirstInstructionFromAddress (var_line_17004.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 416)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_17183, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 415)) ;
+  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_17004.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 416)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_17183, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 415)) ;
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
@@ -9788,7 +9788,7 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GALGAS_sy
   GALGAS_stringset var_reachedLabelSet_9843 ;
   {
   GALGAS_midrange_5F_intermediate_5F_instruction joker_9835 ; // Joker input parameter
-  routine_findMidRangeFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233)), ioArgument_ioGeneratedInstructionList, joker_9835, var_reachedLabelSet_9843, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233)) ;
+  routine_findMidRangeFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (constinArgument_inLineIndex.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233)), ioArgument_ioGeneratedInstructionList, joker_9835, var_reachedLabelSet_9843, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 233)) ;
   }
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -9808,7 +9808,7 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GALGAS_sy
     constinArgument_inSymbolTable.method_searchKey (temp_2.readProperty_mTargetLabel (), var_line_10298, joker_10303, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 240)) ;
     GALGAS_midrange_5F_intermediate_5F_instruction var_firstInstruction_10437 ;
     {
-    routine_findMidRangeFirstInstructionFromAddress (var_line_10298.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 242)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_10437, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 242)) ;
+    routine_findMidRangeFirstInstructionFromAddress_3F__3F__21_ (var_line_10298.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 242)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_10437, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 242)) ;
     }
     enumGalgasBool test_3 = kBoolTrue ;
     if (kBoolTrue == test_3) {
@@ -9905,7 +9905,7 @@ void cPtr_midrange_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GALGAS_sy
   GALGAS_stringset var_reachedLabelSet_12715 ;
   {
   GALGAS_midrange_5F_intermediate_5F_instruction joker_12707 ; // Joker input parameter
-  routine_findMidRangeFirstInstructionOrLabelFromAddress (constinArgument_inLineIndex.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 288)), ioArgument_ioGeneratedInstructionList, joker_12707, var_reachedLabelSet_12715, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 288)) ;
+  routine_findMidRangeFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (constinArgument_inLineIndex.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 288)), ioArgument_ioGeneratedInstructionList, joker_12707, var_reachedLabelSet_12715, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 288)) ;
   }
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
@@ -9925,7 +9925,7 @@ void cPtr_midrange_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GALGAS_sy
     constinArgument_inSymbolTable.method_searchKey (temp_2.readProperty_mTargetLabel (), var_line_13169, joker_13174, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 295)) ;
     GALGAS_midrange_5F_intermediate_5F_instruction var_firstInstruction_13308 ;
     {
-    routine_findMidRangeFirstInstructionFromAddress (var_line_13169.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 297)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_13308, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 297)) ;
+    routine_findMidRangeFirstInstructionFromAddress_3F__3F__21_ (var_line_13169.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 297)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_13308, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas", 297)) ;
     }
     enumGalgasBool test_3 = kBoolTrue ;
     if (kBoolTrue == test_3) {
