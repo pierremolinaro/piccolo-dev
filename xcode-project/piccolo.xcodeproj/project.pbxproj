@@ -1063,13 +1063,13 @@
     settings = {ATTRIBUTES = (); };
   };
 
-  1C2EC9232F3A2F028AD5C89B /* C_DateTime.cpp */ = {
+  1C2EC9232F3A2F028AD5C89B /* DateTime.cpp */ = {
     isa = PBXBuildFile;
     fileRef = B73F030B4F67EEAEBA301103 ;
     settings = {ATTRIBUTES = (); };
   };
 
-  0BEDED7D215102B49D5C09A0 /* C_Timer.cpp */ = {
+  0BEDED7D215102B49D5C09A0 /* Timer.cpp */ = {
     isa = PBXBuildFile;
     fileRef = 0361D157D9673ECB926AF5AE ;
     settings = {ATTRIBUTES = (); };
@@ -2405,21 +2405,21 @@
     sourceTree = "<group>";
   };
 
-  B73F030B4F67EEAEBA301103 /* C_DateTime.cpp */ = {
+  B73F030B4F67EEAEBA301103 /* DateTime.cpp */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.cpp.cpp;
-    name = "C_DateTime.cpp";
-    path = "C_DateTime.cpp";
+    name = "DateTime.cpp";
+    path = "DateTime.cpp";
     sourceTree = "<group>";
   };
 
-  0361D157D9673ECB926AF5AE /* C_Timer.cpp */ = {
+  0361D157D9673ECB926AF5AE /* Timer.cpp */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.cpp.cpp;
-    name = "C_Timer.cpp";
-    path = "C_Timer.cpp";
+    name = "Timer.cpp";
+    path = "Timer.cpp";
     sourceTree = "<group>";
   };
 
@@ -3998,21 +3998,21 @@
     sourceTree = "<group>";
   };
 
-  83065D403869739AE7F0995E /* C_DateTime.h */ = {
+  83065D403869739AE7F0995E /* DateTime.h */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.c.h;
-    name = "C_DateTime.h";
-    path = "C_DateTime.h";
+    name = "DateTime.h";
+    path = "DateTime.h";
     sourceTree = "<group>";
   };
 
-  E8752B27EDA3A12363109E80 /* C_Timer.h */ = {
+  E8752B27EDA3A12363109E80 /* Timer.h */ = {
     isa = PBXFileReference;
     fileEncoding = 4;
     lastKnownFileType = sourcecode.c.h;
-    name = "C_Timer.h";
-    path = "C_Timer.h";
+    name = "Timer.h";
+    path = "Timer.h";
     sourceTree = "<group>";
   };
 
