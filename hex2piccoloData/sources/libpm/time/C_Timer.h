@@ -29,7 +29,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/M_machine.h"
+#include "M_machine.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -60,9 +60,9 @@ class C_Timer {
     private : clock_t mStart ;
     private : clock_t mEnd ;
   #endif
-  
+
   private : bool mRunning ;
-  
+
   public : C_Timer (void) ;
 
   public : void stopTimer (void) ;
@@ -72,7 +72,7 @@ class C_Timer {
   public : uint32_t msFromStart (void) const ;
 
   public : C_String timeString (void) const ;
-  
+
   public : inline bool isRunning (void) const { return mRunning ; }
 
   friend AC_OutputStream & operator << (AC_OutputStream & inStream,

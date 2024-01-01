@@ -20,7 +20,7 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/C_DirectedGraph.h"
+#include "C_DirectedGraph.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -422,7 +422,7 @@ void C_DirectedGraph::depthFirstTopologicalSort (TC_UniqueArray <uint32_t> & out
   TC_UniqueArray <uint32_t> s ;
   bool loop = true ;
   while (loop) {
-  //--- Find a node without any dependence  
+  //--- Find a node without any dependence
     for (int32_t i=0 ; (i<dependencyCount.count ()) && (workingArray.count () == 0) ; i++) {
       if (nodes (i COMMA_HERE) && (dependencyCount (i COMMA_HERE) == 0)) {
         nodes.setObjectAtIndex (false, i COMMA_HERE) ;
@@ -475,7 +475,7 @@ void C_DirectedGraph::getDominators (TC_UniqueArray <C_UIntSet> & outDominators
     outDominators.setObjectAtIndex (C_UIntSet (startNode), (int32_t) startNode COMMA_HERE) ;
     startNodeFlag.setObjectAtIndex (true, (int32_t) startNode COMMA_HERE) ;
   }
-//--- 
+//---
   bool loop = true ;
   while (loop) {
     loop = false ;
@@ -495,7 +495,7 @@ void C_DirectedGraph::getDominators (TC_UniqueArray <C_UIntSet> & outDominators
           outDominators.setObjectAtIndex (newDominators, node COMMA_HERE) ;
           loop = true ;
         }
-      }    
+      }
     }
   }
 }

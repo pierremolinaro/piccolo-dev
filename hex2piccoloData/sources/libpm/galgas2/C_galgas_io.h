@@ -29,12 +29,12 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "strings/C_String.h"
+#include "C_String.h"
 #include "collections/TC_UniqueArray.h"
-#include "galgas2/C_LocationInSource.h"
-#include "galgas2/C_SourceTextInString.h"
-#include "galgas2/C_IssueWithFixIt.h"
-#include "utilities/C_SharedObject.h"
+#include "C_LocationInSource.h"
+#include "C_SourceTextInString.h"
+#include "C_IssueWithFixIt.h"
+#include "C_SharedObject.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -123,7 +123,7 @@ class C_parsingContext {
   private : C_String mTemplateString ;
 
   friend class C_Lexique ;
-  
+
   public : C_parsingContext (void) ;
 
 //--- No copy
@@ -146,7 +146,7 @@ int32_t totalErrorCount (void) ;
 int32_t maxWarningCount (void) ;
 
 int32_t totalWarningCount (void) ;
- 
+
 void signalParsingError (const C_SourceTextInString & inSourceText,
                          const C_IssueWithFixIt & inIssue,
                          const C_String & inFoundTokenMessage,

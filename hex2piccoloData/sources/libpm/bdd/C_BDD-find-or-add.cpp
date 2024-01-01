@@ -20,12 +20,12 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "bdd/C_BDD.h"
-#include "utilities/F_GetPrime.h"
-#include "utilities/C_PrologueEpilogue.h"
-#include "strings/C_String.h"
-#include "bdd/C_BDD-node.h"
-#include "time/C_Timer.h"
+#include "C_BDD.h"
+#include "F_GetPrime.h"
+#include "C_PrologueEpilogue.h"
+#include "C_String.h"
+#include "C_BDD-node.h"
+#include "C_Timer.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -242,7 +242,7 @@ uint32_t C_BDD::getMarkedNodesCount (void) {
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const int32_t kInitialCollisionMapPowerOfTwoSize = 20 ; 
+static const int32_t kInitialCollisionMapPowerOfTwoSize = 20 ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -619,14 +619,14 @@ void C_BDD::printBDDpackageOperationsSummary (AC_OutputStream & inStream) {
     }else{
       entrySizeArray.forceObjectAtIndex (length, 1, 0 COMMA_HERE) ;
     }
-  }  
+  }
   for (int32_t i=0 ; i<entrySizeArray.count () ; i++) {
     if ((entrySizeArray (i COMMA_HERE) > 0) && (gCollisionMapSize > 0)) {
       inStream << "  " << cStringWithUnsigned (entrySizeArray (i COMMA_HERE))
-               << " entries of size " << cStringWithSigned (i) 
+               << " entries of size " << cStringWithSigned (i)
                << " (" << cStringWithUnsigned ((100UL * entrySizeArray (i COMMA_HERE)) / gCollisionMapSize) << "%)\n" ;
     }
-  }  
+  }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -640,7 +640,7 @@ void C_BDD::freeBDDStataStructures (void) {
     macroMyDeletePODArray (gMarkTable) ;
     macroMyDeletePODArray (gNodeArray) ;
   }else{
-    #ifndef DO_NOT_GENERATE_CHECKINGS 
+    #ifndef DO_NOT_GENERATE_CHECKINGS
       printf ("BDD package info: cannot free BDD structures, %u C_BDD instances, %u BDD nodes still alive\n",
               C_BDD::getBDDinstancesCount (),
               gCurrentNodeCount) ;

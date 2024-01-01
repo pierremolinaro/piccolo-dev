@@ -26,7 +26,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/MF_Assert.h"
+#include "MF_Assert.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -38,7 +38,7 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#ifndef DO_NOT_GENERATE_CHECKINGS 
+#ifndef DO_NOT_GENERATE_CHECKINGS
   #define macroMyNew(inPointer,instanciation) { \
     macroVoidPointer (inPointer) ; \
     prologueForNew () ; \
@@ -53,7 +53,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#ifndef DO_NOT_GENERATE_CHECKINGS 
+#ifndef DO_NOT_GENERATE_CHECKINGS
   #define macroMyNewArray(inPointer,type,size) { \
     macroVoidPointer (inPointer) ; \
     prologueForNew () ; \
@@ -68,7 +68,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#ifndef DO_NOT_GENERATE_CHECKINGS 
+#ifndef DO_NOT_GENERATE_CHECKINGS
   #define macroMyNewPODArray(inPointer,type,size) { \
     macroVoidPointer (inPointer) ; \
     inPointer = (type *) allocAndRegisterPODArray ((size) * sizeof (type) COMMA_HERE) ; \
@@ -81,7 +81,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#ifndef DO_NOT_GENERATE_CHECKINGS 
+#ifndef DO_NOT_GENERATE_CHECKINGS
   #define macroMyReallocPODArray(inPointer,type,size) { \
     inPointer = (type *) reallocAndRegisterPODArray (inPointer, (size) * sizeof (type) COMMA_HERE) ; \
   }
@@ -93,7 +93,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#ifndef DO_NOT_GENERATE_CHECKINGS 
+#ifndef DO_NOT_GENERATE_CHECKINGS
   #define macroMyNewThere(inPointer,instanciation) { \
     macroVoidPointerThere (inPointer) ; \
     prologueForNew () ; \
@@ -108,7 +108,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#ifndef DO_NOT_GENERATE_CHECKINGS 
+#ifndef DO_NOT_GENERATE_CHECKINGS
   #define macroMyNewPODArrayThere(inPointer,type,size) { \
     macroValidPointerThere (inPointer) ; \
     inPointer = (type *) allocAndRegisterPODArray ((size) * sizeof (type) COMMA_THERE) ; \
@@ -121,7 +121,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#ifndef DO_NOT_GENERATE_CHECKINGS 
+#ifndef DO_NOT_GENERATE_CHECKINGS
   #define macroMyReallocPODArrayThere(inPointer,type,size) { \
     inPointer = (type *) reallocAndRegisterPODArray (inPointer, (size) * sizeof (type) COMMA_THERE) ; \
   }
@@ -133,7 +133,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#ifndef DO_NOT_GENERATE_CHECKINGS 
+#ifndef DO_NOT_GENERATE_CHECKINGS
   #define macroMyNewArrayThere(inPointer,type,size) { \
     macroVoidPointerThere (inPointer) ; \
     prologueForNew () ; \
@@ -198,7 +198,7 @@
   #define macroValidPointer(inPointer) routineValidPointer (inPointer COMMA_HERE)
 #else
   #define macroValidPointer(inPointer)
-#endif 
+#endif
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -206,7 +206,7 @@
   #define macroValidPointerThere(inPointer) routineValidPointer (inPointer COMMA_THERE)
 #else
   #define macroValidPointerThere(inPointer)
-#endif 
+#endif
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -218,7 +218,7 @@
   #define macroVoidPointer(inPointer) routineVoidPointer (inPointer COMMA_HERE)
 #else
   #define macroVoidPointer(inPointer)
-#endif 
+#endif
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -226,7 +226,7 @@
   #define macroVoidPointerThere(inPointer) routineVoidPointer (inPointer COMMA_THERE)
 #else
   #define macroVoidPointerThere(inPointer)
-#endif 
+#endif
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -242,7 +242,7 @@ void displayAllocatedBlocksInfo (void) ;
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#ifndef DO_NOT_GENERATE_CHECKINGS 
+#ifndef DO_NOT_GENERATE_CHECKINGS
   void registerPointer (const void * inPointer COMMA_LOCATION_ARGS) ;
   void * allocAndRegisterPODArray (const size_t inSize COMMA_LOCATION_ARGS) ;
   void registerArray (const void * inPointer COMMA_LOCATION_ARGS) ;

@@ -20,10 +20,10 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "bdd/C_BDD.h"
-#include "utilities/F_GetPrime.h"
-#include "strings/C_String.h"
-#include "bdd/C_BDD-node.h"
+#include "C_BDD.h"
+#include "F_GetPrime.h"
+#include "C_String.h"
+#include "C_BDD-node.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 

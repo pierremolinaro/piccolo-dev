@@ -21,9 +21,9 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 #include "all-predefined-types.h"
-#include "utilities/MF_MemoryControl.h"
-#include "galgas2/cCollectionElement.h"
-#include "galgas2/C_Compiler.h"
+#include "MF_MemoryControl.h"
+#include "cCollectionElement.h"
+#include "C_Compiler.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //   cCollectionElement_stringset                                                                                      *
@@ -104,7 +104,7 @@ class cStringsetNode {
   public : int32_t mBalance ;
   public : C_String mKey ;
 
-//---  
+//---
   public : cStringsetNode (const C_String & inString) ;
   public : cStringsetNode (const cStringsetNode * inNode) ;
 
@@ -180,7 +180,7 @@ static void rotateRight (cStringsetNode * & ioRootPtr) {
   cStringsetNode * ptr = ioRootPtr->mInfPtr ;
   ioRootPtr->mInfPtr = ptr->mSupPtr ;
   ptr->mSupPtr = ioRootPtr ;
- 
+
   if (ptr->mBalance > 0) {
     ioRootPtr->mBalance += -ptr->mBalance - 1 ;
   }else{
@@ -392,7 +392,7 @@ class cSharedStringsetRoot : public C_SharedObject {
 
 //--- Default constructor
   public : cSharedStringsetRoot (LOCATION_ARGS) ;
-  
+
 //--- Virtual destructor
   public : virtual ~ cSharedStringsetRoot (void) ;
 

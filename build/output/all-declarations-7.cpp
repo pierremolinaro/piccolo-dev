@@ -1,7 +1,7 @@
-#include "galgas2/Compiler.h"
-#include "galgas2/C_galgas_io.h"
-#include "galgas2/C_galgas_CLI_Options.h"
-#include "utilities/C_PrologueEpilogue.h"
+#include "Compiler.h"
+#include "C_galgas_io.h"
+#include "C_galgas_CLI_Options.h"
+#include "PrologueEpilogue.h"
 
 //--------------------------------------------------------------------------------------------------
 
@@ -71,7 +71,7 @@ GALGAS_symbolTableForClusterOrdering & GALGAS_symbolTableForClusterOrdering::ope
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_symbolTableForClusterOrdering GALGAS_symbolTableForClusterOrdering::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_symbolTableForClusterOrdering GALGAS_symbolTableForClusterOrdering::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_symbolTableForClusterOrdering result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -79,8 +79,8 @@ GALGAS_symbolTableForClusterOrdering GALGAS_symbolTableForClusterOrdering::const
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_symbolTableForClusterOrdering GALGAS_symbolTableForClusterOrdering::constructor_mapWithMapToOverride (const GALGAS_symbolTableForClusterOrdering & inMapToOverride
-                                                                                                             COMMA_LOCATION_ARGS) {
+GALGAS_symbolTableForClusterOrdering GALGAS_symbolTableForClusterOrdering::class_func_mapWithMapToOverride (const GALGAS_symbolTableForClusterOrdering & inMapToOverride
+                                                                                                            COMMA_LOCATION_ARGS) {
   GALGAS_symbolTableForClusterOrdering result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -255,9 +255,8 @@ bool GALGAS_symbolTableForClusterOrdering::optional_searchKey (const GALGAS_stri
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_symbolTableForClusterOrdering ("symbolTableForClusterOrdering",
-                                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForClusterOrdering ("symbolTableForClusterOrdering",
+                                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -451,7 +450,7 @@ GALGAS_symbolTableForRelativesResolution & GALGAS_symbolTableForRelativesResolut
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_symbolTableForRelativesResolution GALGAS_symbolTableForRelativesResolution::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_symbolTableForRelativesResolution GALGAS_symbolTableForRelativesResolution::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_symbolTableForRelativesResolution result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -459,8 +458,8 @@ GALGAS_symbolTableForRelativesResolution GALGAS_symbolTableForRelativesResolutio
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_symbolTableForRelativesResolution GALGAS_symbolTableForRelativesResolution::constructor_mapWithMapToOverride (const GALGAS_symbolTableForRelativesResolution & inMapToOverride
-                                                                                                                     COMMA_LOCATION_ARGS) {
+GALGAS_symbolTableForRelativesResolution GALGAS_symbolTableForRelativesResolution::class_func_mapWithMapToOverride (const GALGAS_symbolTableForRelativesResolution & inMapToOverride
+                                                                                                                    COMMA_LOCATION_ARGS) {
   GALGAS_symbolTableForRelativesResolution result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -635,9 +634,8 @@ bool GALGAS_symbolTableForRelativesResolution::optional_searchKey (const GALGAS_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_symbolTableForRelativesResolution ("symbolTableForRelativesResolution",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForRelativesResolution ("symbolTableForRelativesResolution",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -681,7 +679,7 @@ GALGAS_symbolTableForRelativesResolution GALGAS_symbolTableForRelativesResolutio
 class cCollectionElement_codeList : public cCollectionElement {
   public: GALGAS_codeList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_codeList (const GALGAS_string & in_mAssemblyCode,
                                        const GALGAS_uintlist & in_mBinaryCode
                                        COMMA_LOCATION_ARGS) ;
@@ -765,15 +763,15 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_codeList GALGAS_codeList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_codeList GALGAS_codeList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_codeList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_codeList GALGAS_codeList::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                            const GALGAS_uintlist & inOperand1
-                                                            COMMA_LOCATION_ARGS) {
+GALGAS_codeList GALGAS_codeList::class_func_listWithValue (const GALGAS_string & inOperand0,
+                                                           const GALGAS_uintlist & inOperand1
+                                                           COMMA_LOCATION_ARGS) {
   GALGAS_codeList result ;
   if (inOperand0.isValid () && inOperand1.isValid ()) {
     result = GALGAS_codeList (capCollectionElementArray ()) ;
@@ -975,7 +973,7 @@ GALGAS_codeList GALGAS_codeList::add_operation (const GALGAS_codeList & inOperan
 GALGAS_codeList GALGAS_codeList::getter_subListWithRange (const GALGAS_range & inRange,
                                                           Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) const {
-  GALGAS_codeList result = GALGAS_codeList::constructor_emptyList (THERE) ;
+  GALGAS_codeList result = GALGAS_codeList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -985,7 +983,7 @@ GALGAS_codeList GALGAS_codeList::getter_subListWithRange (const GALGAS_range & i
 GALGAS_codeList GALGAS_codeList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                           Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) const {
-  GALGAS_codeList result = GALGAS_codeList::constructor_emptyList (THERE) ;
+  GALGAS_codeList result = GALGAS_codeList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -995,7 +993,7 @@ GALGAS_codeList GALGAS_codeList::getter_subListFromIndex (const GALGAS_uint & in
 GALGAS_codeList GALGAS_codeList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                         Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const {
-  GALGAS_codeList result = GALGAS_codeList::constructor_emptyList (THERE) ;
+  GALGAS_codeList result = GALGAS_codeList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -1110,9 +1108,8 @@ GALGAS_uintlist cEnumerator_codeList::current_mBinaryCode (LOCATION_ARGS) const 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_codeList ("codeList",
-                                 nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_codeList ("codeList",
+                                                                nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1211,7 +1208,7 @@ GALGAS_pic_31__38__5F_dataAddressMap & GALGAS_pic_31__38__5F_dataAddressMap::ope
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38__5F_dataAddressMap GALGAS_pic_31__38__5F_dataAddressMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_pic_31__38__5F_dataAddressMap GALGAS_pic_31__38__5F_dataAddressMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_pic_31__38__5F_dataAddressMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -1219,8 +1216,8 @@ GALGAS_pic_31__38__5F_dataAddressMap GALGAS_pic_31__38__5F_dataAddressMap::const
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38__5F_dataAddressMap GALGAS_pic_31__38__5F_dataAddressMap::constructor_mapWithMapToOverride (const GALGAS_pic_31__38__5F_dataAddressMap & inMapToOverride
-                                                                                                             COMMA_LOCATION_ARGS) {
+GALGAS_pic_31__38__5F_dataAddressMap GALGAS_pic_31__38__5F_dataAddressMap::class_func_mapWithMapToOverride (const GALGAS_pic_31__38__5F_dataAddressMap & inMapToOverride
+                                                                                                            COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38__5F_dataAddressMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -1395,9 +1392,8 @@ bool GALGAS_pic_31__38__5F_dataAddressMap::optional_searchKey (const GALGAS_stri
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap ("pic18_dataAddressMap",
-                                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap ("pic18_dataAddressMap",
+                                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1779,7 +1775,7 @@ GALGAS_declaredRoutineMap & GALGAS_declaredRoutineMap::operator = (const GALGAS_
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_declaredRoutineMap GALGAS_declaredRoutineMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_declaredRoutineMap GALGAS_declaredRoutineMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_declaredRoutineMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -1787,8 +1783,8 @@ GALGAS_declaredRoutineMap GALGAS_declaredRoutineMap::constructor_emptyMap (LOCAT
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_declaredRoutineMap GALGAS_declaredRoutineMap::constructor_mapWithMapToOverride (const GALGAS_declaredRoutineMap & inMapToOverride
-                                                                                       COMMA_LOCATION_ARGS) {
+GALGAS_declaredRoutineMap GALGAS_declaredRoutineMap::class_func_mapWithMapToOverride (const GALGAS_declaredRoutineMap & inMapToOverride
+                                                                                      COMMA_LOCATION_ARGS) {
   GALGAS_declaredRoutineMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -2143,9 +2139,8 @@ bool GALGAS_declaredRoutineMap::optional_searchKey (const GALGAS_string & inKey,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_declaredRoutineMap ("declaredRoutineMap",
-                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declaredRoutineMap ("declaredRoutineMap",
+                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2349,7 +2344,7 @@ GALGAS_blockInstructionBlockMap & GALGAS_blockInstructionBlockMap::operator = (c
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_blockInstructionBlockMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -2357,8 +2352,8 @@ GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::constructor_emp
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::constructor_mapWithMapToOverride (const GALGAS_blockInstructionBlockMap & inMapToOverride
-                                                                                                   COMMA_LOCATION_ARGS) {
+GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::class_func_mapWithMapToOverride (const GALGAS_blockInstructionBlockMap & inMapToOverride
+                                                                                                  COMMA_LOCATION_ARGS) {
   GALGAS_blockInstructionBlockMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -2623,9 +2618,8 @@ bool GALGAS_blockInstructionBlockMap::optional_searchKey (const GALGAS_string & 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockInstructionBlockMap ("blockInstructionBlockMap",
-                                                 nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInstructionBlockMap ("blockInstructionBlockMap",
+                                                                                nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2733,7 +2727,7 @@ GALGAS_blockInitialBankSelectionMap & GALGAS_blockInitialBankSelectionMap::opera
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_blockInitialBankSelectionMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -2741,8 +2735,8 @@ GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::constru
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::constructor_mapWithMapToOverride (const GALGAS_blockInitialBankSelectionMap & inMapToOverride
-                                                                                                           COMMA_LOCATION_ARGS) {
+GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::class_func_mapWithMapToOverride (const GALGAS_blockInitialBankSelectionMap & inMapToOverride
+                                                                                                          COMMA_LOCATION_ARGS) {
   GALGAS_blockInitialBankSelectionMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -2962,9 +2956,8 @@ bool GALGAS_blockInitialBankSelectionMap::optional_searchKey (const GALGAS_strin
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockInitialBankSelectionMap ("blockInitialBankSelectionMap",
-                                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInitialBankSelectionMap ("blockInitialBankSelectionMap",
+                                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3374,15 +3367,15 @@ mProperty_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank (inOperand6) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_optimizeFlagStruct GALGAS_optimizeFlagStruct::constructor_new (const GALGAS_bool & in_mRemoveEmptyRoutine,
-                                                                      const GALGAS_bool & in_mJSRtoRETLWreplacedByMOVLW,
-                                                                      const GALGAS_bool & in_mJSRfollowedByRETreplacedByJUMP,
-                                                                      const GALGAS_bool & in_mMOVLWfollowedByRETreplacedByRETLW,
-                                                                      const GALGAS_bool & in_mJSRtoOneInstructionRoutineReplacedByInstruction,
-                                                                      const GALGAS_bool & in_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction,
-                                                                      const GALGAS_bool & in_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank,
-                                                                      Compiler * /* inCompiler */
-                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_optimizeFlagStruct GALGAS_optimizeFlagStruct::class_func_new (const GALGAS_bool & in_mRemoveEmptyRoutine,
+                                                                     const GALGAS_bool & in_mJSRtoRETLWreplacedByMOVLW,
+                                                                     const GALGAS_bool & in_mJSRfollowedByRETreplacedByJUMP,
+                                                                     const GALGAS_bool & in_mMOVLWfollowedByRETreplacedByRETLW,
+                                                                     const GALGAS_bool & in_mJSRtoOneInstructionRoutineReplacedByInstruction,
+                                                                     const GALGAS_bool & in_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction,
+                                                                     const GALGAS_bool & in_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank,
+                                                                     Compiler * /* inCompiler */
+                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_optimizeFlagStruct result ;
   if (in_mRemoveEmptyRoutine.isValid () && in_mJSRtoRETLWreplacedByMOVLW.isValid () && in_mJSRfollowedByRETreplacedByJUMP.isValid () && in_mMOVLWfollowedByRETreplacedByRETLW.isValid () && in_mJSRtoOneInstructionRoutineReplacedByInstruction.isValid () && in_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction.isValid () && in_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank.isValid ()) {
     result = GALGAS_optimizeFlagStruct (in_mRemoveEmptyRoutine, in_mJSRtoRETLWreplacedByMOVLW, in_mJSRfollowedByRETreplacedByJUMP, in_mMOVLWfollowedByRETreplacedByRETLW, in_mJSRtoOneInstructionRoutineReplacedByInstruction, in_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction, in_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank) ;
@@ -3467,9 +3460,8 @@ void GALGAS_optimizeFlagStruct::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_optimizeFlagStruct ("optimizeFlagStruct",
-                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_optimizeFlagStruct ("optimizeFlagStruct",
+                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3542,7 +3534,7 @@ AC_GALGAS_graph () {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockInvocationGraph GALGAS_blockInvocationGraph::constructor_emptyGraph (LOCATION_ARGS) {
+GALGAS_blockInvocationGraph GALGAS_blockInvocationGraph::class_func_emptyGraph (LOCATION_ARGS) {
   GALGAS_blockInvocationGraph result ;
   result.makeNewEmptyGraph (THERE) ;
   return result ;
@@ -3676,9 +3668,8 @@ GALGAS_lstringlist GALGAS_blockInvocationGraph::getter_accessibleNodesFrom (cons
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockInvocationGraph ("blockInvocationGraph",
-                                             nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInvocationGraph ("blockInvocationGraph",
+                                                                            nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3806,7 +3797,7 @@ void callExtensionMethod_buildTerminatorOrderedGraph (cPtr_ipic_31__38_AbstractB
 class cCollectionElement_clusterList : public cCollectionElement {
   public: GALGAS_clusterList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_clusterList (const GALGAS_ipic_31__38_BlockList & in_mBlockList
                                           COMMA_LOCATION_ARGS) ;
   public: cCollectionElement_clusterList (const GALGAS_clusterList_2D_element & inElement COMMA_LOCATION_ARGS) ;
@@ -3884,14 +3875,14 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_clusterList GALGAS_clusterList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_clusterList GALGAS_clusterList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_clusterList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_clusterList GALGAS_clusterList::constructor_listWithValue (const GALGAS_ipic_31__38_BlockList & inOperand0
-                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_clusterList GALGAS_clusterList::class_func_listWithValue (const GALGAS_ipic_31__38_BlockList & inOperand0
+                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_clusterList result ;
   if (inOperand0.isValid ()) {
     result = GALGAS_clusterList (capCollectionElementArray ()) ;
@@ -4071,7 +4062,7 @@ GALGAS_clusterList GALGAS_clusterList::add_operation (const GALGAS_clusterList &
 GALGAS_clusterList GALGAS_clusterList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_clusterList result = GALGAS_clusterList::constructor_emptyList (THERE) ;
+  GALGAS_clusterList result = GALGAS_clusterList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -4081,7 +4072,7 @@ GALGAS_clusterList GALGAS_clusterList::getter_subListWithRange (const GALGAS_ran
 GALGAS_clusterList GALGAS_clusterList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_clusterList result = GALGAS_clusterList::constructor_emptyList (THERE) ;
+  GALGAS_clusterList result = GALGAS_clusterList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -4091,7 +4082,7 @@ GALGAS_clusterList GALGAS_clusterList::getter_subListFromIndex (const GALGAS_uin
 GALGAS_clusterList GALGAS_clusterList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_clusterList result = GALGAS_clusterList::constructor_emptyList (THERE) ;
+  GALGAS_clusterList result = GALGAS_clusterList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -4169,9 +4160,8 @@ GALGAS_ipic_31__38_BlockList cEnumerator_clusterList::current_mBlockList (LOCATI
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_clusterList ("clusterList",
-                                    nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_clusterList ("clusterList",
+                                                                   nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4270,7 +4260,7 @@ GALGAS_neededConversionForClusterOrder & GALGAS_neededConversionForClusterOrder:
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_neededConversionForClusterOrder GALGAS_neededConversionForClusterOrder::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_neededConversionForClusterOrder GALGAS_neededConversionForClusterOrder::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_neededConversionForClusterOrder result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -4278,8 +4268,8 @@ GALGAS_neededConversionForClusterOrder GALGAS_neededConversionForClusterOrder::c
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_neededConversionForClusterOrder GALGAS_neededConversionForClusterOrder::constructor_mapWithMapToOverride (const GALGAS_neededConversionForClusterOrder & inMapToOverride
-                                                                                                                 COMMA_LOCATION_ARGS) {
+GALGAS_neededConversionForClusterOrder GALGAS_neededConversionForClusterOrder::class_func_mapWithMapToOverride (const GALGAS_neededConversionForClusterOrder & inMapToOverride
+                                                                                                                COMMA_LOCATION_ARGS) {
   GALGAS_neededConversionForClusterOrder result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -4454,9 +4444,8 @@ bool GALGAS_neededConversionForClusterOrder::optional_searchKey (const GALGAS_st
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_neededConversionForClusterOrder ("neededConversionForClusterOrder",
-                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_neededConversionForClusterOrder ("neededConversionForClusterOrder",
+                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4564,7 +4553,7 @@ GALGAS_generatedCodeMap & GALGAS_generatedCodeMap::operator = (const GALGAS_gene
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_generatedCodeMap GALGAS_generatedCodeMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_generatedCodeMap GALGAS_generatedCodeMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_generatedCodeMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -4572,8 +4561,8 @@ GALGAS_generatedCodeMap GALGAS_generatedCodeMap::constructor_emptyMap (LOCATION_
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_generatedCodeMap GALGAS_generatedCodeMap::constructor_mapWithMapToOverride (const GALGAS_generatedCodeMap & inMapToOverride
-                                                                                   COMMA_LOCATION_ARGS) {
+GALGAS_generatedCodeMap GALGAS_generatedCodeMap::class_func_mapWithMapToOverride (const GALGAS_generatedCodeMap & inMapToOverride
+                                                                                  COMMA_LOCATION_ARGS) {
   GALGAS_generatedCodeMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -4793,9 +4782,8 @@ bool GALGAS_generatedCodeMap::optional_searchKey (const GALGAS_string & inKey,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_generatedCodeMap ("generatedCodeMap",
-                                         nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_generatedCodeMap ("generatedCodeMap",
+                                                                        nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4946,7 +4934,7 @@ GALGAS_blockMapForStackComputation & GALGAS_blockMapForStackComputation::operato
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockMapForStackComputation GALGAS_blockMapForStackComputation::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_blockMapForStackComputation GALGAS_blockMapForStackComputation::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_blockMapForStackComputation result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -4954,8 +4942,8 @@ GALGAS_blockMapForStackComputation GALGAS_blockMapForStackComputation::construct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockMapForStackComputation GALGAS_blockMapForStackComputation::constructor_mapWithMapToOverride (const GALGAS_blockMapForStackComputation & inMapToOverride
-                                                                                                         COMMA_LOCATION_ARGS) {
+GALGAS_blockMapForStackComputation GALGAS_blockMapForStackComputation::class_func_mapWithMapToOverride (const GALGAS_blockMapForStackComputation & inMapToOverride
+                                                                                                        COMMA_LOCATION_ARGS) {
   GALGAS_blockMapForStackComputation result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -5130,9 +5118,8 @@ bool GALGAS_blockMapForStackComputation::optional_searchKey (const GALGAS_string
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockMapForStackComputation ("blockMapForStackComputation",
-                                                    nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockMapForStackComputation ("blockMapForStackComputation",
+                                                                                   nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5240,7 +5227,7 @@ GALGAS_routineCallMap & GALGAS_routineCallMap::operator = (const GALGAS_routineC
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_routineCallMap GALGAS_routineCallMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_routineCallMap GALGAS_routineCallMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_routineCallMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -5248,8 +5235,8 @@ GALGAS_routineCallMap GALGAS_routineCallMap::constructor_emptyMap (LOCATION_ARGS
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_routineCallMap GALGAS_routineCallMap::constructor_mapWithMapToOverride (const GALGAS_routineCallMap & inMapToOverride
-                                                                               COMMA_LOCATION_ARGS) {
+GALGAS_routineCallMap GALGAS_routineCallMap::class_func_mapWithMapToOverride (const GALGAS_routineCallMap & inMapToOverride
+                                                                              COMMA_LOCATION_ARGS) {
   GALGAS_routineCallMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -5444,9 +5431,8 @@ bool GALGAS_routineCallMap::optional_searchKey (const GALGAS_string & inKey,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_routineCallMap ("routineCallMap",
-                                       nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineCallMap ("routineCallMap",
+                                                                      nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5545,7 +5531,7 @@ GALGAS_routineStackRequirementMap & GALGAS_routineStackRequirementMap::operator 
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_routineStackRequirementMap GALGAS_routineStackRequirementMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_routineStackRequirementMap GALGAS_routineStackRequirementMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_routineStackRequirementMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -5553,8 +5539,8 @@ GALGAS_routineStackRequirementMap GALGAS_routineStackRequirementMap::constructor
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_routineStackRequirementMap GALGAS_routineStackRequirementMap::constructor_mapWithMapToOverride (const GALGAS_routineStackRequirementMap & inMapToOverride
-                                                                                                       COMMA_LOCATION_ARGS) {
+GALGAS_routineStackRequirementMap GALGAS_routineStackRequirementMap::class_func_mapWithMapToOverride (const GALGAS_routineStackRequirementMap & inMapToOverride
+                                                                                                      COMMA_LOCATION_ARGS) {
   GALGAS_routineStackRequirementMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -5729,9 +5715,8 @@ bool GALGAS_routineStackRequirementMap::optional_searchKey (const GALGAS_string 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_routineStackRequirementMap ("routineStackRequirementMap",
-                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineStackRequirementMap ("routineStackRequirementMap",
+                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5881,7 +5866,7 @@ GALGAS_blockDurationMap & GALGAS_blockDurationMap::operator = (const GALGAS_bloc
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockDurationMap GALGAS_blockDurationMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_blockDurationMap GALGAS_blockDurationMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_blockDurationMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -5889,8 +5874,8 @@ GALGAS_blockDurationMap GALGAS_blockDurationMap::constructor_emptyMap (LOCATION_
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockDurationMap GALGAS_blockDurationMap::constructor_mapWithMapToOverride (const GALGAS_blockDurationMap & inMapToOverride
-                                                                                   COMMA_LOCATION_ARGS) {
+GALGAS_blockDurationMap GALGAS_blockDurationMap::class_func_mapWithMapToOverride (const GALGAS_blockDurationMap & inMapToOverride
+                                                                                  COMMA_LOCATION_ARGS) {
   GALGAS_blockDurationMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -6110,9 +6095,8 @@ bool GALGAS_blockDurationMap::optional_searchKey (const GALGAS_string & inKey,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockDurationMap ("blockDurationMap",
-                                         nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockDurationMap ("blockDurationMap",
+                                                                        nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6249,9 +6233,9 @@ void callExtensionMethod_handleDeclaration (cPtr_declarationInRam * inObject,
 //
 //--------------------------------------------------------------------------------------------------
 
-#include "strings/unicode_character_cpp.h"
-#include "galgas2/scanner_actions.h"
-#include "galgas2/cLexiqueIntrospection.h"
+#include "unicode_character_cpp.h"
+#include "scanner_actions.h"
+#include "cLexiqueIntrospection.h"
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6264,19 +6248,19 @@ mLexicalAttribute_uint_33__32_value () {
 
 //--------------------------------------------------------------------------------------------------
 
-C_Lexique_piccoloDevice_5F_lexique::C_Lexique_piccoloDevice_5F_lexique (Compiler * inCallerCompiler,
-                                                                        const String & inSourceFileName
-                                                                        COMMA_LOCATION_ARGS) :
-C_Lexique (inCallerCompiler, inSourceFileName COMMA_THERE) {
+Lexique_piccoloDevice_5F_lexique::Lexique_piccoloDevice_5F_lexique (Compiler * inCallerCompiler,
+                                                                    const String & inSourceFileName
+                                                                    COMMA_LOCATION_ARGS) :
+Lexique (inCallerCompiler, inSourceFileName COMMA_THERE) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-C_Lexique_piccoloDevice_5F_lexique::C_Lexique_piccoloDevice_5F_lexique (Compiler * inCallerCompiler,
-                                                                        const String & inSourceString,
-                                                                        const String & inStringForError
-                                                                        COMMA_LOCATION_ARGS) :
-C_Lexique (inCallerCompiler, inSourceString, inStringForError COMMA_THERE) {
+Lexique_piccoloDevice_5F_lexique::Lexique_piccoloDevice_5F_lexique (Compiler * inCallerCompiler,
+                                                                    const String & inSourceString,
+                                                                    const String & inStringForError
+                                                                    COMMA_LOCATION_ARGS) :
+Lexique (inCallerCompiler, inSourceString, inStringForError COMMA_THERE) {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6299,7 +6283,7 @@ static const char * gLexicalMessage_piccoloDevice_5F_lexique_internalError = "in
 //                getMessageForTerminal                                                          
 //--------------------------------------------------------------------------------------------------
 
-String C_Lexique_piccoloDevice_5F_lexique::getMessageForTerminal (const int32_t inTerminalIndex) const {
+String Lexique_piccoloDevice_5F_lexique::getMessageForTerminal (const int32_t inTerminalIndex) const {
   String result = "<unknown>" ;
   if ((inTerminalIndex >= 0) && (inTerminalIndex < 34)) {
     static const char * syntaxErrorMessageArray [34] = {kEndOfSourceLexicalErrorMessage,
@@ -6647,27 +6631,27 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique__7D_ [] = {
 static const int32_t ktable_size_piccoloDevice_5F_lexique_controlKeyWordList = 18 ;
 
 static const C_unicode_lexique_table_entry ktable_for_piccoloDevice_5F_lexique_controlKeyWordList [ktable_size_piccoloDevice_5F_lexique_controlKeyWordList] = {
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_at, 2, C_Lexique_piccoloDevice_5F_lexique::kToken_at),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_to, 2, C_Lexique_piccoloDevice_5F_lexique::kToken_to),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_ram, 3, C_Lexique_piccoloDevice_5F_lexique::kToken_ram),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_bank, 4, C_Lexique_piccoloDevice_5F_lexique::kToken_bank),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_mask, 4, C_Lexique_piccoloDevice_5F_lexique::kToken_mask),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_width, 5, C_Lexique_piccoloDevice_5F_lexique::kToken_width),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_illegal, 7, C_Lexique_piccoloDevice_5F_lexique::kToken_illegal),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_message, 7, C_Lexique_piccoloDevice_5F_lexique::kToken_message),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_romsize, 7, C_Lexique_piccoloDevice_5F_lexique::kToken_romsize),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_setting, 7, C_Lexique_piccoloDevice_5F_lexique::kToken_setting),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_mirrorat, 8, C_Lexique_piccoloDevice_5F_lexique::kToken_mirrorat),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_register, 8, C_Lexique_piccoloDevice_5F_lexique::kToken_register),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_processor, 9, C_Lexique_piccoloDevice_5F_lexique::kToken_processor),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_controller, 10, C_Lexique_piccoloDevice_5F_lexique::kToken_controller),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_eepromsize, 10, C_Lexique_piccoloDevice_5F_lexique::kToken_eepromsize),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_description, 11, C_Lexique_piccoloDevice_5F_lexique::kToken_description),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_configuration, 13, C_Lexique_piccoloDevice_5F_lexique::kToken_configuration),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_unusedregister, 14, C_Lexique_piccoloDevice_5F_lexique::kToken_unusedregister)
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_at, 2, Lexique_piccoloDevice_5F_lexique::kToken_at),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_to, 2, Lexique_piccoloDevice_5F_lexique::kToken_to),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_ram, 3, Lexique_piccoloDevice_5F_lexique::kToken_ram),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_bank, 4, Lexique_piccoloDevice_5F_lexique::kToken_bank),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_mask, 4, Lexique_piccoloDevice_5F_lexique::kToken_mask),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_width, 5, Lexique_piccoloDevice_5F_lexique::kToken_width),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_illegal, 7, Lexique_piccoloDevice_5F_lexique::kToken_illegal),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_message, 7, Lexique_piccoloDevice_5F_lexique::kToken_message),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_romsize, 7, Lexique_piccoloDevice_5F_lexique::kToken_romsize),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_setting, 7, Lexique_piccoloDevice_5F_lexique::kToken_setting),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_mirrorat, 8, Lexique_piccoloDevice_5F_lexique::kToken_mirrorat),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_register, 8, Lexique_piccoloDevice_5F_lexique::kToken_register),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_processor, 9, Lexique_piccoloDevice_5F_lexique::kToken_processor),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_controller, 10, Lexique_piccoloDevice_5F_lexique::kToken_controller),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_eepromsize, 10, Lexique_piccoloDevice_5F_lexique::kToken_eepromsize),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_description, 11, Lexique_piccoloDevice_5F_lexique::kToken_description),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_configuration, 13, Lexique_piccoloDevice_5F_lexique::kToken_configuration),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_unusedregister, 14, Lexique_piccoloDevice_5F_lexique::kToken_unusedregister)
 } ;
 
-int32_t C_Lexique_piccoloDevice_5F_lexique::search_into_controlKeyWordList (const String & inSearchedString) {
+int32_t Lexique_piccoloDevice_5F_lexique::search_into_controlKeyWordList (const String & inSearchedString) {
   return searchInList (inSearchedString, ktable_for_piccoloDevice_5F_lexique_controlKeyWordList, ktable_size_piccoloDevice_5F_lexique_controlKeyWordList) ;
 }
 
@@ -6678,20 +6662,20 @@ int32_t C_Lexique_piccoloDevice_5F_lexique::search_into_controlKeyWordList (cons
 static const int32_t ktable_size_piccoloDevice_5F_lexique_delimitorsList = 11 ;
 
 static const C_unicode_lexique_table_entry ktable_for_piccoloDevice_5F_lexique_delimitorsList [ktable_size_piccoloDevice_5F_lexique_delimitorsList] = {
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2C_, 1, C_Lexique_piccoloDevice_5F_lexique::kToken__2C_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2D_, 1, C_Lexique_piccoloDevice_5F_lexique::kToken__2D_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2F_, 1, C_Lexique_piccoloDevice_5F_lexique::kToken__2F_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3A_, 1, C_Lexique_piccoloDevice_5F_lexique::kToken__3A_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3B_, 1, C_Lexique_piccoloDevice_5F_lexique::kToken__3B_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3C_, 1, C_Lexique_piccoloDevice_5F_lexique::kToken__3C_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3E_, 1, C_Lexique_piccoloDevice_5F_lexique::kToken__3E_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__5B_, 1, C_Lexique_piccoloDevice_5F_lexique::kToken__5B_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__5D_, 1, C_Lexique_piccoloDevice_5F_lexique::kToken__5D_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__7B_, 1, C_Lexique_piccoloDevice_5F_lexique::kToken__7B_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__7D_, 1, C_Lexique_piccoloDevice_5F_lexique::kToken__7D_)
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2C_, 1, Lexique_piccoloDevice_5F_lexique::kToken__2C_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2D_, 1, Lexique_piccoloDevice_5F_lexique::kToken__2D_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2F_, 1, Lexique_piccoloDevice_5F_lexique::kToken__2F_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3A_, 1, Lexique_piccoloDevice_5F_lexique::kToken__3A_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3B_, 1, Lexique_piccoloDevice_5F_lexique::kToken__3B_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3C_, 1, Lexique_piccoloDevice_5F_lexique::kToken__3C_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3E_, 1, Lexique_piccoloDevice_5F_lexique::kToken__3E_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__5B_, 1, Lexique_piccoloDevice_5F_lexique::kToken__5B_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__5D_, 1, Lexique_piccoloDevice_5F_lexique::kToken__5D_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__7B_, 1, Lexique_piccoloDevice_5F_lexique::kToken__7B_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__7D_, 1, Lexique_piccoloDevice_5F_lexique::kToken__7D_)
 } ;
 
-int32_t C_Lexique_piccoloDevice_5F_lexique::search_into_delimitorsList (const String & inSearchedString) {
+int32_t Lexique_piccoloDevice_5F_lexique::search_into_delimitorsList (const String & inSearchedString) {
   return searchInList (inSearchedString, ktable_for_piccoloDevice_5F_lexique_delimitorsList, ktable_size_piccoloDevice_5F_lexique_delimitorsList) ;
 }
 
@@ -6700,7 +6684,7 @@ int32_t C_Lexique_piccoloDevice_5F_lexique::search_into_delimitorsList (const St
 //                          getCurrentTokenString                                                
 //--------------------------------------------------------------------------------------------------
 
-String C_Lexique_piccoloDevice_5F_lexique::getCurrentTokenString (const cToken * inTokenPtr) const {
+String Lexique_piccoloDevice_5F_lexique::getCurrentTokenString (const cToken * inTokenPtr) const {
   const cTokenFor_piccoloDevice_5F_lexique * ptr = (const cTokenFor_piccoloDevice_5F_lexique *) inTokenPtr ;
   String s ;
   if (ptr == nullptr) {
@@ -6907,7 +6891,7 @@ String C_Lexique_piccoloDevice_5F_lexique::getCurrentTokenString (const cToken *
 //               INTERNAL PARSE LEXICAL TOKEN                                         
 //--------------------------------------------------------------------------------------------------
 
-void C_Lexique_piccoloDevice_5F_lexique::internalParseLexicalToken (cTokenFor_piccoloDevice_5F_lexique & token) {
+void Lexique_piccoloDevice_5F_lexique::internalParseLexicalToken (cTokenFor_piccoloDevice_5F_lexique & token) {
   bool loop = true ;
   token.mLexicalAttribute_charValue = TO_UNICODE (0) ;
   token.mLexicalAttribute_identifierString.removeAllKeepingCapacity () ;
@@ -7068,7 +7052,7 @@ void C_Lexique_piccoloDevice_5F_lexique::internalParseLexicalToken (cTokenFor_pi
 //               P A R S E    L E X I C A L    T O K E N                                         
 //--------------------------------------------------------------------------------------------------
 
-bool C_Lexique_piccoloDevice_5F_lexique::parseLexicalToken (void) {
+bool Lexique_piccoloDevice_5F_lexique::parseLexicalToken (void) {
   cTokenFor_piccoloDevice_5F_lexique token ;
   token.mTokenCode = -1 ;
   while ((token.mTokenCode < 0) && (UNICODE_VALUE (mCurrentChar) != '\0')) {
@@ -7085,7 +7069,7 @@ bool C_Lexique_piccoloDevice_5F_lexique::parseLexicalToken (void) {
 //                         E N T E R    T O K E N                                                
 //--------------------------------------------------------------------------------------------------
 
-void C_Lexique_piccoloDevice_5F_lexique::enterToken (cTokenFor_piccoloDevice_5F_lexique & ioToken) {
+void Lexique_piccoloDevice_5F_lexique::enterToken (cTokenFor_piccoloDevice_5F_lexique & ioToken) {
   cTokenFor_piccoloDevice_5F_lexique * ptr = nullptr ;
   macroMyNew (ptr, cTokenFor_piccoloDevice_5F_lexique ()) ;
   ptr->mTokenCode = ioToken.mTokenCode ;
@@ -7104,28 +7088,28 @@ void C_Lexique_piccoloDevice_5F_lexique::enterToken (cTokenFor_piccoloDevice_5F_
 //               A T T R I B U T E   A C C E S S                                                 
 //--------------------------------------------------------------------------------------------------
 
-utf32 C_Lexique_piccoloDevice_5F_lexique::attributeValue_charValue (void) const {
+utf32 Lexique_piccoloDevice_5F_lexique::attributeValue_charValue (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) currentTokenPtr (HERE) ;
   return ptr->mLexicalAttribute_charValue ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-String C_Lexique_piccoloDevice_5F_lexique::attributeValue_identifierString (void) const {
+String Lexique_piccoloDevice_5F_lexique::attributeValue_identifierString (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) currentTokenPtr (HERE) ;
   return ptr->mLexicalAttribute_identifierString ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-String C_Lexique_piccoloDevice_5F_lexique::attributeValue_tokenString (void) const {
+String Lexique_piccoloDevice_5F_lexique::attributeValue_tokenString (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) currentTokenPtr (HERE) ;
   return ptr->mLexicalAttribute_tokenString ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-uint32_t C_Lexique_piccoloDevice_5F_lexique::attributeValue_uint_33__32_value (void) const {
+uint32_t Lexique_piccoloDevice_5F_lexique::attributeValue_uint_33__32_value (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) currentTokenPtr (HERE) ;
   return ptr->mLexicalAttribute_uint_33__32_value ;
 }
@@ -7134,7 +7118,7 @@ uint32_t C_Lexique_piccoloDevice_5F_lexique::attributeValue_uint_33__32_value (v
 //         A S S I G N    F R O M    A T T R I B U T E                                           
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_lchar C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_charValue (void) const {
+GALGAS_lchar Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_charValue (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) currentTokenPtr (HERE) ;
   macroValidSharedObject (ptr, cTokenFor_piccoloDevice_5F_lexique) ;
   GALGAS_location currentLocation (ptr->mStartLocation, ptr->mEndLocation, sourceText ()) ;
@@ -7145,7 +7129,7 @@ GALGAS_lchar C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_charValue 
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_lstring C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_identifierString (void) const {
+GALGAS_lstring Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_identifierString (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) currentTokenPtr (HERE) ;
   macroValidSharedObject (ptr, cTokenFor_piccoloDevice_5F_lexique) ;
   GALGAS_location currentLocation (ptr->mStartLocation, ptr->mEndLocation, sourceText ()) ;
@@ -7156,7 +7140,7 @@ GALGAS_lstring C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_identifi
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_lstring C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_tokenString (void) const {
+GALGAS_lstring Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_tokenString (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) currentTokenPtr (HERE) ;
   macroValidSharedObject (ptr, cTokenFor_piccoloDevice_5F_lexique) ;
   GALGAS_location currentLocation (ptr->mStartLocation, ptr->mEndLocation, sourceText ()) ;
@@ -7167,7 +7151,7 @@ GALGAS_lstring C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_tokenStr
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_luint C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_uint_33__32_value (void) const {
+GALGAS_luint Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_uint_33__32_value (void) const {
   cTokenFor_piccoloDevice_5F_lexique * ptr = (cTokenFor_piccoloDevice_5F_lexique *) currentTokenPtr (HERE) ;
   macroValidSharedObject (ptr, cTokenFor_piccoloDevice_5F_lexique) ;
   GALGAS_location currentLocation (ptr->mStartLocation, ptr->mEndLocation, sourceText ()) ;
@@ -7180,8 +7164,8 @@ GALGAS_luint C_Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_uint_33__3
 //                         I N T R O S P E C T I O N                                             
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_stringlist C_Lexique_piccoloDevice_5F_lexique::symbols (LOCATION_ARGS) {
-  GALGAS_stringlist result = GALGAS_stringlist::constructor_emptyList (THERE) ;
+GALGAS_stringlist Lexique_piccoloDevice_5F_lexique::symbols (LOCATION_ARGS) {
+  GALGAS_stringlist result = GALGAS_stringlist::class_func_emptyList (THERE) ;
   result.addAssign_operation (GALGAS_string ("identifier") COMMA_HERE) ;
   result.addAssign_operation (GALGAS_string ("integer") COMMA_HERE) ;
   result.addAssign_operation (GALGAS_string ("string") COMMA_HERE) ;
@@ -7279,7 +7263,7 @@ __attribute__ ((unused)) (getKeywordLists_piccoloDevice_5F_lexique, getKeywordsF
 //   S T Y L E   I N D E X    F O R    T E R M I N A L                                           
 //--------------------------------------------------------------------------------------------------
 
-uint32_t C_Lexique_piccoloDevice_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
+uint32_t Lexique_piccoloDevice_5F_lexique::styleIndexForTerminal (const int32_t inTerminalIndex) const {
   static const uint32_t kTerminalSymbolStyles [34] = {0,
     0 /* piccoloDevice_lexique_1_identifier */,
     4 /* piccoloDevice_lexique_1_integer */,
@@ -7322,7 +7306,7 @@ uint32_t C_Lexique_piccoloDevice_5F_lexique::styleIndexForTerminal (const int32_
 //   S T Y L E   N A M E    F O R    S T Y L E    I N D E X                                      
 //--------------------------------------------------------------------------------------------------
 
-String C_Lexique_piccoloDevice_5F_lexique::styleNameForIndex (const uint32_t inStyleIndex) const {
+String Lexique_piccoloDevice_5F_lexique::styleNameForIndex (const uint32_t inStyleIndex) const {
   String result ;
   if (inStyleIndex < 7) {
     static const char * kStyleArray [7] = {
@@ -7394,7 +7378,7 @@ GALGAS_declaredByteMap & GALGAS_declaredByteMap::operator = (const GALGAS_declar
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_declaredByteMap GALGAS_declaredByteMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_declaredByteMap GALGAS_declaredByteMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_declaredByteMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -7402,8 +7386,8 @@ GALGAS_declaredByteMap GALGAS_declaredByteMap::constructor_emptyMap (LOCATION_AR
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_declaredByteMap GALGAS_declaredByteMap::constructor_mapWithMapToOverride (const GALGAS_declaredByteMap & inMapToOverride
-                                                                                 COMMA_LOCATION_ARGS) {
+GALGAS_declaredByteMap GALGAS_declaredByteMap::class_func_mapWithMapToOverride (const GALGAS_declaredByteMap & inMapToOverride
+                                                                                COMMA_LOCATION_ARGS) {
   GALGAS_declaredByteMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -7533,9 +7517,8 @@ bool GALGAS_declaredByteMap::optional_searchKey (const GALGAS_string & inKey) co
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_declaredByteMap ("declaredByteMap",
-                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declaredByteMap ("declaredByteMap",
+                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7670,7 +7653,7 @@ GALGAS_registerTable & GALGAS_registerTable::operator = (const GALGAS_registerTa
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_registerTable GALGAS_registerTable::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_registerTable GALGAS_registerTable::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_registerTable result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -7678,8 +7661,8 @@ GALGAS_registerTable GALGAS_registerTable::constructor_emptyMap (LOCATION_ARGS) 
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_registerTable GALGAS_registerTable::constructor_mapWithMapToOverride (const GALGAS_registerTable & inMapToOverride
-                                                                             COMMA_LOCATION_ARGS) {
+GALGAS_registerTable GALGAS_registerTable::class_func_mapWithMapToOverride (const GALGAS_registerTable & inMapToOverride
+                                                                            COMMA_LOCATION_ARGS) {
   GALGAS_registerTable result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -8034,9 +8017,8 @@ bool GALGAS_registerTable::optional_searchKey (const GALGAS_string & inKey,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_registerTable ("registerTable",
-                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_registerTable ("registerTable",
+                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8231,7 +8213,7 @@ GALGAS_ramBankTable & GALGAS_ramBankTable::operator = (const GALGAS_ramBankTable
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ramBankTable GALGAS_ramBankTable::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_ramBankTable GALGAS_ramBankTable::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_ramBankTable result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -8239,8 +8221,8 @@ GALGAS_ramBankTable GALGAS_ramBankTable::constructor_emptyMap (LOCATION_ARGS) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ramBankTable GALGAS_ramBankTable::constructor_mapWithMapToOverride (const GALGAS_ramBankTable & inMapToOverride
-                                                                           COMMA_LOCATION_ARGS) {
+GALGAS_ramBankTable GALGAS_ramBankTable::class_func_mapWithMapToOverride (const GALGAS_ramBankTable & inMapToOverride
+                                                                          COMMA_LOCATION_ARGS) {
   GALGAS_ramBankTable result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -8550,9 +8532,8 @@ bool GALGAS_ramBankTable::optional_searchKey (const GALGAS_string & inKey,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ramBankTable ("ramBankTable",
-                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ramBankTable ("ramBankTable",
+                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8595,7 +8576,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_processorType GALGAS_processorType::constructor_pic_31__38__5F__36__30_ (UNUSED_LOCATION_ARGS) {
+GALGAS_processorType GALGAS_processorType::class_func_pic_31__38__5F__36__30_ (UNUSED_LOCATION_ARGS) {
   GALGAS_processorType result ;
   result.mEnum = kEnum_pic_31__38__5F__36__30_ ;
   return result ;
@@ -8603,7 +8584,7 @@ GALGAS_processorType GALGAS_processorType::constructor_pic_31__38__5F__36__30_ (
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_processorType GALGAS_processorType::constructor_pic_31__38__5F__38__30_ (UNUSED_LOCATION_ARGS) {
+GALGAS_processorType GALGAS_processorType::class_func_pic_31__38__5F__38__30_ (UNUSED_LOCATION_ARGS) {
   GALGAS_processorType result ;
   result.mEnum = kEnum_pic_31__38__5F__38__30_ ;
   return result ;
@@ -8611,7 +8592,7 @@ GALGAS_processorType GALGAS_processorType::constructor_pic_31__38__5F__38__30_ (
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_processorType GALGAS_processorType::constructor_midrange (UNUSED_LOCATION_ARGS) {
+GALGAS_processorType GALGAS_processorType::class_func_midrange (UNUSED_LOCATION_ARGS) {
   GALGAS_processorType result ;
   result.mEnum = kEnum_midrange ;
   return result ;
@@ -8619,7 +8600,7 @@ GALGAS_processorType GALGAS_processorType::constructor_midrange (UNUSED_LOCATION
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_processorType GALGAS_processorType::constructor_baseline (UNUSED_LOCATION_ARGS) {
+GALGAS_processorType GALGAS_processorType::class_func_baseline (UNUSED_LOCATION_ARGS) {
   GALGAS_processorType result ;
   result.mEnum = kEnum_baseline ;
   return result ;
@@ -8718,9 +8699,8 @@ typeComparisonResult GALGAS_processorType::objectCompare (const GALGAS_processor
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_processorType ("processorType",
-                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_processorType ("processorType",
+                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8764,7 +8744,7 @@ GALGAS_processorType GALGAS_processorType::extractObject (const GALGAS_object & 
 class cCollectionElement_illegalMaskList : public cCollectionElement {
   public: GALGAS_illegalMaskList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_illegalMaskList (const GALGAS_luint & in_mIllegalValue,
                                               const GALGAS_luint & in_mIllegalMask,
                                               const GALGAS_lstring & in_mDescription
@@ -8854,16 +8834,16 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_illegalMaskList GALGAS_illegalMaskList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_illegalMaskList GALGAS_illegalMaskList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_illegalMaskList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_illegalMaskList GALGAS_illegalMaskList::constructor_listWithValue (const GALGAS_luint & inOperand0,
-                                                                          const GALGAS_luint & inOperand1,
-                                                                          const GALGAS_lstring & inOperand2
-                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_illegalMaskList GALGAS_illegalMaskList::class_func_listWithValue (const GALGAS_luint & inOperand0,
+                                                                         const GALGAS_luint & inOperand1,
+                                                                         const GALGAS_lstring & inOperand2
+                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_illegalMaskList result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     result = GALGAS_illegalMaskList (capCollectionElementArray ()) ;
@@ -9087,7 +9067,7 @@ GALGAS_illegalMaskList GALGAS_illegalMaskList::add_operation (const GALGAS_illeg
 GALGAS_illegalMaskList GALGAS_illegalMaskList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const {
-  GALGAS_illegalMaskList result = GALGAS_illegalMaskList::constructor_emptyList (THERE) ;
+  GALGAS_illegalMaskList result = GALGAS_illegalMaskList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -9097,7 +9077,7 @@ GALGAS_illegalMaskList GALGAS_illegalMaskList::getter_subListWithRange (const GA
 GALGAS_illegalMaskList GALGAS_illegalMaskList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const {
-  GALGAS_illegalMaskList result = GALGAS_illegalMaskList::constructor_emptyList (THERE) ;
+  GALGAS_illegalMaskList result = GALGAS_illegalMaskList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -9107,7 +9087,7 @@ GALGAS_illegalMaskList GALGAS_illegalMaskList::getter_subListFromIndex (const GA
 GALGAS_illegalMaskList GALGAS_illegalMaskList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const {
-  GALGAS_illegalMaskList result = GALGAS_illegalMaskList::constructor_emptyList (THERE) ;
+  GALGAS_illegalMaskList result = GALGAS_illegalMaskList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -9259,9 +9239,8 @@ GALGAS_lstring cEnumerator_illegalMaskList::current_mDescription (LOCATION_ARGS)
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_illegalMaskList ("illegalMaskList",
-                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_illegalMaskList ("illegalMaskList",
+                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9378,7 +9357,7 @@ GALGAS_configRegisterMaskMap & GALGAS_configRegisterMaskMap::operator = (const G
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_configRegisterMaskMap GALGAS_configRegisterMaskMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_configRegisterMaskMap GALGAS_configRegisterMaskMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_configRegisterMaskMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -9386,8 +9365,8 @@ GALGAS_configRegisterMaskMap GALGAS_configRegisterMaskMap::constructor_emptyMap 
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_configRegisterMaskMap GALGAS_configRegisterMaskMap::constructor_mapWithMapToOverride (const GALGAS_configRegisterMaskMap & inMapToOverride
-                                                                                             COMMA_LOCATION_ARGS) {
+GALGAS_configRegisterMaskMap GALGAS_configRegisterMaskMap::class_func_mapWithMapToOverride (const GALGAS_configRegisterMaskMap & inMapToOverride
+                                                                                            COMMA_LOCATION_ARGS) {
   GALGAS_configRegisterMaskMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -9652,9 +9631,8 @@ bool GALGAS_configRegisterMaskMap::optional_searchKey (const GALGAS_string & inK
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_configRegisterMaskMap ("configRegisterMaskMap",
-                                              nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configRegisterMaskMap ("configRegisterMaskMap",
+                                                                             nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9780,7 +9758,7 @@ GALGAS_configRegisterMap & GALGAS_configRegisterMap::operator = (const GALGAS_co
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_configRegisterMap GALGAS_configRegisterMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_configRegisterMap GALGAS_configRegisterMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_configRegisterMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -9788,8 +9766,8 @@ GALGAS_configRegisterMap GALGAS_configRegisterMap::constructor_emptyMap (LOCATIO
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_configRegisterMap GALGAS_configRegisterMap::constructor_mapWithMapToOverride (const GALGAS_configRegisterMap & inMapToOverride
-                                                                                     COMMA_LOCATION_ARGS) {
+GALGAS_configRegisterMap GALGAS_configRegisterMap::class_func_mapWithMapToOverride (const GALGAS_configRegisterMap & inMapToOverride
+                                                                                    COMMA_LOCATION_ARGS) {
   GALGAS_configRegisterMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -10099,9 +10077,8 @@ bool GALGAS_configRegisterMap::optional_searchKey (const GALGAS_string & inKey,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_configRegisterMap ("configRegisterMap",
-                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configRegisterMap ("configRegisterMap",
+                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10141,21 +10118,21 @@ GALGAS_configRegisterMap GALGAS_configRegisterMap::extractObject (const GALGAS_o
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_ (GALGAS_piccoloDeviceModel & outArgument_outPiccoloDeviceModel,
-                                                                                        C_Lexique_piccoloDevice_5F_lexique * inCompiler) {
+                                                                                        Lexique_piccoloDevice_5F_lexique * inCompiler) {
   outArgument_outPiccoloDeviceModel.drop () ; // Release 'out' argument
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_controller COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 11)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_controller COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 11)) ;
   GALGAS_lstring var_deviceName_336 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 12)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 13)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_processor COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 14)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 12)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 13)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_processor COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 14)) ;
   GALGAS_processorType var_processorType_388 ;
   GALGAS_lstring var_processorName_427 = inCompiler->synthetizedAttribute_tokenString () ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 16)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 16)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     test_0 = GALGAS_bool (kIsEqual, var_processorName_427.readProperty_string ().objectCompare (GALGAS_string ("pic18_60"))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      var_processorType_388 = GALGAS_processorType::constructor_pic_31__38__5F__36__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 18)) ;
+      var_processorType_388 = GALGAS_processorType::class_func_pic_31__38__5F__36__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 18)) ;
     }
   }
   if (kBoolFalse == test_0) {
@@ -10163,7 +10140,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
     if (kBoolTrue == test_1) {
       test_1 = GALGAS_bool (kIsEqual, var_processorName_427.readProperty_string ().objectCompare (GALGAS_string ("pic18_80"))).boolEnum () ;
       if (kBoolTrue == test_1) {
-        var_processorType_388 = GALGAS_processorType::constructor_pic_31__38__5F__38__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 20)) ;
+        var_processorType_388 = GALGAS_processorType::class_func_pic_31__38__5F__38__30_ (SOURCE_FILE ("piccoloDevice_syntax.galgas", 20)) ;
       }
     }
     if (kBoolFalse == test_1) {
@@ -10171,7 +10148,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       if (kBoolTrue == test_2) {
         test_2 = GALGAS_bool (kIsEqual, var_processorName_427.readProperty_string ().objectCompare (GALGAS_string ("mid-range"))).boolEnum () ;
         if (kBoolTrue == test_2) {
-          var_processorType_388 = GALGAS_processorType::constructor_midrange (SOURCE_FILE ("piccoloDevice_syntax.galgas", 22)) ;
+          var_processorType_388 = GALGAS_processorType::class_func_midrange (SOURCE_FILE ("piccoloDevice_syntax.galgas", 22)) ;
         }
       }
       if (kBoolFalse == test_2) {
@@ -10179,22 +10156,22 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
         if (kBoolTrue == test_3) {
           test_3 = GALGAS_bool (kIsEqual, var_processorName_427.readProperty_string ().objectCompare (GALGAS_string ("baseline"))).boolEnum () ;
           if (kBoolTrue == test_3) {
-            var_processorType_388 = GALGAS_processorType::constructor_baseline (SOURCE_FILE ("piccoloDevice_syntax.galgas", 24)) ;
+            var_processorType_388 = GALGAS_processorType::class_func_baseline (SOURCE_FILE ("piccoloDevice_syntax.galgas", 24)) ;
           }
         }
         if (kBoolFalse == test_3) {
           TC_Array <C_FixItDescription> fixItArray4 ;
-          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)), GALGAS_string ("The '").add_operation (var_processorName_427.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)).add_operation (GALGAS_string ("' processor is not handled"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)), fixItArray4  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)) ;
+          inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)), GALGAS_string ("The '").add_operation (var_processorName_427.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)).add_operation (GALGAS_string ("' processor is not handled"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)), fixItArray4  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 26)) ;
           var_processorType_388.drop () ; // Release error dropped variable
         }
       }
     }
   }
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 28)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_romsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 29)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 28)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_romsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 29)) ;
   GALGAS_luint var_romSize_964 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 30)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 31)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 30)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 31)) ;
   GALGAS_uint var_eepromSize_990 ;
   GALGAS_uint var_eepromAddress_1013 ;
   switch (select_piccoloDevice_5F_syntax_0 (inCompiler)) {
@@ -10203,69 +10180,69 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
     var_eepromAddress_1013 = GALGAS_uint (uint32_t (0U)) ;
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_eepromsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 38)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_eepromsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 38)) ;
     GALGAS_luint var_l_5F_eepromSize_1125 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 39)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 39)) ;
     var_eepromSize_990 = var_l_5F_eepromSize_1125.readProperty_uint () ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 41)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 41)) ;
     GALGAS_luint var_l_5F_eepromAddress_1208 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 42)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 42)) ;
     var_eepromAddress_1013 = var_l_5F_eepromAddress_1208.readProperty_uint () ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 44)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 44)) ;
   } break ;
   default:
     break ;
   }
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 46)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 46)) ;
   GALGAS_luint var_bankCount_1312 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 47)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 48)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 47)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 48)) ;
   bool repeatFlag_5 = true ;
   while (repeatFlag_5) {
     if (select_piccoloDevice_5F_syntax_1 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_unusedregister COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 51)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 52)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_unusedregister COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 51)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 52)) ;
       switch (select_piccoloDevice_5F_syntax_2 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 55)) ;
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 56)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 55)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 56)) ;
       } break ;
       default:
         break ;
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 58)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 58)) ;
     }else{
       repeatFlag_5 = false ;
     }
   }
-  GALGAS_ramBankTable var_ramBankTable_1521 = GALGAS_ramBankTable::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 60)) ;
+  GALGAS_ramBankTable var_ramBankTable_1521 = GALGAS_ramBankTable::class_func_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 60)) ;
   bool repeatFlag_6 = true ;
   while (repeatFlag_6) {
     if (select_piccoloDevice_5F_syntax_3 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 63)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 63)) ;
       GALGAS_lstring var_ramName_1618 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 64)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 65)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 64)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 65)) ;
       GALGAS_luint var_ramStart_1660 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 66)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 67)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 66)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 67)) ;
       GALGAS_luint var_ramEnd_1704 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 68)) ;
-      GALGAS_uintlist var_mirrorOffsetList_1719 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 69)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 68)) ;
+      GALGAS_uintlist var_mirrorOffsetList_1719 = GALGAS_uintlist::class_func_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 69)) ;
       switch (select_piccoloDevice_5F_syntax_4 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mirrorat COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 72)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mirrorat COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 72)) ;
         bool repeatFlag_7 = true ;
         while (repeatFlag_7) {
           GALGAS_luint var_mirrorStartAddress_1837 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 74)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 74)) ;
           var_mirrorOffsetList_1719.addAssign_operation (var_mirrorStartAddress_1837.readProperty_uint ().substract_operation (var_ramStart_1660.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75)) ;
           if (select_piccoloDevice_5F_syntax_5 (inCompiler) == 2) {
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 77)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 77)) ;
           }else{
             repeatFlag_7 = false ;
           }
@@ -10274,7 +10251,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       default:
         break ;
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 80)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 80)) ;
       {
       var_ramBankTable_1521.setter_insertKey (var_ramName_1618, var_ramStart_1660.readProperty_uint (), var_ramStart_1660.readProperty_uint (), var_ramEnd_1704.readProperty_uint ().add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 85)), var_mirrorOffsetList_1719, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 81)) ;
       }
@@ -10282,29 +10259,29 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       repeatFlag_6 = false ;
     }
   }
-  GALGAS_registerTable var_registerTable_2166 = GALGAS_registerTable::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 89)) ;
+  GALGAS_registerTable var_registerTable_2166 = GALGAS_registerTable::class_func_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 89)) ;
   bool repeatFlag_8 = true ;
   while (repeatFlag_8) {
     if (select_piccoloDevice_5F_syntax_6 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_register COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 92)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_register COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 92)) ;
       GALGAS_lstring var_registerName_2270 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 93)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 94)) ;
-      GALGAS_uintlist var_registerAddressList_2300 = GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 95)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 93)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 94)) ;
+      GALGAS_uintlist var_registerAddressList_2300 = GALGAS_uintlist::class_func_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 95)) ;
       bool repeatFlag_9 = true ;
       while (repeatFlag_9) {
         GALGAS_luint var_registerAddress_2382 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 97)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 97)) ;
         var_registerAddressList_2300.addAssign_operation (var_registerAddress_2382.readProperty_uint ()  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 98)) ;
         if (select_piccoloDevice_5F_syntax_7 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 100)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 100)) ;
         }else{
           repeatFlag_9 = false ;
         }
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 102)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 102)) ;
       GALGAS_uint var_sliceIndex_2499 = GALGAS_uint (uint32_t (8U)) ;
-      GALGAS_bitSliceTable var_bitSliceTable_2522 = GALGAS_bitSliceTable::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 104)) ;
+      GALGAS_bitSliceTable var_bitSliceTable_2522 = GALGAS_bitSliceTable::class_func_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 104)) ;
       GALGAS_string var_bitDefinitionString_2579 = GALGAS_string (" <") ;
       bool repeatFlag_10 = true ;
       while (repeatFlag_10) {
@@ -10315,7 +10292,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           while (repeatFlag_11) {
             GALGAS_uint var_sliceBase_2716 = var_sliceIndex_2499 ;
             GALGAS_lstring var_sliceName_2776 = inCompiler->synthetizedAttribute_tokenString () ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 111)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 111)) ;
             switch (select_piccoloDevice_5F_syntax_11 (inCompiler)) {
             case 1: {
               enumGalgasBool test_12 = kBoolTrue ;
@@ -10330,9 +10307,9 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
               var_bitDefinitionString_2579.plusAssign_operation(var_sliceName_2776.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 117)) ;
             } break ;
             case 2: {
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 119)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 119)) ;
               GALGAS_luint var_sliceSize_3106 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
               enumGalgasBool test_14 = kBoolTrue ;
               if (kBoolTrue == test_14) {
                 test_14 = GALGAS_bool (kIsNotEqual, var_sliceWidth_2648.objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_2648.objectCompare (var_sliceSize_3106.readProperty_uint ())) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 121)).boolEnum () ;
@@ -10343,7 +10320,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
               }
               var_sliceWidth_2648 = var_sliceSize_3106.readProperty_uint () ;
               var_sliceBase_2716 = var_sliceBase_2716.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)).substract_operation (var_sliceSize_3106.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)) ;
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)) ;
               var_bitDefinitionString_2579.plusAssign_operation(var_sliceName_2776.readProperty_string ().add_operation (GALGAS_string ("["), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (var_sliceSize_3106.readProperty_uint ().getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)) ;
             } break ;
             default:
@@ -10353,7 +10330,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
             var_bitSliceTable_2522.setter_insertKey (var_sliceName_2776, var_sliceIndex_2499.substract_operation (var_sliceWidth_2648, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 129)), var_sliceWidth_2648, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 129)) ;
             }
             if (select_piccoloDevice_5F_syntax_10 (inCompiler) == 2) {
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 131)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 131)) ;
               var_bitDefinitionString_2579.plusAssign_operation(GALGAS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 132)) ;
             }else{
               repeatFlag_11 = false ;
@@ -10362,7 +10339,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           var_sliceIndex_2499 = var_sliceIndex_2499.substract_operation (var_sliceWidth_2648, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 134)) ;
         } break ;
         case 2: {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 136)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 136)) ;
           var_bitDefinitionString_2579.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 137)) ;
           var_sliceIndex_2499.minusAssign_operation(GALGAS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 138)) ;
         } break ;
@@ -10370,7 +10347,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           break ;
         }
         if (select_piccoloDevice_5F_syntax_8 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 141)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 141)) ;
           var_bitDefinitionString_2579.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 142)) ;
         }else{
           repeatFlag_10 = false ;
@@ -10385,54 +10362,54 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
         }
       }
       var_bitDefinitionString_2579.plusAssign_operation(GALGAS_string (">"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 147)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
       {
-      var_registerTable_2166.setter_insertKey (var_registerName_2270, var_registerAddressList_2300, GALGAS_uint (uint32_t (1U)), var_bitSliceTable_2522, var_bitDefinitionString_2579, GALGAS_registerProtection::constructor_publicRegister (SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)) ;
+      var_registerTable_2166.setter_insertKey (var_registerName_2270, var_registerAddressList_2300, GALGAS_uint (uint32_t (1U)), var_bitSliceTable_2522, var_bitDefinitionString_2579, GALGAS_registerProtection::class_func_publicRegister (SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)) ;
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
     }else{
       repeatFlag_8 = false ;
     }
   }
-  GALGAS_configRegisterMap var_configRegisterMap_4197 = GALGAS_configRegisterMap::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 152)) ;
+  GALGAS_configRegisterMap var_configRegisterMap_4197 = GALGAS_configRegisterMap::class_func_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 152)) ;
   bool repeatFlag_18 = true ;
   while (repeatFlag_18) {
     if (select_piccoloDevice_5F_syntax_12 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_configuration COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 155)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_configuration COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 155)) ;
       GALGAS_lstring var_configRegisterName_4314 = inCompiler->synthetizedAttribute_tokenString () ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 156)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 157)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 156)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 157)) ;
       GALGAS_luint var_configRegisterAddress_4368 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 158)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_width COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 159)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 158)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_width COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 159)) ;
       GALGAS_luint var_configRegisterWidth_4428 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 160)) ;
-      GALGAS_illegalMaskList var_illegalMaskList_4456 = GALGAS_illegalMaskList::constructor_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 161)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 160)) ;
+      GALGAS_illegalMaskList var_illegalMaskList_4456 = GALGAS_illegalMaskList::class_func_emptyList (SOURCE_FILE ("piccoloDevice_syntax.galgas", 161)) ;
       bool repeatFlag_19 = true ;
       while (repeatFlag_19) {
         if (select_piccoloDevice_5F_syntax_13 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_illegal COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 164)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_illegal COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 164)) ;
           GALGAS_luint var_illegalValue_4567 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 165)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 166)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 165)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 166)) ;
           GALGAS_luint var_illegalMask_4621 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 167)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_message COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 167)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_message COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
           GALGAS_lstring var_illegalDescriptionString_4678 = inCompiler->synthetizedAttribute_tokenString () ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
           var_illegalMaskList_4456.addAssign_operation (var_illegalValue_4567, var_illegalMask_4621, var_illegalDescriptionString_4678  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 170)) ;
         }else{
           repeatFlag_19 = false ;
         }
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 172)) ;
-      GALGAS_configRegisterMaskMap var_configRegisterMaskMap_4805 = GALGAS_configRegisterMaskMap::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 173)) ;
-      GALGAS_stringset var_settingNameSet_4870 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("piccoloDevice_syntax.galgas", 174)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 172)) ;
+      GALGAS_configRegisterMaskMap var_configRegisterMaskMap_4805 = GALGAS_configRegisterMaskMap::class_func_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 173)) ;
+      GALGAS_stringset var_settingNameSet_4870 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("piccoloDevice_syntax.galgas", 174)) ;
       bool repeatFlag_20 = true ;
       while (repeatFlag_20) {
         if (select_piccoloDevice_5F_syntax_14 (inCompiler) == 2) {
           GALGAS_lstring var_maskName_4962 = inCompiler->synthetizedAttribute_tokenString () ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 177)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 177)) ;
           enumGalgasBool test_21 = kBoolTrue ;
           if (kBoolTrue == test_21) {
             test_21 = var_settingNameSet_4870.getter_hasKey (var_maskName_4962.readProperty_string () COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 178)).boolEnum () ;
@@ -10442,24 +10419,24 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
             }
           }
           var_settingNameSet_4870.addAssign_operation (var_maskName_4962.readProperty_string ()  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 181)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
           GALGAS_luint var_maskValue_5193 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 184)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 184)) ;
           GALGAS_lstring var_maskDescriptionString_5252 = inCompiler->synthetizedAttribute_tokenString () ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 185)) ;
-          GALGAS_fieldSettingMap var_fieldSettingMap_5284 = GALGAS_fieldSettingMap::constructor_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 186)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 185)) ;
+          GALGAS_fieldSettingMap var_fieldSettingMap_5284 = GALGAS_fieldSettingMap::class_func_emptyMap (SOURCE_FILE ("piccoloDevice_syntax.galgas", 186)) ;
           bool repeatFlag_23 = true ;
           while (repeatFlag_23) {
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_setting COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 188)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_setting COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 188)) ;
             GALGAS_luint var_value_5390 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 189)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 190)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 189)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 190)) ;
             GALGAS_luint var_mask_5441 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 191)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 192)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 191)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 192)) ;
             GALGAS_lstring var_descriptionString_5499 = inCompiler->synthetizedAttribute_tokenString () ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 193)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 193)) ;
             {
             var_fieldSettingMap_5284.setter_insertKey (var_descriptionString_5499, var_value_5390.readProperty_uint (), var_mask_5441.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 194)) ;
             }
@@ -10475,7 +10452,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           repeatFlag_20 = false ;
         }
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 199)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 199)) ;
       {
       var_configRegisterMap_4197.setter_insertKey (var_configRegisterName_4314, var_configRegisterAddress_4368, var_configRegisterWidth_4428, var_configRegisterMaskMap_4805, var_illegalMaskList_4456, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 200)) ;
       }
@@ -10483,7 +10460,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       repeatFlag_18 = false ;
     }
   }
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 208)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 208)) ;
   enumGalgasBool test_24 = kBoolTrue ;
   if (kBoolTrue == test_24) {
     test_24 = GALGAS_bool (kIsEqual, var_processorName_427.readProperty_string ().objectCompare (GALGAS_string ("pic18_60"))).operator_or (GALGAS_bool (kIsEqual, var_processorName_427.readProperty_string ().objectCompare (GALGAS_string ("pic18_80"))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).boolEnum () ;
@@ -10493,25 +10470,25 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       GALGAS_bitSliceTable joker_6126_3 ; // Joker input parameter
       GALGAS_string joker_6126_2 ; // Joker input parameter
       GALGAS_registerProtection joker_6126_1 ; // Joker input parameter
-      var_registerTable_2166.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("BSR"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)), joker_6126_5, joker_6126_4, joker_6126_3, joker_6126_2, joker_6126_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)) ;
+      var_registerTable_2166.method_searchKey (GALGAS_lstring::class_func_new (GALGAS_string ("BSR"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)), joker_6126_5, joker_6126_4, joker_6126_3, joker_6126_2, joker_6126_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)) ;
       GALGAS_uintlist joker_6202_5 ; // Joker input parameter
       GALGAS_uint joker_6202_4 ; // Joker input parameter
       GALGAS_bitSliceTable joker_6202_3 ; // Joker input parameter
       GALGAS_string joker_6202_2 ; // Joker input parameter
       GALGAS_registerProtection joker_6202_1 ; // Joker input parameter
-      var_registerTable_2166.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSL"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), joker_6202_5, joker_6202_4, joker_6202_3, joker_6202_2, joker_6202_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)) ;
+      var_registerTable_2166.method_searchKey (GALGAS_lstring::class_func_new (GALGAS_string ("TOSL"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), joker_6202_5, joker_6202_4, joker_6202_3, joker_6202_2, joker_6202_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)) ;
       GALGAS_uintlist joker_6278_5 ; // Joker input parameter
       GALGAS_uint joker_6278_4 ; // Joker input parameter
       GALGAS_bitSliceTable joker_6278_3 ; // Joker input parameter
       GALGAS_string joker_6278_2 ; // Joker input parameter
       GALGAS_registerProtection joker_6278_1 ; // Joker input parameter
-      var_registerTable_2166.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSH"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), joker_6278_5, joker_6278_4, joker_6278_3, joker_6278_2, joker_6278_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)) ;
+      var_registerTable_2166.method_searchKey (GALGAS_lstring::class_func_new (GALGAS_string ("TOSH"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), joker_6278_5, joker_6278_4, joker_6278_3, joker_6278_2, joker_6278_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)) ;
       GALGAS_uintlist joker_6354_5 ; // Joker input parameter
       GALGAS_uint joker_6354_4 ; // Joker input parameter
       GALGAS_bitSliceTable joker_6354_3 ; // Joker input parameter
       GALGAS_string joker_6354_2 ; // Joker input parameter
       GALGAS_registerProtection joker_6354_1 ; // Joker input parameter
-      var_registerTable_2166.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("TOSU"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), joker_6354_5, joker_6354_4, joker_6354_3, joker_6354_2, joker_6354_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)) ;
+      var_registerTable_2166.method_searchKey (GALGAS_lstring::class_func_new (GALGAS_string ("TOSU"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), joker_6354_5, joker_6354_4, joker_6354_3, joker_6354_2, joker_6354_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)) ;
     }
   }
   GALGAS_string var_sharedBankName_6422 = GALGAS_string::makeEmptyString () ;
@@ -10544,53 +10521,53 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       }
     }
   }
-  outArgument_outPiccoloDeviceModel = GALGAS_piccoloDeviceModel::constructor_new (var_deviceName_336, var_processorType_388, var_romSize_964, var_bankCount_1312, var_registerTable_2166, var_ramBankTable_1521, var_eepromSize_990, var_eepromAddress_1013, var_configRegisterMap_4197, var_sharedBankName_6422, inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 230)) ;
+  outArgument_outPiccoloDeviceModel = GALGAS_piccoloDeviceModel::class_func_new (var_deviceName_336, var_processorType_388, var_romSize_964, var_bankCount_1312, var_registerTable_2166, var_ramBankTable_1521, var_eepromSize_990, var_eepromAddress_1013, var_configRegisterMap_4197, var_sharedBankName_6422, inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 230)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_parse (C_Lexique_piccoloDevice_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_controller COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 11)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 12)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 13)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_processor COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 14)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 16)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 28)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_romsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 29)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 30)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 31)) ;
+void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_parse (Lexique_piccoloDevice_5F_lexique * inCompiler) {
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_controller COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 11)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 12)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 13)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_processor COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 14)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 16)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 28)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_romsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 29)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 30)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 31)) ;
   switch (select_piccoloDevice_5F_syntax_0 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_eepromsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 38)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 39)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 41)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 42)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 44)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_eepromsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 38)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 39)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 41)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 42)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 44)) ;
   } break ;
   default:
     break ;
   }
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 46)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 47)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 48)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 46)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 47)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 48)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     if (select_piccoloDevice_5F_syntax_1 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_unusedregister COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 51)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 52)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_unusedregister COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 51)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 52)) ;
       switch (select_piccoloDevice_5F_syntax_2 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 55)) ;
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 56)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 55)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 56)) ;
       } break ;
       default:
         break ;
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 58)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 58)) ;
     }else{
       repeatFlag_0 = false ;
     }
@@ -10598,22 +10575,22 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
     if (select_piccoloDevice_5F_syntax_3 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 63)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 64)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 65)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 66)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 67)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 68)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 63)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 64)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 65)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 66)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 67)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 68)) ;
       switch (select_piccoloDevice_5F_syntax_4 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mirrorat COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 72)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mirrorat COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 72)) ;
         bool repeatFlag_2 = true ;
         while (repeatFlag_2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 74)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 74)) ;
           if (select_piccoloDevice_5F_syntax_5 (inCompiler) == 2) {
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 77)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 77)) ;
           }else{
             repeatFlag_2 = false ;
           }
@@ -10622,7 +10599,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       default:
         break ;
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 80)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 80)) ;
     }else{
       repeatFlag_1 = false ;
     }
@@ -10630,58 +10607,58 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   bool repeatFlag_3 = true ;
   while (repeatFlag_3) {
     if (select_piccoloDevice_5F_syntax_6 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_register COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 92)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 93)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 94)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_register COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 92)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 93)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 94)) ;
       bool repeatFlag_4 = true ;
       while (repeatFlag_4) {
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 97)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 97)) ;
         if (select_piccoloDevice_5F_syntax_7 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 100)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 100)) ;
         }else{
           repeatFlag_4 = false ;
         }
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 102)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 102)) ;
       bool repeatFlag_5 = true ;
       while (repeatFlag_5) {
         switch (select_piccoloDevice_5F_syntax_9 (inCompiler)) {
         case 1: {
           bool repeatFlag_6 = true ;
           while (repeatFlag_6) {
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 111)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 111)) ;
             switch (select_piccoloDevice_5F_syntax_11 (inCompiler)) {
             case 1: {
             } break ;
             case 2: {
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 119)) ;
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 119)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)) ;
             } break ;
             default:
               break ;
             }
             if (select_piccoloDevice_5F_syntax_10 (inCompiler) == 2) {
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 131)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 131)) ;
             }else{
               repeatFlag_6 = false ;
             }
           }
         } break ;
         case 2: {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 136)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 136)) ;
         } break ;
         default:
           break ;
         }
         if (select_piccoloDevice_5F_syntax_8 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 141)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 141)) ;
         }else{
           repeatFlag_5 = false ;
         }
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
     }else{
       repeatFlag_3 = false ;
     }
@@ -10689,42 +10666,42 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   bool repeatFlag_7 = true ;
   while (repeatFlag_7) {
     if (select_piccoloDevice_5F_syntax_12 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_configuration COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 155)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 156)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 157)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 158)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_width COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 159)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 160)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_configuration COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 155)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 156)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 157)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 158)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_width COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 159)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 160)) ;
       bool repeatFlag_8 = true ;
       while (repeatFlag_8) {
         if (select_piccoloDevice_5F_syntax_13 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_illegal COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 164)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 165)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 166)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 167)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_message COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_illegal COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 164)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 165)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 166)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 167)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_message COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
         }else{
           repeatFlag_8 = false ;
         }
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 172)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 172)) ;
       bool repeatFlag_9 = true ;
       while (repeatFlag_9) {
         if (select_piccoloDevice_5F_syntax_14 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 177)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 184)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 185)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 177)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 184)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 185)) ;
           bool repeatFlag_10 = true ;
           while (repeatFlag_10) {
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_setting COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 188)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 189)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 190)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 191)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 192)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 193)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_setting COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 188)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 189)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 190)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 191)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 192)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 193)) ;
             if (select_piccoloDevice_5F_syntax_15 (inCompiler) == 2) {
             }else{
               repeatFlag_10 = false ;
@@ -10734,59 +10711,59 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           repeatFlag_9 = false ;
         }
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 199)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 199)) ;
     }else{
       repeatFlag_7 = false ;
     }
   }
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 208)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 208)) ;
   inCompiler->resetTemplateString () ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_indexing (C_Lexique_piccoloDevice_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_controller COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 11)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 12)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 13)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_processor COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 14)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 16)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 28)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_romsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 29)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 30)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 31)) ;
+void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_indexing (Lexique_piccoloDevice_5F_lexique * inCompiler) {
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_controller COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 11)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 12)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 13)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_processor COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 14)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 16)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 28)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_romsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 29)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 30)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 31)) ;
   switch (select_piccoloDevice_5F_syntax_0 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_eepromsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 38)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 39)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 41)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 42)) ;
-    inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 44)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_eepromsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 38)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 39)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 41)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 42)) ;
+    inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 44)) ;
   } break ;
   default:
     break ;
   }
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 46)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 47)) ;
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 48)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 46)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 47)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 48)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     if (select_piccoloDevice_5F_syntax_1 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_unusedregister COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 51)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 52)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_unusedregister COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 51)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 52)) ;
       switch (select_piccoloDevice_5F_syntax_2 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 55)) ;
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 56)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 55)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 56)) ;
       } break ;
       default:
         break ;
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 58)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 58)) ;
     }else{
       repeatFlag_0 = false ;
     }
@@ -10794,22 +10771,22 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
     if (select_piccoloDevice_5F_syntax_3 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 63)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 64)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 65)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 66)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 67)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 68)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 63)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 64)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 65)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 66)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 67)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 68)) ;
       switch (select_piccoloDevice_5F_syntax_4 (inCompiler)) {
       case 1: {
       } break ;
       case 2: {
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mirrorat COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 72)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mirrorat COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 72)) ;
         bool repeatFlag_2 = true ;
         while (repeatFlag_2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 74)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 74)) ;
           if (select_piccoloDevice_5F_syntax_5 (inCompiler) == 2) {
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 77)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 77)) ;
           }else{
             repeatFlag_2 = false ;
           }
@@ -10818,7 +10795,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       default:
         break ;
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 80)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 80)) ;
     }else{
       repeatFlag_1 = false ;
     }
@@ -10826,58 +10803,58 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   bool repeatFlag_3 = true ;
   while (repeatFlag_3) {
     if (select_piccoloDevice_5F_syntax_6 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_register COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 92)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 93)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 94)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_register COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 92)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 93)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 94)) ;
       bool repeatFlag_4 = true ;
       while (repeatFlag_4) {
-        inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 97)) ;
+        inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 97)) ;
         if (select_piccoloDevice_5F_syntax_7 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 100)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 100)) ;
         }else{
           repeatFlag_4 = false ;
         }
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 102)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 102)) ;
       bool repeatFlag_5 = true ;
       while (repeatFlag_5) {
         switch (select_piccoloDevice_5F_syntax_9 (inCompiler)) {
         case 1: {
           bool repeatFlag_6 = true ;
           while (repeatFlag_6) {
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 111)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 111)) ;
             switch (select_piccoloDevice_5F_syntax_11 (inCompiler)) {
             case 1: {
             } break ;
             case 2: {
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 119)) ;
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 119)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)) ;
             } break ;
             default:
               break ;
             }
             if (select_piccoloDevice_5F_syntax_10 (inCompiler) == 2) {
-              inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 131)) ;
+              inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 131)) ;
             }else{
               repeatFlag_6 = false ;
             }
           }
         } break ;
         case 2: {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 136)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 136)) ;
         } break ;
         default:
           break ;
         }
         if (select_piccoloDevice_5F_syntax_8 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 141)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 141)) ;
         }else{
           repeatFlag_5 = false ;
         }
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
     }else{
       repeatFlag_3 = false ;
     }
@@ -10885,42 +10862,42 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   bool repeatFlag_7 = true ;
   while (repeatFlag_7) {
     if (select_piccoloDevice_5F_syntax_12 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_configuration COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 155)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 156)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 157)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 158)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_width COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 159)) ;
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 160)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_configuration COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 155)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 156)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 157)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 158)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_width COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 159)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 160)) ;
       bool repeatFlag_8 = true ;
       while (repeatFlag_8) {
         if (select_piccoloDevice_5F_syntax_13 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_illegal COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 164)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 165)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 166)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 167)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_message COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_illegal COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 164)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 165)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 166)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 167)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_message COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
         }else{
           repeatFlag_8 = false ;
         }
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 172)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 172)) ;
       bool repeatFlag_9 = true ;
       while (repeatFlag_9) {
         if (select_piccoloDevice_5F_syntax_14 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 177)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 184)) ;
-          inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 185)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 177)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 184)) ;
+          inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 185)) ;
           bool repeatFlag_10 = true ;
           while (repeatFlag_10) {
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_setting COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 188)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 189)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 190)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 191)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 192)) ;
-            inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 193)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_setting COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 188)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 189)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 190)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 191)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 192)) ;
+            inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 193)) ;
             if (select_piccoloDevice_5F_syntax_15 (inCompiler) == 2) {
             }else{
               repeatFlag_10 = false ;
@@ -10930,12 +10907,12 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           repeatFlag_9 = false ;
         }
       }
-      inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 199)) ;
+      inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 199)) ;
     }else{
       repeatFlag_7 = false ;
     }
   }
-  inCompiler->acceptTerminal (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 208)) ;
+  inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 208)) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10957,9 +10934,9 @@ mProperty_mDeclarationInRAM (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_declarationInRamList_2D_element GALGAS_declarationInRamList_2D_element::constructor_new (const GALGAS_declarationInRam & in_mDeclarationInRAM,
-                                                                                                Compiler * /* inCompiler */
-                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_declarationInRamList_2D_element GALGAS_declarationInRamList_2D_element::class_func_new (const GALGAS_declarationInRam & in_mDeclarationInRAM,
+                                                                                               Compiler * /* inCompiler */
+                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_declarationInRamList_2D_element result ;
   if (in_mDeclarationInRAM.isValid ()) {
     result = GALGAS_declarationInRamList_2D_element (in_mDeclarationInRAM) ;
@@ -11008,9 +10985,8 @@ void GALGAS_declarationInRamList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_declarationInRamList_2D_element ("declarationInRamList-element",
-                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationInRamList_2D_element ("declarationInRamList-element",
+                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11067,10 +11043,10 @@ mProperty_mSettingList (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_configDefinitionList_2D_element GALGAS_configDefinitionList_2D_element::constructor_new (const GALGAS_location & in_mDefinitionLocation,
-                                                                                                const GALGAS_configSettingList & in_mSettingList,
-                                                                                                Compiler * /* inCompiler */
-                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_configDefinitionList_2D_element GALGAS_configDefinitionList_2D_element::class_func_new (const GALGAS_location & in_mDefinitionLocation,
+                                                                                               const GALGAS_configSettingList & in_mSettingList,
+                                                                                               Compiler * /* inCompiler */
+                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_configDefinitionList_2D_element result ;
   if (in_mDefinitionLocation.isValid () && in_mSettingList.isValid ()) {
     result = GALGAS_configDefinitionList_2D_element (in_mDefinitionLocation, in_mSettingList) ;
@@ -11125,9 +11101,8 @@ void GALGAS_configDefinitionList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_configDefinitionList_2D_element ("configDefinitionList-element",
-                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configDefinitionList_2D_element ("configDefinitionList-element",
+                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11184,10 +11159,10 @@ mProperty_mErrorLocation (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatExpressionList_2D_element GALGAS_immediatExpressionList_2D_element::constructor_new (const GALGAS_immediatExpression & in_mExpression,
-                                                                                                    const GALGAS_location & in_mErrorLocation,
-                                                                                                    Compiler * /* inCompiler */
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_immediatExpressionList_2D_element GALGAS_immediatExpressionList_2D_element::class_func_new (const GALGAS_immediatExpression & in_mExpression,
+                                                                                                   const GALGAS_location & in_mErrorLocation,
+                                                                                                   Compiler * /* inCompiler */
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_immediatExpressionList_2D_element result ;
   if (in_mExpression.isValid () && in_mErrorLocation.isValid ()) {
     result = GALGAS_immediatExpressionList_2D_element (in_mExpression, in_mErrorLocation) ;
@@ -11242,9 +11217,8 @@ void GALGAS_immediatExpressionList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_immediatExpressionList_2D_element ("immediatExpressionList-element",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatExpressionList_2D_element ("immediatExpressionList-element",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11298,9 +11272,9 @@ mProperty_mInstruction (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_instructionList_2D_element GALGAS_baseline_5F_instructionList_2D_element::constructor_new (const GALGAS_baseline_5F_instruction & in_mInstruction,
-                                                                                                              Compiler * /* inCompiler */
-                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_baseline_5F_instructionList_2D_element GALGAS_baseline_5F_instructionList_2D_element::class_func_new (const GALGAS_baseline_5F_instruction & in_mInstruction,
+                                                                                                             Compiler * /* inCompiler */
+                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_instructionList_2D_element result ;
   if (in_mInstruction.isValid ()) {
     result = GALGAS_baseline_5F_instructionList_2D_element (in_mInstruction) ;
@@ -11349,9 +11323,8 @@ void GALGAS_baseline_5F_instructionList_2D_element::description (String & ioStri
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_instructionList_2D_element ("baseline_instructionList-element",
-                                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instructionList_2D_element ("baseline_instructionList-element",
+                                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11411,11 +11384,11 @@ mProperty_mEndOfPartLocation (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_partList_2D_element GALGAS_baseline_5F_partList_2D_element::constructor_new (const GALGAS_baseline_5F_conditionExpression & in_mCondition,
-                                                                                                const GALGAS_baseline_5F_instructionList & in_mInstructionList,
-                                                                                                const GALGAS_location & in_mEndOfPartLocation,
-                                                                                                Compiler * /* inCompiler */
-                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_baseline_5F_partList_2D_element GALGAS_baseline_5F_partList_2D_element::class_func_new (const GALGAS_baseline_5F_conditionExpression & in_mCondition,
+                                                                                               const GALGAS_baseline_5F_instructionList & in_mInstructionList,
+                                                                                               const GALGAS_location & in_mEndOfPartLocation,
+                                                                                               Compiler * /* inCompiler */
+                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_partList_2D_element result ;
   if (in_mCondition.isValid () && in_mInstructionList.isValid () && in_mEndOfPartLocation.isValid ()) {
     result = GALGAS_baseline_5F_partList_2D_element (in_mCondition, in_mInstructionList, in_mEndOfPartLocation) ;
@@ -11476,9 +11449,8 @@ void GALGAS_baseline_5F_partList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_partList_2D_element ("baseline_partList-element",
-                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_partList_2D_element ("baseline_partList-element",
+                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11532,9 +11504,9 @@ mProperty_mInstruction (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::constructor_new (const GALGAS_baseline_5F_intermediate_5F_instruction & in_mInstruction,
-                                                                                                                                              Compiler * /* inCompiler */
-                                                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::class_func_new (const GALGAS_baseline_5F_intermediate_5F_instruction & in_mInstruction,
+                                                                                                                                             Compiler * /* inCompiler */
+                                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element result ;
   if (in_mInstruction.isValid ()) {
     result = GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element (in_mInstruction) ;
@@ -11583,9 +11555,8 @@ void GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::description 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element ("baseline_intermediate_instructionList-element",
-                                                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element ("baseline_intermediate_instructionList-element",
+                                                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11639,9 +11610,9 @@ mProperty_mInstruction (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_instructionList_2D_element GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::constructor_new (const GALGAS_baseline_5F_assembly_5F_instruction & in_mInstruction,
-                                                                                                                                      Compiler * /* inCompiler */
-                                                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_instructionList_2D_element GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::class_func_new (const GALGAS_baseline_5F_assembly_5F_instruction & in_mInstruction,
+                                                                                                                                     Compiler * /* inCompiler */
+                                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instructionList_2D_element result ;
   if (in_mInstruction.isValid ()) {
     result = GALGAS_baseline_5F_assembly_5F_instructionList_2D_element (in_mInstruction) ;
@@ -11690,9 +11661,8 @@ void GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::description (Str
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList_2D_element ("baseline_assembly_instructionList-element",
-                                                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList_2D_element ("baseline_assembly_instructionList-element",
+                                                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11746,9 +11716,9 @@ mProperty_mInstruction (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instructionList_2D_element GALGAS_midrange_5F_instructionList_2D_element::constructor_new (const GALGAS_midrange_5F_instruction & in_mInstruction,
-                                                                                                              Compiler * /* inCompiler */
-                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instructionList_2D_element GALGAS_midrange_5F_instructionList_2D_element::class_func_new (const GALGAS_midrange_5F_instruction & in_mInstruction,
+                                                                                                             Compiler * /* inCompiler */
+                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instructionList_2D_element result ;
   if (in_mInstruction.isValid ()) {
     result = GALGAS_midrange_5F_instructionList_2D_element (in_mInstruction) ;
@@ -11797,9 +11767,8 @@ void GALGAS_midrange_5F_instructionList_2D_element::description (String & ioStri
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instructionList_2D_element ("midrange_instructionList-element",
-                                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instructionList_2D_element ("midrange_instructionList-element",
+                                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11859,11 +11828,11 @@ mProperty_mEndOfPartLocation (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_partList_2D_element GALGAS_midrange_5F_partList_2D_element::constructor_new (const GALGAS_midrange_5F_conditionExpression & in_mCondition,
-                                                                                                const GALGAS_midrange_5F_instructionList & in_mInstructionList,
-                                                                                                const GALGAS_location & in_mEndOfPartLocation,
-                                                                                                Compiler * /* inCompiler */
-                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_partList_2D_element GALGAS_midrange_5F_partList_2D_element::class_func_new (const GALGAS_midrange_5F_conditionExpression & in_mCondition,
+                                                                                               const GALGAS_midrange_5F_instructionList & in_mInstructionList,
+                                                                                               const GALGAS_location & in_mEndOfPartLocation,
+                                                                                               Compiler * /* inCompiler */
+                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_partList_2D_element result ;
   if (in_mCondition.isValid () && in_mInstructionList.isValid () && in_mEndOfPartLocation.isValid ()) {
     result = GALGAS_midrange_5F_partList_2D_element (in_mCondition, in_mInstructionList, in_mEndOfPartLocation) ;
@@ -11924,9 +11893,8 @@ void GALGAS_midrange_5F_partList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_partList_2D_element ("midrange_partList-element",
-                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_partList_2D_element ("midrange_partList-element",
+                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11980,9 +11948,9 @@ mProperty_mInstruction (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::constructor_new (const GALGAS_midrange_5F_intermediate_5F_instruction & in_mInstruction,
-                                                                                                                                              Compiler * /* inCompiler */
-                                                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::class_func_new (const GALGAS_midrange_5F_intermediate_5F_instruction & in_mInstruction,
+                                                                                                                                             Compiler * /* inCompiler */
+                                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element result ;
   if (in_mInstruction.isValid ()) {
     result = GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element (in_mInstruction) ;
@@ -12031,9 +11999,8 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::description 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element ("midrange_intermediate_instructionList-element",
-                                                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element ("midrange_intermediate_instructionList-element",
+                                                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12087,9 +12054,9 @@ mProperty_mInstruction (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_InstructionList_2D_element GALGAS_pic_31__38_InstructionList_2D_element::constructor_new (const GALGAS_pic_31__38_PiccoloInstruction & in_mInstruction,
-                                                                                                            Compiler * /* inCompiler */
-                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38_InstructionList_2D_element GALGAS_pic_31__38_InstructionList_2D_element::class_func_new (const GALGAS_pic_31__38_PiccoloInstruction & in_mInstruction,
+                                                                                                           Compiler * /* inCompiler */
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_InstructionList_2D_element result ;
   if (in_mInstruction.isValid ()) {
     result = GALGAS_pic_31__38_InstructionList_2D_element (in_mInstruction) ;
@@ -12138,9 +12105,8 @@ void GALGAS_pic_31__38_InstructionList_2D_element::description (String & ioStrin
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_InstructionList_2D_element ("pic18InstructionList-element",
-                                                              nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_InstructionList_2D_element ("pic18InstructionList-element",
+                                                                                             nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12200,11 +12166,11 @@ mProperty_mEndOfPartLocation (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_DoWhilePartList_2D_element GALGAS_pic_31__38_DoWhilePartList_2D_element::constructor_new (const GALGAS_pic_31__38_ConditionExpression & in_mCondition,
-                                                                                                            const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                                                            const GALGAS_location & in_mEndOfPartLocation,
-                                                                                                            Compiler * /* inCompiler */
-                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38_DoWhilePartList_2D_element GALGAS_pic_31__38_DoWhilePartList_2D_element::class_func_new (const GALGAS_pic_31__38_ConditionExpression & in_mCondition,
+                                                                                                           const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                           const GALGAS_location & in_mEndOfPartLocation,
+                                                                                                           Compiler * /* inCompiler */
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_DoWhilePartList_2D_element result ;
   if (in_mCondition.isValid () && in_mInstructionList.isValid () && in_mEndOfPartLocation.isValid ()) {
     result = GALGAS_pic_31__38_DoWhilePartList_2D_element (in_mCondition, in_mInstructionList, in_mEndOfPartLocation) ;
@@ -12265,9 +12231,8 @@ void GALGAS_pic_31__38_DoWhilePartList_2D_element::description (String & ioStrin
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_DoWhilePartList_2D_element ("pic18DoWhilePartList-element",
-                                                              nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_DoWhilePartList_2D_element ("pic18DoWhilePartList-element",
+                                                                                             nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12324,10 +12289,10 @@ mProperty_mValueList (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_checkpicList_2D_element GALGAS_checkpicList_2D_element::constructor_new (const GALGAS_location & in_mErrorLocation,
-                                                                                const GALGAS_lstringlist & in_mValueList,
-                                                                                Compiler * /* inCompiler */
-                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_checkpicList_2D_element GALGAS_checkpicList_2D_element::class_func_new (const GALGAS_location & in_mErrorLocation,
+                                                                               const GALGAS_lstringlist & in_mValueList,
+                                                                               Compiler * /* inCompiler */
+                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_checkpicList_2D_element result ;
   if (in_mErrorLocation.isValid () && in_mValueList.isValid ()) {
     result = GALGAS_checkpicList_2D_element (in_mErrorLocation, in_mValueList) ;
@@ -12382,9 +12347,8 @@ void GALGAS_checkpicList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_checkpicList_2D_element ("checkpicList-element",
-                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_checkpicList_2D_element ("checkpicList-element",
+                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12438,9 +12402,9 @@ mProperty_mCaseItem (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_CaseExpressionList_2D_element GALGAS_pic_31__38_CaseExpressionList_2D_element::constructor_new (const GALGAS_pic_31__38_AbstractCaseItem & in_mCaseItem,
-                                                                                                                  Compiler * /* inCompiler */
-                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38_CaseExpressionList_2D_element GALGAS_pic_31__38_CaseExpressionList_2D_element::class_func_new (const GALGAS_pic_31__38_AbstractCaseItem & in_mCaseItem,
+                                                                                                                 Compiler * /* inCompiler */
+                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_CaseExpressionList_2D_element result ;
   if (in_mCaseItem.isValid ()) {
     result = GALGAS_pic_31__38_CaseExpressionList_2D_element (in_mCaseItem) ;
@@ -12489,9 +12453,8 @@ void GALGAS_pic_31__38_CaseExpressionList_2D_element::description (String & ioSt
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList_2D_element ("pic18CaseExpressionList-element",
-                                                                 nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList_2D_element ("pic18CaseExpressionList-element",
+                                                                                                nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12551,11 +12514,11 @@ mProperty_mInstructionList (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::constructor_new (const GALGAS_location & in_mStartOfCase,
-                                                                                                                                const GALGAS_pic_31__38_CaseExpressionList & in_mCaseExpressionList,
-                                                                                                                                const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                                                                                Compiler * /* inCompiler */
-                                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::class_func_new (const GALGAS_location & in_mStartOfCase,
+                                                                                                                               const GALGAS_pic_31__38_CaseExpressionList & in_mCaseExpressionList,
+                                                                                                                               const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                                               Compiler * /* inCompiler */
+                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element result ;
   if (in_mStartOfCase.isValid () && in_mCaseExpressionList.isValid () && in_mInstructionList.isValid ()) {
     result = GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (in_mStartOfCase, in_mCaseExpressionList, in_mInstructionList) ;
@@ -12616,9 +12579,8 @@ void GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::description (String
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element ("pic18SwitchInstructionCaseList-element",
-                                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element ("pic18SwitchInstructionCaseList-element",
+                                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12678,11 +12640,11 @@ mProperty_mMax (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_SequentialInstructionList_2D_element GALGAS_ipic_31__38_SequentialInstructionList_2D_element::constructor_new (const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
-                                                                                                                                  const GALGAS_uint & in_mMin,
-                                                                                                                                  const GALGAS_uint & in_mMax,
-                                                                                                                                  Compiler * /* inCompiler */
-                                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38_SequentialInstructionList_2D_element GALGAS_ipic_31__38_SequentialInstructionList_2D_element::class_func_new (const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
+                                                                                                                                 const GALGAS_uint & in_mMin,
+                                                                                                                                 const GALGAS_uint & in_mMax,
+                                                                                                                                 Compiler * /* inCompiler */
+                                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38_SequentialInstructionList_2D_element result ;
   if (in_mInstruction.isValid () && in_mMin.isValid () && in_mMax.isValid ()) {
     result = GALGAS_ipic_31__38_SequentialInstructionList_2D_element (in_mInstruction, in_mMin, in_mMax) ;
@@ -12743,9 +12705,8 @@ void GALGAS_ipic_31__38_SequentialInstructionList_2D_element::description (Strin
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList_2D_element ("ipic18SequentialInstructionList-element",
-                                                                         nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList_2D_element ("ipic18SequentialInstructionList-element",
+                                                                                                        nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12802,10 +12763,10 @@ mProperty_mList (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_branchOverflowMap_2D_element GALGAS_branchOverflowMap_2D_element::constructor_new (const GALGAS_string & in_key,
-                                                                                          const GALGAS_stringlist & in_mList,
-                                                                                          Compiler * /* inCompiler */
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_branchOverflowMap_2D_element GALGAS_branchOverflowMap_2D_element::class_func_new (const GALGAS_string & in_key,
+                                                                                         const GALGAS_stringlist & in_mList,
+                                                                                         Compiler * /* inCompiler */
+                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_branchOverflowMap_2D_element result ;
   if (in_key.isValid () && in_mList.isValid ()) {
     result = GALGAS_branchOverflowMap_2D_element (in_key, in_mList) ;
@@ -12860,9 +12821,8 @@ void GALGAS_branchOverflowMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_branchOverflowMap_2D_element ("branchOverflowMap-element",
-                                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_branchOverflowMap_2D_element ("branchOverflowMap-element",
+                                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12919,10 +12879,10 @@ mProperty_mBinaryCode (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_codeList_2D_element GALGAS_codeList_2D_element::constructor_new (const GALGAS_string & in_mAssemblyCode,
-                                                                        const GALGAS_uintlist & in_mBinaryCode,
-                                                                        Compiler * /* inCompiler */
-                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_codeList_2D_element GALGAS_codeList_2D_element::class_func_new (const GALGAS_string & in_mAssemblyCode,
+                                                                       const GALGAS_uintlist & in_mBinaryCode,
+                                                                       Compiler * /* inCompiler */
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_codeList_2D_element result ;
   if (in_mAssemblyCode.isValid () && in_mBinaryCode.isValid ()) {
     result = GALGAS_codeList_2D_element (in_mAssemblyCode, in_mBinaryCode) ;
@@ -12977,9 +12937,8 @@ void GALGAS_codeList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_codeList_2D_element ("codeList-element",
-                                            nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_codeList_2D_element ("codeList-element",
+                                                                           nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13033,9 +12992,9 @@ mProperty_mBlockList (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_clusterList_2D_element GALGAS_clusterList_2D_element::constructor_new (const GALGAS_ipic_31__38_BlockList & in_mBlockList,
-                                                                              Compiler * /* inCompiler */
-                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_clusterList_2D_element GALGAS_clusterList_2D_element::class_func_new (const GALGAS_ipic_31__38_BlockList & in_mBlockList,
+                                                                             Compiler * /* inCompiler */
+                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_clusterList_2D_element result ;
   if (in_mBlockList.isValid ()) {
     result = GALGAS_clusterList_2D_element (in_mBlockList) ;
@@ -13084,9 +13043,8 @@ void GALGAS_clusterList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_clusterList_2D_element ("clusterList-element",
-                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_clusterList_2D_element ("clusterList-element",
+                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13185,10 +13143,10 @@ AC_GALGAS_reference_class (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_registerExpression GALGAS_registerExpression::constructor_new (const GALGAS_lstring & inAttribute_mRegisterName,
-                                                                      const GALGAS_immediatExpression & inAttribute_mOffset,
-                                                                      const GALGAS_location & inAttribute_mEndOfOffsetExpression
-                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_registerExpression GALGAS_registerExpression::class_func_new (const GALGAS_lstring & inAttribute_mRegisterName,
+                                                                     const GALGAS_immediatExpression & inAttribute_mOffset,
+                                                                     const GALGAS_location & inAttribute_mEndOfOffsetExpression
+                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_registerExpression result ;
   if (inAttribute_mRegisterName.isValid () && inAttribute_mOffset.isValid () && inAttribute_mEndOfOffsetExpression.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_registerExpression (inAttribute_mRegisterName, inAttribute_mOffset, inAttribute_mEndOfOffsetExpression COMMA_THERE)) ;
@@ -13311,9 +13269,8 @@ acPtr_class * cPtr_registerExpression::duplicate (LOCATION_ARGS) const {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_registerExpression ("registerExpression",
-                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_registerExpression ("registerExpression",
+                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13420,12 +13377,12 @@ GALGAS_declarationInRam (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_byteDeclarationInRam GALGAS_byteDeclarationInRam::constructor_new (const GALGAS_lstring & inAttribute_mName,
-                                                                          const GALGAS_immediatExpression & inAttribute_mSizeExpression,
-                                                                          const GALGAS_bitSliceTable & inAttribute_mBitSliceTable,
-                                                                          const GALGAS_string & inAttribute_mBitDefinitionString,
-                                                                          const GALGAS_registerProtection & inAttribute_mProtection
-                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_byteDeclarationInRam GALGAS_byteDeclarationInRam::class_func_new (const GALGAS_lstring & inAttribute_mName,
+                                                                         const GALGAS_immediatExpression & inAttribute_mSizeExpression,
+                                                                         const GALGAS_bitSliceTable & inAttribute_mBitSliceTable,
+                                                                         const GALGAS_string & inAttribute_mBitDefinitionString,
+                                                                         const GALGAS_registerProtection & inAttribute_mProtection
+                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_byteDeclarationInRam result ;
   if (inAttribute_mName.isValid () && inAttribute_mSizeExpression.isValid () && inAttribute_mBitSliceTable.isValid () && inAttribute_mBitDefinitionString.isValid () && inAttribute_mProtection.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_byteDeclarationInRam (inAttribute_mName, inAttribute_mSizeExpression, inAttribute_mBitSliceTable, inAttribute_mBitDefinitionString, inAttribute_mProtection COMMA_THERE)) ;
@@ -13602,9 +13559,8 @@ acPtr_class * cPtr_byteDeclarationInRam::duplicate (LOCATION_ARGS) const {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_byteDeclarationInRam ("byteDeclarationInRam",
-                                             & kTypeDescriptor_GALGAS_declarationInRam) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_byteDeclarationInRam ("byteDeclarationInRam",
+                                                                            & kTypeDescriptor_GALGAS_declarationInRam) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13695,8 +13651,8 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatInteger GALGAS_immediatInteger::constructor_new (const GALGAS_luint & inAttribute_mValue
-                                                                COMMA_LOCATION_ARGS) {
+GALGAS_immediatInteger GALGAS_immediatInteger::class_func_new (const GALGAS_luint & inAttribute_mValue
+                                                               COMMA_LOCATION_ARGS) {
   GALGAS_immediatInteger result ;
   if (inAttribute_mValue.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_immediatInteger (inAttribute_mValue COMMA_THERE)) ;
@@ -13765,9 +13721,8 @@ acPtr_class * cPtr_immediatInteger::duplicate (LOCATION_ARGS) const {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_immediatInteger ("immediatInteger",
-                                        & kTypeDescriptor_GALGAS_immediatExpression) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatInteger ("immediatInteger",
+                                                                       & kTypeDescriptor_GALGAS_immediatExpression) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13858,8 +13813,8 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatRegister GALGAS_immediatRegister::constructor_new (const GALGAS_registerExpression & inAttribute_mRegister
-                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_immediatRegister GALGAS_immediatRegister::class_func_new (const GALGAS_registerExpression & inAttribute_mRegister
+                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_immediatRegister result ;
   if (inAttribute_mRegister.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_immediatRegister (inAttribute_mRegister COMMA_THERE)) ;
@@ -13928,9 +13883,8 @@ acPtr_class * cPtr_immediatRegister::duplicate (LOCATION_ARGS) const {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_immediatRegister ("immediatRegister",
-                                         & kTypeDescriptor_GALGAS_immediatExpression) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatRegister ("immediatRegister",
+                                                                        & kTypeDescriptor_GALGAS_immediatExpression) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14025,9 +13979,9 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatSlice GALGAS_immediatSlice::constructor_new (const GALGAS_lstring & inAttribute_mRegisterName,
-                                                            const GALGAS_immediatSliceExpressionList & inAttribute_mSliceExpressionList
-                                                            COMMA_LOCATION_ARGS) {
+GALGAS_immediatSlice GALGAS_immediatSlice::class_func_new (const GALGAS_lstring & inAttribute_mRegisterName,
+                                                           const GALGAS_immediatSliceExpressionList & inAttribute_mSliceExpressionList
+                                                           COMMA_LOCATION_ARGS) {
   GALGAS_immediatSlice result ;
   if (inAttribute_mRegisterName.isValid () && inAttribute_mSliceExpressionList.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_immediatSlice (inAttribute_mRegisterName, inAttribute_mSliceExpressionList COMMA_THERE)) ;
@@ -14123,9 +14077,8 @@ acPtr_class * cPtr_immediatSlice::duplicate (LOCATION_ARGS) const {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_immediatSlice ("immediatSlice",
-                                      & kTypeDescriptor_GALGAS_immediatExpression) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatSlice ("immediatSlice",
+                                                                     & kTypeDescriptor_GALGAS_immediatExpression) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14220,9 +14173,9 @@ GALGAS_bitNumberExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bitNumberLabelValue GALGAS_bitNumberLabelValue::constructor_new (const GALGAS_lstring & inAttribute_mBitNumberLabelValue,
-                                                                        const GALGAS_luint & inAttribute_mBitNumberIndexValue
-                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_bitNumberLabelValue GALGAS_bitNumberLabelValue::class_func_new (const GALGAS_lstring & inAttribute_mBitNumberLabelValue,
+                                                                       const GALGAS_luint & inAttribute_mBitNumberIndexValue
+                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_bitNumberLabelValue result ;
   if (inAttribute_mBitNumberLabelValue.isValid () && inAttribute_mBitNumberIndexValue.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_bitNumberLabelValue (inAttribute_mBitNumberLabelValue, inAttribute_mBitNumberIndexValue COMMA_THERE)) ;
@@ -14318,9 +14271,8 @@ acPtr_class * cPtr_bitNumberLabelValue::duplicate (LOCATION_ARGS) const {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_bitNumberLabelValue ("bitNumberLabelValue",
-                                            & kTypeDescriptor_GALGAS_bitNumberExpression) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitNumberLabelValue ("bitNumberLabelValue",
+                                                                           & kTypeDescriptor_GALGAS_bitNumberExpression) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14422,11 +14374,11 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_instruction_5F_FD GALGAS_baseline_5F_instruction_5F_FD::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                            const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inAttribute_mInstruction_5F_FD_5F_base_5F_code,
-                                                                                            const GALGAS_registerExpression & inAttribute_mRegisterExpression,
-                                                                                            const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
-                                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_instruction_5F_FD GALGAS_baseline_5F_instruction_5F_FD::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                           const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inAttribute_mInstruction_5F_FD_5F_base_5F_code,
+                                                                                           const GALGAS_registerExpression & inAttribute_mRegisterExpression,
+                                                                                           const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
+                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_FD result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction_5F_FD_5F_base_5F_code.isValid () && inAttribute_mRegisterExpression.isValid () && inAttribute_m_5F_W_5F_isDestination.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_FD (inAttribute_mInstructionLocation, inAttribute_mInstruction_5F_FD_5F_base_5F_code, inAttribute_mRegisterExpression, inAttribute_m_5F_W_5F_isDestination COMMA_THERE)) ;
@@ -14552,9 +14504,8 @@ acPtr_class * cPtr_baseline_5F_instruction_5F_FD::duplicate (LOCATION_ARGS) cons
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD ("baseline_instruction_FD",
-                                                      & kTypeDescriptor_GALGAS_baseline_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD ("baseline_instruction_FD",
+                                                                                     & kTypeDescriptor_GALGAS_baseline_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14652,10 +14603,10 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_instruction_5F_F GALGAS_baseline_5F_instruction_5F_F::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                          const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inAttribute_mFAinstruction,
-                                                                                          const GALGAS_registerExpression & inAttribute_mRegisterExpression
-                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_instruction_5F_F GALGAS_baseline_5F_instruction_5F_F::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                         const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inAttribute_mFAinstruction,
+                                                                                         const GALGAS_registerExpression & inAttribute_mRegisterExpression
+                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_F result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mFAinstruction.isValid () && inAttribute_mRegisterExpression.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_F (inAttribute_mInstructionLocation, inAttribute_mFAinstruction, inAttribute_mRegisterExpression COMMA_THERE)) ;
@@ -14754,9 +14705,8 @@ acPtr_class * cPtr_baseline_5F_instruction_5F_F::duplicate (LOCATION_ARGS) const
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_F ("baseline_instruction_F",
-                                                     & kTypeDescriptor_GALGAS_baseline_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_F ("baseline_instruction_F",
+                                                                                    & kTypeDescriptor_GALGAS_baseline_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14858,11 +14808,11 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_instruction_5F_FB GALGAS_baseline_5F_instruction_5F_FB::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                            const GALGAS_baseline_5F_bit_5F_oriented_5F_op & inAttribute_mBitOrientedOp,
-                                                                                            const GALGAS_registerExpression & inAttribute_mRegisterExpression,
-                                                                                            const GALGAS_bitNumberExpression & inAttribute_mBitNumber
-                                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_instruction_5F_FB GALGAS_baseline_5F_instruction_5F_FB::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                           const GALGAS_baseline_5F_bit_5F_oriented_5F_op & inAttribute_mBitOrientedOp,
+                                                                                           const GALGAS_registerExpression & inAttribute_mRegisterExpression,
+                                                                                           const GALGAS_bitNumberExpression & inAttribute_mBitNumber
+                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_FB result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mBitOrientedOp.isValid () && inAttribute_mRegisterExpression.isValid () && inAttribute_mBitNumber.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_FB (inAttribute_mInstructionLocation, inAttribute_mBitOrientedOp, inAttribute_mRegisterExpression, inAttribute_mBitNumber COMMA_THERE)) ;
@@ -14988,9 +14938,8 @@ acPtr_class * cPtr_baseline_5F_instruction_5F_FB::duplicate (LOCATION_ARGS) cons
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FB ("baseline_instruction_FB",
-                                                      & kTypeDescriptor_GALGAS_baseline_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FB ("baseline_instruction_FB",
+                                                                                     & kTypeDescriptor_GALGAS_baseline_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -15084,9 +15033,9 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_instruction_5F_CALL GALGAS_baseline_5F_instruction_5F_CALL::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                const GALGAS_lstring & inAttribute_mTargetLabel
-                                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_instruction_5F_CALL GALGAS_baseline_5F_instruction_5F_CALL::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                               const GALGAS_lstring & inAttribute_mTargetLabel
+                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_CALL result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mTargetLabel.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_CALL (inAttribute_mInstructionLocation, inAttribute_mTargetLabel COMMA_THERE)) ;
@@ -15158,9 +15107,8 @@ acPtr_class * cPtr_baseline_5F_instruction_5F_CALL::duplicate (LOCATION_ARGS) co
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL ("baseline_instruction_CALL",
-                                                        & kTypeDescriptor_GALGAS_baseline_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL ("baseline_instruction_CALL",
+                                                                                       & kTypeDescriptor_GALGAS_baseline_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 

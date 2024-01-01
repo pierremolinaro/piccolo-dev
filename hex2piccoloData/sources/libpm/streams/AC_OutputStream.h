@@ -25,9 +25,9 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/MF_Assert.h"
-#include "utilities/M_machine.h"
-#include "strings/string_encodings.h"
+#include "MF_Assert.h"
+#include "M_machine.h"
+#include "string_encodings.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -39,7 +39,7 @@ class AC_OutputStream {
 //--- Default constructor
   protected : AC_OutputStream (void) ;
 
-//--- Virtual destructor 
+//--- Virtual destructor
   public : virtual ~AC_OutputStream (void) ;
 
 //--- Appending string
@@ -138,7 +138,7 @@ class AC_OutputStream {
 //--- Writing C Comments (/* ... */)
   public : void append_C_HyphenLineComment (void) ;
   public : void append_C_SpaceLineComment (void) ;
-  
+
 //--- Handle indentation
   public : void incIndentation (const int32_t inIncrement) {
     mIndentation += inIncrement ;

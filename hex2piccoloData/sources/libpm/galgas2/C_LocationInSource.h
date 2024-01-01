@@ -25,8 +25,8 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/M_machine.h"
-#include "galgas2/C_SourceTextInString.h"
+#include "M_machine.h"
+#include "C_SourceTextInString.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -44,7 +44,7 @@ class C_LocationInSource {
   private : int32_t mColumnNumber ;
   private : C_SourceTextInString mSourceText ;
 
-//---  
+//---
   public : C_LocationInSource (void) ;
   public : virtual ~C_LocationInSource (void) ;
 

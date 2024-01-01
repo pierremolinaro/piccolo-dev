@@ -7,8 +7,8 @@
 //
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "bdd/C_Relation.h"
-#include "utilities/C_SharedObject.h"
+#include "C_Relation.h"
+#include "C_SharedObject.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //  cVariablesInRelationConfiguration                                                                                  *
@@ -58,7 +58,7 @@ class cVariablesInRelationConfiguration : public C_SharedObject {
   public : void checkIdenticalTo (const cVariablesInRelationConfiguration * inVariables
                                   COMMA_LOCATION_ARGS) const ;
 
-//--- Operations on 3 set configurations  
+//--- Operations on 3 set configurations
   public : void swap021 (LOCATION_ARGS) ;
 
   public : void swap102 (LOCATION_ARGS) ;
@@ -126,7 +126,7 @@ mVariableTypeArray () {
                       bddIndex,
                       mBDDStartIndexArray (i COMMA_HERE)) ;
       bddIndex += mVariableTypeArray (i COMMA_HERE).BDDBitCount() ;
-    }  
+    }
   }
 #endif
 
@@ -159,7 +159,7 @@ void cVariablesInRelationConfiguration::checkIdenticalTo (const cVariablesInRela
                   "cVariablesInRelationConfiguration::checkIdenticalTo failure",
                   0,
                   0) ;
-  
+
   if (! same) {
     printf ("*** cVariablesInRelationConfiguration::checkIdenticalTo failure ***\n") ;
     exit (1) ;

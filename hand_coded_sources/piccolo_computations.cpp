@@ -5,10 +5,10 @@
 //---------------------------------------------------------------------------*
 
 #include "intermediate_generic.h"
-#include "utilities/MF_MemoryControl.h"
+#include "MF_MemoryControl.h"
 #include "TC_UniqueSparseArray.h"
-#include "galgas2/Compiler.h"
-#include "utilities/C_PrologueEpilogue.h"
+#include "Compiler.h"
+#include "PrologueEpilogue.h"
 
 //---------------------------------------------------------------------------*
 //                                                                           *
@@ -314,7 +314,7 @@ static void freeSparseArray (void) {
 
 //---------------------------------------------------------------------------*
 
-C_PrologueEpilogue freeSparseArrayOnEpilogue (NULL, freeSparseArray) ;
+PrologueEpilogue freeSparseArrayOnEpilogue (NULL, freeSparseArray) ;
 
 //---------------------------------------------------------------------------*
 

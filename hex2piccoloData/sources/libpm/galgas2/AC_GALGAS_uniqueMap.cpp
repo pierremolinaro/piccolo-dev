@@ -21,13 +21,13 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 #include "all-predefined-types.h"
-#include "galgas2/capCollectionElement.h"
-#include "galgas2/C_galgas_type_descriptor.h"
-#include "utilities/MF_Assert.h"
-#include "galgas2/C_Compiler.h"
-#include "strings/unicode_string_routines.h"
+#include "capCollectionElement.h"
+#include "C_galgas_type_descriptor.h"
+#include "MF_Assert.h"
+#include "C_Compiler.h"
+#include "unicode_string_routines.h"
 #include "collections/TC_UniqueArray.h"
-#include "galgas2/C_galgas_CLI_Options.h"
+#include "C_galgas_CLI_Options.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -73,7 +73,7 @@ class cSharedUniqueMapRoot : public C_SharedObject {
   public : uint32_t mBeginBranchCount ;
   public : uint32_t mEndBranchCount ;
   public : uint32_t mStateArrayLevel ;
-  
+
 //--------------------------------- Accessors
   public : inline const cUniqueMapNode * root (void) const { return mRoot ; }
   public : inline uint32_t count (void) const { return mNodeCount ; }
@@ -220,10 +220,10 @@ class cSharedUniqueMapRoot : public C_SharedObject {
 class cSharedProxy : public C_SharedObject {
 //--- Attribute
   public : cUniqueMapNode * mNode ;
-  
+
 //--- Constructor
   public : cSharedProxy (cUniqueMapNode * inNode COMMA_LOCATION_ARGS) ;
-  
+
 //--- Destructor
   protected : virtual ~ cSharedProxy (void) ;
 
@@ -577,7 +577,7 @@ static void rotateRight (cUniqueMapNode * & ioRootPtr) {
   cUniqueMapNode * b = ioRootPtr->mInfPtr ;
   ioRootPtr->mInfPtr = b->mSupPtr ;
   b->mSupPtr = ioRootPtr ;
- 
+
   if (b->mBalance > 0) {
     ioRootPtr->mBalance += -b->mBalance - 1 ;
   }else{
@@ -910,7 +910,7 @@ C_String cSharedUniqueMapRoot::edgeGraphvizRepresentation (void) const {
     s << "  \"" << edge.mSource->mKey
       << "\" -> \"" << edge.mTarget->mKey
       << "\" ;\n" ;
-  }  
+  }
   s << "}\n" ;
   return s ;
 }

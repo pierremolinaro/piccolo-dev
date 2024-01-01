@@ -26,11 +26,11 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 #include "collections/TC_UniqueArray.h"
-#include "strings/C_String.h"
-#include "utilities/C_SharedObject.h"
-#include "galgas2/C_LocationInSource.h"
-#include "galgas2/C_SourceTextInString.h"
-#include "galgas2/C_IssueWithFixIt.h"
+#include "C_String.h"
+#include "C_SharedObject.h"
+#include "C_LocationInSource.h"
+#include "C_SourceTextInString.h"
+#include "C_IssueWithFixIt.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -72,7 +72,7 @@ class C_Compiler : public C_SharedObject {
 //--- Caller compiler (is NULL for top compiler)
   protected : C_Compiler * mCallerCompiler ;
 
-//--- Sent string 
+//--- Sent string
   private : C_String mSentString ;
   private : bool mSentStringIsValid ;
   public : GALGAS_string sentString (void) const ;
@@ -191,9 +191,9 @@ class C_Compiler : public C_SharedObject {
 
 //--- File read logging
   public : static bool performLogFileRead (void) ;
-  
+
   public : void logFileRead (const C_String & inFilePath) ;
-  
+
 //--- File generation
   public : static bool performGeneration (void) ;
 

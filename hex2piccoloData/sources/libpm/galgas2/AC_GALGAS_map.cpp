@@ -21,12 +21,12 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 #include "all-predefined-types.h"
-#include "galgas2/capCollectionElement.h"
-#include "galgas2/C_galgas_type_descriptor.h"
-#include "utilities/MF_MemoryControl.h"
-#include "galgas2/C_Compiler.h"
-#include "strings/unicode_string_routines.h"
-#include "galgas2/C_galgas_CLI_Options.h"
+#include "capCollectionElement.h"
+#include "C_galgas_type_descriptor.h"
+#include "MF_MemoryControl.h"
+#include "C_Compiler.h"
+#include "unicode_string_routines.h"
+#include "C_galgas_CLI_Options.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -523,7 +523,7 @@ static void rotateRight (cMapNode * & ioRootPtr) {
   cMapNode * b = ioRootPtr->mInfPtr ;
   ioRootPtr->mInfPtr = b->mSupPtr ;
   b->mSupPtr = ioRootPtr ;
- 
+
   if (b->mBalance > 0) {
     ioRootPtr->mBalance += -b->mBalance - 1 ;
   }else{

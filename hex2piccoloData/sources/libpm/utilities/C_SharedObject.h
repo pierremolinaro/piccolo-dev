@@ -25,8 +25,8 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/MF_Assert.h"
-#include "utilities/MF_MemoryControl.h"
+#include "MF_Assert.h"
+#include "MF_MemoryControl.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -48,7 +48,7 @@ class C_SharedObject {
   private : mutable int32_t mRetainCount ;
 
   public : inline bool isUniquelyReferenced (void) { return mRetainCount == 1 ; }
-  
+
   public : static void retain (const C_SharedObject * inObject COMMA_LOCATION_ARGS) ;
 
   public : static void release (const C_SharedObject * inObject COMMA_LOCATION_ARGS) ;
@@ -56,13 +56,13 @@ class C_SharedObject {
   public : static void retainRelease (const C_SharedObject * inObjectToRetain,
                                       const C_SharedObject * inObjectToRelease
                                       COMMA_LOCATION_ARGS) ;
-  
+
 //--- Default Constructor
   protected : C_SharedObject (LOCATION_ARGS) ;
-  
+
 //--- Virtual Destructor
   protected : virtual ~ C_SharedObject (void) ;
-  
+
 //--- No copy
   private : C_SharedObject (const C_SharedObject &) ;
   private : C_SharedObject & operator = (const C_SharedObject &) ;

@@ -20,10 +20,10 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "galgas2/capCollectionElementArray.h"
-#include "utilities/MF_MemoryControl.h"
-#include "strings/C_String.h"
-#include "galgas2/C_Compiler.h"
+#include "capCollectionElementArray.h"
+#include "MF_MemoryControl.h"
+#include "C_String.h"
+#include "C_Compiler.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //   capCollectionRoot                                                                                                 *
@@ -38,17 +38,17 @@
 class capCollectionRoot : public C_SharedObject {
 //--- Default constructor
   public : capCollectionRoot (void) ;
-  
+
 //--- Special copy constructor
   public : capCollectionRoot (const capCollectionRoot * inSource) ;
-  
+
 //--- Destructor
   public : virtual ~ capCollectionRoot (void) ;
 
 //--- No copy
   private : capCollectionRoot (const capCollectionRoot &) ;
   private : capCollectionRoot & operator = (const capCollectionRoot &) ;
-  
+
 //--- Private properties
   private : capCollectionElement * mArray ;
   private : uint32_t mCapacity ;

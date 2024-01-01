@@ -1,11 +1,473 @@
-#include "galgas2/Compiler.h"
-#include "galgas2/C_galgas_io.h"
-#include "galgas2/C_galgas_CLI_Options.h"
-#include "utilities/C_PrologueEpilogue.h"
+#include "Compiler.h"
+#include "C_galgas_io.h"
+#include "C_galgas_CLI_Options.h"
+#include "PrologueEpilogue.h"
 
 //--------------------------------------------------------------------------------------------------
 
 #include "all-declarations-2.h"
+
+//--------------------------------------------------------------------------------------------------
+// @baseline_5F_assembly_5F_actualInstruction reference class
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_assembly_5F_actualInstruction::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_assembly_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstructionLocation.printNonNullClassInstanceProperties ("mInstructionLocation") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+
+
+
+typeComparisonResult GALGAS_baseline_5F_assembly_5F_actualInstruction::objectCompare (const GALGAS_baseline_5F_assembly_5F_actualInstruction & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = kOperandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_actualInstruction::GALGAS_baseline_5F_assembly_5F_actualInstruction (void) :
+GALGAS_baseline_5F_assembly_5F_instruction () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_actualInstruction::GALGAS_baseline_5F_assembly_5F_actualInstruction (const cPtr_baseline_5F_assembly_5F_actualInstruction * inSourcePtr) :
+GALGAS_baseline_5F_assembly_5F_instruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_assembly_5F_actualInstruction) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_assembly_5F_actualInstruction::setter_setMInstructionLocation (GALGAS_location inValue
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_assembly_5F_actualInstruction * p = (cPtr_baseline_5F_assembly_5F_actualInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_actualInstruction) ;
+    p->mProperty_mInstructionLocation = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_location GALGAS_baseline_5F_assembly_5F_actualInstruction::readProperty_mInstructionLocation (void) const {
+  if (nullptr == mObjectPtr) {
+    return GALGAS_location () ;
+  }else{
+    cPtr_baseline_5F_assembly_5F_actualInstruction * p = (cPtr_baseline_5F_assembly_5F_actualInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_actualInstruction) ;
+    return p->mProperty_mInstructionLocation ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @baseline_assembly_actualInstruction class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_assembly_5F_actualInstruction::cPtr_baseline_5F_assembly_5F_actualInstruction (const GALGAS_location & in_mInstructionLocation
+                                                                                                COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_assembly_5F_instruction (THERE),
+mProperty_mInstructionLocation (in_mInstructionLocation) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @baseline_assembly_actualInstruction generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction ("baseline_assembly_actualInstruction",
+                                                                                                 & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_actualInstruction::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_actualInstruction::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_baseline_5F_assembly_5F_actualInstruction (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_actualInstruction GALGAS_baseline_5F_assembly_5F_actualInstruction::extractObject (const GALGAS_object & inObject,
+                                                                                                                  Compiler * inCompiler
+                                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_assembly_5F_actualInstruction result ;
+  const GALGAS_baseline_5F_assembly_5F_actualInstruction * p = (const GALGAS_baseline_5F_assembly_5F_actualInstruction *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_actualInstruction *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_assembly_actualInstruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+typeComparisonResult GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::objectCompare (const GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = kOperandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (void) :
+GALGAS_baseline_5F_assembly_5F_instruction_2D_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak & GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::operator = (const GALGAS_baseline_5F_assembly_5F_actualInstruction & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (const GALGAS_baseline_5F_assembly_5F_actualInstruction & inSource) :
+GALGAS_baseline_5F_assembly_5F_instruction_2D_weak (inSource) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::class_func_nil (LOCATION_ARGS) {
+  GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_actualInstruction GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::bang_baseline_5F_assembly_5F_actualInstruction_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GALGAS_baseline_5F_assembly_5F_actualInstruction result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_actualInstruction) ;
+      result = GALGAS_baseline_5F_assembly_5F_actualInstruction ((cPtr_baseline_5F_assembly_5F_actualInstruction *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @baseline_assembly_actualInstruction-weak generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak ("baseline_assembly_actualInstruction-weak",
+                                                                                                         & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_2D_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak::extractObject (const GALGAS_object & inObject,
+                                                                                                                                  Compiler * inCompiler
+                                                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak result ;
+  const GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak * p = (const GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_assembly_actualInstruction-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @baseline_5F_assembly_5F_instruction_5F_FD reference class
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_assembly_5F_instruction_5F_FD::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_assembly_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+
+typeComparisonResult cPtr_baseline_5F_assembly_5F_instruction_5F_FD::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
+  typeComparisonResult result = kOperandEqual ;
+  const cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (const cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) inOperandPtr ;
+  macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
+  if (kOperandEqual == result) {
+    result = mProperty_mInstructionLocation.objectCompare (p->mProperty_mInstructionLocation) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mInstruction.objectCompare (p->mProperty_mInstruction) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_mRegisterDescription.objectCompare (p->mProperty_mRegisterDescription) ;
+  }
+  if (kOperandEqual == result) {
+    result = mProperty_m_5F_W_5F_isDestination.objectCompare (p->mProperty_m_5F_W_5F_isDestination) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+
+typeComparisonResult GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD & inOperand) const {
+  typeComparisonResult result = kOperandNotValid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = kFirstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = kFirstOperandGreaterThanSecond ;
+    }else{
+      result = kOperandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::GALGAS_baseline_5F_assembly_5F_instruction_5F_FD (void) :
+GALGAS_baseline_5F_assembly_5F_actualInstruction () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::GALGAS_baseline_5F_assembly_5F_instruction_5F_FD (const cPtr_baseline_5F_assembly_5F_instruction_5F_FD * inSourcePtr) :
+GALGAS_baseline_5F_assembly_5F_actualInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_instruction_5F_FD GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                   const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inAttribute_mInstruction,
+                                                                                                                   const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                                   const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
+                                                                                                                   COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_assembly_5F_instruction_5F_FD result ;
+  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_m_5F_W_5F_isDestination.isValid ()) {
+    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_instruction_5F_FD (inAttribute_mInstructionLocation, inAttribute_mInstruction, inAttribute_mRegisterDescription, inAttribute_m_5F_W_5F_isDestination COMMA_THERE)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::setter_setMInstruction (GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code inValue
+                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
+    p->mProperty_mInstruction = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::setter_setMRegisterDescription (GALGAS_baseline_5F_intermediate_5F_registerExpression inValue
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
+                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
+    p->mProperty_m_5F_W_5F_isDestination = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::readProperty_mInstruction (void) const {
+  if (nullptr == mObjectPtr) {
+    return GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code () ;
+  }else{
+    cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
+    return p->mProperty_mInstruction ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::readProperty_mRegisterDescription (void) const {
+  if (nullptr == mObjectPtr) {
+    return GALGAS_baseline_5F_intermediate_5F_registerExpression () ;
+  }else{
+    cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
+    return p->mProperty_mRegisterDescription ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::readProperty_m_5F_W_5F_isDestination (void) const {
+  if (nullptr == mObjectPtr) {
+    return GALGAS_bool () ;
+  }else{
+    cPtr_baseline_5F_assembly_5F_instruction_5F_FD * p = (cPtr_baseline_5F_assembly_5F_instruction_5F_FD *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_instruction_5F_FD) ;
+    return p->mProperty_m_5F_W_5F_isDestination ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @baseline_assembly_instruction_FD class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_assembly_5F_instruction_5F_FD::cPtr_baseline_5F_assembly_5F_instruction_5F_FD (const GALGAS_location & in_mInstructionLocation,
+                                                                                                const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction,
+                                                                                                const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                const GALGAS_bool & in_m_5F_W_5F_isDestination
+                                                                                                COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_assembly_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
+mProperty_mInstruction (in_mInstruction),
+mProperty_mRegisterDescription (in_mRegisterDescription),
+mProperty_m_5F_W_5F_isDestination (in_m_5F_W_5F_isDestination) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_baseline_5F_assembly_5F_instruction_5F_FD::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FD ;
+}
+
+void cPtr_baseline_5F_assembly_5F_instruction_5F_FD::description (String & ioString,
+                                                                  const int32_t inIndentation) const {
+  ioString.addString ("[@baseline_assembly_instruction_FD:") ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString.addString (", ") ;
+  mProperty_mInstruction.description (ioString, inIndentation+1) ;
+  ioString.addString (", ") ;
+  mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
+  ioString.addString (", ") ;
+  mProperty_m_5F_W_5F_isDestination.description (ioString, inIndentation+1) ;
+  ioString.addString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_FD::duplicate (LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_instruction_5F_FD (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription, mProperty_m_5F_W_5F_isDestination COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @baseline_assembly_instruction_FD generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FD ("baseline_assembly_instruction_FD",
+                                                                                                 & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FD ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction_5F_FD (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_instruction_5F_FD GALGAS_baseline_5F_assembly_5F_instruction_5F_FD::extractObject (const GALGAS_object & inObject,
+                                                                                                                  Compiler * inCompiler
+                                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_assembly_5F_instruction_5F_FD result ;
+  const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD * p = (const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction_5F_FD *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_assembly_instruction_FD", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -53,7 +515,7 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -81,9 +543,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FD GALGAS_baseline_5F_assembly_5F_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak ("baseline_assembly_instruction_FD-weak",
-                                                                          & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FD_2D_weak ("baseline_assembly_instruction_FD-weak",
+                                                                                                         & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -181,10 +642,10 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_instruction_5F_F GALGAS_baseline_5F_assembly_5F_instruction_5F_F::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                  const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inAttribute_mInstruction,
-                                                                                                                  const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription
-                                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_instruction_5F_F GALGAS_baseline_5F_assembly_5F_instruction_5F_F::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                 const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inAttribute_mInstruction,
+                                                                                                                 const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription
+                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_F result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction.isValid () && inAttribute_mRegisterDescription.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_instruction_5F_F (inAttribute_mInstructionLocation, inAttribute_mInstruction, inAttribute_mRegisterDescription COMMA_THERE)) ;
@@ -283,9 +744,8 @@ acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_F::duplicate (LOCATION
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_F ("baseline_assembly_instruction_F",
-                                                                 & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_F ("baseline_assembly_instruction_F",
+                                                                                                & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -366,7 +826,7 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -394,9 +854,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_F GALGAS_baseline_5F_assembly_5F_i
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak ("baseline_assembly_instruction_F-weak",
-                                                                         & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_F_2D_weak ("baseline_assembly_instruction_F-weak",
+                                                                                                        & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -498,11 +957,11 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_instruction_5F_FB GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                    const GALGAS_baseline_5F_bit_5F_oriented_5F_op & inAttribute_mInstruction,
-                                                                                                                    const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                    const GALGAS_uint & inAttribute_mBitNumber
-                                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_instruction_5F_FB GALGAS_baseline_5F_assembly_5F_instruction_5F_FB::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                   const GALGAS_baseline_5F_bit_5F_oriented_5F_op & inAttribute_mInstruction,
+                                                                                                                   const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                                   const GALGAS_uint & inAttribute_mBitNumber
+                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_FB result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mBitNumber.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_instruction_5F_FB (inAttribute_mInstructionLocation, inAttribute_mInstruction, inAttribute_mRegisterDescription, inAttribute_mBitNumber COMMA_THERE)) ;
@@ -628,9 +1087,8 @@ acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_FB::duplicate (LOCATIO
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FB ("baseline_assembly_instruction_FB",
-                                                                  & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FB ("baseline_assembly_instruction_FB",
+                                                                                                 & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -711,7 +1169,7 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -739,9 +1197,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_FB GALGAS_baseline_5F_assembly_5F_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak ("baseline_assembly_instruction_FB-weak",
-                                                                          & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_FB_2D_weak ("baseline_assembly_instruction_FB-weak",
+                                                                                                         & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -843,11 +1300,11 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                      const GALGAS_bool & inAttribute_mSkipIfSet,
-                                                                                                                                      const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                                      const GALGAS_uint & inAttribute_mBitNumber
-                                                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                     const GALGAS_bool & inAttribute_mSkipIfSet,
+                                                                                                                                     const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                                                     const GALGAS_uint & inAttribute_mBitNumber
+                                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mSkipIfSet.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mBitNumber.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip (inAttribute_mInstructionLocation, inAttribute_mSkipIfSet, inAttribute_mRegisterDescription, inAttribute_mBitNumber COMMA_THERE)) ;
@@ -973,9 +1430,8 @@ acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip::duplicate
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip ("baseline_assembly_instruction_BitTestSkip",
-                                                                           & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip ("baseline_assembly_instruction_BitTestSkip",
+                                                                                                          & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1056,7 +1512,7 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -1084,9 +1540,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_ass
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak ("baseline_assembly_instruction_BitTestSkip-weak",
-                                                                                   & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip_2D_weak ("baseline_assembly_instruction_BitTestSkip-weak",
+                                                                                                                  & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1167,7 +1622,7 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -1195,9 +1650,8 @@ GALGAS_baseline_5F_assembly_5F_GOTO GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak:
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak ("baseline_assembly_GOTO-weak",
-                                                             & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_GOTO_2D_weak ("baseline_assembly_GOTO-weak",
+                                                                                            & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1287,8 +1741,8 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_SKIP GALGAS_baseline_5F_assembly_5F_SKIP::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation
-                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_SKIP GALGAS_baseline_5F_assembly_5F_SKIP::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation
+                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_SKIP result ;
   if (inAttribute_mInstructionLocation.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_SKIP (inAttribute_mInstructionLocation COMMA_THERE)) ;
@@ -1333,9 +1787,8 @@ acPtr_class * cPtr_baseline_5F_assembly_5F_SKIP::duplicate (LOCATION_ARGS) const
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_SKIP ("baseline_assembly_SKIP",
-                                                     & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_SKIP ("baseline_assembly_SKIP",
+                                                                                    & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1416,7 +1869,7 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -1444,9 +1897,8 @@ GALGAS_baseline_5F_assembly_5F_SKIP GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak:
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak ("baseline_assembly_SKIP-weak",
-                                                             & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_SKIP_2D_weak ("baseline_assembly_SKIP-weak",
+                                                                                            & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1527,7 +1979,7 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_CALL_2D_weak GALGAS_baseline_5F_assembly_5F_CALL_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_CALL_2D_weak GALGAS_baseline_5F_assembly_5F_CALL_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_CALL_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -1555,9 +2007,8 @@ GALGAS_baseline_5F_assembly_5F_CALL GALGAS_baseline_5F_assembly_5F_CALL_2D_weak:
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_CALL_2D_weak ("baseline_assembly_CALL-weak",
-                                                             & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_CALL_2D_weak ("baseline_assembly_CALL-weak",
+                                                                                            & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1651,9 +2102,9 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                            const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inAttribute_mInstruction
-                                                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                           const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inAttribute_mInstruction
+                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND (inAttribute_mInstructionLocation, inAttribute_mInstruction COMMA_THERE)) ;
@@ -1725,9 +2176,8 @@ acPtr_class * cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND::duplicate (LOCATION_AR
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND ("baseline_assembly_WO_OPERAND",
-                                                              & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND ("baseline_assembly_WO_OPERAND",
+                                                                                             & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1808,7 +2258,7 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -1836,9 +2286,8 @@ GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND GALGAS_baseline_5F_assembly_5F_WO_5
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak ("baseline_assembly_WO_OPERAND-weak",
-                                                                      & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_WO_5F_OPERAND_2D_weak ("baseline_assembly_WO_OPERAND-weak",
+                                                                                                     & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1919,7 +2368,7 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -1947,9 +2396,8 @@ GALGAS_baseline_5F_assembly_5F_TRIS GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak:
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak ("baseline_assembly_TRIS-weak",
-                                                             & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_TRIS_2D_weak ("baseline_assembly_TRIS-weak",
+                                                                                            & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2047,10 +2495,10 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                                const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inAttribute_mInstruction,
-                                                                                                                                                const GALGAS_uint & inAttribute_mLiteralValue
-                                                                                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                               const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inAttribute_mInstruction,
+                                                                                                                                               const GALGAS_uint & inAttribute_mLiteralValue
+                                                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction.isValid () && inAttribute_mLiteralValue.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation (inAttribute_mInstructionLocation, inAttribute_mInstruction, inAttribute_mLiteralValue COMMA_THERE)) ;
@@ -2149,9 +2597,8 @@ acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::dupl
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation ("baseline_assembly_instruction_literalOperation",
-                                                                                & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation ("baseline_assembly_instruction_literalOperation",
+                                                                                                               & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2232,7 +2679,7 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -2260,9 +2707,8 @@ GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation GALGAS_baseline_5
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak ("baseline_assembly_instruction_literalOperation-weak",
-                                                                                        & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_5F_literalOperation_2D_weak ("baseline_assembly_instruction_literalOperation-weak",
+                                                                                                                       & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2364,11 +2810,11 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                    const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                                    const GALGAS_bool & inAttribute_mIncrement,
-                                                                                                                                    const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
-                                                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                   const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                                                   const GALGAS_bool & inAttribute_mIncrement,
+                                                                                                                                   const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
+                                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mIncrement.isValid () && inAttribute_m_5F_W_5F_isDestination.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition (inAttribute_mInstructionLocation, inAttribute_mRegisterDescription, inAttribute_mIncrement, inAttribute_m_5F_W_5F_isDestination COMMA_THERE)) ;
@@ -2494,9 +2940,8 @@ acPtr_class * cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition::duplicate 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition ("baseline_assembly_incDecRegisterInCondition",
-                                                                          & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition ("baseline_assembly_incDecRegisterInCondition",
+                                                                                                         & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2577,7 +3022,7 @@ GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -2605,9 +3050,8 @@ GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition GALGAS_baseline_5F_asse
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak ("baseline_assembly_incDecRegisterInCondition-weak",
-                                                                                  & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_incDecRegisterInCondition_2D_weak ("baseline_assembly_incDecRegisterInCondition-weak",
+                                                                                                                 & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_actualInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2758,7 +3202,7 @@ GALGAS_baseline_5F_symbolTable & GALGAS_baseline_5F_symbolTable::operator = (con
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_symbolTable GALGAS_baseline_5F_symbolTable::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_baseline_5F_symbolTable GALGAS_baseline_5F_symbolTable::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_baseline_5F_symbolTable result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -2766,8 +3210,8 @@ GALGAS_baseline_5F_symbolTable GALGAS_baseline_5F_symbolTable::constructor_empty
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_symbolTable GALGAS_baseline_5F_symbolTable::constructor_mapWithMapToOverride (const GALGAS_baseline_5F_symbolTable & inMapToOverride
-                                                                                                 COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_symbolTable GALGAS_baseline_5F_symbolTable::class_func_mapWithMapToOverride (const GALGAS_baseline_5F_symbolTable & inMapToOverride
+                                                                                                COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_symbolTable result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -2942,9 +3386,8 @@ bool GALGAS_baseline_5F_symbolTable::optional_searchKey (const GALGAS_string & i
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_symbolTable ("baseline_symbolTable",
-                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_symbolTable ("baseline_symbolTable",
+                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3105,9 +3548,8 @@ mProperty_mInstructionLocation (in_mInstructionLocation) {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction ("midrange_instruction",
-                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction ("midrange_instruction",
+                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3188,7 +3630,7 @@ AC_GALGAS_weak_reference (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_2D_weak GALGAS_midrange_5F_instruction_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_2D_weak GALGAS_midrange_5F_instruction_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -3216,9 +3658,8 @@ GALGAS_midrange_5F_instruction GALGAS_midrange_5F_instruction_2D_weak::bang_midr
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak ("midrange_instruction-weak",
-                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak ("midrange_instruction-weak",
+                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3262,7 +3703,7 @@ GALGAS_midrange_5F_instruction_2D_weak GALGAS_midrange_5F_instruction_2D_weak::e
 class cCollectionElement_midrange_5F_instructionList : public cCollectionElement {
   public: GALGAS_midrange_5F_instructionList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_midrange_5F_instructionList (const GALGAS_midrange_5F_instruction & in_mInstruction
                                                           COMMA_LOCATION_ARGS) ;
   public: cCollectionElement_midrange_5F_instructionList (const GALGAS_midrange_5F_instructionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
@@ -3340,14 +3781,14 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_midrange_5F_instructionList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::constructor_listWithValue (const GALGAS_midrange_5F_instruction & inOperand0
-                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::class_func_listWithValue (const GALGAS_midrange_5F_instruction & inOperand0
+                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instructionList result ;
   if (inOperand0.isValid ()) {
     result = GALGAS_midrange_5F_instructionList (capCollectionElementArray ()) ;
@@ -3527,7 +3968,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::add_opera
 GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_instructionList result = GALGAS_midrange_5F_instructionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_instructionList result = GALGAS_midrange_5F_instructionList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -3537,7 +3978,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::getter_su
 GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_instructionList result = GALGAS_midrange_5F_instructionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_instructionList result = GALGAS_midrange_5F_instructionList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -3547,7 +3988,7 @@ GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::getter_su
 GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                               Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_instructionList result = GALGAS_midrange_5F_instructionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_instructionList result = GALGAS_midrange_5F_instructionList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -3625,9 +4066,8 @@ GALGAS_midrange_5F_instruction cEnumerator_midrange_5F_instructionList::current_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instructionList ("midrange_instructionList",
-                                                    nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instructionList ("midrange_instructionList",
+                                                                                   nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3717,8 +4157,8 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_nobanksel GALGAS_midrange_5F_instruction_5F_nobanksel::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation
-                                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_nobanksel GALGAS_midrange_5F_instruction_5F_nobanksel::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation
+                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_nobanksel result ;
   if (inAttribute_mInstructionLocation.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_nobanksel (inAttribute_mInstructionLocation COMMA_THERE)) ;
@@ -3763,9 +4203,8 @@ acPtr_class * cPtr_midrange_5F_instruction_5F_nobanksel::duplicate (LOCATION_ARG
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_nobanksel ("midrange_instruction_nobanksel",
-                                                             & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_nobanksel ("midrange_instruction_nobanksel",
+                                                                                            & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3846,7 +4285,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -3874,9 +4313,8 @@ GALGAS_midrange_5F_instruction_5F_nobanksel GALGAS_midrange_5F_instruction_5F_no
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak ("midrange_instruction_nobanksel-weak",
-                                                                     & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_nobanksel_2D_weak ("midrange_instruction_nobanksel-weak",
+                                                                                                    & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3974,10 +4412,10 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_banksel GALGAS_midrange_5F_instruction_5F_banksel::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                      const GALGAS_luint & inAttribute_mBankIndex,
-                                                                                                      const GALGAS_bool & inAttribute_mWarningOnUselessBanksel
-                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_banksel GALGAS_midrange_5F_instruction_5F_banksel::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                     const GALGAS_luint & inAttribute_mBankIndex,
+                                                                                                     const GALGAS_bool & inAttribute_mWarningOnUselessBanksel
+                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_banksel result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mBankIndex.isValid () && inAttribute_mWarningOnUselessBanksel.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_banksel (inAttribute_mInstructionLocation, inAttribute_mBankIndex, inAttribute_mWarningOnUselessBanksel COMMA_THERE)) ;
@@ -4076,9 +4514,8 @@ acPtr_class * cPtr_midrange_5F_instruction_5F_banksel::duplicate (LOCATION_ARGS)
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_banksel ("midrange_instruction_banksel",
-                                                           & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_banksel ("midrange_instruction_banksel",
+                                                                                          & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4159,7 +4596,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_banksel_2D_weak GALGAS_midrange_5F_instruction_5F_banksel_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_banksel_2D_weak GALGAS_midrange_5F_instruction_5F_banksel_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_banksel_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -4187,9 +4624,8 @@ GALGAS_midrange_5F_instruction_5F_banksel GALGAS_midrange_5F_instruction_5F_bank
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_banksel_2D_weak ("midrange_instruction_banksel-weak",
-                                                                   & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_banksel_2D_weak ("midrange_instruction_banksel-weak",
+                                                                                                  & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4283,9 +4719,9 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrangeInstruction_5F_checkbank GALGAS_midrangeInstruction_5F_checkbank::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                  const GALGAS_uint & inAttribute_mBankIndex
-                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_midrangeInstruction_5F_checkbank GALGAS_midrangeInstruction_5F_checkbank::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                 const GALGAS_uint & inAttribute_mBankIndex
+                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrangeInstruction_5F_checkbank result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mBankIndex.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrangeInstruction_5F_checkbank (inAttribute_mInstructionLocation, inAttribute_mBankIndex COMMA_THERE)) ;
@@ -4357,9 +4793,8 @@ acPtr_class * cPtr_midrangeInstruction_5F_checkbank::duplicate (LOCATION_ARGS) c
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrangeInstruction_5F_checkbank ("midrangeInstruction_checkbank",
-                                                         & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrangeInstruction_5F_checkbank ("midrangeInstruction_checkbank",
+                                                                                        & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4440,7 +4875,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrangeInstruction_5F_checkbank_2D_weak GALGAS_midrangeInstruction_5F_checkbank_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrangeInstruction_5F_checkbank_2D_weak GALGAS_midrangeInstruction_5F_checkbank_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrangeInstruction_5F_checkbank_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -4468,9 +4903,8 @@ GALGAS_midrangeInstruction_5F_checkbank GALGAS_midrangeInstruction_5F_checkbank_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrangeInstruction_5F_checkbank_2D_weak ("midrangeInstruction_checkbank-weak",
-                                                                 & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrangeInstruction_5F_checkbank_2D_weak ("midrangeInstruction_checkbank-weak",
+                                                                                                & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4560,8 +4994,8 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrangeInstruction_5F_checknobank GALGAS_midrangeInstruction_5F_checknobank::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation
-                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_midrangeInstruction_5F_checknobank GALGAS_midrangeInstruction_5F_checknobank::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation
+                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_midrangeInstruction_5F_checknobank result ;
   if (inAttribute_mInstructionLocation.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrangeInstruction_5F_checknobank (inAttribute_mInstructionLocation COMMA_THERE)) ;
@@ -4606,9 +5040,8 @@ acPtr_class * cPtr_midrangeInstruction_5F_checknobank::duplicate (LOCATION_ARGS)
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrangeInstruction_5F_checknobank ("midrangeInstruction_checknobank",
-                                                           & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrangeInstruction_5F_checknobank ("midrangeInstruction_checknobank",
+                                                                                          & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4689,7 +5122,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrangeInstruction_5F_checknobank_2D_weak GALGAS_midrangeInstruction_5F_checknobank_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrangeInstruction_5F_checknobank_2D_weak GALGAS_midrangeInstruction_5F_checknobank_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrangeInstruction_5F_checknobank_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -4717,9 +5150,8 @@ GALGAS_midrangeInstruction_5F_checknobank GALGAS_midrangeInstruction_5F_checknob
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrangeInstruction_5F_checknobank_2D_weak ("midrangeInstruction_checknobank-weak",
-                                                                   & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrangeInstruction_5F_checknobank_2D_weak ("midrangeInstruction_checknobank-weak",
+                                                                                                  & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4800,7 +5232,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -4828,9 +5260,8 @@ GALGAS_midrange_5F_instruction_5F_banksel_5F_register GALGAS_midrange_5F_instruc
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak ("midrange_instruction_banksel_register-weak",
-                                                                               & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_banksel_5F_register_2D_weak ("midrange_instruction_banksel_register-weak",
+                                                                                                              & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4911,7 +5342,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_savebank_2D_weak GALGAS_midrange_5F_instruction_5F_savebank_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_savebank_2D_weak GALGAS_midrange_5F_instruction_5F_savebank_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_savebank_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -4939,9 +5370,8 @@ GALGAS_midrange_5F_instruction_5F_savebank GALGAS_midrange_5F_instruction_5F_sav
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_savebank_2D_weak ("midrange_instruction_savebank-weak",
-                                                                    & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_savebank_2D_weak ("midrange_instruction_savebank-weak",
+                                                                                                   & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5022,7 +5452,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -5050,9 +5480,8 @@ GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT GALGAS_midrange_5F_instructio
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak ("midrange_instruction_STATIC_REPEAT-weak",
-                                                                            & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2D_weak ("midrange_instruction_STATIC_REPEAT-weak",
+                                                                                                           & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5095,7 +5524,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_ADDWF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_ADDWF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_ADDWF ;
   return result ;
@@ -5103,7 +5532,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_ANDWF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_ANDWF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_ANDWF ;
   return result ;
@@ -5111,7 +5540,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_COMF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_COMF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_COMF ;
   return result ;
@@ -5119,7 +5548,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_DECF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_DECF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_DECF ;
   return result ;
@@ -5127,7 +5556,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_DECFSZ (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_DECFSZ (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_DECFSZ ;
   return result ;
@@ -5135,7 +5564,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_INCF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_INCF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_INCF ;
   return result ;
@@ -5143,7 +5572,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_INCFSZ (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_INCFSZ (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_INCFSZ ;
   return result ;
@@ -5151,7 +5580,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_IORWF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_IORWF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_IORWF ;
   return result ;
@@ -5159,7 +5588,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_MOVF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_MOVF ;
   return result ;
@@ -5167,7 +5596,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_RLF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_RLF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_RLF ;
   return result ;
@@ -5175,7 +5604,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_RRF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_RRF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_RRF ;
   return result ;
@@ -5183,7 +5612,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SUBWF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_SUBWF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_SUBWF ;
   return result ;
@@ -5191,7 +5620,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_SWAPF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_SWAPF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_SWAPF ;
   return result ;
@@ -5199,7 +5628,7 @@ GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruct
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::constructor_XORWF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_XORWF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code result ;
   result.mEnum = kEnum_XORWF ;
   return result ;
@@ -5438,9 +5867,8 @@ typeComparisonResult GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::objec
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code ("midrange_instruction_FD_base_code",
-                                                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code ("midrange_instruction_FD_base_code",
+                                                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5613,7 +6041,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FD_2D_weak GALGAS_midrange_5F_instruction_5F_FD_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FD_2D_weak GALGAS_midrange_5F_instruction_5F_FD_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FD_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -5641,9 +6069,8 @@ GALGAS_midrange_5F_instruction_5F_FD GALGAS_midrange_5F_instruction_5F_FD_2D_wea
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FD_2D_weak ("midrange_instruction_FD-weak",
-                                                              & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FD_2D_weak ("midrange_instruction_FD-weak",
+                                                                                             & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5686,7 +6113,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_CLRF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::class_func_CLRF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_CLRF ;
   return result ;
@@ -5694,7 +6121,7 @@ GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code GALGAS_midrange_5F_F_5F_inst
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::constructor_MOVWF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::class_func_MOVWF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_MOVWF ;
   return result ;
@@ -5765,9 +6192,8 @@ typeComparisonResult GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::object
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code ("midrange_F_instruction_base_code",
-                                                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code ("midrange_F_instruction_base_code",
+                                                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5880,7 +6306,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_F_2D_weak GALGAS_midrange_5F_instruction_5F_F_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_F_2D_weak GALGAS_midrange_5F_instruction_5F_F_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_F_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -5908,9 +6334,8 @@ GALGAS_midrange_5F_instruction_5F_F GALGAS_midrange_5F_instruction_5F_F_2D_weak:
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_F_2D_weak ("midrange_instruction_F-weak",
-                                                             & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_F_2D_weak ("midrange_instruction_F-weak",
+                                                                                            & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5953,7 +6378,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_bit_5F_oriented_5F_op GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BCF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_bit_5F_oriented_5F_op GALGAS_midrange_5F_bit_5F_oriented_5F_op::class_func_BCF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_bit_5F_oriented_5F_op result ;
   result.mEnum = kEnum_BCF ;
   return result ;
@@ -5961,7 +6386,7 @@ GALGAS_midrange_5F_bit_5F_oriented_5F_op GALGAS_midrange_5F_bit_5F_oriented_5F_o
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_bit_5F_oriented_5F_op GALGAS_midrange_5F_bit_5F_oriented_5F_op::constructor_BSF (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_bit_5F_oriented_5F_op GALGAS_midrange_5F_bit_5F_oriented_5F_op::class_func_BSF (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_bit_5F_oriented_5F_op result ;
   result.mEnum = kEnum_BSF ;
   return result ;
@@ -6032,9 +6457,8 @@ typeComparisonResult GALGAS_midrange_5F_bit_5F_oriented_5F_op::objectCompare (co
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_bit_5F_oriented_5F_op ("midrange_bit_oriented_op",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_bit_5F_oriented_5F_op ("midrange_bit_oriented_op",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6147,7 +6571,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FB_2D_weak GALGAS_midrange_5F_instruction_5F_FB_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FB_2D_weak GALGAS_midrange_5F_instruction_5F_FB_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FB_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -6175,9 +6599,8 @@ GALGAS_midrange_5F_instruction_5F_FB GALGAS_midrange_5F_instruction_5F_FB_2D_wea
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FB_2D_weak ("midrange_instruction_FB-weak",
-                                                              & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FB_2D_weak ("midrange_instruction_FB-weak",
+                                                                                             & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6258,7 +6681,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_CALL_2D_weak GALGAS_midrange_5F_instruction_5F_CALL_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_CALL_2D_weak GALGAS_midrange_5F_instruction_5F_CALL_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_CALL_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -6286,9 +6709,8 @@ GALGAS_midrange_5F_instruction_5F_CALL GALGAS_midrange_5F_instruction_5F_CALL_2D
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_CALL_2D_weak ("midrange_instruction_CALL-weak",
-                                                                & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_CALL_2D_weak ("midrange_instruction_CALL-weak",
+                                                                                               & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6369,7 +6791,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_JSR_2D_weak GALGAS_midrange_5F_instruction_5F_JSR_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_JSR_2D_weak GALGAS_midrange_5F_instruction_5F_JSR_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_JSR_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -6397,9 +6819,8 @@ GALGAS_midrange_5F_instruction_5F_JSR GALGAS_midrange_5F_instruction_5F_JSR_2D_w
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_JSR_2D_weak ("midrange_instruction_JSR-weak",
-                                                               & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_JSR_2D_weak ("midrange_instruction_JSR-weak",
+                                                                                              & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6480,7 +6901,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -6508,9 +6929,8 @@ GALGAS_midrange_5F_instruction_5F_JUMP GALGAS_midrange_5F_instruction_5F_JUMP_2D
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak ("midrange_instruction_JUMP-weak",
-                                                                & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_JUMP_2D_weak ("midrange_instruction_JUMP-weak",
+                                                                                               & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6591,7 +7011,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -6619,9 +7039,8 @@ GALGAS_midrange_5F_instruction_5F_GOTO GALGAS_midrange_5F_instruction_5F_GOTO_2D
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak ("midrange_instruction_GOTO-weak",
-                                                                & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_GOTO_2D_weak ("midrange_instruction_GOTO-weak",
+                                                                                               & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6711,8 +7130,8 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_CLRWDT GALGAS_midrange_5F_instruction_5F_CLRWDT::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation
-                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_CLRWDT GALGAS_midrange_5F_instruction_5F_CLRWDT::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation
+                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_CLRWDT result ;
   if (inAttribute_mInstructionLocation.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_CLRWDT (inAttribute_mInstructionLocation COMMA_THERE)) ;
@@ -6757,9 +7176,8 @@ acPtr_class * cPtr_midrange_5F_instruction_5F_CLRWDT::duplicate (LOCATION_ARGS) 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_CLRWDT ("midrange_instruction_CLRWDT",
-                                                          & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_CLRWDT ("midrange_instruction_CLRWDT",
+                                                                                         & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6840,7 +7258,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -6868,9 +7286,8 @@ GALGAS_midrange_5F_instruction_5F_CLRWDT GALGAS_midrange_5F_instruction_5F_CLRWD
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak ("midrange_instruction_CLRWDT-weak",
-                                                                  & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_CLRWDT_2D_weak ("midrange_instruction_CLRWDT-weak",
+                                                                                                 & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6960,8 +7377,8 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_CLRW GALGAS_midrange_5F_instruction_5F_CLRW::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation
-                                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_CLRW GALGAS_midrange_5F_instruction_5F_CLRW::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation
+                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_CLRW result ;
   if (inAttribute_mInstructionLocation.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_CLRW (inAttribute_mInstructionLocation COMMA_THERE)) ;
@@ -7006,9 +7423,8 @@ acPtr_class * cPtr_midrange_5F_instruction_5F_CLRW::duplicate (LOCATION_ARGS) co
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_CLRW ("midrange_instruction_CLRW",
-                                                        & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_CLRW ("midrange_instruction_CLRW",
+                                                                                       & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7089,7 +7505,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -7117,9 +7533,8 @@ GALGAS_midrange_5F_instruction_5F_CLRW GALGAS_midrange_5F_instruction_5F_CLRW_2D
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak ("midrange_instruction_CLRW-weak",
-                                                                & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_CLRW_2D_weak ("midrange_instruction_CLRW-weak",
+                                                                                               & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7209,8 +7624,8 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_NOP GALGAS_midrange_5F_instruction_5F_NOP::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation
-                                                                                              COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_NOP GALGAS_midrange_5F_instruction_5F_NOP::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation
+                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_NOP result ;
   if (inAttribute_mInstructionLocation.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_NOP (inAttribute_mInstructionLocation COMMA_THERE)) ;
@@ -7255,9 +7670,8 @@ acPtr_class * cPtr_midrange_5F_instruction_5F_NOP::duplicate (LOCATION_ARGS) con
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_NOP ("midrange_instruction_NOP",
-                                                       & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_NOP ("midrange_instruction_NOP",
+                                                                                      & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7338,7 +7752,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_NOP_2D_weak GALGAS_midrange_5F_instruction_5F_NOP_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_NOP_2D_weak GALGAS_midrange_5F_instruction_5F_NOP_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_NOP_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -7366,9 +7780,8 @@ GALGAS_midrange_5F_instruction_5F_NOP GALGAS_midrange_5F_instruction_5F_NOP_2D_w
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_NOP_2D_weak ("midrange_instruction_NOP-weak",
-                                                               & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_NOP_2D_weak ("midrange_instruction_NOP-weak",
+                                                                                              & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7458,8 +7871,8 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_SLEEP GALGAS_midrange_5F_instruction_5F_SLEEP::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation
-                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_SLEEP GALGAS_midrange_5F_instruction_5F_SLEEP::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation
+                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_SLEEP result ;
   if (inAttribute_mInstructionLocation.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_SLEEP (inAttribute_mInstructionLocation COMMA_THERE)) ;
@@ -7504,9 +7917,8 @@ acPtr_class * cPtr_midrange_5F_instruction_5F_SLEEP::duplicate (LOCATION_ARGS) c
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_SLEEP ("midrange_instruction_SLEEP",
-                                                         & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_SLEEP ("midrange_instruction_SLEEP",
+                                                                                        & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7587,7 +7999,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -7615,9 +8027,8 @@ GALGAS_midrange_5F_instruction_5F_SLEEP GALGAS_midrange_5F_instruction_5F_SLEEP_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak ("midrange_instruction_SLEEP-weak",
-                                                                 & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_SLEEP_2D_weak ("midrange_instruction_SLEEP-weak",
+                                                                                                & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7660,7 +8071,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_ADDLW (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_ADDLW (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_literal_5F_instruction_5F_opcode result ;
   result.mEnum = kEnum_ADDLW ;
   return result ;
@@ -7668,7 +8079,7 @@ GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_ANDLW (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_ANDLW (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_literal_5F_instruction_5F_opcode result ;
   result.mEnum = kEnum_ANDLW ;
   return result ;
@@ -7676,7 +8087,7 @@ GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_IORLW (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_IORLW (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_literal_5F_instruction_5F_opcode result ;
   result.mEnum = kEnum_IORLW ;
   return result ;
@@ -7684,7 +8095,7 @@ GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_MOVLW (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_literal_5F_instruction_5F_opcode result ;
   result.mEnum = kEnum_MOVLW ;
   return result ;
@@ -7692,7 +8103,7 @@ GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_RETLW (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_RETLW (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_literal_5F_instruction_5F_opcode result ;
   result.mEnum = kEnum_RETLW ;
   return result ;
@@ -7700,7 +8111,7 @@ GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_SUBLW (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_SUBLW (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_literal_5F_instruction_5F_opcode result ;
   result.mEnum = kEnum_SUBLW ;
   return result ;
@@ -7708,7 +8119,7 @@ GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::constructor_XORLW (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_literal_5F_instruction_5F_opcode GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_XORLW (UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_literal_5F_instruction_5F_opcode result ;
   result.mEnum = kEnum_XORLW ;
   return result ;
@@ -7849,9 +8260,8 @@ typeComparisonResult GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::object
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_literal_5F_instruction_5F_opcode ("midrange_literal_instruction_opcode",
-                                                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_literal_5F_instruction_5F_opcode ("midrange_literal_instruction_opcode",
+                                                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8006,10 +8416,10 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_literalOperation GALGAS_midrange_5F_instruction_5F_literalOperation::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                        const GALGAS_midrange_5F_literal_5F_instruction_5F_opcode & inAttribute_mLiteralInstruction,
-                                                                                                                        const GALGAS_immediatExpression & inAttribute_mImmediatExpression
-                                                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_literalOperation GALGAS_midrange_5F_instruction_5F_literalOperation::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                       const GALGAS_midrange_5F_literal_5F_instruction_5F_opcode & inAttribute_mLiteralInstruction,
+                                                                                                                       const GALGAS_immediatExpression & inAttribute_mImmediatExpression
+                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_literalOperation result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mLiteralInstruction.isValid () && inAttribute_mImmediatExpression.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_literalOperation (inAttribute_mInstructionLocation, inAttribute_mLiteralInstruction, inAttribute_mImmediatExpression COMMA_THERE)) ;
@@ -8108,9 +8518,8 @@ acPtr_class * cPtr_midrange_5F_instruction_5F_literalOperation::duplicate (LOCAT
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_literalOperation ("midrange_instruction_literalOperation",
-                                                                    & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_literalOperation ("midrange_instruction_literalOperation",
+                                                                                                   & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8191,7 +8600,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -8219,9 +8628,8 @@ GALGAS_midrange_5F_instruction_5F_literalOperation GALGAS_midrange_5F_instructio
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak ("midrange_instruction_literalOperation-weak",
-                                                                            & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_literalOperation_2D_weak ("midrange_instruction_literalOperation-weak",
+                                                                                                           & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8315,9 +8723,9 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_MNOP GALGAS_midrange_5F_instruction_5F_MNOP::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                const GALGAS_luint & inAttribute_mOccurrenceFactor
-                                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_MNOP GALGAS_midrange_5F_instruction_5F_MNOP::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                               const GALGAS_luint & inAttribute_mOccurrenceFactor
+                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_MNOP result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mOccurrenceFactor.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_MNOP (inAttribute_mInstructionLocation, inAttribute_mOccurrenceFactor COMMA_THERE)) ;
@@ -8389,9 +8797,8 @@ acPtr_class * cPtr_midrange_5F_instruction_5F_MNOP::duplicate (LOCATION_ARGS) co
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_MNOP ("midrange_instruction_MNOP",
-                                                        & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_MNOP ("midrange_instruction_MNOP",
+                                                                                       & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8472,7 +8879,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -8500,9 +8907,8 @@ GALGAS_midrange_5F_instruction_5F_MNOP GALGAS_midrange_5F_instruction_5F_MNOP_2D
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak ("midrange_instruction_MNOP-weak",
-                                                                & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_MNOP_2D_weak ("midrange_instruction_MNOP-weak",
+                                                                                               & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8600,10 +9006,10 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FOREVER GALGAS_midrange_5F_instruction_5F_FOREVER::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                      const GALGAS_midrange_5F_instructionList & inAttribute_mInstructionList,
-                                                                                                      const GALGAS_location & inAttribute_mEndOfInstructionList
-                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FOREVER GALGAS_midrange_5F_instruction_5F_FOREVER::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                     const GALGAS_midrange_5F_instructionList & inAttribute_mInstructionList,
+                                                                                                     const GALGAS_location & inAttribute_mEndOfInstructionList
+                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FOREVER result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mEndOfInstructionList.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_FOREVER (inAttribute_mInstructionLocation, inAttribute_mInstructionList, inAttribute_mEndOfInstructionList COMMA_THERE)) ;
@@ -8702,9 +9108,8 @@ acPtr_class * cPtr_midrange_5F_instruction_5F_FOREVER::duplicate (LOCATION_ARGS)
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FOREVER ("midrange_instruction_FOREVER",
-                                                           & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FOREVER ("midrange_instruction_FOREVER",
+                                                                                          & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8785,7 +9190,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -8813,9 +9218,8 @@ GALGAS_midrange_5F_instruction_5F_FOREVER GALGAS_midrange_5F_instruction_5F_FORE
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak ("midrange_instruction_FOREVER-weak",
-                                                                   & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_FOREVER_2D_weak ("midrange_instruction_FOREVER-weak",
+                                                                                                  & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8934,9 +9338,8 @@ mProperty_mInstruction (in_mInstruction) {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON ("midrange_instruction_IF_SEMI_COLON",
-                                                                       & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON ("midrange_instruction_IF_SEMI_COLON",
+                                                                                                      & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9017,7 +9420,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -9045,9 +9448,8 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON GALGAS_midrange_5F_instruc
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak ("midrange_instruction_IF_SEMI_COLON-weak",
-                                                                               & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak ("midrange_instruction_IF_SEMI_COLON-weak",
+                                                                                                              & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9128,7 +9530,7 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -9156,9 +9558,8 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest GALGAS_midrange_5F_instruction_5
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak ("midrange_instruction_IF_BitTest-weak",
-                                                                         & kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest_2D_weak ("midrange_instruction_IF_BitTest-weak",
+                                                                                                        & kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9239,7 +9640,7 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -9267,9 +9668,8 @@ GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec GALGAS_midrange_5F_instruction_5F
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak ("midrange_instruction_IF_IncDec-weak",
-                                                                        & kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec_2D_weak ("midrange_instruction_IF_IncDec-weak",
+                                                                                                       & kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9361,9 +9761,8 @@ acStrongPtr_class (THERE) {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_conditionExpression ("midrange_conditionExpression",
-                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_conditionExpression ("midrange_conditionExpression",
+                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9444,7 +9843,7 @@ AC_GALGAS_weak_reference (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_conditionExpression_2D_weak GALGAS_midrange_5F_conditionExpression_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_conditionExpression_2D_weak GALGAS_midrange_5F_conditionExpression_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_conditionExpression_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -9472,9 +9871,8 @@ GALGAS_midrange_5F_conditionExpression GALGAS_midrange_5F_conditionExpression_2D
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_conditionExpression_2D_weak ("midrange_conditionExpression-weak",
-                                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_conditionExpression_2D_weak ("midrange_conditionExpression-weak",
+                                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9555,7 +9953,7 @@ GALGAS_midrange_5F_conditionExpression_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -9583,9 +9981,8 @@ GALGAS_midrange_5F_incDecRegisterInCondition GALGAS_midrange_5F_incDecRegisterIn
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak ("midrange_incDecRegisterInCondition-weak",
-                                                                      & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_incDecRegisterInCondition_2D_weak ("midrange_incDecRegisterInCondition-weak",
+                                                                                                     & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9676,8 +10073,8 @@ GALGAS_midrange_5F_conditionExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_negateCondition GALGAS_midrange_5F_negateCondition::constructor_new (const GALGAS_midrange_5F_conditionExpression & inAttribute_mCondition
-                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_negateCondition GALGAS_midrange_5F_negateCondition::class_func_new (const GALGAS_midrange_5F_conditionExpression & inAttribute_mCondition
+                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_negateCondition result ;
   if (inAttribute_mCondition.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_negateCondition (inAttribute_mCondition COMMA_THERE)) ;
@@ -9746,9 +10143,8 @@ acPtr_class * cPtr_midrange_5F_negateCondition::duplicate (LOCATION_ARGS) const 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_negateCondition ("midrange_negateCondition",
-                                                    & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_negateCondition ("midrange_negateCondition",
+                                                                                   & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9829,7 +10225,7 @@ GALGAS_midrange_5F_conditionExpression_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_negateCondition_2D_weak GALGAS_midrange_5F_negateCondition_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_negateCondition_2D_weak GALGAS_midrange_5F_negateCondition_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_negateCondition_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -9857,9 +10253,8 @@ GALGAS_midrange_5F_negateCondition GALGAS_midrange_5F_negateCondition_2D_weak::b
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_negateCondition_2D_weak ("midrange_negateCondition-weak",
-                                                            & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_negateCondition_2D_weak ("midrange_negateCondition-weak",
+                                                                                           & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9954,9 +10349,9 @@ GALGAS_midrange_5F_conditionExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_andCondition GALGAS_midrange_5F_andCondition::constructor_new (const GALGAS_midrange_5F_conditionExpression & inAttribute_mLeftExpression,
-                                                                                  const GALGAS_midrange_5F_conditionExpression & inAttribute_mRightExpression
-                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_andCondition GALGAS_midrange_5F_andCondition::class_func_new (const GALGAS_midrange_5F_conditionExpression & inAttribute_mLeftExpression,
+                                                                                 const GALGAS_midrange_5F_conditionExpression & inAttribute_mRightExpression
+                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_andCondition result ;
   if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_andCondition (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
@@ -10052,9 +10447,8 @@ acPtr_class * cPtr_midrange_5F_andCondition::duplicate (LOCATION_ARGS) const {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_andCondition ("midrange_andCondition",
-                                                 & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_andCondition ("midrange_andCondition",
+                                                                                & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10135,7 +10529,7 @@ GALGAS_midrange_5F_conditionExpression_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_andCondition_2D_weak GALGAS_midrange_5F_andCondition_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_andCondition_2D_weak GALGAS_midrange_5F_andCondition_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_andCondition_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -10163,9 +10557,8 @@ GALGAS_midrange_5F_andCondition GALGAS_midrange_5F_andCondition_2D_weak::bang_mi
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_andCondition_2D_weak ("midrange_andCondition-weak",
-                                                         & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_andCondition_2D_weak ("midrange_andCondition-weak",
+                                                                                        & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10246,7 +10639,7 @@ GALGAS_midrange_5F_conditionExpression_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -10274,9 +10667,8 @@ GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition GALGAS_midrang
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak ("midrange_bitTest_in_structured_if_condition-weak",
-                                                                                           & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2D_weak ("midrange_bitTest_in_structured_if_condition-weak",
+                                                                                                                          & kTypeDescriptor_GALGAS_midrange_5F_conditionExpression_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10382,12 +10774,12 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_structured_5F_if GALGAS_midrange_5F_instruction_5F_structured_5F_if::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                        const GALGAS_midrange_5F_conditionExpression & inAttribute_mIfCondition,
-                                                                                                                        const GALGAS_midrange_5F_instructionList & inAttribute_mThenInstructionList,
-                                                                                                                        const GALGAS_midrange_5F_instructionList & inAttribute_mElseInstructionList,
-                                                                                                                        const GALGAS_location & inAttribute_mEndOfElsePartLocation
-                                                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_structured_5F_if GALGAS_midrange_5F_instruction_5F_structured_5F_if::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                       const GALGAS_midrange_5F_conditionExpression & inAttribute_mIfCondition,
+                                                                                                                       const GALGAS_midrange_5F_instructionList & inAttribute_mThenInstructionList,
+                                                                                                                       const GALGAS_midrange_5F_instructionList & inAttribute_mElseInstructionList,
+                                                                                                                       const GALGAS_location & inAttribute_mEndOfElsePartLocation
+                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_structured_5F_if result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mIfCondition.isValid () && inAttribute_mThenInstructionList.isValid () && inAttribute_mElseInstructionList.isValid () && inAttribute_mEndOfElsePartLocation.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_structured_5F_if (inAttribute_mInstructionLocation, inAttribute_mIfCondition, inAttribute_mThenInstructionList, inAttribute_mElseInstructionList, inAttribute_mEndOfElsePartLocation COMMA_THERE)) ;
@@ -10540,9 +10932,8 @@ acPtr_class * cPtr_midrange_5F_instruction_5F_structured_5F_if::duplicate (LOCAT
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_structured_5F_if ("midrange_instruction_structured_if",
-                                                                    & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_structured_5F_if ("midrange_instruction_structured_if",
+                                                                                                   & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10623,7 +11014,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -10651,9 +11042,8 @@ GALGAS_midrange_5F_instruction_5F_structured_5F_if GALGAS_midrange_5F_instructio
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak ("midrange_instruction_structured_if-weak",
-                                                                            & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak ("midrange_instruction_structured_if-weak",
+                                                                                                           & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10697,7 +11087,7 @@ GALGAS_midrange_5F_instruction_5F_structured_5F_if_2D_weak GALGAS_midrange_5F_in
 class cCollectionElement_midrange_5F_partList : public cCollectionElement {
   public: GALGAS_midrange_5F_partList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_midrange_5F_partList (const GALGAS_midrange_5F_conditionExpression & in_mCondition,
                                                    const GALGAS_midrange_5F_instructionList & in_mInstructionList,
                                                    const GALGAS_location & in_mEndOfPartLocation
@@ -10787,16 +11177,16 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_midrange_5F_partList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::constructor_listWithValue (const GALGAS_midrange_5F_conditionExpression & inOperand0,
-                                                                                    const GALGAS_midrange_5F_instructionList & inOperand1,
-                                                                                    const GALGAS_location & inOperand2
-                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::class_func_listWithValue (const GALGAS_midrange_5F_conditionExpression & inOperand0,
+                                                                                   const GALGAS_midrange_5F_instructionList & inOperand1,
+                                                                                   const GALGAS_location & inOperand2
+                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_partList result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     result = GALGAS_midrange_5F_partList (capCollectionElementArray ()) ;
@@ -11020,7 +11410,7 @@ GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::add_operation (const GA
 GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_partList result = GALGAS_midrange_5F_partList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_partList result = GALGAS_midrange_5F_partList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -11030,7 +11420,7 @@ GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::getter_subListWithRange
 GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_partList result = GALGAS_midrange_5F_partList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_partList result = GALGAS_midrange_5F_partList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -11040,7 +11430,7 @@ GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::getter_subListFromIndex
 GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                 Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_partList result = GALGAS_midrange_5F_partList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_partList result = GALGAS_midrange_5F_partList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -11192,9 +11582,8 @@ GALGAS_location cEnumerator_midrange_5F_partList::current_mEndOfPartLocation (LO
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_partList ("midrange_partList",
-                                             nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_partList ("midrange_partList",
+                                                                            nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11296,11 +11685,11 @@ GALGAS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_do_5F_while GALGAS_midrange_5F_instruction_5F_do_5F_while::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                              const GALGAS_midrange_5F_instructionList & inAttribute_mRepeatedInstructionList,
-                                                                                                              const GALGAS_location & inAttribute_mEndOfRepeatedInstructionList,
-                                                                                                              const GALGAS_midrange_5F_partList & inAttribute_mWhilePartList
-                                                                                                              COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_do_5F_while GALGAS_midrange_5F_instruction_5F_do_5F_while::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                             const GALGAS_midrange_5F_instructionList & inAttribute_mRepeatedInstructionList,
+                                                                                                             const GALGAS_location & inAttribute_mEndOfRepeatedInstructionList,
+                                                                                                             const GALGAS_midrange_5F_partList & inAttribute_mWhilePartList
+                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_do_5F_while result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mRepeatedInstructionList.isValid () && inAttribute_mEndOfRepeatedInstructionList.isValid () && inAttribute_mWhilePartList.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_do_5F_while (inAttribute_mInstructionLocation, inAttribute_mRepeatedInstructionList, inAttribute_mEndOfRepeatedInstructionList, inAttribute_mWhilePartList COMMA_THERE)) ;
@@ -11426,9 +11815,8 @@ acPtr_class * cPtr_midrange_5F_instruction_5F_do_5F_while::duplicate (LOCATION_A
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_do_5F_while ("midrange_instruction_do_while",
-                                                               & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_do_5F_while ("midrange_instruction_do_while",
+                                                                                              & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11509,7 +11897,7 @@ GALGAS_midrange_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -11537,9 +11925,8 @@ GALGAS_midrange_5F_instruction_5F_do_5F_while GALGAS_midrange_5F_instruction_5F_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak ("midrange_instruction_do_while-weak",
-                                                                       & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak ("midrange_instruction_do_while-weak",
+                                                                                                      & kTypeDescriptor_GALGAS_midrange_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11583,7 +11970,7 @@ GALGAS_midrange_5F_instruction_5F_do_5F_while_2D_weak GALGAS_midrange_5F_instruc
 class cCollectionElement_midrange_5F_interruptDefinitionList : public cCollectionElement {
   public: GALGAS_midrange_5F_interruptDefinitionList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_midrange_5F_interruptDefinitionList (const GALGAS_location & in_mInterruptLocation,
                                                                   const GALGAS_midrange_5F_instructionList & in_mInstructionList,
                                                                   const GALGAS_lstring & in_mFirstSaveRegister,
@@ -11685,18 +12072,18 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_midrange_5F_interruptDefinitionList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::constructor_listWithValue (const GALGAS_location & inOperand0,
-                                                                                                                  const GALGAS_midrange_5F_instructionList & inOperand1,
-                                                                                                                  const GALGAS_lstring & inOperand2,
-                                                                                                                  const GALGAS_lstring & inOperand3,
-                                                                                                                  const GALGAS_location & inOperand4
-                                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::class_func_listWithValue (const GALGAS_location & inOperand0,
+                                                                                                                 const GALGAS_midrange_5F_instructionList & inOperand1,
+                                                                                                                 const GALGAS_lstring & inOperand2,
+                                                                                                                 const GALGAS_lstring & inOperand3,
+                                                                                                                 const GALGAS_location & inOperand4
+                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_interruptDefinitionList result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid ()) {
     result = GALGAS_midrange_5F_interruptDefinitionList (capCollectionElementArray ()) ;
@@ -11964,7 +12351,7 @@ GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitio
 GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                                 Compiler * inCompiler
                                                                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_interruptDefinitionList result = GALGAS_midrange_5F_interruptDefinitionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_interruptDefinitionList result = GALGAS_midrange_5F_interruptDefinitionList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -11974,7 +12361,7 @@ GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitio
 GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                                 Compiler * inCompiler
                                                                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_interruptDefinitionList result = GALGAS_midrange_5F_interruptDefinitionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_interruptDefinitionList result = GALGAS_midrange_5F_interruptDefinitionList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -11984,7 +12371,7 @@ GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitio
 GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                                               Compiler * inCompiler
                                                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_interruptDefinitionList result = GALGAS_midrange_5F_interruptDefinitionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_interruptDefinitionList result = GALGAS_midrange_5F_interruptDefinitionList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -12210,9 +12597,8 @@ GALGAS_location cEnumerator_midrange_5F_interruptDefinitionList::current_mEndOfI
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList ("midrange_interruptDefinitionList",
-                                                            nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList ("midrange_interruptDefinitionList",
+                                                                                           nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12256,7 +12642,7 @@ GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitio
 class cCollectionElement_midrange_5F_routineDefinitionList : public cCollectionElement {
   public: GALGAS_midrange_5F_routineDefinitionList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_midrange_5F_routineDefinitionList (const GALGAS_lstring & in_mRoutineName,
                                                                 const GALGAS_luint & in_mPage,
                                                                 const GALGAS_luint & in_mRequiredBank,
@@ -12376,21 +12762,21 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_midrange_5F_routineDefinitionList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionList::constructor_listWithValue (const GALGAS_lstring & inOperand0,
-                                                                                                              const GALGAS_luint & inOperand1,
-                                                                                                              const GALGAS_luint & inOperand2,
-                                                                                                              const GALGAS_luint & inOperand3,
-                                                                                                              const GALGAS_bool & inOperand4,
-                                                                                                              const GALGAS_bool & inOperand5,
-                                                                                                              const GALGAS_midrange_5F_instructionList & inOperand6,
-                                                                                                              const GALGAS_location & inOperand7
-                                                                                                              COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionList::class_func_listWithValue (const GALGAS_lstring & inOperand0,
+                                                                                                             const GALGAS_luint & inOperand1,
+                                                                                                             const GALGAS_luint & inOperand2,
+                                                                                                             const GALGAS_luint & inOperand3,
+                                                                                                             const GALGAS_bool & inOperand4,
+                                                                                                             const GALGAS_bool & inOperand5,
+                                                                                                             const GALGAS_midrange_5F_instructionList & inOperand6,
+                                                                                                             const GALGAS_location & inOperand7
+                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_routineDefinitionList result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid ()) {
     result = GALGAS_midrange_5F_routineDefinitionList (capCollectionElementArray ()) ;
@@ -12724,7 +13110,7 @@ GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionLis
 GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                             Compiler * inCompiler
                                                                                                             COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_routineDefinitionList result = GALGAS_midrange_5F_routineDefinitionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_routineDefinitionList result = GALGAS_midrange_5F_routineDefinitionList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -12734,7 +13120,7 @@ GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionLis
 GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                             Compiler * inCompiler
                                                                                                             COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_routineDefinitionList result = GALGAS_midrange_5F_routineDefinitionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_routineDefinitionList result = GALGAS_midrange_5F_routineDefinitionList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -12744,7 +13130,7 @@ GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionLis
 GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                                           Compiler * inCompiler
                                                                                                           COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_routineDefinitionList result = GALGAS_midrange_5F_routineDefinitionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_routineDefinitionList result = GALGAS_midrange_5F_routineDefinitionList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -13081,9 +13467,8 @@ GALGAS_location cEnumerator_midrange_5F_routineDefinitionList::current_mEndOfRou
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_routineDefinitionList ("midrange_routineDefinitionList",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_routineDefinitionList ("midrange_routineDefinitionList",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13140,10 +13525,10 @@ mProperty_mRegisterAddress (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_intermediate_5F_registerExpression::constructor_new (const GALGAS_string & in_mAssemblyString,
-                                                                                                                              const GALGAS_uint & in_mRegisterAddress,
-                                                                                                                              Compiler * /* inCompiler */
-                                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_intermediate_5F_registerExpression::class_func_new (const GALGAS_string & in_mAssemblyString,
+                                                                                                                             const GALGAS_uint & in_mRegisterAddress,
+                                                                                                                             Compiler * /* inCompiler */
+                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_registerExpression result ;
   if (in_mAssemblyString.isValid () && in_mRegisterAddress.isValid ()) {
     result = GALGAS_midrange_5F_intermediate_5F_registerExpression (in_mAssemblyString, in_mRegisterAddress) ;
@@ -13198,9 +13583,8 @@ void GALGAS_midrange_5F_intermediate_5F_registerExpression::description (String 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_registerExpression ("midrange_intermediate_registerExpression",
-                                                                       nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_registerExpression ("midrange_intermediate_registerExpression",
+                                                                                                      nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13292,9 +13676,8 @@ acStrongPtr_class (THERE) {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction ("midrange_intermediate_instruction",
-                                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction ("midrange_intermediate_instruction",
+                                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13375,7 +13758,7 @@ AC_GALGAS_weak_reference (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -13403,9 +13786,8 @@ GALGAS_midrange_5F_intermediate_5F_instruction GALGAS_midrange_5F_intermediate_5
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak ("midrange_intermediate_instruction-weak",
-                                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak ("midrange_intermediate_instruction-weak",
+                                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13449,7 +13831,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak GALGAS_midrange_5F_interm
 class cCollectionElement_midrange_5F_intermediate_5F_instructionList : public cCollectionElement {
   public: GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_midrange_5F_intermediate_5F_instructionList (const GALGAS_midrange_5F_intermediate_5F_instruction & in_mInstruction
                                                                           COMMA_LOCATION_ARGS) ;
   public: cCollectionElement_midrange_5F_intermediate_5F_instructionList (const GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
@@ -13527,14 +13909,14 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermediate_5F_instructionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermediate_5F_instructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_midrange_5F_intermediate_5F_instructionList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermediate_5F_instructionList::constructor_listWithValue (const GALGAS_midrange_5F_intermediate_5F_instruction & inOperand0
-                                                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermediate_5F_instructionList::class_func_listWithValue (const GALGAS_midrange_5F_intermediate_5F_instruction & inOperand0
+                                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_instructionList result ;
   if (inOperand0.isValid ()) {
     result = GALGAS_midrange_5F_intermediate_5F_instructionList (capCollectionElementArray ()) ;
@@ -13714,7 +14096,7 @@ GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermedia
 GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermediate_5F_instructionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                                                 Compiler * inCompiler
                                                                                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_intermediate_5F_instructionList result = GALGAS_midrange_5F_intermediate_5F_instructionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_intermediate_5F_instructionList result = GALGAS_midrange_5F_intermediate_5F_instructionList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -13724,7 +14106,7 @@ GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermedia
 GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermediate_5F_instructionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                                                 Compiler * inCompiler
                                                                                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_intermediate_5F_instructionList result = GALGAS_midrange_5F_intermediate_5F_instructionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_intermediate_5F_instructionList result = GALGAS_midrange_5F_intermediate_5F_instructionList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -13734,7 +14116,7 @@ GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermedia
 GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermediate_5F_instructionList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                                                               Compiler * inCompiler
                                                                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_intermediate_5F_instructionList result = GALGAS_midrange_5F_intermediate_5F_instructionList::constructor_emptyList (THERE) ;
+  GALGAS_midrange_5F_intermediate_5F_instructionList result = GALGAS_midrange_5F_intermediate_5F_instructionList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -13812,9 +14194,8 @@ GALGAS_midrange_5F_intermediate_5F_instruction cEnumerator_midrange_5F_intermedi
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instructionList ("midrange_intermediate_instructionList",
-                                                                    nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instructionList ("midrange_intermediate_instructionList",
+                                                                                                   nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13898,7 +14279,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_NULL GALGAS_midrange_5F_intermediate_5F_NULL::constructor_new (LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_NULL GALGAS_midrange_5F_intermediate_5F_NULL::class_func_new (LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_NULL result ;
   macroMyNew (result.mObjectPtr, cPtr_midrange_5F_intermediate_5F_NULL (THERE)) ;
   return result ;
@@ -13938,9 +14319,8 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_NULL::duplicate (LOCATION_ARGS) c
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_NULL ("midrange_intermediate_NULL",
-                                                         & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_NULL ("midrange_intermediate_NULL",
+                                                                                        & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14021,7 +14401,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_NULL_2D_weak GALGAS_midrange_5F_intermediate_5F_NULL_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_NULL_2D_weak GALGAS_midrange_5F_intermediate_5F_NULL_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_NULL_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -14049,9 +14429,8 @@ GALGAS_midrange_5F_intermediate_5F_NULL GALGAS_midrange_5F_intermediate_5F_NULL_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_NULL_2D_weak ("midrange_intermediate_NULL-weak",
-                                                                 & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_NULL_2D_weak ("midrange_intermediate_NULL-weak",
+                                                                                                & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14142,8 +14521,8 @@ GALGAS_midrange_5F_intermediate_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG::constructor_new (const GALGAS_uint & inAttribute_mOrigin
-                                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG::class_func_new (const GALGAS_uint & inAttribute_mOrigin
+                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG result ;
   if (inAttribute_mOrigin.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG (inAttribute_mOrigin COMMA_THERE)) ;
@@ -14212,9 +14591,8 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::duplicate (LOCATIO
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG ("midrange_intermediate_pseudo_ORG",
-                                                                  & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG ("midrange_intermediate_pseudo_ORG",
+                                                                                                 & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14295,7 +14673,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2D_weak GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2D_weak GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -14323,9 +14701,8 @@ GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG GALGAS_midrange_5F_intermediate
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2D_weak ("midrange_intermediate_pseudo_ORG-weak",
-                                                                          & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2D_weak ("midrange_intermediate_pseudo_ORG-weak",
+                                                                                                         & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14406,7 +14783,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -14434,9 +14811,8 @@ GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL GALGAS_midrange_5F_intermedia
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak ("midrange_intermediate_pseudo_LABEL-weak",
-                                                                            & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2D_weak ("midrange_intermediate_pseudo_LABEL-weak",
+                                                                                                           & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14554,9 +14930,8 @@ mProperty_mInstructionLocation (in_mInstructionLocation) {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_actualInstruction ("midrange_intermediate_actualInstruction",
-                                                                      & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_actualInstruction ("midrange_intermediate_actualInstruction",
+                                                                                                     & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14637,7 +15012,7 @@ GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -14665,9 +15040,8 @@ GALGAS_midrange_5F_intermediate_5F_actualInstruction GALGAS_midrange_5F_intermed
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak ("midrange_intermediate_actualInstruction-weak",
-                                                                              & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak ("midrange_intermediate_actualInstruction-weak",
+                                                                                                             & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14769,11 +15143,11 @@ GALGAS_midrange_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                            const GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code & inAttribute_mInstruction_5F_FD_5F_base_5F_code,
-                                                                                                                            const GALGAS_midrange_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                            const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
-                                                                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                           const GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code & inAttribute_mInstruction_5F_FD_5F_base_5F_code,
+                                                                                                                           const GALGAS_midrange_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                                           const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
+                                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction_5F_FD_5F_base_5F_code.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_m_5F_W_5F_isDestination.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_midrange_5F_intermediate_5F_instruction_5F_FD (inAttribute_mInstructionLocation, inAttribute_mInstruction_5F_FD_5F_base_5F_code, inAttribute_mRegisterDescription, inAttribute_m_5F_W_5F_isDestination COMMA_THERE)) ;
@@ -14899,9 +15273,8 @@ acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::duplicate (LOC
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD ("midrange_intermediate_instruction_FD",
-                                                                      & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_actualInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD ("midrange_intermediate_instruction_FD",
+                                                                                                     & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_actualInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14931,430 +15304,6 @@ GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD GALGAS_midrange_5F_intermed
       result = *p ;
     }else{
       inCompiler->castError ("midrange_intermediate_instruction_FD", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak::objectCompare (const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak::GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak (void) :
-GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak & GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak::operator = (const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = nullptr ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak::GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak (const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD & inSource) :
-GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak (inSource) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak::constructor_nil (LOCATION_ARGS) {
-  GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak::bang_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD result ;
-  if (mProxyPtr != nullptr) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_midrange_5F_intermediate_5F_instruction_5F_FD) ;
-      result = GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD ((cPtr_midrange_5F_intermediate_5F_instruction_5F_FD *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @midrange_intermediate_instruction_FD-weak generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak ("midrange_intermediate_instruction_FD-weak",
-                                                                              & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak::extractObject (const GALGAS_object & inObject,
-                                                                                                                                          Compiler * inCompiler
-                                                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak result ;
-  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak * p = (const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_instruction_5F_FD_2D_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("midrange_intermediate_instruction_FD-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @midrange_5F_intermediate_5F_instruction_5F_F reference class
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_midrange_5F_intermediate_5F_instruction_5F_F::printNonNullClassInstanceProperties (void) const {
-    cPtr_midrange_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
-    mProperty_mFinstruction.printNonNullClassInstanceProperties ("mFinstruction") ;
-    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_midrange_5F_intermediate_5F_instruction_5F_F::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_midrange_5F_intermediate_5F_instruction_5F_F * p = (const cPtr_midrange_5F_intermediate_5F_instruction_5F_F *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mInstructionLocation.objectCompare (p->mProperty_mInstructionLocation) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mFinstruction.objectCompare (p->mProperty_mFinstruction) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mRegisterDescription.objectCompare (p->mProperty_mRegisterDescription) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::objectCompare (const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::GALGAS_midrange_5F_intermediate_5F_instruction_5F_F (void) :
-GALGAS_midrange_5F_intermediate_5F_actualInstruction () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::GALGAS_midrange_5F_intermediate_5F_instruction_5F_F (const cPtr_midrange_5F_intermediate_5F_instruction_5F_F * inSourcePtr) :
-GALGAS_midrange_5F_intermediate_5F_actualInstruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_F GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                          const GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code & inAttribute_mFinstruction,
-                                                                                                                          const GALGAS_midrange_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription
-                                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_midrange_5F_intermediate_5F_instruction_5F_F result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mFinstruction.isValid () && inAttribute_mRegisterDescription.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_midrange_5F_intermediate_5F_instruction_5F_F (inAttribute_mInstructionLocation, inAttribute_mFinstruction, inAttribute_mRegisterDescription COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::setter_setMFinstruction (GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code inValue
-                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_midrange_5F_intermediate_5F_instruction_5F_F * p = (cPtr_midrange_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
-    p->mProperty_mFinstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::setter_setMRegisterDescription (GALGAS_midrange_5F_intermediate_5F_registerExpression inValue
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_midrange_5F_intermediate_5F_instruction_5F_F * p = (cPtr_midrange_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::readProperty_mFinstruction (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code () ;
-  }else{
-    cPtr_midrange_5F_intermediate_5F_instruction_5F_F * p = (cPtr_midrange_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
-    return p->mProperty_mFinstruction ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_registerExpression GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::readProperty_mRegisterDescription (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_midrange_5F_intermediate_5F_registerExpression () ;
-  }else{
-    cPtr_midrange_5F_intermediate_5F_instruction_5F_F * p = (cPtr_midrange_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
-    return p->mProperty_mRegisterDescription ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @midrange_intermediate_instruction_F class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_midrange_5F_intermediate_5F_instruction_5F_F::cPtr_midrange_5F_intermediate_5F_instruction_5F_F (const GALGAS_location & in_mInstructionLocation,
-                                                                                                      const GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code & in_mFinstruction,
-                                                                                                      const GALGAS_midrange_5F_intermediate_5F_registerExpression & in_mRegisterDescription
-                                                                                                      COMMA_LOCATION_ARGS) :
-cPtr_midrange_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mFinstruction (in_mFinstruction),
-mProperty_mRegisterDescription (in_mRegisterDescription) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_midrange_5F_intermediate_5F_instruction_5F_F::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_F ;
-}
-
-void cPtr_midrange_5F_intermediate_5F_instruction_5F_F::description (String & ioString,
-                                                                     const int32_t inIndentation) const {
-  ioString.addString ("[@midrange_intermediate_instruction_F:") ;
-  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
-  mProperty_mFinstruction.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
-  mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_F::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_F (mProperty_mInstructionLocation, mProperty_mFinstruction, mProperty_mRegisterDescription COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @midrange_intermediate_instruction_F generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_F ("midrange_intermediate_instruction_F",
-                                                                     & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_actualInstruction) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_F ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_instruction_5F_F (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_F GALGAS_midrange_5F_intermediate_5F_instruction_5F_F::extractObject (const GALGAS_object & inObject,
-                                                                                                                        Compiler * inCompiler
-                                                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_midrange_5F_intermediate_5F_instruction_5F_F result ;
-  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F * p = (const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("midrange_intermediate_instruction_F", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-typeComparisonResult GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak::objectCompare (const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak::GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak (void) :
-GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak & GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak::operator = (const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = nullptr ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak::GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak (const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F & inSource) :
-GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak (inSource) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak::constructor_nil (LOCATION_ARGS) {
-  GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_F GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak::bang_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GALGAS_midrange_5F_intermediate_5F_instruction_5F_F result ;
-  if (mProxyPtr != nullptr) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_midrange_5F_intermediate_5F_instruction_5F_F) ;
-      result = GALGAS_midrange_5F_intermediate_5F_instruction_5F_F ((cPtr_midrange_5F_intermediate_5F_instruction_5F_F *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @midrange_intermediate_instruction_F-weak generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak ("midrange_intermediate_instruction_F-weak",
-                                                                             & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_actualInstruction_2D_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak::extractObject (const GALGAS_object & inObject,
-                                                                                                                                        Compiler * inCompiler
-                                                                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak result ;
-  const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak * p = (const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_midrange_5F_intermediate_5F_instruction_5F_F_2D_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("midrange_intermediate_instruction_F-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

@@ -30,9 +30,9 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/M_SourceLocation.h"
-#include "utilities/TF_Swap.h"
-#include "utilities/MF_Assert.h"
+#include "M_SourceLocation.h"
+#include "TF_Swap.h"
+#include "MF_Assert.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -44,7 +44,7 @@ template <typename TYPE> class TC_FIFO {
 //--- Constructor and destructor
   public : TC_FIFO (void) ;
   public : virtual ~TC_FIFO (void) ;
-  
+
 //--- No copy
   private : TC_FIFO <TYPE> (TC_FIFO <TYPE> &) ;
   private : void operator = (TC_FIFO <TYPE> &) ;
@@ -55,7 +55,7 @@ template <typename TYPE> class TC_FIFO {
 //--- Empty ?
   public : inline bool isEmpty (void) const { return mListLength == 0 ; }
 
-//--- Insert a new element at head 
+//--- Insert a new element at head
   public : void insertByCopy (const TYPE & inInfo) ;
   public : void insertByExchange (TYPE & ioInfo) ;
 
@@ -83,7 +83,7 @@ template <typename TYPE> class TC_FIFO {
   //--- No copy
     private : TC_FIFO_element (TC_FIFO_element &) ;
     private : void operator = (TC_FIFO_element &) ;
-  
+
   //--- Friend
     friend class TC_FIFO <TYPE> ;
   } ;

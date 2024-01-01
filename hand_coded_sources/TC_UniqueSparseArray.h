@@ -24,9 +24,9 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-#include "utilities/macroAssert.h"
-#include "utilities/M_SourceLocation.h"
-#include "utilities/TF_Swap.h"
+#include "macroAssert.h"
+#include "M_SourceLocation.h"
+#include "TF_Swap.h"
 
 //----------------------------------------------------------------------------------------------------------------------
 //

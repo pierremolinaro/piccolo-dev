@@ -1,7 +1,7 @@
-#include "galgas2/Compiler.h"
-#include "galgas2/C_galgas_io.h"
-#include "galgas2/C_galgas_CLI_Options.h"
-#include "utilities/C_PrologueEpilogue.h"
+#include "Compiler.h"
+#include "C_galgas_io.h"
+#include "C_galgas_CLI_Options.h"
+#include "PrologueEpilogue.h"
 
 //--------------------------------------------------------------------------------------------------
 
@@ -41,14 +41,14 @@ mProperty_mTerminatorMax (inOperand5) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_Block GALGAS_ipic_31__38_Block::constructor_new (const GALGAS_uint & in_mAddress,
-                                                                    const GALGAS_lstring & in_mLabel,
-                                                                    const GALGAS_ipic_31__38_SequentialInstructionList & in_mInstructionList,
-                                                                    const GALGAS_ipic_31__38_AbstractBlockTerminator & in_mTerminator,
-                                                                    const GALGAS_uint & in_mTerminatorMin,
-                                                                    const GALGAS_uint & in_mTerminatorMax,
-                                                                    Compiler * /* inCompiler */
-                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38_Block GALGAS_ipic_31__38_Block::class_func_new (const GALGAS_uint & in_mAddress,
+                                                                   const GALGAS_lstring & in_mLabel,
+                                                                   const GALGAS_ipic_31__38_SequentialInstructionList & in_mInstructionList,
+                                                                   const GALGAS_ipic_31__38_AbstractBlockTerminator & in_mTerminator,
+                                                                   const GALGAS_uint & in_mTerminatorMin,
+                                                                   const GALGAS_uint & in_mTerminatorMax,
+                                                                   Compiler * /* inCompiler */
+                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38_Block result ;
   if (in_mAddress.isValid () && in_mLabel.isValid () && in_mInstructionList.isValid () && in_mTerminator.isValid () && in_mTerminatorMin.isValid () && in_mTerminatorMax.isValid ()) {
     result = GALGAS_ipic_31__38_Block (in_mAddress, in_mLabel, in_mInstructionList, in_mTerminator, in_mTerminatorMin, in_mTerminatorMax) ;
@@ -127,9 +127,8 @@ void GALGAS_ipic_31__38_Block::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_Block ("ipic18Block",
-                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_Block ("ipic18Block",
+                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -227,10 +226,10 @@ GALGAS_ipic_31__38_SingleInstructionTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_JumpTerminator GALGAS_ipic_31__38_JumpTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                      const GALGAS_lstring & inAttribute_mLabel,
-                                                                                      const GALGAS_jumpInstructionKind & inAttribute_mKind
-                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_JumpTerminator GALGAS_ipic_31__38_JumpTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                     const GALGAS_lstring & inAttribute_mLabel,
+                                                                                     const GALGAS_jumpInstructionKind & inAttribute_mKind
+                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_JumpTerminator result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mLabel.isValid () && inAttribute_mKind.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_JumpTerminator (inAttribute_mInstructionLocation, inAttribute_mLabel, inAttribute_mKind COMMA_THERE)) ;
@@ -329,9 +328,8 @@ acPtr_class * cPtr_ipic_31__38_JumpTerminator::duplicate (LOCATION_ARGS) const {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_JumpTerminator ("ipic18JumpTerminator",
-                                                   & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_JumpTerminator ("ipic18JumpTerminator",
+                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -441,13 +439,13 @@ GALGAS_ipic_31__38_AbstractBlockTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ConditionalJumpTerminator GALGAS_ipic_31__38_ConditionalJumpTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                            const GALGAS_conditional_5F_branch & inAttribute_mConditionalBranch,
-                                                                                                            const GALGAS_lstring & inAttribute_mTargetLabelWhenTrue,
-                                                                                                            const GALGAS_conditionalBranchMode & inAttribute_mBranchModeOnTrueLabel,
-                                                                                                            const GALGAS_lstring & inAttribute_mTargetLabelWhenFalse,
-                                                                                                            const GALGAS_conditionalBranchMode & inAttribute_mBranchModeOnFalseLabel
-                                                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_ConditionalJumpTerminator GALGAS_ipic_31__38_ConditionalJumpTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                           const GALGAS_conditional_5F_branch & inAttribute_mConditionalBranch,
+                                                                                                           const GALGAS_lstring & inAttribute_mTargetLabelWhenTrue,
+                                                                                                           const GALGAS_conditionalBranchMode & inAttribute_mBranchModeOnTrueLabel,
+                                                                                                           const GALGAS_lstring & inAttribute_mTargetLabelWhenFalse,
+                                                                                                           const GALGAS_conditionalBranchMode & inAttribute_mBranchModeOnFalseLabel
+                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_ConditionalJumpTerminator result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mConditionalBranch.isValid () && inAttribute_mTargetLabelWhenTrue.isValid () && inAttribute_mBranchModeOnTrueLabel.isValid () && inAttribute_mTargetLabelWhenFalse.isValid () && inAttribute_mBranchModeOnFalseLabel.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_ConditionalJumpTerminator (inAttribute_mInstructionLocation, inAttribute_mConditionalBranch, inAttribute_mTargetLabelWhenTrue, inAttribute_mBranchModeOnTrueLabel, inAttribute_mTargetLabelWhenFalse, inAttribute_mBranchModeOnFalseLabel COMMA_THERE)) ;
@@ -627,9 +625,8 @@ acPtr_class * cPtr_ipic_31__38_ConditionalJumpTerminator::duplicate (LOCATION_AR
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator ("ipic18ConditionalJumpTerminator",
-                                                              & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator ("ipic18ConditionalJumpTerminator",
+                                                                                             & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -733,12 +730,12 @@ GALGAS_ipic_31__38_AbstractConditionTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_RegisterComparisonTerminator GALGAS_pic_31__38_RegisterComparisonTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionTrue,
-                                                                                                                const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionFalse,
-                                                                                                                const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                const GALGAS_ipic_31__38_RegisterComparison & inAttribute_mComparison
-                                                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_pic_31__38_RegisterComparisonTerminator GALGAS_pic_31__38_RegisterComparisonTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                               const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionTrue,
+                                                                                                               const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionFalse,
+                                                                                                               const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                               const GALGAS_ipic_31__38_RegisterComparison & inAttribute_mComparison
+                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_RegisterComparisonTerminator result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mSingleInstructionTerminatorIfConditionTrue.isValid () && inAttribute_mSingleInstructionTerminatorIfConditionFalse.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mComparison.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_pic_31__38_RegisterComparisonTerminator (inAttribute_mInstructionLocation, inAttribute_mSingleInstructionTerminatorIfConditionTrue, inAttribute_mSingleInstructionTerminatorIfConditionFalse, inAttribute_mRegisterDescription, inAttribute_mComparison COMMA_THERE)) ;
@@ -843,9 +840,8 @@ acPtr_class * cPtr_pic_31__38_RegisterComparisonTerminator::duplicate (LOCATION_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonTerminator ("pic18RegisterComparisonTerminator",
-                                                                & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonTerminator ("pic18RegisterComparisonTerminator",
+                                                                                               & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -943,10 +939,10 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_JSR GALGAS_ipic_31__38__5F_intermediate_5F_JSR::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                        const GALGAS_lstring & inAttribute_mTargetLabel,
-                                                                                                        const GALGAS_jumpInstructionKind & inAttribute_mKind
-                                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_JSR GALGAS_ipic_31__38__5F_intermediate_5F_JSR::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                       const GALGAS_lstring & inAttribute_mTargetLabel,
+                                                                                                       const GALGAS_jumpInstructionKind & inAttribute_mKind
+                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_JSR result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mTargetLabel.isValid () && inAttribute_mKind.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_JSR (inAttribute_mInstructionLocation, inAttribute_mTargetLabel, inAttribute_mKind COMMA_THERE)) ;
@@ -1045,9 +1041,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_JSR::duplicate (LOCATION_ARGS
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_JSR ("ipic18_intermediate_JSR",
-                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_JSR ("ipic18_intermediate_JSR",
+                                                                                           & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1149,11 +1144,11 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                    const GALGAS_lstring & inAttribute_mLabel,
-                                                                                                                                    const GALGAS_uint & inAttribute_mOffset,
-                                                                                                                                    const GALGAS_uint & inAttribute_mRightShift
-                                                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                   const GALGAS_lstring & inAttribute_mLabel,
+                                                                                                                                   const GALGAS_uint & inAttribute_mOffset,
+                                                                                                                                   const GALGAS_uint & inAttribute_mRightShift
+                                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mLabel.isValid () && inAttribute_mOffset.isValid () && inAttribute_mRightShift.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (inAttribute_mInstructionLocation, inAttribute_mLabel, inAttribute_mOffset, inAttribute_mRightShift COMMA_THERE)) ;
@@ -1279,9 +1274,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::duplicate 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W ("ipic18_intermediate_MOV_LABEL_W",
-                                                                          & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W ("ipic18_intermediate_MOV_LABEL_W",
+                                                                                                         & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1324,7 +1318,7 @@ AC_GALGAS_listmap () {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_branchOverflowMap GALGAS_branchOverflowMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_branchOverflowMap GALGAS_branchOverflowMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_branchOverflowMap result ;
   result.makeNewEmptyListMap (THERE) ;
   return result ;
@@ -1400,9 +1394,8 @@ GALGAS_stringlist cEnumerator_branchOverflowMap::current_mList (LOCATION_ARGS) c
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_branchOverflowMap ("branchOverflowMap",
-                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_branchOverflowMap ("branchOverflowMap",
+                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1453,7 +1446,7 @@ void extensionMethod_display (const GALGAS_ipic_31__38_Block inObject,
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
     const GALGAS_ipic_31__38_Block temp_2 = inObject ;
-    test_1 = GALGAS_bool (kIsNotEqual, temp_2.readProperty_mAddress ().objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_display_block_list.galgas", 13)))).boolEnum () ;
+    test_1 = GALGAS_bool (kIsNotEqual, temp_2.readProperty_mAddress ().objectCompare (GALGAS_uint::class_func_max (SOURCE_FILE ("ipic18_display_block_list.galgas", 13)))).boolEnum () ;
     if (kBoolTrue == test_1) {
       const GALGAS_ipic_31__38_Block temp_3 = inObject ;
       ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", ORG ").add_operation (temp_3.readProperty_mAddress ().getter_hexString (SOURCE_FILE ("ipic18_display_block_list.galgas", 14)), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 14)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 14)) ;
@@ -1566,7 +1559,7 @@ void cPtr_registerExpression::method_analyzeRegisterExpression (const GALGAS_uin
           GALGAS_string var_errorMessage_1851 = GALGAS_string ("Accessing the '").add_operation (temp_15.readProperty_mRegisterName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 55)).add_operation (GALGAS_string ("' needs the bank selection set to "), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 55)).add_operation (var_neededBank_1757.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 55)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 55)) ;
           enumGalgasBool test_16 = kBoolTrue ;
           if (kBoolTrue == test_16) {
-            test_16 = GALGAS_bool (kIsEqual, constinArgument_inCurrentBank.objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 56)))).boolEnum () ;
+            test_16 = GALGAS_bool (kIsEqual, constinArgument_inCurrentBank.objectCompare (GALGAS_uint::class_func_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 56)))).boolEnum () ;
             if (kBoolTrue == test_16) {
               var_errorMessage_1851.plusAssign_operation(GALGAS_string (", but current bank selection cannot be known"), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 57)) ;
             }
@@ -1581,7 +1574,7 @@ void cPtr_registerExpression::method_analyzeRegisterExpression (const GALGAS_uin
       }
     }
   }
-  outArgument_outIPICregisterDescription = GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::constructor_new (var_assemblyString_730, var_registerAddress_874.add_operation (var_offset_615.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 67)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 67)), var_needsBSRaccess_1625, inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 65)) ;
+  outArgument_outIPICregisterDescription = GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::class_func_new (var_assemblyString_730, var_registerAddress_874.add_operation (var_offset_615.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 67)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 67)), var_needsBSRaccess_1625, inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 65)) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1651,7 +1644,7 @@ void cPtr_registerExpression::method_analyzeRegisterExpressionWithoutCheckingBan
       inCompiler->emitSemanticError (temp_7.readProperty_mEndOfOffsetExpression (), GALGAS_string ("this offset is too large: should be lower than ").add_operation (var_size_3211.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 94)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 94)), fixItArray8  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 94)) ;
     }
   }
-  outArgument_outIPICregisterDescription = GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::constructor_new (var_assemblyString_2892, var_registerAddress_3369.add_operation (var_offset_3001.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 99)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 99)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 97)) ;
+  outArgument_outIPICregisterDescription = GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::class_func_new (var_assemblyString_2892, var_registerAddress_3369.add_operation (var_offset_3001.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 99)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 99)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 97)) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1801,7 +1794,7 @@ void extensionMethod_optimize (const GALGAS_ipic_31__38_Block inObject,
         if (kBoolTrue == test_5) {
           enumGalgasBool test_6 = kBoolTrue ;
           if (kBoolTrue == test_6) {
-            test_6 = constinArgument_inOptimizeFlagStruct.readProperty_mMOVLWfollowedByRETreplacedByRETLW ().operator_and (GALGAS_bool (kIsEqual, var_op_37584.readProperty_mLiteralInstruction ().objectCompare (GALGAS_literal_5F_instruction_5F_opcode::constructor_MOVLW (SOURCE_FILE ("ipic18_optimize_block.galgas", 995)))) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 995)).boolEnum () ;
+            test_6 = constinArgument_inOptimizeFlagStruct.readProperty_mMOVLWfollowedByRETreplacedByRETLW ().operator_and (GALGAS_bool (kIsEqual, var_op_37584.readProperty_mLiteralInstruction ().objectCompare (GALGAS_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("ipic18_optimize_block.galgas", 995)))) COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 995)).boolEnum () ;
             if (kBoolTrue == test_6) {
               {
               GALGAS_ipic_31__38_SequentialInstruction joker_37910_3 ; // Joker input parameter
@@ -1809,7 +1802,7 @@ void extensionMethod_optimize (const GALGAS_ipic_31__38_Block inObject,
               GALGAS_uint joker_37910_1 ; // Joker input parameter
               var_optimizedInstructionList_37236.setter_popLast (joker_37910_3, joker_37910_2, joker_37910_1, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 996)) ;
               }
-              var_optimizedTerminator_37343 = GALGAS_ipic_31__38_RetlwTerminator::constructor_new (var_op_37584.readProperty_mInstructionLocation (), var_op_37584.readProperty_mLiteralValue ()  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 997)) ;
+              var_optimizedTerminator_37343 = GALGAS_ipic_31__38_RetlwTerminator::class_func_new (var_op_37584.readProperty_mInstructionLocation (), var_op_37584.readProperty_mLiteralValue ()  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 997)) ;
               var_optimized_37159 = GALGAS_bool (true) ;
               const GALGAS_ipic_31__38_Block temp_7 = inObject ;
               ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  [M] ").add_operation (temp_7.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 999)).add_operation (GALGAS_string (": MOVLW k ; RETURN --> RETLW k\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 999)), inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 999)) ;
@@ -1835,7 +1828,7 @@ void extensionMethod_optimize (const GALGAS_ipic_31__38_Block inObject,
                 GALGAS_uint joker_38418_1 ; // Joker input parameter
                 var_optimizedInstructionList_37236.setter_popLast (joker_38418_3, joker_38418_2, joker_38418_1, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1005)) ;
                 }
-                var_optimizedTerminator_37343 = GALGAS_ipic_31__38_JumpTerminator::constructor_new (var_jsr_38208.readProperty_mInstructionLocation (), var_jsr_38208.readProperty_mTargetLabel (), var_jsr_38208.readProperty_mKind ()  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1006)) ;
+                var_optimizedTerminator_37343 = GALGAS_ipic_31__38_JumpTerminator::class_func_new (var_jsr_38208.readProperty_mInstructionLocation (), var_jsr_38208.readProperty_mTargetLabel (), var_jsr_38208.readProperty_mKind ()  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1006)) ;
                 var_optimized_37159 = GALGAS_bool (true) ;
                 const GALGAS_ipic_31__38_Block temp_10 = inObject ;
                 ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  [J] ").add_operation (temp_10.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (GALGAS_string (": JSR "), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (var_jsr_38208.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (GALGAS_string (" ; RETURN --> JUMP "), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (var_jsr_38208.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)), inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)) ;
@@ -1862,7 +1855,7 @@ void extensionMethod_optimize (const GALGAS_ipic_31__38_Block inObject,
       ioArgument_ioOptimizationDone = GALGAS_bool (true) ;
       const GALGAS_ipic_31__38_Block temp_15 = inObject ;
       const GALGAS_ipic_31__38_Block temp_16 = inObject ;
-      outArgument_outOptimizedBlock = GALGAS_ipic_31__38_Block::constructor_new (temp_15.readProperty_mAddress (), temp_16.readProperty_mLabel (), var_optimizedInstructionList_37236, var_optimizedTerminator_37343, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_optimize_block.galgas", 1046)), GALGAS_uint (uint32_t (0U)), inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1041)) ;
+      outArgument_outOptimizedBlock = GALGAS_ipic_31__38_Block::class_func_new (temp_15.readProperty_mAddress (), temp_16.readProperty_mLabel (), var_optimizedInstructionList_37236, var_optimizedTerminator_37343, GALGAS_uint::class_func_max (SOURCE_FILE ("ipic18_optimize_block.galgas", 1046)), GALGAS_uint (uint32_t (0U)), inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1041)) ;
     }
   }
   if (kBoolFalse == test_14) {
@@ -1888,7 +1881,7 @@ void extensionMethod_performRelativesResolution (const GALGAS_ipic_31__38_Block 
                                                  Compiler * inCompiler
                                                  COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outModifiedBlock.drop () ; // Release 'out' argument
-  GALGAS_ipic_31__38_SequentialInstructionList var_modifiedInstructionList_367 = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_relatives_resolution.galgas", 14)) ;
+  GALGAS_ipic_31__38_SequentialInstructionList var_modifiedInstructionList_367 = GALGAS_ipic_31__38_SequentialInstructionList::class_func_emptyList (SOURCE_FILE ("ipic18_relatives_resolution.galgas", 14)) ;
   GALGAS_uint var_address_449 = constinArgument_inBlockStartAddress ;
   const GALGAS_ipic_31__38_Block temp_0 = inObject ;
   cEnumerator_ipic_31__38_SequentialInstructionList enumerator_501 (temp_0.readProperty_mInstructionList (), kENUMERATION_UP) ;
@@ -1896,7 +1889,7 @@ void extensionMethod_performRelativesResolution (const GALGAS_ipic_31__38_Block 
     GALGAS_ipic_31__38_SequentialInstruction var_modifiedInstruction_749 ;
     const GALGAS_ipic_31__38_Block temp_1 = inObject ;
     callExtensionMethod_performInstructionRelativeBranchResolution ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_501.current_mInstruction (HERE).ptr (), var_address_449, temp_1.readProperty_mLabel ().readProperty_string (), constinArgument_inSymbolTable, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_modifiedInstruction_749, inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 17)) ;
-    var_modifiedInstructionList_367.addAssign_operation (var_modifiedInstruction_749, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_relatives_resolution.galgas", 25)), GALGAS_uint (uint32_t (0U))  COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 25)) ;
+    var_modifiedInstructionList_367.addAssign_operation (var_modifiedInstruction_749, GALGAS_uint::class_func_max (SOURCE_FILE ("ipic18_relatives_resolution.galgas", 25)), GALGAS_uint (uint32_t (0U))  COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 25)) ;
     var_address_449 = var_address_449.add_operation (callExtensionGetter_instructionSize ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_501.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 26)) ;
     enumerator_501.gotoNextObject () ;
   }
@@ -1906,7 +1899,7 @@ void extensionMethod_performRelativesResolution (const GALGAS_ipic_31__38_Block 
   callExtensionMethod_performTerminatorRelativeBranchResolution ((cPtr_ipic_31__38_AbstractBlockTerminator *) temp_2.readProperty_mTerminator ().ptr (), var_address_449, temp_3.readProperty_mLabel ().readProperty_string (), constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_modifiedTerminator_1147, inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 29)) ;
   const GALGAS_ipic_31__38_Block temp_4 = inObject ;
   const GALGAS_ipic_31__38_Block temp_5 = inObject ;
-  outArgument_outModifiedBlock = GALGAS_ipic_31__38_Block::constructor_new (temp_4.readProperty_mAddress (), temp_5.readProperty_mLabel (), var_modifiedInstructionList_367, var_modifiedTerminator_1147, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_relatives_resolution.galgas", 44)), GALGAS_uint (uint32_t (0U)), inCompiler  COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 39)) ;
+  outArgument_outModifiedBlock = GALGAS_ipic_31__38_Block::class_func_new (temp_4.readProperty_mAddress (), temp_5.readProperty_mLabel (), var_modifiedInstructionList_367, var_modifiedTerminator_1147, GALGAS_uint::class_func_max (SOURCE_FILE ("ipic18_relatives_resolution.galgas", 44)), GALGAS_uint (uint32_t (0U)), inCompiler  COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 39)) ;
 }
 
 
@@ -1984,31 +1977,31 @@ void extensionMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObje
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_ipic_31__38_Block temp_1 = inObject ;
-    test_0 = GALGAS_bool (kIsEqual, temp_1.readProperty_mAddress ().objectCompare (GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_code_generation.galgas", 100)))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, temp_1.readProperty_mAddress ().objectCompare (GALGAS_uint::class_func_max (SOURCE_FILE ("ipic18_code_generation.galgas", 100)))).boolEnum () ;
     if (kBoolTrue == test_0) {
       {
-      GALGAS_codeList temp_2 = GALGAS_codeList::constructor_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 103)) ;
+      GALGAS_codeList temp_2 = GALGAS_codeList::class_func_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 103)) ;
       const GALGAS_ipic_31__38_Block temp_3 = inObject ;
-      temp_2.addAssign_operation (temp_3.readProperty_mLabel ().readProperty_string ().add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 103)), GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 103))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 103)) ;
-      GALGAS_stringlist temp_4 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 104)) ;
+      temp_2.addAssign_operation (temp_3.readProperty_mLabel ().readProperty_string ().add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 103)), GALGAS_uintlist::class_func_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 103))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 103)) ;
+      GALGAS_stringlist temp_4 = GALGAS_stringlist::class_func_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 104)) ;
       const GALGAS_ipic_31__38_Block temp_5 = inObject ;
       temp_4.addAssign_operation (GALGAS_string ("LABEL ").add_operation (temp_5.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 104))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 104)) ;
-      routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (constinArgument_inBlockAddress, temp_2, temp_4, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_code_generation.galgas", 105)), GALGAS_uint (uint32_t (0U)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 101)) ;
+      routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (constinArgument_inBlockAddress, temp_2, temp_4, GALGAS_uint::class_func_max (SOURCE_FILE ("ipic18_code_generation.galgas", 105)), GALGAS_uint (uint32_t (0U)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 101)) ;
       }
       const GALGAS_ipic_31__38_Block temp_6 = inObject ;
       ioArgument_ioAssemblyString.plusAssign_operation(temp_6.readProperty_mLabel ().readProperty_string ().add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 109)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 109)) ;
     }
   }
   if (kBoolFalse == test_0) {
-    GALGAS_codeList var_cd_3548 = GALGAS_codeList::constructor_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 111)) ;
-    var_cd_3548.addAssign_operation (GALGAS_string ("ORG ").add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 112)), GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 112))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 112)) ;
+    GALGAS_codeList var_cd_3548 = GALGAS_codeList::class_func_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 111)) ;
+    var_cd_3548.addAssign_operation (GALGAS_string ("ORG ").add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 112)), GALGAS_uintlist::class_func_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 112))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 112)) ;
     const GALGAS_ipic_31__38_Block temp_7 = inObject ;
-    var_cd_3548.addAssign_operation (temp_7.readProperty_mLabel ().readProperty_string ().add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 113)), GALGAS_uintlist::constructor_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 113))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 113)) ;
+    var_cd_3548.addAssign_operation (temp_7.readProperty_mLabel ().readProperty_string ().add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 113)), GALGAS_uintlist::class_func_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 113))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 113)) ;
     {
-    GALGAS_stringlist temp_8 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 117)) ;
+    GALGAS_stringlist temp_8 = GALGAS_stringlist::class_func_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 117)) ;
     const GALGAS_ipic_31__38_Block temp_9 = inObject ;
     temp_8.addAssign_operation (GALGAS_string ("LABEL ").add_operation (temp_9.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)).add_operation (GALGAS_string (", ORG "), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)).add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 117)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)) ;
-    routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (constinArgument_inBlockAddress, var_cd_3548, temp_8, GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_code_generation.galgas", 118)), GALGAS_uint (uint32_t (0U)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 114)) ;
+    routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (constinArgument_inBlockAddress, var_cd_3548, temp_8, GALGAS_uint::class_func_max (SOURCE_FILE ("ipic18_code_generation.galgas", 118)), GALGAS_uint (uint32_t (0U)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 114)) ;
     }
     ioArgument_ioAssemblyString.plusAssign_operation(GALGAS_string ("    ORG ").add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)) ;
     const GALGAS_ipic_31__38_Block temp_10 = inObject ;
@@ -2051,7 +2044,7 @@ void extensionMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObje
       if (kBoolTrue == test_12) {
         GALGAS_string var_s_4961 = GALGAS_string ("*** INTERNAL ERROR ** generated code size (").add_operation (var_generatedCodeSize_4751.getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 156)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 156)).add_operation (GALGAS_string (") != instruction size ("), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 157)).add_operation (callExtensionGetter_instructionSize ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_4057.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 157)).getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 157)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 157)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 157)) ;
         TC_Array <C_FixItDescription> fixItArray13 ;
-        inCompiler->emitSemanticError (GALGAS_location::constructor_nowhere (SOURCE_FILE ("ipic18_code_generation.galgas", 158)), var_s_4961, fixItArray13  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 158)) ;
+        inCompiler->emitSemanticError (GALGAS_location::class_func_nowhere (SOURCE_FILE ("ipic18_code_generation.galgas", 158)), var_s_4961, fixItArray13  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 158)) ;
         ioArgument_ioListFileContents.plusAssign_operation(var_s_4961.add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 159)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 159)) ;
       }
     }
@@ -2061,7 +2054,7 @@ void extensionMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObje
   const GALGAS_ipic_31__38_Block temp_14 = inObject ;
   callExtensionMethod_generateTerminatorCode ((cPtr_ipic_31__38_AbstractBlockTerminator *) temp_14.readProperty_mTerminator ().ptr (), var_address_4007, constinArgument_inSymbolTable, constinArgument_inNextBlockLabel, var_code_5327, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 163)) ;
   {
-  GALGAS_stringlist temp_15 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 172)) ;
+  GALGAS_stringlist temp_15 = GALGAS_stringlist::class_func_emptyList (SOURCE_FILE ("ipic18_code_generation.galgas", 172)) ;
   const GALGAS_ipic_31__38_Block temp_16 = inObject ;
   temp_15.addAssign_operation (callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_16.readProperty_mTerminator ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 172))  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 172)) ;
   const GALGAS_ipic_31__38_Block temp_17 = inObject ;
@@ -2094,7 +2087,7 @@ void extensionMethod_generateCodeForBlock (const GALGAS_ipic_31__38_Block inObje
       const GALGAS_ipic_31__38_Block temp_21 = inObject ;
       GALGAS_string var_s_5990 = GALGAS_string ("*** INTERNAL ERROR ** generated code size (").add_operation (var_generatedCodeSize_5759.getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 189)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 189)).add_operation (GALGAS_string (") != instruction size ("), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 190)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_21.readProperty_mTerminator ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 190)).getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 190)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 190)).add_operation (GALGAS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 190)) ;
       TC_Array <C_FixItDescription> fixItArray22 ;
-      inCompiler->emitSemanticError (GALGAS_location::constructor_nowhere (SOURCE_FILE ("ipic18_code_generation.galgas", 191)), var_s_5990, fixItArray22  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 191)) ;
+      inCompiler->emitSemanticError (GALGAS_location::class_func_nowhere (SOURCE_FILE ("ipic18_code_generation.galgas", 191)), var_s_5990, fixItArray22  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 191)) ;
       ioArgument_ioListFileContents.plusAssign_operation(var_s_5990.add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 192)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 192)) ;
     }
   }
@@ -2133,7 +2126,7 @@ void extensionMethod_computeDuration (const GALGAS_ipic_31__38_Block inObject,
     callExtensionMethod_terminatorMinMaxDuration ((cPtr_ipic_31__38_AbstractBlockTerminator *) temp_4.readProperty_mTerminator ().ptr (), ioArgument_ioExploredBlockMap, inArgument_inNextLabel, var_terminatorMin_22379, var_terminatorMax_22398, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 593)) ;
     GALGAS_uint var_min_22421 = var_terminatorMin_22379 ;
     GALGAS_uint var_max_22449 = var_terminatorMax_22398 ;
-    GALGAS_ipic_31__38_SequentialInstructionList var_computedInstructionList_22510 = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (SOURCE_FILE ("ipic18_duration_computations.galgas", 596)) ;
+    GALGAS_ipic_31__38_SequentialInstructionList var_computedInstructionList_22510 = GALGAS_ipic_31__38_SequentialInstructionList::class_func_emptyList (SOURCE_FILE ("ipic18_duration_computations.galgas", 596)) ;
     GALGAS_bool var_ok_22547 = GALGAS_bool (kIsInfOrEqual, var_min_22421.objectCompare (var_max_22449)) ;
     const GALGAS_ipic_31__38_Block temp_5 = inObject ;
     cEnumerator_ipic_31__38_SequentialInstructionList enumerator_22582 (temp_5.readProperty_mInstructionList (), kENUMERATION_DOWN) ;
@@ -2159,7 +2152,7 @@ void extensionMethod_computeDuration (const GALGAS_ipic_31__38_Block inObject,
       if (kBoolFalse == test_6) {
         var_ok_22547 = GALGAS_bool (false) ;
         {
-        var_computedInstructionList_22510.setter_insertAtIndex (enumerator_22582.current_mInstruction (HERE), GALGAS_uint::constructor_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 610)), GALGAS_uint (uint32_t (0U)), GALGAS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 610)) ;
+        var_computedInstructionList_22510.setter_insertAtIndex (enumerator_22582.current_mInstruction (HERE), GALGAS_uint::class_func_max (SOURCE_FILE ("ipic18_duration_computations.galgas", 610)), GALGAS_uint (uint32_t (0U)), GALGAS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 610)) ;
         }
       }
       enumerator_22582.gotoNextObject () ;
@@ -2171,7 +2164,7 @@ void extensionMethod_computeDuration (const GALGAS_ipic_31__38_Block inObject,
         const GALGAS_ipic_31__38_Block temp_9 = inObject ;
         const GALGAS_ipic_31__38_Block temp_10 = inObject ;
         const GALGAS_ipic_31__38_Block temp_11 = inObject ;
-        outArgument_outNewBlock = GALGAS_ipic_31__38_Block::constructor_new (temp_9.readProperty_mAddress (), temp_10.readProperty_mLabel (), var_computedInstructionList_22510, temp_11.readProperty_mTerminator (), var_terminatorMin_22379, var_terminatorMax_22398, inCompiler  COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 614)) ;
+        outArgument_outNewBlock = GALGAS_ipic_31__38_Block::class_func_new (temp_9.readProperty_mAddress (), temp_10.readProperty_mLabel (), var_computedInstructionList_22510, temp_11.readProperty_mTerminator (), var_terminatorMin_22379, var_terminatorMax_22398, inCompiler  COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 614)) ;
         ioArgument_ioContinue = GALGAS_bool (true) ;
         {
         const GALGAS_ipic_31__38_Block temp_12 = inObject ;
@@ -2233,18 +2226,18 @@ mProperty_mSharedBankName (inOperand9) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_piccoloDeviceModel GALGAS_piccoloDeviceModel::constructor_new (const GALGAS_lstring & in_mDeviceName,
-                                                                      const GALGAS_processorType & in_mProcessorType,
-                                                                      const GALGAS_luint & in_mRomSize,
-                                                                      const GALGAS_luint & in_mBankCount,
-                                                                      const GALGAS_registerTable & in_mRegisterTable,
-                                                                      const GALGAS_ramBankTable & in_mRamBankTable,
-                                                                      const GALGAS_uint & in_mEepromSize,
-                                                                      const GALGAS_uint & in_mEepromAddress,
-                                                                      const GALGAS_configRegisterMap & in_mConfigRegisterMap,
-                                                                      const GALGAS_string & in_mSharedBankName,
-                                                                      Compiler * /* inCompiler */
-                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_piccoloDeviceModel GALGAS_piccoloDeviceModel::class_func_new (const GALGAS_lstring & in_mDeviceName,
+                                                                     const GALGAS_processorType & in_mProcessorType,
+                                                                     const GALGAS_luint & in_mRomSize,
+                                                                     const GALGAS_luint & in_mBankCount,
+                                                                     const GALGAS_registerTable & in_mRegisterTable,
+                                                                     const GALGAS_ramBankTable & in_mRamBankTable,
+                                                                     const GALGAS_uint & in_mEepromSize,
+                                                                     const GALGAS_uint & in_mEepromAddress,
+                                                                     const GALGAS_configRegisterMap & in_mConfigRegisterMap,
+                                                                     const GALGAS_string & in_mSharedBankName,
+                                                                     Compiler * /* inCompiler */
+                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_piccoloDeviceModel result ;
   if (in_mDeviceName.isValid () && in_mProcessorType.isValid () && in_mRomSize.isValid () && in_mBankCount.isValid () && in_mRegisterTable.isValid () && in_mRamBankTable.isValid () && in_mEepromSize.isValid () && in_mEepromAddress.isValid () && in_mConfigRegisterMap.isValid () && in_mSharedBankName.isValid ()) {
     result = GALGAS_piccoloDeviceModel (in_mDeviceName, in_mProcessorType, in_mRomSize, in_mBankCount, in_mRegisterTable, in_mRamBankTable, in_mEepromSize, in_mEepromAddress, in_mConfigRegisterMap, in_mSharedBankName) ;
@@ -2347,9 +2340,8 @@ void GALGAS_piccoloDeviceModel::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_piccoloDeviceModel ("piccoloDeviceModel",
-                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_piccoloDeviceModel ("piccoloDeviceModel",
+                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2384,215 +2376,211 @@ GALGAS_piccoloDeviceModel GALGAS_piccoloDeviceModel::extractObject (const GALGAS
   return result ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
 
-#include "utilities/MF_MemoryControl.h"
-#include "galgas2/C_galgas_CLI_Options.h"
+#include "MF_MemoryControl.h"
+#include "C_galgas_CLI_Options.h"
 
-#include "files/FileManager.h"
+#include "FileManager.h"
 
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
 
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                                   L L ( 1 )    P R O D U C T I O N    R U L E S                                      
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
-
-#define TERMINAL(t)     ((t)+1)
-#define NONTERMINAL(nt) ((-nt)-1)
-#define END_PRODUCTION  (0)
+//--------------------------------------------------------------------------------------------------
+//
+//                                     LL(1) PRODUCTION RULES                                       
+//
+//--------------------------------------------------------------------------------------------------
 
 static const int32_t gProductions_piccoloDevice_grammar [] = {
 // At index 0 : <start_symbol>, in file 'piccoloDevice_syntax.ggs', line 10
-  TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_controller) // $controller$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_) // ${$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_processor) // $processor$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_romsize) // $romsize$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
-, NONTERMINAL (1) // <select_piccoloDevice_5F_syntax_0>
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_bank) // $bank$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
-, NONTERMINAL (2) // <select_piccoloDevice_5F_syntax_1>
-, NONTERMINAL (4) // <select_piccoloDevice_5F_syntax_3>
-, NONTERMINAL (7) // <select_piccoloDevice_5F_syntax_6>
-, NONTERMINAL (13) // <select_piccoloDevice_5F_syntax_12>
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) // $}$
-, END_PRODUCTION
+  TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_controller) // $controller$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__7B_) // ${$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_processor) // $processor$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_romsize) // $romsize$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
+, TOP_DOWN_NONTERMINAL (1) // <select_piccoloDevice_5F_syntax_0>
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_bank) // $bank$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
+, TOP_DOWN_NONTERMINAL (2) // <select_piccoloDevice_5F_syntax_1>
+, TOP_DOWN_NONTERMINAL (4) // <select_piccoloDevice_5F_syntax_3>
+, TOP_DOWN_NONTERMINAL (7) // <select_piccoloDevice_5F_syntax_6>
+, TOP_DOWN_NONTERMINAL (13) // <select_piccoloDevice_5F_syntax_12>
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__7D_) // $}$
+, TOP_DOWN_END_PRODUCTION ()
 //---- Added productions from 'select' and 'repeat' instructions
 // At index 19 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 34
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 20 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 34
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_eepromsize) // $eepromsize$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_eepromsize) // $eepromsize$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
+, TOP_DOWN_END_PRODUCTION ()
 // At index 26 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 49
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 27 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 49
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_unusedregister) // $unusedregister$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, NONTERMINAL (3) // <select_piccoloDevice_5F_syntax_2>
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
-, NONTERMINAL (2) // <select_piccoloDevice_5F_syntax_1>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_unusedregister) // $unusedregister$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_NONTERMINAL (3) // <select_piccoloDevice_5F_syntax_2>
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
+, TOP_DOWN_NONTERMINAL (2) // <select_piccoloDevice_5F_syntax_1>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 33 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 53
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 34 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 53
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_to) // $to$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_to) // $to$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_END_PRODUCTION ()
 // At index 37 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 61
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 38 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 61
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_ram) // $ram$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3A_) // $:$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_to) // $to$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, NONTERMINAL (5) // <select_piccoloDevice_5F_syntax_4>
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
-, NONTERMINAL (4) // <select_piccoloDevice_5F_syntax_3>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_ram) // $ram$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3A_) // $:$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_to) // $to$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_NONTERMINAL (5) // <select_piccoloDevice_5F_syntax_4>
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
+, TOP_DOWN_NONTERMINAL (4) // <select_piccoloDevice_5F_syntax_3>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 48 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 70
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 49 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 70
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mirrorat) // $mirrorat$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, NONTERMINAL (6) // <select_piccoloDevice_5F_syntax_5>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_mirrorat) // $mirrorat$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_NONTERMINAL (6) // <select_piccoloDevice_5F_syntax_5>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 53 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 73
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 54 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 73
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, NONTERMINAL (6) // <select_piccoloDevice_5F_syntax_5>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_NONTERMINAL (6) // <select_piccoloDevice_5F_syntax_5>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 58 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 90
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 59 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 90
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_register) // $register$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, NONTERMINAL (8) // <select_piccoloDevice_5F_syntax_7>
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3C_) // $<$
-, NONTERMINAL (10) // <select_piccoloDevice_5F_syntax_9>
-, NONTERMINAL (9) // <select_piccoloDevice_5F_syntax_8>
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3E_) // $>$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
-, NONTERMINAL (7) // <select_piccoloDevice_5F_syntax_6>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_register) // $register$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_NONTERMINAL (8) // <select_piccoloDevice_5F_syntax_7>
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3C_) // $<$
+, TOP_DOWN_NONTERMINAL (10) // <select_piccoloDevice_5F_syntax_9>
+, TOP_DOWN_NONTERMINAL (9) // <select_piccoloDevice_5F_syntax_8>
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3E_) // $>$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
+, TOP_DOWN_NONTERMINAL (7) // <select_piccoloDevice_5F_syntax_6>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 71 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 96
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 72 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 96
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, NONTERMINAL (8) // <select_piccoloDevice_5F_syntax_7>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_NONTERMINAL (8) // <select_piccoloDevice_5F_syntax_7>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 76 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 106
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 77 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 106
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
-, NONTERMINAL (10) // <select_piccoloDevice_5F_syntax_9>
-, NONTERMINAL (9) // <select_piccoloDevice_5F_syntax_8>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
+, TOP_DOWN_NONTERMINAL (10) // <select_piccoloDevice_5F_syntax_9>
+, TOP_DOWN_NONTERMINAL (9) // <select_piccoloDevice_5F_syntax_8>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 81 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 107
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
-, NONTERMINAL (12) // <select_piccoloDevice_5F_syntax_11>
-, NONTERMINAL (11) // <select_piccoloDevice_5F_syntax_10>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
+, TOP_DOWN_NONTERMINAL (12) // <select_piccoloDevice_5F_syntax_11>
+, TOP_DOWN_NONTERMINAL (11) // <select_piccoloDevice_5F_syntax_10>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 85 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 107
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2D_) // $-$
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__2D_) // $-$
+, TOP_DOWN_END_PRODUCTION ()
 // At index 87 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 109
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 88 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 109
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__2F_) // $/$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
-, NONTERMINAL (12) // <select_piccoloDevice_5F_syntax_11>
-, NONTERMINAL (11) // <select_piccoloDevice_5F_syntax_10>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__2F_) // $/$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
+, TOP_DOWN_NONTERMINAL (12) // <select_piccoloDevice_5F_syntax_11>
+, TOP_DOWN_NONTERMINAL (11) // <select_piccoloDevice_5F_syntax_10>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 93 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 112
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 94 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 112
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5B_) // $[$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__5D_) // $]$
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__5B_) // $[$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__5D_) // $]$
+, TOP_DOWN_END_PRODUCTION ()
 // At index 98 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 153
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 99 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 153
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_configuration) // $configuration$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_width) // $width$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, NONTERMINAL (14) // <select_piccoloDevice_5F_syntax_13>
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7B_) // ${$
-, NONTERMINAL (15) // <select_piccoloDevice_5F_syntax_14>
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken__7D_) // $}$
-, NONTERMINAL (13) // <select_piccoloDevice_5F_syntax_12>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_configuration) // $configuration$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_width) // $width$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_NONTERMINAL (14) // <select_piccoloDevice_5F_syntax_13>
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__7B_) // ${$
+, TOP_DOWN_NONTERMINAL (15) // <select_piccoloDevice_5F_syntax_14>
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__7D_) // $}$
+, TOP_DOWN_NONTERMINAL (13) // <select_piccoloDevice_5F_syntax_12>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 111 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 162
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 112 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 162
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_illegal) // $illegal$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_message) // $message$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
-, NONTERMINAL (14) // <select_piccoloDevice_5F_syntax_13>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_illegal) // $illegal$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_message) // $message$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
+, TOP_DOWN_NONTERMINAL (14) // <select_piccoloDevice_5F_syntax_13>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 120 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 175
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 121 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 175
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_description) // $description$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_setting) // $setting$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_description) // $description$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
-, NONTERMINAL (16) // <select_piccoloDevice_5F_syntax_15>
-, NONTERMINAL (15) // <select_piccoloDevice_5F_syntax_14>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_description) // $description$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_setting) // $setting$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_description) // $description$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
+, TOP_DOWN_NONTERMINAL (16) // <select_piccoloDevice_5F_syntax_15>
+, TOP_DOWN_NONTERMINAL (15) // <select_piccoloDevice_5F_syntax_14>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 135 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 187
-, END_PRODUCTION
+, TOP_DOWN_END_PRODUCTION ()
 // At index 136 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 187
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_setting) // $setting$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_description) // $description$
-, TERMINAL (C_Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
-, NONTERMINAL (16) // <select_piccoloDevice_5F_syntax_15>
-, END_PRODUCTION
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_setting) // $setting$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_description) // $description$
+, TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
+, TOP_DOWN_NONTERMINAL (16) // <select_piccoloDevice_5F_syntax_15>
+, TOP_DOWN_END_PRODUCTION ()
 // At index 144 : <>, in file '.ggs', line 0
-, NONTERMINAL (0) // <start_symbol>
-, END_PRODUCTION
+, TOP_DOWN_NONTERMINAL (0) // <start_symbol>
+, TOP_DOWN_END_PRODUCTION ()
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                                          P R O D U C T I O N    N A M E S                                            
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//                                P R O D U C T I O N    N A M E S                                  
+//
+//--------------------------------------------------------------------------------------------------
 
 static const cProductionNameDescriptor gProductionNames_piccoloDevice_grammar [34] = {
  {"<start_symbol>", "piccoloDevice_syntax", 0}, // at index 0
@@ -2631,11 +2619,11 @@ static const cProductionNameDescriptor gProductionNames_piccoloDevice_grammar [3
  {"<>", "", 144} // at index 33
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                                 L L ( 1 )    P R O D U C T I O N    I N D E X E S                                    
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//                       L L ( 1 )    P R O D U C T I O N    I N D E X E S                          
+//
+//--------------------------------------------------------------------------------------------------
 
 static const int32_t gProductionIndexes_piccoloDevice_grammar [34] = {
 0, // index 0 : <start_symbol>, in file 'piccoloDevice_syntax.ggs', line 10
@@ -2674,11 +2662,11 @@ static const int32_t gProductionIndexes_piccoloDevice_grammar [34] = {
 144 // index 33 : <>, in file '.ggs', line 0
 } ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                           L L ( 1 )    F I R S T    P R O D U C T I O N    I N D E X E S                             
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//                 L L ( 1 )    F I R S T    P R O D U C T I O N    I N D E X E S                   
+//
+//--------------------------------------------------------------------------------------------------
 
 static const int32_t gFirstProductionIndexes_piccoloDevice_grammar [19] = {
 0, // at 0 : <start_symbol>
@@ -2701,89 +2689,89 @@ static const int32_t gFirstProductionIndexes_piccoloDevice_grammar [19] = {
 33, // at 17 : <>
 0} ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                                    L L ( 1 )    D E C I S I O N    T A B L E S                                       
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//                          L L ( 1 )    D E C I S I O N    T A B L E S                             
+//
+//--------------------------------------------------------------------------------------------------
 
 static const int32_t gDecision_piccoloDevice_grammar [] = {
 // At index 0 : <start_symbol> only one production, no choice
   -1,
 //---- Added non terminal symbols from 'select' and 'repeat' instructions
 // At index 1 : <select_piccoloDevice_5F_syntax_0>
-C_Lexique_piccoloDevice_5F_lexique::kToken_bank, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken_eepromsize, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken_bank, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken_eepromsize, -1, // Choice 2
   -1,
 // At index 6 : <select_piccoloDevice_5F_syntax_1>
-C_Lexique_piccoloDevice_5F_lexique::kToken_ram, C_Lexique_piccoloDevice_5F_lexique::kToken_register, C_Lexique_piccoloDevice_5F_lexique::kToken_configuration, C_Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken_unusedregister, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken_ram, Lexique_piccoloDevice_5F_lexique::kToken_register, Lexique_piccoloDevice_5F_lexique::kToken_configuration, Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken_unusedregister, -1, // Choice 2
   -1,
 // At index 14 : <select_piccoloDevice_5F_syntax_2>
-C_Lexique_piccoloDevice_5F_lexique::kToken__3B_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken_to, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken__3B_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken_to, -1, // Choice 2
   -1,
 // At index 19 : <select_piccoloDevice_5F_syntax_3>
-C_Lexique_piccoloDevice_5F_lexique::kToken_register, C_Lexique_piccoloDevice_5F_lexique::kToken_configuration, C_Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken_ram, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken_register, Lexique_piccoloDevice_5F_lexique::kToken_configuration, Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken_ram, -1, // Choice 2
   -1,
 // At index 26 : <select_piccoloDevice_5F_syntax_4>
-C_Lexique_piccoloDevice_5F_lexique::kToken__3B_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken_mirrorat, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken__3B_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken_mirrorat, -1, // Choice 2
   -1,
 // At index 31 : <select_piccoloDevice_5F_syntax_5>
-C_Lexique_piccoloDevice_5F_lexique::kToken__3B_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken__2C_, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken__3B_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken__2C_, -1, // Choice 2
   -1,
 // At index 36 : <select_piccoloDevice_5F_syntax_6>
-C_Lexique_piccoloDevice_5F_lexique::kToken_configuration, C_Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken_register, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken_configuration, Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken_register, -1, // Choice 2
   -1,
 // At index 42 : <select_piccoloDevice_5F_syntax_7>
-C_Lexique_piccoloDevice_5F_lexique::kToken__3C_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken__2C_, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken__3C_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken__2C_, -1, // Choice 2
   -1,
 // At index 47 : <select_piccoloDevice_5F_syntax_8>
-C_Lexique_piccoloDevice_5F_lexique::kToken__3E_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken__2C_, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken__3E_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken__2C_, -1, // Choice 2
   -1,
 // At index 52 : <select_piccoloDevice_5F_syntax_9>
-C_Lexique_piccoloDevice_5F_lexique::kToken_identifier, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken__2D_, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken_identifier, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken__2D_, -1, // Choice 2
   -1,
 // At index 57 : <select_piccoloDevice_5F_syntax_10>
-C_Lexique_piccoloDevice_5F_lexique::kToken__2C_, C_Lexique_piccoloDevice_5F_lexique::kToken__3E_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken__2F_, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken__2C_, Lexique_piccoloDevice_5F_lexique::kToken__3E_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken__2F_, -1, // Choice 2
   -1,
 // At index 63 : <select_piccoloDevice_5F_syntax_11>
-C_Lexique_piccoloDevice_5F_lexique::kToken__2C_, C_Lexique_piccoloDevice_5F_lexique::kToken__2F_, C_Lexique_piccoloDevice_5F_lexique::kToken__3E_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken__5B_, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken__2C_, Lexique_piccoloDevice_5F_lexique::kToken__2F_, Lexique_piccoloDevice_5F_lexique::kToken__3E_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken__5B_, -1, // Choice 2
   -1,
 // At index 70 : <select_piccoloDevice_5F_syntax_12>
-C_Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken_configuration, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken_configuration, -1, // Choice 2
   -1,
 // At index 75 : <select_piccoloDevice_5F_syntax_13>
-C_Lexique_piccoloDevice_5F_lexique::kToken__7B_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken_illegal, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken__7B_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken_illegal, -1, // Choice 2
   -1,
 // At index 80 : <select_piccoloDevice_5F_syntax_14>
-C_Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken_identifier, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken_identifier, -1, // Choice 2
   -1,
 // At index 85 : <select_piccoloDevice_5F_syntax_15>
-C_Lexique_piccoloDevice_5F_lexique::kToken_identifier, C_Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
-C_Lexique_piccoloDevice_5F_lexique::kToken_setting, -1, // Choice 2
+Lexique_piccoloDevice_5F_lexique::kToken_identifier, Lexique_piccoloDevice_5F_lexique::kToken__7D_, -1, // Choice 1
+Lexique_piccoloDevice_5F_lexique::kToken_setting, -1, // Choice 2
   -1,
 // At index 91 : <> only one production, no choice
   -1,
 0} ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                            L L ( 1 )    D E C I S I O N    T A B L E S    I N D E X E S                              
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//                  L L ( 1 )    D E C I S I O N    T A B L E S    I N D E X E S                    
+//
+//--------------------------------------------------------------------------------------------------
 
 static const int32_t gDecisionIndexes_piccoloDevice_grammar [19] = {
 0, // at 0 : <start_symbol>
@@ -2806,29 +2794,29 @@ static const int32_t gDecisionIndexes_piccoloDevice_grammar [19] = {
 91, // at 17 : <>
 0} ;
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                                     'start_symbol' non terminal implementation                                       
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//                           'start_symbol' non terminal implementation                             
+//
+//--------------------------------------------------------------------------------------------------
 
-void cGrammar_piccoloDevice_5F_grammar::nt_start_5F_symbol_parse (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+void cGrammar_piccoloDevice_5F_grammar::nt_start_5F_symbol_parse (Lexique_piccoloDevice_5F_lexique * inLexique) {
   rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_parse(inLexique) ;
 }
 
-void cGrammar_piccoloDevice_5F_grammar::nt_start_5F_symbol_indexing (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+void cGrammar_piccoloDevice_5F_grammar::nt_start_5F_symbol_indexing (Lexique_piccoloDevice_5F_lexique * inLexique) {
   rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_indexing(inLexique) ;
 }
 
 void cGrammar_piccoloDevice_5F_grammar::nt_start_5F_symbol_ (GALGAS_piccoloDeviceModel & parameter_1,
-                                C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+                                Lexique_piccoloDevice_5F_lexique * inLexique) {
   rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_(parameter_1, inLexique) ;
 }
 
 void cGrammar_piccoloDevice_5F_grammar::performIndexing (Compiler * inCompiler,
              const String & inSourceFilePath) {
-  C_Lexique_piccoloDevice_5F_lexique * scanner = nullptr ;
-  macroMyNew (scanner, C_Lexique_piccoloDevice_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
+  Lexique_piccoloDevice_5F_lexique * scanner = nullptr ;
+  macroMyNew (scanner, Lexique_piccoloDevice_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   scanner->enableIndexing () ;
   if (scanner->sourceText ().isValid ()) {
     const bool ok = scanner->performTopDownParsing (gProductions_piccoloDevice_grammar, gProductionNames_piccoloDevice_grammar, gProductionIndexes_piccoloDevice_grammar,
@@ -2844,8 +2832,8 @@ void cGrammar_piccoloDevice_5F_grammar::performIndexing (Compiler * inCompiler,
 
 void cGrammar_piccoloDevice_5F_grammar::performOnlyLexicalAnalysis (Compiler * inCompiler,
              const String & inSourceFilePath) {
-  C_Lexique_piccoloDevice_5F_lexique * scanner = nullptr ;
-  macroMyNew (scanner, C_Lexique_piccoloDevice_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
+  Lexique_piccoloDevice_5F_lexique * scanner = nullptr ;
+  macroMyNew (scanner, Lexique_piccoloDevice_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   if (scanner->sourceText ().isValid ()) {
     scanner->performLexicalAnalysis () ;
   }
@@ -2854,8 +2842,8 @@ void cGrammar_piccoloDevice_5F_grammar::performOnlyLexicalAnalysis (Compiler * i
 
 void cGrammar_piccoloDevice_5F_grammar::performOnlySyntaxAnalysis (Compiler * inCompiler,
              const String & inSourceFilePath) {
-  C_Lexique_piccoloDevice_5F_lexique * scanner = nullptr ;
-  macroMyNew (scanner, C_Lexique_piccoloDevice_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
+  Lexique_piccoloDevice_5F_lexique * scanner = nullptr ;
+  macroMyNew (scanner, Lexique_piccoloDevice_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   if (scanner->sourceText ().isValid ()) {
     scanner->performTopDownParsing (gProductions_piccoloDevice_grammar, gProductionNames_piccoloDevice_grammar, gProductionIndexes_piccoloDevice_grammar,
                                     gFirstProductionIndexes_piccoloDevice_grammar, gDecision_piccoloDevice_grammar, gDecisionIndexes_piccoloDevice_grammar, 144) ;
@@ -2863,11 +2851,11 @@ void cGrammar_piccoloDevice_5F_grammar::performOnlySyntaxAnalysis (Compiler * in
   macroDetachSharedObject (scanner) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                                        Grammar start symbol implementation                                           
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//                              Grammar start symbol implementation                                 
+//
+//--------------------------------------------------------------------------------------------------
 
 void cGrammar_piccoloDevice_5F_grammar::_performSourceFileParsing_ (Compiler * inCompiler,
                                 GALGAS_lstring inFilePath,
@@ -2880,8 +2868,8 @@ void cGrammar_piccoloDevice_5F_grammar::_performSourceFileParsing_ (Compiler * i
       filePath = inCompiler->sourceFilePath ().stringByDeletingLastPathComponent ().stringByAppendingPathComponent (filePath) ;
     }
     if (FileManager::fileExistsAtPath (filePath)) {
-    C_Lexique_piccoloDevice_5F_lexique * scanner = nullptr ;
-    macroMyNew (scanner, C_Lexique_piccoloDevice_5F_lexique (inCompiler, filePath COMMA_HERE)) ;
+    Lexique_piccoloDevice_5F_lexique * scanner = nullptr ;
+    macroMyNew (scanner, Lexique_piccoloDevice_5F_lexique (inCompiler, filePath COMMA_HERE)) ;
     if (scanner->sourceText ().isValid ()) {
       const bool ok = scanner->performTopDownParsing (gProductions_piccoloDevice_grammar, gProductionNames_piccoloDevice_grammar, gProductionIndexes_piccoloDevice_grammar,
                                                       gFirstProductionIndexes_piccoloDevice_grammar, gDecision_piccoloDevice_grammar, gDecisionIndexes_piccoloDevice_grammar, 144) ;
@@ -2909,7 +2897,7 @@ void cGrammar_piccoloDevice_5F_grammar::_performSourceFileParsing_ (Compiler * i
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
 
 void cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (Compiler * inCompiler,
                                 GALGAS_string inSourceString,
@@ -2919,8 +2907,8 @@ void cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (Compiler *
   if (inSourceString.isValid () && inNameString.isValid ()) {
     const String sourceString = inSourceString.stringValue () ;
     const String nameString = inNameString.stringValue () ;
-    C_Lexique_piccoloDevice_5F_lexique * scanner = nullptr ;
-    macroMyNew (scanner, C_Lexique_piccoloDevice_5F_lexique (inCompiler, sourceString, nameString COMMA_HERE)) ;
+    Lexique_piccoloDevice_5F_lexique * scanner = nullptr ;
+    macroMyNew (scanner, Lexique_piccoloDevice_5F_lexique (inCompiler, sourceString, nameString COMMA_HERE)) ;
     const bool ok = scanner->performTopDownParsing (gProductions_piccoloDevice_grammar, gProductionNames_piccoloDevice_grammar, gProductionIndexes_piccoloDevice_grammar,
                                                     gFirstProductionIndexes_piccoloDevice_grammar, gDecision_piccoloDevice_grammar, gDecisionIndexes_piccoloDevice_grammar, 144) ;
     if (ok && ! executionModeIsSyntaxAnalysisOnly ()) {
@@ -2931,167 +2919,167 @@ void cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (Compiler *
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                        'select_piccoloDevice_5F_syntax_0' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//              'select_piccoloDevice_5F_syntax_0' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_0 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_0 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                        'select_piccoloDevice_5F_syntax_1' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//              'select_piccoloDevice_5F_syntax_1' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_1 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_1 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                        'select_piccoloDevice_5F_syntax_2' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//              'select_piccoloDevice_5F_syntax_2' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_2 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_2 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                        'select_piccoloDevice_5F_syntax_3' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//              'select_piccoloDevice_5F_syntax_3' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_3 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_3 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                        'select_piccoloDevice_5F_syntax_4' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//              'select_piccoloDevice_5F_syntax_4' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_4 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_4 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                        'select_piccoloDevice_5F_syntax_5' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//              'select_piccoloDevice_5F_syntax_5' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_5 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_5 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                        'select_piccoloDevice_5F_syntax_6' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//              'select_piccoloDevice_5F_syntax_6' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_6 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_6 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                        'select_piccoloDevice_5F_syntax_7' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//              'select_piccoloDevice_5F_syntax_7' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_7 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_7 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                        'select_piccoloDevice_5F_syntax_8' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//              'select_piccoloDevice_5F_syntax_8' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_8 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_8 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                        'select_piccoloDevice_5F_syntax_9' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//              'select_piccoloDevice_5F_syntax_9' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_9 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_9 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                       'select_piccoloDevice_5F_syntax_10' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//             'select_piccoloDevice_5F_syntax_10' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_10 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_10 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                       'select_piccoloDevice_5F_syntax_11' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//             'select_piccoloDevice_5F_syntax_11' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_11 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_11 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                       'select_piccoloDevice_5F_syntax_12' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//             'select_piccoloDevice_5F_syntax_12' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_12 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_12 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                       'select_piccoloDevice_5F_syntax_13' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//             'select_piccoloDevice_5F_syntax_13' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_13 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_13 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                       'select_piccoloDevice_5F_syntax_14' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//             'select_piccoloDevice_5F_syntax_14' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_14 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_14 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
-//                                                                                                                      
-//                       'select_piccoloDevice_5F_syntax_15' added non terminal implementation                          
-//                                                                                                                      
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
+//
+//             'select_piccoloDevice_5F_syntax_15' added non terminal implementation                
+//
+//--------------------------------------------------------------------------------------------------
 
-int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_15 (C_Lexique_piccoloDevice_5F_lexique * inLexique) {
+int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_15 (Lexique_piccoloDevice_5F_lexique * inLexique) {
   return inLexique->nextProductionIndex () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3115,10 +3103,10 @@ mProperty_mValue_31_ (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS__32_lstringlist_2D_element GALGAS__32_lstringlist_2D_element::constructor_new (const GALGAS_lstring & in_mValue0,
-                                                                                      const GALGAS_lstring & in_mValue1,
-                                                                                      Compiler * /* inCompiler */
-                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS__32_lstringlist_2D_element GALGAS__32_lstringlist_2D_element::class_func_new (const GALGAS_lstring & in_mValue0,
+                                                                                     const GALGAS_lstring & in_mValue1,
+                                                                                     Compiler * /* inCompiler */
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS__32_lstringlist_2D_element result ;
   if (in_mValue0.isValid () && in_mValue1.isValid ()) {
     result = GALGAS__32_lstringlist_2D_element (in_mValue0, in_mValue1) ;
@@ -3173,9 +3161,8 @@ void GALGAS__32_lstringlist_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS__32_lstringlist_2D_element ("2lstringlist-element",
-                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS__32_lstringlist_2D_element ("2lstringlist-element",
+                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3235,11 +3222,11 @@ mProperty_mSliceSize (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bitSliceTable_2D_element GALGAS_bitSliceTable_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                  const GALGAS_uint & in_mSliceIndex,
-                                                                                  const GALGAS_uint & in_mSliceSize,
-                                                                                  Compiler * /* inCompiler */
-                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_bitSliceTable_2D_element GALGAS_bitSliceTable_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                 const GALGAS_uint & in_mSliceIndex,
+                                                                                 const GALGAS_uint & in_mSliceSize,
+                                                                                 Compiler * /* inCompiler */
+                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bitSliceTable_2D_element result ;
   if (in_lkey.isValid () && in_mSliceIndex.isValid () && in_mSliceSize.isValid ()) {
     result = GALGAS_bitSliceTable_2D_element (in_lkey, in_mSliceIndex, in_mSliceSize) ;
@@ -3300,9 +3287,8 @@ void GALGAS_bitSliceTable_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_bitSliceTable_2D_element ("bitSliceTable-element",
-                                                 nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bitSliceTable_2D_element ("bitSliceTable-element",
+                                                                                nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3359,10 +3345,10 @@ mProperty_mDeclaration (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ramDefinitionList_2D_element GALGAS_ramDefinitionList_2D_element::constructor_new (const GALGAS_lstring & in_mBankName,
-                                                                                          const GALGAS_declarationInRamList & in_mDeclaration,
-                                                                                          Compiler * /* inCompiler */
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_ramDefinitionList_2D_element GALGAS_ramDefinitionList_2D_element::class_func_new (const GALGAS_lstring & in_mBankName,
+                                                                                         const GALGAS_declarationInRamList & in_mDeclaration,
+                                                                                         Compiler * /* inCompiler */
+                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ramDefinitionList_2D_element result ;
   if (in_mBankName.isValid () && in_mDeclaration.isValid ()) {
     result = GALGAS_ramDefinitionList_2D_element (in_mBankName, in_mDeclaration) ;
@@ -3417,9 +3403,8 @@ void GALGAS_ramDefinitionList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ramDefinitionList_2D_element ("ramDefinitionList-element",
-                                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ramDefinitionList_2D_element ("ramDefinitionList-element",
+                                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3476,10 +3461,10 @@ mProperty_mSettingValue (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_configSettingList_2D_element GALGAS_configSettingList_2D_element::constructor_new (const GALGAS_lstring & in_mSettingName,
-                                                                                          const GALGAS_lstring & in_mSettingValue,
-                                                                                          Compiler * /* inCompiler */
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_configSettingList_2D_element GALGAS_configSettingList_2D_element::class_func_new (const GALGAS_lstring & in_mSettingName,
+                                                                                         const GALGAS_lstring & in_mSettingValue,
+                                                                                         Compiler * /* inCompiler */
+                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_configSettingList_2D_element result ;
   if (in_mSettingName.isValid () && in_mSettingValue.isValid ()) {
     result = GALGAS_configSettingList_2D_element (in_mSettingName, in_mSettingValue) ;
@@ -3534,9 +3519,8 @@ void GALGAS_configSettingList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_configSettingList_2D_element ("configSettingList-element",
-                                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configSettingList_2D_element ("configSettingList-element",
+                                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3593,10 +3577,10 @@ mProperty_mExpression (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatSliceExpressionList_2D_element GALGAS_immediatSliceExpressionList_2D_element::constructor_new (const GALGAS_lstring & in_mSliceName,
-                                                                                                              const GALGAS_immediatExpression & in_mExpression,
-                                                                                                              Compiler * /* inCompiler */
-                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_immediatSliceExpressionList_2D_element GALGAS_immediatSliceExpressionList_2D_element::class_func_new (const GALGAS_lstring & in_mSliceName,
+                                                                                                             const GALGAS_immediatExpression & in_mExpression,
+                                                                                                             Compiler * /* inCompiler */
+                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_immediatSliceExpressionList_2D_element result ;
   if (in_mSliceName.isValid () && in_mExpression.isValid ()) {
     result = GALGAS_immediatSliceExpressionList_2D_element (in_mSliceName, in_mExpression) ;
@@ -3651,9 +3635,8 @@ void GALGAS_immediatSliceExpressionList_2D_element::description (String & ioStri
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_immediatSliceExpressionList_2D_element ("immediatSliceExpressionList-element",
-                                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_immediatSliceExpressionList_2D_element ("immediatSliceExpressionList-element",
+                                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3710,10 +3693,10 @@ mProperty_mExpression (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_constantDefinitionList_2D_element GALGAS_constantDefinitionList_2D_element::constructor_new (const GALGAS_lstring & in_mConstantName,
-                                                                                                    const GALGAS_immediatExpression & in_mExpression,
-                                                                                                    Compiler * /* inCompiler */
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_constantDefinitionList_2D_element GALGAS_constantDefinitionList_2D_element::class_func_new (const GALGAS_lstring & in_mConstantName,
+                                                                                                   const GALGAS_immediatExpression & in_mExpression,
+                                                                                                   Compiler * /* inCompiler */
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_constantDefinitionList_2D_element result ;
   if (in_mConstantName.isValid () && in_mExpression.isValid ()) {
     result = GALGAS_constantDefinitionList_2D_element (in_mConstantName, in_mExpression) ;
@@ -3768,9 +3751,8 @@ void GALGAS_constantDefinitionList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_constantDefinitionList_2D_element ("constantDefinitionList-element",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_constantDefinitionList_2D_element ("constantDefinitionList-element",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3830,11 +3812,11 @@ mProperty_mRegisterValue (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_actualConfigurationMap_2D_element GALGAS_actualConfigurationMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                    const GALGAS_uint & in_mRegisterAddress,
-                                                                                                    const GALGAS_uint & in_mRegisterValue,
-                                                                                                    Compiler * /* inCompiler */
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_actualConfigurationMap_2D_element GALGAS_actualConfigurationMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                   const GALGAS_uint & in_mRegisterAddress,
+                                                                                                   const GALGAS_uint & in_mRegisterValue,
+                                                                                                   Compiler * /* inCompiler */
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_actualConfigurationMap_2D_element result ;
   if (in_lkey.isValid () && in_mRegisterAddress.isValid () && in_mRegisterValue.isValid ()) {
     result = GALGAS_actualConfigurationMap_2D_element (in_lkey, in_mRegisterAddress, in_mRegisterValue) ;
@@ -3895,9 +3877,8 @@ void GALGAS_actualConfigurationMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_actualConfigurationMap_2D_element ("actualConfigurationMap-element",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actualConfigurationMap_2D_element ("actualConfigurationMap-element",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3951,9 +3932,9 @@ mProperty_lkey (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_labelMap_2D_element GALGAS_labelMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                        Compiler * /* inCompiler */
-                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_labelMap_2D_element GALGAS_labelMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                       Compiler * /* inCompiler */
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_labelMap_2D_element result ;
   if (in_lkey.isValid ()) {
     result = GALGAS_labelMap_2D_element (in_lkey) ;
@@ -4002,9 +3983,8 @@ void GALGAS_labelMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_labelMap_2D_element ("labelMap-element",
-                                            nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_labelMap_2D_element ("labelMap-element",
+                                                                           nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4061,10 +4041,10 @@ mProperty_mValue (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_constantMap_2D_element GALGAS_constantMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                              const GALGAS_sint_36__34_ & in_mValue,
-                                                                              Compiler * /* inCompiler */
-                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_constantMap_2D_element GALGAS_constantMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                             const GALGAS_sint_36__34_ & in_mValue,
+                                                                             Compiler * /* inCompiler */
+                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_constantMap_2D_element result ;
   if (in_lkey.isValid () && in_mValue.isValid ()) {
     result = GALGAS_constantMap_2D_element (in_lkey, in_mValue) ;
@@ -4119,9 +4099,8 @@ void GALGAS_constantMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_constantMap_2D_element ("constantMap-element",
-                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_constantMap_2D_element ("constantMap-element",
+                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4187,13 +4166,13 @@ mProperty_mPreservesBank (inOperand4) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_routineMap_2D_element GALGAS_routineMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                            const GALGAS_bool & in_mIsNoReturn,
-                                                                            const GALGAS_uint & in_mRequiredBank,
-                                                                            const GALGAS_uint & in_mReturnedBank,
-                                                                            const GALGAS_bool & in_mPreservesBank,
-                                                                            Compiler * /* inCompiler */
-                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_routineMap_2D_element GALGAS_routineMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                           const GALGAS_bool & in_mIsNoReturn,
+                                                                           const GALGAS_uint & in_mRequiredBank,
+                                                                           const GALGAS_uint & in_mReturnedBank,
+                                                                           const GALGAS_bool & in_mPreservesBank,
+                                                                           Compiler * /* inCompiler */
+                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_routineMap_2D_element result ;
   if (in_lkey.isValid () && in_mIsNoReturn.isValid () && in_mRequiredBank.isValid () && in_mReturnedBank.isValid () && in_mPreservesBank.isValid ()) {
     result = GALGAS_routineMap_2D_element (in_lkey, in_mIsNoReturn, in_mRequiredBank, in_mReturnedBank, in_mPreservesBank) ;
@@ -4266,9 +4245,8 @@ void GALGAS_routineMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_routineMap_2D_element ("routineMap-element",
-                                              nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineMap_2D_element ("routineMap-element",
+                                                                             nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4328,11 +4306,11 @@ mProperty_mIsDeletable (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_symbolTableForOptimizations_2D_element GALGAS_symbolTableForOptimizations_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                              const GALGAS_uint & in_mDefinitionLineIndex,
-                                                                                                              const GALGAS_bool & in_mIsDeletable,
-                                                                                                              Compiler * /* inCompiler */
-                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_symbolTableForOptimizations_2D_element GALGAS_symbolTableForOptimizations_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                             const GALGAS_uint & in_mDefinitionLineIndex,
+                                                                                                             const GALGAS_bool & in_mIsDeletable,
+                                                                                                             Compiler * /* inCompiler */
+                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_symbolTableForOptimizations_2D_element result ;
   if (in_lkey.isValid () && in_mDefinitionLineIndex.isValid () && in_mIsDeletable.isValid ()) {
     result = GALGAS_symbolTableForOptimizations_2D_element (in_lkey, in_mDefinitionLineIndex, in_mIsDeletable) ;
@@ -4393,9 +4371,8 @@ void GALGAS_symbolTableForOptimizations_2D_element::description (String & ioStri
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_symbolTableForOptimizations_2D_element ("symbolTableForOptimizations-element",
-                                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForOptimizations_2D_element ("symbolTableForOptimizations-element",
+                                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4461,13 +4438,13 @@ mProperty_mFieldSettingMap (inOperand4) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_configFieldMap_2D_element GALGAS_configFieldMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                    const GALGAS_lstring & in_mRegisterName,
-                                                                                    const GALGAS_luint & in_mMaskValue,
-                                                                                    const GALGAS_lstring & in_mDescription,
-                                                                                    const GALGAS_fieldSettingMap & in_mFieldSettingMap,
-                                                                                    Compiler * /* inCompiler */
-                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_configFieldMap_2D_element GALGAS_configFieldMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                   const GALGAS_lstring & in_mRegisterName,
+                                                                                   const GALGAS_luint & in_mMaskValue,
+                                                                                   const GALGAS_lstring & in_mDescription,
+                                                                                   const GALGAS_fieldSettingMap & in_mFieldSettingMap,
+                                                                                   Compiler * /* inCompiler */
+                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_configFieldMap_2D_element result ;
   if (in_lkey.isValid () && in_mRegisterName.isValid () && in_mMaskValue.isValid () && in_mDescription.isValid () && in_mFieldSettingMap.isValid ()) {
     result = GALGAS_configFieldMap_2D_element (in_lkey, in_mRegisterName, in_mMaskValue, in_mDescription, in_mFieldSettingMap) ;
@@ -4540,9 +4517,8 @@ void GALGAS_configFieldMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_configFieldMap_2D_element ("configFieldMap-element",
-                                                  nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configFieldMap_2D_element ("configFieldMap-element",
+                                                                                 nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4608,13 +4584,13 @@ mProperty_mEndOfRoutineLocation (inOperand4) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_routineDefinitionList_2D_element GALGAS_baseline_5F_routineDefinitionList_2D_element::constructor_new (const GALGAS_lstring & in_mRoutineName,
-                                                                                                                          const GALGAS_luint & in_mPage,
-                                                                                                                          const GALGAS_bool & in_mIsNoReturn,
-                                                                                                                          const GALGAS_baseline_5F_instructionList & in_mInstructionList,
-                                                                                                                          const GALGAS_location & in_mEndOfRoutineLocation,
-                                                                                                                          Compiler * /* inCompiler */
-                                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_baseline_5F_routineDefinitionList_2D_element GALGAS_baseline_5F_routineDefinitionList_2D_element::class_func_new (const GALGAS_lstring & in_mRoutineName,
+                                                                                                                         const GALGAS_luint & in_mPage,
+                                                                                                                         const GALGAS_bool & in_mIsNoReturn,
+                                                                                                                         const GALGAS_baseline_5F_instructionList & in_mInstructionList,
+                                                                                                                         const GALGAS_location & in_mEndOfRoutineLocation,
+                                                                                                                         Compiler * /* inCompiler */
+                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_routineDefinitionList_2D_element result ;
   if (in_mRoutineName.isValid () && in_mPage.isValid () && in_mIsNoReturn.isValid () && in_mInstructionList.isValid () && in_mEndOfRoutineLocation.isValid ()) {
     result = GALGAS_baseline_5F_routineDefinitionList_2D_element (in_mRoutineName, in_mPage, in_mIsNoReturn, in_mInstructionList, in_mEndOfRoutineLocation) ;
@@ -4687,9 +4663,8 @@ void GALGAS_baseline_5F_routineDefinitionList_2D_element::description (String & 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_routineDefinitionList_2D_element ("baseline_routineDefinitionList-element",
-                                                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_routineDefinitionList_2D_element ("baseline_routineDefinitionList-element",
+                                                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4743,9 +4718,9 @@ mProperty_lkey (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_declaredRoutineMap_2D_element GALGAS_baseline_5F_declaredRoutineMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                                    Compiler * /* inCompiler */
-                                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_baseline_5F_declaredRoutineMap_2D_element GALGAS_baseline_5F_declaredRoutineMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                                   Compiler * /* inCompiler */
+                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_declaredRoutineMap_2D_element result ;
   if (in_lkey.isValid ()) {
     result = GALGAS_baseline_5F_declaredRoutineMap_2D_element (in_lkey) ;
@@ -4794,9 +4769,8 @@ void GALGAS_baseline_5F_declaredRoutineMap_2D_element::description (String & ioS
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_declaredRoutineMap_2D_element ("baseline_declaredRoutineMap-element",
-                                                                  nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_declaredRoutineMap_2D_element ("baseline_declaredRoutineMap-element",
+                                                                                                 nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4856,11 +4830,11 @@ mProperty_mPage (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baselineRoutineMap_2D_element GALGAS_baselineRoutineMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                            const GALGAS_bool & in_mIsNoReturn,
-                                                                                            const GALGAS_luint & in_mPage,
-                                                                                            Compiler * /* inCompiler */
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_baselineRoutineMap_2D_element GALGAS_baselineRoutineMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                           const GALGAS_bool & in_mIsNoReturn,
+                                                                                           const GALGAS_luint & in_mPage,
+                                                                                           Compiler * /* inCompiler */
+                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baselineRoutineMap_2D_element result ;
   if (in_lkey.isValid () && in_mIsNoReturn.isValid () && in_mPage.isValid ()) {
     result = GALGAS_baselineRoutineMap_2D_element (in_lkey, in_mIsNoReturn, in_mPage) ;
@@ -4921,9 +4895,8 @@ void GALGAS_baselineRoutineMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baselineRoutineMap_2D_element ("baselineRoutineMap-element",
-                                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineRoutineMap_2D_element ("baselineRoutineMap-element",
+                                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4980,10 +4953,10 @@ mProperty_mDefinitionLineIndex (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baselineSymbolTableForOptimizations_2D_element GALGAS_baselineSymbolTableForOptimizations_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                                              const GALGAS_uint & in_mDefinitionLineIndex,
-                                                                                                                              Compiler * /* inCompiler */
-                                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_baselineSymbolTableForOptimizations_2D_element GALGAS_baselineSymbolTableForOptimizations_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                                             const GALGAS_uint & in_mDefinitionLineIndex,
+                                                                                                                             Compiler * /* inCompiler */
+                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baselineSymbolTableForOptimizations_2D_element result ;
   if (in_lkey.isValid () && in_mDefinitionLineIndex.isValid ()) {
     result = GALGAS_baselineSymbolTableForOptimizations_2D_element (in_lkey, in_mDefinitionLineIndex) ;
@@ -5038,9 +5011,8 @@ void GALGAS_baselineSymbolTableForOptimizations_2D_element::description (String 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baselineSymbolTableForOptimizations_2D_element ("baselineSymbolTableForOptimizations-element",
-                                                                       nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineSymbolTableForOptimizations_2D_element ("baselineSymbolTableForOptimizations-element",
+                                                                                                      nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5097,10 +5069,10 @@ mProperty_mRoutineAddress (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_symbolTable_2D_element GALGAS_baseline_5F_symbolTable_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                      const GALGAS_uint & in_mRoutineAddress,
-                                                                                                      Compiler * /* inCompiler */
-                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_baseline_5F_symbolTable_2D_element GALGAS_baseline_5F_symbolTable_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                     const GALGAS_uint & in_mRoutineAddress,
+                                                                                                     Compiler * /* inCompiler */
+                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_symbolTable_2D_element result ;
   if (in_lkey.isValid () && in_mRoutineAddress.isValid ()) {
     result = GALGAS_baseline_5F_symbolTable_2D_element (in_lkey, in_mRoutineAddress) ;
@@ -5155,9 +5127,8 @@ void GALGAS_baseline_5F_symbolTable_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_baseline_5F_symbolTable_2D_element ("baseline_symbolTable-element",
-                                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_symbolTable_2D_element ("baseline_symbolTable-element",
+                                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5223,13 +5194,13 @@ mProperty_mEndOfInterruptLocation (inOperand4) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_interruptDefinitionList_2D_element GALGAS_midrange_5F_interruptDefinitionList_2D_element::constructor_new (const GALGAS_location & in_mInterruptLocation,
-                                                                                                                              const GALGAS_midrange_5F_instructionList & in_mInstructionList,
-                                                                                                                              const GALGAS_lstring & in_mFirstSaveRegister,
-                                                                                                                              const GALGAS_lstring & in_mSecondSaveRegister,
-                                                                                                                              const GALGAS_location & in_mEndOfInterruptLocation,
-                                                                                                                              Compiler * /* inCompiler */
-                                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_interruptDefinitionList_2D_element GALGAS_midrange_5F_interruptDefinitionList_2D_element::class_func_new (const GALGAS_location & in_mInterruptLocation,
+                                                                                                                             const GALGAS_midrange_5F_instructionList & in_mInstructionList,
+                                                                                                                             const GALGAS_lstring & in_mFirstSaveRegister,
+                                                                                                                             const GALGAS_lstring & in_mSecondSaveRegister,
+                                                                                                                             const GALGAS_location & in_mEndOfInterruptLocation,
+                                                                                                                             Compiler * /* inCompiler */
+                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_interruptDefinitionList_2D_element result ;
   if (in_mInterruptLocation.isValid () && in_mInstructionList.isValid () && in_mFirstSaveRegister.isValid () && in_mSecondSaveRegister.isValid () && in_mEndOfInterruptLocation.isValid ()) {
     result = GALGAS_midrange_5F_interruptDefinitionList_2D_element (in_mInterruptLocation, in_mInstructionList, in_mFirstSaveRegister, in_mSecondSaveRegister, in_mEndOfInterruptLocation) ;
@@ -5302,9 +5273,8 @@ void GALGAS_midrange_5F_interruptDefinitionList_2D_element::description (String 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList_2D_element ("midrange_interruptDefinitionList-element",
-                                                                       nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList_2D_element ("midrange_interruptDefinitionList-element",
+                                                                                                      nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5379,16 +5349,16 @@ mProperty_mEndOfRoutineLocation (inOperand7) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_routineDefinitionList_2D_element GALGAS_midrange_5F_routineDefinitionList_2D_element::constructor_new (const GALGAS_lstring & in_mRoutineName,
-                                                                                                                          const GALGAS_luint & in_mPage,
-                                                                                                                          const GALGAS_luint & in_mRequiredBank,
-                                                                                                                          const GALGAS_luint & in_mReturnedBank,
-                                                                                                                          const GALGAS_bool & in_mPreservesBank,
-                                                                                                                          const GALGAS_bool & in_mIsNoReturn,
-                                                                                                                          const GALGAS_midrange_5F_instructionList & in_mInstructionList,
-                                                                                                                          const GALGAS_location & in_mEndOfRoutineLocation,
-                                                                                                                          Compiler * /* inCompiler */
-                                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_routineDefinitionList_2D_element GALGAS_midrange_5F_routineDefinitionList_2D_element::class_func_new (const GALGAS_lstring & in_mRoutineName,
+                                                                                                                         const GALGAS_luint & in_mPage,
+                                                                                                                         const GALGAS_luint & in_mRequiredBank,
+                                                                                                                         const GALGAS_luint & in_mReturnedBank,
+                                                                                                                         const GALGAS_bool & in_mPreservesBank,
+                                                                                                                         const GALGAS_bool & in_mIsNoReturn,
+                                                                                                                         const GALGAS_midrange_5F_instructionList & in_mInstructionList,
+                                                                                                                         const GALGAS_location & in_mEndOfRoutineLocation,
+                                                                                                                         Compiler * /* inCompiler */
+                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_routineDefinitionList_2D_element result ;
   if (in_mRoutineName.isValid () && in_mPage.isValid () && in_mRequiredBank.isValid () && in_mReturnedBank.isValid () && in_mPreservesBank.isValid () && in_mIsNoReturn.isValid () && in_mInstructionList.isValid () && in_mEndOfRoutineLocation.isValid ()) {
     result = GALGAS_midrange_5F_routineDefinitionList_2D_element (in_mRoutineName, in_mPage, in_mRequiredBank, in_mReturnedBank, in_mPreservesBank, in_mIsNoReturn, in_mInstructionList, in_mEndOfRoutineLocation) ;
@@ -5479,9 +5449,8 @@ void GALGAS_midrange_5F_routineDefinitionList_2D_element::description (String & 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_routineDefinitionList_2D_element ("midrange_routineDefinitionList-element",
-                                                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_routineDefinitionList_2D_element ("midrange_routineDefinitionList-element",
+                                                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5538,10 +5507,10 @@ mProperty_mRoutineAddress (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                                                                  const GALGAS_uint & in_mRoutineAddress,
-                                                                                                                                                  Compiler * /* inCompiler */
-                                                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                                                                 const GALGAS_uint & in_mRoutineAddress,
+                                                                                                                                                 Compiler * /* inCompiler */
+                                                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element result ;
   if (in_lkey.isValid () && in_mRoutineAddress.isValid ()) {
     result = GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element (in_lkey, in_mRoutineAddress) ;
@@ -5596,9 +5565,8 @@ void GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element::descriptio
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element ("midrange_symbolTableForConvertingRelatives-element",
-                                                                                 nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element ("midrange_symbolTableForConvertingRelatives-element",
+                                                                                                                nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5655,10 +5623,10 @@ mProperty_mRoutineAddress (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_symbolTable_2D_element GALGAS_midrange_5F_symbolTable_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                      const GALGAS_uint & in_mRoutineAddress,
-                                                                                                      Compiler * /* inCompiler */
-                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_symbolTable_2D_element GALGAS_midrange_5F_symbolTable_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                     const GALGAS_uint & in_mRoutineAddress,
+                                                                                                     Compiler * /* inCompiler */
+                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_symbolTable_2D_element result ;
   if (in_lkey.isValid () && in_mRoutineAddress.isValid ()) {
     result = GALGAS_midrange_5F_symbolTable_2D_element (in_lkey, in_mRoutineAddress) ;
@@ -5713,9 +5681,8 @@ void GALGAS_midrange_5F_symbolTable_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_symbolTable_2D_element ("midrange_symbolTable-element",
-                                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_symbolTable_2D_element ("midrange_symbolTable-element",
+                                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5769,9 +5736,9 @@ mProperty_lkey (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_midrange_5F_declaredRoutineMap_2D_element GALGAS_midrange_5F_declaredRoutineMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                                    Compiler * /* inCompiler */
-                                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_midrange_5F_declaredRoutineMap_2D_element GALGAS_midrange_5F_declaredRoutineMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                                   Compiler * /* inCompiler */
+                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_midrange_5F_declaredRoutineMap_2D_element result ;
   if (in_lkey.isValid ()) {
     result = GALGAS_midrange_5F_declaredRoutineMap_2D_element (in_lkey) ;
@@ -5820,9 +5787,8 @@ void GALGAS_midrange_5F_declaredRoutineMap_2D_element::description (String & ioS
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_midrange_5F_declaredRoutineMap_2D_element ("midrange_declaredRoutineMap-element",
-                                                                  nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_declaredRoutineMap_2D_element ("midrange_declaredRoutineMap-element",
+                                                                                                 nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5879,10 +5845,10 @@ mProperty_mReservedSize (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bootloaderReservedRAMmap_2D_element GALGAS_bootloaderReservedRAMmap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                        const GALGAS_luint & in_mReservedSize,
-                                                                                                        Compiler * /* inCompiler */
-                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_bootloaderReservedRAMmap_2D_element GALGAS_bootloaderReservedRAMmap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                       const GALGAS_luint & in_mReservedSize,
+                                                                                                       Compiler * /* inCompiler */
+                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_bootloaderReservedRAMmap_2D_element result ;
   if (in_lkey.isValid () && in_mReservedSize.isValid ()) {
     result = GALGAS_bootloaderReservedRAMmap_2D_element (in_lkey, in_mReservedSize) ;
@@ -5937,9 +5903,8 @@ void GALGAS_bootloaderReservedRAMmap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_bootloaderReservedRAMmap_2D_element ("bootloaderReservedRAMmap-element",
-                                                            nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bootloaderReservedRAMmap_2D_element ("bootloaderReservedRAMmap-element",
+                                                                                           nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6002,12 +5967,12 @@ mProperty_mEndOfBlock (inOperand3) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_BlockInstructionBlockList_2D_element GALGAS_pic_31__38_BlockInstructionBlockList_2D_element::constructor_new (const GALGAS_lstring & in_mBlockName,
-                                                                                                                                const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                                                                                const GALGAS_abstractBlockTerminationForBlockInstruction & in_mBlockTerminaisonForBlockInstruction,
-                                                                                                                                const GALGAS_location & in_mEndOfBlock,
-                                                                                                                                Compiler * /* inCompiler */
-                                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38_BlockInstructionBlockList_2D_element GALGAS_pic_31__38_BlockInstructionBlockList_2D_element::class_func_new (const GALGAS_lstring & in_mBlockName,
+                                                                                                                               const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                                               const GALGAS_abstractBlockTerminationForBlockInstruction & in_mBlockTerminaisonForBlockInstruction,
+                                                                                                                               const GALGAS_location & in_mEndOfBlock,
+                                                                                                                               Compiler * /* inCompiler */
+                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_BlockInstructionBlockList_2D_element result ;
   if (in_mBlockName.isValid () && in_mInstructionList.isValid () && in_mBlockTerminaisonForBlockInstruction.isValid () && in_mEndOfBlock.isValid ()) {
     result = GALGAS_pic_31__38_BlockInstructionBlockList_2D_element (in_mBlockName, in_mInstructionList, in_mBlockTerminaisonForBlockInstruction, in_mEndOfBlock) ;
@@ -6074,9 +6039,8 @@ void GALGAS_pic_31__38_BlockInstructionBlockList_2D_element::description (String
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_BlockInstructionBlockList_2D_element ("pic18BlockInstructionBlockList-element",
-                                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BlockInstructionBlockList_2D_element ("pic18BlockInstructionBlockList-element",
+                                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6139,12 +6103,12 @@ mProperty_mEndOfInterruptLocation (inOperand3) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_InterruptDefinitionList_2D_element GALGAS_pic_31__38_InterruptDefinitionList_2D_element::constructor_new (const GALGAS_lstring & in_mInterruptName,
-                                                                                                                            const GALGAS_bool & in_mFastReturn,
-                                                                                                                            const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                                                                            const GALGAS_location & in_mEndOfInterruptLocation,
-                                                                                                                            Compiler * /* inCompiler */
-                                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38_InterruptDefinitionList_2D_element GALGAS_pic_31__38_InterruptDefinitionList_2D_element::class_func_new (const GALGAS_lstring & in_mInterruptName,
+                                                                                                                           const GALGAS_bool & in_mFastReturn,
+                                                                                                                           const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                                           const GALGAS_location & in_mEndOfInterruptLocation,
+                                                                                                                           Compiler * /* inCompiler */
+                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_InterruptDefinitionList_2D_element result ;
   if (in_mInterruptName.isValid () && in_mFastReturn.isValid () && in_mInstructionList.isValid () && in_mEndOfInterruptLocation.isValid ()) {
     result = GALGAS_pic_31__38_InterruptDefinitionList_2D_element (in_mInterruptName, in_mFastReturn, in_mInstructionList, in_mEndOfInterruptLocation) ;
@@ -6211,9 +6175,8 @@ void GALGAS_pic_31__38_InterruptDefinitionList_2D_element::description (String &
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_InterruptDefinitionList_2D_element ("pic18InterruptDefinitionList-element",
-                                                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_InterruptDefinitionList_2D_element ("pic18InterruptDefinitionList-element",
+                                                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6285,15 +6248,15 @@ mProperty_mEndOfRoutineLocation (inOperand6) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_RoutineDefinitionList_2D_element GALGAS_pic_31__38_RoutineDefinitionList_2D_element::constructor_new (const GALGAS_lstring & in_mRoutineName,
-                                                                                                                        const GALGAS_luint & in_mRequiredBank,
-                                                                                                                        const GALGAS_luint & in_mReturnedBank,
-                                                                                                                        const GALGAS_bool & in_mPreservesBank,
-                                                                                                                        const GALGAS_bool & in_mIsNoReturn,
-                                                                                                                        const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                                                                        const GALGAS_location & in_mEndOfRoutineLocation,
-                                                                                                                        Compiler * /* inCompiler */
-                                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38_RoutineDefinitionList_2D_element GALGAS_pic_31__38_RoutineDefinitionList_2D_element::class_func_new (const GALGAS_lstring & in_mRoutineName,
+                                                                                                                       const GALGAS_luint & in_mRequiredBank,
+                                                                                                                       const GALGAS_luint & in_mReturnedBank,
+                                                                                                                       const GALGAS_bool & in_mPreservesBank,
+                                                                                                                       const GALGAS_bool & in_mIsNoReturn,
+                                                                                                                       const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                                       const GALGAS_location & in_mEndOfRoutineLocation,
+                                                                                                                       Compiler * /* inCompiler */
+                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_RoutineDefinitionList_2D_element result ;
   if (in_mRoutineName.isValid () && in_mRequiredBank.isValid () && in_mReturnedBank.isValid () && in_mPreservesBank.isValid () && in_mIsNoReturn.isValid () && in_mInstructionList.isValid () && in_mEndOfRoutineLocation.isValid ()) {
     result = GALGAS_pic_31__38_RoutineDefinitionList_2D_element (in_mRoutineName, in_mRequiredBank, in_mReturnedBank, in_mPreservesBank, in_mIsNoReturn, in_mInstructionList, in_mEndOfRoutineLocation) ;
@@ -6378,9 +6341,8 @@ void GALGAS_pic_31__38_RoutineDefinitionList_2D_element::description (String & i
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_RoutineDefinitionList_2D_element ("pic18RoutineDefinitionList-element",
-                                                                    nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RoutineDefinitionList_2D_element ("pic18RoutineDefinitionList-element",
+                                                                                                   nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6440,11 +6402,11 @@ mProperty_mInstructionList (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_MacroDefinitionList_2D_element GALGAS_pic_31__38_MacroDefinitionList_2D_element::constructor_new (const GALGAS_lstring & in_mMacroName,
-                                                                                                                    const GALGAS_lstringlist & in_mConstantNameList,
-                                                                                                                    const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                                                                    Compiler * /* inCompiler */
-                                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38_MacroDefinitionList_2D_element GALGAS_pic_31__38_MacroDefinitionList_2D_element::class_func_new (const GALGAS_lstring & in_mMacroName,
+                                                                                                                   const GALGAS_lstringlist & in_mConstantNameList,
+                                                                                                                   const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                                   Compiler * /* inCompiler */
+                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_MacroDefinitionList_2D_element result ;
   if (in_mMacroName.isValid () && in_mConstantNameList.isValid () && in_mInstructionList.isValid ()) {
     result = GALGAS_pic_31__38_MacroDefinitionList_2D_element (in_mMacroName, in_mConstantNameList, in_mInstructionList) ;
@@ -6505,9 +6467,8 @@ void GALGAS_pic_31__38_MacroDefinitionList_2D_element::description (String & ioS
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_MacroDefinitionList_2D_element ("pic18MacroDefinitionList-element",
-                                                                  nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroDefinitionList_2D_element ("pic18MacroDefinitionList-element",
+                                                                                                 nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6567,11 +6528,11 @@ mProperty_mInstructionList (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_MacroMap_2D_element GALGAS_pic_31__38_MacroMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                              const GALGAS_lstringlist & in_mConstantNameList,
-                                                                                              const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                                              Compiler * /* inCompiler */
-                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38_MacroMap_2D_element GALGAS_pic_31__38_MacroMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                             const GALGAS_lstringlist & in_mConstantNameList,
+                                                                                             const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                             Compiler * /* inCompiler */
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_MacroMap_2D_element result ;
   if (in_lkey.isValid () && in_mConstantNameList.isValid () && in_mInstructionList.isValid ()) {
     result = GALGAS_pic_31__38_MacroMap_2D_element (in_lkey, in_mConstantNameList, in_mInstructionList) ;
@@ -6632,9 +6593,8 @@ void GALGAS_pic_31__38_MacroMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_MacroMap_2D_element ("pic18MacroMap-element",
-                                                       nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroMap_2D_element ("pic18MacroMap-element",
+                                                                                      nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6700,13 +6660,13 @@ mProperty_mIsNoReturn (inOperand4) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_routineDeclarationList_2D_element GALGAS_routineDeclarationList_2D_element::constructor_new (const GALGAS_lstring & in_mRoutineName,
-                                                                                                    const GALGAS_luint & in_mRequiredBank,
-                                                                                                    const GALGAS_luint & in_mReturnedBank,
-                                                                                                    const GALGAS_bool & in_mPreservesBank,
-                                                                                                    const GALGAS_bool & in_mIsNoReturn,
-                                                                                                    Compiler * /* inCompiler */
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_routineDeclarationList_2D_element GALGAS_routineDeclarationList_2D_element::class_func_new (const GALGAS_lstring & in_mRoutineName,
+                                                                                                   const GALGAS_luint & in_mRequiredBank,
+                                                                                                   const GALGAS_luint & in_mReturnedBank,
+                                                                                                   const GALGAS_bool & in_mPreservesBank,
+                                                                                                   const GALGAS_bool & in_mIsNoReturn,
+                                                                                                   Compiler * /* inCompiler */
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_routineDeclarationList_2D_element result ;
   if (in_mRoutineName.isValid () && in_mRequiredBank.isValid () && in_mReturnedBank.isValid () && in_mPreservesBank.isValid () && in_mIsNoReturn.isValid ()) {
     result = GALGAS_routineDeclarationList_2D_element (in_mRoutineName, in_mRequiredBank, in_mReturnedBank, in_mPreservesBank, in_mIsNoReturn) ;
@@ -6779,9 +6739,8 @@ void GALGAS_routineDeclarationList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_routineDeclarationList_2D_element ("routineDeclarationList-element",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineDeclarationList_2D_element ("routineDeclarationList-element",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6841,11 +6800,11 @@ mProperty_mIsByteList (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_dataList_2D_element GALGAS_dataList_2D_element::constructor_new (const GALGAS_lstring & in_mDataName,
-                                                                        const GALGAS_immediatExpressionList & in_mValueList,
-                                                                        const GALGAS_bool & in_mIsByteList,
-                                                                        Compiler * /* inCompiler */
-                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_dataList_2D_element GALGAS_dataList_2D_element::class_func_new (const GALGAS_lstring & in_mDataName,
+                                                                       const GALGAS_immediatExpressionList & in_mValueList,
+                                                                       const GALGAS_bool & in_mIsByteList,
+                                                                       Compiler * /* inCompiler */
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_dataList_2D_element result ;
   if (in_mDataName.isValid () && in_mValueList.isValid () && in_mIsByteList.isValid ()) {
     result = GALGAS_dataList_2D_element (in_mDataName, in_mValueList, in_mIsByteList) ;
@@ -6906,9 +6865,8 @@ void GALGAS_dataList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_dataList_2D_element ("dataList-element",
-                                            nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_dataList_2D_element ("dataList-element",
+                                                                           nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6962,9 +6920,9 @@ mProperty_lkey (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_caseConstantMap_2D_element GALGAS_caseConstantMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                      Compiler * /* inCompiler */
-                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_caseConstantMap_2D_element GALGAS_caseConstantMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                     Compiler * /* inCompiler */
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_caseConstantMap_2D_element result ;
   if (in_lkey.isValid ()) {
     result = GALGAS_caseConstantMap_2D_element (in_lkey) ;
@@ -7013,9 +6971,8 @@ void GALGAS_caseConstantMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_caseConstantMap_2D_element ("caseConstantMap-element",
-                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_caseConstantMap_2D_element ("caseConstantMap-element",
+                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7075,11 +7032,11 @@ mProperty_mIsData_38_ (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38__5F_dataMap_2D_element GALGAS_pic_31__38__5F_dataMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                    const GALGAS_uintlist & in_mData,
-                                                                                                    const GALGAS_bool & in_mIsData8,
-                                                                                                    Compiler * /* inCompiler */
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38__5F_dataMap_2D_element GALGAS_pic_31__38__5F_dataMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                   const GALGAS_uintlist & in_mData,
+                                                                                                   const GALGAS_bool & in_mIsData8,
+                                                                                                   Compiler * /* inCompiler */
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38__5F_dataMap_2D_element result ;
   if (in_lkey.isValid () && in_mData.isValid () && in_mIsData8.isValid ()) {
     result = GALGAS_pic_31__38__5F_dataMap_2D_element (in_lkey, in_mData, in_mIsData8) ;
@@ -7140,9 +7097,8 @@ void GALGAS_pic_31__38__5F_dataMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38__5F_dataMap_2D_element ("pic18_dataMap-element",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataMap_2D_element ("pic18_dataMap-element",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7196,9 +7152,9 @@ mProperty_mBlock (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_BlockList_2D_element GALGAS_ipic_31__38_BlockList_2D_element::constructor_new (const GALGAS_ipic_31__38_Block & in_mBlock,
-                                                                                                  Compiler * /* inCompiler */
-                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38_BlockList_2D_element GALGAS_ipic_31__38_BlockList_2D_element::class_func_new (const GALGAS_ipic_31__38_Block & in_mBlock,
+                                                                                                 Compiler * /* inCompiler */
+                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38_BlockList_2D_element result ;
   if (in_mBlock.isValid ()) {
     result = GALGAS_ipic_31__38_BlockList_2D_element (in_mBlock) ;
@@ -7247,9 +7203,8 @@ void GALGAS_ipic_31__38_BlockList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_BlockList_2D_element ("ipic18BlockList-element",
-                                                         nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_BlockList_2D_element ("ipic18BlockList-element",
+                                                                                        nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7306,10 +7261,10 @@ mProperty_mDefinitionBlockIndex (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_symbolTableForBlockOptimization_2D_element GALGAS_symbolTableForBlockOptimization_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                                      const GALGAS_uint & in_mDefinitionBlockIndex,
-                                                                                                                      Compiler * /* inCompiler */
-                                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_symbolTableForBlockOptimization_2D_element GALGAS_symbolTableForBlockOptimization_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                                     const GALGAS_uint & in_mDefinitionBlockIndex,
+                                                                                                                     Compiler * /* inCompiler */
+                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_symbolTableForBlockOptimization_2D_element result ;
   if (in_lkey.isValid () && in_mDefinitionBlockIndex.isValid ()) {
     result = GALGAS_symbolTableForBlockOptimization_2D_element (in_lkey, in_mDefinitionBlockIndex) ;
@@ -7364,9 +7319,8 @@ void GALGAS_symbolTableForBlockOptimization_2D_element::description (String & io
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_symbolTableForBlockOptimization_2D_element ("symbolTableForBlockOptimization-element",
-                                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForBlockOptimization_2D_element ("symbolTableForBlockOptimization-element",
+                                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7423,10 +7377,10 @@ mProperty_mCluster (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_symbolTableForClusterOrdering_2D_element GALGAS_symbolTableForClusterOrdering_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                                  const GALGAS_uint & in_mCluster,
-                                                                                                                  Compiler * /* inCompiler */
-                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_symbolTableForClusterOrdering_2D_element GALGAS_symbolTableForClusterOrdering_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                                 const GALGAS_uint & in_mCluster,
+                                                                                                                 Compiler * /* inCompiler */
+                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_symbolTableForClusterOrdering_2D_element result ;
   if (in_lkey.isValid () && in_mCluster.isValid ()) {
     result = GALGAS_symbolTableForClusterOrdering_2D_element (in_lkey, in_mCluster) ;
@@ -7481,9 +7435,8 @@ void GALGAS_symbolTableForClusterOrdering_2D_element::description (String & ioSt
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_symbolTableForClusterOrdering_2D_element ("symbolTableForClusterOrdering-element",
-                                                                 nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForClusterOrdering_2D_element ("symbolTableForClusterOrdering-element",
+                                                                                                nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7540,10 +7493,10 @@ mProperty_mLabelAddress (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_symbolTableForRelativesResolution_2D_element GALGAS_symbolTableForRelativesResolution_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                                          const GALGAS_uint & in_mLabelAddress,
-                                                                                                                          Compiler * /* inCompiler */
-                                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_symbolTableForRelativesResolution_2D_element GALGAS_symbolTableForRelativesResolution_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                                         const GALGAS_uint & in_mLabelAddress,
+                                                                                                                         Compiler * /* inCompiler */
+                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_symbolTableForRelativesResolution_2D_element result ;
   if (in_lkey.isValid () && in_mLabelAddress.isValid ()) {
     result = GALGAS_symbolTableForRelativesResolution_2D_element (in_lkey, in_mLabelAddress) ;
@@ -7598,9 +7551,8 @@ void GALGAS_symbolTableForRelativesResolution_2D_element::description (String & 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_symbolTableForRelativesResolution_2D_element ("symbolTableForRelativesResolution-element",
-                                                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForRelativesResolution_2D_element ("symbolTableForRelativesResolution-element",
+                                                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7657,10 +7609,10 @@ mProperty_mDataAddress (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38__5F_dataAddressMap_2D_element GALGAS_pic_31__38__5F_dataAddressMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                                  const GALGAS_uint & in_mDataAddress,
-                                                                                                                  Compiler * /* inCompiler */
-                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38__5F_dataAddressMap_2D_element GALGAS_pic_31__38__5F_dataAddressMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                                 const GALGAS_uint & in_mDataAddress,
+                                                                                                                 Compiler * /* inCompiler */
+                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38__5F_dataAddressMap_2D_element result ;
   if (in_lkey.isValid () && in_mDataAddress.isValid ()) {
     result = GALGAS_pic_31__38__5F_dataAddressMap_2D_element (in_lkey, in_mDataAddress) ;
@@ -7715,9 +7667,8 @@ void GALGAS_pic_31__38__5F_dataAddressMap_2D_element::description (String & ioSt
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap_2D_element ("pic18_dataAddressMap-element",
-                                                                 nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap_2D_element ("pic18_dataAddressMap-element",
+                                                                                                nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7786,14 +7737,14 @@ mProperty_mInstructionList (inOperand5) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_declaredRoutineMap_2D_element GALGAS_declaredRoutineMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                            const GALGAS_luint & in_mRequiredBank,
-                                                                                            const GALGAS_luint & in_mReturnedBank,
-                                                                                            const GALGAS_bool & in_mPreservesBank,
-                                                                                            const GALGAS_bool & in_mIsNoReturn,
-                                                                                            const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                                            Compiler * /* inCompiler */
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_declaredRoutineMap_2D_element GALGAS_declaredRoutineMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                           const GALGAS_luint & in_mRequiredBank,
+                                                                                           const GALGAS_luint & in_mReturnedBank,
+                                                                                           const GALGAS_bool & in_mPreservesBank,
+                                                                                           const GALGAS_bool & in_mIsNoReturn,
+                                                                                           const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                           Compiler * /* inCompiler */
+                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_declaredRoutineMap_2D_element result ;
   if (in_lkey.isValid () && in_mRequiredBank.isValid () && in_mReturnedBank.isValid () && in_mPreservesBank.isValid () && in_mIsNoReturn.isValid () && in_mInstructionList.isValid ()) {
     result = GALGAS_declaredRoutineMap_2D_element (in_lkey, in_mRequiredBank, in_mReturnedBank, in_mPreservesBank, in_mIsNoReturn, in_mInstructionList) ;
@@ -7872,9 +7823,8 @@ void GALGAS_declaredRoutineMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_declaredRoutineMap_2D_element ("declaredRoutineMap-element",
-                                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declaredRoutineMap_2D_element ("declaredRoutineMap-element",
+                                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7937,12 +7887,12 @@ mProperty_mEndOfBlock (inOperand3) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockInstructionBlockMap_2D_element GALGAS_blockInstructionBlockMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                        const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
-                                                                                                        const GALGAS_abstractBlockTerminationForBlockInstruction & in_mBlockTerminaisonForBlockInstruction,
-                                                                                                        const GALGAS_location & in_mEndOfBlock,
-                                                                                                        Compiler * /* inCompiler */
-                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_blockInstructionBlockMap_2D_element GALGAS_blockInstructionBlockMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                       const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                       const GALGAS_abstractBlockTerminationForBlockInstruction & in_mBlockTerminaisonForBlockInstruction,
+                                                                                                       const GALGAS_location & in_mEndOfBlock,
+                                                                                                       Compiler * /* inCompiler */
+                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_blockInstructionBlockMap_2D_element result ;
   if (in_lkey.isValid () && in_mInstructionList.isValid () && in_mBlockTerminaisonForBlockInstruction.isValid () && in_mEndOfBlock.isValid ()) {
     result = GALGAS_blockInstructionBlockMap_2D_element (in_lkey, in_mInstructionList, in_mBlockTerminaisonForBlockInstruction, in_mEndOfBlock) ;
@@ -8009,9 +7959,8 @@ void GALGAS_blockInstructionBlockMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockInstructionBlockMap_2D_element ("blockInstructionBlockMap-element",
-                                                            nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInstructionBlockMap_2D_element ("blockInstructionBlockMap-element",
+                                                                                           nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8071,11 +8020,11 @@ mProperty_mSourceBlock (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockInitialBankSelectionMap_2D_element GALGAS_blockInitialBankSelectionMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                                const GALGAS_uint & in_mInitialBankSelection,
-                                                                                                                const GALGAS_string & in_mSourceBlock,
-                                                                                                                Compiler * /* inCompiler */
-                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_blockInitialBankSelectionMap_2D_element GALGAS_blockInitialBankSelectionMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                               const GALGAS_uint & in_mInitialBankSelection,
+                                                                                                               const GALGAS_string & in_mSourceBlock,
+                                                                                                               Compiler * /* inCompiler */
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_blockInitialBankSelectionMap_2D_element result ;
   if (in_lkey.isValid () && in_mInitialBankSelection.isValid () && in_mSourceBlock.isValid ()) {
     result = GALGAS_blockInitialBankSelectionMap_2D_element (in_lkey, in_mInitialBankSelection, in_mSourceBlock) ;
@@ -8136,9 +8085,8 @@ void GALGAS_blockInitialBankSelectionMap_2D_element::description (String & ioStr
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockInitialBankSelectionMap_2D_element ("blockInitialBankSelectionMap-element",
-                                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockInitialBankSelectionMap_2D_element ("blockInitialBankSelectionMap-element",
+                                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8195,10 +8143,10 @@ mProperty_mConversions (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_neededConversionForClusterOrder_2D_element GALGAS_neededConversionForClusterOrder_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                                      const GALGAS_uint & in_mConversions,
-                                                                                                                      Compiler * /* inCompiler */
-                                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_neededConversionForClusterOrder_2D_element GALGAS_neededConversionForClusterOrder_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                                     const GALGAS_uint & in_mConversions,
+                                                                                                                     Compiler * /* inCompiler */
+                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_neededConversionForClusterOrder_2D_element result ;
   if (in_lkey.isValid () && in_mConversions.isValid ()) {
     result = GALGAS_neededConversionForClusterOrder_2D_element (in_lkey, in_mConversions) ;
@@ -8253,9 +8201,8 @@ void GALGAS_neededConversionForClusterOrder_2D_element::description (String & io
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_neededConversionForClusterOrder_2D_element ("neededConversionForClusterOrder-element",
-                                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_neededConversionForClusterOrder_2D_element ("neededConversionForClusterOrder-element",
+                                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8315,11 +8262,11 @@ mProperty_mInstruction (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_generatedCodeMap_2D_element GALGAS_generatedCodeMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                        const GALGAS_codeList & in_mCode,
-                                                                                        const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
-                                                                                        Compiler * /* inCompiler */
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_generatedCodeMap_2D_element GALGAS_generatedCodeMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                       const GALGAS_codeList & in_mCode,
+                                                                                       const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
+                                                                                       Compiler * /* inCompiler */
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_generatedCodeMap_2D_element result ;
   if (in_lkey.isValid () && in_mCode.isValid () && in_mInstruction.isValid ()) {
     result = GALGAS_generatedCodeMap_2D_element (in_lkey, in_mCode, in_mInstruction) ;
@@ -8380,9 +8327,8 @@ void GALGAS_generatedCodeMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_generatedCodeMap_2D_element ("generatedCodeMap-element",
-                                                    nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_generatedCodeMap_2D_element ("generatedCodeMap-element",
+                                                                                   nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8439,10 +8385,10 @@ mProperty_mBlock (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockMapForStackComputation_2D_element GALGAS_blockMapForStackComputation_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                              const GALGAS_ipic_31__38_Block & in_mBlock,
-                                                                                                              Compiler * /* inCompiler */
-                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_blockMapForStackComputation_2D_element GALGAS_blockMapForStackComputation_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                             const GALGAS_ipic_31__38_Block & in_mBlock,
+                                                                                                             Compiler * /* inCompiler */
+                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_blockMapForStackComputation_2D_element result ;
   if (in_lkey.isValid () && in_mBlock.isValid ()) {
     result = GALGAS_blockMapForStackComputation_2D_element (in_lkey, in_mBlock) ;
@@ -8497,9 +8443,8 @@ void GALGAS_blockMapForStackComputation_2D_element::description (String & ioStri
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockMapForStackComputation_2D_element ("blockMapForStackComputation-element",
-                                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockMapForStackComputation_2D_element ("blockMapForStackComputation-element",
+                                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8559,11 +8504,11 @@ mProperty_mTerminatorStackNeeds (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_routineCallMap_2D_element GALGAS_routineCallMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                    const GALGAS_stringset & in_mCalledRoutineSet,
-                                                                                    const GALGAS_uint & in_mTerminatorStackNeeds,
-                                                                                    Compiler * /* inCompiler */
-                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_routineCallMap_2D_element GALGAS_routineCallMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                   const GALGAS_stringset & in_mCalledRoutineSet,
+                                                                                   const GALGAS_uint & in_mTerminatorStackNeeds,
+                                                                                   Compiler * /* inCompiler */
+                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_routineCallMap_2D_element result ;
   if (in_lkey.isValid () && in_mCalledRoutineSet.isValid () && in_mTerminatorStackNeeds.isValid ()) {
     result = GALGAS_routineCallMap_2D_element (in_lkey, in_mCalledRoutineSet, in_mTerminatorStackNeeds) ;
@@ -8624,9 +8569,8 @@ void GALGAS_routineCallMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_routineCallMap_2D_element ("routineCallMap-element",
-                                                  nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineCallMap_2D_element ("routineCallMap-element",
+                                                                                 nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8683,10 +8627,10 @@ mProperty_mLevels (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_routineStackRequirementMap_2D_element GALGAS_routineStackRequirementMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                            const GALGAS_uint & in_mLevels,
-                                                                                                            Compiler * /* inCompiler */
-                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_routineStackRequirementMap_2D_element GALGAS_routineStackRequirementMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                           const GALGAS_uint & in_mLevels,
+                                                                                                           Compiler * /* inCompiler */
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_routineStackRequirementMap_2D_element result ;
   if (in_lkey.isValid () && in_mLevels.isValid ()) {
     result = GALGAS_routineStackRequirementMap_2D_element (in_lkey, in_mLevels) ;
@@ -8741,9 +8685,8 @@ void GALGAS_routineStackRequirementMap_2D_element::description (String & ioStrin
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_routineStackRequirementMap_2D_element ("routineStackRequirementMap-element",
-                                                              nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineStackRequirementMap_2D_element ("routineStackRequirementMap-element",
+                                                                                             nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8803,11 +8746,11 @@ mProperty_mMaxDuration (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_blockDurationMap_2D_element GALGAS_blockDurationMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                        const GALGAS_uint & in_mMinDuration,
-                                                                                        const GALGAS_uint & in_mMaxDuration,
-                                                                                        Compiler * /* inCompiler */
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_blockDurationMap_2D_element GALGAS_blockDurationMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                       const GALGAS_uint & in_mMinDuration,
+                                                                                       const GALGAS_uint & in_mMaxDuration,
+                                                                                       Compiler * /* inCompiler */
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_blockDurationMap_2D_element result ;
   if (in_lkey.isValid () && in_mMinDuration.isValid () && in_mMaxDuration.isValid ()) {
     result = GALGAS_blockDurationMap_2D_element (in_lkey, in_mMinDuration, in_mMaxDuration) ;
@@ -8868,9 +8811,8 @@ void GALGAS_blockDurationMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_blockDurationMap_2D_element ("blockDurationMap-element",
-                                                    nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_blockDurationMap_2D_element ("blockDurationMap-element",
+                                                                                   nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8924,9 +8866,9 @@ mProperty_lkey (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_declaredByteMap_2D_element GALGAS_declaredByteMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                      Compiler * /* inCompiler */
-                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_declaredByteMap_2D_element GALGAS_declaredByteMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                     Compiler * /* inCompiler */
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_declaredByteMap_2D_element result ;
   if (in_lkey.isValid ()) {
     result = GALGAS_declaredByteMap_2D_element (in_lkey) ;
@@ -8975,9 +8917,8 @@ void GALGAS_declaredByteMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_declaredByteMap_2D_element ("declaredByteMap-element",
-                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declaredByteMap_2D_element ("declaredByteMap-element",
+                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9046,14 +8987,14 @@ mProperty_mProtection (inOperand5) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_registerTable_2D_element GALGAS_registerTable_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                  const GALGAS_uintlist & in_mRegisterAddressList,
-                                                                                  const GALGAS_uint & in_mSize,
-                                                                                  const GALGAS_bitSliceTable & in_mBitSliceTable,
-                                                                                  const GALGAS_string & in_mBitDefinitionString,
-                                                                                  const GALGAS_registerProtection & in_mProtection,
-                                                                                  Compiler * /* inCompiler */
-                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_registerTable_2D_element GALGAS_registerTable_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                 const GALGAS_uintlist & in_mRegisterAddressList,
+                                                                                 const GALGAS_uint & in_mSize,
+                                                                                 const GALGAS_bitSliceTable & in_mBitSliceTable,
+                                                                                 const GALGAS_string & in_mBitDefinitionString,
+                                                                                 const GALGAS_registerProtection & in_mProtection,
+                                                                                 Compiler * /* inCompiler */
+                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_registerTable_2D_element result ;
   if (in_lkey.isValid () && in_mRegisterAddressList.isValid () && in_mSize.isValid () && in_mBitSliceTable.isValid () && in_mBitDefinitionString.isValid () && in_mProtection.isValid ()) {
     result = GALGAS_registerTable_2D_element (in_lkey, in_mRegisterAddressList, in_mSize, in_mBitSliceTable, in_mBitDefinitionString, in_mProtection) ;
@@ -9132,9 +9073,8 @@ void GALGAS_registerTable_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_registerTable_2D_element ("registerTable-element",
-                                                 nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_registerTable_2D_element ("registerTable-element",
+                                                                                nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9200,13 +9140,13 @@ mProperty_mMirrorOffsetList (inOperand4) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ramBankTable_2D_element GALGAS_ramBankTable_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                const GALGAS_uint & in_mFirstAddress,
-                                                                                const GALGAS_uint & in_mFirstFreeAddress,
-                                                                                const GALGAS_uint & in_mLastAddressPlusOne,
-                                                                                const GALGAS_uintlist & in_mMirrorOffsetList,
-                                                                                Compiler * /* inCompiler */
-                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_ramBankTable_2D_element GALGAS_ramBankTable_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                               const GALGAS_uint & in_mFirstAddress,
+                                                                               const GALGAS_uint & in_mFirstFreeAddress,
+                                                                               const GALGAS_uint & in_mLastAddressPlusOne,
+                                                                               const GALGAS_uintlist & in_mMirrorOffsetList,
+                                                                               Compiler * /* inCompiler */
+                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ramBankTable_2D_element result ;
   if (in_lkey.isValid () && in_mFirstAddress.isValid () && in_mFirstFreeAddress.isValid () && in_mLastAddressPlusOne.isValid () && in_mMirrorOffsetList.isValid ()) {
     result = GALGAS_ramBankTable_2D_element (in_lkey, in_mFirstAddress, in_mFirstFreeAddress, in_mLastAddressPlusOne, in_mMirrorOffsetList) ;
@@ -9279,9 +9219,8 @@ void GALGAS_ramBankTable_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ramBankTable_2D_element ("ramBankTable-element",
-                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ramBankTable_2D_element ("ramBankTable-element",
+                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9341,11 +9280,11 @@ mProperty_mDescription (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_illegalMaskList_2D_element GALGAS_illegalMaskList_2D_element::constructor_new (const GALGAS_luint & in_mIllegalValue,
-                                                                                      const GALGAS_luint & in_mIllegalMask,
-                                                                                      const GALGAS_lstring & in_mDescription,
-                                                                                      Compiler * /* inCompiler */
-                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_illegalMaskList_2D_element GALGAS_illegalMaskList_2D_element::class_func_new (const GALGAS_luint & in_mIllegalValue,
+                                                                                     const GALGAS_luint & in_mIllegalMask,
+                                                                                     const GALGAS_lstring & in_mDescription,
+                                                                                     Compiler * /* inCompiler */
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_illegalMaskList_2D_element result ;
   if (in_mIllegalValue.isValid () && in_mIllegalMask.isValid () && in_mDescription.isValid ()) {
     result = GALGAS_illegalMaskList_2D_element (in_mIllegalValue, in_mIllegalMask, in_mDescription) ;
@@ -9406,9 +9345,8 @@ void GALGAS_illegalMaskList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_illegalMaskList_2D_element ("illegalMaskList-element",
-                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_illegalMaskList_2D_element ("illegalMaskList-element",
+                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9468,11 +9406,11 @@ mProperty_mMask (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_fieldSettingMap_2D_element GALGAS_fieldSettingMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                      const GALGAS_uint & in_mValue,
-                                                                                      const GALGAS_uint & in_mMask,
-                                                                                      Compiler * /* inCompiler */
-                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_fieldSettingMap_2D_element GALGAS_fieldSettingMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                     const GALGAS_uint & in_mValue,
+                                                                                     const GALGAS_uint & in_mMask,
+                                                                                     Compiler * /* inCompiler */
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_fieldSettingMap_2D_element result ;
   if (in_lkey.isValid () && in_mValue.isValid () && in_mMask.isValid ()) {
     result = GALGAS_fieldSettingMap_2D_element (in_lkey, in_mValue, in_mMask) ;
@@ -9533,9 +9471,8 @@ void GALGAS_fieldSettingMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_fieldSettingMap_2D_element ("fieldSettingMap-element",
-                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fieldSettingMap_2D_element ("fieldSettingMap-element",
+                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9598,12 +9535,12 @@ mProperty_mFieldSettingMap (inOperand3) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_configRegisterMaskMap_2D_element GALGAS_configRegisterMaskMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                                  const GALGAS_luint & in_mMaskValue,
-                                                                                                  const GALGAS_lstring & in_mDescription,
-                                                                                                  const GALGAS_fieldSettingMap & in_mFieldSettingMap,
-                                                                                                  Compiler * /* inCompiler */
-                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_configRegisterMaskMap_2D_element GALGAS_configRegisterMaskMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                                 const GALGAS_luint & in_mMaskValue,
+                                                                                                 const GALGAS_lstring & in_mDescription,
+                                                                                                 const GALGAS_fieldSettingMap & in_mFieldSettingMap,
+                                                                                                 Compiler * /* inCompiler */
+                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_configRegisterMaskMap_2D_element result ;
   if (in_lkey.isValid () && in_mMaskValue.isValid () && in_mDescription.isValid () && in_mFieldSettingMap.isValid ()) {
     result = GALGAS_configRegisterMaskMap_2D_element (in_lkey, in_mMaskValue, in_mDescription, in_mFieldSettingMap) ;
@@ -9670,9 +9607,8 @@ void GALGAS_configRegisterMaskMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_configRegisterMaskMap_2D_element ("configRegisterMaskMap-element",
-                                                         nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configRegisterMaskMap_2D_element ("configRegisterMaskMap-element",
+                                                                                        nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9738,13 +9674,13 @@ mProperty_mIllegalMaskList (inOperand4) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_configRegisterMap_2D_element GALGAS_configRegisterMap_2D_element::constructor_new (const GALGAS_lstring & in_lkey,
-                                                                                          const GALGAS_luint & in_mRegisterAddress,
-                                                                                          const GALGAS_luint & in_mRegisterWidth,
-                                                                                          const GALGAS_configRegisterMaskMap & in_mConfigRegisterMaskMap,
-                                                                                          const GALGAS_illegalMaskList & in_mIllegalMaskList,
-                                                                                          Compiler * /* inCompiler */
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_configRegisterMap_2D_element GALGAS_configRegisterMap_2D_element::class_func_new (const GALGAS_lstring & in_lkey,
+                                                                                         const GALGAS_luint & in_mRegisterAddress,
+                                                                                         const GALGAS_luint & in_mRegisterWidth,
+                                                                                         const GALGAS_configRegisterMaskMap & in_mConfigRegisterMaskMap,
+                                                                                         const GALGAS_illegalMaskList & in_mIllegalMaskList,
+                                                                                         Compiler * /* inCompiler */
+                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_configRegisterMap_2D_element result ;
   if (in_lkey.isValid () && in_mRegisterAddress.isValid () && in_mRegisterWidth.isValid () && in_mConfigRegisterMaskMap.isValid () && in_mIllegalMaskList.isValid ()) {
     result = GALGAS_configRegisterMap_2D_element (in_lkey, in_mRegisterAddress, in_mRegisterWidth, in_mConfigRegisterMaskMap, in_mIllegalMaskList) ;
@@ -9817,9 +9753,8 @@ void GALGAS_configRegisterMap_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_configRegisterMap_2D_element ("configRegisterMap-element",
-                                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configRegisterMap_2D_element ("configRegisterMap-element",
+                                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10024,10 +9959,10 @@ void routine_checkCurrentEmitAddress_3F_ (const GALGAS_uint constinArgument_inCu
   }
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("intermediate_generic.galgas", 42)).objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (kIsNotEqual, var_addr_1345.objectCompare (constinArgument_inCurrentAddress)) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 42)).boolEnum () ;
+    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("intermediate_generic.galgas", 42)).objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (kIsNotEqual, var_addr_1345.objectCompare (constinArgument_inCurrentAddress)) COMMA_SOURCE_FILE ("intermediate_generic.galgas", 42)).boolEnum () ;
     if (kBoolTrue == test_0) {
       TC_Array <C_FixItDescription> fixItArray1 ;
-      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 43)), GALGAS_string ("internal error: current emit address is ").add_operation (var_addr_1345.getter_hexString (SOURCE_FILE ("intermediate_generic.galgas", 43)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 43)).add_operation (GALGAS_string ("; it should be "), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 43)).add_operation (constinArgument_inCurrentAddress.getter_hexString (SOURCE_FILE ("intermediate_generic.galgas", 44)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 44)), fixItArray1  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 43)) ;
+      inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 43)), GALGAS_string ("internal error: current emit address is ").add_operation (var_addr_1345.getter_hexString (SOURCE_FILE ("intermediate_generic.galgas", 43)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 43)).add_operation (GALGAS_string ("; it should be "), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 43)).add_operation (constinArgument_inCurrentAddress.getter_hexString (SOURCE_FILE ("intermediate_generic.galgas", 44)), inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 44)), fixItArray1  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 43)) ;
     }
   }
 }
@@ -10567,7 +10502,7 @@ void cPtr_immediatSlice::method_eval (const GALGAS_registerTable constinArgument
   constinArgument_inRegisterTable.method_searchKey (temp_1.readProperty_mRegisterName (), joker_14596, joker_14599, var_bitSliceTable_14469, joker_14618, var_protection_14626, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 383)) ;
   const GALGAS_immediatSlice temp_2 = this ;
   extensionMethod_checkPrivateAccess (constinArgument_inRegisterTable, temp_2.readProperty_mRegisterName (), GALGAS_bool (false), var_protection_14626, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 384)) ;
-  GALGAS_stringset var_sliceNameSet_14728 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("intermediate_generic.galgas", 385)) ;
+  GALGAS_stringset var_sliceNameSet_14728 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("intermediate_generic.galgas", 385)) ;
   const GALGAS_immediatSlice temp_3 = this ;
   cEnumerator_immediatSliceExpressionList enumerator_14782 (temp_3.readProperty_mSliceExpressionList (), kENUMERATION_UP) ;
   while (enumerator_14782.hasCurrentObject ()) {
@@ -10741,8 +10676,8 @@ void routine_actualBuildConfig_3F__3F__26__21_ (const GALGAS_configRegisterMap c
                                                 Compiler * inCompiler
                                                 COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outActualConfigurationMap.drop () ; // Release 'out' argument
-  outArgument_outActualConfigurationMap = GALGAS_actualConfigurationMap::constructor_emptyMap (SOURCE_FILE ("piccolo_config.galgas", 24)) ;
-  GALGAS_configFieldMap var_configFieldMap_958 = GALGAS_configFieldMap::constructor_emptyMap (SOURCE_FILE ("piccolo_config.galgas", 25)) ;
+  outArgument_outActualConfigurationMap = GALGAS_actualConfigurationMap::class_func_emptyMap (SOURCE_FILE ("piccolo_config.galgas", 24)) ;
+  GALGAS_configFieldMap var_configFieldMap_958 = GALGAS_configFieldMap::class_func_emptyMap (SOURCE_FILE ("piccolo_config.galgas", 25)) ;
   cEnumerator_configRegisterMap enumerator_1068 (constinArgument_inConfigRegisterMap, kENUMERATION_UP) ;
   while (enumerator_1068.hasCurrentObject ()) {
     GALGAS_uint var_defaultValue_1112 = GALGAS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccolo_config.galgas", 27)).left_shift_operation (enumerator_1068.current_mRegisterWidth (HERE).readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 27)).substract_operation (GALGAS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccolo_config.galgas", 27)), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 27)).getter_uint (inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 27)) ;
@@ -10759,7 +10694,7 @@ void routine_actualBuildConfig_3F__3F__26__21_ (const GALGAS_configRegisterMap c
     }
     enumerator_1068.gotoNextObject () ;
   }
-  GALGAS_stringset var_actualSettingNameSet_1562 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("piccolo_config.galgas", 35)) ;
+  GALGAS_stringset var_actualSettingNameSet_1562 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("piccolo_config.galgas", 35)) ;
   cEnumerator_configDefinitionList enumerator_1615 (constinArgument_inConfigDefinitionList, kENUMERATION_UP) ;
   while (enumerator_1615.hasCurrentObject ()) {
     cEnumerator_configSettingList enumerator_1681 (enumerator_1615.current_mSettingList (HERE), kENUMERATION_UP) ;
@@ -10800,7 +10735,7 @@ void routine_actualBuildConfig_3F__3F__26__21_ (const GALGAS_configRegisterMap c
           test_3 = GALGAS_bool (kIsStrictSup, var_fieldSettingMap_1999.getter_count (SOURCE_FILE ("piccolo_config.galgas", 49)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
           if (kBoolTrue == test_3) {
             GALGAS_string var_errorMessage_2499 = GALGAS_string ("the '").add_operation (enumerator_1681.current_mSettingValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 50)).add_operation (GALGAS_string ("' value is not defined for configuration setting '"), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 50)).add_operation (enumerator_1681.current_mSettingName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 50)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 51)) ;
-            GALGAS_stringlist var_replacementSuggestions_2646 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("piccolo_config.galgas", 52)) ;
+            GALGAS_stringlist var_replacementSuggestions_2646 = GALGAS_stringlist::class_func_emptyList (SOURCE_FILE ("piccolo_config.galgas", 52)) ;
             cEnumerator_fieldSettingMap enumerator_2694 (var_fieldSettingMap_1999, kENUMERATION_UP) ;
             while (enumerator_2694.hasCurrentObject ()) {
               var_replacementSuggestions_2646.addAssign_operation (GALGAS_string ("\"").add_operation (enumerator_2694.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 54)).add_operation (GALGAS_string ("\""), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 54))  COMMA_SOURCE_FILE ("piccolo_config.galgas", 54)) ;
@@ -10828,7 +10763,7 @@ void routine_actualBuildConfig_3F__3F__26__21_ (const GALGAS_configRegisterMap c
         enumerator_3163.gotoNextObject () ;
       }
       TC_Array <C_FixItDescription> fixItArray6 ;
-      inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_config.galgas", 67)), var_errorMessage_3083, fixItArray6  COMMA_SOURCE_FILE ("piccolo_config.galgas", 67)) ;
+      inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_config.galgas", 67)), var_errorMessage_3083, fixItArray6  COMMA_SOURCE_FILE ("piccolo_config.galgas", 67)) ;
     }
   }
   cEnumerator_actualConfigurationMap enumerator_3361 (outArgument_outActualConfigurationMap, kENUMERATION_UP) ;
@@ -10872,7 +10807,7 @@ void routine_actualBuildConfig_3F__3F__26__21_ (const GALGAS_configRegisterMap c
         test_8 = GALGAS_bool (kIsEqual, enumerator_4161.current_mRegisterValue (HERE).operator_and (enumerator_4319.current_mIllegalMask (HERE).readProperty_uint () COMMA_SOURCE_FILE ("piccolo_config.galgas", 87)).objectCompare (enumerator_4319.current_mIllegalValue (HERE).readProperty_uint ())).boolEnum () ;
         if (kBoolTrue == test_8) {
           TC_Array <C_FixItDescription> fixItArray9 ;
-          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_config.galgas", 88)), GALGAS_string ("illegal setting for '").add_operation (enumerator_4161.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 88)).add_operation (GALGAS_string ("' register: "), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 88)).add_operation (enumerator_4319.current_mDescription (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 88)), fixItArray9  COMMA_SOURCE_FILE ("piccolo_config.galgas", 88)) ;
+          inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_config.galgas", 88)), GALGAS_string ("illegal setting for '").add_operation (enumerator_4161.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 88)).add_operation (GALGAS_string ("' register: "), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 88)).add_operation (enumerator_4319.current_mDescription (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 88)), fixItArray9  COMMA_SOURCE_FILE ("piccolo_config.galgas", 88)) ;
           ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("*** ILLEGAL SETTING for register '").add_operation (enumerator_4161.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 89)).add_operation (GALGAS_string ("' ***\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 89)), inCompiler  COMMA_SOURCE_FILE ("piccolo_config.galgas", 89)) ;
           ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  message: ").add_operation (enumerator_4319.current_mDescription (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 90)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_config.galgas", 90)), inCompiler  COMMA_SOURCE_FILE ("piccolo_config.galgas", 90)) ;
         }
@@ -10910,7 +10845,7 @@ void routine_buildConfig_3F__3F__26__21_ (const GALGAS_configRegisterMap constin
     }
   }
   if (kBoolFalse == test_0) {
-    outArgument_outActualConfigurationMap = GALGAS_actualConfigurationMap::constructor_emptyMap (SOURCE_FILE ("piccolo_config.galgas", 116)) ;
+    outArgument_outActualConfigurationMap = GALGAS_actualConfigurationMap::class_func_emptyMap (SOURCE_FILE ("piccolo_config.galgas", 116)) ;
     ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("No configuration.\n\n"), inCompiler  COMMA_SOURCE_FILE ("piccolo_config.galgas", 117)) ;
   }
 }
@@ -11166,8 +11101,8 @@ GALGAS_stringset function_baseline_5F_computeUsedRoutines (const GALGAS_baseline
                                                            Compiler * inCompiler
                                                            COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset result_outUsedRoutineSet ; // Returned variable
-  result_outUsedRoutineSet = GALGAS_stringset::constructor_setWithString (GALGAS_string ("main")  COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 147)) ;
-  GALGAS_stringset var_s_5003 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("baseline_used_routines.galgas", 149)) ;
+  result_outUsedRoutineSet = GALGAS_stringset::class_func_setWithString (GALGAS_string ("main")  COMMA_SOURCE_FILE ("baseline_used_routines.galgas", 147)) ;
+  GALGAS_stringset var_s_5003 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("baseline_used_routines.galgas", 149)) ;
   if (constinArgument_inRoutineDefinitionList.getter_count (SOURCE_FILE ("baseline_used_routines.galgas", 150)).isValid ()) {
     uint32_t variant_5030 = constinArgument_inRoutineDefinitionList.getter_count (SOURCE_FILE ("baseline_used_routines.galgas", 150)).uintValue () ;
     bool loop_5030 = true ;
@@ -11247,7 +11182,7 @@ void cPtr_baseline_5F_instruction_5F_literalOperation::method_shouldTerminateWit
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_baseline_5F_instruction_5F_literalOperation temp_1 = this ;
-    test_0 = GALGAS_bool (kIsNotEqual, temp_1.readProperty_mLiteralInstruction ().objectCompare (GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_MOVLW (SOURCE_FILE ("baseline_compilation.galgas", 25)))).boolEnum () ;
+    test_0 = GALGAS_bool (kIsNotEqual, temp_1.readProperty_mLiteralInstruction ().objectCompare (GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("baseline_compilation.galgas", 25)))).boolEnum () ;
     if (kBoolTrue == test_0) {
       const GALGAS_baseline_5F_instruction_5F_literalOperation temp_2 = this ;
       TC_Array <C_FixItDescription> fixItArray3 ;
@@ -11386,9 +11321,9 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
   {
   routine_buildConfig_3F__3F__26__21_ (var_piccoloDeviceModel_4524.readProperty_mConfigRegisterMap (), constinArgument_inPiccoloModel.readProperty_mConfigDefinitionList (), var_listFileContents_4394, var_actualConfigurationMap_5047, inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 108)) ;
   }
-  GALGAS_constantMap var_constantMap_5146 = GALGAS_constantMap::constructor_emptyMap (SOURCE_FILE ("baseline_compilation.galgas", 115)) ;
+  GALGAS_constantMap var_constantMap_5146 = GALGAS_constantMap::class_func_emptyMap (SOURCE_FILE ("baseline_compilation.galgas", 115)) ;
   GALGAS_registerTable var_registerTable_5184 = var_piccoloDeviceModel_4524.readProperty_mRegisterTable () ;
-  GALGAS_stringset var_usedRegisters_5443 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("baseline_compilation.galgas", 121)) ;
+  GALGAS_stringset var_usedRegisters_5443 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("baseline_compilation.galgas", 121)) ;
   cEnumerator_constantDefinitionList enumerator_5483 (constinArgument_inPiccoloModel.readProperty_mConstantDefinitionList (), kENUMERATION_UP) ;
   while (enumerator_5483.hasCurrentObject ()) {
     GALGAS_sint_36__34_ var_result_5605 ;
@@ -11413,7 +11348,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
   {
   routine_analyze_5F_ram_5F_sections_3F__3F__3F__26__26__3F__26__26__21_ (GALGAS_string ("DECLARED VARIABLES"), constinArgument_inPiccoloModel.readProperty_mRamDefinitionList (), var_constantMap_5146, var_usedRegisters_5443, var_ramBank_5942, var_piccoloDeviceModel_4524.readProperty_mRegisterTable (), var_listFileContents_4394, var_registerTable_5184, var_declaredByteMap_6234, inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 132)) ;
   }
-  GALGAS_baselineRoutineMap var_routineMap_6312 = GALGAS_baselineRoutineMap::constructor_emptyMap (SOURCE_FILE ("baseline_compilation.galgas", 144)) ;
+  GALGAS_baselineRoutineMap var_routineMap_6312 = GALGAS_baselineRoutineMap::class_func_emptyMap (SOURCE_FILE ("baseline_compilation.galgas", 144)) ;
   cEnumerator_baseline_5F_routineDefinitionList enumerator_6395 (constinArgument_inPiccoloModel.readProperty_mRoutineDefinitionList (), kENUMERATION_UP) ;
   while (enumerator_6395.hasCurrentObject ()) {
     {
@@ -11436,7 +11371,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
     if (kBoolTrue == test_7) {
       GALGAS_bool var_isNoReturn_6899 ;
       GALGAS_luint var_page_6922 ;
-      var_routineMap_6312.method_searchKey (GALGAS_lstring::constructor_new (GALGAS_string ("main"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 157)), inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 157)), var_isNoReturn_6899, var_page_6922, inCompiler COMMA_SOURCE_FILE ("baseline_compilation.galgas", 157)) ;
+      var_routineMap_6312.method_searchKey (GALGAS_lstring::class_func_new (GALGAS_string ("main"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 157)), inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 157)), var_isNoReturn_6899, var_page_6922, inCompiler COMMA_SOURCE_FILE ("baseline_compilation.galgas", 157)) ;
       enumGalgasBool test_8 = kBoolTrue ;
       if (kBoolTrue == test_8) {
         test_8 = var_isNoReturn_6899.operator_not (SOURCE_FILE ("baseline_compilation.galgas", 158)).boolEnum () ;
@@ -11480,7 +11415,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
     }
     enumerator_7552.gotoNextObject () ;
   }
-  GALGAS_baseline_5F_routineDefinitionList var_sortedRoutineDefinitionList_7923 = GALGAS_baseline_5F_routineDefinitionList::constructor_emptyList (SOURCE_FILE ("baseline_compilation.galgas", 179)) ;
+  GALGAS_baseline_5F_routineDefinitionList var_sortedRoutineDefinitionList_7923 = GALGAS_baseline_5F_routineDefinitionList::class_func_emptyList (SOURCE_FILE ("baseline_compilation.galgas", 179)) ;
   cEnumerator_baseline_5F_routineDefinitionList enumerator_8051 (constinArgument_inPiccoloModel.readProperty_mRoutineDefinitionList (), kENUMERATION_UP) ;
   while (enumerator_8051.hasCurrentObject ()) {
     enumGalgasBool test_16 = kBoolTrue ;
@@ -11497,10 +11432,10 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
     }
     enumerator_8051.gotoNextObject () ;
   }
-  GALGAS_baseline_5F_intermediate_5F_instructionList var_intermediateInstructionList_8592 = GALGAS_baseline_5F_intermediate_5F_instructionList::constructor_emptyList (SOURCE_FILE ("baseline_compilation.galgas", 200)) ;
+  GALGAS_baseline_5F_intermediate_5F_instructionList var_intermediateInstructionList_8592 = GALGAS_baseline_5F_intermediate_5F_instructionList::class_func_emptyList (SOURCE_FILE ("baseline_compilation.galgas", 200)) ;
   enumGalgasBool test_17 = kBoolTrue ;
   if (kBoolTrue == test_17) {
-    test_17 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 201)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    test_17 = GALGAS_bool (kIsEqual, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 201)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_17) {
       GALGAS_uint var_currentPage_8719 = GALGAS_uint (uint32_t (0U)) ;
       GALGAS_uint var_localLabelIndex_8749 = GALGAS_uint (uint32_t (0U)) ;
@@ -11530,7 +11465,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
                     test_19 = var_pseudo_5F_PAGE_5F_generated_8849.operator_not (SOURCE_FILE ("baseline_compilation.galgas", 209)).boolEnum () ;
                     if (kBoolTrue == test_19) {
                       var_pseudo_5F_PAGE_5F_generated_8849 = GALGAS_bool (true) ;
-                      var_intermediateInstructionList_8592.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::constructor_new (var_currentPage_8719  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 211))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 211)) ;
+                      var_intermediateInstructionList_8592.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::class_func_new (var_currentPage_8719  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 211))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 211)) ;
                     }
                   }
                   GALGAS_routineKind var_routineKind_9270 ;
@@ -11538,7 +11473,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
                   if (kBoolTrue == test_20) {
                     test_20 = enumerator_8938.current_mIsNoReturn (HERE).boolEnum () ;
                     if (kBoolTrue == test_20) {
-                      var_routineKind_9270 = GALGAS_routineKind::constructor_noReturnRoutine (SOURCE_FILE ("baseline_compilation.galgas", 216)) ;
+                      var_routineKind_9270 = GALGAS_routineKind::class_func_noReturnRoutine (SOURCE_FILE ("baseline_compilation.galgas", 216)) ;
                       enumGalgasBool test_21 = kBoolTrue ;
                       if (kBoolTrue == test_21) {
                         test_21 = GALGAS_bool (kIsEqual, enumerator_8938.current_mInstructionList (HERE).getter_count (SOURCE_FILE ("baseline_compilation.galgas", 218)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
@@ -11555,7 +11490,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
                     }
                   }
                   if (kBoolFalse == test_20) {
-                    var_routineKind_9270 = GALGAS_routineKind::constructor_regularRoutine (SOURCE_FILE ("baseline_compilation.galgas", 225)) ;
+                    var_routineKind_9270 = GALGAS_routineKind::class_func_regularRoutine (SOURCE_FILE ("baseline_compilation.galgas", 225)) ;
                     enumGalgasBool test_23 = kBoolTrue ;
                     if (kBoolTrue == test_23) {
                       test_23 = GALGAS_bool (kIsEqual, enumerator_8938.current_mInstructionList (HERE).getter_count (SOURCE_FILE ("baseline_compilation.galgas", 227)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
@@ -11574,15 +11509,15 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
                   if (kBoolTrue == test_25) {
                     test_25 = GALGAS_bool (kIsNotEqual, enumerator_8938.current_mRoutineName (HERE).readProperty_string ().objectCompare (GALGAS_string ("main"))).boolEnum () ;
                     if (kBoolTrue == test_25) {
-                      var_intermediateInstructionList_8592.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::constructor_new (enumerator_8938.current_mRoutineName (HERE), enumerator_8938.current_mIsNoReturn (HERE).operator_not (SOURCE_FILE ("baseline_compilation.galgas", 236))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 236))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 236)) ;
-                      var_intermediateInstructionList_8592.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (enumerator_8938.current_mRoutineName (HERE)  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 237))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 237)) ;
+                      var_intermediateInstructionList_8592.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::class_func_new (enumerator_8938.current_mRoutineName (HERE), enumerator_8938.current_mIsNoReturn (HERE).operator_not (SOURCE_FILE ("baseline_compilation.galgas", 236))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 236))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 236)) ;
+                      var_intermediateInstructionList_8592.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::class_func_new (enumerator_8938.current_mRoutineName (HERE)  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 237))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 237)) ;
                     }
                   }
                   GALGAS_bool var_continuesInSequence_10960 ;
                   {
                   routine_handleBaselineInstructionList_3F__3F__3F__3F__3F__26__26__26__21__3F__3F__26_ (var_currentPage_8719, enumerator_8938.current_mInstructionList (HERE), var_routineMap_6312, var_registerTable_5184, var_constantMap_5146, var_localLabelIndex_8749, var_intermediateInstructionList_8592, var_listFileContents_4394, var_continuesInSequence_10960, var_routineKind_9270, enumerator_8938.current_mIsNoReturn (HERE).operator_not (SOURCE_FILE ("baseline_compilation.galgas", 250)), var_usedRegisters_5443, inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 239)) ;
                   }
-                  var_intermediateInstructionList_8592.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::constructor_new (enumerator_8938.current_mRoutineName (HERE), var_currentPage_8719  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 253))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 253)) ;
+                  var_intermediateInstructionList_8592.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::class_func_new (enumerator_8938.current_mRoutineName (HERE), var_currentPage_8719  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 253))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 253)) ;
                   enumGalgasBool test_26 = kBoolTrue ;
                   if (kBoolTrue == test_26) {
                     test_26 = enumerator_8938.current_mIsNoReturn (HERE).operator_and (var_continuesInSequence_10960 COMMA_SOURCE_FILE ("baseline_compilation.galgas", 254)).boolEnum () ;
@@ -11602,7 +11537,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
     }
   }
   GALGAS_stringset var_usedRoutineSet_11525 = function_baseline_5F_computeUsedRoutines (constinArgument_inPiccoloModel.readProperty_mRoutineDefinitionList (), inCompiler COMMA_SOURCE_FILE ("baseline_compilation.galgas", 263)) ;
-  GALGAS_baseline_5F_declaredRoutineMap var_declaredRoutineMap_11626 = GALGAS_baseline_5F_declaredRoutineMap::constructor_emptyMap (SOURCE_FILE ("baseline_compilation.galgas", 266)) ;
+  GALGAS_baseline_5F_declaredRoutineMap var_declaredRoutineMap_11626 = GALGAS_baseline_5F_declaredRoutineMap::class_func_emptyMap (SOURCE_FILE ("baseline_compilation.galgas", 266)) ;
   cEnumerator_baseline_5F_routineDefinitionList enumerator_11712 (constinArgument_inPiccoloModel.readProperty_mRoutineDefinitionList (), kENUMERATION_UP) ;
   while (enumerator_11712.hasCurrentObject ()) {
     {
@@ -11610,7 +11545,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
     }
     enumerator_11712.gotoNextObject () ;
   }
-  GALGAS_stringset var_unusedRoutineDeclarationUnicity_11877 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("baseline_compilation.galgas", 271)) ;
+  GALGAS_stringset var_unusedRoutineDeclarationUnicity_11877 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("baseline_compilation.galgas", 271)) ;
   cEnumerator_lstringlist enumerator_11939 (constinArgument_inPiccoloModel.readProperty_mUnusedRoutineList (), kENUMERATION_UP) ;
   while (enumerator_11939.hasCurrentObject ()) {
     enumGalgasBool test_28 = kBoolTrue ;
@@ -11656,7 +11591,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
     }
     enumerator_12488.gotoNextObject () ;
   }
-  GALGAS_stringset var_unusedDeclarationUnicity_12808 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("baseline_compilation.galgas", 288)) ;
+  GALGAS_stringset var_unusedDeclarationUnicity_12808 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("baseline_compilation.galgas", 288)) ;
   cEnumerator_lstringlist enumerator_12863 (constinArgument_inPiccoloModel.readProperty_mUnusedRegisterList (), kENUMERATION_UP) ;
   while (enumerator_12863.hasCurrentObject ()) {
     enumGalgasBool test_36 = kBoolTrue ;
@@ -11704,7 +11639,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
   }
   enumGalgasBool test_44 = kBoolTrue ;
   if (kBoolTrue == test_44) {
-    test_44 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 305)).objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.readProperty_value ()) COMMA_SOURCE_FILE ("baseline_compilation.galgas", 305)).boolEnum () ;
+    test_44 = GALGAS_bool (kIsEqual, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 305)).objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.readProperty_value ()) COMMA_SOURCE_FILE ("baseline_compilation.galgas", 305)).boolEnum () ;
     if (kBoolTrue == test_44) {
       var_listFileContents_4394.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (119U)), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("baseline_compilation.galgas", 306)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_compilation.galgas", 306)), inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 306)) ;
       var_listFileContents_4394.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("INTERMEDIATE INSTRUCTION LIST").getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (117U)), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("baseline_compilation.galgas", 307)), inCompiler COMMA_SOURCE_FILE ("baseline_compilation.galgas", 307)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("baseline_compilation.galgas", 307)), inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 307)) ;
@@ -11729,7 +11664,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
   }
   enumGalgasBool test_45 = kBoolTrue ;
   if (kBoolTrue == test_45) {
-    test_45 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 323)).objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_performOptimizations.readProperty_value ()) COMMA_SOURCE_FILE ("baseline_compilation.galgas", 323)).boolEnum () ;
+    test_45 = GALGAS_bool (kIsEqual, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 323)).objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_performOptimizations.readProperty_value ()) COMMA_SOURCE_FILE ("baseline_compilation.galgas", 323)).boolEnum () ;
     if (kBoolTrue == test_45) {
       {
       routine_perform_5F_baseline_5F_optimizations_26__26_ (var_intermediateInstructionList_8592, var_listFileContents_4394, inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 324)) ;
@@ -11739,14 +11674,14 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
   {
   routine_initCodeGenerator (inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 327)) ;
   }
-  GALGAS_registerExpression var_sr_14994 = GALGAS_registerExpression::constructor_new (GALGAS_lstring::constructor_new (GALGAS_string ("STATUS"), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 329)), inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 329)), GALGAS_immediatInteger::constructor_new (GALGAS_luint::constructor_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 330)), inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 330))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 330)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 331))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 328)) ;
+  GALGAS_registerExpression var_sr_14994 = GALGAS_registerExpression::class_func_new (GALGAS_lstring::class_func_new (GALGAS_string ("STATUS"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 329)), inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 329)), GALGAS_immediatInteger::class_func_new (GALGAS_luint::class_func_new (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 330)), inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 330))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 330)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 331))  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 328)) ;
   GALGAS_baseline_5F_intermediate_5F_registerExpression var_statusRegister_15230 ;
   GALGAS_bitSliceTable var_statusRegisterBitSliceTable_15269 ;
   callExtensionMethod_resolveBaselineAccess ((cPtr_registerExpression *) var_sr_14994.ptr (), var_registerTable_5184, var_constantMap_5146, var_statusRegister_15230, var_statusRegisterBitSliceTable_15269, var_usedRegisters_5443, inCompiler COMMA_SOURCE_FILE ("baseline_compilation.galgas", 333)) ;
-  GALGAS_baseline_5F_assembly_5F_instructionList var_assemblyInstructionList_15327 = GALGAS_baseline_5F_assembly_5F_instructionList::constructor_emptyList (SOURCE_FILE ("baseline_compilation.galgas", 340)) ;
+  GALGAS_baseline_5F_assembly_5F_instructionList var_assemblyInstructionList_15327 = GALGAS_baseline_5F_assembly_5F_instructionList::class_func_emptyList (SOURCE_FILE ("baseline_compilation.galgas", 340)) ;
   enumGalgasBool test_46 = kBoolTrue ;
   if (kBoolTrue == test_46) {
-    test_46 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 341)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    test_46 = GALGAS_bool (kIsEqual, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 341)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_46) {
       {
       routine_build_5F_baseline_5F_assembly_5F_code_3F__3F__3F__3F__26_ (var_intermediateInstructionList_8592, var_actualConfigurationMap_5047, var_statusRegister_15230, var_statusRegisterBitSliceTable_15269, var_assemblyInstructionList_15327, inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 342)) ;
@@ -11755,7 +11690,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
   }
   enumGalgasBool test_47 = kBoolTrue ;
   if (kBoolTrue == test_47) {
-    test_47 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 351)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    test_47 = GALGAS_bool (kIsEqual, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 351)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_47) {
       var_listFileContents_4394.plusAssign_operation(GALGAS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (119U)), GALGAS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("baseline_compilation.galgas", 352)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_compilation.galgas", 352)), inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 352)) ;
       var_listFileContents_4394.plusAssign_operation(GALGAS_string ("*").add_operation (GALGAS_string ("GENERATED CODE").getter_stringByLeftAndRightPadding (GALGAS_uint (uint32_t (117U)), GALGAS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("baseline_compilation.galgas", 353)), inCompiler COMMA_SOURCE_FILE ("baseline_compilation.galgas", 353)).add_operation (GALGAS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("baseline_compilation.galgas", 353)), inCompiler  COMMA_SOURCE_FILE ("baseline_compilation.galgas", 353)) ;
@@ -11778,7 +11713,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GALGAS_baseline_5F_model consti
   }
   enumGalgasBool test_49 = kBoolTrue ;
   if (kBoolTrue == test_49) {
-    test_49 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 370)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    test_49 = GALGAS_bool (kIsEqual, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("baseline_compilation.galgas", 370)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_49) {
       GALGAS_string var_contents_16920 ;
       {
@@ -11943,7 +11878,7 @@ void cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::method_build_5F_baseline_5F_
   }
   const GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND temp_3 = this ;
   const GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND temp_4 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND::constructor_new (temp_3.readProperty_mInstructionLocation (), temp_4.readProperty_mInstruction ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 126))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 126)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND::class_func_new (temp_3.readProperty_mInstructionLocation (), temp_4.readProperty_mInstruction ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 126))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 126)) ;
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -11954,7 +11889,7 @@ void cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::method_build_5F_baseline_5F_
 static GALGAS_stringset onceFunction_acceptableTRISoperand (Compiler *
                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset result_set ; // Returned variable
-  result_set = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("baseline_semantic_analysis.galgas", 132)) ;
+  result_set = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("baseline_semantic_analysis.galgas", 132)) ;
   result_set.addAssign_operation (GALGAS_string ("GPIO")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 133)) ;
   result_set.addAssign_operation (GALGAS_string ("PORTA")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 134)) ;
   result_set.addAssign_operation (GALGAS_string ("PORTB")  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 135)) ;
@@ -11993,8 +11928,8 @@ static void releaseOnceFunctionResult_acceptableTRISoperand (void) {
 
 //--------------------------------------------------------------------------------------------------
 
-C_PrologueEpilogue gEpilogueForOnceFunction_acceptableTRISoperand (nullptr,
-                                                                   releaseOnceFunctionResult_acceptableTRISoperand) ;
+PrologueEpilogue gEpilogueForOnceFunction_acceptableTRISoperand (nullptr,
+                                                                 releaseOnceFunctionResult_acceptableTRISoperand) ;
 
 //--------------------------------------------------------------------------------------------------
 //  Function introspection                                                                       
@@ -12081,7 +12016,7 @@ void cPtr_baseline_5F_instruction_5F_TRIS::method_build_5F_baseline_5F_intermedi
   var_registerAddressList_5937.method_first (var_opcode_6096, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 170)) ;
   const GALGAS_baseline_5F_instruction_5F_TRIS temp_9 = this ;
   const GALGAS_baseline_5F_instruction_5F_TRIS temp_10 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_TRIS::constructor_new (temp_9.readProperty_mInstructionLocation (), temp_10.readProperty_mOperand (), var_opcode_6096  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 172))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 172)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_TRIS::class_func_new (temp_9.readProperty_mInstructionLocation (), temp_10.readProperty_mOperand (), var_opcode_6096  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 172))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 172)) ;
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -12113,7 +12048,7 @@ void cPtr_baseline_5F_instruction_5F_MNOP::method_build_5F_baseline_5F_intermedi
   }
   const GALGAS_baseline_5F_instruction_5F_MNOP temp_3 = this ;
   const GALGAS_baseline_5F_instruction_5F_MNOP temp_4 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::constructor_new (temp_3.readProperty_mInstructionLocation (), temp_4.readProperty_mOccurrenceFactor ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 192))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 192)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::class_func_new (temp_3.readProperty_mInstructionLocation (), temp_4.readProperty_mOccurrenceFactor ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 192))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 192)) ;
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -12137,7 +12072,7 @@ void cPtr_baseline_5F_instruction_5F_literalOperation::method_build_5F_baseline_
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     const GALGAS_baseline_5F_instruction_5F_literalOperation temp_1 = this ;
-    test_0 = constinArgument_inLastInstructionShouldReturn.operator_and (GALGAS_bool (kIsNotEqual, temp_1.readProperty_mLiteralInstruction ().objectCompare (GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_MOVLW (SOURCE_FILE ("baseline_semantic_analysis.galgas", 209)))) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 209)).boolEnum () ;
+    test_0 = constinArgument_inLastInstructionShouldReturn.operator_and (GALGAS_bool (kIsNotEqual, temp_1.readProperty_mLiteralInstruction ().objectCompare (GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("baseline_semantic_analysis.galgas", 209)))) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 209)).boolEnum () ;
     if (kBoolTrue == test_0) {
       const GALGAS_baseline_5F_instruction_5F_literalOperation temp_2 = this ;
       TC_Array <C_FixItDescription> fixItArray3 ;
@@ -12161,13 +12096,13 @@ void cPtr_baseline_5F_instruction_5F_literalOperation::method_build_5F_baseline_
     test_8 = constinArgument_inLastInstructionShouldReturn.boolEnum () ;
     if (kBoolTrue == test_8) {
       const GALGAS_baseline_5F_instruction_5F_literalOperation temp_9 = this ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (temp_9.readProperty_mInstructionLocation (), GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::constructor_RETLW (SOURCE_FILE ("baseline_semantic_analysis.galgas", 221)), var_immediatValue_8101.operator_and (GALGAS_sint_36__34_ (int64_t (255LL)) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 222)).getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 222))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 219))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 219)) ;
+      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::class_func_new (temp_9.readProperty_mInstructionLocation (), GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_RETLW (SOURCE_FILE ("baseline_semantic_analysis.galgas", 221)), var_immediatValue_8101.operator_and (GALGAS_sint_36__34_ (int64_t (255LL)) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 222)).getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 222))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 219))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 219)) ;
     }
   }
   if (kBoolFalse == test_8) {
     const GALGAS_baseline_5F_instruction_5F_literalOperation temp_10 = this ;
     const GALGAS_baseline_5F_instruction_5F_literalOperation temp_11 = this ;
-    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (temp_10.readProperty_mInstructionLocation (), temp_11.readProperty_mLiteralInstruction (), var_immediatValue_8101.operator_and (GALGAS_sint_36__34_ (int64_t (255LL)) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 227)).getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 227))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 224))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 224)) ;
+    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::class_func_new (temp_10.readProperty_mInstructionLocation (), temp_11.readProperty_mLiteralInstruction (), var_immediatValue_8101.operator_and (GALGAS_sint_36__34_ (int64_t (255LL)) COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 227)).getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 227))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 224))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 224)) ;
   }
 }
 //--------------------------------------------------------------------------------------------------
@@ -12205,7 +12140,7 @@ void cPtr_baseline_5F_instruction_5F_FD::method_build_5F_baseline_5F_intermediat
   const GALGAS_baseline_5F_instruction_5F_FD temp_4 = this ;
   const GALGAS_baseline_5F_instruction_5F_FD temp_5 = this ;
   const GALGAS_baseline_5F_instruction_5F_FD temp_6 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::constructor_new (temp_4.readProperty_mInstructionLocation (), temp_5.readProperty_mInstruction_5F_FD_5F_base_5F_code (), var_intermediateRegisterDescription_9729, temp_6.readProperty_m_5F_W_5F_isDestination ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 256))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 256)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::class_func_new (temp_4.readProperty_mInstructionLocation (), temp_5.readProperty_mInstruction_5F_FD_5F_base_5F_code (), var_intermediateRegisterDescription_9729, temp_6.readProperty_m_5F_W_5F_isDestination ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 256))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 256)) ;
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -12254,13 +12189,13 @@ void cPtr_baseline_5F_instruction_5F_CALL::method_build_5F_baseline_5F_intermedi
     if (kBoolTrue == test_7) {
       const GALGAS_baseline_5F_instruction_5F_CALL temp_8 = this ;
       const GALGAS_baseline_5F_instruction_5F_CALL temp_9 = this ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (temp_8.readProperty_mInstructionLocation (), temp_9.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 287))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 287)) ;
+      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::class_func_new (temp_8.readProperty_mInstructionLocation (), temp_9.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 287))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 287)) ;
     }
   }
   if (kBoolFalse == test_7) {
     const GALGAS_baseline_5F_instruction_5F_CALL temp_10 = this ;
     const GALGAS_baseline_5F_instruction_5F_CALL temp_11 = this ;
-    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_CALL::constructor_new (temp_10.readProperty_mInstructionLocation (), temp_11.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 291))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 291)) ;
+    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_CALL::class_func_new (temp_10.readProperty_mInstructionLocation (), temp_11.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 291))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 291)) ;
   }
 }
 //--------------------------------------------------------------------------------------------------
@@ -12301,13 +12236,13 @@ void cPtr_baseline_5F_instruction_5F_JSR::method_build_5F_baseline_5F_intermedia
     if (kBoolTrue == test_4) {
       const GALGAS_baseline_5F_instruction_5F_JSR temp_5 = this ;
       const GALGAS_baseline_5F_instruction_5F_JSR temp_6 = this ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_JUMP::constructor_new (temp_5.readProperty_mInstructionLocation (), temp_6.readProperty_mTargetLabel (), constinArgument_inCurrentPage, var_targetPage_12104.readProperty_uint ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 318))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 318)) ;
+      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_JUMP::class_func_new (temp_5.readProperty_mInstructionLocation (), temp_6.readProperty_mTargetLabel (), constinArgument_inCurrentPage, var_targetPage_12104.readProperty_uint ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 318))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 318)) ;
     }
   }
   if (kBoolFalse == test_4) {
     const GALGAS_baseline_5F_instruction_5F_JSR temp_7 = this ;
     const GALGAS_baseline_5F_instruction_5F_JSR temp_8 = this ;
-    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_JSR::constructor_new (temp_7.readProperty_mInstructionLocation (), temp_8.readProperty_mTargetLabel (), constinArgument_inCurrentPage, var_targetPage_12104.readProperty_uint ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 324))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 324)) ;
+    ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_JSR::class_func_new (temp_7.readProperty_mInstructionLocation (), temp_8.readProperty_mTargetLabel (), constinArgument_inCurrentPage, var_targetPage_12104.readProperty_uint ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 324))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 324)) ;
   }
 }
 //--------------------------------------------------------------------------------------------------
@@ -12344,7 +12279,7 @@ void cPtr_baseline_5F_instruction_5F_F::method_build_5F_baseline_5F_intermediate
   callExtensionMethod_resolveBaselineAccess ((cPtr_registerExpression *) temp_3.readProperty_mRegisterExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription_13565, joker_13601, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 349)) ;
   const GALGAS_baseline_5F_instruction_5F_F temp_4 = this ;
   const GALGAS_baseline_5F_instruction_5F_F temp_5 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::constructor_new (temp_4.readProperty_mInstructionLocation (), temp_5.readProperty_mFAinstruction (), var_intermediateRegisterDescription_13565  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 356))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 356)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::class_func_new (temp_4.readProperty_mInstructionLocation (), temp_5.readProperty_mFAinstruction (), var_intermediateRegisterDescription_13565  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 356))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 356)) ;
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -12383,7 +12318,7 @@ void cPtr_baseline_5F_instruction_5F_FB::method_build_5F_baseline_5F_intermediat
   callExtensionMethod_getBitNumber ((cPtr_bitNumberExpression *) temp_4.readProperty_mBitNumber ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioUsedRegisters, var_bitSliceTable_14773, var_bitNumber_14941, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 386)) ;
   const GALGAS_baseline_5F_instruction_5F_FB temp_5 = this ;
   const GALGAS_baseline_5F_instruction_5F_FB temp_6 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::constructor_new (temp_5.readProperty_mInstructionLocation (), temp_6.readProperty_mBitOrientedOp (), var_intermediateRegisterDescription_14717, var_bitNumber_14941  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 393))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 393)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::class_func_new (temp_5.readProperty_mInstructionLocation (), temp_6.readProperty_mBitOrientedOp (), var_intermediateRegisterDescription_14717, var_bitNumber_14941  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 393))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 393)) ;
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -12438,7 +12373,7 @@ void cPtr_baseline_5F_instruction_5F_GOTO::method_build_5F_baseline_5F_intermedi
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
   const GALGAS_baseline_5F_instruction_5F_GOTO temp_10 = this ;
   const GALGAS_baseline_5F_instruction_5F_GOTO temp_11 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (temp_10.readProperty_mInstructionLocation (), temp_11.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 427))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 427)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::class_func_new (temp_10.readProperty_mInstructionLocation (), temp_11.readProperty_mTargetLabel ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 427))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 427)) ;
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -12484,7 +12419,7 @@ void cPtr_baseline_5F_instruction_5F_JUMP::method_build_5F_baseline_5F_intermedi
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
   const GALGAS_baseline_5F_instruction_5F_JUMP temp_7 = this ;
   const GALGAS_baseline_5F_instruction_5F_JUMP temp_8 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_JUMP::constructor_new (temp_7.readProperty_mInstructionLocation (), temp_8.readProperty_mTargetLabel (), constinArgument_inCurrentPage, var_targetPage_17301.readProperty_uint ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 455))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 455)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_JUMP::class_func_new (temp_7.readProperty_mInstructionLocation (), temp_8.readProperty_mTargetLabel (), constinArgument_inCurrentPage, var_targetPage_17301.readProperty_uint ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 455))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 455)) ;
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -12514,7 +12449,7 @@ void cPtr_baseline_5F_instruction_5F_IF_5F_BitTest::method_build_5F_baseline_5F_
   callExtensionMethod_getBitNumber ((cPtr_bitNumberExpression *) temp_1.readProperty_mBitNumber ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioUsedRegisters, var_bitSliceTable_18432, var_bitNumber_18594, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 483)) ;
   const GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest temp_2 = this ;
   const GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest temp_3 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::constructor_new (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mSkipIfSet (), var_intermediateRegisterDescription_18376, var_bitNumber_18594  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 490))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 490)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::class_func_new (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mSkipIfSet (), var_intermediateRegisterDescription_18376, var_bitNumber_18594  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 490))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 490)) ;
   GALGAS_bool var_unusedContinuesInSequence_18836 = GALGAS_bool (true) ;
   const GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest temp_4 = this ;
   callExtensionMethod_build_5F_baseline_5F_intermediate_5F_instructionList ((cPtr_baseline_5F_instruction *) temp_4.readProperty_mInstruction ().ptr (), constinArgument_inCurrentPage, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_unusedContinuesInSequence_18836, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 497)) ;
@@ -12544,11 +12479,11 @@ void cPtr_baseline_5F_instruction_5F_IF_5F_IncDec::method_build_5F_baseline_5F_i
     const GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec temp_1 = this ;
     test_0 = temp_1.readProperty_mIncrement ().boolEnum () ;
     if (kBoolTrue == test_0) {
-      var_baseCode_19843 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_INCFSZ (SOURCE_FILE ("baseline_semantic_analysis.galgas", 529)) ;
+      var_baseCode_19843 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_INCFSZ (SOURCE_FILE ("baseline_semantic_analysis.galgas", 529)) ;
     }
   }
   if (kBoolFalse == test_0) {
-    var_baseCode_19843 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::constructor_DECFSZ (SOURCE_FILE ("baseline_semantic_analysis.galgas", 531)) ;
+    var_baseCode_19843 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_DECFSZ (SOURCE_FILE ("baseline_semantic_analysis.galgas", 531)) ;
   }
   GALGAS_baseline_5F_intermediate_5F_registerExpression var_intermediateRegisterDescription_20153 ;
   GALGAS_bitSliceTable var_bitSliceTable_20216 ;
@@ -12556,7 +12491,7 @@ void cPtr_baseline_5F_instruction_5F_IF_5F_IncDec::method_build_5F_baseline_5F_i
   callExtensionMethod_resolveBaselineAccess ((cPtr_registerExpression *) temp_2.readProperty_mRegisterExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_intermediateRegisterDescription_20153, var_bitSliceTable_20216, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 534)) ;
   const GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec temp_3 = this ;
   const GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec temp_4 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::constructor_new (temp_3.readProperty_mInstructionLocation (), var_baseCode_19843, var_intermediateRegisterDescription_20153, temp_4.readProperty_m_5F_W_5F_isDestination ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 542))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 542)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::class_func_new (temp_3.readProperty_mInstructionLocation (), var_baseCode_19843, var_intermediateRegisterDescription_20153, temp_4.readProperty_m_5F_W_5F_isDestination ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 542))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 542)) ;
   GALGAS_bool var_unusedContinuesInSequence_20467 = GALGAS_bool (true) ;
   const GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec temp_5 = this ;
   callExtensionMethod_build_5F_baseline_5F_intermediate_5F_instructionList ((cPtr_baseline_5F_instruction *) temp_5.readProperty_mInstruction ().ptr (), constinArgument_inCurrentPage, constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, var_unusedContinuesInSequence_20467, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 549)) ;
@@ -12605,14 +12540,14 @@ void cPtr_baseline_5F_instruction_5F_FOREVER::method_build_5F_baseline_5F_interm
   GALGAS_string var_label_30__21802 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 586)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 586)) ;
   ioArgument_ioLocalLabelIndex.plusAssign_operation(GALGAS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 587)) ;
   const GALGAS_baseline_5F_instruction_5F_FOREVER temp_4 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_label_30__21802, temp_4.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 588))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 588))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 588)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::class_func_new (GALGAS_lstring::class_func_new (var_label_30__21802, temp_4.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 588))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 588))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 588)) ;
   {
   const GALGAS_baseline_5F_instruction_5F_FOREVER temp_5 = this ;
   routine_handleBaselineInstructionList_3F__3F__3F__3F__3F__26__26__26__21__3F__3F__26_ (constinArgument_inCurrentPage, temp_5.readProperty_mInstructionList (), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, GALGAS_bool (false), ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 589)) ;
   }
   const GALGAS_baseline_5F_instruction_5F_FOREVER temp_6 = this ;
   const GALGAS_baseline_5F_instruction_5F_FOREVER temp_7 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (temp_6.readProperty_mInstructionLocation (), GALGAS_lstring::constructor_new (var_label_30__21802, temp_7.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 606))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 604))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 604)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::class_func_new (temp_6.readProperty_mInstructionLocation (), GALGAS_lstring::class_func_new (var_label_30__21802, temp_7.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 606))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 604))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 604)) ;
   ioArgument_ioContinuesInSequence = GALGAS_bool (false) ;
 }
 //--------------------------------------------------------------------------------------------------
@@ -12685,7 +12620,7 @@ void cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::method_build_5F_baseline_
     while (loop_24426) {
       GALGAS_bool test_13 = GALGAS_bool (kIsInfOrEqual, var_idx_24403.objectCompare (var_upperBound_23416)) ;
       if (kBoolTrue == test_13.boolEnum ()) {
-        test_13 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)).objectCompare (GALGAS_uint (uint32_t (0U)))) ;
+        test_13 = GALGAS_bool (kIsEqual, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)).objectCompare (GALGAS_uint (uint32_t (0U)))) ;
       }
       loop_24426 = test_13.isValid () ;
       if (loop_24426) {
@@ -12733,7 +12668,7 @@ void cPtr_baseline_5F_instruction_5F_do_5F_while::method_build_5F_baseline_5F_in
   GALGAS_string var_labelInstructionBegin_25633 = GALGAS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("baseline_semantic_analysis.galgas", 693)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 693)) ;
   ioArgument_ioLocalLabelIndex.plusAssign_operation(GALGAS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 693)) ;
   const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_0 = this ;
-  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_labelInstructionBegin_25633, temp_0.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 695))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 695))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 695)) ;
+  ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::class_func_new (GALGAS_lstring::class_func_new (var_labelInstructionBegin_25633, temp_0.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 695))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 695))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 695)) ;
   {
   const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_1 = this ;
   routine_handleBaselineInstructionList_3F__3F__3F__3F__3F__26__26__26__21__3F__3F__26_ (constinArgument_inCurrentPage, temp_1.readProperty_mRepeatedInstructionList (), constinArgument_inRoutineMap, constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioLocalLabelIndex, ioArgument_ioGeneratedInstructionList, ioArgument_ioListFileContents, ioArgument_ioContinuesInSequence, constinArgument_inRoutineKind, constinArgument_inLastInstructionShouldReturn, ioArgument_ioUsedRegisters, inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 697)) ;
@@ -12759,9 +12694,9 @@ void cPtr_baseline_5F_instruction_5F_do_5F_while::method_build_5F_baseline_5F_in
       }
       const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_6 = this ;
       const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_7 = this ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::constructor_new (temp_6.readProperty_mInstructionLocation (), GALGAS_lstring::constructor_new (var_labelInstructionBegin_25633, temp_7.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 754))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 752))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 752)) ;
+      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_GOTO::class_func_new (temp_6.readProperty_mInstructionLocation (), GALGAS_lstring::class_func_new (var_labelInstructionBegin_25633, temp_7.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 754))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 752))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 752)) ;
       const GALGAS_baseline_5F_instruction_5F_do_5F_while temp_8 = this ;
-      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::constructor_new (GALGAS_lstring::constructor_new (var_nextBranchLabel_26704, temp_8.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 755))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 755))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 755)) ;
+      ioArgument_ioGeneratedInstructionList.addAssign_operation (GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::class_func_new (GALGAS_lstring::class_func_new (var_nextBranchLabel_26704, temp_8.readProperty_mInstructionLocation (), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 755))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 755))  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas", 755)) ;
     }
     enumerator_26293.gotoNextObject () ;
   }

@@ -27,11 +27,11 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/MF_Assert.h"
-#include "utilities/M_SourceLocation.h"
-#include "utilities/TF_Swap.h"
-#include "utilities/MF_MemoryControl.h"
-#include "utilities/cpp-allocation.h"
+#include "MF_Assert.h"
+#include "M_SourceLocation.h"
+#include "TF_Swap.h"
+#include "MF_MemoryControl.h"
+#include "cpp-allocation.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -58,16 +58,16 @@ template <typename TYPE> void swap (TC_UniqueArray <TYPE> & ioOperand1, TC_Uniqu
 template <typename TYPE> class TC_UniqueArray {
 //--- Default Constructor
   public : TC_UniqueArray (void) ;
-  
+
 //--- Allocation Constructor (empty array)
   public : TC_UniqueArray (const int32_t inCapacity
                            COMMA_LOCATION_ARGS) ;
-  
+
 //--- Allocation Constructor (array initialized with inValue)
   public : TC_UniqueArray (const int32_t inCapacity,
                            const TYPE & inValue
                            COMMA_LOCATION_ARGS) ;
-  
+
 //--- Virtual Destructor
   public : virtual ~TC_UniqueArray (void) ;
 
@@ -90,15 +90,15 @@ template <typename TYPE> class TC_UniqueArray {
 //--- Methods for setting capacity
   public : void setCapacity (const int32_t inNewCapacity) ;
   public : void setCapacityUsingSwap (const int32_t inNewCapacity) ;
-  
+
 //--- Allocation with provided data (ioDataPtr is captured, and NULL is returned)
   public : void setDataFromPointer (TYPE * & ioDataPtr,
                                     const int32_t inDataLength) ;
-  
+
 //--- Append data (inDataPtr is not released)
   public : void appendDataFromPointer (const TYPE * inDataPtr,
                                        const int32_t inDataLength) ;
-  
+
 //--- Get buffer pointer
   public : const TYPE * unsecureBufferPointer (void) const { return mArray ; }
 
@@ -113,7 +113,7 @@ template <typename TYPE> class TC_UniqueArray {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     private : void checkOrdered (LOCATION_ARGS) const ;
   #endif
-  
+
 //--- Remove an object, suppose the array is ordered
   public : void removeObjectFromOrderedArray (const TYPE & inKey) ;
 
@@ -268,9 +268,9 @@ template <typename TYPE> class TC_UniqueArray {
                                   COMMA_LOCATION_ARGS) ;
 
   public : TYPE & operator () (const int32_t inIndex COMMA_LOCATION_ARGS) ;
-    
+
   public : const TYPE & operator () (const int32_t inIndex COMMA_LOCATION_ARGS) const ;
-    
+
 //--- Private methods
   private : void internalSortArrayUsingOperators (const int32_t inFirst,
                                                   const int32_t inLast) ;
@@ -559,7 +559,7 @@ template <typename TYPE> void TC_UniqueArray <TYPE>::appendObjects (const int32_
     for (int32_t i=mCount ; i<newCount ; i++) {
       mArray [i] = inValue ;
     }
-    mCount = newCount ;  
+    mCount = newCount ;
   }
 }
 
@@ -1227,7 +1227,7 @@ template <typename TYPE> void TC_UniqueArray <TYPE>::removeIdenticalObjects (voi
     }else{
       sourceIndex ++ ;
       targetIndex ++ ;
-    }  
+    }
   }
   mCount -= sourceIndex - targetIndex ;
 }
@@ -1255,7 +1255,7 @@ template <typename TYPE> void TC_UniqueArray <TYPE>::removeIdenticalObjectsUsing
     }else{
       sourceIndex ++ ;
       targetIndex ++ ;
-    }  
+    }
   }
   for (int32_t i=targetIndex ; i<sourceIndex ; i++) {
     mArray [i].clear () ;

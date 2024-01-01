@@ -20,9 +20,9 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/M_machine.h"
-#include "utilities/MF_MemoryControl.h"
-#include "utilities/basic-allocation.h"
+#include "M_machine.h"
+#include "MF_MemoryControl.h"
+#include "basic-allocation.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -254,7 +254,7 @@
     }
     return result ;
   }
-#endif 
+#endif
 
 //---------------------------------------------------------------------------------------------------------------------*
 //     Rotations elementaires de reequilibrage d'un ioRoot binaire                                                     *
@@ -262,11 +262,11 @@
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
   static void rotateLeft (cPointerDescriptor * & ioPtr) {
-  //--- faire la rotation 
+  //--- faire la rotation
     cPointerDescriptor * b = ioPtr->mSupPtr;
     ioPtr->mSupPtr = b->mInfPtr;
     b->mInfPtr = ioPtr;
-  //--- recalculer l'equilibrage 
+  //--- recalculer l'equilibrage
     if (b->mBalance >= 0) {
       ioPtr->mBalance ++ ;
     }else{
@@ -278,18 +278,18 @@
       b->mBalance ++ ;
     }
     ioPtr = b ;
-  } 
+  }
 #endif
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
   static void rotateRight (cPointerDescriptor * & ioPtr) {
-  //-- faire la rotation 
+  //-- faire la rotation
     cPointerDescriptor * b = ioPtr->mInfPtr;
     ioPtr->mInfPtr = b->mSupPtr;
     b->mSupPtr = ioPtr;
-   //--- recalculer l'equilibrage 
+   //--- recalculer l'equilibrage
     if (b->mBalance > 0) {
       ioPtr->mBalance -= 1 + b->mBalance ;
     }else{
@@ -303,7 +303,7 @@
     ioPtr = b ;
   }
 #endif
- 
+
 //---------------------------------------------------------------------------------------------------------------------*
 //    Suppression d'un element dans un ioRoot binaire equilibre                                                        *
 //---------------------------------------------------------------------------------------------------------------------*
@@ -335,7 +335,7 @@
     }
   }
 #endif
- 
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -509,7 +509,7 @@
     }
   }
 #endif
- 
+
 //---------------------------------------------------------------------------------------------------------------------*
 //   http://stackoverflow.com/questions/3442639/hashing-of-pointer-values
 //   https://gist.github.com/badboy/6267743
@@ -609,19 +609,19 @@
       switch (inAllocationKind) {
       case kAllocatedByMacroMyNew :
         if (pointerToDelete->mAllocationKind != kAllocatedByMacroMyNew) {
-          runtime_error_routine ("(" __FILE__ ") Appel de 'macroMyDelete' sur un pointeur declare dans '%s' ligne %d qui n'a pas ete alloue par 'macroMyNew'", 
+          runtime_error_routine ("(" __FILE__ ") Appel de 'macroMyDelete' sur un pointeur declare dans '%s' ligne %d qui n'a pas ete alloue par 'macroMyNew'",
                                  (intptr_t) nomFichierSource, inSourceFileLine, IN_SOURCE_FILE, IN_SOURCE_LINE) ;
         }
         break ;
       case kAllocatedByMacroMyNewArray :
         if (pointerToDelete->mAllocationKind != kAllocatedByMacroMyNewArray) {
-          runtime_error_routine ("(" __FILE__ ") Appel de 'macroMyDeleteArray' sur un pointeur declare dans '%s' ligne %d qui n'a pas ete alloue par 'macroMyNewArray'", 
+          runtime_error_routine ("(" __FILE__ ") Appel de 'macroMyDeleteArray' sur un pointeur declare dans '%s' ligne %d qui n'a pas ete alloue par 'macroMyNewArray'",
                                  (intptr_t) nomFichierSource, inSourceFileLine, IN_SOURCE_FILE, IN_SOURCE_LINE) ;
         }
         break ;
       case kAllocatedByMacroMyNewPODArray :
         if (pointerToDelete->mAllocationKind != kAllocatedByMacroMyNewPODArray) {
-          runtime_error_routine ("(" __FILE__ ") Appel de 'macroMyDeletePODArray' sur un pointeur declare dans '%s' ligne %d qui n'a pas ete alloue par 'macroMyNewPODArray'", 
+          runtime_error_routine ("(" __FILE__ ") Appel de 'macroMyDeletePODArray' sur un pointeur declare dans '%s' ligne %d qui n'a pas ete alloue par 'macroMyNewPODArray'",
                                  (intptr_t) nomFichierSource, inSourceFileLine, IN_SOURCE_FILE, IN_SOURCE_LINE) ;
         }
         break ;
@@ -700,7 +700,7 @@ void displayAllocatedBlocksInfo (void) {
     }
     if (gPointersCurrentCount != 0) {
       printf ("*** Warning: %d block information datas (instead of 0):\n", gPointersCurrentCount) ;
-      printf ("  address  |   number   |     kind | source line | source file\n") ;  
+      printf ("  address  |   number   |     kind | source line | source file\n") ;
     }
     for (uint32_t i=0 ; i<ROOT_TABLE_SIZE ; i++) {
       recursiveDisplay (gPointerDescriptorTreeRoot [i]) ;

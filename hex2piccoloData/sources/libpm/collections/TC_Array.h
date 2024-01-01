@@ -18,11 +18,11 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/C_SharedObject.h"
-#include "utilities/M_SourceLocation.h"
-#include "utilities/TF_Swap.h"
-#include "utilities/MF_MemoryControl.h"
-#include "utilities/cpp-allocation.h"
+#include "C_SharedObject.h"
+#include "M_SourceLocation.h"
+#include "TF_Swap.h"
+#include "MF_MemoryControl.h"
+#include "cpp-allocation.h"
 #include "collections/TC_UniqueArray.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -50,24 +50,24 @@ template <typename TYPE> class cSharedArray : public C_SharedObject, public TC_U
   C_SharedObject (HERE),
   TC_UniqueArray<TYPE> () {
   }
-  
+
 //--- Destructor
   public : virtual ~ cSharedArray (void) {
   }
-  
+
 //--- Allocation Constructor (empty array)
   public : cSharedArray (const int inCapacity COMMA_LOCATION_ARGS) :
   C_SharedObject (THERE),
   TC_UniqueArray<TYPE> (inCapacity COMMA_THERE) {
   }
-  
+
 //--- Allocation Constructor (array initialized with inValue)
   public : cSharedArray (const int inCount,
                          const TYPE & inValue COMMA_LOCATION_ARGS) :
   C_SharedObject (THERE),
   TC_UniqueArray<TYPE> (inCount, inValue COMMA_THERE) {
   }
-  
+
 } ;
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -79,17 +79,17 @@ template <typename TYPE> class cSharedArray : public C_SharedObject, public TC_U
 template <typename TYPE> class TC_Array {
 //--- Default Constructor
   public : TC_Array (void) ;
-  
+
 //--- Destructor
   public : virtual ~ TC_Array (void) ;
-  
+
 //--- Allocation Constructor (empty array)
   public : TC_Array (const int inCapacity COMMA_LOCATION_ARGS) ;
-  
+
 //--- Allocation Constructor (array initialized with inValue)
   public : TC_Array (const int inCount,
                      const TYPE & inValue COMMA_LOCATION_ARGS) ;
-  
+
 //--- Handle Copy
   public : TC_Array (const TC_Array <TYPE> &) ;
   public : TC_Array <TYPE> & operator = (const TC_Array <TYPE> &) ;
@@ -177,7 +177,7 @@ template <typename TYPE> class TC_Array {
 //--- Append data
   public : void appendDataFromPointer (const TYPE * inDataPtr,
                                        const int32_t inDataLength) ;
-  
+
 //--- Remove objects at index (0 <= index < count)
   public : void removeObjectAtIndex (const int32_t inIndex
                                      COMMA_LOCATION_ARGS) ;
@@ -356,14 +356,14 @@ template <typename TYPE> TYPE & TC_Array <TYPE>::operator () (const int32_t inIn
 //template <typename TYPE> const TYPE & TC_Array <TYPE>::operator () (const int32_t inIndex COMMA_LOCATION_ARGS) const {
 //  macroValidPointer (mSharedArray) ;
 //  return mSharedArray->operator () (inIndex COMMA_THERE) ;
-//}    
+//}
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 template <typename TYPE> const TYPE TC_Array <TYPE>::operator () (const int32_t inIndex COMMA_LOCATION_ARGS) const {
   macroValidPointer (mSharedArray) ;
   return mSharedArray->operator () (inIndex COMMA_THERE) ;
-}    
+}
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -381,7 +381,7 @@ template <typename TYPE> const TYPE TC_Array <TYPE>::lastObject (LOCATION_ARGS) 
 //template <typename TYPE> TYPE & TC_Array <TYPE>::lastObject (LOCATION_ARGS) {
 //  macroValidPointer (mSharedArray) ;
 //  return mSharedArray->lastObject (THERE) ;
-//}    
+//}
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -393,7 +393,7 @@ template <typename TYPE> void TC_Array <TYPE>::removeLastObject (LOCATION_ARGS) 
   insulate () ;
   macroValidPointer (mSharedArray) ;
   mSharedArray->removeLastObject (THERE) ;
-}    
+}
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -405,7 +405,7 @@ template <typename TYPE> void TC_Array <TYPE>::removeLastObjects (const int32_t 
   insulate () ;
   macroValidPointer (mSharedArray) ;
   mSharedArray->removeLastObjects (inCount COMMA_THERE) ;
-}    
+}
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *

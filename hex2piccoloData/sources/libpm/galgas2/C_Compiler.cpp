@@ -20,15 +20,15 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "command_line_interface/F_Analyze_CLI_Options.h"
-#include "files/C_TextFileWrite.h"
-#include "files/C_FileManager.h"
-#include "galgas2/C_Compiler.h"
-#include "galgas2/C_galgas_io.h"
-#include "galgas2/C_galgas_CLI_Options.h"
+#include "F_Analyze_CLI_Options.h"
+#include "C_TextFileWrite.h"
+#include "C_FileManager.h"
+#include "C_Compiler.h"
+#include "C_galgas_io.h"
+#include "C_galgas_CLI_Options.h"
 #include "all-predefined-types.h"
-#include "utilities/MF_MemoryControl.h"
-#include "galgas2/F_verbose_output.h"
+#include "MF_MemoryControl.h"
+#include "F_verbose_output.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -168,7 +168,7 @@ void C_Compiler::onTheFlySemanticError (const C_String & inErrorMessage
 
 void C_Compiler::onTheFlySemanticWarning (const C_String & inWarningMessage
                                           COMMA_LOCATION_ARGS) {
-  signalSemanticWarning (sourceText (), 
+  signalSemanticWarning (sourceText (),
                          C_IssueWithFixIt (mCurrentLocation, mCurrentLocation, TC_Array <C_FixItDescription> ()),
                          inWarningMessage
                          COMMA_THERE) ;
@@ -609,7 +609,7 @@ void C_Compiler::generateFileWithPatternFromPathes (
       if (verboseOptionOn) {
         ggs_printFileCreationSuccess (C_String ("Created '") + fileName + "'.\n") ;
       }
-      
+
       f.close () ;
       if (inMakeExecutable) {
         #if COMPILE_FOR_WINDOWS == 0

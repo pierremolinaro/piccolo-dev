@@ -20,17 +20,17 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "bdd/C_BDD.h"
-#include "command_line_interface/F_mainForLIBPM.h"
-#include "utilities/MF_MemoryControl.h"
-#include "utilities/F_DisplayException.h"
-#include "streams/C_ConsoleOut.h"
-#include "time/C_DateTime.h"
-#include "utilities/C_SharedObject.h"
-#include "utilities/cpp-allocation.h"
-#include "utilities/basic-allocation.h"
-#include "utilities/C_PrologueEpilogue.h"
-#include "command_line_interface/F_Analyze_CLI_Options.h"
+#include "C_BDD.h"
+#include "F_mainForLIBPM.h"
+#include "MF_MemoryControl.h"
+#include "F_DisplayException.h"
+#include "C_ConsoleOut.h"
+#include "C_DateTime.h"
+#include "C_SharedObject.h"
+#include "cpp-allocation.h"
+#include "basic-allocation.h"
+#include "C_PrologueEpilogue.h"
+#include "F_Analyze_CLI_Options.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -59,8 +59,8 @@ C_String commandLineArgumentAtIndex (const uint32_t inIndex) {
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-// #include "utilities/PMUInt128.h"
-// #include "galgas2/C_DirectedGraph.h"
+// #include "PMUInt128.h"
+// #include "C_DirectedGraph.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 

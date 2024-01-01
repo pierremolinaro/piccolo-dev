@@ -20,10 +20,10 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/M_machine.h"
-#include "utilities/MF_MemoryControl.h"
-#include "utilities/cpp-allocation.h"
-#include "utilities/basic-allocation.h"
+#include "M_machine.h"
+#include "MF_MemoryControl.h"
+#include "cpp-allocation.h"
+#include "basic-allocation.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -139,7 +139,7 @@ void operator delete (void * inPointer) throw () {
     #ifdef REGISTER_ALLOCATION_STATS
       gCurrentObjectCount -- ;
     #endif
-  } 
+  }
 }
 #endif
 
@@ -152,7 +152,7 @@ void operator delete [] (void * inPointer) throw () {
     #ifdef REGISTER_ALLOCATION_STATS
       gCurrentArrayCount -- ;
     #endif
-  } 
+  }
 }
 #endif
 

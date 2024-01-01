@@ -25,19 +25,19 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/M_SourceLocation.h"
+#include "M_SourceLocation.h"
 #include "collections/TC_UniqueArray.h"
-#include "utilities/M_machine.h"
-#include "streams/C_ConsoleOut.h"
-#include "utilities/C_Data.h"
-#include "utilities/TF_Swap.h"
-#include "time/C_DateTime.h"
+#include "M_machine.h"
+#include "C_ConsoleOut.h"
+#include "C_Data.h"
+#include "TF_Swap.h"
+#include "C_DateTime.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 #include <exception>
-#include <stdio.h> 
-#include <dirent.h> 
+#include <stdio.h>
+#include <dirent.h>
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -92,7 +92,7 @@ class C_String : public AC_OutputStream {
   public : C_String (const char * chaineC) ; // From a C string
   public : C_String (const utf32 * inUTF32String) ;
   public : static C_String spaces (const int32_t inSpaceCount) ;
-  
+
 //--- Virtual destructor
   public : virtual ~C_String (void) ;
 
@@ -108,7 +108,7 @@ class C_String : public AC_OutputStream {
 
 //--- Set capacity (does nothing if length >= inCapacity)
   public : void setCapacity (const uint32_t inCapacity) ;
-  
+
 //--- Suppress 'inLength' characters from 'inLocation' index
   public : void suppress (const int32_t inLocation, const int32_t inLength COMMA_LOCATION_ARGS) ;
 
@@ -136,7 +136,7 @@ class C_String : public AC_OutputStream {
 
 //--- Get current column index (starting from 0)
   public : uint32_t currentColumn (void) const ;
-  
+
 //--- Append space character until given column
   public : void appendSpacesUntilColumn (const uint32_t inColumn) ;
 
@@ -176,7 +176,7 @@ class C_String : public AC_OutputStream {
 //--- Get a UTF32 string pointer
   public : const utf32 * utf32String (LOCATION_ARGS) const ;
 
-//--- Compare with an other string 
+//--- Compare with an other string
   public : int32_t compare (const char * const inCstring) const ;
   public : int32_t compare (const C_String & inString) const ;
   public : int32_t compareStringByLength (const C_String & inString) const ;

@@ -25,7 +25,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/MF_MemoryControl.h"
+#include "MF_MemoryControl.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -69,9 +69,9 @@ class C_galgas_function_descriptor {
                                          const uint32_t inParameterCount,
                                          const C_galgas_type_descriptor * * inParameterTypeList) ;
 
-//--- 
+//---
   public : static C_galgas_function_descriptor * functionListRoot (void) ;
-  
+
 //--- No copy
   private : C_galgas_function_descriptor (const C_galgas_function_descriptor &) ;
   private : C_galgas_function_descriptor & operator = (const C_galgas_function_descriptor &) ;

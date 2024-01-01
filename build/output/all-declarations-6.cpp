@@ -1,7 +1,7 @@
-#include "galgas2/Compiler.h"
-#include "galgas2/C_galgas_io.h"
-#include "galgas2/C_galgas_CLI_Options.h"
-#include "utilities/C_PrologueEpilogue.h"
+#include "Compiler.h"
+#include "C_galgas_io.h"
+#include "C_galgas_CLI_Options.h"
+#include "PrologueEpilogue.h"
 
 //--------------------------------------------------------------------------------------------------
 
@@ -67,9 +67,9 @@ GALGAS_pic_31__38_AbstractCaseItem (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_SimpleConstantCaseItem GALGAS_pic_31__38_SimpleConstantCaseItem::constructor_new (const GALGAS_immediatExpression & inAttribute_mCaseExpression,
-                                                                                                    const GALGAS_location & inAttribute_mCaseExpressionLocation
-                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_pic_31__38_SimpleConstantCaseItem GALGAS_pic_31__38_SimpleConstantCaseItem::class_func_new (const GALGAS_immediatExpression & inAttribute_mCaseExpression,
+                                                                                                   const GALGAS_location & inAttribute_mCaseExpressionLocation
+                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_SimpleConstantCaseItem result ;
   if (inAttribute_mCaseExpression.isValid () && inAttribute_mCaseExpressionLocation.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_pic_31__38_SimpleConstantCaseItem (inAttribute_mCaseExpression, inAttribute_mCaseExpressionLocation COMMA_THERE)) ;
@@ -165,9 +165,8 @@ acPtr_class * cPtr_pic_31__38_SimpleConstantCaseItem::duplicate (LOCATION_ARGS) 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_SimpleConstantCaseItem ("pic18SimpleConstantCaseItem",
-                                                          & kTypeDescriptor_GALGAS_pic_31__38_AbstractCaseItem) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SimpleConstantCaseItem ("pic18SimpleConstantCaseItem",
+                                                                                         & kTypeDescriptor_GALGAS_pic_31__38_AbstractCaseItem) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -248,7 +247,7 @@ GALGAS_pic_31__38_AbstractCaseItem_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_SimpleConstantCaseItem_2D_weak GALGAS_pic_31__38_SimpleConstantCaseItem_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_pic_31__38_SimpleConstantCaseItem_2D_weak GALGAS_pic_31__38_SimpleConstantCaseItem_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_pic_31__38_SimpleConstantCaseItem_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -276,9 +275,8 @@ GALGAS_pic_31__38_SimpleConstantCaseItem GALGAS_pic_31__38_SimpleConstantCaseIte
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_SimpleConstantCaseItem_2D_weak ("pic18SimpleConstantCaseItem-weak",
-                                                                  & kTypeDescriptor_GALGAS_pic_31__38_AbstractCaseItem_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SimpleConstantCaseItem_2D_weak ("pic18SimpleConstantCaseItem-weak",
+                                                                                                 & kTypeDescriptor_GALGAS_pic_31__38_AbstractCaseItem_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -377,10 +375,10 @@ GALGAS_pic_31__38_AbstractCaseItem (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_IntervalCaseItem GALGAS_pic_31__38_IntervalCaseItem::constructor_new (const GALGAS_immediatExpression & inAttribute_mMinExpression,
-                                                                                        const GALGAS_immediatExpression & inAttribute_mMaxExpression,
-                                                                                        const GALGAS_location & inAttribute_mCaseExpressionLocation
-                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_pic_31__38_IntervalCaseItem GALGAS_pic_31__38_IntervalCaseItem::class_func_new (const GALGAS_immediatExpression & inAttribute_mMinExpression,
+                                                                                       const GALGAS_immediatExpression & inAttribute_mMaxExpression,
+                                                                                       const GALGAS_location & inAttribute_mCaseExpressionLocation
+                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_IntervalCaseItem result ;
   if (inAttribute_mMinExpression.isValid () && inAttribute_mMaxExpression.isValid () && inAttribute_mCaseExpressionLocation.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_pic_31__38_IntervalCaseItem (inAttribute_mMinExpression, inAttribute_mMaxExpression, inAttribute_mCaseExpressionLocation COMMA_THERE)) ;
@@ -503,9 +501,8 @@ acPtr_class * cPtr_pic_31__38_IntervalCaseItem::duplicate (LOCATION_ARGS) const 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_IntervalCaseItem ("pic18IntervalCaseItem",
-                                                    & kTypeDescriptor_GALGAS_pic_31__38_AbstractCaseItem) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_IntervalCaseItem ("pic18IntervalCaseItem",
+                                                                                   & kTypeDescriptor_GALGAS_pic_31__38_AbstractCaseItem) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -586,7 +583,7 @@ GALGAS_pic_31__38_AbstractCaseItem_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_IntervalCaseItem_2D_weak GALGAS_pic_31__38_IntervalCaseItem_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_pic_31__38_IntervalCaseItem_2D_weak GALGAS_pic_31__38_IntervalCaseItem_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_pic_31__38_IntervalCaseItem_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -614,9 +611,8 @@ GALGAS_pic_31__38_IntervalCaseItem GALGAS_pic_31__38_IntervalCaseItem_2D_weak::b
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_IntervalCaseItem_2D_weak ("pic18IntervalCaseItem-weak",
-                                                            & kTypeDescriptor_GALGAS_pic_31__38_AbstractCaseItem_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_IntervalCaseItem_2D_weak ("pic18IntervalCaseItem-weak",
+                                                                                           & kTypeDescriptor_GALGAS_pic_31__38_AbstractCaseItem_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -660,7 +656,7 @@ GALGAS_pic_31__38_IntervalCaseItem_2D_weak GALGAS_pic_31__38_IntervalCaseItem_2D
 class cCollectionElement_pic_31__38_CaseExpressionList : public cCollectionElement {
   public: GALGAS_pic_31__38_CaseExpressionList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_pic_31__38_CaseExpressionList (const GALGAS_pic_31__38_AbstractCaseItem & in_mCaseItem
                                                             COMMA_LOCATION_ARGS) ;
   public: cCollectionElement_pic_31__38_CaseExpressionList (const GALGAS_pic_31__38_CaseExpressionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
@@ -738,14 +734,14 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_pic_31__38_CaseExpressionList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::constructor_listWithValue (const GALGAS_pic_31__38_AbstractCaseItem & inOperand0
-                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::class_func_listWithValue (const GALGAS_pic_31__38_AbstractCaseItem & inOperand0
+                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_CaseExpressionList result ;
   if (inOperand0.isValid ()) {
     result = GALGAS_pic_31__38_CaseExpressionList (capCollectionElementArray ()) ;
@@ -925,7 +921,7 @@ GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::add_o
 GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                     Compiler * inCompiler
                                                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_CaseExpressionList result = GALGAS_pic_31__38_CaseExpressionList::constructor_emptyList (THERE) ;
+  GALGAS_pic_31__38_CaseExpressionList result = GALGAS_pic_31__38_CaseExpressionList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -935,7 +931,7 @@ GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::gette
 GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                     Compiler * inCompiler
                                                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_CaseExpressionList result = GALGAS_pic_31__38_CaseExpressionList::constructor_emptyList (THERE) ;
+  GALGAS_pic_31__38_CaseExpressionList result = GALGAS_pic_31__38_CaseExpressionList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -945,7 +941,7 @@ GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::gette
 GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                                   Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_CaseExpressionList result = GALGAS_pic_31__38_CaseExpressionList::constructor_emptyList (THERE) ;
+  GALGAS_pic_31__38_CaseExpressionList result = GALGAS_pic_31__38_CaseExpressionList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -1023,9 +1019,8 @@ GALGAS_pic_31__38_AbstractCaseItem cEnumerator_pic_31__38_CaseExpressionList::cu
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList ("pic18CaseExpressionList",
-                                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList ("pic18CaseExpressionList",
+                                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1069,7 +1064,7 @@ GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::extra
 class cCollectionElement_pic_31__38_SwitchInstructionCaseList : public cCollectionElement {
   public: GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_pic_31__38_SwitchInstructionCaseList (const GALGAS_location & in_mStartOfCase,
                                                                    const GALGAS_pic_31__38_CaseExpressionList & in_mCaseExpressionList,
                                                                    const GALGAS_pic_31__38_InstructionList & in_mInstructionList
@@ -1159,16 +1154,16 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionCaseList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionCaseList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_pic_31__38_SwitchInstructionCaseList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionCaseList::constructor_listWithValue (const GALGAS_location & inOperand0,
-                                                                                                                    const GALGAS_pic_31__38_CaseExpressionList & inOperand1,
-                                                                                                                    const GALGAS_pic_31__38_InstructionList & inOperand2
-                                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionCaseList::class_func_listWithValue (const GALGAS_location & inOperand0,
+                                                                                                                   const GALGAS_pic_31__38_CaseExpressionList & inOperand1,
+                                                                                                                   const GALGAS_pic_31__38_InstructionList & inOperand2
+                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_SwitchInstructionCaseList result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     result = GALGAS_pic_31__38_SwitchInstructionCaseList (capCollectionElementArray ()) ;
@@ -1392,7 +1387,7 @@ GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionC
 GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionCaseList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                                   Compiler * inCompiler
                                                                                                                   COMMA_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_SwitchInstructionCaseList result = GALGAS_pic_31__38_SwitchInstructionCaseList::constructor_emptyList (THERE) ;
+  GALGAS_pic_31__38_SwitchInstructionCaseList result = GALGAS_pic_31__38_SwitchInstructionCaseList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -1402,7 +1397,7 @@ GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionC
 GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionCaseList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                                   Compiler * inCompiler
                                                                                                                   COMMA_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_SwitchInstructionCaseList result = GALGAS_pic_31__38_SwitchInstructionCaseList::constructor_emptyList (THERE) ;
+  GALGAS_pic_31__38_SwitchInstructionCaseList result = GALGAS_pic_31__38_SwitchInstructionCaseList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -1412,7 +1407,7 @@ GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionC
 GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionCaseList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                                                 Compiler * inCompiler
                                                                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_SwitchInstructionCaseList result = GALGAS_pic_31__38_SwitchInstructionCaseList::constructor_emptyList (THERE) ;
+  GALGAS_pic_31__38_SwitchInstructionCaseList result = GALGAS_pic_31__38_SwitchInstructionCaseList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -1564,9 +1559,8 @@ GALGAS_pic_31__38_InstructionList cEnumerator_pic_31__38_SwitchInstructionCaseLi
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList ("pic18SwitchInstructionCaseList",
-                                                             nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList ("pic18SwitchInstructionCaseList",
+                                                                                            nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1668,11 +1662,11 @@ GALGAS_pic_31__38_PiccoloInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_Instruction_5F_switch GALGAS_pic_31__38_Instruction_5F_switch::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                  const GALGAS_pic_31__38_SwitchInstructionCaseList & inAttribute_mCaseList,
-                                                                                                  const GALGAS_location & inAttribute_mElseBranchStartLocation,
-                                                                                                  const GALGAS_pic_31__38_InstructionList & inAttribute_mElseInstructionList
-                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_pic_31__38_Instruction_5F_switch GALGAS_pic_31__38_Instruction_5F_switch::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                 const GALGAS_pic_31__38_SwitchInstructionCaseList & inAttribute_mCaseList,
+                                                                                                 const GALGAS_location & inAttribute_mElseBranchStartLocation,
+                                                                                                 const GALGAS_pic_31__38_InstructionList & inAttribute_mElseInstructionList
+                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_switch result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mCaseList.isValid () && inAttribute_mElseBranchStartLocation.isValid () && inAttribute_mElseInstructionList.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_switch (inAttribute_mInstructionLocation, inAttribute_mCaseList, inAttribute_mElseBranchStartLocation, inAttribute_mElseInstructionList COMMA_THERE)) ;
@@ -1798,9 +1792,8 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_switch::duplicate (LOCATION_ARGS) c
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_switch ("pic18Instruction_switch",
-                                                         & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_switch ("pic18Instruction_switch",
+                                                                                        & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1881,7 +1874,7 @@ GALGAS_pic_31__38_PiccoloInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_Instruction_5F_switch_2D_weak GALGAS_pic_31__38_Instruction_5F_switch_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_pic_31__38_Instruction_5F_switch_2D_weak GALGAS_pic_31__38_Instruction_5F_switch_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_pic_31__38_Instruction_5F_switch_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -1909,9 +1902,8 @@ GALGAS_pic_31__38_Instruction_5F_switch GALGAS_pic_31__38_Instruction_5F_switch_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_switch_2D_weak ("pic18Instruction_switch-weak",
-                                                                 & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_switch_2D_weak ("pic18Instruction_switch-weak",
+                                                                                                & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2001,7 +1993,7 @@ GALGAS_caseConstantMap & GALGAS_caseConstantMap::operator = (const GALGAS_caseCo
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_caseConstantMap GALGAS_caseConstantMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_caseConstantMap GALGAS_caseConstantMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_caseConstantMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -2009,8 +2001,8 @@ GALGAS_caseConstantMap GALGAS_caseConstantMap::constructor_emptyMap (LOCATION_AR
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_caseConstantMap GALGAS_caseConstantMap::constructor_mapWithMapToOverride (const GALGAS_caseConstantMap & inMapToOverride
-                                                                                 COMMA_LOCATION_ARGS) {
+GALGAS_caseConstantMap GALGAS_caseConstantMap::class_func_mapWithMapToOverride (const GALGAS_caseConstantMap & inMapToOverride
+                                                                                COMMA_LOCATION_ARGS) {
   GALGAS_caseConstantMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -2121,9 +2113,8 @@ bool GALGAS_caseConstantMap::optional_searchKey (const GALGAS_string & inKey) co
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_caseConstantMap ("caseConstantMap",
-                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_caseConstantMap ("caseConstantMap",
+                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2257,7 +2248,7 @@ GALGAS_pic_31__38__5F_dataMap & GALGAS_pic_31__38__5F_dataMap::operator = (const
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38__5F_dataMap GALGAS_pic_31__38__5F_dataMap::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_pic_31__38__5F_dataMap GALGAS_pic_31__38__5F_dataMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_pic_31__38__5F_dataMap result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -2265,8 +2256,8 @@ GALGAS_pic_31__38__5F_dataMap GALGAS_pic_31__38__5F_dataMap::constructor_emptyMa
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38__5F_dataMap GALGAS_pic_31__38__5F_dataMap::constructor_mapWithMapToOverride (const GALGAS_pic_31__38__5F_dataMap & inMapToOverride
-                                                                                               COMMA_LOCATION_ARGS) {
+GALGAS_pic_31__38__5F_dataMap GALGAS_pic_31__38__5F_dataMap::class_func_mapWithMapToOverride (const GALGAS_pic_31__38__5F_dataMap & inMapToOverride
+                                                                                              COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38__5F_dataMap result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -2486,9 +2477,8 @@ bool GALGAS_pic_31__38__5F_dataMap::optional_searchKey (const GALGAS_string & in
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38__5F_dataMap ("pic18_dataMap",
-                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataMap ("pic18_dataMap",
+                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2606,9 +2596,8 @@ mProperty_mInstructionLocation (in_mInstructionLocation) {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction ("ipic18SequentialInstruction",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction ("ipic18SequentialInstruction",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2689,7 +2678,7 @@ AC_GALGAS_weak_reference (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_SequentialInstruction_2D_weak GALGAS_ipic_31__38_SequentialInstruction_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_SequentialInstruction_2D_weak GALGAS_ipic_31__38_SequentialInstruction_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_SequentialInstruction_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -2717,9 +2706,8 @@ GALGAS_ipic_31__38_SequentialInstruction GALGAS_ipic_31__38_SequentialInstructio
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak ("ipic18SequentialInstruction-weak",
-                                                                  nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak ("ipic18SequentialInstruction-weak",
+                                                                                                 nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2763,7 +2751,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak GALGAS_ipic_31__38_SequentialIn
 class cCollectionElement_ipic_31__38_SequentialInstructionList : public cCollectionElement {
   public: GALGAS_ipic_31__38_SequentialInstructionList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_ipic_31__38_SequentialInstructionList (const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
                                                                     const GALGAS_uint & in_mMin,
                                                                     const GALGAS_uint & in_mMax
@@ -2853,16 +2841,16 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_ipic_31__38_SequentialInstructionList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::constructor_listWithValue (const GALGAS_ipic_31__38_SequentialInstruction & inOperand0,
-                                                                                                                      const GALGAS_uint & inOperand1,
-                                                                                                                      const GALGAS_uint & inOperand2
-                                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::class_func_listWithValue (const GALGAS_ipic_31__38_SequentialInstruction & inOperand0,
+                                                                                                                     const GALGAS_uint & inOperand1,
+                                                                                                                     const GALGAS_uint & inOperand2
+                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_SequentialInstructionList result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     result = GALGAS_ipic_31__38_SequentialInstructionList (capCollectionElementArray ()) ;
@@ -3086,7 +3074,7 @@ GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstru
 GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                                     Compiler * inCompiler
                                                                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_ipic_31__38_SequentialInstructionList result = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (THERE) ;
+  GALGAS_ipic_31__38_SequentialInstructionList result = GALGAS_ipic_31__38_SequentialInstructionList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -3096,7 +3084,7 @@ GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstru
 GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                                     Compiler * inCompiler
                                                                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_ipic_31__38_SequentialInstructionList result = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (THERE) ;
+  GALGAS_ipic_31__38_SequentialInstructionList result = GALGAS_ipic_31__38_SequentialInstructionList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -3106,7 +3094,7 @@ GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstru
 GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                                                   Compiler * inCompiler
                                                                                                                   COMMA_LOCATION_ARGS) const {
-  GALGAS_ipic_31__38_SequentialInstructionList result = GALGAS_ipic_31__38_SequentialInstructionList::constructor_emptyList (THERE) ;
+  GALGAS_ipic_31__38_SequentialInstructionList result = GALGAS_ipic_31__38_SequentialInstructionList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -3258,9 +3246,8 @@ GALGAS_uint cEnumerator_ipic_31__38_SequentialInstructionList::current_mMax (LOC
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList ("ipic18SequentialInstructionList",
-                                                              nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList ("ipic18SequentialInstructionList",
+                                                                                             nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3378,9 +3365,8 @@ mProperty_mInstructionLocation (in_mInstructionLocation) {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator ("ipic18AbstractBlockTerminator",
-                                                            nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator ("ipic18AbstractBlockTerminator",
+                                                                                           nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3461,7 +3447,7 @@ AC_GALGAS_weak_reference (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -3489,9 +3475,8 @@ GALGAS_ipic_31__38_AbstractBlockTerminator GALGAS_ipic_31__38_AbstractBlockTermi
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak ("ipic18AbstractBlockTerminator-weak",
-                                                                    nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak ("ipic18AbstractBlockTerminator-weak",
+                                                                                                   nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3535,7 +3520,7 @@ GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak GALGAS_ipic_31__38_AbstractBl
 class cCollectionElement_ipic_31__38_BlockList : public cCollectionElement {
   public: GALGAS_ipic_31__38_BlockList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_ipic_31__38_BlockList (const GALGAS_ipic_31__38_Block & in_mBlock
                                                     COMMA_LOCATION_ARGS) ;
   public: cCollectionElement_ipic_31__38_BlockList (const GALGAS_ipic_31__38_BlockList_2D_element & inElement COMMA_LOCATION_ARGS) ;
@@ -3613,14 +3598,14 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_ipic_31__38_BlockList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::constructor_listWithValue (const GALGAS_ipic_31__38_Block & inOperand0
-                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::class_func_listWithValue (const GALGAS_ipic_31__38_Block & inOperand0
+                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_BlockList result ;
   if (inOperand0.isValid ()) {
     result = GALGAS_ipic_31__38_BlockList (capCollectionElementArray ()) ;
@@ -3800,7 +3785,7 @@ GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::add_operation (const 
 GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                     Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_ipic_31__38_BlockList result = GALGAS_ipic_31__38_BlockList::constructor_emptyList (THERE) ;
+  GALGAS_ipic_31__38_BlockList result = GALGAS_ipic_31__38_BlockList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -3810,7 +3795,7 @@ GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::getter_subListWithRan
 GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                     Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_ipic_31__38_BlockList result = GALGAS_ipic_31__38_BlockList::constructor_emptyList (THERE) ;
+  GALGAS_ipic_31__38_BlockList result = GALGAS_ipic_31__38_BlockList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -3820,7 +3805,7 @@ GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::getter_subListFromInd
 GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
-  GALGAS_ipic_31__38_BlockList result = GALGAS_ipic_31__38_BlockList::constructor_emptyList (THERE) ;
+  GALGAS_ipic_31__38_BlockList result = GALGAS_ipic_31__38_BlockList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -3898,9 +3883,8 @@ GALGAS_ipic_31__38_Block cEnumerator_ipic_31__38_BlockList::current_mBlock (LOCA
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_BlockList ("ipic18BlockList",
-                                              nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_BlockList ("ipic18BlockList",
+                                                                             nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3993,9 +3977,8 @@ cPtr_ipic_31__38_AbstractBlockTerminator (in_mInstructionLocation COMMA_THERE) {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator ("ipic18SingleInstructionTerminator",
-                                                                & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator ("ipic18SingleInstructionTerminator",
+                                                                                               & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4076,7 +4059,7 @@ GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -4104,9 +4087,8 @@ GALGAS_ipic_31__38_SingleInstructionTerminator GALGAS_ipic_31__38_SingleInstruct
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak ("ipic18SingleInstructionTerminator-weak",
-                                                                        & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak ("ipic18SingleInstructionTerminator-weak",
+                                                                                                       & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4196,8 +4178,8 @@ GALGAS_ipic_31__38_SingleInstructionTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ReturnTerminator GALGAS_ipic_31__38_ReturnTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation
-                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_ReturnTerminator GALGAS_ipic_31__38_ReturnTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation
+                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_ReturnTerminator result ;
   if (inAttribute_mInstructionLocation.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_ReturnTerminator (inAttribute_mInstructionLocation COMMA_THERE)) ;
@@ -4242,9 +4224,8 @@ acPtr_class * cPtr_ipic_31__38_ReturnTerminator::duplicate (LOCATION_ARGS) const
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_ReturnTerminator ("ipic18ReturnTerminator",
-                                                     & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ReturnTerminator ("ipic18ReturnTerminator",
+                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4325,7 +4306,7 @@ GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ReturnTerminator_2D_weak GALGAS_ipic_31__38_ReturnTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_ReturnTerminator_2D_weak GALGAS_ipic_31__38_ReturnTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_ReturnTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -4353,9 +4334,8 @@ GALGAS_ipic_31__38_ReturnTerminator GALGAS_ipic_31__38_ReturnTerminator_2D_weak:
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_ReturnTerminator_2D_weak ("ipic18ReturnTerminator-weak",
-                                                             & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ReturnTerminator_2D_weak ("ipic18ReturnTerminator-weak",
+                                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4449,9 +4429,9 @@ GALGAS_ipic_31__38_SingleInstructionTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_RetlwTerminator GALGAS_ipic_31__38_RetlwTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                        const GALGAS_uint & inAttribute_mLiteralValue
-                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_RetlwTerminator GALGAS_ipic_31__38_RetlwTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                       const GALGAS_uint & inAttribute_mLiteralValue
+                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_RetlwTerminator result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mLiteralValue.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_RetlwTerminator (inAttribute_mInstructionLocation, inAttribute_mLiteralValue COMMA_THERE)) ;
@@ -4523,9 +4503,8 @@ acPtr_class * cPtr_ipic_31__38_RetlwTerminator::duplicate (LOCATION_ARGS) const 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_RetlwTerminator ("ipic18RetlwTerminator",
-                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetlwTerminator ("ipic18RetlwTerminator",
+                                                                                   & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4606,7 +4585,7 @@ GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_RetlwTerminator_2D_weak GALGAS_ipic_31__38_RetlwTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_RetlwTerminator_2D_weak GALGAS_ipic_31__38_RetlwTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_RetlwTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -4634,9 +4613,8 @@ GALGAS_ipic_31__38_RetlwTerminator GALGAS_ipic_31__38_RetlwTerminator_2D_weak::b
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_RetlwTerminator_2D_weak ("ipic18RetlwTerminator-weak",
-                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetlwTerminator_2D_weak ("ipic18RetlwTerminator-weak",
+                                                                                           & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4730,9 +4708,9 @@ GALGAS_ipic_31__38_SingleInstructionTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_RetfieTerminator GALGAS_ipic_31__38_RetfieTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                          const GALGAS_bool & inAttribute_mFastReturn
-                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_RetfieTerminator GALGAS_ipic_31__38_RetfieTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                         const GALGAS_bool & inAttribute_mFastReturn
+                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_RetfieTerminator result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mFastReturn.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_RetfieTerminator (inAttribute_mInstructionLocation, inAttribute_mFastReturn COMMA_THERE)) ;
@@ -4804,9 +4782,8 @@ acPtr_class * cPtr_ipic_31__38_RetfieTerminator::duplicate (LOCATION_ARGS) const
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_RetfieTerminator ("ipic18RetfieTerminator",
-                                                     & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetfieTerminator ("ipic18RetfieTerminator",
+                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4887,7 +4864,7 @@ GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_RetfieTerminator_2D_weak GALGAS_ipic_31__38_RetfieTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_RetfieTerminator_2D_weak GALGAS_ipic_31__38_RetfieTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_RetfieTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -4915,9 +4892,8 @@ GALGAS_ipic_31__38_RetfieTerminator GALGAS_ipic_31__38_RetfieTerminator_2D_weak:
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_RetfieTerminator_2D_weak ("ipic18RetfieTerminator-weak",
-                                                             & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetfieTerminator_2D_weak ("ipic18RetfieTerminator-weak",
+                                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4998,7 +4974,7 @@ GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_JumpTerminator_2D_weak GALGAS_ipic_31__38_JumpTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_JumpTerminator_2D_weak GALGAS_ipic_31__38_JumpTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_JumpTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -5026,9 +5002,8 @@ GALGAS_ipic_31__38_JumpTerminator GALGAS_ipic_31__38_JumpTerminator_2D_weak::ban
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_JumpTerminator_2D_weak ("ipic18JumpTerminator-weak",
-                                                           & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_JumpTerminator_2D_weak ("ipic18JumpTerminator-weak",
+                                                                                          & kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5126,10 +5101,10 @@ GALGAS_ipic_31__38_AbstractBlockTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ComputedGotoTerminator GALGAS_ipic_31__38_ComputedGotoTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                      const GALGAS_lstringlist & inAttribute_mTargetLabels,
-                                                                                                      const GALGAS_bool & inAttribute_mUsesRCALL
-                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_ComputedGotoTerminator GALGAS_ipic_31__38_ComputedGotoTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                     const GALGAS_lstringlist & inAttribute_mTargetLabels,
+                                                                                                     const GALGAS_bool & inAttribute_mUsesRCALL
+                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_ComputedGotoTerminator result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mTargetLabels.isValid () && inAttribute_mUsesRCALL.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_ComputedGotoTerminator (inAttribute_mInstructionLocation, inAttribute_mTargetLabels, inAttribute_mUsesRCALL COMMA_THERE)) ;
@@ -5228,9 +5203,8 @@ acPtr_class * cPtr_ipic_31__38_ComputedGotoTerminator::duplicate (LOCATION_ARGS)
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator ("ipic18ComputedGotoTerminator",
-                                                           & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator ("ipic18ComputedGotoTerminator",
+                                                                                          & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5311,7 +5285,7 @@ GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ComputedGotoTerminator_2D_weak GALGAS_ipic_31__38_ComputedGotoTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_ComputedGotoTerminator_2D_weak GALGAS_ipic_31__38_ComputedGotoTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_ComputedGotoTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -5339,9 +5313,8 @@ GALGAS_ipic_31__38_ComputedGotoTerminator GALGAS_ipic_31__38_ComputedGotoTermina
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator_2D_weak ("ipic18ComputedGotoTerminator-weak",
-                                                                   & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator_2D_weak ("ipic18ComputedGotoTerminator-weak",
+                                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5439,10 +5412,10 @@ GALGAS_ipic_31__38_AbstractBlockTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ComputedRETLWTerminator GALGAS_ipic_31__38_ComputedRETLWTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                        const GALGAS_uintlist & inAttribute_mLiteralValues,
-                                                                                                        const GALGAS_bool & inAttribute_mUsesRCALL
-                                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_ComputedRETLWTerminator GALGAS_ipic_31__38_ComputedRETLWTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                       const GALGAS_uintlist & inAttribute_mLiteralValues,
+                                                                                                       const GALGAS_bool & inAttribute_mUsesRCALL
+                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_ComputedRETLWTerminator result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mLiteralValues.isValid () && inAttribute_mUsesRCALL.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_ComputedRETLWTerminator (inAttribute_mInstructionLocation, inAttribute_mLiteralValues, inAttribute_mUsesRCALL COMMA_THERE)) ;
@@ -5541,9 +5514,8 @@ acPtr_class * cPtr_ipic_31__38_ComputedRETLWTerminator::duplicate (LOCATION_ARGS
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator ("ipic18ComputedRETLWTerminator",
-                                                            & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator ("ipic18ComputedRETLWTerminator",
+                                                                                           & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5624,7 +5596,7 @@ GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ComputedRETLWTerminator_2D_weak GALGAS_ipic_31__38_ComputedRETLWTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_ComputedRETLWTerminator_2D_weak GALGAS_ipic_31__38_ComputedRETLWTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_ComputedRETLWTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -5652,9 +5624,8 @@ GALGAS_ipic_31__38_ComputedRETLWTerminator GALGAS_ipic_31__38_ComputedRETLWTermi
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator_2D_weak ("ipic18ComputedRETLWTerminator-weak",
-                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator_2D_weak ("ipic18ComputedRETLWTerminator-weak",
+                                                                                                   & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5697,7 +5668,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_conditionalBranchMode GALGAS_conditionalBranchMode::constructor_native (UNUSED_LOCATION_ARGS) {
+GALGAS_conditionalBranchMode GALGAS_conditionalBranchMode::class_func_native (UNUSED_LOCATION_ARGS) {
   GALGAS_conditionalBranchMode result ;
   result.mEnum = kEnum_native ;
   return result ;
@@ -5705,7 +5676,7 @@ GALGAS_conditionalBranchMode GALGAS_conditionalBranchMode::constructor_native (U
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_conditionalBranchMode GALGAS_conditionalBranchMode::constructor_ipicBRA (UNUSED_LOCATION_ARGS) {
+GALGAS_conditionalBranchMode GALGAS_conditionalBranchMode::class_func_ipicBRA (UNUSED_LOCATION_ARGS) {
   GALGAS_conditionalBranchMode result ;
   result.mEnum = kEnum_ipicBRA ;
   return result ;
@@ -5713,7 +5684,7 @@ GALGAS_conditionalBranchMode GALGAS_conditionalBranchMode::constructor_ipicBRA (
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_conditionalBranchMode GALGAS_conditionalBranchMode::constructor_ipicGOTO (UNUSED_LOCATION_ARGS) {
+GALGAS_conditionalBranchMode GALGAS_conditionalBranchMode::class_func_ipicGOTO (UNUSED_LOCATION_ARGS) {
   GALGAS_conditionalBranchMode result ;
   result.mEnum = kEnum_ipicGOTO ;
   return result ;
@@ -5798,9 +5769,8 @@ typeComparisonResult GALGAS_conditionalBranchMode::objectCompare (const GALGAS_c
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_conditionalBranchMode ("conditionalBranchMode",
-                                              nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_conditionalBranchMode ("conditionalBranchMode",
+                                                                             nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5881,7 +5851,7 @@ GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ConditionalJumpTerminator_2D_weak GALGAS_ipic_31__38_ConditionalJumpTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_ConditionalJumpTerminator_2D_weak GALGAS_ipic_31__38_ConditionalJumpTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_ConditionalJumpTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -5909,9 +5879,8 @@ GALGAS_ipic_31__38_ConditionalJumpTerminator GALGAS_ipic_31__38_ConditionalJumpT
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator_2D_weak ("ipic18ConditionalJumpTerminator-weak",
-                                                                      & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator_2D_weak ("ipic18ConditionalJumpTerminator-weak",
+                                                                                                     & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6009,10 +5978,10 @@ GALGAS_ipic_31__38_AbstractBlockTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ComputedBraTerminator GALGAS_ipic_31__38_ComputedBraTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                    const GALGAS_lstringlist & inAttribute_mTargetLabels,
-                                                                                                    const GALGAS_bool & inAttribute_mUsesRCALL
-                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_ComputedBraTerminator GALGAS_ipic_31__38_ComputedBraTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                   const GALGAS_lstringlist & inAttribute_mTargetLabels,
+                                                                                                   const GALGAS_bool & inAttribute_mUsesRCALL
+                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_ComputedBraTerminator result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mTargetLabels.isValid () && inAttribute_mUsesRCALL.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_ComputedBraTerminator (inAttribute_mInstructionLocation, inAttribute_mTargetLabels, inAttribute_mUsesRCALL COMMA_THERE)) ;
@@ -6111,9 +6080,8 @@ acPtr_class * cPtr_ipic_31__38_ComputedBraTerminator::duplicate (LOCATION_ARGS) 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator ("ipic18ComputedBraTerminator",
-                                                          & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator ("ipic18ComputedBraTerminator",
+                                                                                         & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6194,7 +6162,7 @@ GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_ComputedBraTerminator_2D_weak GALGAS_ipic_31__38_ComputedBraTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_ComputedBraTerminator_2D_weak GALGAS_ipic_31__38_ComputedBraTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_ComputedBraTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -6222,9 +6190,8 @@ GALGAS_ipic_31__38_ComputedBraTerminator GALGAS_ipic_31__38_ComputedBraTerminato
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator_2D_weak ("ipic18ComputedBraTerminator-weak",
-                                                                  & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator_2D_weak ("ipic18ComputedBraTerminator-weak",
+                                                                                                 & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6267,7 +6234,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_RegisterComparison GALGAS_ipic_31__38_RegisterComparison::constructor_registerEqualsToW (UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38_RegisterComparison GALGAS_ipic_31__38_RegisterComparison::class_func_registerEqualsToW (UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38_RegisterComparison result ;
   result.mEnum = kEnum_registerEqualsToW ;
   return result ;
@@ -6275,7 +6242,7 @@ GALGAS_ipic_31__38_RegisterComparison GALGAS_ipic_31__38_RegisterComparison::con
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_RegisterComparison GALGAS_ipic_31__38_RegisterComparison::constructor_registerGreaterThanW (UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38_RegisterComparison GALGAS_ipic_31__38_RegisterComparison::class_func_registerGreaterThanW (UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38_RegisterComparison result ;
   result.mEnum = kEnum_registerGreaterThanW ;
   return result ;
@@ -6283,7 +6250,7 @@ GALGAS_ipic_31__38_RegisterComparison GALGAS_ipic_31__38_RegisterComparison::con
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_RegisterComparison GALGAS_ipic_31__38_RegisterComparison::constructor_registerLowerThanW (UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38_RegisterComparison GALGAS_ipic_31__38_RegisterComparison::class_func_registerLowerThanW (UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38_RegisterComparison result ;
   result.mEnum = kEnum_registerLowerThanW ;
   return result ;
@@ -6368,9 +6335,8 @@ typeComparisonResult GALGAS_ipic_31__38_RegisterComparison::objectCompare (const
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_RegisterComparison ("ipic18RegisterComparison",
-                                                       nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RegisterComparison ("ipic18RegisterComparison",
+                                                                                      nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6515,9 +6481,8 @@ mProperty_mSingleInstructionTerminatorIfConditionFalse (in_mSingleInstructionTer
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator ("ipic18AbstractConditionTerminator",
-                                                                & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator ("ipic18AbstractConditionTerminator",
+                                                                                               & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6598,7 +6563,7 @@ GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -6626,9 +6591,8 @@ GALGAS_ipic_31__38_AbstractConditionTerminator GALGAS_ipic_31__38_AbstractCondit
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak ("ipic18AbstractConditionTerminator-weak",
-                                                                        & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak ("ipic18AbstractConditionTerminator-weak",
+                                                                                                       & kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6688,11 +6652,11 @@ mProperty_mNeedsBSR (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::constructor_new (const GALGAS_string & in_mAssemblyString,
-                                                                                                                                      const GALGAS_uint & in_mRegisterAddress,
-                                                                                                                                      const GALGAS_bool & in_mNeedsBSR,
-                                                                                                                                      Compiler * /* inCompiler */
-                                                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::class_func_new (const GALGAS_string & in_mAssemblyString,
+                                                                                                                                     const GALGAS_uint & in_mRegisterAddress,
+                                                                                                                                     const GALGAS_bool & in_mNeedsBSR,
+                                                                                                                                     Compiler * /* inCompiler */
+                                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression result ;
   if (in_mAssemblyString.isValid () && in_mRegisterAddress.isValid () && in_mNeedsBSR.isValid ()) {
     result = GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression (in_mAssemblyString, in_mRegisterAddress, in_mNeedsBSR) ;
@@ -6753,9 +6717,8 @@ void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::description (Str
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression ("ipic18_intermediate_registerExpression",
-                                                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression ("ipic18_intermediate_registerExpression",
+                                                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6836,7 +6799,7 @@ GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_RegisterComparisonTerminator_2D_weak GALGAS_pic_31__38_RegisterComparisonTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_pic_31__38_RegisterComparisonTerminator_2D_weak GALGAS_pic_31__38_RegisterComparisonTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_pic_31__38_RegisterComparisonTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -6864,9 +6827,8 @@ GALGAS_pic_31__38_RegisterComparisonTerminator GALGAS_pic_31__38_RegisterCompari
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonTerminator_2D_weak ("pic18RegisterComparisonTerminator-weak",
-                                                                        & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonTerminator_2D_weak ("pic18RegisterComparisonTerminator-weak",
+                                                                                                       & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6974,13 +6936,13 @@ GALGAS_ipic_31__38_AbstractConditionTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_IncDecRegisterTerminator GALGAS_ipic_31__38_IncDecRegisterTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                          const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionTrue,
-                                                                                                          const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionFalse,
-                                                                                                          const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                          const GALGAS_bool & inAttribute_mIncrement,
-                                                                                                          const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
-                                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_IncDecRegisterTerminator GALGAS_ipic_31__38_IncDecRegisterTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                         const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionTrue,
+                                                                                                         const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionFalse,
+                                                                                                         const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                         const GALGAS_bool & inAttribute_mIncrement,
+                                                                                                         const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
+                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_IncDecRegisterTerminator result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mSingleInstructionTerminatorIfConditionTrue.isValid () && inAttribute_mSingleInstructionTerminatorIfConditionFalse.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mIncrement.isValid () && inAttribute_m_5F_W_5F_isDestination.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_IncDecRegisterTerminator (inAttribute_mInstructionLocation, inAttribute_mSingleInstructionTerminatorIfConditionTrue, inAttribute_mSingleInstructionTerminatorIfConditionFalse, inAttribute_mRegisterDescription, inAttribute_mIncrement, inAttribute_m_5F_W_5F_isDestination COMMA_THERE)) ;
@@ -7112,9 +7074,8 @@ acPtr_class * cPtr_ipic_31__38_IncDecRegisterTerminator::duplicate (LOCATION_ARG
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_IncDecRegisterTerminator ("ipic18IncDecRegisterTerminator",
-                                                             & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_IncDecRegisterTerminator ("ipic18IncDecRegisterTerminator",
+                                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7195,7 +7156,7 @@ GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_IncDecRegisterTerminator_2D_weak GALGAS_ipic_31__38_IncDecRegisterTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_IncDecRegisterTerminator_2D_weak GALGAS_ipic_31__38_IncDecRegisterTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_IncDecRegisterTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -7223,9 +7184,8 @@ GALGAS_ipic_31__38_IncDecRegisterTerminator GALGAS_ipic_31__38_IncDecRegisterTer
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_IncDecRegisterTerminator_2D_weak ("ipic18IncDecRegisterTerminator-weak",
-                                                                     & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_IncDecRegisterTerminator_2D_weak ("ipic18IncDecRegisterTerminator-weak",
+                                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7325,11 +7285,11 @@ GALGAS_ipic_31__38_AbstractConditionTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_TestRegisterTerminator GALGAS_pic_31__38_TestRegisterTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                    const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionTrue,
-                                                                                                    const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionFalse,
-                                                                                                    const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription
-                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_pic_31__38_TestRegisterTerminator GALGAS_pic_31__38_TestRegisterTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                   const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionTrue,
+                                                                                                   const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionFalse,
+                                                                                                   const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription
+                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_TestRegisterTerminator result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mSingleInstructionTerminatorIfConditionTrue.isValid () && inAttribute_mSingleInstructionTerminatorIfConditionFalse.isValid () && inAttribute_mRegisterDescription.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_pic_31__38_TestRegisterTerminator (inAttribute_mInstructionLocation, inAttribute_mSingleInstructionTerminatorIfConditionTrue, inAttribute_mSingleInstructionTerminatorIfConditionFalse, inAttribute_mRegisterDescription COMMA_THERE)) ;
@@ -7407,9 +7367,8 @@ acPtr_class * cPtr_pic_31__38_TestRegisterTerminator::duplicate (LOCATION_ARGS) 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_TestRegisterTerminator ("pic18TestRegisterTerminator",
-                                                          & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_TestRegisterTerminator ("pic18TestRegisterTerminator",
+                                                                                         & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7490,7 +7449,7 @@ GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_TestRegisterTerminator_2D_weak GALGAS_pic_31__38_TestRegisterTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_pic_31__38_TestRegisterTerminator_2D_weak GALGAS_pic_31__38_TestRegisterTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_pic_31__38_TestRegisterTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -7518,9 +7477,8 @@ GALGAS_pic_31__38_TestRegisterTerminator GALGAS_pic_31__38_TestRegisterTerminato
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_TestRegisterTerminator_2D_weak ("pic18TestRegisterTerminator-weak",
-                                                                  & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_TestRegisterTerminator_2D_weak ("pic18TestRegisterTerminator-weak",
+                                                                                                 & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7624,12 +7582,12 @@ GALGAS_ipic_31__38_AbstractConditionTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_BitTestTerminator GALGAS_pic_31__38_BitTestTerminator::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                          const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionTrue,
-                                                                                          const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionFalse,
-                                                                                          const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                          const GALGAS_uint & inAttribute_mBitNumber
-                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_pic_31__38_BitTestTerminator GALGAS_pic_31__38_BitTestTerminator::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                         const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionTrue,
+                                                                                         const GALGAS_ipic_31__38_SingleInstructionTerminator & inAttribute_mSingleInstructionTerminatorIfConditionFalse,
+                                                                                         const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                         const GALGAS_uint & inAttribute_mBitNumber
+                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_BitTestTerminator result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mSingleInstructionTerminatorIfConditionTrue.isValid () && inAttribute_mSingleInstructionTerminatorIfConditionFalse.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mBitNumber.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_pic_31__38_BitTestTerminator (inAttribute_mInstructionLocation, inAttribute_mSingleInstructionTerminatorIfConditionTrue, inAttribute_mSingleInstructionTerminatorIfConditionFalse, inAttribute_mRegisterDescription, inAttribute_mBitNumber COMMA_THERE)) ;
@@ -7734,9 +7692,8 @@ acPtr_class * cPtr_pic_31__38_BitTestTerminator::duplicate (LOCATION_ARGS) const
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_BitTestTerminator ("pic18BitTestTerminator",
-                                                     & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestTerminator ("pic18BitTestTerminator",
+                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7817,7 +7774,7 @@ GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_pic_31__38_BitTestTerminator_2D_weak GALGAS_pic_31__38_BitTestTerminator_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_pic_31__38_BitTestTerminator_2D_weak GALGAS_pic_31__38_BitTestTerminator_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_pic_31__38_BitTestTerminator_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -7845,9 +7802,8 @@ GALGAS_pic_31__38_BitTestTerminator GALGAS_pic_31__38_BitTestTerminator_2D_weak:
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_pic_31__38_BitTestTerminator_2D_weak ("pic18BitTestTerminator-weak",
-                                                             & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestTerminator_2D_weak ("pic18BitTestTerminator-weak",
+                                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7941,9 +7897,9 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_InstructionWithNoOperand GALGAS_ipic_31__38_InstructionWithNoOperand::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                          const GALGAS_pic_31__38_InstructionWithNoOperandKind & inAttribute_mKind
-                                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38_InstructionWithNoOperand GALGAS_ipic_31__38_InstructionWithNoOperand::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                         const GALGAS_pic_31__38_InstructionWithNoOperandKind & inAttribute_mKind
+                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38_InstructionWithNoOperand result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mKind.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_InstructionWithNoOperand (inAttribute_mInstructionLocation, inAttribute_mKind COMMA_THERE)) ;
@@ -8015,9 +7971,8 @@ acPtr_class * cPtr_ipic_31__38_InstructionWithNoOperand::duplicate (LOCATION_ARG
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_InstructionWithNoOperand ("ipic18InstructionWithNoOperand",
-                                                             & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_InstructionWithNoOperand ("ipic18InstructionWithNoOperand",
+                                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8098,7 +8053,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38_InstructionWithNoOperand_2D_weak GALGAS_ipic_31__38_InstructionWithNoOperand_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38_InstructionWithNoOperand_2D_weak GALGAS_ipic_31__38_InstructionWithNoOperand_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38_InstructionWithNoOperand_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -8126,9 +8081,8 @@ GALGAS_ipic_31__38_InstructionWithNoOperand GALGAS_ipic_31__38_InstructionWithNo
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38_InstructionWithNoOperand_2D_weak ("ipic18InstructionWithNoOperand-weak",
-                                                                     & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_InstructionWithNoOperand_2D_weak ("ipic18InstructionWithNoOperand-weak",
+                                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8266,11 +8220,11 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                      const GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inAttribute_mInstruction_5F_FDA_5F_base_5F_code,
-                                                                                                                                      const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                                      const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
-                                                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                     const GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inAttribute_mInstruction_5F_FDA_5F_base_5F_code,
+                                                                                                                                     const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                                                     const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
+                                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction_5F_FDA_5F_base_5F_code.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_m_5F_W_5F_isDestination.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA (inAttribute_mInstructionLocation, inAttribute_mInstruction_5F_FDA_5F_base_5F_code, inAttribute_mRegisterDescription, inAttribute_m_5F_W_5F_isDestination COMMA_THERE)) ;
@@ -8396,9 +8350,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::duplicate
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA ("ipic18_intermediate_instruction_FDA",
-                                                                           & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA ("ipic18_intermediate_instruction_FDA",
+                                                                                                          & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8479,7 +8432,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -8507,9 +8460,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA GALGAS_ipic_31__38__5F
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2D_weak ("ipic18_intermediate_instruction_FDA-weak",
-                                                                                   & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2D_weak ("ipic18_intermediate_instruction_FDA-weak",
+                                                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8552,7 +8504,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::constructor_CLRF (UNUSED_LOCATION_ARGS) {
+GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_CLRF (UNUSED_LOCATION_ARGS) {
   GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_CLRF ;
   return result ;
@@ -8560,7 +8512,7 @@ GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::constructor_MOVWF (UNUSED_LOCATION_ARGS) {
+GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_MOVWF (UNUSED_LOCATION_ARGS) {
   GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_MOVWF ;
   return result ;
@@ -8568,7 +8520,7 @@ GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::constructor_MULWF (UNUSED_LOCATION_ARGS) {
+GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_MULWF (UNUSED_LOCATION_ARGS) {
   GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_MULWF ;
   return result ;
@@ -8576,7 +8528,7 @@ GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::constructor_NEGF (UNUSED_LOCATION_ARGS) {
+GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_NEGF (UNUSED_LOCATION_ARGS) {
   GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_NEGF ;
   return result ;
@@ -8584,7 +8536,7 @@ GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::constructor_SETF (UNUSED_LOCATION_ARGS) {
+GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_SETF (UNUSED_LOCATION_ARGS) {
   GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_SETF ;
   return result ;
@@ -8697,9 +8649,8 @@ typeComparisonResult GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::obj
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code ("FA_sequential_instruction_base_code",
-                                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code ("FA_sequential_instruction_base_code",
+                                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8797,10 +8748,10 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                    const GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inAttribute_mFAinstruction,
-                                                                                                                                    const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription
-                                                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                   const GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inAttribute_mFAinstruction,
+                                                                                                                                   const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription
+                                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mFAinstruction.isValid () && inAttribute_mRegisterDescription.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA (inAttribute_mInstructionLocation, inAttribute_mFAinstruction, inAttribute_mRegisterDescription COMMA_THERE)) ;
@@ -8899,9 +8850,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::duplicate 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA ("ipic18_intermediate_instruction_FA",
-                                                                          & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA ("ipic18_intermediate_instruction_FA",
+                                                                                                         & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8982,7 +8932,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -9010,9 +8960,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA GALGAS_ipic_31__38__5F_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2D_weak ("ipic18_intermediate_instruction_FA-weak",
-                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2D_weak ("ipic18_intermediate_instruction_FA-weak",
+                                                                                                                 & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9069,10 +9018,10 @@ mProperty_mRegisterAddress (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::constructor_new (const GALGAS_string & in_mAssemblyString,
-                                                                                                                                                                              const GALGAS_uint & in_mRegisterAddress,
-                                                                                                                                                                              Compiler * /* inCompiler */
-                                                                                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::class_func_new (const GALGAS_string & in_mAssemblyString,
+                                                                                                                                                                             const GALGAS_uint & in_mRegisterAddress,
+                                                                                                                                                                             Compiler * /* inCompiler */
+                                                                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication result ;
   if (in_mAssemblyString.isValid () && in_mRegisterAddress.isValid ()) {
     result = GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (in_mAssemblyString, in_mRegisterAddress) ;
@@ -9127,9 +9076,8 @@ void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndicati
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication ("ipic18_intermediate_registerExpressionWithoutBSRIndication",
-                                                                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication ("ipic18_intermediate_registerExpressionWithoutBSRIndication",
+                                                                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9227,10 +9175,10 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                          const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inAttribute_mSourceRegisterDescription,
-                                                                                                                                          const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inAttribute_mDestinationRegisterDescription
-                                                                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                         const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inAttribute_mSourceRegisterDescription,
+                                                                                                                                         const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inAttribute_mDestinationRegisterDescription
+                                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mSourceRegisterDescription.isValid () && inAttribute_mDestinationRegisterDescription.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF (inAttribute_mInstructionLocation, inAttribute_mSourceRegisterDescription, inAttribute_mDestinationRegisterDescription COMMA_THERE)) ;
@@ -9329,9 +9277,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::duplica
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF ("ipic18_intermediate_instruction_MOVFF",
-                                                                             & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF ("ipic18_intermediate_instruction_MOVFF",
+                                                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9412,7 +9359,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -9440,9 +9387,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF GALGAS_ipic_31__38__
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2D_weak ("ipic18_intermediate_instruction_MOVFF-weak",
-                                                                                     & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2D_weak ("ipic18_intermediate_instruction_MOVFF-weak",
+                                                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9540,10 +9486,10 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                                                const GALGAS_literal_5F_instruction_5F_opcode & inAttribute_mLiteralInstruction,
-                                                                                                                                                                const GALGAS_uint & inAttribute_mLiteralValue
-                                                                                                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                                               const GALGAS_literal_5F_instruction_5F_opcode & inAttribute_mLiteralInstruction,
+                                                                                                                                                               const GALGAS_uint & inAttribute_mLiteralValue
+                                                                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mLiteralInstruction.isValid () && inAttribute_mLiteralValue.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation (inAttribute_mInstructionLocation, inAttribute_mLiteralInstruction, inAttribute_mLiteralValue COMMA_THERE)) ;
@@ -9642,9 +9588,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperati
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation ("ipic18_intermediate_instruction_literalOperation",
-                                                                                        & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation ("ipic18_intermediate_instruction_literalOperation",
+                                                                                                                       & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9725,7 +9670,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -9753,9 +9698,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation GALGAS_ip
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2D_weak ("ipic18_intermediate_instruction_literalOperation-weak",
-                                                                                                & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2D_weak ("ipic18_intermediate_instruction_literalOperation-weak",
+                                                                                                                               & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9853,10 +9797,10 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                        const GALGAS_luint & inAttribute_mFSRindex,
-                                                                                                                                        const GALGAS_uint & inAttribute_mValue
-                                                                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                       const GALGAS_luint & inAttribute_mFSRindex,
+                                                                                                                                       const GALGAS_uint & inAttribute_mValue
+                                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mFSRindex.isValid () && inAttribute_mValue.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR (inAttribute_mInstructionLocation, inAttribute_mFSRindex, inAttribute_mValue COMMA_THERE)) ;
@@ -9955,9 +9899,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::duplicat
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR ("ipic18_intermediate_instruction_LFSR",
-                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR ("ipic18_intermediate_instruction_LFSR",
+                                                                                                           & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10038,7 +9981,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -10066,9 +10009,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR GALGAS_ipic_31__38__5
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2D_weak ("ipic18_intermediate_instruction_LFSR-weak",
-                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2D_weak ("ipic18_intermediate_instruction_LFSR-weak",
+                                                                                                                   & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10170,11 +10112,11 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                      const GALGAS_bit_5F_oriented_5F_op & inAttribute_mBitOrientedOp,
-                                                                                                                                      const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                                      const GALGAS_uint & inAttribute_mBitNumber
-                                                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                     const GALGAS_bit_5F_oriented_5F_op & inAttribute_mBitOrientedOp,
+                                                                                                                                     const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                                                     const GALGAS_uint & inAttribute_mBitNumber
+                                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mBitOrientedOp.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mBitNumber.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA (inAttribute_mInstructionLocation, inAttribute_mBitOrientedOp, inAttribute_mRegisterDescription, inAttribute_mBitNumber COMMA_THERE)) ;
@@ -10300,9 +10242,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::duplicate
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA ("ipic18_intermediate_instruction_FBA",
-                                                                           & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA ("ipic18_intermediate_instruction_FBA",
+                                                                                                          & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10383,7 +10324,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -10411,9 +10352,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA GALGAS_ipic_31__38__5F
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2D_weak ("ipic18_intermediate_instruction_FBA-weak",
-                                                                                   & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2D_weak ("ipic18_intermediate_instruction_FBA-weak",
+                                                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10494,7 +10434,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_JSR_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_JSR_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_JSR_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_JSR_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_JSR_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -10522,9 +10462,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_JSR GALGAS_ipic_31__38__5F_intermediate_5
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_JSR_2D_weak ("ipic18_intermediate_JSR-weak",
-                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_JSR_2D_weak ("ipic18_intermediate_JSR-weak",
+                                                                                                   & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10618,9 +10557,9 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                          const GALGAS_luint & inAttribute_mBankIndex
-                                                                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                         const GALGAS_luint & inAttribute_mBankIndex
+                                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mBankIndex.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB (inAttribute_mInstructionLocation, inAttribute_mBankIndex COMMA_THERE)) ;
@@ -10692,9 +10631,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::duplica
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB ("ipic18_intermediate_instruction_MOVLB",
-                                                                             & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB ("ipic18_intermediate_instruction_MOVLB",
+                                                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10775,7 +10713,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -10803,9 +10741,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB GALGAS_ipic_31__38__
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2D_weak ("ipic18_intermediate_instruction_MOVLB-weak",
-                                                                                     & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2D_weak ("ipic18_intermediate_instruction_MOVLB-weak",
+                                                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10899,9 +10836,9 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                        const GALGAS_uint & inAttribute_mBlankValue
-                                                                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                       const GALGAS_uint & inAttribute_mBlankValue
+                                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mBlankValue.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP (inAttribute_mInstructionLocation, inAttribute_mBlankValue COMMA_THERE)) ;
@@ -10973,9 +10910,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::duplicat
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP ("ipic18_intermediate_instruction_FNOP",
-                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP ("ipic18_intermediate_instruction_FNOP",
+                                                                                                           & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11056,7 +10992,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -11084,9 +11020,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP GALGAS_ipic_31__38__5
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2D_weak ("ipic18_intermediate_instruction_FNOP-weak",
-                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2D_weak ("ipic18_intermediate_instruction_FNOP-weak",
+                                                                                                                   & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11180,9 +11115,9 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                          const GALGAS_uint & inAttribute_mBlankValue
-                                                                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                         const GALGAS_uint & inAttribute_mBlankValue
+                                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mBlankValue.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK (inAttribute_mInstructionLocation, inAttribute_mBlankValue COMMA_THERE)) ;
@@ -11254,9 +11189,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::duplica
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK ("ipic18_intermediate_instruction_BLANK",
-                                                                             & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK ("ipic18_intermediate_instruction_BLANK",
+                                                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11337,7 +11271,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -11365,9 +11299,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK GALGAS_ipic_31__38__
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2D_weak ("ipic18_intermediate_instruction_BLANK-weak",
-                                                                                     & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2D_weak ("ipic18_intermediate_instruction_BLANK-weak",
+                                                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11461,9 +11394,9 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                          const GALGAS_tableAccessOption & inAttribute_mOption
-                                                                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                         const GALGAS_tableAccessOption & inAttribute_mOption
+                                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mOption.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD (inAttribute_mInstructionLocation, inAttribute_mOption COMMA_THERE)) ;
@@ -11535,9 +11468,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::duplica
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD ("ipic18_intermediate_instruction_TBLRD",
-                                                                             & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD ("ipic18_intermediate_instruction_TBLRD",
+                                                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11618,7 +11550,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -11646,9 +11578,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD GALGAS_ipic_31__38__
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2D_weak ("ipic18_intermediate_instruction_TBLRD-weak",
-                                                                                     & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2D_weak ("ipic18_intermediate_instruction_TBLRD-weak",
+                                                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11742,9 +11673,9 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                          const GALGAS_tableAccessOption & inAttribute_mOption
-                                                                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                         const GALGAS_tableAccessOption & inAttribute_mOption
+                                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mOption.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT (inAttribute_mInstructionLocation, inAttribute_mOption COMMA_THERE)) ;
@@ -11816,9 +11747,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::duplica
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT ("ipic18_intermediate_instruction_TBLWT",
-                                                                             & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT ("ipic18_intermediate_instruction_TBLWT",
+                                                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11899,7 +11829,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -11927,9 +11857,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT GALGAS_ipic_31__38__
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2D_weak ("ipic18_intermediate_instruction_TBLWT-weak",
-                                                                                     & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2D_weak ("ipic18_intermediate_instruction_TBLWT-weak",
+                                                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12023,9 +11952,9 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                        const GALGAS_luint & inAttribute_mOccurrenceFactor
-                                                                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                       const GALGAS_luint & inAttribute_mOccurrenceFactor
+                                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mOccurrenceFactor.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP (inAttribute_mInstructionLocation, inAttribute_mOccurrenceFactor COMMA_THERE)) ;
@@ -12097,9 +12026,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::duplicat
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP ("ipic18_intermediate_instruction_MNOP",
-                                                                            & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP ("ipic18_intermediate_instruction_MNOP",
+                                                                                                           & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12180,7 +12108,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -12208,9 +12136,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP GALGAS_ipic_31__38__5
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2D_weak ("ipic18_intermediate_instruction_MNOP-weak",
-                                                                                    & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2D_weak ("ipic18_intermediate_instruction_MNOP-weak",
+                                                                                                                   & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12304,9 +12231,9 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                            const GALGAS_luint & inAttribute_mOccurrenceFactor
-                                                                                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                           const GALGAS_luint & inAttribute_mOccurrenceFactor
+                                                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mOccurrenceFactor.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA (inAttribute_mInstructionLocation, inAttribute_mOccurrenceFactor COMMA_THERE)) ;
@@ -12378,9 +12305,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::duplic
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA ("ipic18_intermediate_instruction_NOPBRA",
-                                                                              & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA ("ipic18_intermediate_instruction_NOPBRA",
+                                                                                                             & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12461,7 +12387,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -12489,9 +12415,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA GALGAS_ipic_31__38_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2D_weak ("ipic18_intermediate_instruction_NOPBRA-weak",
-                                                                                      & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2D_weak ("ipic18_intermediate_instruction_NOPBRA-weak",
+                                                                                                                     & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12572,7 +12497,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -12600,9 +12525,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W GALGAS_ipic_31__38__5F_
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2D_weak ("ipic18_intermediate_MOV_LABEL_W-weak",
-                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2D_weak ("ipic18_intermediate_MOV_LABEL_W-weak",
+                                                                                                                 & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12700,10 +12624,10 @@ GALGAS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                                                  const GALGAS_ipic_31__38_SequentialInstructionList & inAttribute_mTargetInstructions,
-                                                                                                                                                                  const GALGAS_bool & inAttribute_mUsesRCALL
-                                                                                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                                                 const GALGAS_ipic_31__38_SequentialInstructionList & inAttribute_mTargetInstructions,
+                                                                                                                                                                 const GALGAS_bool & inAttribute_mUsesRCALL
+                                                                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mTargetInstructions.isValid () && inAttribute_mUsesRCALL.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall (inAttribute_mInstructionLocation, inAttribute_mTargetInstructions, inAttribute_mUsesRCALL COMMA_THERE)) ;
@@ -12802,9 +12726,8 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rc
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall ("ipic18_intermediate_instruction_computed_rcall",
-                                                                                         & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall ("ipic18_intermediate_instruction_computed_rcall",
+                                                                                                                        & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12885,7 +12808,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2D_weak GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -12913,9 +12836,8 @@ GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall GALGAS_i
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2D_weak ("ipic18_intermediate_instruction_computed_rcall-weak",
-                                                                                                 & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2D_weak ("ipic18_intermediate_instruction_computed_rcall-weak",
+                                                                                                                                & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13034,9 +12956,8 @@ mProperty_mEmbeddedInstruction (in_mEmbeddedInstruction) {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction ("ipic18_condition_skip_instruction",
-                                                                         & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction ("ipic18_condition_skip_instruction",
+                                                                                                        & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13117,7 +13038,7 @@ GALGAS_ipic_31__38_SequentialInstruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -13145,9 +13066,8 @@ GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction GALGAS_ipic_31__38__5F_c
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak ("ipic18_condition_skip_instruction-weak",
-                                                                                 & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak ("ipic18_condition_skip_instruction-weak",
+                                                                                                                & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13252,12 +13172,12 @@ GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                      const GALGAS_ipic_31__38_SequentialInstruction & inAttribute_mEmbeddedInstruction,
-                                                                                                                                      const GALGAS_bool & inAttribute_mSkipIfSet,
-                                                                                                                                      const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                                      const GALGAS_uint & inAttribute_mBitNumber
-                                                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                     const GALGAS_ipic_31__38_SequentialInstruction & inAttribute_mEmbeddedInstruction,
+                                                                                                                                     const GALGAS_bool & inAttribute_mSkipIfSet,
+                                                                                                                                     const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                                                     const GALGAS_uint & inAttribute_mBitNumber
+                                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mEmbeddedInstruction.isValid () && inAttribute_mSkipIfSet.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mBitNumber.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (inAttribute_mInstructionLocation, inAttribute_mEmbeddedInstruction, inAttribute_mSkipIfSet, inAttribute_mRegisterDescription, inAttribute_mBitNumber COMMA_THERE)) ;
@@ -13386,9 +13306,8 @@ acPtr_class * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::duplicate
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip ("ipic18_skip_instruction_BitTestSkip",
-                                                                           & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip ("ipic18_skip_instruction_BitTestSkip",
+                                                                                                          & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13469,7 +13388,7 @@ GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -13497,9 +13416,8 @@ GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip GALGAS_ipic_31__38__5F
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak ("ipic18_skip_instruction_BitTestSkip-weak",
-                                                                                   & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak ("ipic18_skip_instruction_BitTestSkip-weak",
+                                                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13542,7 +13460,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::constructor_CPFSEQ (UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_CPFSEQ (UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_CPFSEQ ;
   return result ;
@@ -13550,7 +13468,7 @@ GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::constructor_CPFSGT (UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_CPFSGT (UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_CPFSGT ;
   return result ;
@@ -13558,7 +13476,7 @@ GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::constructor_CPFSLT (UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_CPFSLT (UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_CPFSLT ;
   return result ;
@@ -13566,7 +13484,7 @@ GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::constructor_TSTFSZ (UNUSED_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_TSTFSZ (UNUSED_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
   result.mEnum = kEnum_TSTFSZ ;
   return result ;
@@ -13665,9 +13583,8 @@ typeComparisonResult GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code ("ipic18_compare_register_instruction_base_code",
-                                                                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code ("ipic18_compare_register_instruction_base_code",
+                                                                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13768,11 +13685,11 @@ GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                                      const GALGAS_ipic_31__38_SequentialInstruction & inAttribute_mEmbeddedInstruction,
-                                                                                                                                                      const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & inAttribute_mCompareInstruction,
-                                                                                                                                                      const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription
-                                                                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                                                     const GALGAS_ipic_31__38_SequentialInstruction & inAttribute_mEmbeddedInstruction,
+                                                                                                                                                     const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & inAttribute_mCompareInstruction,
+                                                                                                                                                     const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription
+                                                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mEmbeddedInstruction.isValid () && inAttribute_mCompareInstruction.isValid () && inAttribute_mRegisterDescription.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (inAttribute_mInstructionLocation, inAttribute_mEmbeddedInstruction, inAttribute_mCompareInstruction, inAttribute_mRegisterDescription COMMA_THERE)) ;
@@ -13874,9 +13791,8 @@ acPtr_class * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::d
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register ("ipic18_skip_instruction_compare_register",
-                                                                                   & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register ("ipic18_skip_instruction_compare_register",
+                                                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13957,7 +13873,7 @@ GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -13985,9 +13901,8 @@ GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GALGAS_ipic_31
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak ("ipic18_skip_instruction_compare_register-weak",
-                                                                                           & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak ("ipic18_skip_instruction_compare_register-weak",
+                                                                                                                          & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14030,7 +13945,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::constructor_DECFSZ (UNUSED_LOCATION_ARGS) {
+GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_DECFSZ (UNUSED_LOCATION_ARGS) {
   GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
   result.mEnum = kEnum_DECFSZ ;
   return result ;
@@ -14038,7 +13953,7 @@ GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::constructor_DCFSNZ (UNUSED_LOCATION_ARGS) {
+GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_DCFSNZ (UNUSED_LOCATION_ARGS) {
   GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
   result.mEnum = kEnum_DCFSNZ ;
   return result ;
@@ -14046,7 +13961,7 @@ GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::constructor_INCFSZ (UNUSED_LOCATION_ARGS) {
+GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_INCFSZ (UNUSED_LOCATION_ARGS) {
   GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
   result.mEnum = kEnum_INCFSZ ;
   return result ;
@@ -14054,7 +13969,7 @@ GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::constructor_INFSNZ (UNUSED_LOCATION_ARGS) {
+GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_INFSNZ (UNUSED_LOCATION_ARGS) {
   GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
   result.mEnum = kEnum_INFSNZ ;
   return result ;
@@ -14153,9 +14068,8 @@ typeComparisonResult GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::objectCo
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code ("skip_instruction_FDA_base_code",
-                                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code ("skip_instruction_FDA_base_code",
+                                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14260,12 +14174,12 @@ GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::constructor_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                      const GALGAS_ipic_31__38_SequentialInstruction & inAttribute_mEmbeddedInstruction,
-                                                                                                                      const GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inAttribute_mInstruction_5F_FDA_5F_base_5F_code,
-                                                                                                                      const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                      const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
-                                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
+                                                                                                                     const GALGAS_ipic_31__38_SequentialInstruction & inAttribute_mEmbeddedInstruction,
+                                                                                                                     const GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inAttribute_mInstruction_5F_FDA_5F_base_5F_code,
+                                                                                                                     const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
+                                                                                                                     const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
+                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA result ;
   if (inAttribute_mInstructionLocation.isValid () && inAttribute_mEmbeddedInstruction.isValid () && inAttribute_mInstruction_5F_FDA_5F_base_5F_code.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_m_5F_W_5F_isDestination.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (inAttribute_mInstructionLocation, inAttribute_mEmbeddedInstruction, inAttribute_mInstruction_5F_FDA_5F_base_5F_code, inAttribute_mRegisterDescription, inAttribute_m_5F_W_5F_isDestination COMMA_THERE)) ;
@@ -14394,9 +14308,8 @@ acPtr_class * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::duplicate (LOCATI
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ("ipic18_skip_instruction_FDA",
-                                                                   & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ("ipic18_skip_instruction_FDA",
+                                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14477,7 +14390,7 @@ GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -14505,9 +14418,8 @@ GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GALGAS_ipic_31__38__5F_skip_5F
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak ("ipic18_skip_instruction_FDA-weak",
-                                                                           & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2D_weak ("ipic18_skip_instruction_FDA-weak",
+                                                                                                          & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14606,7 +14518,7 @@ GALGAS_symbolTableForBlockOptimization & GALGAS_symbolTableForBlockOptimization:
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_symbolTableForBlockOptimization GALGAS_symbolTableForBlockOptimization::constructor_emptyMap (LOCATION_ARGS) {
+GALGAS_symbolTableForBlockOptimization GALGAS_symbolTableForBlockOptimization::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_symbolTableForBlockOptimization result ;
   result.makeNewEmptyMap (THERE) ;
   return result ;
@@ -14614,8 +14526,8 @@ GALGAS_symbolTableForBlockOptimization GALGAS_symbolTableForBlockOptimization::c
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_symbolTableForBlockOptimization GALGAS_symbolTableForBlockOptimization::constructor_mapWithMapToOverride (const GALGAS_symbolTableForBlockOptimization & inMapToOverride
-                                                                                                                 COMMA_LOCATION_ARGS) {
+GALGAS_symbolTableForBlockOptimization GALGAS_symbolTableForBlockOptimization::class_func_mapWithMapToOverride (const GALGAS_symbolTableForBlockOptimization & inMapToOverride
+                                                                                                                COMMA_LOCATION_ARGS) {
   GALGAS_symbolTableForBlockOptimization result ;
   result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
   return result ;
@@ -14790,9 +14702,8 @@ bool GALGAS_symbolTableForBlockOptimization::optional_searchKey (const GALGAS_st
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_symbolTableForBlockOptimization ("symbolTableForBlockOptimization",
-                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_symbolTableForBlockOptimization ("symbolTableForBlockOptimization",
+                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 

@@ -20,12 +20,12 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "galgas2/AC_GALGAS_sortedlist.h"
-#include "galgas2/capSortedListElement.h"
-#include "galgas2/cSortedListElement.h"
+#include "AC_GALGAS_sortedlist.h"
+#include "capSortedListElement.h"
+#include "cSortedListElement.h"
 #include "all-predefined-types.h"
-#include "utilities/MF_MemoryControl.h"
-#include "galgas2/C_Compiler.h"
+#include "MF_MemoryControl.h"
+#include "C_Compiler.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -41,7 +41,7 @@ class cSortedListNode {
   public : cSortedListNode * mPreviousPtr ;
   public : capSortedListElement mProperties ;
 
-//---  
+//---
   public : cSortedListNode (const capSortedListElement & inAttributes) ;
 
   public : cSortedListNode (cSortedListNode * inNode) ;
@@ -218,7 +218,7 @@ cSharedSortedListRoot::~ cSharedSortedListRoot (void) {
                                const cSortedListNode * inLast
                                COMMA_LOCATION_ARGS) {
     const cSortedListNode * * array = NULL ;
-    macroMyNewPODArray (array, const cSortedListNode *, inCount) ; 
+    macroMyNewPODArray (array, const cSortedListNode *, inCount) ;
     uint32_t idx = 0 ;
     // printf ("-----\n") ;
     populateCheckArray (inRoot, idx, array) ;
@@ -380,7 +380,7 @@ static void rotateRight (cSortedListNode * & ioRootPtr) {
   cSortedListNode * b = ioRootPtr->mInfPtr ;
   ioRootPtr->mInfPtr = b->mSupPtr ;
   b->mSupPtr = ioRootPtr ;
- 
+
   if (b->mBalance > 0) {
     ioRootPtr->mBalance += -b->mBalance - 1 ;
   }else{
@@ -635,7 +635,7 @@ void cSharedSortedListRoot::removeSmallestObject (capSortedListElement & outAttr
   //--- Remove from AVL tree
    bool branchHasBeenRemoved = false ; // Unused here
    internalRemoveLowestElement (mRoot, branchHasBeenRemoved) ;
-  //--- 
+  //---
     mCount -- ;
   }
   #ifndef DO_NOT_GENERATE_CHECKINGS
@@ -700,7 +700,7 @@ void cSharedSortedListRoot::removeGreatestObject (capSortedListElement & outAttr
   //--- Remove from AVL tree
    bool branchHasBeenRemoved = false ; // Unused here
    internalRemoveGreatestElement (mRoot, branchHasBeenRemoved) ;
-  //--- 
+  //---
     mCount -- ;
   }
   #ifndef DO_NOT_GENERATE_CHECKINGS

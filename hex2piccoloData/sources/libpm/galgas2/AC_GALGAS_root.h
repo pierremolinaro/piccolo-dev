@@ -25,7 +25,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/M_SourceLocation.h"
+#include "M_SourceLocation.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -67,10 +67,10 @@ class AC_GALGAS_root {
 
 //--- Destructor
   public : inline virtual ~ AC_GALGAS_root (void) {}
-  
+
 //--- Methods that every type should implement
   public : virtual bool isValid (void) const = 0 ;
-  
+
   public : virtual void drop (void) = 0 ;
 
   public : virtual const C_galgas_type_descriptor * staticTypeDescriptor (void) const = 0 ;

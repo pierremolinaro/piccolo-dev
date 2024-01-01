@@ -20,10 +20,10 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "streams/C_TCPSocketOut.h"
-#include "strings/unicode_character_cpp.h"
-#include "strings/C_String.h"
-#include "utilities/M_machine.h"
+#include "C_TCPSocketOut.h"
+#include "unicode_character_cpp.h"
+#include "C_String.h"
+#include "M_machine.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 

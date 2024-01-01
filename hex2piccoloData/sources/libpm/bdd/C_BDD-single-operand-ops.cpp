@@ -20,9 +20,9 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "bdd/C_BDD.h"
-#include "utilities/F_GetPrime.h"
-#include "bdd/C_BDD-node.h"
+#include "C_BDD.h"
+#include "F_GetPrime.h"
+#include "C_BDD-node.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -400,7 +400,7 @@ internalExchangeVariables (const uint32_t inValue,
                      find_or_add (var1, 0, 1 COMMA_HERE),
                      internalExchangeVariables (gNodeArray [nodeIndex].mTHEN ^ complement, var1, var2),
                      internalExchangeVariables (gNodeArray [nodeIndex].mELSE ^ complement, var1, var2)) ;
-    }     
+    }
   }
   return result ;
 }
@@ -448,7 +448,7 @@ internalRollDown (const uint32_t inValue,
                      find_or_add (inHighVar, 0, 1 COMMA_HERE),
                      internalRollDown (gNodeArray [nodeIndex].mTHEN ^ complement, inHighVar, inLowVar),
                      internalRollDown (gNodeArray [nodeIndex].mELSE ^ complement, inHighVar, inLowVar)) ;
-    }     
+    }
   }
   return result ;
 }
@@ -494,7 +494,7 @@ internalRollUp (const uint32_t inValue,
                      find_or_add ((uint32_t) (gNodeArray [nodeIndex].mVariableIndex + 1), 0, 1 COMMA_HERE),
                      internalRollUp (gNodeArray [nodeIndex].mTHEN ^ complement, var1, var2),
                      internalRollUp (gNodeArray [nodeIndex].mELSE ^ complement, var1, var2)) ;
-    }     
+    }
   }
   return result ;
 }

@@ -1,7 +1,7 @@
-#include "galgas2/Compiler.h"
-#include "galgas2/C_galgas_io.h"
-#include "galgas2/C_galgas_CLI_Options.h"
-#include "utilities/C_PrologueEpilogue.h"
+#include "Compiler.h"
+#include "C_galgas_io.h"
+#include "C_galgas_CLI_Options.h"
+#include "PrologueEpilogue.h"
 
 //--------------------------------------------------------------------------------------------------
 
@@ -38,13 +38,13 @@ void routine_parseDeviceDefinition_3F__21_ (const GALGAS_lstring constinArgument
 
 
 #include "project_header.h"
-#include "command_line_interface/F_mainForLIBPM.h"
-#include "command_line_interface/F_Analyze_CLI_Options.h"
-#include "command_line_interface/C_builtin_CLI_Options.h"
-#include "galgas2/C_galgas_CLI_Options.h"
-#include "galgas2/F_verbose_output.h"
-#include "galgas2/cLexiqueIntrospection.h"
-#include "utilities/F_DisplayException.h"
+#include "F_mainForLIBPM.h"
+#include "F_Analyze_CLI_Options.h"
+#include "C_builtin_CLI_Options.h"
+#include "C_galgas_CLI_Options.h"
+#include "F_verbose_output.h"
+#include "cLexiqueIntrospection.h"
+#include "F_DisplayException.h"
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -90,15 +90,15 @@ static void routine_before (Compiler * inCompiler
       test_0 = GALGAS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList.readProperty_value ()).operator_or (GALGAS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputPic_31__38_DeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 6)).operator_or (GALGAS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputBaselineDeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 7)).operator_or (GALGAS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputMidrangeDeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 8)).boolEnum () ;
       if (kBoolTrue == test_0) {
         GALGAS_stringlist var_allDevices_446 = GALGAS_filewrapper (gWrapperDirectory_0_embeddedDevices).getter_allTextFilePathes (SOURCE_FILE ("piccolo_program.galgas", 11)) ;
-        GALGAS_stringlist var_pic_31__38__5F_devices_517 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("piccolo_program.galgas", 12)) ;
-        GALGAS_stringlist var_midrange_5F_devices_564 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("piccolo_program.galgas", 13)) ;
-        GALGAS_stringlist var_baseline_5F_devices_614 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("piccolo_program.galgas", 14)) ;
+        GALGAS_stringlist var_pic_31__38__5F_devices_517 = GALGAS_stringlist::class_func_emptyList (SOURCE_FILE ("piccolo_program.galgas", 12)) ;
+        GALGAS_stringlist var_midrange_5F_devices_564 = GALGAS_stringlist::class_func_emptyList (SOURCE_FILE ("piccolo_program.galgas", 13)) ;
+        GALGAS_stringlist var_baseline_5F_devices_614 = GALGAS_stringlist::class_func_emptyList (SOURCE_FILE ("piccolo_program.galgas", 14)) ;
         cEnumerator_stringlist enumerator_683 (var_allDevices_446, kENUMERATION_UP) ;
         while (enumerator_683.hasCurrentObject ()) {
           GALGAS_string var_name_727 = enumerator_683.current_mValue (HERE).getter_lastPathComponent (SOURCE_FILE ("piccolo_program.galgas", 17)).getter_stringByDeletingPathExtension (SOURCE_FILE ("piccolo_program.galgas", 17)) ;
           GALGAS_piccoloDeviceModel var_piccoloDeviceModel_889 ;
           {
-          routine_parseDeviceDefinition_3F__21_ (GALGAS_lstring::constructor_new (var_name_727, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 18)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 18)), var_piccoloDeviceModel_889, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 18)) ;
+          routine_parseDeviceDefinition_3F__21_ (GALGAS_lstring::class_func_new (var_name_727, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 18)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 18)), var_piccoloDeviceModel_889, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 18)) ;
           }
           switch (var_piccoloDeviceModel_889.readProperty_mProcessorType ().enumValue ()) {
           case GALGAS_processorType::kNotBuilt:
@@ -127,7 +127,7 @@ static void routine_before (Compiler * inCompiler
           test_1 = GALGAS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList.readProperty_value ()).operator_or (GALGAS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputBaselineDeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 35)).boolEnum () ;
           if (kBoolTrue == test_1) {
             {
-            routine_print_3F_ (var_baseline_5F_devices_614.getter_count (SOURCE_FILE ("piccolo_program.galgas", 36)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GALGAS_string (" baseline devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GALGAS_application::constructor_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 36)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)) ;
+            routine_print_3F_ (var_baseline_5F_devices_614.getter_count (SOURCE_FILE ("piccolo_program.galgas", 36)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GALGAS_string (" baseline devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GALGAS_application::class_func_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 36)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)) ;
             }
             GALGAS_uint var_idx_1799 = GALGAS_uint (uint32_t (0U)) ;
             cEnumerator_stringlist enumerator_1818 (var_baseline_5F_devices_614, kENUMERATION_UP) ;
@@ -164,7 +164,7 @@ static void routine_before (Compiler * inCompiler
           test_4 = GALGAS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList.readProperty_value ()).operator_or (GALGAS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputMidrangeDeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 51)).boolEnum () ;
           if (kBoolTrue == test_4) {
             {
-            routine_print_3F_ (var_midrange_5F_devices_564.getter_count (SOURCE_FILE ("piccolo_program.galgas", 52)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GALGAS_string (" mid-range devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GALGAS_application::constructor_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 52)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)) ;
+            routine_print_3F_ (var_midrange_5F_devices_564.getter_count (SOURCE_FILE ("piccolo_program.galgas", 52)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GALGAS_string (" mid-range devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GALGAS_application::class_func_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 52)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)) ;
             }
             GALGAS_uint var_idx_2409 = GALGAS_uint (uint32_t (0U)) ;
             cEnumerator_stringlist enumerator_2428 (var_midrange_5F_devices_564, kENUMERATION_UP) ;
@@ -201,7 +201,7 @@ static void routine_before (Compiler * inCompiler
           test_7 = GALGAS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList.readProperty_value ()).operator_or (GALGAS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputPic_31__38_DeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 67)).boolEnum () ;
           if (kBoolTrue == test_7) {
             {
-            routine_print_3F_ (var_pic_31__38__5F_devices_517.getter_count (SOURCE_FILE ("piccolo_program.galgas", 68)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GALGAS_string (" pic18 devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GALGAS_application::constructor_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 68)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)) ;
+            routine_print_3F_ (var_pic_31__38__5F_devices_517.getter_count (SOURCE_FILE ("piccolo_program.galgas", 68)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GALGAS_string (" pic18 devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GALGAS_application::class_func_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 68)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GALGAS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)) ;
             }
             GALGAS_uint var_idx_3005 = GALGAS_uint (uint32_t (0U)) ;
             cEnumerator_stringlist enumerator_3024 (var_pic_31__38__5F_devices_517, kENUMERATION_UP) ;
@@ -272,7 +272,7 @@ static void routine_before (Compiler * inCompiler
           if (kBoolTrue == test_13) {
             GALGAS_piccoloDeviceModel var_piccoloDeviceModel_4493 ;
             {
-            routine_parseDeviceDefinition_3F__21_ (GALGAS_lstring::constructor_new (var_deviceForMemoryDescription_4102, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 103)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 103)), var_piccoloDeviceModel_4493, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 103)) ;
+            routine_parseDeviceDefinition_3F__21_ (GALGAS_lstring::class_func_new (var_deviceForMemoryDescription_4102, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 103)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 103)), var_piccoloDeviceModel_4493, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 103)) ;
             }
             GALGAS_uint var_totalRam_4529 = GALGAS_uint (uint32_t (0U)) ;
             cEnumerator_ramBankTable enumerator_4595 (var_piccoloDeviceModel_4493.readProperty_mRamBankTable (), kENUMERATION_UP) ;
@@ -367,7 +367,7 @@ static void routine_before (Compiler * inCompiler
         }
         if (kBoolFalse == test_13) {
           TC_Array <C_FixItDescription> fixItArray17 ;
-          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)), GALGAS_string ("The ").add_operation (var_deviceForMemoryDescription_4102, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)).add_operation (GALGAS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)), fixItArray17  COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)) ;
+          inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)), GALGAS_string ("The ").add_operation (var_deviceForMemoryDescription_4102, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)).add_operation (GALGAS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)), fixItArray17  COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)) ;
         }
       }
     }
@@ -383,7 +383,7 @@ static void routine_before (Compiler * inCompiler
           if (kBoolTrue == test_19) {
             GALGAS_piccoloDeviceModel var_piccoloDeviceModel_6967 ;
             {
-            routine_parseDeviceDefinition_3F__21_ (GALGAS_lstring::constructor_new (var_deviceForRegistersDescription_6561, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 150)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 150)), var_piccoloDeviceModel_6967, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 150)) ;
+            routine_parseDeviceDefinition_3F__21_ (GALGAS_lstring::class_func_new (var_deviceForRegistersDescription_6561, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 150)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 150)), var_piccoloDeviceModel_6967, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 150)) ;
             }
             {
             routine_print_3F_ (var_deviceForRegistersDescription_6561.add_operation (GALGAS_string (" has "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 151)).add_operation (var_piccoloDeviceModel_6967.readProperty_mRegisterTable ().getter_count (SOURCE_FILE ("piccolo_program.galgas", 151)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 151)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 151)).add_operation (GALGAS_string (" special registers:\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 151)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 151)) ;
@@ -409,7 +409,7 @@ static void routine_before (Compiler * inCompiler
         }
         if (kBoolFalse == test_19) {
           TC_Array <C_FixItDescription> fixItArray20 ;
-          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)), GALGAS_string ("The ").add_operation (var_deviceForRegistersDescription_6561, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)).add_operation (GALGAS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)), fixItArray20  COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)) ;
+          inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)), GALGAS_string ("The ").add_operation (var_deviceForRegistersDescription_6561, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)).add_operation (GALGAS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)), fixItArray20  COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)) ;
         }
       }
     }
@@ -425,7 +425,7 @@ static void routine_before (Compiler * inCompiler
           if (kBoolTrue == test_22) {
             GALGAS_piccoloDeviceModel var_piccoloDeviceModel_8066 ;
             {
-            routine_parseDeviceDefinition_3F__21_ (GALGAS_lstring::constructor_new (var_deviceForConfigDescription_7674, GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 170)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 170)), var_piccoloDeviceModel_8066, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 170)) ;
+            routine_parseDeviceDefinition_3F__21_ (GALGAS_lstring::class_func_new (var_deviceForConfigDescription_7674, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 170)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 170)), var_piccoloDeviceModel_8066, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 170)) ;
             }
             {
             routine_print_3F_ (var_deviceForConfigDescription_7674.add_operation (GALGAS_string (" has "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 171)).add_operation (var_piccoloDeviceModel_8066.readProperty_mConfigRegisterMap ().getter_count (SOURCE_FILE ("piccolo_program.galgas", 171)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 171)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 171)).add_operation (GALGAS_string (" configuration registers:\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 171)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 171)) ;
@@ -457,7 +457,7 @@ static void routine_before (Compiler * inCompiler
         }
         if (kBoolFalse == test_22) {
           TC_Array <C_FixItDescription> fixItArray23 ;
-          inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)), GALGAS_string ("The ").add_operation (var_deviceForConfigDescription_7674, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)).add_operation (GALGAS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)), fixItArray23  COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)) ;
+          inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)), GALGAS_string ("The ").add_operation (var_deviceForConfigDescription_7674, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)).add_operation (GALGAS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)), fixItArray23  COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)) ;
         }
       }
     }

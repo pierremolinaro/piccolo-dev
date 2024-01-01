@@ -21,16 +21,16 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "galgas2/C_Lexique.h"
+#include "C_Lexique.h"
 #include "all-predefined-types.h"
-#include "utilities/MF_MemoryControl.h"
+#include "MF_MemoryControl.h"
 #include "collections/TC_LinkedList.h"
-#include "strings/unicode_character_cpp.h"
-#include "strings/unicode_string_routines.h"
-#include "galgas2/C_galgas_CLI_Options.h"
-#include "galgas2/cIndexingDictionary.h"
-#include "files/C_FileManager.h"
-#include "galgas2/F_verbose_output.h"
+#include "unicode_character_cpp.h"
+#include "unicode_string_routines.h"
+#include "C_galgas_CLI_Options.h"
+#include "cIndexingDictionary.h"
+#include "C_FileManager.h"
+#include "F_verbose_output.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -123,7 +123,7 @@ mLatexNextCharacterToEnterIndex (0) {
       mTokenStartLocation.resetWithSourceText (source) ;
       mTokenEndLocation.resetWithSourceText (source) ;
     }else if (inCallerCompiler != NULL) {
-      C_String errorMessage ; 
+      C_String errorMessage ;
       errorMessage << "cannot read '" << inSourceFileName << "': this file does not exist or is not encoded in UTF8" ;
       inCallerCompiler->onTheFlyRunTimeError (errorMessage COMMA_THERE)  ;
     }
@@ -283,10 +283,10 @@ int32_t C_Lexique::findTemplateDelimiterIndex (const cTemplateDelimiter inTempla
                                                const int32_t inTemplateDelimiterArrayLength) {
   int32_t templateIndex = 0 ;
   bool found = false ;
-  
+
   while ((templateIndex < inTemplateDelimiterArrayLength) && ! found) {
     found = testForInputUTF32String (inTemplateDelimiterArray [templateIndex].mStartString,
-                                     inTemplateDelimiterArray [templateIndex].mStartStringLength, 
+                                     inTemplateDelimiterArray [templateIndex].mStartStringLength,
                                      inTemplateDelimiterArray [templateIndex].mDiscardStartString) ;
     templateIndex ++ ;
   }
@@ -447,7 +447,7 @@ int16_t C_Lexique::searchInList (const C_String & inString,
   int16_t code = -1 ; // -1 means 'not found'
   int32_t bottom = 0 ;
   int32_t top = inTableSize - 1 ;
-  
+
   while ((code < 0) && (top >= bottom)) {
     const int32_t index = (bottom + top) / 2 ;
     int32_t result = searchedStringLength - inTable [index].mEntryStringLength ;
@@ -639,7 +639,7 @@ bool C_Lexique::acceptTerminalForErrorSignaling (const int16_t inTerminal,
             nonTerminalEntry ++ ;
           }
           nonTerminalEntry ++ ;
-          choice ++ ; 
+          choice ++ ;
         }
       }
     }else if (stack.count () > 0) { // We reach a END OF PRODUCTION
@@ -772,7 +772,7 @@ void C_Lexique::buildExpectedTerminalsArrayOnSyntaxError (const int16_t inErrorP
         }
         nonTerminalEntry ++ ;
       }
-      nonTerminalEntry ++ ;  
+      nonTerminalEntry ++ ;
     }
   }
   #ifdef TRACE_LL1_PARSING
@@ -915,7 +915,7 @@ bool C_Lexique::performTopDownParsing (const int16_t inProductions [],
               nonTerminalEntry ++ ;
             }
             choice ++ ;
-            nonTerminalEntry ++ ;  
+            nonTerminalEntry ++ ;
           }
         //--- Found : call production rule
           if (found) {
@@ -1006,7 +1006,7 @@ bool C_Lexique::performTopDownParsing (const int16_t inProductions [],
           result = loop = false ;
           listForSecondPassParsing.makeListEmpty () ;
         }
-    //--- It is the end of a production    
+    //--- It is the end of a production
       }else if (stack.count () > 0) {
         #ifdef TRACE_LL1_PARSING
           co << "END OF PRODUCTION REACHED\n" ; co.flush () ;
@@ -1023,7 +1023,7 @@ bool C_Lexique::performTopDownParsing (const int16_t inProductions [],
         if (executionModeIsSyntaxAnalysisOnly ()) {
           indentationForParseOnly -- ;
         }
-    //--- End of start symbol analysis  
+    //--- End of start symbol analysis
       }else if (currentToken == 0) { // We got the "end of text" non terminal : ok
         loop = false ;
       }else{ // We reach the end of text, but current terminal is not "end of text"
@@ -1038,7 +1038,7 @@ bool C_Lexique::performTopDownParsing (const int16_t inProductions [],
                                                   inFirstProductionIndex,
                                                   inDecisionTable,
                                                   inDecisionTableIndexes,
-                                                  expectedTerminalsArray) ;     
+                                                  expectedTerminalsArray) ;
         parsingError (expectedTerminalsArray, currentToken LINE_AND_SOURCE_FILE_FOR_LEXIQUE) ;
         result = loop = false ;
         listForSecondPassParsing.makeListEmpty () ;
@@ -1101,7 +1101,7 @@ static bool acceptExpectedTerminalForBottomUpParsingError (const int16_t inExpec
       const int32_t tempCurrentState = stack.lastObject (HERE) ;
       MF_Assert (tempCurrentState >= 0, "tempCurrentState (%lld) < 0", tempCurrentState, 0) ;
       const int16_t * successorTable = inSuccessorTable [tempCurrentState] ;
-      int16_t newCurrentState = -1 ; 
+      int16_t newCurrentState = -1 ;
       while (((* successorTable) >= 0) && (newCurrentState < 0)) {
         if ((* successorTable) == nonTerminal) {
           successorTable ++ ;
@@ -1117,7 +1117,7 @@ static bool acceptExpectedTerminalForBottomUpParsingError (const int16_t inExpec
       const int32_t currentState = stack (stack.count () - 1 COMMA_HERE) ;
       MF_Assert (currentState >= 0, "currentState (%lld) < 0", currentState, 0) ;
       const int16_t * actionTable = & (inActionTable [inActionTableIndex [currentState]]) ;
-      actionCode = 0 ; 
+      actionCode = 0 ;
       while (((* actionTable) >= 0) && (actionCode == 0)) {
         if ((* actionTable) == inExpectedTerminal) {
           actionTable ++ ;
@@ -1177,7 +1177,7 @@ bool C_Lexique::performBottomUpParsing (const int16_t inActionTable [],
     stack.appendObject (0) ; // Enter initial state
     int32_t errorSignalingUselessEntryOnTopOfStack = 0 ;
     TC_Array <int16_t> poppedErrors (1000 COMMA_HERE)  ;
-    
+
     #ifdef CHECK_NEW_BOTTOM_UP_PARSING_ERROR_HANDLING
       TC_Array <int16_t> oldErrorStack (10000 COMMA_HERE) ; // used for signaling a syntax error
       oldErrorStack.appendObject (0) ; // Enter initial state
@@ -1208,7 +1208,7 @@ bool C_Lexique::performBottomUpParsing (const int16_t inActionTable [],
       const int32_t currentState = stack.lastObject (HERE) ;
       MF_Assert (currentState >= 0, "currentState (%lld) < 0", currentState, 0) ;
       const int16_t * actionTable = & (inActionTable [inActionTableIndex [currentState]]) ;
-      int16_t actionCode = 0 ; 
+      int16_t actionCode = 0 ;
       while (((* actionTable) >= 0) && (actionCode == 0)) {
         if ((* actionTable) == currentToken) {
           actionTable ++ ;
@@ -1259,7 +1259,7 @@ bool C_Lexique::performBottomUpParsing (const int16_t inActionTable [],
           executionList (executionListLength -  reduceSize - 1 COMMA_HERE).mergeListAtBottom (executionList (i COMMA_HERE)) ;
         }
         executionList (executionListLength - reduceSize - 1 COMMA_HERE).insertAtTop (actionCode) ;
-        executionList.removeLastObjects (reduceSize COMMA_HERE) ; 
+        executionList.removeLastObjects (reduceSize COMMA_HERE) ;
         executionList.appendDefaultObjectUsingSwap () ;
         const int32_t stackReduceSize = 2 * reduceSize ;
         for (int32_t i=0 ; i<stackReduceSize ; i++) {
@@ -1281,7 +1281,7 @@ bool C_Lexique::performBottomUpParsing (const int16_t inActionTable [],
         const int32_t tempCurrentState = stack.lastObject (HERE) ;
         MF_Assert (tempCurrentState >= 0, "tempCurrentState (%lld) < 0", tempCurrentState, 0) ;
         const int16_t * successorTable = inSuccessorTable [tempCurrentState] ;
-        int16_t newCurrentState = -1 ; 
+        int16_t newCurrentState = -1 ;
         while (((* successorTable) >= 0) && (newCurrentState < 0)) {
           if ((* successorTable) == nonTerminal) {
             successorTable ++ ;
@@ -1559,7 +1559,7 @@ void C_Lexique::setParsingContext (const C_parsingContext & inContext) {
 void C_Lexique::enterProduction (const char * inProductionName,
                                  const char * inLabel,
                                  const char * inTag) {
-//--- If Debug is not running, check if trigger list contains non terminal 
+//--- If Debug is not running, check if trigger list contains non terminal
   if (! mDebugIsRunning) {
     TC_UniqueArray <C_String> stringArray ;
     mTriggerNonTerminalSymbolList.componentsSeparatedByString (inProductionName, stringArray) ;

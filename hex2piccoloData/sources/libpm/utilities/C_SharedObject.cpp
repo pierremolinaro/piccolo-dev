@@ -20,10 +20,10 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/C_SharedObject.h"
-#include "utilities/MF_MemoryControl.h"
-#include "streams/C_ConsoleOut.h"
-#include "strings/C_String.h"
+#include "C_SharedObject.h"
+#include "MF_MemoryControl.h"
+#include "C_ConsoleOut.h"
+#include "C_String.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 

@@ -20,12 +20,12 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "files/C_TextFileWrite.h"
-#include "utilities/MF_MemoryControl.h"
-#include "utilities/md5.h"
-#include "utilities/C_SharedObject.h"
-#include "strings/unicode_string_routines.h"
-#include "strings/unicode_character_cpp.h"
+#include "C_TextFileWrite.h"
+#include "MF_MemoryControl.h"
+#include "md5.h"
+#include "C_SharedObject.h"
+#include "unicode_string_routines.h"
+#include "unicode_character_cpp.h"
 #include "collections/TC_UniqueArray2.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -460,7 +460,7 @@ void C_String::insulateEmbeddedString (const uint32_t inNewCapacity) const {
       macroMyNew (p, cEmbeddedString (mEmbeddedString, inNewCapacity COMMA_HERE)) ;
       macroAssignSharedObject (mEmbeddedString, p) ;
       macroDetachSharedObject (p) ;
-    }  
+    }
     #ifndef DO_NOT_GENERATE_CHECKINGS
       checkString (HERE) ;
     #endif
@@ -769,9 +769,9 @@ void C_String::linesArray (TC_UniqueArray <C_String> & outStringArray) const {
           outStringArray (index COMMA_HERE).appendUnicodeCharacter (c COMMA_HERE) ;
           state = kAppendToCurrentLine ;
         }
-        break ;     
+        break ;
       }
-    }  
+    }
   }
 }
 
@@ -932,7 +932,7 @@ C_String C_String::stringByReplacingCharacterByString (const utf32 inCharacter,
         resultingString << (inString) ;
         resultingString.appendUnicodeCharacter (c COMMA_HERE) ;
       }
-      previousCharIsSubstituteChar = false ;    
+      previousCharIsSubstituteChar = false ;
     }else if (UNICODE_VALUE (c) == UNICODE_VALUE (inCharacter)) {
       previousCharIsSubstituteChar = true ;
     }else{
@@ -960,9 +960,9 @@ C_String C_String::stringByReplacingStringByString (const C_String inSearchedStr
   outReplacementCount = 0 ;
   outOk = inSearchedString.length () != 0 ;
   if (outOk) {
-    //printf ("SOURCE STRING: '%s' (length %d)\n", cString (HERE), length ()) ; 
-    //printf ("SEARCHED STRING: '%s' (length %d)\n", inSearchedString.cString (HERE), inSearchedString.length (HERE)) ; 
-    //printf ("REPLACEMENT STRING '%s'\n", inReplacementString.cString (HERE)) ; 
+    //printf ("SOURCE STRING: '%s' (length %d)\n", cString (HERE), length ()) ;
+    //printf ("SEARCHED STRING: '%s' (length %d)\n", inSearchedString.cString (HERE), inSearchedString.length (HERE)) ;
+    //printf ("REPLACEMENT STRING '%s'\n", inReplacementString.cString (HERE)) ;
     const utf32 * sourceString = utf32String (HERE) ;
     const int32_t sourceLength = length () ;
     const utf32 * searchedString = inSearchedString.utf32String (HERE) ;
@@ -1152,8 +1152,8 @@ uint32_t C_String::unsignedIntegerValue (void) const {
       result *= 10 ;
       result += c - '0' ;
     }
-  }  
-  return result ;  
+  }
+  return result ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -1861,7 +1861,7 @@ C_String C_String::XMLEscapedString (void) const {
     case '\n' : result << "&#10;" ; break ;
     default   : result.appendUnicodeCharacter (c COMMA_HERE) ; break;
     }
-  } 
+  }
   return result ;
 }
 
@@ -1947,7 +1947,7 @@ C_String C_String::stringByStandardizingPath (void) const {
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-  
+
 bool C_String::parseUTF8 (const C_Data & inDataString,
                           const int32_t inOffset,
                           C_String & outString) {
@@ -2030,11 +2030,11 @@ uint32_t C_String::LevenshteinDistanceFromString (const C_String & inOperand) co
   for (int32_t i=0 ; i<=myLength ; i++) {
     distance.setObjectAtIndexes ((uint32_t) i, i, 0 COMMA_HERE) ;
   }
- 
+
   for (int32_t j=0 ; j<=operandLength ; j++) {
     distance.setObjectAtIndexes ((uint32_t) j, 0, j COMMA_HERE) ;
   }
- 
+
   for (int32_t j=1 ; j<=operandLength ; j++) {
     for (int32_t i=1 ; i<=myLength ; i++) {
       if (UNICODE_VALUE (this->operator () (i-1 COMMA_HERE)) == UNICODE_VALUE (inOperand (j-1 COMMA_HERE))) {
@@ -2067,7 +2067,7 @@ uint32_t C_String::LevenshteinDistanceFromString (const C_String & inOperand) co
   {
     for i from 1 to m
     {
-      if s[i] = t[j] then  
+      if s[i] = t[j] then
         d[i, j] := d[i-1, j-1]       // no operation required
       else
         d[i, j] := minimum

@@ -20,8 +20,8 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/C_Data.h"
-#include "strings/unicode_character_base.h"
+#include "C_Data.h"
+#include "unicode_character_base.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -129,8 +129,8 @@ uint8_t C_Data::operator () (const int32_t inIndex
 int32_t C_Data::compareWithData (const C_Data & inData) const {
   int32_t result = length () - inData.length () ;
   for (int32_t i=0 ; (i<length ()) && (result == 0) ; i++) {
-    result = ((int32_t) this->operator () (i COMMA_HERE)) - ((int32_t) inData (i COMMA_HERE)) ;  
-  }  
+    result = ((int32_t) this->operator () (i COMMA_HERE)) - ((int32_t) inData (i COMMA_HERE)) ;
+  }
   return result ;
 }
 

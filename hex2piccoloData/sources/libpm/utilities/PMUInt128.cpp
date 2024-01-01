@@ -20,7 +20,7 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/PMUInt128.h"
+#include "PMUInt128.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -154,17 +154,17 @@ void PMUInt128::operator *= (const uint32_t inMultiplicand) {
 void PMUInt128::divideBy (const uint32_t inDivisor,
                           uint32_t & outRemainder) {
   const uint64_t d3 = mHigh >> 32 ;
-  const uint64_t q3 = d3 / inDivisor ; 
-  const uint64_t r3 = d3 % inDivisor ; 
+  const uint64_t q3 = d3 / inDivisor ;
+  const uint64_t r3 = d3 % inDivisor ;
   const uint64_t d2 = (mHigh & UINT32_MAX) + (r3 << 32) ;
-  const uint64_t q2 = d2 / inDivisor ; 
-  const uint64_t r2 = d2 % inDivisor ; 
+  const uint64_t q2 = d2 / inDivisor ;
+  const uint64_t r2 = d2 % inDivisor ;
   const uint64_t d1 = (mLow >> 32) + (r2 << 32) ;
-  const uint64_t q1 = d1 / inDivisor ; 
-  const uint64_t r1 = d1 % inDivisor ; 
+  const uint64_t q1 = d1 / inDivisor ;
+  const uint64_t r1 = d1 % inDivisor ;
   const uint64_t d0 = (mLow & UINT32_MAX) + (r1 << 32) ;
-  const uint64_t q0 = d0 / inDivisor ; 
-  const uint64_t r0 = d0 % inDivisor ; 
+  const uint64_t q0 = d0 / inDivisor ;
+  const uint64_t r0 = d0 % inDivisor ;
   mHigh = (q3 << 32) + q2 ;
   mLow = (q1 << 32) + q0 ;
   outRemainder = (uint32_t) r0 ;

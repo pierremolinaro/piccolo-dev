@@ -27,8 +27,8 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/M_machine.h"
-#include "utilities/MF_MemoryControl.h"
+#include "M_machine.h"
+#include "MF_MemoryControl.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -51,7 +51,7 @@ template <typename TYPE> class TC_LinkedList {
 //--- Constructor and destructor
   public : TC_LinkedList (void) ;
   public : virtual ~TC_LinkedList (void) ;
-  
+
 //--- No copy
   private : TC_LinkedList (TC_LinkedList <TYPE> &) ;
   private : void operator = (TC_LinkedList <TYPE> &) ;
@@ -215,7 +215,7 @@ void TC_LinkedList <TYPE>::copyIntoArray (TC_UniqueArray <TYPE> & outArray) {
   cElement * p = mTopItem ;
   while (p != NULL) {
     outArray.appendObject (p->mInfo) ;
-    p = p->mNextItem ;  
+    p = p->mNextItem ;
   }
 }
 

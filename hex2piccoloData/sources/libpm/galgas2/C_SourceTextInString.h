@@ -25,8 +25,8 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "strings/C_String.h"
-#include "utilities/C_SharedObject.h"
+#include "C_String.h"
+#include "C_SharedObject.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -45,7 +45,7 @@ class cSourceTextInString : public C_SharedObject {
   mSourceString (inSourceString),
   mShowSourceOnDetailledErrorMessage (inShowSourceOnDetailledErrorMessage) {
   }
-  
+
   public : C_String mFilePath ;
   public : C_String mSourceString ;
   public : bool mShowSourceOnDetailledErrorMessage ;
@@ -72,7 +72,7 @@ class C_SourceTextInString {
 //--- Handle copy
   public : C_SourceTextInString (const C_SourceTextInString & inSource) ;
   public : C_SourceTextInString & operator = (const C_SourceTextInString & inSource) ;
-  
+
 //--- Source file Name
   private : cSourceTextInString * mObject ;
 

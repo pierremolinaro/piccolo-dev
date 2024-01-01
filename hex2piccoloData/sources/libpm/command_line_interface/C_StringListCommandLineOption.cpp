@@ -25,8 +25,8 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "command_line_interface/C_StringListCommandLineOption.h"
-#include "utilities/C_PrologueEpilogue.h"
+#include "C_StringListCommandLineOption.h"
+#include "C_PrologueEpilogue.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -95,7 +95,7 @@ void C_StringListCommandLineOption::setStringListOptionForCommandString (const c
   if (outCommandLineOptionStringIsValid) {
     C_StringListCommandLineOption * p = gFirstStringListOption ;
     while ((p != NULL) && ! outFound) {
-      outFound = (strlen (p->mCommandString) == equalSignIndex) && 
+      outFound = (strlen (p->mCommandString) == equalSignIndex) &&
                  (strncmp (p->mCommandString, inCommandString, equalSignIndex) == 0) ;
       if (outFound) {
         p->mValue.appendObject (& inCommandString [strlen (p->mCommandString) + 1]) ;

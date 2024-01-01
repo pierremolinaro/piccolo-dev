@@ -20,9 +20,9 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "galgas2/scanner_actions.h"
-#include "strings/unicode_character_cpp.h"
-#include "utilities/C_BigInt.h"
+#include "scanner_actions.h"
+#include "unicode_character_cpp.h"
+#include "C_BigInt.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -793,7 +793,7 @@ void scanner_routine_enterHexDigitIntoBigInt (C_Lexique & inLexique,
                                               const utf32 inCharacter,
                                               C_BigInt & ioBigInt,
                                               const char * inCharacterIsNotDecimalDigitError) {
-  
+
   if ((UNICODE_VALUE (inCharacter) >= '0') && (UNICODE_VALUE (inCharacter) <= '9')) {
     const uint32_t digit = UNICODE_VALUE (inCharacter) - '0' ;
     ioBigInt *= 16 ;

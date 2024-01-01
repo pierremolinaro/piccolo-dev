@@ -25,8 +25,8 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "command_line_interface/C_StringCommandLineOption.h"
-#include "utilities/C_PrologueEpilogue.h"
+#include "C_StringCommandLineOption.h"
+#include "C_PrologueEpilogue.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -101,7 +101,7 @@ setStringOptionForCommandString (const char * inCommandString,
   if (outCommandLineOptionStringIsValid) {
     C_StringCommandLineOption * p = gFirstStringOption ;
     while ((p != NULL) && ! outFound) {
-      outFound = (strlen (p->mCommandString) == equalSignIndex) && 
+      outFound = (strlen (p->mCommandString) == equalSignIndex) &&
                  (strncmp (p->mCommandString, inCommandString, equalSignIndex) == 0) ;
       if (outFound) {
         p->mValue.setLengthToZero () ;

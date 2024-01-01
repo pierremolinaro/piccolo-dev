@@ -20,8 +20,8 @@
 //                                                                                                                     *
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/M_machine.h"
-#include "utilities/basic-allocation.h"
+#include "M_machine.h"
+#include "basic-allocation.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -47,7 +47,7 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 // ATTENTION : l'operateur predefini 'new' n'initialise pas la memoire allouee, tandis
-// que celui defini dans ce fichier initialise la memoire allouee a zero. 
+// que celui defini dans ce fichier initialise la memoire allouee a zero.
 
 //--- Significatif uniquement sous UNIX : si la constante de compilation
 // 'CALL_MALLOC_DEBUG' est definie, alors :
@@ -143,7 +143,7 @@ void * myAllocRoutine (const size_t inSizeInBytes) {
 #endif
 
 //---------------------------------------------------------------------------------------------------------------------*
-  
+
 #ifdef USE_SMALL_BLOCK_FREE_LIST
 void myFreeRoutine (void * inPointer) {
   #if CALL_MALLOC_DEBUG
@@ -184,19 +184,19 @@ void myFreeRoutine (void * inPointer) {
     public : struct cAllocatedSizeDescriptorNode * mSupPtr ;
     public : size_t mAllocatedSize ;
     public : uint32_t mCount ;
-    public : int16_t mBalance ;    
-  } cAllocatedSizeDescriptorNode ; 
+    public : int16_t mBalance ;
+  } cAllocatedSizeDescriptorNode ;
 #endif
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 #ifdef GENERATE_BLOCK_SIZE_STATS
   static void rotationGauche (cAllocatedSizeDescriptorNode * & a) {
-  //--- faire la rotation 
+  //--- faire la rotation
     cAllocatedSizeDescriptorNode * b = a->mSupPtr;
     a->mSupPtr = b->mInfPtr;
     b->mInfPtr = a;
-  //--- recalculer l'equilibrage 
+  //--- recalculer l'equilibrage
     if (b->mBalance >= 0) {
       a->mBalance ++ ;
     }else{
@@ -208,18 +208,18 @@ void myFreeRoutine (void * inPointer) {
       b->mBalance ++ ;
     }
     a = b ;
-  } 
+  }
 #endif
 
 //---------------------------------------------------------------------------------------------------------------------*
 
 #ifdef GENERATE_BLOCK_SIZE_STATS
   static void rotationDroite (cAllocatedSizeDescriptorNode * & a) {
-  //-- faire la rotation 
+  //-- faire la rotation
     cAllocatedSizeDescriptorNode * b = a->mInfPtr;
     a->mInfPtr = b->mSupPtr;
     b->mSupPtr = a;
-   //--- recalculer l'equilibrage 
+   //--- recalculer l'equilibrage
     if (b->mBalance > 0) {
       a->mBalance = (int16_t) (a->mBalance - b->mBalance - 1) ;
     }else{
@@ -246,7 +246,7 @@ void myFreeRoutine (void * inPointer) {
       ioRoot->mSupPtr = NULL ;
       ioRoot->mAllocatedSize = inAllocatedSize ;
       ioRoot->mCount = 1 ;
-      ioRoot->mBalance = 0 ;    
+      ioRoot->mBalance = 0 ;
       ioExtension = true;
     }else{
       if (ioRoot->mAllocatedSize < inAllocatedSize) {
@@ -294,7 +294,7 @@ void myFreeRoutine (void * inPointer) {
     }
   }
 #endif
- 
+
 //---------------------------------------------------------------------------------------------------------------------*
 
 #ifdef GENERATE_BLOCK_SIZE_STATS

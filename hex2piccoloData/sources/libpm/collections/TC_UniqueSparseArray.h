@@ -28,9 +28,9 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/MF_Assert.h"
-#include "utilities/M_SourceLocation.h"
-#include "utilities/TF_Swap.h"
+#include "MF_Assert.h"
+#include "M_SourceLocation.h"
+#include "TF_Swap.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                     *
@@ -59,7 +59,7 @@ void swap (TC_UniqueSparseArray <TYPE> & ioOperand1,
 template <typename TYPE> class TC_UniqueSparseArray {
 //--- Default Constructor
   public : TC_UniqueSparseArray (const TYPE & inDefaultValue) ;
-  
+
 //--- Virtual Destructor
   public : virtual ~TC_UniqueSparseArray (void) ;
 
@@ -76,7 +76,7 @@ template <typename TYPE> class TC_UniqueSparseArray {
 
 //--- Get entry
   public : TYPE objectAtIndex (const uint32_t inIndex) const ;
-  
+
 //--- Is default Value at index ?
   public : bool isDefaultObjectAtIndex (const uint32_t inIndex) const ;
 

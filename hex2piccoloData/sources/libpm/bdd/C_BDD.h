@@ -25,11 +25,11 @@
 
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "utilities/M_machine.h"
-#include "utilities/PMUInt128.h"
+#include "M_machine.h"
+#include "PMUInt128.h"
 #include "collections/TC_UniqueArray.h"
 #include "collections/TC_Array.h"
-#include "utilities/C_BigInt.h"
+#include "C_BigInt.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -81,14 +81,14 @@ class C_BDD {
 //--- Operations on a BDD
   public : void operator &= (const C_BDD & inOperand) ; // And
   public : void operator |= (const C_BDD & inOperand) ; // Or
-  public : void negate (void) ; 
+  public : void negate (void) ;
 
 //--- Operations between BDDs
   public : C_BDD operator & (const C_BDD & inOperand) const ; // And
   public : C_BDD operator | (const C_BDD & inOperand) const ; // Or
   public : C_BDD equalTo (const C_BDD & inOperand) const ; // Equivalent
   public : C_BDD notEqualTo (const C_BDD & inOperand) const ; // Different
-  public : C_BDD lowerOrEqual (const C_BDD & inOperand) const ; 
+  public : C_BDD lowerOrEqual (const C_BDD & inOperand) const ;
   public : C_BDD lowerThan (const C_BDD & inOperand) const ;
   public : C_BDD greaterOrEqual (const C_BDD & inOperand) const ;
   public : C_BDD greaterThan (const C_BDD & inOperand) const ;
@@ -161,7 +161,7 @@ class C_BDD {
 
 //--- Get BDD absolute value
   public : uint64_t getBDDabsoluteValue (const uint32_t inVariableCount) const ;
-  
+
 //--- Get BDD nodes count
   public : uint32_t getBDDnodesCount (void) const ;
 
@@ -175,8 +175,8 @@ class C_BDD {
                                const uint32_t inBitCount) const ;
 
 //------------------------ Updating a relation
-  public : C_BDD updateRelation (const uint32_t inRelationBitNeededCount [], 
-                                 uint32_t * inRelationBitCurrentCount [], 
+  public : C_BDD updateRelation (const uint32_t inRelationBitNeededCount [],
+                                 uint32_t * inRelationBitCurrentCount [],
                                  const int32_t inRelationCardinality) const ;
 
 //--- Translate BDD bits
@@ -271,13 +271,13 @@ class C_BDD {
                                                           const uint32_t inVariableCount
                                                           COMMA_LOCATION_ARGS) const ;
 
-//--- Mark all nodes 
+//--- Mark all nodes
   public : void markAllBDDnodes (void) ;
 
-//--- Check all BDDs are well formed 
+//--- Check all BDDs are well formed
   public : static void checkAllBDDsAreWellFormed (LOCATION_ARGS) ;
 
-//--- Check a BDD is well formed 
+//--- Check a BDD is well formed
   public :  void checkBDDIsWellFormed (LOCATION_ARGS) ;
 
 //--- Traversing BDD : build an array containing all values
@@ -299,7 +299,7 @@ class C_BDD {
   public : static C_BDD BDDWithPredicateString (const C_String & inPredicateStringValue
                                                 COMMA_LOCATION_ARGS) ;
 
-//--- Traversing BBD (call C_bdd_value_traversing::action method for every value) 
+//--- Traversing BBD (call C_bdd_value_traversing::action method for every value)
   public : void traverseBDDvalues (C_bdd_value_traversing & inTraversing,
                                    const uint32_t inVariableCount) const ;
 
@@ -334,12 +334,12 @@ class C_BDD {
 //---- Suppress unused nodes
   public : static void markAndSweepUnusedNodes (void) ;
 
-//--- Size of a node 
+//--- Size of a node
   public : static uint32_t getBDDnodeSize (void) ;
   public : static uint32_t getBDDinstancesCount (void) ;
   public : static uint32_t getCreatedNodesCount (void)  ;
 
-//--- Print BDD package statistics 
+//--- Print BDD package statistics
   public : static void printBDDpackageOperationsSummary (AC_OutputStream & inStream) ;
 
 //--- Free BDD data structures
@@ -360,7 +360,7 @@ class C_bdd_value_traversing {
 //--- Virtual method called for every value
   public : virtual void action (const bool tableauDesValeurs [],
                                 const uint32_t inVariableCount) = 0 ;
-  
+
 //--- No instance copy
   private : C_bdd_value_traversing (const C_bdd_value_traversing &) ;
   private : C_bdd_value_traversing & operator = (const C_bdd_value_traversing &) ;

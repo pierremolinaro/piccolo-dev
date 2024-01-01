@@ -21,9 +21,9 @@
 //---------------------------------------------------------------------------------------------------------------------*
 
 #include "all-predefined-types.h"
-#include "utilities/MF_MemoryControl.h"
-#include "galgas2/C_Compiler.h"
-#include "utilities/C_DirectedGraph.h"
+#include "MF_MemoryControl.h"
+#include "C_Compiler.h"
+#include "C_DirectedGraph.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -707,7 +707,7 @@ static void rotateRight (cGraphNode * & ioRootPtr) {
   cGraphNode * b = ioRootPtr->mInfPtr ;
   ioRootPtr->mInfPtr = b->mSupPtr ;
   b->mSupPtr = ioRootPtr ;
- 
+
   if (b->mBalance > 0) {
     ioRootPtr->mBalance += -b->mBalance - 1 ;
   }else{
@@ -949,7 +949,7 @@ void cSharedGraph::edges (GALGAS__32_stringlist & ioList) const {
     ioList.addAssign_operation (mNodeArray ((int32_t) edge.mSource COMMA_HERE)->mKey,
                                 mNodeArray ((int32_t) edge.mTarget COMMA_HERE)->mKey
                                 COMMA_HERE) ;
-  }  
+  }
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

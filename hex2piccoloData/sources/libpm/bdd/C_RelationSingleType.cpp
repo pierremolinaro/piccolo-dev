@@ -7,9 +7,9 @@
 //
 //---------------------------------------------------------------------------------------------------------------------*
 
-#include "bdd/C_RelationSingleType.h"
-#include "utilities/C_SharedObject.h"
-#include "strings/C_String.h"
+#include "C_RelationSingleType.h"
+#include "C_SharedObject.h"
+#include "C_String.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
