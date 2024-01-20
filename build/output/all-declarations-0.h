@@ -485,7 +485,7 @@ class Lexique_piccolo_5F_lexique : public Lexique {
   public: uint32_t attributeValue_uint_33__32_value (void) const ;
 
 
-//--- Indexing keys
+//--- indexing keys
   public: enum {
     kIndexing_routineDefinition,
     kIndexing_routineCall,

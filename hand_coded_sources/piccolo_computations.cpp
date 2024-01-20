@@ -59,13 +59,13 @@ emit_04_record (String & ioGeneratedCode,
                 const uint32_t inStartAddress) {
   if (ioBufferHighAddress != (inStartAddress & 0xFFFF0000)) {
     char s [20] ; snprintf (s, 20, ":02000004%04X", inStartAddress >> 16) ;
-    ioGeneratedCode.addString (s) ;
+    ioGeneratedCode.appendString (s) ;
     uint8_t somme = 2 + 4 ;
     somme = (uint8_t) (somme + ((inStartAddress >> 24) & 255 )) ;
     somme = (uint8_t) (somme + ((inStartAddress >> 16) & 255 )) ;
     snprintf (s, 20, "%02X", (- somme) & 255) ;
-    ioGeneratedCode.addString (s) ;
-    ioGeneratedCode.addString ("\n") ;
+    ioGeneratedCode.appendString (s) ;
+    ioGeneratedCode.appendString ("\n") ;
     ioBufferHighAddress = (inStartAddress & 0xFFFF0000) ;
   }
 }
@@ -85,18 +85,18 @@ emit_data_record (String & ioGeneratedCode,
   //---
     const uint32_t startAddressMod16 = startAddress & 0x0000FFFF ;
     char s [20] ; snprintf (s, 20, ":%02X%04X00", ioBufferEntryCount, startAddressMod16) ;
-    ioGeneratedCode.addString (s) ;
+    ioGeneratedCode.appendString (s) ;
     uint8_t somme = (uint8_t) (ioBufferEntryCount & 255) ;
     somme = (uint8_t) (somme + ((startAddressMod16 >> 8) & 255)) ;
     somme = (uint8_t) (somme + (startAddressMod16 & 255)) ;
     for (uint32_t i=0 ; i<ioBufferEntryCount ; i++) {
       const unsigned char c = inBuffer [i] ;
-      snprintf (s, 20, "%02X", c) ; ioGeneratedCode.addString (s) ;
+      snprintf (s, 20, "%02X", c) ; ioGeneratedCode.appendString (s) ;
       somme = (uint8_t) (somme + c) ;
     }
     snprintf (s, 20, "%02X", (- somme) & 255) ;
-    ioGeneratedCode.addString (s) ;
-    ioGeneratedCode.addString ("\n") ;
+    ioGeneratedCode.appendString (s) ;
+    ioGeneratedCode.appendString ("\n") ;
     ioBufferEntryCount = 0 ;
   }
 }
@@ -107,9 +107,9 @@ static String
 generate_C_ArrayImplementationFileFromSpareArray (const String & inSourceName,
                                                   const TC_UniqueSparseArray <uint8_t> & inSpareArray) {
   String implementationCode ;
-  implementationCode.addString ("#include \"") ;
-  implementationCode.addString (inSourceName) ;
-  implementationCode.addString (".h\"\n\n") ;
+  implementationCode.appendString ("#include \"") ;
+  implementationCode.appendString (inSourceName) ;
+  implementationCode.appendString (".h\"\n\n") ;
   implementationCode.append_C_HyphenLineComment () ;
   TC_UniqueArray <uint32_t> startAddressArray ;
   TC_UniqueArray <uint32_t> blockLengthArray ;
@@ -121,97 +121,97 @@ generate_C_ArrayImplementationFileFromSpareArray (const String & inSourceName,
     startAddressArray.appendObject (currentAddress) ;
     while (! inSpareArray.isDefaultObjectAtIndex (currentAddress)) {
       if (currentStreamEntryCount > 0) {
-        currentStream.addString (",") ;
+        currentStream.appendString (",") ;
       }
       if ((currentStreamEntryCount % 16) == 0) {
-        currentStream.addString ("\n  ") ;
+        currentStream.appendString ("\n  ") ;
       }
-      currentStream.addString ("0x") ;
-      currentStream.addUnsignedHex2 (inSpareArray.objectAtIndex (currentAddress)) ;
+      currentStream.appendString ("0x") ;
+      currentStream.appendUnsignedHex2 (inSpareArray.objectAtIndex (currentAddress)) ;
       currentAddress ++ ;
       currentStreamEntryCount ++ ;
     }
-    implementationCode.addString ("\n"
+    implementationCode.appendString ("\n"
                           "static unsigned char gArray_") ;
-    implementationCode.addSigned (blockLengthArray.count ()) ;
-    implementationCode.addString (" [") ;
-    implementationCode.addUnsigned (currentStreamEntryCount) ;
-    implementationCode.addString ("] = {") ;
-    implementationCode.addString (currentStream) ;
-    implementationCode.addString ("\n} ;\n\n") ;
+    implementationCode.appendSigned (blockLengthArray.count ()) ;
+    implementationCode.appendString (" [") ;
+    implementationCode.appendUnsigned (currentStreamEntryCount) ;
+    implementationCode.appendString ("] = {") ;
+    implementationCode.appendString (currentStream) ;
+    implementationCode.appendString ("\n} ;\n\n") ;
     implementationCode.append_C_HyphenLineComment () ;
     blockLengthArray.appendObject (currentStreamEntryCount) ;
   }
 //--- Start address array
-  implementationCode.addString ("\n"
+  implementationCode.appendString ("\n"
                         "static unsigned long gBlockStartAddressArray [") ;
-  implementationCode.addSigned (startAddressArray.count ()) ;
-  implementationCode.addString ("] = {") ;
+  implementationCode.appendSigned (startAddressArray.count ()) ;
+  implementationCode.appendString ("] = {") ;
   for (int32_t i=0 ; i<startAddressArray.count () ; i++) {
     if (i > 0) {
-      implementationCode.addString (",") ;
+      implementationCode.appendString (",") ;
     }
-    implementationCode.addString ("\n  0x") ;
-    implementationCode.addUnsignedHex (startAddressArray (i COMMA_HERE)) ;
+    implementationCode.appendString ("\n  0x") ;
+    implementationCode.appendUnsignedHex (startAddressArray (i COMMA_HERE)) ;
   }
-  implementationCode.addString ("\n} ;\n\n") ;
+  implementationCode.appendString ("\n} ;\n\n") ;
   implementationCode.append_C_HyphenLineComment () ;
 //--- block length array
-  implementationCode.addString ("\n"
+  implementationCode.appendString ("\n"
                         "static unsigned long gBlockLengthArray [") ;
-  implementationCode.addSigned (blockLengthArray.count ()) ;
-  implementationCode.addString ("] = {") ;
+  implementationCode.appendSigned (blockLengthArray.count ()) ;
+  implementationCode.appendString ("] = {") ;
   for (int32_t i=0 ; i<blockLengthArray.count () ; i++) {
     if (i > 0) {
-      implementationCode.addString (",") ;
+      implementationCode.appendString (",") ;
     }
-    implementationCode.addString ("\n  ") ;
-    implementationCode.addUnsigned (blockLengthArray (i COMMA_HERE)) ;
+    implementationCode.appendString ("\n  ") ;
+    implementationCode.appendUnsigned (blockLengthArray (i COMMA_HERE)) ;
   }
-  implementationCode.addString ("\n} ;\n\n") ;
+  implementationCode.appendString ("\n} ;\n\n") ;
   implementationCode.append_C_HyphenLineComment () ;
 //--- block data array
-  implementationCode.addString ("\n"
+  implementationCode.appendString ("\n"
                         "static unsigned char * gBlockDataArray [") ;
-  implementationCode.addSigned (blockLengthArray.count ()) ;
-  implementationCode.addString ("] = {") ;
+  implementationCode.appendSigned (blockLengthArray.count ()) ;
+  implementationCode.appendString ("] = {") ;
   for (int32_t i=0 ; i<blockLengthArray.count () ; i++) {
     if (i > 0) {
-      implementationCode.addString (",") ;
+      implementationCode.appendString (",") ;
     }
-    implementationCode.addString ("\n  gArray_") ;
-    implementationCode.addSigned (i) ;
+    implementationCode.appendString ("\n  gArray_") ;
+    implementationCode.appendSigned (i) ;
   }
-  implementationCode.addString ("\n} ;\n\n") ;
+  implementationCode.appendString ("\n} ;\n\n") ;
   implementationCode.append_C_HyphenLineComment () ;
 //--- routines
-  implementationCode.addString ("\n"
+  implementationCode.appendString ("\n"
                         "unsigned long ") ;
-  implementationCode.addString (inSourceName) ;
-  implementationCode.addString ("_blockCount (void) {\n"
+  implementationCode.appendString (inSourceName) ;
+  implementationCode.appendString ("_blockCount (void) {\n"
                         "  return ") ;
-  implementationCode.addSigned (blockLengthArray.count ()) ;
-  implementationCode.addString (" ;\n"
+  implementationCode.appendSigned (blockLengthArray.count ()) ;
+  implementationCode.appendString (" ;\n"
                         "}\n\n") ;
   implementationCode.append_C_HyphenLineComment () ;
-  implementationCode.addString ("\n"
+  implementationCode.appendString ("\n"
                         "unsigned long ") ;
-  implementationCode.addString (inSourceName) ;
-  implementationCode.addString ("_blockStartAddressForIndex (const unsigned long inIndex) {\n"
+  implementationCode.appendString (inSourceName) ;
+  implementationCode.appendString ("_blockStartAddressForIndex (const unsigned long inIndex) {\n"
                         "  return gBlockStartAddressArray [inIndex] ;\n"
                         "}\n\n") ;
   implementationCode.append_C_HyphenLineComment () ;
-  implementationCode.addString ("\n"
+  implementationCode.appendString ("\n"
                         "unsigned long ") ;
-  implementationCode.addString (inSourceName) ;
-  implementationCode.addString ("_blockLengthForIndex (const unsigned long inIndex) {\n"
+  implementationCode.appendString (inSourceName) ;
+  implementationCode.appendString ("_blockLengthForIndex (const unsigned long inIndex) {\n"
                         "  return gBlockLengthArray [inIndex] ;\n"
                         "}\n\n") ;
   implementationCode.append_C_HyphenLineComment () ;
-  implementationCode.addString ("\n"
+  implementationCode.appendString ("\n"
                         "unsigned char ") ;
-  implementationCode.addString (inSourceName) ;
-  implementationCode.addString ("_dataForIndexAndOffset (const unsigned long inIndex,\n"
+  implementationCode.appendString (inSourceName) ;
+  implementationCode.appendString ("_dataForIndexAndOffset (const unsigned long inIndex,\n"
                         "                                     const unsigned long inOffset) {\n"
                         "  return gBlockDataArray [inIndex] [inOffset] ;\n"
                         "}\n\n") ;
@@ -226,32 +226,32 @@ static String
 generate_C_ArrayHeaderFileFromSpareArray (const String & inSourceName,
                                           const TC_UniqueSparseArray <uint8_t> & /* inSpareArray */) {
   String headerCode ;
-  headerCode.addString ("#ifdef __cplusplus\n"
+  headerCode.appendString ("#ifdef __cplusplus\n"
                 "  extern \"C\" {\n"
                 "#endif\n\n") ;
   headerCode.append_C_HyphenLineComment () ;
-  headerCode.addString ("\n"
+  headerCode.appendString ("\n"
                 "unsigned long ") ;
-  headerCode.addString (inSourceName) ;
-  headerCode.addString ("_blockCount (void) ;\n\n") ;
+  headerCode.appendString (inSourceName) ;
+  headerCode.appendString ("_blockCount (void) ;\n\n") ;
   headerCode.append_C_HyphenLineComment () ;
-  headerCode.addString ("\n"
+  headerCode.appendString ("\n"
                 "unsigned long ") ;
-  headerCode.addString (inSourceName) ;
-  headerCode.addString ("_blockStartAddressForIndex (const unsigned long inIndex) ;\n\n") ;
+  headerCode.appendString (inSourceName) ;
+  headerCode.appendString ("_blockStartAddressForIndex (const unsigned long inIndex) ;\n\n") ;
   headerCode.append_C_HyphenLineComment () ;
-  headerCode.addString ("\n"
+  headerCode.appendString ("\n"
                 "unsigned long ") ;
-  headerCode.addString (inSourceName) ;
-  headerCode.addString ("_blockLengthForIndex (const unsigned long inIndex) ;\n\n") ;
+  headerCode.appendString (inSourceName) ;
+  headerCode.appendString ("_blockLengthForIndex (const unsigned long inIndex) ;\n\n") ;
   headerCode.append_C_HyphenLineComment () ;
-  headerCode.addString ("\n"
+  headerCode.appendString ("\n"
                 "unsigned char ") ;
-  headerCode.addString (inSourceName) ;
-  headerCode.addString ("_dataForIndexAndOffset (const unsigned long inIndex,\n"
+  headerCode.appendString (inSourceName) ;
+  headerCode.appendString ("_dataForIndexAndOffset (const unsigned long inIndex,\n"
                         "                                     const unsigned long inOffset) ;\n\n") ;
   headerCode.append_C_HyphenLineComment () ;
-  headerCode.addString ("\n"
+  headerCode.appendString ("\n"
                 "#ifdef __cplusplus\n"
                 "  }\n"
                 "#endif\n\n") ;
@@ -266,7 +266,7 @@ static String
 generateHexCodeFromSpareArray (const TC_UniqueSparseArray <uint8_t> & inSpareArray) {
   String hexCode ;
 //--- Header
-  hexCode.addString (":020000040000FA\n") ;
+  hexCode.appendString (":020000040000FA\n") ;
 //--- Loop
   uint32_t bufferHighAddress = 0 ;
   uint32_t address = 0 ;
@@ -289,7 +289,7 @@ generateHexCodeFromSpareArray (const TC_UniqueSparseArray <uint8_t> & inSpareArr
     loop = address != 0 ;
   }
 //--- End
-  hexCode.addString (":00000001FF\n") ;
+  hexCode.appendString (":00000001FF\n") ;
 //---
   return hexCode ;
 }
@@ -339,9 +339,9 @@ void routine_emitCode_3F_ (const GALGAS_uint inCode,
                        COMMA_LOCATION_ARGS) {
   if (inCode.uintValue () > 0xFFFF) {
     String errorMessage ;
-    errorMessage.addString ("Internal error: code (") ;
-    errorMessage.addUnsigned (inCode.uintValue ()) ;
-    errorMessage.addString (") greater than 2**16-1") ;
+    errorMessage.appendString ("Internal error: code (") ;
+    errorMessage.appendUnsigned (inCode.uintValue ()) ;
+    errorMessage.appendString (") greater than 2**16-1") ;
     inCompiler->onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   const unsigned char lowByte = (unsigned char) (inCode.uintValue () & 255) ;
@@ -350,8 +350,8 @@ void routine_emitCode_3F_ (const GALGAS_uint inCode,
   gSparseArray.setObjectAtIndex (lowByte, gCurrentAddress) ;
   if (gSparseArray.isDefaultObjectAtIndex (gCurrentAddress)) {
     String errorMessage ;
-    errorMessage.addString ("Internal error: still default object at index ") ;
-    errorMessage.addUnsigned (gCurrentAddress) ;
+    errorMessage.appendString ("Internal error: still default object at index ") ;
+    errorMessage.appendUnsigned (gCurrentAddress) ;
     inCompiler->onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   gCurrentAddress ++ ;
@@ -359,8 +359,8 @@ void routine_emitCode_3F_ (const GALGAS_uint inCode,
   gSparseArray.setObjectAtIndex (highByte, gCurrentAddress) ;
   if (gSparseArray.isDefaultObjectAtIndex (gCurrentAddress)) {
     String errorMessage ;
-    errorMessage.addString ("Internal error: still default object at index ") ;
-    errorMessage.addUnsigned (gCurrentAddress) ;
+    errorMessage.appendString ("Internal error: still default object at index ") ;
+    errorMessage.appendUnsigned (gCurrentAddress) ;
     inCompiler->onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   gCurrentAddress ++ ;
@@ -373,17 +373,17 @@ void routine_emitByte_3F_ (const GALGAS_uint inCode,
                        COMMA_LOCATION_ARGS) {
   if (inCode.uintValue () > 0xFF) {
     String errorMessage ;
-    errorMessage.addString ("Internal error: code (") ;
-    errorMessage.addUnsigned (inCode.uintValue ()) ;
-    errorMessage.addString (") greater than 255") ;
+    errorMessage.appendString ("Internal error: code (") ;
+    errorMessage.appendUnsigned (inCode.uintValue ()) ;
+    errorMessage.appendString (") greater than 255") ;
     inCompiler->onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
 //---
   gSparseArray.setObjectAtIndex ((unsigned char) (inCode.uintValue () & 255), gCurrentAddress) ;
   if (gSparseArray.isDefaultObjectAtIndex (gCurrentAddress)) {
     String errorMessage ;
-    errorMessage.addString ("Internal error: still default object at index ") ;
-    errorMessage.addUnsigned (gCurrentAddress) ;
+    errorMessage.appendString ("Internal error: still default object at index ") ;
+    errorMessage.appendUnsigned (gCurrentAddress) ;
     inCompiler->onTheFlySemanticError (errorMessage COMMA_THERE) ;
   }
   gCurrentAddress ++ ;

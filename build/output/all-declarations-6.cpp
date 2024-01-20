@@ -143,11 +143,11 @@ const C_galgas_type_descriptor * cPtr_pic_31__38_SimpleConstantCaseItem::classDe
 
 void cPtr_pic_31__38_SimpleConstantCaseItem::description (String & ioString,
                                                           const int32_t inIndentation) const {
-  ioString.addString ("[@pic18SimpleConstantCaseItem:") ;
+  ioString.appendString ("[@pic18SimpleConstantCaseItem:") ;
   mProperty_mCaseExpression.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mCaseExpressionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -477,13 +477,13 @@ const C_galgas_type_descriptor * cPtr_pic_31__38_IntervalCaseItem::classDescript
 
 void cPtr_pic_31__38_IntervalCaseItem::description (String & ioString,
                                                     const int32_t inIndentation) const {
-  ioString.addString ("[@pic18IntervalCaseItem:") ;
+  ioString.appendString ("[@pic18IntervalCaseItem:") ;
   mProperty_mMinExpression.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mMaxExpression.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mCaseExpressionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -706,9 +706,9 @@ cCollectionElement * cCollectionElement_pic_31__38_CaseExpressionList::copy (voi
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_pic_31__38_CaseExpressionList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mCaseItem" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mCaseItem" ":") ;
   mObject.mProperty_mCaseItem.description (ioString, inIndentation) ;
 }
 
@@ -1118,17 +1118,17 @@ cCollectionElement * cCollectionElement_pic_31__38_SwitchInstructionCaseList::co
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_pic_31__38_SwitchInstructionCaseList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mStartOfCase" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mStartOfCase" ":") ;
   mObject.mProperty_mStartOfCase.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mCaseExpressionList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mCaseExpressionList" ":") ;
   mObject.mProperty_mCaseExpressionList.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mInstructionList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mInstructionList" ":") ;
   mObject.mProperty_mInstructionList.description (ioString, inIndentation) ;
 }
 
@@ -1766,15 +1766,15 @@ const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_switch::classDes
 
 void cPtr_pic_31__38_Instruction_5F_switch::description (String & ioString,
                                                          const int32_t inIndentation) const {
-  ioString.addString ("[@pic18Instruction_switch:") ;
+  ioString.appendString ("[@pic18Instruction_switch:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mCaseList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mElseBranchStartLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mElseInstructionList.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2203,13 +2203,13 @@ cMapElement * cMapElement_pic_31__38__5F_dataMap::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_pic_31__38__5F_dataMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mData" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mData" ":") ;
   mProperty_mData.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mIsData8" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mIsData8" ":") ;
   mProperty_mIsData_38_.description (ioString, inIndentation) ;
 }
 
@@ -2805,17 +2805,17 @@ cCollectionElement * cCollectionElement_ipic_31__38_SequentialInstructionList::c
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_ipic_31__38_SequentialInstructionList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mInstruction" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mInstruction" ":") ;
   mObject.mProperty_mInstruction.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mMin" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mMin" ":") ;
   mObject.mProperty_mMin.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mMax" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mMax" ":") ;
   mObject.mProperty_mMax.description (ioString, inIndentation) ;
 }
 
@@ -3570,9 +3570,9 @@ cCollectionElement * cCollectionElement_ipic_31__38_BlockList::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_ipic_31__38_BlockList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mBlock" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mBlock" ":") ;
   mObject.mProperty_mBlock.description (ioString, inIndentation) ;
 }
 
@@ -4204,9 +4204,9 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38_ReturnTerminator::classDescrip
 
 void cPtr_ipic_31__38_ReturnTerminator::description (String & ioString,
                                                      const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18ReturnTerminator:") ;
+  ioString.appendString ("[@ipic18ReturnTerminator:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4481,11 +4481,11 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38_RetlwTerminator::classDescript
 
 void cPtr_ipic_31__38_RetlwTerminator::description (String & ioString,
                                                     const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18RetlwTerminator:") ;
+  ioString.appendString ("[@ipic18RetlwTerminator:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mLiteralValue.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4760,11 +4760,11 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38_RetfieTerminator::classDescrip
 
 void cPtr_ipic_31__38_RetfieTerminator::description (String & ioString,
                                                      const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18RetfieTerminator:") ;
+  ioString.appendString ("[@ipic18RetfieTerminator:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mFastReturn.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5179,13 +5179,13 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38_ComputedGotoTerminator::classD
 
 void cPtr_ipic_31__38_ComputedGotoTerminator::description (String & ioString,
                                                            const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18ComputedGotoTerminator:") ;
+  ioString.appendString ("[@ipic18ComputedGotoTerminator:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mTargetLabels.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mUsesRCALL.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5490,13 +5490,13 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38_ComputedRETLWTerminator::class
 
 void cPtr_ipic_31__38_ComputedRETLWTerminator::description (String & ioString,
                                                             const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18ComputedRETLWTerminator:") ;
+  ioString.appendString ("[@ipic18ComputedRETLWTerminator:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mLiteralValues.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mUsesRCALL.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5742,9 +5742,9 @@ GALGAS_bool GALGAS_conditionalBranchMode::getter_isIpicGOTO (UNUSED_LOCATION_ARG
 
 void GALGAS_conditionalBranchMode::description (String & ioString,
                                                 const int32_t /* inIndentation */) const {
-  ioString.addString ("<enum @conditionalBranchMode: ") ;
-  ioString.addString (gEnumNameArrayFor_conditionalBranchMode [mEnum]) ;
-  ioString.addString (">") ;
+  ioString.appendString ("<enum @conditionalBranchMode: ") ;
+  ioString.appendString (gEnumNameArrayFor_conditionalBranchMode [mEnum]) ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6056,13 +6056,13 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38_ComputedBraTerminator::classDe
 
 void cPtr_ipic_31__38_ComputedBraTerminator::description (String & ioString,
                                                           const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18ComputedBraTerminator:") ;
+  ioString.appendString ("[@ipic18ComputedBraTerminator:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mTargetLabels.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mUsesRCALL.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6308,9 +6308,9 @@ GALGAS_bool GALGAS_ipic_31__38_RegisterComparison::getter_isRegisterLowerThanW (
 
 void GALGAS_ipic_31__38_RegisterComparison::description (String & ioString,
                                                          const int32_t /* inIndentation */) const {
-  ioString.addString ("<enum @ipic18RegisterComparison: ") ;
-  ioString.addString (gEnumNameArrayFor_ipic_31__38_RegisterComparison [mEnum]) ;
-  ioString.addString (">") ;
+  ioString.appendString ("<enum @ipic18RegisterComparison: ") ;
+  ioString.appendString (gEnumNameArrayFor_ipic_31__38_RegisterComparison [mEnum]) ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6698,17 +6698,17 @@ void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::drop (void) {
 
 void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.addString ("<struct @ipic18_intermediate_registerExpression:") ;
+  ioString.appendString ("<struct @ipic18_intermediate_registerExpression:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mAssemblyString.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mRegisterAddress.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mNeedsBSR.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7044,19 +7044,19 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38_IncDecRegisterTerminator::clas
 
 void cPtr_ipic_31__38_IncDecRegisterTerminator::description (String & ioString,
                                                              const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18IncDecRegisterTerminator:") ;
+  ioString.appendString ("[@ipic18IncDecRegisterTerminator:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSingleInstructionTerminatorIfConditionTrue.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSingleInstructionTerminatorIfConditionFalse.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mIncrement.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_m_5F_W_5F_isDestination.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7341,15 +7341,15 @@ const C_galgas_type_descriptor * cPtr_pic_31__38_TestRegisterTerminator::classDe
 
 void cPtr_pic_31__38_TestRegisterTerminator::description (String & ioString,
                                                           const int32_t inIndentation) const {
-  ioString.addString ("[@pic18TestRegisterTerminator:") ;
+  ioString.appendString ("[@pic18TestRegisterTerminator:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSingleInstructionTerminatorIfConditionTrue.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSingleInstructionTerminatorIfConditionFalse.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7664,17 +7664,17 @@ const C_galgas_type_descriptor * cPtr_pic_31__38_BitTestTerminator::classDescrip
 
 void cPtr_pic_31__38_BitTestTerminator::description (String & ioString,
                                                      const int32_t inIndentation) const {
-  ioString.addString ("[@pic18BitTestTerminator:") ;
+  ioString.appendString ("[@pic18BitTestTerminator:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSingleInstructionTerminatorIfConditionTrue.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSingleInstructionTerminatorIfConditionFalse.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mBitNumber.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7949,11 +7949,11 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38_InstructionWithNoOperand::clas
 
 void cPtr_ipic_31__38_InstructionWithNoOperand::description (String & ioString,
                                                              const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18InstructionWithNoOperand:") ;
+  ioString.appendString ("[@ipic18InstructionWithNoOperand:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mKind.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8324,15 +8324,15 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::description (String & ioString,
                                                                            const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_FDA:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_FDA:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mInstruction_5F_FDA_5F_base_5F_code.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_m_5F_W_5F_isDestination.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8622,9 +8622,9 @@ GALGAS_bool GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::getter_isSET
 
 void GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code::description (String & ioString,
                                                                           const int32_t /* inIndentation */) const {
-  ioString.addString ("<enum @FA_sequential_instruction_base_code: ") ;
-  ioString.addString (gEnumNameArrayFor_FA_5F_sequential_5F_instruction_5F_base_5F_code [mEnum]) ;
-  ioString.addString (">") ;
+  ioString.appendString ("<enum @FA_sequential_instruction_base_code: ") ;
+  ioString.appendString (gEnumNameArrayFor_FA_5F_sequential_5F_instruction_5F_base_5F_code [mEnum]) ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8826,13 +8826,13 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::description (String & ioString,
                                                                           const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_FA:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_FA:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mFAinstruction.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9059,15 +9059,15 @@ void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndicati
 
 void GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::description (String & ioString,
                                                                                                  const int32_t inIndentation) const {
-  ioString.addString ("<struct @ipic18_intermediate_registerExpressionWithoutBSRIndication:") ;
+  ioString.appendString ("<struct @ipic18_intermediate_registerExpressionWithoutBSRIndication:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mAssemblyString.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mRegisterAddress.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9253,13 +9253,13 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_MOVFF:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_MOVFF:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSourceRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mDestinationRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9564,13 +9564,13 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::description (String & ioString,
                                                                                         const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_literalOperation:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_literalOperation:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mLiteralInstruction.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mLiteralValue.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9875,13 +9875,13 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::description (String & ioString,
                                                                             const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_LFSR:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_LFSR:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mFSRindex.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mValue.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10216,15 +10216,15 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::description (String & ioString,
                                                                            const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_FBA:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_FBA:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mBitOrientedOp.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mBitNumber.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10609,11 +10609,11 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_MOVLB:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_MOVLB:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mBankIndex.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10888,11 +10888,11 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::description (String & ioString,
                                                                             const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_FNOP:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_FNOP:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mBlankValue.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11167,11 +11167,11 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_BLANK:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_BLANK:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mBlankValue.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11446,11 +11446,11 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_TBLRD:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_TBLRD:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOption.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11725,11 +11725,11 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_TBLWT:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_TBLWT:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOption.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12004,11 +12004,11 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::description (String & ioString,
                                                                             const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_MNOP:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_MNOP:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOccurrenceFactor.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12283,11 +12283,11 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::description (String & ioString,
                                                                               const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_NOPBRA:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_NOPBRA:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOccurrenceFactor.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12702,13 +12702,13 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_intermediate_5F_instructio
 
 void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::description (String & ioString,
                                                                                          const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_intermediate_instruction_computed_rcall:") ;
+  ioString.appendString ("[@ipic18_intermediate_instruction_computed_rcall:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mTargetInstructions.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mUsesRCALL.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13278,17 +13278,17 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_Bit
 
 void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::description (String & ioString,
                                                                            const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_skip_instruction_BitTestSkip:") ;
+  ioString.appendString ("[@ipic18_skip_instruction_BitTestSkip:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mEmbeddedInstruction.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSkipIfSet.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mBitNumber.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13556,9 +13556,9 @@ GALGAS_bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F
 
 void GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::description (String & ioString,
                                                                                              const int32_t /* inIndentation */) const {
-  ioString.addString ("<enum @ipic18_compare_register_instruction_base_code: ") ;
-  ioString.addString (gEnumNameArrayFor_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code [mEnum]) ;
-  ioString.addString (">") ;
+  ioString.appendString ("<enum @ipic18_compare_register_instruction_base_code: ") ;
+  ioString.appendString (gEnumNameArrayFor_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code [mEnum]) ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13765,15 +13765,15 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_com
 
 void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::description (String & ioString,
                                                                                    const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_skip_instruction_compare_register:") ;
+  ioString.appendString ("[@ipic18_skip_instruction_compare_register:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mEmbeddedInstruction.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mCompareInstruction.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14041,9 +14041,9 @@ GALGAS_bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isINFSNZ (
 
 void GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::description (String & ioString,
                                                                      const int32_t /* inIndentation */) const {
-  ioString.addString ("<enum @skip_instruction_FDA_base_code: ") ;
-  ioString.addString (gEnumNameArrayFor_skip_5F_instruction_5F_FDA_5F_base_5F_code [mEnum]) ;
-  ioString.addString (">") ;
+  ioString.appendString ("<enum @skip_instruction_FDA_base_code: ") ;
+  ioString.appendString (gEnumNameArrayFor_skip_5F_instruction_5F_FDA_5F_base_5F_code [mEnum]) ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14280,17 +14280,17 @@ const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA
 
 void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::description (String & ioString,
                                                                    const int32_t inIndentation) const {
-  ioString.addString ("[@ipic18_skip_instruction_FDA:") ;
+  ioString.appendString ("[@ipic18_skip_instruction_FDA:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mEmbeddedInstruction.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mInstruction_5F_FDA_5F_base_5F_code.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_m_5F_W_5F_isDestination.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14480,9 +14480,9 @@ cMapElement * cMapElement_symbolTableForBlockOptimization::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_symbolTableForBlockOptimization::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mDefinitionBlockIndex" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mDefinitionBlockIndex" ":") ;
   mProperty_mDefinitionBlockIndex.description (ioString, inIndentation) ;
 }
 

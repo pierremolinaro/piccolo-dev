@@ -1,8 +1,8 @@
 #!/bin/sh
 set -x
 DIR=`dirname $0` &&
-cd $DIR/../makefile-macosx && python build.py &&
-PATH=$DIR/../makefile-macosx:$PATH &&
+cd $DIR/../makefile-unix && python3 build.py &&
+PATH=$DIR/../makefile-unix:$PATH &&
 cd $DIR &&
 rm -f piccolo-couleur.pdf &&
 LATEX=`which xelatex` &&
