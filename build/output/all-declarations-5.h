@@ -2161,13 +2161,13 @@ extern C_BoolCommandLineOption gOption_piccolo_5F_options_doNotReorderCluster ;
 
 extern C_BoolCommandLineOption gOption_piccolo_5F_options_doNotWarnRecursive ;
 
-extern C_BoolCommandLineOption gOption_piccolo_5F_options_generateAssembly ;
-
 extern C_BoolCommandLineOption gOption_piccolo_5F_options_generateGraphvizFiles ;
 
-extern C_BoolCommandLineOption gOption_piccolo_5F_options_ouputListingFile ;
+extern C_BoolCommandLineOption gOption_piccolo_5F_options_generateAssembly ;
 
 extern C_BoolCommandLineOption gOption_piccolo_5F_options_output_5F_C_5F_Array ;
+
+extern C_BoolCommandLineOption gOption_piccolo_5F_options_ouputListingFile ;
 
 extern C_BoolCommandLineOption gOption_piccolo_5F_options_performOptimizations ;
 

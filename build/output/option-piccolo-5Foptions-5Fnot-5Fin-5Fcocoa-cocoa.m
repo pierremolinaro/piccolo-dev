@@ -52,15 +52,6 @@ void enterOptionsFor_piccolo_5F_options_5F_not_5F_in_5F_cocoa (NSMutableArray * 
   [ioBoolOptionArray addObject:option] ;
   option = [[OC_GGS_CommandLineOption alloc]
     initWithDomainName:@"piccolo_options_not_in_cocoa"
-    identifier:@"configDescription"
-    commandChar:70
-    commandString:@"configuration"
-    comment:@"Output the configuration register description of the device named by string"
-    defaultValue:@""
-  ] ;
-  [ioStringOptionArray addObject:option] ;
-  option = [[OC_GGS_CommandLineOption alloc]
-    initWithDomainName:@"piccolo_options_not_in_cocoa"
     identifier:@"exportDeviceFiles"
     commandChar:69
     commandString:@"export"
@@ -74,6 +65,15 @@ void enterOptionsFor_piccolo_5F_options_5F_not_5F_in_5F_cocoa (NSMutableArray * 
     commandChar:77
     commandString:@"memory"
     comment:@"Output the RAM, ROM and EEPROM description of the device named by string"
+    defaultValue:@""
+  ] ;
+  [ioStringOptionArray addObject:option] ;
+  option = [[OC_GGS_CommandLineOption alloc]
+    initWithDomainName:@"piccolo_options_not_in_cocoa"
+    identifier:@"configDescription"
+    commandChar:70
+    commandString:@"configuration"
+    comment:@"Output the configuration register description of the device named by string"
     defaultValue:@""
   ] ;
   [ioStringOptionArray addObject:option] ;

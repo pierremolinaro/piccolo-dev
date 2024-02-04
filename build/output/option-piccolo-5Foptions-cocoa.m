@@ -34,15 +34,6 @@ void enterOptionsFor_piccolo_5F_options (NSMutableArray * ioBoolOptionArray,
   [ioBoolOptionArray addObject:option] ;
   option = [[OC_GGS_CommandLineOption alloc]
     initWithDomainName:@"piccolo_options"
-    identifier:@"generateAssembly"
-    commandChar:83
-    commandString:@"asm"
-    comment:@"Generate also an assembly language text file (with .asm extension)"
-    defaultValue:@""
-  ] ;
-  [ioBoolOptionArray addObject:option] ;
-  option = [[OC_GGS_CommandLineOption alloc]
-    initWithDomainName:@"piccolo_options"
     identifier:@"generateGraphvizFiles"
     commandChar:71
     commandString:@"generate-graphviz-files"
@@ -52,10 +43,10 @@ void enterOptionsFor_piccolo_5F_options (NSMutableArray * ioBoolOptionArray,
   [ioBoolOptionArray addObject:option] ;
   option = [[OC_GGS_CommandLineOption alloc]
     initWithDomainName:@"piccolo_options"
-    identifier:@"ouputListingFile"
-    commandChar:76
-    commandString:@"list"
-    comment:@"Output a list file"
+    identifier:@"generateAssembly"
+    commandChar:83
+    commandString:@"asm"
+    comment:@"Generate also an assembly language text file (with .asm extension)"
     defaultValue:@""
   ] ;
   [ioBoolOptionArray addObject:option] ;
@@ -65,6 +56,15 @@ void enterOptionsFor_piccolo_5F_options (NSMutableArray * ioBoolOptionArray,
     commandChar:67
     commandString:@"output-c-files"
     comment:@"Generate output code in a C header file and C source file"
+    defaultValue:@""
+  ] ;
+  [ioBoolOptionArray addObject:option] ;
+  option = [[OC_GGS_CommandLineOption alloc]
+    initWithDomainName:@"piccolo_options"
+    identifier:@"ouputListingFile"
+    commandChar:76
+    commandString:@"list"
+    comment:@"Output a list file"
     defaultValue:@""
   ] ;
   [ioBoolOptionArray addObject:option] ;

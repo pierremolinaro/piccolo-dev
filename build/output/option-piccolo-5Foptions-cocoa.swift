@@ -27,14 +27,6 @@ func enterOptions (_ ioBoolOptionArray : inout [SWIFT_CommandLineOption],
   ))
   ioBoolOptionArray.append (SWIFT_CommandLineOption (
     domainName: "piccolo_options",
-    identifier: "generateAssembly",
-    commandChar: "S",
-    commandString: "asm",
-    comment: "Generate also an assembly language text file (with .asm extension)",
-    defaultValue: ""
-  ))
-  ioBoolOptionArray.append (SWIFT_CommandLineOption (
-    domainName: "piccolo_options",
     identifier: "generateGraphvizFiles",
     commandChar: "G",
     commandString: "generate-graphviz-files",
@@ -43,10 +35,10 @@ func enterOptions (_ ioBoolOptionArray : inout [SWIFT_CommandLineOption],
   ))
   ioBoolOptionArray.append (SWIFT_CommandLineOption (
     domainName: "piccolo_options",
-    identifier: "ouputListingFile",
-    commandChar: "L",
-    commandString: "list",
-    comment: "Output a list file",
+    identifier: "generateAssembly",
+    commandChar: "S",
+    commandString: "asm",
+    comment: "Generate also an assembly language text file (with .asm extension)",
     defaultValue: ""
   ))
   ioBoolOptionArray.append (SWIFT_CommandLineOption (
@@ -55,6 +47,14 @@ func enterOptions (_ ioBoolOptionArray : inout [SWIFT_CommandLineOption],
     commandChar: "C",
     commandString: "output-c-files",
     comment: "Generate output code in a C header file and C source file",
+    defaultValue: ""
+  ))
+  ioBoolOptionArray.append (SWIFT_CommandLineOption (
+    domainName: "piccolo_options",
+    identifier: "ouputListingFile",
+    commandChar: "L",
+    commandString: "list",
+    comment: "Output a list file",
     defaultValue: ""
   ))
   ioBoolOptionArray.append (SWIFT_CommandLineOption (
