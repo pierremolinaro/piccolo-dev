@@ -143,11 +143,11 @@ const C_galgas_type_descriptor * cPtr_pic_31__38_RegisterComparisonCondition::cl
 
 void cPtr_pic_31__38_RegisterComparisonCondition::description (String & ioString,
                                                                const int32_t inIndentation) const {
-  ioString.appendString ("[@pic18RegisterComparisonCondition:") ;
+  ioString.appendCString ("[@pic18RegisterComparisonCondition:") ;
   mProperty_mRegisterExpression.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mComparison.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -397,15 +397,15 @@ const C_galgas_type_descriptor * cPtr_pic_31__38_IncDecRegisterInCondition::clas
 
 void cPtr_pic_31__38_IncDecRegisterInCondition::description (String & ioString,
                                                              const int32_t inIndentation) const {
-  ioString.appendString ("[@pic18IncDecRegisterInCondition:") ;
+  ioString.appendCString ("[@pic18IncDecRegisterInCondition:") ;
   mProperty_mRegisterExpression.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mIncrement.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_m_5F_W_5F_isDestination.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mBranchIfZero.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -595,11 +595,11 @@ const C_galgas_type_descriptor * cPtr_pic_31__38_BitTestInStructuredCondition::c
 
 void cPtr_pic_31__38_BitTestInStructuredCondition::description (String & ioString,
                                                                 const int32_t inIndentation) const {
-  ioString.appendString ("[@pic18BitTestInStructuredCondition:") ;
+  ioString.appendCString ("[@pic18BitTestInStructuredCondition:") ;
   mProperty_mRegisterExpression.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mBitNumber.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -836,45 +836,45 @@ void GALGAS_pic_31__38_AST::drop (void) {
 
 void GALGAS_pic_31__38_AST::description (String & ioString,
                                          const int32_t inIndentation) const {
-  ioString.appendString ("<struct @pic18AST:") ;
+  ioString.appendCString ("<struct @pic18AST:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mProgramName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mProgramKind.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mDeviceNameOrBootLoaderReference.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mConfigDefinitionList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mRamDefinitionList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mUnusedRegisterList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mCheckpicList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mDataList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mInterruptDefinitionList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mConstantDefinitionList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mRoutineDefinitionList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mMacroDefinitionList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mUnusedRoutineList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mInlinedRoutineList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mNeedsComputedGoto_32_.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mNeedsComputedGoto_34_.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mEndOfProgram.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------

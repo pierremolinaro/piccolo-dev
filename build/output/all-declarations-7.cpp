@@ -35,7 +35,7 @@ cMapElement * cMapElement_symbolTableForClusterOrdering::copy (void) {
 void cMapElement_symbolTableForClusterOrdering::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mCluster" ":") ;
+  ioString.appendCString ("mCluster" ":") ;
   mProperty_mCluster.description (ioString, inIndentation) ;
 }
 
@@ -414,7 +414,7 @@ cMapElement * cMapElement_symbolTableForRelativesResolution::copy (void) {
 void cMapElement_symbolTableForRelativesResolution::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mLabelAddress" ":") ;
+  ioString.appendCString ("mLabelAddress" ":") ;
   mProperty_mLabelAddress.description (ioString, inIndentation) ;
 }
 
@@ -733,11 +733,11 @@ cCollectionElement * cCollectionElement_codeList::copy (void) {
 void cCollectionElement_codeList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mAssemblyCode" ":") ;
+  ioString.appendCString ("mAssemblyCode" ":") ;
   mObject.mProperty_mAssemblyCode.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBinaryCode" ":") ;
+  ioString.appendCString ("mBinaryCode" ":") ;
   mObject.mProperty_mBinaryCode.description (ioString, inIndentation) ;
 }
 
@@ -1172,7 +1172,7 @@ cMapElement * cMapElement_pic_31__38__5F_dataAddressMap::copy (void) {
 void cMapElement_pic_31__38__5F_dataAddressMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mDataAddress" ":") ;
+  ioString.appendCString ("mDataAddress" ":") ;
   mProperty_mDataAddress.description (ioString, inIndentation) ;
 }
 
@@ -1711,23 +1711,23 @@ cMapElement * cMapElement_declaredRoutineMap::copy (void) {
 void cMapElement_declaredRoutineMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mRequiredBank" ":") ;
+  ioString.appendCString ("mRequiredBank" ":") ;
   mProperty_mRequiredBank.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mReturnedBank" ":") ;
+  ioString.appendCString ("mReturnedBank" ":") ;
   mProperty_mReturnedBank.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mPreservesBank" ":") ;
+  ioString.appendCString ("mPreservesBank" ":") ;
   mProperty_mPreservesBank.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mIsNoReturn" ":") ;
+  ioString.appendCString ("mIsNoReturn" ":") ;
   mProperty_mIsNoReturn.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mInstructionList" ":") ;
+  ioString.appendCString ("mInstructionList" ":") ;
   mProperty_mInstructionList.description (ioString, inIndentation) ;
 }
 
@@ -2294,15 +2294,15 @@ cMapElement * cMapElement_blockInstructionBlockMap::copy (void) {
 void cMapElement_blockInstructionBlockMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mInstructionList" ":") ;
+  ioString.appendCString ("mInstructionList" ":") ;
   mProperty_mInstructionList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBlockTerminaisonForBlockInstruction" ":") ;
+  ioString.appendCString ("mBlockTerminaisonForBlockInstruction" ":") ;
   mProperty_mBlockTerminaisonForBlockInstruction.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mEndOfBlock" ":") ;
+  ioString.appendCString ("mEndOfBlock" ":") ;
   mProperty_mEndOfBlock.description (ioString, inIndentation) ;
 }
 
@@ -2684,11 +2684,11 @@ cMapElement * cMapElement_blockInitialBankSelectionMap::copy (void) {
 void cMapElement_blockInitialBankSelectionMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mInitialBankSelection" ":") ;
+  ioString.appendCString ("mInitialBankSelection" ":") ;
   mProperty_mInitialBankSelection.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mSourceBlock" ":") ;
+  ioString.appendCString ("mSourceBlock" ":") ;
   mProperty_mSourceBlock.description (ioString, inIndentation) ;
 }
 
@@ -3433,25 +3433,25 @@ void GALGAS_optimizeFlagStruct::drop (void) {
 
 void GALGAS_optimizeFlagStruct::description (String & ioString,
                                              const int32_t inIndentation) const {
-  ioString.appendString ("<struct @optimizeFlagStruct:") ;
+  ioString.appendCString ("<struct @optimizeFlagStruct:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mRemoveEmptyRoutine.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mJSRtoRETLWreplacedByMOVLW.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mJSRfollowedByRETreplacedByJUMP.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mMOVLWfollowedByRETreplacedByRETLW.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mJSRtoOneInstructionRoutineReplacedByInstruction.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3849,7 +3849,7 @@ cCollectionElement * cCollectionElement_clusterList::copy (void) {
 void cCollectionElement_clusterList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBlockList" ":") ;
+  ioString.appendCString ("mBlockList" ":") ;
   mObject.mProperty_mBlockList.description (ioString, inIndentation) ;
 }
 
@@ -4224,7 +4224,7 @@ cMapElement * cMapElement_neededConversionForClusterOrder::copy (void) {
 void cMapElement_neededConversionForClusterOrder::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mConversions" ":") ;
+  ioString.appendCString ("mConversions" ":") ;
   mProperty_mConversions.description (ioString, inIndentation) ;
 }
 
@@ -4510,11 +4510,11 @@ cMapElement * cMapElement_generatedCodeMap::copy (void) {
 void cMapElement_generatedCodeMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mCode" ":") ;
+  ioString.appendCString ("mCode" ":") ;
   mProperty_mCode.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mInstruction" ":") ;
+  ioString.appendCString ("mInstruction" ":") ;
   mProperty_mInstruction.description (ioString, inIndentation) ;
 }
 
@@ -4898,7 +4898,7 @@ cMapElement * cMapElement_blockMapForStackComputation::copy (void) {
 void cMapElement_blockMapForStackComputation::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBlock" ":") ;
+  ioString.appendCString ("mBlock" ":") ;
   mProperty_mBlock.description (ioString, inIndentation) ;
 }
 
@@ -5184,11 +5184,11 @@ cMapElement * cMapElement_routineCallMap::copy (void) {
 void cMapElement_routineCallMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mCalledRoutineSet" ":") ;
+  ioString.appendCString ("mCalledRoutineSet" ":") ;
   mProperty_mCalledRoutineSet.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mTerminatorStackNeeds" ":") ;
+  ioString.appendCString ("mTerminatorStackNeeds" ":") ;
   mProperty_mTerminatorStackNeeds.description (ioString, inIndentation) ;
 }
 
@@ -5495,7 +5495,7 @@ cMapElement * cMapElement_routineStackRequirementMap::copy (void) {
 void cMapElement_routineStackRequirementMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mLevels" ":") ;
+  ioString.appendCString ("mLevels" ":") ;
   mProperty_mLevels.description (ioString, inIndentation) ;
 }
 
@@ -5823,11 +5823,11 @@ cMapElement * cMapElement_blockDurationMap::copy (void) {
 void cMapElement_blockDurationMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mMinDuration" ":") ;
+  ioString.appendCString ("mMinDuration" ":") ;
   mProperty_mMinDuration.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mMaxDuration" ":") ;
+  ioString.appendCString ("mMaxDuration" ":") ;
   mProperty_mMaxDuration.description (ioString, inIndentation) ;
 }
 
@@ -6330,85 +6330,73 @@ String Lexique_piccoloDevice_5F_lexique::getMessageForTerminal (const int32_t in
 //                      U N I C O D E    S T R I N G S                                           
 //--------------------------------------------------------------------------------------------------
 
-//--- Unicode string for '$_2C_$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__2C_ [] = {
+//--- Unicode string for '$,$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__2C_ = {
   TO_UNICODE (','),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_2D_$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__2D_ [] = {
+//--- Unicode string for '$-$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__2D_ = {
   TO_UNICODE ('-'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_2F_$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__2F_ [] = {
+//--- Unicode string for '$/$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__2F_ = {
   TO_UNICODE ('/'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_30_x$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__30_x [] = {
+//--- Unicode string for '$0x$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__30_x = {
   TO_UNICODE ('0'),
   TO_UNICODE ('x'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3A_$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__3A_ [] = {
+//--- Unicode string for '$:$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__3A_ = {
   TO_UNICODE (':'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3B_$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__3B_ [] = {
+//--- Unicode string for '$;$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__3B_ = {
   TO_UNICODE (';'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3C_$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__3C_ [] = {
+//--- Unicode string for '$<$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__3C_ = {
   TO_UNICODE ('<'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3E_$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__3E_ [] = {
+//--- Unicode string for '$>$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__3E_ = {
   TO_UNICODE ('>'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_5B_$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__5B_ [] = {
+//--- Unicode string for '$[$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__5B_ = {
   TO_UNICODE ('['),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_5D_$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__5D_ [] = {
+//--- Unicode string for '$]$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__5D_ = {
   TO_UNICODE (']'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$at$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_at [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_at = {
   TO_UNICODE ('a'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$bank$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_bank [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_bank = {
   TO_UNICODE ('b'),
   TO_UNICODE ('a'),
   TO_UNICODE ('n'),
   TO_UNICODE ('k'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$configuration$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_configuration [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_configuration = {
   TO_UNICODE ('c'),
   TO_UNICODE ('o'),
   TO_UNICODE ('n'),
@@ -6422,11 +6410,10 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_configuration [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('o'),
   TO_UNICODE ('n'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$controller$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_controller [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_controller = {
   TO_UNICODE ('c'),
   TO_UNICODE ('o'),
   TO_UNICODE ('n'),
@@ -6437,11 +6424,10 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_controller [] = {
   TO_UNICODE ('l'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$description$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_description [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_description = {
   TO_UNICODE ('d'),
   TO_UNICODE ('e'),
   TO_UNICODE ('s'),
@@ -6453,11 +6439,10 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_description [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('o'),
   TO_UNICODE ('n'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$eepromsize$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_eepromsize [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_eepromsize = {
   TO_UNICODE ('e'),
   TO_UNICODE ('e'),
   TO_UNICODE ('p'),
@@ -6468,11 +6453,10 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_eepromsize [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('z'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$illegal$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_illegal [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_illegal = {
   TO_UNICODE ('i'),
   TO_UNICODE ('l'),
   TO_UNICODE ('l'),
@@ -6480,20 +6464,18 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_illegal [] = {
   TO_UNICODE ('g'),
   TO_UNICODE ('a'),
   TO_UNICODE ('l'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$mask$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_mask [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_mask = {
   TO_UNICODE ('m'),
   TO_UNICODE ('a'),
   TO_UNICODE ('s'),
   TO_UNICODE ('k'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$message$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_message [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_message = {
   TO_UNICODE ('m'),
   TO_UNICODE ('e'),
   TO_UNICODE ('s'),
@@ -6501,11 +6483,10 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_message [] = {
   TO_UNICODE ('a'),
   TO_UNICODE ('g'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$mirrorat$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_mirrorat [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_mirrorat = {
   TO_UNICODE ('m'),
   TO_UNICODE ('i'),
   TO_UNICODE ('r'),
@@ -6514,11 +6495,10 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_mirrorat [] = {
   TO_UNICODE ('r'),
   TO_UNICODE ('a'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$processor$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_processor [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_processor = {
   TO_UNICODE ('p'),
   TO_UNICODE ('r'),
   TO_UNICODE ('o'),
@@ -6528,19 +6508,17 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_processor [] = {
   TO_UNICODE ('s'),
   TO_UNICODE ('o'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$ram$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_ram [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_ram = {
   TO_UNICODE ('r'),
   TO_UNICODE ('a'),
   TO_UNICODE ('m'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$register$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_register [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_register = {
   TO_UNICODE ('r'),
   TO_UNICODE ('e'),
   TO_UNICODE ('g'),
@@ -6549,11 +6527,10 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_register [] = {
   TO_UNICODE ('t'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$romsize$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_romsize [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_romsize = {
   TO_UNICODE ('r'),
   TO_UNICODE ('o'),
   TO_UNICODE ('m'),
@@ -6561,11 +6538,10 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_romsize [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('z'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$setting$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_setting [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_setting = {
   TO_UNICODE ('s'),
   TO_UNICODE ('e'),
   TO_UNICODE ('t'),
@@ -6573,18 +6549,16 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_setting [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('n'),
   TO_UNICODE ('g'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$to$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_to [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_to = {
   TO_UNICODE ('t'),
   TO_UNICODE ('o'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$unusedregister$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_unusedregister [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_unusedregister = {
   TO_UNICODE ('u'),
   TO_UNICODE ('n'),
   TO_UNICODE ('u'),
@@ -6599,29 +6573,25 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique_unusedregister [] = {
   TO_UNICODE ('t'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$width$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique_width [] = {
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique_width = {
   TO_UNICODE ('w'),
   TO_UNICODE ('i'),
   TO_UNICODE ('d'),
   TO_UNICODE ('t'),
   TO_UNICODE ('h'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_7B_$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__7B_ [] = {
+//--- Unicode string for '${$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__7B_ = {
   TO_UNICODE ('{'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_7D_$'
-static const utf32 kUnicodeString_piccoloDevice_5F_lexique__7D_ [] = {
+//--- Unicode string for '$}$'
+static const std::initializer_list <utf32> kUnicodeString_piccoloDevice_5F_lexique__7D_ = {
   TO_UNICODE ('}'),
-  TO_UNICODE (0)
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -6631,24 +6601,24 @@ static const utf32 kUnicodeString_piccoloDevice_5F_lexique__7D_ [] = {
 static const int32_t ktable_size_piccoloDevice_5F_lexique_controlKeyWordList = 18 ;
 
 static const C_unicode_lexique_table_entry ktable_for_piccoloDevice_5F_lexique_controlKeyWordList [ktable_size_piccoloDevice_5F_lexique_controlKeyWordList] = {
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_at, 2, Lexique_piccoloDevice_5F_lexique::kToken_at),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_to, 2, Lexique_piccoloDevice_5F_lexique::kToken_to),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_ram, 3, Lexique_piccoloDevice_5F_lexique::kToken_ram),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_bank, 4, Lexique_piccoloDevice_5F_lexique::kToken_bank),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_mask, 4, Lexique_piccoloDevice_5F_lexique::kToken_mask),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_width, 5, Lexique_piccoloDevice_5F_lexique::kToken_width),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_illegal, 7, Lexique_piccoloDevice_5F_lexique::kToken_illegal),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_message, 7, Lexique_piccoloDevice_5F_lexique::kToken_message),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_romsize, 7, Lexique_piccoloDevice_5F_lexique::kToken_romsize),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_setting, 7, Lexique_piccoloDevice_5F_lexique::kToken_setting),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_mirrorat, 8, Lexique_piccoloDevice_5F_lexique::kToken_mirrorat),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_register, 8, Lexique_piccoloDevice_5F_lexique::kToken_register),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_processor, 9, Lexique_piccoloDevice_5F_lexique::kToken_processor),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_controller, 10, Lexique_piccoloDevice_5F_lexique::kToken_controller),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_eepromsize, 10, Lexique_piccoloDevice_5F_lexique::kToken_eepromsize),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_description, 11, Lexique_piccoloDevice_5F_lexique::kToken_description),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_configuration, 13, Lexique_piccoloDevice_5F_lexique::kToken_configuration),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_unusedregister, 14, Lexique_piccoloDevice_5F_lexique::kToken_unusedregister)
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_at, Lexique_piccoloDevice_5F_lexique::kToken_at),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_to, Lexique_piccoloDevice_5F_lexique::kToken_to),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_ram, Lexique_piccoloDevice_5F_lexique::kToken_ram),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_bank, Lexique_piccoloDevice_5F_lexique::kToken_bank),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_mask, Lexique_piccoloDevice_5F_lexique::kToken_mask),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_width, Lexique_piccoloDevice_5F_lexique::kToken_width),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_illegal, Lexique_piccoloDevice_5F_lexique::kToken_illegal),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_message, Lexique_piccoloDevice_5F_lexique::kToken_message),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_romsize, Lexique_piccoloDevice_5F_lexique::kToken_romsize),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_setting, Lexique_piccoloDevice_5F_lexique::kToken_setting),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_mirrorat, Lexique_piccoloDevice_5F_lexique::kToken_mirrorat),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_register, Lexique_piccoloDevice_5F_lexique::kToken_register),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_processor, Lexique_piccoloDevice_5F_lexique::kToken_processor),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_controller, Lexique_piccoloDevice_5F_lexique::kToken_controller),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_eepromsize, Lexique_piccoloDevice_5F_lexique::kToken_eepromsize),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_description, Lexique_piccoloDevice_5F_lexique::kToken_description),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_configuration, Lexique_piccoloDevice_5F_lexique::kToken_configuration),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique_unusedregister, Lexique_piccoloDevice_5F_lexique::kToken_unusedregister)
 } ;
 
 int32_t Lexique_piccoloDevice_5F_lexique::search_into_controlKeyWordList (const String & inSearchedString) {
@@ -6662,17 +6632,17 @@ int32_t Lexique_piccoloDevice_5F_lexique::search_into_controlKeyWordList (const 
 static const int32_t ktable_size_piccoloDevice_5F_lexique_delimitorsList = 11 ;
 
 static const C_unicode_lexique_table_entry ktable_for_piccoloDevice_5F_lexique_delimitorsList [ktable_size_piccoloDevice_5F_lexique_delimitorsList] = {
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2C_, 1, Lexique_piccoloDevice_5F_lexique::kToken__2C_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2D_, 1, Lexique_piccoloDevice_5F_lexique::kToken__2D_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2F_, 1, Lexique_piccoloDevice_5F_lexique::kToken__2F_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3A_, 1, Lexique_piccoloDevice_5F_lexique::kToken__3A_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3B_, 1, Lexique_piccoloDevice_5F_lexique::kToken__3B_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3C_, 1, Lexique_piccoloDevice_5F_lexique::kToken__3C_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3E_, 1, Lexique_piccoloDevice_5F_lexique::kToken__3E_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__5B_, 1, Lexique_piccoloDevice_5F_lexique::kToken__5B_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__5D_, 1, Lexique_piccoloDevice_5F_lexique::kToken__5D_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__7B_, 1, Lexique_piccoloDevice_5F_lexique::kToken__7B_),
-  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__7D_, 1, Lexique_piccoloDevice_5F_lexique::kToken__7D_)
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2C_, Lexique_piccoloDevice_5F_lexique::kToken__2C_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2D_, Lexique_piccoloDevice_5F_lexique::kToken__2D_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__2F_, Lexique_piccoloDevice_5F_lexique::kToken__2F_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3A_, Lexique_piccoloDevice_5F_lexique::kToken__3A_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3B_, Lexique_piccoloDevice_5F_lexique::kToken__3B_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3C_, Lexique_piccoloDevice_5F_lexique::kToken__3C_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__3E_, Lexique_piccoloDevice_5F_lexique::kToken__3E_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__5B_, Lexique_piccoloDevice_5F_lexique::kToken__5B_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__5D_, Lexique_piccoloDevice_5F_lexique::kToken__5D_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__7B_, Lexique_piccoloDevice_5F_lexique::kToken__7B_),
+  C_unicode_lexique_table_entry (kUnicodeString_piccoloDevice_5F_lexique__7D_, Lexique_piccoloDevice_5F_lexique::kToken__7D_)
 } ;
 
 int32_t Lexique_piccoloDevice_5F_lexique::search_into_delimitorsList (const String & inSearchedString) {
@@ -6688,182 +6658,182 @@ String Lexique_piccoloDevice_5F_lexique::getCurrentTokenString (const cToken * i
   const cTokenFor_piccoloDevice_5F_lexique * ptr = (const cTokenFor_piccoloDevice_5F_lexique *) inTokenPtr ;
   String s ;
   if (ptr == nullptr) {
-    s.appendString ("$$") ;
+    s.appendCString ("$$") ;
   }else{
     switch (ptr->mTokenCode) {
     case kToken_:
-      s.appendString ("$$") ;
+      s.appendCString ("$$") ;
       break ;
     case kToken_identifier:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("identifier") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("identifier") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_integer:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("integer") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("integer") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendUnsigned (ptr->mLexicalAttribute_uint_33__32_value) ;
       break ;
     case kToken_string:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("string") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("string") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_comment:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("comment") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("comment") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_controller:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("controller") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("controller") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_processor:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("processor") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("processor") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_romsize:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("romsize") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("romsize") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_eepromsize:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("eepromsize") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("eepromsize") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_bank:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("bank") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("bank") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_unusedregister:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("unusedregister") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("unusedregister") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_mirrorat:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("mirrorat") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("mirrorat") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_ram:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("ram") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("ram") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_register:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("register") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("register") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_at:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("at") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("at") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_to:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("to") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("to") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_configuration:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("configuration") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("configuration") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_width:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("width") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("width") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_description:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("description") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("description") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_mask:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("mask") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("mask") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_illegal:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("illegal") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("illegal") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_message:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("message") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("message") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_setting:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("setting") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("setting") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3C_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("<") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("<") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3E_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString (">") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString (">") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__2C_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString (",") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString (",") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__2D_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("-") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("-") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__2F_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("/") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("/") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3B_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString (";") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString (";") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3A_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString (":") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString (":") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__5B_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("[") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("[") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__5D_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("]") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("]") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__7B_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("{") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("{") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__7D_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("}") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("}") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     default:
       break ;
@@ -6916,7 +6886,7 @@ void Lexique_piccoloDevice_5F_lexique::internalParseLexicalToken (cTokenFor_picc
         token.mTokenCode = kToken_identifier ;
       }
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__30_x, 2, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__30_x, true)) {
       do {
         if (testForInputUTF32CharRange (TO_UNICODE ('0'), TO_UNICODE ('9'))) {
           ::scanner_routine_enterHexDigitIntoUInt (*this, previousChar (), token.mLexicalAttribute_uint_33__32_value, gLexicalMessage_piccoloDevice_5F_lexique_hexNumberTooLarge, gLexicalMessage_piccoloDevice_5F_lexique_internalError) ;
@@ -6945,37 +6915,37 @@ void Lexique_piccoloDevice_5F_lexique::internalParseLexicalToken (cTokenFor_picc
       loop = true ;
       token.mTokenCode = kToken_integer ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__7D_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__7D_, true)) {
       token.mTokenCode = kToken__7D_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__7B_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__7B_, true)) {
       token.mTokenCode = kToken__7B_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__5D_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__5D_, true)) {
       token.mTokenCode = kToken__5D_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__5B_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__5B_, true)) {
       token.mTokenCode = kToken__5B_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__3E_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__3E_, true)) {
       token.mTokenCode = kToken__3E_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__3C_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__3C_, true)) {
       token.mTokenCode = kToken__3C_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__3B_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__3B_, true)) {
       token.mTokenCode = kToken__3B_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__3A_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__3A_, true)) {
       token.mTokenCode = kToken__3A_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__2F_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__2F_, true)) {
       token.mTokenCode = kToken__2F_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__2D_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__2D_, true)) {
       token.mTokenCode = kToken__2D_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__2C_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_piccoloDevice_5F_lexique__2C_, true)) {
       token.mTokenCode = kToken__2C_ ;
       enterToken (token) ;
     }else if (testForInputUTF32Char (TO_UNICODE ('\"'))) {
@@ -7589,23 +7559,23 @@ cMapElement * cMapElement_registerTable::copy (void) {
 void cMapElement_registerTable::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mRegisterAddressList" ":") ;
+  ioString.appendCString ("mRegisterAddressList" ":") ;
   mProperty_mRegisterAddressList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mSize" ":") ;
+  ioString.appendCString ("mSize" ":") ;
   mProperty_mSize.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBitSliceTable" ":") ;
+  ioString.appendCString ("mBitSliceTable" ":") ;
   mProperty_mBitSliceTable.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBitDefinitionString" ":") ;
+  ioString.appendCString ("mBitDefinitionString" ":") ;
   mProperty_mBitDefinitionString.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mProtection" ":") ;
+  ioString.appendCString ("mProtection" ":") ;
   mProperty_mProtection.description (ioString, inIndentation) ;
 }
 
@@ -8156,19 +8126,19 @@ cMapElement * cMapElement_ramBankTable::copy (void) {
 void cMapElement_ramBankTable::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFirstAddress" ":") ;
+  ioString.appendCString ("mFirstAddress" ":") ;
   mProperty_mFirstAddress.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFirstFreeAddress" ":") ;
+  ioString.appendCString ("mFirstFreeAddress" ":") ;
   mProperty_mFirstFreeAddress.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mLastAddressPlusOne" ":") ;
+  ioString.appendCString ("mLastAddressPlusOne" ":") ;
   mProperty_mLastAddressPlusOne.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mMirrorOffsetList" ":") ;
+  ioString.appendCString ("mMirrorOffsetList" ":") ;
   mProperty_mMirrorOffsetList.description (ioString, inIndentation) ;
 }
 
@@ -8672,9 +8642,9 @@ GALGAS_bool GALGAS_processorType::getter_isBaseline (UNUSED_LOCATION_ARGS) const
 
 void GALGAS_processorType::description (String & ioString,
                                         const int32_t /* inIndentation */) const {
-  ioString.appendString ("<enum @processorType: ") ;
-  ioString.appendString (gEnumNameArrayFor_processorType [mEnum]) ;
-  ioString.appendString (">") ;
+  ioString.appendCString ("<enum @processorType: ") ;
+  ioString.appendCString (gEnumNameArrayFor_processorType [mEnum]) ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8800,15 +8770,15 @@ cCollectionElement * cCollectionElement_illegalMaskList::copy (void) {
 void cCollectionElement_illegalMaskList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mIllegalValue" ":") ;
+  ioString.appendCString ("mIllegalValue" ":") ;
   mObject.mProperty_mIllegalValue.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mIllegalMask" ":") ;
+  ioString.appendCString ("mIllegalMask" ":") ;
   mObject.mProperty_mIllegalMask.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mDescription" ":") ;
+  ioString.appendCString ("mDescription" ":") ;
   mObject.mProperty_mDescription.description (ioString, inIndentation) ;
 }
 
@@ -9307,15 +9277,15 @@ cMapElement * cMapElement_configRegisterMaskMap::copy (void) {
 void cMapElement_configRegisterMaskMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mMaskValue" ":") ;
+  ioString.appendCString ("mMaskValue" ":") ;
   mProperty_mMaskValue.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mDescription" ":") ;
+  ioString.appendCString ("mDescription" ":") ;
   mProperty_mDescription.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFieldSettingMap" ":") ;
+  ioString.appendCString ("mFieldSettingMap" ":") ;
   mProperty_mFieldSettingMap.description (ioString, inIndentation) ;
 }
 
@@ -9701,19 +9671,19 @@ cMapElement * cMapElement_configRegisterMap::copy (void) {
 void cMapElement_configRegisterMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mRegisterAddress" ":") ;
+  ioString.appendCString ("mRegisterAddress" ":") ;
   mProperty_mRegisterAddress.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mRegisterWidth" ":") ;
+  ioString.appendCString ("mRegisterWidth" ":") ;
   mProperty_mRegisterWidth.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mConfigRegisterMaskMap" ":") ;
+  ioString.appendCString ("mConfigRegisterMaskMap" ":") ;
   mProperty_mConfigRegisterMaskMap.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mIllegalMaskList" ":") ;
+  ioString.appendCString ("mIllegalMaskList" ":") ;
   mProperty_mIllegalMaskList.description (ioString, inIndentation) ;
 }
 
@@ -10970,13 +10940,13 @@ void GALGAS_declarationInRamList_2D_element::drop (void) {
 
 void GALGAS_declarationInRamList_2D_element::description (String & ioString,
                                                           const int32_t inIndentation) const {
-  ioString.appendString ("<struct @declarationInRamList-element:") ;
+  ioString.appendCString ("<struct @declarationInRamList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mDeclarationInRAM.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11084,15 +11054,15 @@ void GALGAS_configDefinitionList_2D_element::drop (void) {
 
 void GALGAS_configDefinitionList_2D_element::description (String & ioString,
                                                           const int32_t inIndentation) const {
-  ioString.appendString ("<struct @configDefinitionList-element:") ;
+  ioString.appendCString ("<struct @configDefinitionList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mDefinitionLocation.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mSettingList.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11200,15 +11170,15 @@ void GALGAS_immediatExpressionList_2D_element::drop (void) {
 
 void GALGAS_immediatExpressionList_2D_element::description (String & ioString,
                                                             const int32_t inIndentation) const {
-  ioString.appendString ("<struct @immediatExpressionList-element:") ;
+  ioString.appendCString ("<struct @immediatExpressionList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mExpression.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mErrorLocation.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11308,13 +11278,13 @@ void GALGAS_baseline_5F_instructionList_2D_element::drop (void) {
 
 void GALGAS_baseline_5F_instructionList_2D_element::description (String & ioString,
                                                                  const int32_t inIndentation) const {
-  ioString.appendString ("<struct @baseline_instructionList-element:") ;
+  ioString.appendCString ("<struct @baseline_instructionList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mInstruction.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11430,17 +11400,17 @@ void GALGAS_baseline_5F_partList_2D_element::drop (void) {
 
 void GALGAS_baseline_5F_partList_2D_element::description (String & ioString,
                                                           const int32_t inIndentation) const {
-  ioString.appendString ("<struct @baseline_partList-element:") ;
+  ioString.appendCString ("<struct @baseline_partList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mCondition.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mEndOfPartLocation.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11540,13 +11510,13 @@ void GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::drop (void) 
 
 void GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::description (String & ioString,
                                                                                  const int32_t inIndentation) const {
-  ioString.appendString ("<struct @baseline_intermediate_instructionList-element:") ;
+  ioString.appendCString ("<struct @baseline_intermediate_instructionList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mInstruction.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11646,13 +11616,13 @@ void GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::drop (void) {
 
 void GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.appendString ("<struct @baseline_assembly_instructionList-element:") ;
+  ioString.appendCString ("<struct @baseline_assembly_instructionList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mInstruction.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11752,13 +11722,13 @@ void GALGAS_midrange_5F_instructionList_2D_element::drop (void) {
 
 void GALGAS_midrange_5F_instructionList_2D_element::description (String & ioString,
                                                                  const int32_t inIndentation) const {
-  ioString.appendString ("<struct @midrange_instructionList-element:") ;
+  ioString.appendCString ("<struct @midrange_instructionList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mInstruction.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11874,17 +11844,17 @@ void GALGAS_midrange_5F_partList_2D_element::drop (void) {
 
 void GALGAS_midrange_5F_partList_2D_element::description (String & ioString,
                                                           const int32_t inIndentation) const {
-  ioString.appendString ("<struct @midrange_partList-element:") ;
+  ioString.appendCString ("<struct @midrange_partList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mCondition.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mEndOfPartLocation.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11984,13 +11954,13 @@ void GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::drop (void) 
 
 void GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::description (String & ioString,
                                                                                  const int32_t inIndentation) const {
-  ioString.appendString ("<struct @midrange_intermediate_instructionList-element:") ;
+  ioString.appendCString ("<struct @midrange_intermediate_instructionList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mInstruction.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12090,13 +12060,13 @@ void GALGAS_pic_31__38_InstructionList_2D_element::drop (void) {
 
 void GALGAS_pic_31__38_InstructionList_2D_element::description (String & ioString,
                                                                 const int32_t inIndentation) const {
-  ioString.appendString ("<struct @pic18InstructionList-element:") ;
+  ioString.appendCString ("<struct @pic18InstructionList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mInstruction.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12212,17 +12182,17 @@ void GALGAS_pic_31__38_DoWhilePartList_2D_element::drop (void) {
 
 void GALGAS_pic_31__38_DoWhilePartList_2D_element::description (String & ioString,
                                                                 const int32_t inIndentation) const {
-  ioString.appendString ("<struct @pic18DoWhilePartList-element:") ;
+  ioString.appendCString ("<struct @pic18DoWhilePartList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mCondition.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mEndOfPartLocation.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12330,15 +12300,15 @@ void GALGAS_checkpicList_2D_element::drop (void) {
 
 void GALGAS_checkpicList_2D_element::description (String & ioString,
                                                   const int32_t inIndentation) const {
-  ioString.appendString ("<struct @checkpicList-element:") ;
+  ioString.appendCString ("<struct @checkpicList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mErrorLocation.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mValueList.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12438,13 +12408,13 @@ void GALGAS_pic_31__38_CaseExpressionList_2D_element::drop (void) {
 
 void GALGAS_pic_31__38_CaseExpressionList_2D_element::description (String & ioString,
                                                                    const int32_t inIndentation) const {
-  ioString.appendString ("<struct @pic18CaseExpressionList-element:") ;
+  ioString.appendCString ("<struct @pic18CaseExpressionList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mCaseItem.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12560,17 +12530,17 @@ void GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::drop (void) {
 
 void GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::description (String & ioString,
                                                                           const int32_t inIndentation) const {
-  ioString.appendString ("<struct @pic18SwitchInstructionCaseList-element:") ;
+  ioString.appendCString ("<struct @pic18SwitchInstructionCaseList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mStartOfCase.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mCaseExpressionList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mInstructionList.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12686,17 +12656,17 @@ void GALGAS_ipic_31__38_SequentialInstructionList_2D_element::drop (void) {
 
 void GALGAS_ipic_31__38_SequentialInstructionList_2D_element::description (String & ioString,
                                                                            const int32_t inIndentation) const {
-  ioString.appendString ("<struct @ipic18SequentialInstructionList-element:") ;
+  ioString.appendCString ("<struct @ipic18SequentialInstructionList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mInstruction.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mMin.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mMax.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12804,15 +12774,15 @@ void GALGAS_branchOverflowMap_2D_element::drop (void) {
 
 void GALGAS_branchOverflowMap_2D_element::description (String & ioString,
                                                        const int32_t inIndentation) const {
-  ioString.appendString ("<struct @branchOverflowMap-element:") ;
+  ioString.appendCString ("<struct @branchOverflowMap-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_key.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mList.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12920,15 +12890,15 @@ void GALGAS_codeList_2D_element::drop (void) {
 
 void GALGAS_codeList_2D_element::description (String & ioString,
                                               const int32_t inIndentation) const {
-  ioString.appendString ("<struct @codeList-element:") ;
+  ioString.appendCString ("<struct @codeList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mAssemblyCode.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mBinaryCode.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13028,13 +12998,13 @@ void GALGAS_clusterList_2D_element::drop (void) {
 
 void GALGAS_clusterList_2D_element::description (String & ioString,
                                                  const int32_t inIndentation) const {
-  ioString.appendString ("<struct @clusterList-element:") ;
+  ioString.appendCString ("<struct @clusterList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mBlockList.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13245,13 +13215,13 @@ const C_galgas_type_descriptor * cPtr_registerExpression::classDescriptor (void)
 
 void cPtr_registerExpression::description (String & ioString,
                                            const int32_t inIndentation) const {
-  ioString.appendString ("[@registerExpression:") ;
+  ioString.appendCString ("[@registerExpression:") ;
   mProperty_mRegisterName.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mOffset.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mEndOfOffsetExpression.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13531,17 +13501,17 @@ const C_galgas_type_descriptor * cPtr_byteDeclarationInRam::classDescriptor (voi
 
 void cPtr_byteDeclarationInRam::description (String & ioString,
                                              const int32_t inIndentation) const {
-  ioString.appendString ("[@byteDeclarationInRam:") ;
+  ioString.appendCString ("[@byteDeclarationInRam:") ;
   mProperty_mName.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mSizeExpression.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mBitSliceTable.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mBitDefinitionString.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mProtection.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13701,9 +13671,9 @@ const C_galgas_type_descriptor * cPtr_immediatInteger::classDescriptor (void) co
 
 void cPtr_immediatInteger::description (String & ioString,
                                         const int32_t inIndentation) const {
-  ioString.appendString ("[@immediatInteger:") ;
+  ioString.appendCString ("[@immediatInteger:") ;
   mProperty_mValue.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13863,9 +13833,9 @@ const C_galgas_type_descriptor * cPtr_immediatRegister::classDescriptor (void) c
 
 void cPtr_immediatRegister::description (String & ioString,
                                          const int32_t inIndentation) const {
-  ioString.appendString ("[@immediatRegister:") ;
+  ioString.appendCString ("[@immediatRegister:") ;
   mProperty_mRegister.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14055,11 +14025,11 @@ const C_galgas_type_descriptor * cPtr_immediatSlice::classDescriptor (void) cons
 
 void cPtr_immediatSlice::description (String & ioString,
                                       const int32_t inIndentation) const {
-  ioString.appendString ("[@immediatSlice:") ;
+  ioString.appendCString ("[@immediatSlice:") ;
   mProperty_mRegisterName.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mSliceExpressionList.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14249,11 +14219,11 @@ const C_galgas_type_descriptor * cPtr_bitNumberLabelValue::classDescriptor (void
 
 void cPtr_bitNumberLabelValue::description (String & ioString,
                                             const int32_t inIndentation) const {
-  ioString.appendString ("[@bitNumberLabelValue:") ;
+  ioString.appendCString ("[@bitNumberLabelValue:") ;
   mProperty_mBitNumberLabelValue.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mBitNumberIndexValue.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14478,15 +14448,15 @@ const C_galgas_type_descriptor * cPtr_baseline_5F_instruction_5F_FD::classDescri
 
 void cPtr_baseline_5F_instruction_5F_FD::description (String & ioString,
                                                       const int32_t inIndentation) const {
-  ioString.appendString ("[@baseline_instruction_FD:") ;
+  ioString.appendCString ("[@baseline_instruction_FD:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mInstruction_5F_FD_5F_base_5F_code.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mRegisterExpression.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_m_5F_W_5F_isDestination.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14681,13 +14651,13 @@ const C_galgas_type_descriptor * cPtr_baseline_5F_instruction_5F_F::classDescrip
 
 void cPtr_baseline_5F_instruction_5F_F::description (String & ioString,
                                                      const int32_t inIndentation) const {
-  ioString.appendString ("[@baseline_instruction_F:") ;
+  ioString.appendCString ("[@baseline_instruction_F:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mFAinstruction.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mRegisterExpression.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14912,15 +14882,15 @@ const C_galgas_type_descriptor * cPtr_baseline_5F_instruction_5F_FB::classDescri
 
 void cPtr_baseline_5F_instruction_5F_FB::description (String & ioString,
                                                       const int32_t inIndentation) const {
-  ioString.appendString ("[@baseline_instruction_FB:") ;
+  ioString.appendCString ("[@baseline_instruction_FB:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mBitOrientedOp.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mRegisterExpression.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mBitNumber.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15085,11 +15055,11 @@ const C_galgas_type_descriptor * cPtr_baseline_5F_instruction_5F_CALL::classDesc
 
 void cPtr_baseline_5F_instruction_5F_CALL::description (String & ioString,
                                                         const int32_t inIndentation) const {
-  ioString.appendString ("[@baseline_instruction_CALL:") ;
+  ioString.appendCString ("[@baseline_instruction_CALL:") ;
   mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mTargetLabel.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
