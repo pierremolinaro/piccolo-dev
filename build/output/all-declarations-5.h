@@ -1222,19 +1222,19 @@ class cParser_pic_31__38__5F_bootloader_5F_syntax {
 //
 //--------------------------------------------------------------------------------------------------
 
-extern C_BoolCommandLineOption gOption_piccolo_5F_options_doNotReorderCluster ;
+extern BoolCommandLineOption gOption_piccolo_5F_options_doNotReorderCluster ;
 
-extern C_BoolCommandLineOption gOption_piccolo_5F_options_doNotWarnRecursive ;
+extern BoolCommandLineOption gOption_piccolo_5F_options_doNotWarnRecursive ;
 
-extern C_BoolCommandLineOption gOption_piccolo_5F_options_generateGraphvizFiles ;
+extern BoolCommandLineOption gOption_piccolo_5F_options_generateGraphvizFiles ;
 
-extern C_BoolCommandLineOption gOption_piccolo_5F_options_generateAssembly ;
+extern BoolCommandLineOption gOption_piccolo_5F_options_generateAssembly ;
 
-extern C_BoolCommandLineOption gOption_piccolo_5F_options_output_5F_C_5F_Array ;
+extern BoolCommandLineOption gOption_piccolo_5F_options_output_5F_C_5F_Array ;
 
-extern C_BoolCommandLineOption gOption_piccolo_5F_options_ouputListingFile ;
+extern BoolCommandLineOption gOption_piccolo_5F_options_ouputListingFile ;
 
-extern C_BoolCommandLineOption gOption_piccolo_5F_options_performOptimizations ;
+extern BoolCommandLineOption gOption_piccolo_5F_options_performOptimizations ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -1248,7 +1248,7 @@ extern C_BoolCommandLineOption gOption_piccolo_5F_options_performOptimizations ;
 //
 //--------------------------------------------------------------------------------------------------
 
-extern C_StringCommandLineOption gOption_piccolo_5F_options_optimizationFlags ;
+extern StringCommandLineOption gOption_piccolo_5F_options_optimizationFlags ;
 
 //--------------------------------------------------------------------------------------------------
 //

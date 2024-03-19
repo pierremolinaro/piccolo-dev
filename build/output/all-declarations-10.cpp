@@ -9795,43 +9795,43 @@ GALGAS_configRegisterMap_2D_element GALGAS_configRegisterMap_2D_element::extract
 //
 //--------------------------------------------------------------------------------------------------
 
-C_BoolCommandLineOption gOption_piccolo_5F_options_doNotReorderCluster ("piccolo_options",
+BoolCommandLineOption gOption_piccolo_5F_options_doNotReorderCluster ("piccolo_options",
                                          "doNotReorderCluster",
                                          78,
                                          "no-relative-resolution",
                                          "Do not try to re order blocks for using relatives branches (PIC18 compiler only)") ;
 
-C_BoolCommandLineOption gOption_piccolo_5F_options_doNotWarnRecursive ("piccolo_options",
+BoolCommandLineOption gOption_piccolo_5F_options_doNotWarnRecursive ("piccolo_options",
                                          "doNotWarnRecursive",
                                          82,
                                          "no-warning-on-recursive-routines",
                                          "Do not warn when there are recursive routines (PIC18 compiler only)") ;
 
-C_BoolCommandLineOption gOption_piccolo_5F_options_generateGraphvizFiles ("piccolo_options",
+BoolCommandLineOption gOption_piccolo_5F_options_generateGraphvizFiles ("piccolo_options",
                                          "generateGraphvizFiles",
                                          71,
                                          "generate-graphviz-files",
                                          "Generate Graphviz files  containing block invocation, block sorting constraints, ...") ;
 
-C_BoolCommandLineOption gOption_piccolo_5F_options_generateAssembly ("piccolo_options",
+BoolCommandLineOption gOption_piccolo_5F_options_generateAssembly ("piccolo_options",
                                          "generateAssembly",
                                          83,
                                          "asm",
                                          "Generate also an assembly language text file (with .asm extension)") ;
 
-C_BoolCommandLineOption gOption_piccolo_5F_options_output_5F_C_5F_Array ("piccolo_options",
+BoolCommandLineOption gOption_piccolo_5F_options_output_5F_C_5F_Array ("piccolo_options",
                                          "output_C_Array",
                                          67,
                                          "output-c-files",
                                          "Generate output code in a C header file and C source file") ;
 
-C_BoolCommandLineOption gOption_piccolo_5F_options_ouputListingFile ("piccolo_options",
+BoolCommandLineOption gOption_piccolo_5F_options_ouputListingFile ("piccolo_options",
                                          "ouputListingFile",
                                          76,
                                          "list",
                                          "Output a list file") ;
 
-C_BoolCommandLineOption gOption_piccolo_5F_options_performOptimizations ("piccolo_options",
+BoolCommandLineOption gOption_piccolo_5F_options_performOptimizations ("piccolo_options",
                                          "performOptimizations",
                                          79,
                                          "optimize",
@@ -9849,7 +9849,7 @@ C_BoolCommandLineOption gOption_piccolo_5F_options_performOptimizations ("piccol
 //
 //--------------------------------------------------------------------------------------------------
 
-C_StringCommandLineOption gOption_piccolo_5F_options_optimizationFlags ("piccolo_options",
+StringCommandLineOption gOption_piccolo_5F_options_optimizationFlags ("piccolo_options",
                                          "optimizationFlags",
                                          0,
                                          "optimization-flags",
@@ -9871,25 +9871,25 @@ C_StringCommandLineOption gOption_piccolo_5F_options_optimizationFlags ("piccolo
 //
 //--------------------------------------------------------------------------------------------------
 
-C_BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputBaselineDeviceList ("piccolo_options_not_in_cocoa",
+BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputBaselineDeviceList ("piccolo_options_not_in_cocoa",
                                          "outputBaselineDeviceList",
                                          0,
                                          "baseline",
                                          "Output the list of supported baseline devices") ;
 
-C_BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList ("piccolo_options_not_in_cocoa",
+BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList ("piccolo_options_not_in_cocoa",
                                          "outputDeviceList",
                                          68,
                                          "device-list",
                                          "Output the list of supported devices") ;
 
-C_BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputMidrangeDeviceList ("piccolo_options_not_in_cocoa",
+BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputMidrangeDeviceList ("piccolo_options_not_in_cocoa",
                                          "outputMidrangeDeviceList",
                                          0,
                                          "midrange",
                                          "Output the list of supported mid-range devices") ;
 
-C_BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputPic_31__38_DeviceList ("piccolo_options_not_in_cocoa",
+BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputPic_31__38_DeviceList ("piccolo_options_not_in_cocoa",
                                          "outputPic18DeviceList",
                                          0,
                                          "pic18",
@@ -9907,28 +9907,28 @@ C_BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputP
 //
 //--------------------------------------------------------------------------------------------------
 
-C_StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_exportDeviceFiles ("piccolo_options_not_in_cocoa",
+StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_exportDeviceFiles ("piccolo_options_not_in_cocoa",
                                          "exportDeviceFiles",
                                          69,
                                          "export",
                                          "Export device definition files to the directory named by string",
                                          "") ;
 
-C_StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_memoryDescription ("piccolo_options_not_in_cocoa",
+StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_memoryDescription ("piccolo_options_not_in_cocoa",
                                          "memoryDescription",
                                          77,
                                          "memory",
                                          "Output the RAM, ROM and EEPROM description of the device named by string",
                                          "") ;
 
-C_StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_configDescription ("piccolo_options_not_in_cocoa",
+StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_configDescription ("piccolo_options_not_in_cocoa",
                                          "configDescription",
                                          70,
                                          "configuration",
                                          "Output the configuration register description of the device named by string",
                                          "") ;
 
-C_StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_registerDescription ("piccolo_options_not_in_cocoa",
+StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_registerDescription ("piccolo_options_not_in_cocoa",
                                          "registerDescription",
                                          82,
                                          "registers",
