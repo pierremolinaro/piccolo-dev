@@ -1,11 +1,196 @@
 #include "Compiler.h"
-#include "C_galgas_io.h"
+#include "galgas-input-output.h"
 #include "C_galgas_CLI_Options.h"
 #include "PrologueEpilogue.h"
 
 //--------------------------------------------------------------------------------------------------
 
 #include "all-declarations-5.h"
+
+
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_ (Lexique_piccolo_5F_lexique * inCompiler) {
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_pic_31__38_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 23)) ;
+  GALGAS_lstring var_programName_757 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 24)) ;
+  GALGAS_lstring var_deviceNameOrBootloaderReference_784 ;
+  GALGAS_programKind var_programKind_835 ;
+  switch (select_pic_31__38__5F_start_5F_symbol_0 (inCompiler)) {
+  case 1: {
+    var_programKind_835 = GALGAS_programKind::class_func_regularProgram (SOURCE_FILE ("pic18_start_symbol.galgas", 28)) ;
+  } break ;
+  case 2: {
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_implements COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 30)) ;
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 31)) ;
+    var_programKind_835 = GALGAS_programKind::class_func_bootloaderProgram (SOURCE_FILE ("pic18_start_symbol.galgas", 32)) ;
+  } break ;
+  case 3: {
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_uses COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 34)) ;
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 35)) ;
+    var_programKind_835 = GALGAS_programKind::class_func_userProgram (SOURCE_FILE ("pic18_start_symbol.galgas", 36)) ;
+  } break ;
+  default:
+    break ;
+  }
+  var_deviceNameOrBootloaderReference_784 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 38)) ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 39)) ;
+  GALGAS_pic_31__38_InterruptDefinitionList var_interruptDefinitionList_1140 = GALGAS_pic_31__38_InterruptDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 40)) ;
+  GALGAS_pic_31__38_RoutineDefinitionList var_routineDefinitionList_1213 = GALGAS_pic_31__38_RoutineDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 41)) ;
+  GALGAS_pic_31__38_MacroDefinitionList var_macroDefinitionList_1308 = GALGAS_pic_31__38_MacroDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 42)) ;
+  GALGAS_lstringlist var_unusedRoutineList_1339 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 43)) ;
+  GALGAS_ramDefinitionList var_ramDefinitionList_1389 = GALGAS_ramDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 44)) ;
+  GALGAS_lstringlist var_unusedRegisterList_1445 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 45)) ;
+  GALGAS_configDefinitionList var_configDefinitionList_1496 = GALGAS_configDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 46)) ;
+  GALGAS_constantDefinitionList var_constantDefinitionList_1558 = GALGAS_constantDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 47)) ;
+  GALGAS_dataList var_dataList_1624 = GALGAS_dataList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 48)) ;
+  GALGAS_checkpicList var_checkpicList_1662 = GALGAS_checkpicList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 49)) ;
+  GALGAS_lstringlist var_inlinedRoutineList_1708 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 50)) ;
+  GALGAS_bool var_needsComputedGoto_32__1765 = GALGAS_bool (false) ;
+  GALGAS_bool var_needsComputedGoto_34__1804 = GALGAS_bool (false) ;
+  nt_body_ (var_interruptDefinitionList_1140, var_routineDefinitionList_1213, var_macroDefinitionList_1308, var_unusedRoutineList_1339, var_inlinedRoutineList_1708, var_ramDefinitionList_1389, var_unusedRegisterList_1445, var_configDefinitionList_1496, var_constantDefinitionList_1558, var_checkpicList_1662, var_dataList_1624, var_needsComputedGoto_32__1765, var_needsComputedGoto_34__1804, inCompiler) ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 67)) ;
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    test_0 = GALGAS_bool (ComparisonKind::equal, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("pic18_start_symbol.galgas", 69)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      GALGAS_pic_31__38_AST var_piccoloModel_2234 = GALGAS_pic_31__38_AST::class_func_new (var_programName_757, var_programKind_835, var_deviceNameOrBootloaderReference_784, var_configDefinitionList_1496, var_ramDefinitionList_1389, var_unusedRegisterList_1445, var_checkpicList_1662, var_dataList_1624, var_interruptDefinitionList_1140, var_constantDefinitionList_1558, var_routineDefinitionList_1213, var_macroDefinitionList_1308, var_unusedRoutineList_1339, var_inlinedRoutineList_1708, var_needsComputedGoto_32__1765, var_needsComputedGoto_34__1804, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 87)), inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 70)) ;
+      {
+      routine_pic_31__38__5F_analyze_3F__3F_ (var_piccoloModel_2234, GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 89)), inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 89)) ;
+      }
+    }
+  }
+  if (kBoolFalse == test_0) {
+    GALGAS_string var_hexDestinationFile_2795 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 91)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_start_symbol.galgas", 91)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 91)) ;
+    enumGalgasBool test_1 = kBoolTrue ;
+    if (kBoolTrue == test_1) {
+      test_1 = var_hexDestinationFile_2795.getter_fileExists (SOURCE_FILE ("pic18_start_symbol.galgas", 92)).boolEnum () ;
+      if (kBoolTrue == test_1) {
+        {
+        GALGAS_string::class_method_deleteFile (var_hexDestinationFile_2795, inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 93)) ;
+        }
+      }
+    }
+    GALGAS_string var_asmDestinationFile_3006 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 95)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_start_symbol.galgas", 95)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 95)) ;
+    enumGalgasBool test_2 = kBoolTrue ;
+    if (kBoolTrue == test_2) {
+      test_2 = var_asmDestinationFile_3006.getter_fileExists (SOURCE_FILE ("pic18_start_symbol.galgas", 96)).boolEnum () ;
+      if (kBoolTrue == test_2) {
+        {
+        GALGAS_string::class_method_deleteFile (var_asmDestinationFile_3006, inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 97)) ;
+        }
+      }
+    }
+  }
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_importBootloaderSpecification (GALGAS_piccoloDeviceModel & outArgument_outPiccoloDeviceModel,
+                                                                                                                                   GALGAS_string & outArgument_outDeviceName,
+                                                                                                                                   GALGAS_uint & outArgument_outAccessBankSplitOffset,
+                                                                                                                                   GALGAS_ramBankTable & outArgument_outRamBank,
+                                                                                                                                   GALGAS_registerTable & outArgument_outRegisterTable,
+                                                                                                                                   GALGAS_bootloaderReservedRAMmap & outArgument_outBootloaderReservedRAMmap,
+                                                                                                                                   GALGAS_routineDeclarationList & outArgument_outBootloaderRoutineDeclarationList,
+                                                                                                                                   GALGAS_routineDeclarationList & outArgument_outUserRoutineDeclarationList,
+                                                                                                                                   GALGAS_luint & outArgument_outBootloaderReservedROMsize,
+                                                                                                                                   Lexique_piccolo_5F_lexique * inCompiler) {
+  outArgument_outPiccoloDeviceModel.drop () ; // Release 'out' argument
+  outArgument_outDeviceName.drop () ; // Release 'out' argument
+  outArgument_outAccessBankSplitOffset.drop () ; // Release 'out' argument
+  outArgument_outRamBank.drop () ; // Release 'out' argument
+  outArgument_outRegisterTable.drop () ; // Release 'out' argument
+  outArgument_outBootloaderReservedRAMmap.drop () ; // Release 'out' argument
+  outArgument_outBootloaderRoutineDeclarationList.drop () ; // Release 'out' argument
+  outArgument_outUserRoutineDeclarationList.drop () ; // Release 'out' argument
+  outArgument_outBootloaderReservedROMsize.drop () ; // Release 'out' argument
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_pic_31__38_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 111)) ;
+  GALGAS_lstring var_programName_3669 = inCompiler->synthetizedAttribute_tokenString () ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 112)) ;
+  TC_Array <FixItDescription> fixItArray0 ;
+  inCompiler->emitSemanticError (var_programName_3669.readProperty_location (), GALGAS_string ("this file does not define a bootloader specification"), fixItArray0  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 113)) ;
+  outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
+  outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
+  outArgument_outRamBank.drop () ; // Release error dropped variable
+  outArgument_outRegisterTable.drop () ; // Release error dropped variable
+  outArgument_outBootloaderReservedRAMmap.drop () ; // Release error dropped variable
+  outArgument_outDeviceName.drop () ; // Release error dropped variable
+  outArgument_outBootloaderRoutineDeclarationList.drop () ; // Release error dropped variable
+  outArgument_outUserRoutineDeclarationList.drop () ; // Release error dropped variable
+  outArgument_outBootloaderReservedROMsize.drop () ; // Release error dropped variable
+  switch (select_pic_31__38__5F_start_5F_symbol_0 (inCompiler)) {
+  case 1: {
+  } break ;
+  case 2: {
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_implements COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 121)) ;
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 122)) ;
+  } break ;
+  case 3: {
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_uses COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 124)) ;
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 125)) ;
+  } break ;
+  default:
+    break ;
+  }
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 127)) ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 128)) ;
+  nt_body_parse (inCompiler) ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 130)) ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_parse (Lexique_piccolo_5F_lexique * inCompiler) {
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_pic_31__38_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 23)) ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 24)) ;
+  switch (select_pic_31__38__5F_start_5F_symbol_0 (inCompiler)) {
+  case 1: {
+  } break ;
+  case 2: {
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_implements COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 30)) ;
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 31)) ;
+  } break ;
+  case 3: {
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_uses COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 34)) ;
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 35)) ;
+  } break ;
+  default:
+    break ;
+  }
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 38)) ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 39)) ;
+  nt_body_parse (inCompiler) ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 67)) ;
+  inCompiler->resetTemplateString () ;
+}
+
+//---------------------------------------------------------------------------------------------------------------------*
+
+void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_indexing (Lexique_piccolo_5F_lexique * inCompiler) {
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_pic_31__38_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 23)) ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 24)) ;
+  switch (select_pic_31__38__5F_start_5F_symbol_0 (inCompiler)) {
+  case 1: {
+  } break ;
+  case 2: {
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_implements COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 30)) ;
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 31)) ;
+  } break ;
+  case 3: {
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_uses COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 34)) ;
+    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bootloader COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 35)) ;
+  } break ;
+  default:
+    break ;
+  }
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 38)) ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 39)) ;
+  nt_body_indexing (inCompiler) ;
+  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 67)) ;
+}
 
 
 
@@ -83,7 +268,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (Le
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 81)) ;
   enumGalgasBool test_3 = kBoolTrue ;
   if (kBoolTrue == test_3) {
-    test_3 = GALGAS_bool (kIsEqual, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("midrange_syntax.galgas", 83)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    test_3 = GALGAS_bool (ComparisonKind::equal, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("midrange_syntax.galgas", 83)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_3) {
       GALGAS_midrange_5F_model var_piccoloModel_2184 = GALGAS_midrange_5F_model::class_func_new (var_programName_768, var_deviceName_813, var_configDefinitionList_1143, var_ramDefinitionList_986, var_unusedRegisterList_1042, var_interruptDefinitionList_836, var_constantDefinitionList_1205, var_routineDefinitionList_913, var_unusedRoutineList_1093, var_needsComputedGoto_32__1277, var_needsComputedGoto_34__1316, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 96)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 84)) ;
       {
@@ -139,7 +324,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_impo
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_midrange COMMA_SOURCE_FILE ("midrange_syntax.galgas", 120)) ;
   GALGAS_lstring var_programName_3505 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 121)) ;
-  TC_Array <C_FixItDescription> fixItArray0 ;
+  TC_Array <FixItDescription> fixItArray0 ;
   inCompiler->emitSemanticError (var_programName_3505.readProperty_location (), GALGAS_string ("this file does not define a bootloader specification"), fixItArray0  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 122)) ;
   outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
   outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
@@ -494,7 +679,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
       if (kBoolTrue == test_0) {
         test_0 = var_noreturn_5824.boolEnum () ;
         if (kBoolTrue == test_0) {
-          TC_Array <C_FixItDescription> fixItArray1 ;
+          TC_Array <FixItDescription> fixItArray1 ;
           inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 249)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:preserved\" setting"), fixItArray1  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 249)) ;
         }
       }
@@ -519,7 +704,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
         if (kBoolTrue == test_2) {
           test_2 = var_noreturn_5824.boolEnum () ;
           if (kBoolTrue == test_2) {
-            TC_Array <C_FixItDescription> fixItArray3 ;
+            TC_Array <FixItDescription> fixItArray3 ;
             inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 264)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:returned\" setting"), fixItArray3  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 264)) ;
           }
         }
@@ -536,7 +721,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
       if (kBoolTrue == test_4) {
         test_4 = var_noreturn_5824.boolEnum () ;
         if (kBoolTrue == test_4) {
-          TC_Array <C_FixItDescription> fixItArray5 ;
+          TC_Array <FixItDescription> fixItArray5 ;
           inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 271)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:returned\" setting"), fixItArray5  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 271)) ;
         }
       }
@@ -744,16 +929,16 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsNotEqual, var_doLabel_7947.readProperty_string ().objectCompare (var_endDoLabel_8734.readProperty_string ())).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7947.readProperty_string ().objectCompare (var_endDoLabel_8734.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_0) {
         GALGAS_string temp_1 ;
-        const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_doLabel_7947.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_2 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7947.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_2) {
           temp_1 = var_doLabel_7947.readProperty_string () ;
         }else if (kBoolFalse == test_2) {
           temp_1 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray3 ;
+        TC_Array <FixItDescription> fixItArray3 ;
         inCompiler->emitSemanticError (var_endDoLabel_8734.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 341)), fixItArray3  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 341)) ;
       }
     }
@@ -857,16 +1042,16 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (kIsNotEqual, var_foreverLabel_10645.readProperty_string ().objectCompare (var_endForeverLabel_11014.readProperty_string ())).boolEnum () ;
+      test_4 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_10645.readProperty_string ().objectCompare (var_endForeverLabel_11014.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         GALGAS_string temp_5 ;
-        const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_foreverLabel_10645.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_6 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_10645.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_6) {
           temp_5 = var_foreverLabel_10645.readProperty_string () ;
         }else if (kBoolFalse == test_6) {
           temp_5 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray7 ;
+        TC_Array <FixItDescription> fixItArray7 ;
         inCompiler->emitSemanticError (var_endForeverLabel_11014.readProperty_location (), GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 418)), fixItArray7  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 418)) ;
       }
     }
@@ -936,9 +1121,9 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     GALGAS_string var_condition_12626 = var_conditionString_12594.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("midrange_syntax.galgas", 468)) ;
     enumGalgasBool test_8 = kBoolTrue ;
     if (kBoolTrue == test_8) {
-      test_8 = GALGAS_bool (kIsNotEqual, var_condition_12626.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
+      test_8 = GALGAS_bool (ComparisonKind::notEqual, var_condition_12626.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
       if (kBoolTrue == test_8) {
-        TC_Array <C_FixItDescription> fixItArray9 ;
+        TC_Array <FixItDescription> fixItArray9 ;
         inCompiler->emitSemanticError (var_conditionString_12594.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_condition_12626, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)), fixItArray9  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)) ;
       }
     }
@@ -980,16 +1165,16 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_10 = kBoolTrue ;
     if (kBoolTrue == test_10) {
-      test_10 = GALGAS_bool (kIsNotEqual, var_ifLabel_13067.readProperty_string ().objectCompare (var_endIfLabel_13380.readProperty_string ())).boolEnum () ;
+      test_10 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_13067.readProperty_string ().objectCompare (var_endIfLabel_13380.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_10) {
         GALGAS_string temp_11 ;
-        const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_ifLabel_13067.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_12 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_13067.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_12) {
           temp_11 = var_ifLabel_13067.readProperty_string () ;
         }else if (kBoolFalse == test_12) {
           temp_11 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray13 ;
+        TC_Array <FixItDescription> fixItArray13 ;
         inCompiler->emitSemanticError (var_endIfLabel_13380.readProperty_location (), GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 504)), fixItArray13  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 504)) ;
       }
     }
@@ -1033,16 +1218,16 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
       }
       enumGalgasBool test_15 = kBoolTrue ;
       if (kBoolTrue == test_15) {
-        test_15 = GALGAS_bool (kIsNotEqual, var_doLabel_13722.readProperty_string ().objectCompare (var_whileLabel_14214.readProperty_string ())).boolEnum () ;
+        test_15 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13722.readProperty_string ().objectCompare (var_whileLabel_14214.readProperty_string ())).boolEnum () ;
         if (kBoolTrue == test_15) {
           GALGAS_string temp_16 ;
-          const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, var_doLabel_13722.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+          const enumGalgasBool test_17 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13722.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
           if (kBoolTrue == test_17) {
             temp_16 = var_doLabel_13722.readProperty_string () ;
           }else if (kBoolFalse == test_17) {
             temp_16 = GALGAS_string ("empty") ;
           }
-          TC_Array <C_FixItDescription> fixItArray18 ;
+          TC_Array <FixItDescription> fixItArray18 ;
           inCompiler->emitSemanticError (var_whileLabel_14214.readProperty_location (), GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 533)), fixItArray18  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 533)) ;
         }
       }
@@ -1071,16 +1256,16 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_19 = kBoolTrue ;
     if (kBoolTrue == test_19) {
-      test_19 = GALGAS_bool (kIsNotEqual, var_doLabel_13722.readProperty_string ().objectCompare (var_endDoLabel_14864.readProperty_string ())).boolEnum () ;
+      test_19 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13722.readProperty_string ().objectCompare (var_endDoLabel_14864.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_19) {
         GALGAS_string temp_20 ;
-        const enumGalgasBool test_21 = GALGAS_bool (kIsNotEqual, var_doLabel_13722.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_21 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13722.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_21) {
           temp_20 = var_doLabel_13722.readProperty_string () ;
         }else if (kBoolFalse == test_21) {
           temp_20 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray22 ;
+        TC_Array <FixItDescription> fixItArray22 ;
         inCompiler->emitSemanticError (var_endDoLabel_14864.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 553)), fixItArray22  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 553)) ;
       }
     }
@@ -1608,16 +1793,16 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elsifIfLabel_16670.readProperty_string ())).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elsifIfLabel_16670.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_0) {
         GALGAS_string temp_1 ;
-        const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_2 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_2) {
           temp_1 = constinArgument_ifLabel.readProperty_string () ;
         }else if (kBoolFalse == test_2) {
           temp_1 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray3 ;
+        TC_Array <FixItDescription> fixItArray3 ;
         inCompiler->emitSemanticError (var_elsifIfLabel_16670.readProperty_location (), GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 612)), fixItArray3  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 612)) ;
       }
     }
@@ -1642,16 +1827,16 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elseLabel_17303.readProperty_string ())).boolEnum () ;
+      test_4 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elseLabel_17303.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         GALGAS_string temp_5 ;
-        const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_6 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_6) {
           temp_5 = constinArgument_ifLabel.readProperty_string () ;
         }else if (kBoolFalse == test_6) {
           temp_5 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray7 ;
+        TC_Array <FixItDescription> fixItArray7 ;
         inCompiler->emitSemanticError (var_elseLabel_17303.readProperty_location (), GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 632)), fixItArray7  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 632)) ;
       }
     }
@@ -1811,13 +1996,13 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_i
     outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FD::class_func_new (var_instructionLocation_18740, var_baseCode_18187, var_registerExpression_18805, var_W_5F_isDestination_18854  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 695)) ;
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      GALGAS_bool test_1 = GALGAS_bool (kIsEqual, var_baseCode_18187.objectCompare (GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("midrange_syntax.galgas", 702)))) ;
+      GALGAS_bool test_1 = GALGAS_bool (ComparisonKind::equal, var_baseCode_18187.objectCompare (GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("midrange_syntax.galgas", 702)))) ;
       if (kBoolTrue == test_1.boolEnum ()) {
         test_1 = var_W_5F_isDestination_18854.operator_not (SOURCE_FILE ("midrange_syntax.galgas", 702)) ;
       }
       test_0 = test_1.boolEnum () ;
       if (kBoolTrue == test_0) {
-        TC_Array <C_FixItDescription> fixItArray2 ;
+        TC_Array <FixItDescription> fixItArray2 ;
         inCompiler->emitSemanticWarning (var_instructionLocation_18740, GALGAS_string ("This instruction does not move data, it only sets flags. Use 'movf *, reg' instead of 'movf reg' to suppress this warning"), fixItArray2  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 703)) ;
       }
     }
@@ -2301,7 +2486,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
     GALGAS_bool var_branchIfZero_23300 ;
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsEqual, var_condition_23233.objectCompare (GALGAS_string ("Z"))).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::equal, var_condition_23233.objectCompare (GALGAS_string ("Z"))).boolEnum () ;
       if (kBoolTrue == test_0) {
         var_branchIfZero_23300 = GALGAS_bool (true) ;
       }
@@ -2309,13 +2494,13 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
     if (kBoolFalse == test_0) {
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = GALGAS_bool (kIsEqual, var_condition_23233.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
+        test_1 = GALGAS_bool (ComparisonKind::equal, var_condition_23233.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
         if (kBoolTrue == test_1) {
           var_branchIfZero_23300 = GALGAS_bool (false) ;
         }
       }
       if (kBoolFalse == test_1) {
-        TC_Array <C_FixItDescription> fixItArray2 ;
+        TC_Array <FixItDescription> fixItArray2 ;
         inCompiler->emitSemanticError (var_conditionString_23201.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_conditionString_23201.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)), fixItArray2  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)) ;
         var_branchIfZero_23300.drop () ; // Release error dropped variable
       }
@@ -2907,16 +3092,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsNotEqual, var_doLabel_2883.readProperty_string ().objectCompare (var_endDoLabel_3606.readProperty_string ())).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_2883.readProperty_string ().objectCompare (var_endDoLabel_3606.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_0) {
         GALGAS_string temp_1 ;
-        const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, var_doLabel_2883.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_2 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_2883.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_2) {
           temp_1 = var_doLabel_2883.readProperty_string () ;
         }else if (kBoolFalse == test_2) {
           temp_1 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray3 ;
+        TC_Array <FixItDescription> fixItArray3 ;
         inCompiler->emitSemanticError (var_endDoLabel_3606.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 160)), fixItArray3  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 160)) ;
       }
     }
@@ -2970,16 +3155,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (kIsNotEqual, var_foreverLabel_4399.readProperty_string ().objectCompare (var_endForeverLabel_4688.readProperty_string ())).boolEnum () ;
+      test_4 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_4399.readProperty_string ().objectCompare (var_endForeverLabel_4688.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         GALGAS_string temp_5 ;
-        const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, var_foreverLabel_4399.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_6 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_4399.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_6) {
           temp_5 = var_foreverLabel_4399.readProperty_string () ;
         }else if (kBoolFalse == test_6) {
           temp_5 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray7 ;
+        TC_Array <FixItDescription> fixItArray7 ;
         inCompiler->emitSemanticError (var_endForeverLabel_4688.readProperty_location (), GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 196)), fixItArray7  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 196)) ;
       }
     }
@@ -3049,9 +3234,9 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     GALGAS_string var_condition_6305 = var_conditionString_6273.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 247)) ;
     enumGalgasBool test_8 = kBoolTrue ;
     if (kBoolTrue == test_8) {
-      test_8 = GALGAS_bool (kIsNotEqual, var_condition_6305.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
+      test_8 = GALGAS_bool (ComparisonKind::notEqual, var_condition_6305.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
       if (kBoolTrue == test_8) {
-        TC_Array <C_FixItDescription> fixItArray9 ;
+        TC_Array <FixItDescription> fixItArray9 ;
         inCompiler->emitSemanticError (var_conditionString_6273.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_condition_6305, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 249)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 249)), fixItArray9  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 249)) ;
       }
     }
@@ -3093,16 +3278,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_10 = kBoolTrue ;
     if (kBoolTrue == test_10) {
-      test_10 = GALGAS_bool (kIsNotEqual, var_ifLabel_6746.readProperty_string ().objectCompare (var_endIfLabel_6983.readProperty_string ())).boolEnum () ;
+      test_10 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_6746.readProperty_string ().objectCompare (var_endIfLabel_6983.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_10) {
         GALGAS_string temp_11 ;
-        const enumGalgasBool test_12 = GALGAS_bool (kIsNotEqual, var_ifLabel_6746.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_12 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_6746.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_12) {
           temp_11 = var_ifLabel_6746.readProperty_string () ;
         }else if (kBoolFalse == test_12) {
           temp_11 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray13 ;
+        TC_Array <FixItDescription> fixItArray13 ;
         inCompiler->emitSemanticError (var_endIfLabel_6983.readProperty_location (), GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 278)), fixItArray13  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 278)) ;
       }
     }
@@ -3146,16 +3331,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }
       enumGalgasBool test_15 = kBoolTrue ;
       if (kBoolTrue == test_15) {
-        test_15 = GALGAS_bool (kIsNotEqual, var_doLabel_7325.readProperty_string ().objectCompare (var_whileLabel_7728.readProperty_string ())).boolEnum () ;
+        test_15 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7325.readProperty_string ().objectCompare (var_whileLabel_7728.readProperty_string ())).boolEnum () ;
         if (kBoolTrue == test_15) {
           GALGAS_string temp_16 ;
-          const enumGalgasBool test_17 = GALGAS_bool (kIsNotEqual, var_doLabel_7325.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+          const enumGalgasBool test_17 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7325.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
           if (kBoolTrue == test_17) {
             temp_16 = var_doLabel_7325.readProperty_string () ;
           }else if (kBoolFalse == test_17) {
             temp_16 = GALGAS_string ("empty") ;
           }
-          TC_Array <C_FixItDescription> fixItArray18 ;
+          TC_Array <FixItDescription> fixItArray18 ;
           inCompiler->emitSemanticError (var_whileLabel_7728.readProperty_location (), GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 303)), fixItArray18  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 303)) ;
         }
       }
@@ -3184,16 +3369,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_19 = kBoolTrue ;
     if (kBoolTrue == test_19) {
-      test_19 = GALGAS_bool (kIsNotEqual, var_doLabel_7325.readProperty_string ().objectCompare (var_endDoLabel_8302.readProperty_string ())).boolEnum () ;
+      test_19 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7325.readProperty_string ().objectCompare (var_endDoLabel_8302.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_19) {
         GALGAS_string temp_20 ;
-        const enumGalgasBool test_21 = GALGAS_bool (kIsNotEqual, var_doLabel_7325.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_21 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7325.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_21) {
           temp_20 = var_doLabel_7325.readProperty_string () ;
         }else if (kBoolFalse == test_21) {
           temp_20 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray22 ;
+        TC_Array <FixItDescription> fixItArray22 ;
         inCompiler->emitSemanticError (var_endDoLabel_8302.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 319)), fixItArray22  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 319)) ;
       }
     }
@@ -3617,16 +3802,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elsifIfLabel_9538.readProperty_string ())).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elsifIfLabel_9538.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_0) {
         GALGAS_string temp_1 ;
-        const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_2 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_2) {
           temp_1 = constinArgument_ifLabel.readProperty_string () ;
         }else if (kBoolFalse == test_2) {
           temp_1 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray3 ;
+        TC_Array <FixItDescription> fixItArray3 ;
         inCompiler->emitSemanticError (var_elsifIfLabel_9538.readProperty_location (), GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 357)), fixItArray3  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 357)) ;
       }
     }
@@ -3651,16 +3836,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elseLabel_10095.readProperty_string ())).boolEnum () ;
+      test_4 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elseLabel_10095.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         GALGAS_string temp_5 ;
-        const enumGalgasBool test_6 = GALGAS_bool (kIsNotEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_6 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_6) {
           temp_5 = constinArgument_ifLabel.readProperty_string () ;
         }else if (kBoolFalse == test_6) {
           temp_5 = GALGAS_string ("empty") ;
         }
-        TC_Array <C_FixItDescription> fixItArray7 ;
+        TC_Array <FixItDescription> fixItArray7 ;
         inCompiler->emitSemanticError (var_elseLabel_10095.readProperty_location (), GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 372)), fixItArray7  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 372)) ;
       }
     }
@@ -3820,13 +4005,13 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_simple_5F_i
     outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FD::class_func_new (var_instructionLocation_11462, var_baseCode_10909, var_registerExpression_11527, var_W_5F_isDestination_11576  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 431)) ;
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      GALGAS_bool test_1 = GALGAS_bool (kIsEqual, var_baseCode_10909.objectCompare (GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("baseline_syntax.galgas", 438)))) ;
+      GALGAS_bool test_1 = GALGAS_bool (ComparisonKind::equal, var_baseCode_10909.objectCompare (GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("baseline_syntax.galgas", 438)))) ;
       if (kBoolTrue == test_1.boolEnum ()) {
         test_1 = var_W_5F_isDestination_11576.operator_not (SOURCE_FILE ("baseline_syntax.galgas", 438)) ;
       }
       test_0 = test_1.boolEnum () ;
       if (kBoolTrue == test_0) {
-        TC_Array <C_FixItDescription> fixItArray2 ;
+        TC_Array <FixItDescription> fixItArray2 ;
         inCompiler->emitSemanticWarning (var_instructionLocation_11462, GALGAS_string ("This instruction does not move data, it only sets flags. Use 'movf *, reg' instead of 'movf reg' to suppress this warning"), fixItArray2  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 439)) ;
       }
     }
@@ -4314,7 +4499,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
     GALGAS_bool var_branchIfZero_16274 ;
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (kIsEqual, var_condition_16207.objectCompare (GALGAS_string ("Z"))).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::equal, var_condition_16207.objectCompare (GALGAS_string ("Z"))).boolEnum () ;
       if (kBoolTrue == test_0) {
         var_branchIfZero_16274 = GALGAS_bool (true) ;
       }
@@ -4322,13 +4507,13 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
     if (kBoolFalse == test_0) {
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = GALGAS_bool (kIsEqual, var_condition_16207.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
+        test_1 = GALGAS_bool (ComparisonKind::equal, var_condition_16207.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
         if (kBoolTrue == test_1) {
           var_branchIfZero_16274 = GALGAS_bool (false) ;
         }
       }
       if (kBoolFalse == test_1) {
-        TC_Array <C_FixItDescription> fixItArray2 ;
+        TC_Array <FixItDescription> fixItArray2 ;
         inCompiler->emitSemanticError (var_conditionString_16175.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_conditionString_16175.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 580)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 580)), fixItArray2  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 580)) ;
         var_branchIfZero_16274.drop () ; // Release error dropped variable
       }
@@ -4554,7 +4739,7 @@ void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_ (
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("baseline_program.galgas", 33)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("baseline_program.galgas", 35)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    test_0 = GALGAS_bool (ComparisonKind::equal, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("baseline_program.galgas", 35)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_baseline_5F_model var_piccoloModel_1186 = GALGAS_baseline_5F_model::class_func_new (var_programName_520, var_deviceName_565, var_configDefinitionList_818, var_ramDefinitionList_661, var_unusedRegisterList_717, var_constantDefinitionList_880, var_routineDefinitionList_588, var_unusedRoutineList_768, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 45)), inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 36)) ;
       {
@@ -4610,7 +4795,7 @@ void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_im
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_baseline COMMA_SOURCE_FILE ("baseline_program.galgas", 69)) ;
   GALGAS_lstring var_programName_2425 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_program.galgas", 70)) ;
-  TC_Array <C_FixItDescription> fixItArray0 ;
+  TC_Array <FixItDescription> fixItArray0 ;
   inCompiler->emitSemanticError (var_programName_2425.readProperty_location (), GALGAS_string ("this file does not define a bootloader specification"), fixItArray0  COMMA_SOURCE_FILE ("baseline_program.galgas", 71)) ;
   outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
   outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
@@ -4702,27 +4887,27 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 52)) ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = GALGAS_bool (kIsNotEqual, outArgument_outReservedRomSize.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+        test_1 = GALGAS_bool (ComparisonKind::notEqual, outArgument_outReservedRomSize.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
         if (kBoolTrue == test_1) {
-          TC_Array <C_FixItDescription> fixItArray2 ;
+          TC_Array <FixItDescription> fixItArray2 ;
           inCompiler->emitSemanticError (var_rs_1708.readProperty_location (), GALGAS_string ("ROM size already defined"), fixItArray2  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 54)) ;
         }
       }
       if (kBoolFalse == test_1) {
         enumGalgasBool test_3 = kBoolTrue ;
         if (kBoolTrue == test_3) {
-          test_3 = GALGAS_bool (kIsEqual, var_rs_1708.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+          test_3 = GALGAS_bool (ComparisonKind::equal, var_rs_1708.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
           if (kBoolTrue == test_3) {
-            TC_Array <C_FixItDescription> fixItArray4 ;
+            TC_Array <FixItDescription> fixItArray4 ;
             inCompiler->emitSemanticError (var_rs_1708.readProperty_location (), GALGAS_string ("ROM size should be > 0"), fixItArray4  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 56)) ;
           }
         }
         if (kBoolFalse == test_3) {
           enumGalgasBool test_5 = kBoolTrue ;
           if (kBoolTrue == test_5) {
-            test_5 = GALGAS_bool (kIsNotEqual, var_rs_1708.readProperty_uint ().modulo_operation (GALGAS_uint (uint32_t (8U)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 57)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+            test_5 = GALGAS_bool (ComparisonKind::notEqual, var_rs_1708.readProperty_uint ().modulo_operation (GALGAS_uint (uint32_t (8U)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 57)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
             if (kBoolTrue == test_5) {
-              TC_Array <C_FixItDescription> fixItArray6 ;
+              TC_Array <FixItDescription> fixItArray6 ;
               inCompiler->emitSemanticError (var_rs_1708.readProperty_location (), GALGAS_string ("ROM size should be a multiple of 8"), fixItArray6  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 58)) ;
             }
           }
@@ -4743,16 +4928,16 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
       if (kBoolTrue == test_7) {
         test_7 = outArgument_outBootloaderReservedRAMmap.getter_hasKey (var_bankName_2050.readProperty_string () COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 67)).boolEnum () ;
         if (kBoolTrue == test_7) {
-          TC_Array <C_FixItDescription> fixItArray8 ;
+          TC_Array <FixItDescription> fixItArray8 ;
           inCompiler->emitSemanticError (var_rs_2093.readProperty_location (), GALGAS_string ("RAM size already defined for '").add_operation (var_bankName_2050.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 68)).add_operation (GALGAS_string ("' bank"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 68)), fixItArray8  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 68)) ;
         }
       }
       if (kBoolFalse == test_7) {
         enumGalgasBool test_9 = kBoolTrue ;
         if (kBoolTrue == test_9) {
-          test_9 = GALGAS_bool (kIsEqual, var_rs_2093.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+          test_9 = GALGAS_bool (ComparisonKind::equal, var_rs_2093.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
           if (kBoolTrue == test_9) {
-            TC_Array <C_FixItDescription> fixItArray10 ;
+            TC_Array <FixItDescription> fixItArray10 ;
             inCompiler->emitSemanticError (var_rs_2093.readProperty_location (), GALGAS_string ("RAM size should be > 0"), fixItArray10  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 70)) ;
           }
         }
@@ -4922,7 +5107,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   GALGAS_string var_listingFile_3726 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)).add_operation (GALGAS_string (".list"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
-    test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 128)).objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.readProperty_value ()) COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 128)).boolEnum () ;
+    test_0 = GALGAS_bool (ComparisonKind::equal, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 128)).objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.readProperty_value ()) COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 128)).boolEnum () ;
     if (kBoolTrue == test_0) {
       GALGAS_bool joker_3969 ; // Joker input parameter
       var_listFileContents_3545.method_writeToFileWhenDifferentContents (var_listingFile_3726, joker_3969, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 129)) ;
@@ -4930,7 +5115,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    test_1 = GALGAS_bool (kIsStrictSup, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 131)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    test_1 = GALGAS_bool (ComparisonKind::greaterThan, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 131)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_1) {
       {
       GALGAS_string::class_method_deleteFileIfExists (var_listingFile_3726, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 132)) ;
@@ -5019,7 +5204,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
       if (kBoolTrue == test_0) {
         test_0 = var_noreturn_5066.boolEnum () ;
         if (kBoolTrue == test_0) {
-          TC_Array <C_FixItDescription> fixItArray1 ;
+          TC_Array <FixItDescription> fixItArray1 ;
           inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 187)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:preserved\" setting"), fixItArray1  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 187)) ;
         }
       }
@@ -5044,7 +5229,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
         if (kBoolTrue == test_2) {
           test_2 = var_noreturn_5066.boolEnum () ;
           if (kBoolTrue == test_2) {
-            TC_Array <C_FixItDescription> fixItArray3 ;
+            TC_Array <FixItDescription> fixItArray3 ;
             inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 202)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:returned\" setting"), fixItArray3  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 202)) ;
           }
         }
@@ -5061,7 +5246,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
       if (kBoolTrue == test_4) {
         test_4 = var_noreturn_5066.boolEnum () ;
         if (kBoolTrue == test_4) {
-          TC_Array <C_FixItDescription> fixItArray5 ;
+          TC_Array <FixItDescription> fixItArray5 ;
           inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 209)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:returned\" setting"), fixItArray5  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 209)) ;
         }
       }
@@ -5332,7 +5517,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
           GALGAS_uint var_sliceBase_1465 = GALGAS_uint (uint32_t (0U)) ;
           enumGalgasBool test_2 = kBoolTrue ;
           if (kBoolTrue == test_2) {
-            test_2 = GALGAS_bool (kIsSupOrEqual, var_sliceIndex_1341.objectCompare (GALGAS_sint (int32_t (0L)))).boolEnum () ;
+            test_2 = GALGAS_bool (ComparisonKind::greaterOrEqual, var_sliceIndex_1341.objectCompare (GALGAS_sint (int32_t (0L)))).boolEnum () ;
             if (kBoolTrue == test_2) {
               var_sliceBase_1465 = var_sliceIndex_1341.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
             }
@@ -5343,9 +5528,9 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
           case 1: {
             enumGalgasBool test_3 = kBoolTrue ;
             if (kBoolTrue == test_3) {
-              test_3 = GALGAS_bool (kIsNotEqual, var_sliceWidth_1397.objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_1397.objectCompare (GALGAS_uint (uint32_t (1U)))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
+              test_3 = GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1397.objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1397.objectCompare (GALGAS_uint (uint32_t (1U)))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
               if (kBoolTrue == test_3) {
-                TC_Array <C_FixItDescription> fixItArray4 ;
+                TC_Array <FixItDescription> fixItArray4 ;
                 inCompiler->emitSemanticError (var_sliceName_1606.readProperty_location (), GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_1606.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)), fixItArray4  COMMA_SOURCE_FILE ("communs.galgas", 70)) ;
               }
             }
@@ -5358,9 +5543,9 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
             inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 76)) ;
             enumGalgasBool test_5 = kBoolTrue ;
             if (kBoolTrue == test_5) {
-              test_5 = GALGAS_bool (kIsNotEqual, var_sliceWidth_1397.objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (kIsNotEqual, var_sliceWidth_1397.objectCompare (var_sliceSize_1936.readProperty_uint ())) COMMA_SOURCE_FILE ("communs.galgas", 77)).boolEnum () ;
+              test_5 = GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1397.objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1397.objectCompare (var_sliceSize_1936.readProperty_uint ())) COMMA_SOURCE_FILE ("communs.galgas", 77)).boolEnum () ;
               if (kBoolTrue == test_5) {
-                TC_Array <C_FixItDescription> fixItArray6 ;
+                TC_Array <FixItDescription> fixItArray6 ;
                 inCompiler->emitSemanticError (var_sliceName_1606.readProperty_location (), GALGAS_string ("a slice of ").add_operation (var_sliceWidth_1397.getter_string (SOURCE_FILE ("communs.galgas", 78)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (var_sliceName_1606.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)), fixItArray6  COMMA_SOURCE_FILE ("communs.galgas", 78)) ;
               }
             }
@@ -5375,7 +5560,7 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
           GALGAS_uint var_base_2382 = GALGAS_uint (uint32_t (0U)) ;
           enumGalgasBool test_7 = kBoolTrue ;
           if (kBoolTrue == test_7) {
-            test_7 = GALGAS_bool (kIsSupOrEqual, var_sliceIndex_1341.objectCompare (var_sliceWidth_1397.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)))).boolEnum () ;
+            test_7 = GALGAS_bool (ComparisonKind::greaterOrEqual, var_sliceIndex_1341.objectCompare (var_sliceWidth_1397.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)))).boolEnum () ;
             if (kBoolTrue == test_7) {
               var_base_2382 = var_sliceIndex_1341.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)).substract_operation (var_sliceWidth_1397, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)) ;
             }
@@ -5402,13 +5587,13 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 100)) ;
         enumGalgasBool test_8 = kBoolTrue ;
         if (kBoolTrue == test_8) {
-          test_8 = GALGAS_bool (kIsEqual, var_bitCount_2813.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+          test_8 = GALGAS_bool (ComparisonKind::equal, var_bitCount_2813.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
           if (kBoolTrue == test_8) {
-            TC_Array <C_FixItDescription> fixItArray9 ;
+            TC_Array <FixItDescription> fixItArray9 ;
             inCompiler->emitSemanticError (var_bitCount_2813.readProperty_location (), GALGAS_string ("the bit count should be > 0"), fixItArray9  COMMA_SOURCE_FILE ("communs.galgas", 102)) ;
           }
         }
-        cEnumerator_range enumerator_2966 (GALGAS_range (GALGAS_uint (uint32_t (0U)), var_bitCount_2813.readProperty_uint ().substract_operation (GALGAS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 104))), kENUMERATION_UP) ;
+        cEnumerator_range enumerator_2966 (GALGAS_range (GALGAS_uint (uint32_t (0U)), var_bitCount_2813.readProperty_uint ().substract_operation (GALGAS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 104))), EnumerationOrder::up) ;
         while (enumerator_2966.hasCurrentObject ()) {
           var_bitDefinitionString_1225.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 105)) ;
           if (enumerator_2966.hasNextObject ()) {
@@ -5430,9 +5615,9 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarat
     }
     enumGalgasBool test_10 = kBoolTrue ;
     if (kBoolTrue == test_10) {
-      test_10 = GALGAS_bool (kIsNotEqual, var_sliceIndex_1341.objectCompare (GALGAS_sint (int32_t (0L)))).boolEnum () ;
+      test_10 = GALGAS_bool (ComparisonKind::notEqual, var_sliceIndex_1341.objectCompare (GALGAS_sint (int32_t (0L)))).boolEnum () ;
       if (kBoolTrue == test_10) {
-        TC_Array <C_FixItDescription> fixItArray11 ;
+        TC_Array <FixItDescription> fixItArray11 ;
         inCompiler->emitSemanticError (var_name_946.readProperty_location (), GALGAS_string ("Incorrect bit definition for register '").add_operation (var_name_946.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_sint (int32_t (8L)).substract_operation (var_sliceIndex_1341, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).getter_string (SOURCE_FILE ("communs.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)), fixItArray11  COMMA_SOURCE_FILE ("communs.galgas", 115)) ;
       }
     }
@@ -27437,7 +27622,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceFileParsing_ (Com
         message.appendString (filePath) ;
         message.appendString ("' file exists, but cannot be read") ;
         const GALGAS_location errorLocation (inFilePath.readProperty_location ()) ;
-        inCompiler->semanticErrorAtLocation (errorLocation, message, TC_Array <C_FixItDescription> () COMMA_THERE) ;
+        inCompiler->semanticErrorAtLocation (errorLocation, message, TC_Array <FixItDescription> () COMMA_THERE) ;
       }
       macroDetachSharedObject (scanner) ;
     }else{
@@ -27446,7 +27631,7 @@ void cGrammar_pic_31__38__5F_include_5F_grammar::_performSourceFileParsing_ (Com
       message.appendString (filePath) ;
       message.appendString ("' file does not exist") ;
       const GALGAS_location errorLocation (inFilePath.readProperty_location ()) ;
-      inCompiler->semanticErrorAtLocation (errorLocation, message, TC_Array <C_FixItDescription> () COMMA_THERE) ;
+      inCompiler->semanticErrorAtLocation (errorLocation, message, TC_Array <FixItDescription> () COMMA_THERE) ;
     }
   }
 }

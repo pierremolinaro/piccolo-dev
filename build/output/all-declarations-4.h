@@ -10,6 +10,442 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+// Phase 1: @pic_31__38_Instruction_5F_TBLWT reference class
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_pic_31__38_Instruction_5F_TBLWT : public GALGAS_pic_31__38_PiccoloSimpleInstruction {
+//--------------------------------- Default constructor
+  public: GALGAS_pic_31__38_Instruction_5F_TBLWT (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GALGAS_pic_31__38_Instruction_5F_TBLWT (const class cPtr_pic_31__38_Instruction_5F_TBLWT * inSourcePtr) ;
+
+//--------------------------------- Property read access
+  public: class GALGAS_tableAccessOption readProperty_mOption (void) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_pic_31__38_Instruction_5F_TBLWT extractObject (const GALGAS_object & inObject,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_pic_31__38_Instruction_5F_TBLWT class_func_new (const class GALGAS_location & inOperand0,
+                                                                              const class GALGAS_tableAccessOption & inOperand1
+                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_TBLWT & inOperand) const ;
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_setMOption (class GALGAS_tableAccessOption inArgument0
+                                                   COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_pic_31__38_Instruction_5F_TBLWT class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_TBLWT ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @pic18Instruction_TBLWT class
+//
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_pic_31__38_Instruction_5F_TBLWT : public cPtr_pic_31__38_PiccoloSimpleInstruction {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+//--- Extension method addUsedRoutines
+  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
+           class GALGAS_stringset & ioUsedRoutines,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method analyzeSimpleInstruction
+  public: virtual void method_analyzeSimpleInstruction (const class GALGAS_uint inAccessBankSplitOffset,
+           const class GALGAS_routineMap inRoutineMap,
+           const class GALGAS_registerTable inRegisterTable,
+           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
+           const class GALGAS_constantMap inConstantMap,
+           class GALGAS_uint & ioCurrentBank,
+           const class GALGAS_bool inShouldPreserveBSR,
+           class GALGAS_stringset & ioUsedRegisters,
+           class GALGAS_ipic_31__38_SequentialInstruction & outInstruction,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GALGAS_tableAccessOption mProperty_mOption ;
+
+//--- Constructor
+  public: cPtr_pic_31__38_Instruction_5F_TBLWT (const GALGAS_location & in_mInstructionLocation,
+                                                const GALGAS_tableAccessOption & in_mOption
+                                                COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @pic_31__38_Instruction_5F_TBLWT_2D_weak weak reference class
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak : public GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_TBLWT & inSource) ;
+
+  public: GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_TBLWT & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_pic_31__38_Instruction_5F_TBLWT bang_pic_31__38_Instruction_5F_TBLWT_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_TBLWT_2D_weak ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @pic_31__38_Instruction_5F_MNOP reference class
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_pic_31__38_Instruction_5F_MNOP : public GALGAS_pic_31__38_PiccoloInstruction {
+//--------------------------------- Default constructor
+  public: GALGAS_pic_31__38_Instruction_5F_MNOP (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GALGAS_pic_31__38_Instruction_5F_MNOP (const class cPtr_pic_31__38_Instruction_5F_MNOP * inSourcePtr) ;
+
+//--------------------------------- Property read access
+  public: class GALGAS_luint readProperty_mOccurrenceFactor (void) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_pic_31__38_Instruction_5F_MNOP extractObject (const GALGAS_object & inObject,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_pic_31__38_Instruction_5F_MNOP class_func_new (const class GALGAS_location & inOperand0,
+                                                                             const class GALGAS_luint & inOperand1
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_MNOP & inOperand) const ;
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_setMOccurrenceFactor (class GALGAS_luint inArgument0
+                                                             COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_pic_31__38_Instruction_5F_MNOP class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_MNOP ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @pic18Instruction_MNOP class
+//
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_pic_31__38_Instruction_5F_MNOP : public cPtr_pic_31__38_PiccoloInstruction {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+//--- Extension method addUsedRoutines
+  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
+           class GALGAS_stringset & ioUsedRoutines,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method analyze
+  public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
+           class GALGAS_ipic_31__38_BlockList & ioGeneratedBlockList,
+           const class GALGAS_routineMap inRoutineMap,
+           const class GALGAS_registerTable inRegisterTable,
+           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
+           const class GALGAS_constantMap inConstantMap,
+           const class GALGAS_pic_31__38_MacroMap inMacroMap,
+           class GALGAS_uint & ioLocalLabelIndex,
+           class GALGAS_ipic_31__38_SequentialInstructionList & ioGeneratedInstructionList,
+           class GALGAS_lstring & ioBlockLabel,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_uint & ioCurrentBank,
+           const class GALGAS_bool inShouldPreserveBSR,
+           const class GALGAS_routineKind inRoutineKind,
+           class GALGAS_stringset & ioUsedRegisters,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GALGAS_luint mProperty_mOccurrenceFactor ;
+
+//--- Constructor
+  public: cPtr_pic_31__38_Instruction_5F_MNOP (const GALGAS_location & in_mInstructionLocation,
+                                               const GALGAS_luint & in_mOccurrenceFactor
+                                               COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @pic_31__38_Instruction_5F_MNOP_2D_weak weak reference class
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_MNOP & inSource) ;
+
+  public: GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_MNOP & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_pic_31__38_Instruction_5F_MNOP bang_pic_31__38_Instruction_5F_MNOP_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_MNOP_2D_weak ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @pic_31__38_Instruction_5F_NOPBRA reference class
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_pic_31__38_Instruction_5F_NOPBRA : public GALGAS_pic_31__38_PiccoloInstruction {
+//--------------------------------- Default constructor
+  public: GALGAS_pic_31__38_Instruction_5F_NOPBRA (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GALGAS_pic_31__38_Instruction_5F_NOPBRA (const class cPtr_pic_31__38_Instruction_5F_NOPBRA * inSourcePtr) ;
+
+//--------------------------------- Property read access
+  public: class GALGAS_luint readProperty_mOccurrenceFactor (void) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_pic_31__38_Instruction_5F_NOPBRA extractObject (const GALGAS_object & inObject,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_pic_31__38_Instruction_5F_NOPBRA class_func_new (const class GALGAS_location & inOperand0,
+                                                                               const class GALGAS_luint & inOperand1
+                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_NOPBRA & inOperand) const ;
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_setMOccurrenceFactor (class GALGAS_luint inArgument0
+                                                             COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_pic_31__38_Instruction_5F_NOPBRA class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_NOPBRA ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @pic18Instruction_NOPBRA class
+//
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_pic_31__38_Instruction_5F_NOPBRA : public cPtr_pic_31__38_PiccoloInstruction {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+//--- Extension method addUsedRoutines
+  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap inMacroMap,
+           class GALGAS_stringset & ioUsedRoutines,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method analyze
+  public: virtual void method_analyze (const class GALGAS_uint inAccessBankSplitOffset,
+           class GALGAS_ipic_31__38_BlockList & ioGeneratedBlockList,
+           const class GALGAS_routineMap inRoutineMap,
+           const class GALGAS_registerTable inRegisterTable,
+           const class GALGAS_pic_31__38__5F_dataMap inDataMap,
+           const class GALGAS_constantMap inConstantMap,
+           const class GALGAS_pic_31__38_MacroMap inMacroMap,
+           class GALGAS_uint & ioLocalLabelIndex,
+           class GALGAS_ipic_31__38_SequentialInstructionList & ioGeneratedInstructionList,
+           class GALGAS_lstring & ioBlockLabel,
+           class GALGAS_string & ioListFileContents,
+           class GALGAS_uint & ioCurrentBank,
+           const class GALGAS_bool inShouldPreserveBSR,
+           const class GALGAS_routineKind inRoutineKind,
+           class GALGAS_stringset & ioUsedRegisters,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GALGAS_luint mProperty_mOccurrenceFactor ;
+
+//--- Constructor
+  public: cPtr_pic_31__38_Instruction_5F_NOPBRA (const GALGAS_location & in_mInstructionLocation,
+                                                 const GALGAS_luint & in_mOccurrenceFactor
+                                                 COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
 // Phase 1: @pic_31__38_Instruction_5F_NOPBRA_2D_weak weak reference class
 //
 //--------------------------------------------------------------------------------------------------
@@ -40,7 +476,7 @@ class GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak : public GALGAS_pic_31__38
   public: static class GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_NOPBRA_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -96,7 +532,7 @@ class GALGAS_pic_31__38_Instruction_5F_FOREVER : public GALGAS_pic_31__38_Piccol
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_FOREVER & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_FOREVER & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMEndOfInstructionList (class GALGAS_location inArgument0
@@ -182,7 +618,7 @@ class cPtr_pic_31__38_Instruction_5F_FOREVER : public cPtr_pic_31__38_PiccoloIns
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -220,7 +656,7 @@ class GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak : public GALGAS_pic_31__3
   public: static class GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -291,7 +727,7 @@ class GALGAS_if_5F_semi_5F_colon_5F_op : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_if_5F_semi_5F_colon_5F_op & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_if_5F_semi_5F_colon_5F_op & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -355,7 +791,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON : public GALGAS_pic_3
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMEmbeddedInstruction (class GALGAS_pic_31__38_PiccoloSimpleInstruction inArgument0
@@ -403,7 +839,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_pic_31__3
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override = 0 ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override = 0 ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override = 0 ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
 
@@ -441,7 +877,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak : public GALG
   public: static class GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -498,7 +934,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public GALGAS
                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMOpCode (class GALGAS_if_5F_semi_5F_colon_5F_op inArgument0
@@ -578,7 +1014,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public cPtr_pic
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -616,7 +1052,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak : publi
   public: static class GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -676,7 +1112,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest : public GALGAS_pic_31__38_
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMBitNumber (class GALGAS_bitNumberExpression inArgument0
@@ -761,7 +1197,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest : public cPtr_pic_31__38_Inst
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -799,7 +1235,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak : public GALGAS_pic
   public: static class GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -862,7 +1298,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec : public GALGAS_pic_31__38_I
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMIncrement (class GALGAS_bool inArgument0
@@ -952,7 +1388,7 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec : public cPtr_pic_31__38_Instr
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -990,7 +1426,7 @@ class GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak : public GALGAS_pic_
   public: static class GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1049,7 +1485,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw : public GALGAS_pic_31_
                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMImmediateExpressionList (class GALGAS_immediatExpressionList inArgument0
@@ -1133,7 +1569,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_retlw : public cPtr_pic_31__38_
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -1171,7 +1607,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak : public GALGAS
   public: static class GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1230,7 +1666,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_bra : public GALGAS_pic_31__3
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_bra & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_bra & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMSizeExpression (class GALGAS_immediatExpression inArgument0
@@ -1314,7 +1750,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_bra : public cPtr_pic_31__38_Pi
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -1352,7 +1788,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak : public GALGAS_p
   public: static class GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1411,7 +1847,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_goto : public GALGAS_pic_31__
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_goto & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_goto & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMSizeExpression (class GALGAS_immediatExpression inArgument0
@@ -1495,7 +1931,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_goto : public cPtr_pic_31__38_P
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -1533,7 +1969,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak : public GALGAS_
   public: static class GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1592,7 +2028,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall : public GALGAS_pic_31_
                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMSizeExpression (class GALGAS_immediatExpression inArgument0
@@ -1676,7 +2112,7 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_rcall : public cPtr_pic_31__38_
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -1714,7 +2150,7 @@ class GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak : public GALGAS
   public: static class GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1767,7 +2203,7 @@ class GALGAS_pic_31__38_ConditionExpression_2D_weak : public AC_GALGAS_weak_refe
   public: static class GALGAS_pic_31__38_ConditionExpression_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_ConditionExpression_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_ConditionExpression_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1822,7 +2258,7 @@ class GALGAS_pic_31__38_RegisterTestCondition : public GALGAS_pic_31__38_Conditi
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterTestCondition & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterTestCondition & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMBranchIfZero (class GALGAS_bool inArgument0
@@ -1890,7 +2326,7 @@ class cPtr_pic_31__38_RegisterTestCondition : public cPtr_pic_31__38_ConditionEx
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -1928,7 +2364,7 @@ class GALGAS_pic_31__38_RegisterTestCondition_2D_weak : public GALGAS_pic_31__38
   public: static class GALGAS_pic_31__38_RegisterTestCondition_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterTestCondition_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterTestCondition_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2005,7 +2441,7 @@ class GALGAS_pic_31__38_RegisterComparison : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterComparison & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterComparison & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2084,7 +2520,7 @@ class GALGAS_pic_31__38_RegisterComparisonCondition : public GALGAS_pic_31__38_C
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterComparisonCondition & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterComparisonCondition & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMComparison (class GALGAS_pic_31__38_RegisterComparison inArgument0
@@ -2152,7 +2588,7 @@ class cPtr_pic_31__38_RegisterComparisonCondition : public cPtr_pic_31__38_Condi
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -2190,7 +2626,7 @@ class GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak : public GALGAS_pic_
   public: static class GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterComparisonCondition_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2251,7 +2687,7 @@ class GALGAS_pic_31__38_IncDecRegisterInCondition : public GALGAS_pic_31__38_Con
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_IncDecRegisterInCondition & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_IncDecRegisterInCondition & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMBranchIfZero (class GALGAS_bool inArgument0
@@ -2329,7 +2765,7 @@ class cPtr_pic_31__38_IncDecRegisterInCondition : public cPtr_pic_31__38_Conditi
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -2367,7 +2803,7 @@ class GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak : public GALGAS_pic_31
   public: static class GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_IncDecRegisterInCondition_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2422,7 +2858,7 @@ class GALGAS_pic_31__38_BccInStructuredCondition : public GALGAS_pic_31__38_Cond
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_BccInStructuredCondition & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_BccInStructuredCondition & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMCondition (class GALGAS_conditional_5F_branch inArgument0
@@ -2490,7 +2926,7 @@ class cPtr_pic_31__38_BccInStructuredCondition : public cPtr_pic_31__38_Conditio
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -2528,7 +2964,7 @@ class GALGAS_pic_31__38_BccInStructuredCondition_2D_weak : public GALGAS_pic_31_
   public: static class GALGAS_pic_31__38_BccInStructuredCondition_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_BccInStructuredCondition_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_BccInStructuredCondition_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2580,7 +3016,7 @@ class GALGAS_pic_31__38_NegateCondition : public GALGAS_pic_31__38_ConditionExpr
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_NegateCondition & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_NegateCondition & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMCondition (class GALGAS_pic_31__38_ConditionExpression inArgument0
@@ -2643,7 +3079,7 @@ class cPtr_pic_31__38_NegateCondition : public cPtr_pic_31__38_ConditionExpressi
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -2681,7 +3117,7 @@ class GALGAS_pic_31__38_NegateCondition_2D_weak : public GALGAS_pic_31__38_Condi
   public: static class GALGAS_pic_31__38_NegateCondition_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_NegateCondition_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_NegateCondition_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2736,7 +3172,7 @@ class GALGAS_pic_31__38_AndCondition : public GALGAS_pic_31__38_ConditionExpress
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_AndCondition & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_AndCondition & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_pic_31__38_ConditionExpression inArgument0
@@ -2804,7 +3240,7 @@ class cPtr_pic_31__38_AndCondition : public cPtr_pic_31__38_ConditionExpression 
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -2842,7 +3278,7 @@ class GALGAS_pic_31__38_AndCondition_2D_weak : public GALGAS_pic_31__38_Conditio
   public: static class GALGAS_pic_31__38_AndCondition_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_AndCondition_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_AndCondition_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2897,7 +3333,7 @@ class GALGAS_pic_31__38_BitTestInStructuredCondition : public GALGAS_pic_31__38_
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_BitTestInStructuredCondition & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_BitTestInStructuredCondition & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMBitNumber (class GALGAS_bitNumberExpression inArgument0
@@ -2965,7 +3401,7 @@ class cPtr_pic_31__38_BitTestInStructuredCondition : public cPtr_pic_31__38_Cond
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -3003,7 +3439,7 @@ class GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak : public GALGAS_pic
   public: static class GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_BitTestInStructuredCondition_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -3065,7 +3501,7 @@ class GALGAS_pic_31__38_Instruction_5F_structured_5F_if : public GALGAS_pic_31__
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_structured_5F_if & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_structured_5F_if & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMElseInstructionList (class GALGAS_pic_31__38_InstructionList inArgument0
@@ -3161,7 +3597,7 @@ class cPtr_pic_31__38_Instruction_5F_structured_5F_if : public cPtr_pic_31__38_P
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -3199,7 +3635,7 @@ class GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak : public GALGAS_
   public: static class GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -3380,7 +3816,7 @@ class GALGAS_pic_31__38_DoWhilePartList : public AC_GALGAS_list {
 
 class cEnumerator_pic_31__38_DoWhilePartList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_DoWhilePartList (const GALGAS_pic_31__38_DoWhilePartList & inEnumeratedObject,
-                                                  const typeEnumerationOrder inOrder) ;
+                                                  const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_pic_31__38_ConditionExpression current_mCondition (LOCATION_ARGS) const ;
@@ -3466,7 +3902,7 @@ class GALGAS_pic_31__38_DoWhilePartList_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_DoWhilePartList_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_DoWhilePartList_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -3525,7 +3961,7 @@ class GALGAS_pic_31__38_Instruction_5F_do_5F_while : public GALGAS_pic_31__38_Pi
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_do_5F_while & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_do_5F_while & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMEndOfRepeatedInstructionList (class GALGAS_location inArgument0
@@ -3616,7 +4052,7 @@ class cPtr_pic_31__38_Instruction_5F_do_5F_while : public cPtr_pic_31__38_Piccol
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -3654,7 +4090,7 @@ class GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak : public GALGAS_pic_3
   public: static class GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_do_5F_while_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -3854,7 +4290,7 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
 
 class cEnumerator_pic_31__38_InterruptDefinitionList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_InterruptDefinitionList (const GALGAS_pic_31__38_InterruptDefinitionList & inEnumeratedObject,
-                                                          const typeEnumerationOrder inOrder) ;
+                                                          const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_lstring current_mInterruptName (LOCATION_ARGS) const ;
@@ -3952,7 +4388,7 @@ class GALGAS_pic_31__38_InterruptDefinitionList_2D_element : public AC_GALGAS_ro
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_InterruptDefinitionList_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_InterruptDefinitionList_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -4209,7 +4645,7 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
 
 class cEnumerator_pic_31__38_RoutineDefinitionList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_RoutineDefinitionList (const GALGAS_pic_31__38_RoutineDefinitionList & inEnumeratedObject,
-                                                        const typeEnumerationOrder inOrder) ;
+                                                        const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_lstring current_mRoutineName (LOCATION_ARGS) const ;
@@ -4343,7 +4779,7 @@ class GALGAS_pic_31__38_RoutineDefinitionList_2D_element : public AC_GALGAS_root
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_RoutineDefinitionList_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_RoutineDefinitionList_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -4524,7 +4960,7 @@ class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
 
 class cEnumerator_pic_31__38_MacroDefinitionList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_MacroDefinitionList (const GALGAS_pic_31__38_MacroDefinitionList & inEnumeratedObject,
-                                                      const typeEnumerationOrder inOrder) ;
+                                                      const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_lstring current_mMacroName (LOCATION_ARGS) const ;
@@ -4610,7 +5046,7 @@ class GALGAS_pic_31__38_MacroDefinitionList_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_MacroDefinitionList_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_MacroDefinitionList_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -4745,7 +5181,7 @@ class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
 
 class cEnumerator_pic_31__38_MacroMap : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_MacroMap (const GALGAS_pic_31__38_MacroMap & inEnumeratedObject,
-                                           const typeEnumerationOrder inOrder) ;
+                                           const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
@@ -4777,7 +5213,7 @@ class cMapElement_pic_31__38_MacroMap : public cMapElement {
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
+  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -4861,7 +5297,7 @@ class GALGAS_pic_31__38_MacroMap_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_MacroMap_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_MacroMap_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5080,7 +5516,7 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
 
 class cEnumerator_routineDeclarationList : public cGenericAbstractEnumerator {
   public: cEnumerator_routineDeclarationList (const GALGAS_routineDeclarationList & inEnumeratedObject,
-                                              const typeEnumerationOrder inOrder) ;
+                                              const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_lstring current_mRoutineName (LOCATION_ARGS) const ;
@@ -5190,7 +5626,7 @@ class GALGAS_routineDeclarationList_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_routineDeclarationList_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_routineDeclarationList_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5258,7 +5694,7 @@ class GALGAS_programKind : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_programKind & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_programKind & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5451,7 +5887,7 @@ class GALGAS_dataList : public AC_GALGAS_list {
 
 class cEnumerator_dataList : public cGenericAbstractEnumerator {
   public: cEnumerator_dataList (const GALGAS_dataList & inEnumeratedObject,
-                                const typeEnumerationOrder inOrder) ;
+                                const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_lstring current_mDataName (LOCATION_ARGS) const ;
@@ -5537,7 +5973,7 @@ class GALGAS_dataList_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_dataList_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_dataList_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5699,7 +6135,7 @@ class GALGAS_checkpicList : public AC_GALGAS_list {
 
 class cEnumerator_checkpicList : public cGenericAbstractEnumerator {
   public: cEnumerator_checkpicList (const GALGAS_checkpicList & inEnumeratedObject,
-                                    const typeEnumerationOrder inOrder) ;
+                                    const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_location current_mErrorLocation (LOCATION_ARGS) const ;
@@ -5773,7 +6209,7 @@ class GALGAS_checkpicList_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_checkpicList_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_checkpicList_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -6379,7 +6815,7 @@ class GALGAS_pic_31__38_Instruction_5F_switch : public GALGAS_pic_31__38_Piccolo
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_switch & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_switch & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMCaseList (class GALGAS_pic_31__38_SwitchInstructionCaseList inArgument0
@@ -6569,7 +7005,7 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
 
 class cEnumerator_pic_31__38_SwitchInstructionCaseList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_SwitchInstructionCaseList (const GALGAS_pic_31__38_SwitchInstructionCaseList & inEnumeratedObject,
-                                                            const typeEnumerationOrder inOrder) ;
+                                                            const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_location current_mStartOfCase (LOCATION_ARGS) const ;
@@ -6637,7 +7073,7 @@ class cPtr_pic_31__38_Instruction_5F_switch : public cPtr_pic_31__38_PiccoloInst
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -6680,7 +7116,7 @@ class GALGAS_pic_31__38_IntervalCaseItem : public GALGAS_pic_31__38_AbstractCase
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_IntervalCaseItem & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_IntervalCaseItem & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMCaseExpressionLocation (class GALGAS_location inArgument0
@@ -6753,7 +7189,7 @@ class cPtr_pic_31__38_IntervalCaseItem : public cPtr_pic_31__38_AbstractCaseItem
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -6793,7 +7229,7 @@ class GALGAS_pic_31__38_SimpleConstantCaseItem : public GALGAS_pic_31__38_Abstra
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_SimpleConstantCaseItem & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_SimpleConstantCaseItem & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setMCaseExpression (class GALGAS_immediatExpression inArgument0
@@ -6861,7 +7297,7 @@ class cPtr_pic_31__38_SimpleConstantCaseItem : public cPtr_pic_31__38_AbstractCa
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -7786,7 +8222,7 @@ class GALGAS_pic_31__38_CaseExpressionList : public AC_GALGAS_list {
 
 class cEnumerator_pic_31__38_CaseExpressionList : public cGenericAbstractEnumerator {
   public: cEnumerator_pic_31__38_CaseExpressionList (const GALGAS_pic_31__38_CaseExpressionList & inEnumeratedObject,
-                                                     const typeEnumerationOrder inOrder) ;
+                                                     const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_pic_31__38_AbstractCaseItem current_mCaseItem (LOCATION_ARGS) const ;
@@ -7797,939 +8233,4 @@ class cEnumerator_pic_31__38_CaseExpressionList : public cGenericAbstractEnumera
 //--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Parser class 'pic18_start_symbol' declaration
-//
-//--------------------------------------------------------------------------------------------------
-
-class cParser_pic_31__38__5F_start_5F_symbol {
-//--- Virtual destructor
-  public: virtual ~ cParser_pic_31__38__5F_start_5F_symbol (void) {}
-
-//--- Non terminal declarations
-  protected: virtual void nt_body_ (class GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
-                                    class GALGAS_pic_31__38_RoutineDefinitionList & ioArgument1,
-                                    class GALGAS_pic_31__38_MacroDefinitionList & ioArgument2,
-                                    class GALGAS_lstringlist & ioArgument3,
-                                    class GALGAS_lstringlist & ioArgument4,
-                                    class GALGAS_ramDefinitionList & ioArgument5,
-                                    class GALGAS_lstringlist & ioArgument6,
-                                    class GALGAS_configDefinitionList & ioArgument7,
-                                    class GALGAS_constantDefinitionList & ioArgument8,
-                                    class GALGAS_checkpicList & ioArgument9,
-                                    class GALGAS_dataList & ioArgument10,
-                                    class GALGAS_bool & ioArgument11,
-                                    class GALGAS_bool & ioArgument12,
-                                    class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_body_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_body_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_start_5F_symbol_ (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_start_5F_symbol_importBootloaderSpecification (class GALGAS_piccoloDeviceModel & outArgument0,
-                                                                            class GALGAS_string & outArgument1,
-                                                                            class GALGAS_uint & outArgument2,
-                                                                            class GALGAS_ramBankTable & outArgument3,
-                                                                            class GALGAS_registerTable & outArgument4,
-                                                                            class GALGAS_bootloaderReservedRAMmap & outArgument5,
-                                                                            class GALGAS_routineDeclarationList & outArgument6,
-                                                                            class GALGAS_routineDeclarationList & outArgument7,
-                                                                            class GALGAS_luint & outArgument8,
-                                                                            class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_start_5F_symbol_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_start_5F_symbol_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
-
-
-//--- Rule declarations
-  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_ (Lexique_piccolo_5F_lexique * inLexique) ;
-
-  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_importBootloaderSpecification (GALGAS_piccoloDeviceModel & outArgument0,
-                                                                                                        GALGAS_string & outArgument1,
-                                                                                                        GALGAS_uint & outArgument2,
-                                                                                                        GALGAS_ramBankTable & outArgument3,
-                                                                                                        GALGAS_registerTable & outArgument4,
-                                                                                                        GALGAS_bootloaderReservedRAMmap & outArgument5,
-                                                                                                        GALGAS_routineDeclarationList & outArgument6,
-                                                                                                        GALGAS_routineDeclarationList & outArgument7,
-                                                                                                        GALGAS_luint & outArgument8,
-                                                                                                        Lexique_piccolo_5F_lexique * inLexique) ;
-
-  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_parse (Lexique_piccolo_5F_lexique * inLexique) ;
-
-  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
-
-
-
-//--- Select methods
-  protected: virtual int32_t select_pic_31__38__5F_start_5F_symbol_0 (Lexique_piccolo_5F_lexique *) = 0 ;
-
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 1: @ramBankTable map
-//
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_ramBankTable ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const char * kSearchErrorMessage_ramBankTable_searchKey ;
-
-//--------------------------------------------------------------------------------------------------
-
-class GALGAS_ramBankTable : public AC_GALGAS_map {
-//--------------------------------- Default constructor
-  public: GALGAS_ramBankTable (void) ;
-
-//--------------------------------- Handle copy
-  public: GALGAS_ramBankTable (const GALGAS_ramBankTable & inSource) ;
-  public: GALGAS_ramBankTable & operator = (const GALGAS_ramBankTable & inSource) ;
-  
-//-- Start of type generic part
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_ramBankTable extractObject (const GALGAS_object & inObject,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GALGAS_ramBankTable class_func_emptyMap (LOCATION_ARGS) ;
-
-  public: static class GALGAS_ramBankTable class_func_mapWithMapToOverride (const class GALGAS_ramBankTable & inOperand0
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
-                                                     const class GALGAS_uint & inOperand1,
-                                                     const class GALGAS_uint & inOperand2,
-                                                     const class GALGAS_uint & inOperand3,
-                                                     const class GALGAS_uintlist & inOperand4,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GALGAS_ramBankTable add_operation (const GALGAS_ramBankTable & inOperand,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
-                                                  class GALGAS_uint constinArgument1,
-                                                  class GALGAS_uint constinArgument2,
-                                                  class GALGAS_uint constinArgument3,
-                                                  class GALGAS_uintlist constinArgument4,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMFirstAddressForKey (class GALGAS_uint constinArgument0,
-                                                               class GALGAS_string constinArgument1,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMFirstFreeAddressForKey (class GALGAS_uint constinArgument0,
-                                                                   class GALGAS_string constinArgument1,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMLastAddressPlusOneForKey (class GALGAS_uint constinArgument0,
-                                                                     class GALGAS_string constinArgument1,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMMirrorOffsetListForKey (class GALGAS_uintlist constinArgument0,
-                                                                   class GALGAS_string constinArgument1,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
-                                                  class GALGAS_uint & outArgument1,
-                                                  class GALGAS_uint & outArgument2,
-                                                  class GALGAS_uint & outArgument3,
-                                                  class GALGAS_uintlist & outArgument4,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_mFirstAddressForKey (const class GALGAS_string & constinOperand0,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_mFirstFreeAddressForKey (const class GALGAS_string & constinOperand0,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_uint getter_mLastAddressPlusOneForKey (const class GALGAS_string & constinOperand0,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_uintlist getter_mMirrorOffsetListForKey (const class GALGAS_string & constinOperand0,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_ramBankTable getter_overriddenMap (Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Optional Methods
-  public: VIRTUAL_IN_DEBUG bool optional_searchKey (const class GALGAS_string & constinOperand0,
-                                                    class GALGAS_uint & outOperand1,
-                                                    class GALGAS_uint & outOperand2,
-                                                    class GALGAS_uint & outOperand3,
-                                                    class GALGAS_uintlist & outOperand4) const ;
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_ramBankTable * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                         const GALGAS_string & inKey
-                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Friend
-
-  friend class cEnumerator_ramBankTable ;
- 
-} ; // End of GALGAS_ramBankTable class
-
-//--------------------------------------------------------------------------------------------------
-//   Enumerator declaration                                                                      
-//--------------------------------------------------------------------------------------------------
-
-class cEnumerator_ramBankTable : public cGenericAbstractEnumerator {
-  public: cEnumerator_ramBankTable (const GALGAS_ramBankTable & inEnumeratedObject,
-                                    const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public: class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GALGAS_uint current_mFirstAddress (LOCATION_ARGS) const ;
-  public: class GALGAS_uint current_mFirstFreeAddress (LOCATION_ARGS) const ;
-  public: class GALGAS_uint current_mLastAddressPlusOne (LOCATION_ARGS) const ;
-  public: class GALGAS_uintlist current_mMirrorOffsetList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GALGAS_ramBankTable_2D_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ramBankTable ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 2: class for element of '@ramBankTable' map
-//
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_ramBankTable : public cMapElement {
-//--- Map attributes
-  public: GALGAS_uint mProperty_mFirstAddress ;
-  public: GALGAS_uint mProperty_mFirstFreeAddress ;
-  public: GALGAS_uint mProperty_mLastAddressPlusOne ;
-  public: GALGAS_uintlist mProperty_mMirrorOffsetList ;
-
-//--- Constructor
-  public: cMapElement_ramBankTable (const GALGAS_lstring & inKey,
-                                    const GALGAS_uint & in_mFirstAddress,
-                                    const GALGAS_uint & in_mFirstFreeAddress,
-                                    const GALGAS_uint & in_mLastAddressPlusOne,
-                                    const GALGAS_uintlist & in_mMirrorOffsetList
-                                    COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-  public: virtual typeComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cMapElement * copy (void) ;
-
-//--- Description
- public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'pic18_analyze??'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_pic_31__38__5F_analyze_3F__3F_ (const class GALGAS_pic_31__38_AST constinArgument0,
-                                             const class GALGAS_string constinArgument1,
-                                             class Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 1: @pic_31__38_AST struct
-//
-//--------------------------------------------------------------------------------------------------
-
-class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GALGAS_lstring mProperty_mProgramName ;
-  public: inline GALGAS_lstring readProperty_mProgramName (void) const {
-    return mProperty_mProgramName ;
-  }
-
-  public: GALGAS_programKind mProperty_mProgramKind ;
-  public: inline GALGAS_programKind readProperty_mProgramKind (void) const {
-    return mProperty_mProgramKind ;
-  }
-
-  public: GALGAS_lstring mProperty_mDeviceNameOrBootLoaderReference ;
-  public: inline GALGAS_lstring readProperty_mDeviceNameOrBootLoaderReference (void) const {
-    return mProperty_mDeviceNameOrBootLoaderReference ;
-  }
-
-  public: GALGAS_configDefinitionList mProperty_mConfigDefinitionList ;
-  public: inline GALGAS_configDefinitionList readProperty_mConfigDefinitionList (void) const {
-    return mProperty_mConfigDefinitionList ;
-  }
-
-  public: GALGAS_ramDefinitionList mProperty_mRamDefinitionList ;
-  public: inline GALGAS_ramDefinitionList readProperty_mRamDefinitionList (void) const {
-    return mProperty_mRamDefinitionList ;
-  }
-
-  public: GALGAS_lstringlist mProperty_mUnusedRegisterList ;
-  public: inline GALGAS_lstringlist readProperty_mUnusedRegisterList (void) const {
-    return mProperty_mUnusedRegisterList ;
-  }
-
-  public: GALGAS_checkpicList mProperty_mCheckpicList ;
-  public: inline GALGAS_checkpicList readProperty_mCheckpicList (void) const {
-    return mProperty_mCheckpicList ;
-  }
-
-  public: GALGAS_dataList mProperty_mDataList ;
-  public: inline GALGAS_dataList readProperty_mDataList (void) const {
-    return mProperty_mDataList ;
-  }
-
-  public: GALGAS_pic_31__38_InterruptDefinitionList mProperty_mInterruptDefinitionList ;
-  public: inline GALGAS_pic_31__38_InterruptDefinitionList readProperty_mInterruptDefinitionList (void) const {
-    return mProperty_mInterruptDefinitionList ;
-  }
-
-  public: GALGAS_constantDefinitionList mProperty_mConstantDefinitionList ;
-  public: inline GALGAS_constantDefinitionList readProperty_mConstantDefinitionList (void) const {
-    return mProperty_mConstantDefinitionList ;
-  }
-
-  public: GALGAS_pic_31__38_RoutineDefinitionList mProperty_mRoutineDefinitionList ;
-  public: inline GALGAS_pic_31__38_RoutineDefinitionList readProperty_mRoutineDefinitionList (void) const {
-    return mProperty_mRoutineDefinitionList ;
-  }
-
-  public: GALGAS_pic_31__38_MacroDefinitionList mProperty_mMacroDefinitionList ;
-  public: inline GALGAS_pic_31__38_MacroDefinitionList readProperty_mMacroDefinitionList (void) const {
-    return mProperty_mMacroDefinitionList ;
-  }
-
-  public: GALGAS_lstringlist mProperty_mUnusedRoutineList ;
-  public: inline GALGAS_lstringlist readProperty_mUnusedRoutineList (void) const {
-    return mProperty_mUnusedRoutineList ;
-  }
-
-  public: GALGAS_lstringlist mProperty_mInlinedRoutineList ;
-  public: inline GALGAS_lstringlist readProperty_mInlinedRoutineList (void) const {
-    return mProperty_mInlinedRoutineList ;
-  }
-
-  public: GALGAS_bool mProperty_mNeedsComputedGoto_32_ ;
-  public: inline GALGAS_bool readProperty_mNeedsComputedGoto_32_ (void) const {
-    return mProperty_mNeedsComputedGoto_32_ ;
-  }
-
-  public: GALGAS_bool mProperty_mNeedsComputedGoto_34_ ;
-  public: inline GALGAS_bool readProperty_mNeedsComputedGoto_34_ (void) const {
-    return mProperty_mNeedsComputedGoto_34_ ;
-  }
-
-  public: GALGAS_location mProperty_mEndOfProgram ;
-  public: inline GALGAS_location readProperty_mEndOfProgram (void) const {
-    return mProperty_mEndOfProgram ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GALGAS_pic_31__38_AST (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setMProgramName (const GALGAS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mProgramName = inValue ;
-  }
-
-  public: inline void setter_setMProgramKind (const GALGAS_programKind & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mProgramKind = inValue ;
-  }
-
-  public: inline void setter_setMDeviceNameOrBootLoaderReference (const GALGAS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mDeviceNameOrBootLoaderReference = inValue ;
-  }
-
-  public: inline void setter_setMConfigDefinitionList (const GALGAS_configDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mConfigDefinitionList = inValue ;
-  }
-
-  public: inline void setter_setMRamDefinitionList (const GALGAS_ramDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mRamDefinitionList = inValue ;
-  }
-
-  public: inline void setter_setMUnusedRegisterList (const GALGAS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mUnusedRegisterList = inValue ;
-  }
-
-  public: inline void setter_setMCheckpicList (const GALGAS_checkpicList & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mCheckpicList = inValue ;
-  }
-
-  public: inline void setter_setMDataList (const GALGAS_dataList & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mDataList = inValue ;
-  }
-
-  public: inline void setter_setMInterruptDefinitionList (const GALGAS_pic_31__38_InterruptDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mInterruptDefinitionList = inValue ;
-  }
-
-  public: inline void setter_setMConstantDefinitionList (const GALGAS_constantDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mConstantDefinitionList = inValue ;
-  }
-
-  public: inline void setter_setMRoutineDefinitionList (const GALGAS_pic_31__38_RoutineDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mRoutineDefinitionList = inValue ;
-  }
-
-  public: inline void setter_setMMacroDefinitionList (const GALGAS_pic_31__38_MacroDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mMacroDefinitionList = inValue ;
-  }
-
-  public: inline void setter_setMUnusedRoutineList (const GALGAS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mUnusedRoutineList = inValue ;
-  }
-
-  public: inline void setter_setMInlinedRoutineList (const GALGAS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mInlinedRoutineList = inValue ;
-  }
-
-  public: inline void setter_setMNeedsComputedGoto_32_ (const GALGAS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mNeedsComputedGoto_32_ = inValue ;
-  }
-
-  public: inline void setter_setMNeedsComputedGoto_34_ (const GALGAS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mNeedsComputedGoto_34_ = inValue ;
-  }
-
-  public: inline void setter_setMEndOfProgram (const GALGAS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mEndOfProgram = inValue ;
-  }
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public: virtual ~ GALGAS_pic_31__38_AST (void) ;
-
-//--------------------------------- Native constructor
-  public: GALGAS_pic_31__38_AST (const GALGAS_lstring & in_mProgramName,
-                                 const GALGAS_programKind & in_mProgramKind,
-                                 const GALGAS_lstring & in_mDeviceNameOrBootLoaderReference,
-                                 const GALGAS_configDefinitionList & in_mConfigDefinitionList,
-                                 const GALGAS_ramDefinitionList & in_mRamDefinitionList,
-                                 const GALGAS_lstringlist & in_mUnusedRegisterList,
-                                 const GALGAS_checkpicList & in_mCheckpicList,
-                                 const GALGAS_dataList & in_mDataList,
-                                 const GALGAS_pic_31__38_InterruptDefinitionList & in_mInterruptDefinitionList,
-                                 const GALGAS_constantDefinitionList & in_mConstantDefinitionList,
-                                 const GALGAS_pic_31__38_RoutineDefinitionList & in_mRoutineDefinitionList,
-                                 const GALGAS_pic_31__38_MacroDefinitionList & in_mMacroDefinitionList,
-                                 const GALGAS_lstringlist & in_mUnusedRoutineList,
-                                 const GALGAS_lstringlist & in_mInlinedRoutineList,
-                                 const GALGAS_bool & in_mNeedsComputedGoto_32_,
-                                 const GALGAS_bool & in_mNeedsComputedGoto_34_,
-                                 const GALGAS_location & in_mEndOfProgram) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_pic_31__38_AST extractObject (const GALGAS_object & inObject,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GALGAS_pic_31__38_AST class_func_new (const class GALGAS_lstring & inOperand0,
-                                                             const class GALGAS_programKind & inOperand1,
-                                                             const class GALGAS_lstring & inOperand2,
-                                                             const class GALGAS_configDefinitionList & inOperand3,
-                                                             const class GALGAS_ramDefinitionList & inOperand4,
-                                                             const class GALGAS_lstringlist & inOperand5,
-                                                             const class GALGAS_checkpicList & inOperand6,
-                                                             const class GALGAS_dataList & inOperand7,
-                                                             const class GALGAS_pic_31__38_InterruptDefinitionList & inOperand8,
-                                                             const class GALGAS_constantDefinitionList & inOperand9,
-                                                             const class GALGAS_pic_31__38_RoutineDefinitionList & inOperand10,
-                                                             const class GALGAS_pic_31__38_MacroDefinitionList & inOperand11,
-                                                             const class GALGAS_lstringlist & inOperand12,
-                                                             const class GALGAS_lstringlist & inOperand13,
-                                                             const class GALGAS_bool & inOperand14,
-                                                             const class GALGAS_bool & inOperand15,
-                                                             const class GALGAS_location & inOperand16,
-                                                             class Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_pic_31__38_AST & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_pic_31__38_AST class
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_AST ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//                                             Phase 1: @processorType enum                                            *
-//
-//--------------------------------------------------------------------------------------------------
-
-class GALGAS_processorType : public AC_GALGAS_root {
-//--------------------------------- Default constructor
-  public: GALGAS_processorType (void) ;
-
-//--------------------------------- Enumeration
-  public: typedef enum {
-    kNotBuilt,
-    kEnum_pic_31__38__5F__36__30_,
-    kEnum_pic_31__38__5F__38__30_,
-    kEnum_midrange,
-    kEnum_baseline
-  } enumeration ;
-  
-//--------------------------------- Private data member
-  private: enumeration mEnum ;
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return kNotBuilt != mEnum ; }
-  public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
-  public: inline enumeration enumValue (void) const { return mEnum ; }
-
-//-- Start of type generic part
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_processorType extractObject (const GALGAS_object & inObject,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GALGAS_processorType class_func_baseline (LOCATION_ARGS) ;
-
-  public: static class GALGAS_processorType class_func_midrange (LOCATION_ARGS) ;
-
-  public: static class GALGAS_processorType class_func_pic_31__38__5F__36__30_ (LOCATION_ARGS) ;
-
-  public: static class GALGAS_processorType class_func_pic_31__38__5F__38__30_ (LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_processorType & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBaseline (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isMidrange (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPic_31__38__5F__36__30_ (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPic_31__38__5F__38__30_ (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Optional Methods
-  public: VIRTUAL_IN_DEBUG bool optional_baseline () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_midrange () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_pic_31__38__5F__36__30_ () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_pic_31__38__5F__38__30_ () const ;
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_processorType class
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_processorType ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 1: @configRegisterMap map
-//
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_configRegisterMap ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const char * kSearchErrorMessage_configRegisterMap_searchKey ;
-
-//--------------------------------------------------------------------------------------------------
-
-class GALGAS_configRegisterMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
-  public: GALGAS_configRegisterMap (void) ;
-
-//--------------------------------- Handle copy
-  public: GALGAS_configRegisterMap (const GALGAS_configRegisterMap & inSource) ;
-  public: GALGAS_configRegisterMap & operator = (const GALGAS_configRegisterMap & inSource) ;
-  
-//-- Start of type generic part
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_configRegisterMap extractObject (const GALGAS_object & inObject,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GALGAS_configRegisterMap class_func_emptyMap (LOCATION_ARGS) ;
-
-  public: static class GALGAS_configRegisterMap class_func_mapWithMapToOverride (const class GALGAS_configRegisterMap & inOperand0
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_lstring & inOperand0,
-                                                     const class GALGAS_luint & inOperand1,
-                                                     const class GALGAS_luint & inOperand2,
-                                                     const class GALGAS_configRegisterMaskMap & inOperand3,
-                                                     const class GALGAS_illegalMaskList & inOperand4,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GALGAS_configRegisterMap add_operation (const GALGAS_configRegisterMap & inOperand,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GALGAS_lstring constinArgument0,
-                                                  class GALGAS_luint constinArgument1,
-                                                  class GALGAS_luint constinArgument2,
-                                                  class GALGAS_configRegisterMaskMap constinArgument3,
-                                                  class GALGAS_illegalMaskList constinArgument4,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMConfigRegisterMaskMapForKey (class GALGAS_configRegisterMaskMap constinArgument0,
-                                                                        class GALGAS_string constinArgument1,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMIllegalMaskListForKey (class GALGAS_illegalMaskList constinArgument0,
-                                                                  class GALGAS_string constinArgument1,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterAddressForKey (class GALGAS_luint constinArgument0,
-                                                                  class GALGAS_string constinArgument1,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterWidthForKey (class GALGAS_luint constinArgument0,
-                                                                class GALGAS_string constinArgument1,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GALGAS_lstring constinArgument0,
-                                                  class GALGAS_luint & outArgument1,
-                                                  class GALGAS_luint & outArgument2,
-                                                  class GALGAS_configRegisterMaskMap & outArgument3,
-                                                  class GALGAS_illegalMaskList & outArgument4,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_configRegisterMaskMap getter_mConfigRegisterMaskMapForKey (const class GALGAS_string & constinOperand0,
-                                                                                                   Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_illegalMaskList getter_mIllegalMaskListForKey (const class GALGAS_string & constinOperand0,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_luint getter_mRegisterAddressForKey (const class GALGAS_string & constinOperand0,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_luint getter_mRegisterWidthForKey (const class GALGAS_string & constinOperand0,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_configRegisterMap getter_overriddenMap (Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Optional Methods
-  public: VIRTUAL_IN_DEBUG bool optional_searchKey (const class GALGAS_string & constinOperand0,
-                                                    class GALGAS_luint & outOperand1,
-                                                    class GALGAS_luint & outOperand2,
-                                                    class GALGAS_configRegisterMaskMap & outOperand3,
-                                                    class GALGAS_illegalMaskList & outOperand4) const ;
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_configRegisterMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                              const GALGAS_string & inKey
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Friend
-
-  friend class cEnumerator_configRegisterMap ;
- 
-} ; // End of GALGAS_configRegisterMap class
-
-//--------------------------------------------------------------------------------------------------
-//   Enumerator declaration                                                                      
-//--------------------------------------------------------------------------------------------------
-
-class cEnumerator_configRegisterMap : public cGenericAbstractEnumerator {
-  public: cEnumerator_configRegisterMap (const GALGAS_configRegisterMap & inEnumeratedObject,
-                                         const typeEnumerationOrder inOrder) ;
-
-//--- Current element access
-  public: class GALGAS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GALGAS_luint current_mRegisterAddress (LOCATION_ARGS) const ;
-  public: class GALGAS_luint current_mRegisterWidth (LOCATION_ARGS) const ;
-  public: class GALGAS_configRegisterMaskMap current_mConfigRegisterMaskMap (LOCATION_ARGS) const ;
-  public: class GALGAS_illegalMaskList current_mIllegalMaskList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GALGAS_configRegisterMap_2D_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configRegisterMap ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 1: @piccoloDeviceModel struct
-//
-//--------------------------------------------------------------------------------------------------
-
-class GALGAS_piccoloDeviceModel : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GALGAS_lstring mProperty_mDeviceName ;
-  public: inline GALGAS_lstring readProperty_mDeviceName (void) const {
-    return mProperty_mDeviceName ;
-  }
-
-  public: GALGAS_processorType mProperty_mProcessorType ;
-  public: inline GALGAS_processorType readProperty_mProcessorType (void) const {
-    return mProperty_mProcessorType ;
-  }
-
-  public: GALGAS_luint mProperty_mRomSize ;
-  public: inline GALGAS_luint readProperty_mRomSize (void) const {
-    return mProperty_mRomSize ;
-  }
-
-  public: GALGAS_luint mProperty_mBankCount ;
-  public: inline GALGAS_luint readProperty_mBankCount (void) const {
-    return mProperty_mBankCount ;
-  }
-
-  public: GALGAS_registerTable mProperty_mRegisterTable ;
-  public: inline GALGAS_registerTable readProperty_mRegisterTable (void) const {
-    return mProperty_mRegisterTable ;
-  }
-
-  public: GALGAS_ramBankTable mProperty_mRamBankTable ;
-  public: inline GALGAS_ramBankTable readProperty_mRamBankTable (void) const {
-    return mProperty_mRamBankTable ;
-  }
-
-  public: GALGAS_uint mProperty_mEepromSize ;
-  public: inline GALGAS_uint readProperty_mEepromSize (void) const {
-    return mProperty_mEepromSize ;
-  }
-
-  public: GALGAS_uint mProperty_mEepromAddress ;
-  public: inline GALGAS_uint readProperty_mEepromAddress (void) const {
-    return mProperty_mEepromAddress ;
-  }
-
-  public: GALGAS_configRegisterMap mProperty_mConfigRegisterMap ;
-  public: inline GALGAS_configRegisterMap readProperty_mConfigRegisterMap (void) const {
-    return mProperty_mConfigRegisterMap ;
-  }
-
-  public: GALGAS_string mProperty_mSharedBankName ;
-  public: inline GALGAS_string readProperty_mSharedBankName (void) const {
-    return mProperty_mSharedBankName ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GALGAS_piccoloDeviceModel (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setMDeviceName (const GALGAS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mDeviceName = inValue ;
-  }
-
-  public: inline void setter_setMProcessorType (const GALGAS_processorType & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mProcessorType = inValue ;
-  }
-
-  public: inline void setter_setMRomSize (const GALGAS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mRomSize = inValue ;
-  }
-
-  public: inline void setter_setMBankCount (const GALGAS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mBankCount = inValue ;
-  }
-
-  public: inline void setter_setMRegisterTable (const GALGAS_registerTable & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mRegisterTable = inValue ;
-  }
-
-  public: inline void setter_setMRamBankTable (const GALGAS_ramBankTable & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mRamBankTable = inValue ;
-  }
-
-  public: inline void setter_setMEepromSize (const GALGAS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mEepromSize = inValue ;
-  }
-
-  public: inline void setter_setMEepromAddress (const GALGAS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mEepromAddress = inValue ;
-  }
-
-  public: inline void setter_setMConfigRegisterMap (const GALGAS_configRegisterMap & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mConfigRegisterMap = inValue ;
-  }
-
-  public: inline void setter_setMSharedBankName (const GALGAS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mSharedBankName = inValue ;
-  }
-
-//--------------------------------- Virtual destructor (in debug mode)
-  public: virtual ~ GALGAS_piccoloDeviceModel (void) ;
-
-//--------------------------------- Native constructor
-  public: GALGAS_piccoloDeviceModel (const GALGAS_lstring & in_mDeviceName,
-                                     const GALGAS_processorType & in_mProcessorType,
-                                     const GALGAS_luint & in_mRomSize,
-                                     const GALGAS_luint & in_mBankCount,
-                                     const GALGAS_registerTable & in_mRegisterTable,
-                                     const GALGAS_ramBankTable & in_mRamBankTable,
-                                     const GALGAS_uint & in_mEepromSize,
-                                     const GALGAS_uint & in_mEepromAddress,
-                                     const GALGAS_configRegisterMap & in_mConfigRegisterMap,
-                                     const GALGAS_string & in_mSharedBankName) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_piccoloDeviceModel extractObject (const GALGAS_object & inObject,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GALGAS_piccoloDeviceModel class_func_new (const class GALGAS_lstring & inOperand0,
-                                                                 const class GALGAS_processorType & inOperand1,
-                                                                 const class GALGAS_luint & inOperand2,
-                                                                 const class GALGAS_luint & inOperand3,
-                                                                 const class GALGAS_registerTable & inOperand4,
-                                                                 const class GALGAS_ramBankTable & inOperand5,
-                                                                 const class GALGAS_uint & inOperand6,
-                                                                 const class GALGAS_uint & inOperand7,
-                                                                 const class GALGAS_configRegisterMap & inOperand8,
-                                                                 const class GALGAS_string & inOperand9,
-                                                                 class Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_piccoloDeviceModel & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_piccoloDeviceModel class
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_piccoloDeviceModel ;
 
