@@ -4463,7 +4463,7 @@
     path = "files";
     sourceTree = "<group>";
   };
-  D8F918A4AA29BE29D2C386FB /* Galgas 2 */ = {
+  D8F918A4AA29BE29D2C386FB /* Galgas */ = {
     isa = PBXGroup;
     children = (
       E6A13CF5EAA496D51FEA6406, 
@@ -4566,8 +4566,8 @@
       62E40C570A322F1B0B659098, 
       D58A54E94377E6AE2EDED4D9, 
     );
-    name = "Galgas 2";
-    path = "galgas2";
+    name = "Galgas";
+    path = "galgas";
     sourceTree = "<group>";
   };
   BA585B952B62C14A3A175A61 /* Streams */ = {
