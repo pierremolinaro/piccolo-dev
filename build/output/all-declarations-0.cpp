@@ -4335,6 +4335,12 @@ GALGAS_bitSliceTable GALGAS_bitSliceTable::extractObject (const GALGAS_object & 
 // @immediatExpression reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatExpression::cPtr_immediatExpression (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
+acStrongPtr_class (THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatExpression::printNonNullClassInstanceProperties (void) const {
     acStrongPtr_class::printNonNullClassInstanceProperties () ;
@@ -4366,6 +4372,17 @@ ComparisonResult GALGAS_immediatExpression::objectCompare (const GALGAS_immediat
 GALGAS_immediatExpression::GALGAS_immediatExpression (void) :
 AC_GALGAS_reference_class () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatExpression GALGAS_immediatExpression::init_28__29_ (Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
+  cPtr_immediatExpression * object = nullptr ;
+  macroMyNew (object, cPtr_immediatExpression (inCompiler COMMA_THERE)) ;
+  const GALGAS_immediatExpression result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4538,6 +4555,12 @@ GALGAS_registerExpression_2D_weak GALGAS_registerExpression_2D_weak::extractObje
 // @declarationInRam reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_declarationInRam::cPtr_declarationInRam (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
+acStrongPtr_class (THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_declarationInRam::printNonNullClassInstanceProperties (void) const {
     acStrongPtr_class::printNonNullClassInstanceProperties () ;
@@ -4569,6 +4592,17 @@ ComparisonResult GALGAS_declarationInRam::objectCompare (const GALGAS_declaratio
 GALGAS_declarationInRam::GALGAS_declarationInRam (void) :
 AC_GALGAS_reference_class () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_declarationInRam GALGAS_declarationInRam::init_28__29_ (Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
+  cPtr_declarationInRam * object = nullptr ;
+  macroMyNew (object, cPtr_declarationInRam (inCompiler COMMA_THERE)) ;
+  const GALGAS_declarationInRam result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7630,6 +7664,14 @@ GALGAS_immediatRegister_2D_weak GALGAS_immediatRegister_2D_weak::extractObject (
 // @immediatAdd reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatAdd::cPtr_immediatAdd (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatAdd::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -7677,6 +7719,21 @@ ComparisonResult GALGAS_immediatAdd::objectCompare (const GALGAS_immediatAdd & i
 GALGAS_immediatAdd::GALGAS_immediatAdd (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatAdd GALGAS_immediatAdd::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                            const GALGAS_immediatExpression & in_mRightExpression,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  cPtr_immediatAdd * object = nullptr ;
+  macroMyNew (object, cPtr_immediatAdd (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatAdd result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7934,6 +7991,14 @@ GALGAS_immediatAdd_2D_weak GALGAS_immediatAdd_2D_weak::extractObject (const GALG
 // @immediatSub reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatSub::cPtr_immediatSub (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatSub::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -7981,6 +8046,21 @@ ComparisonResult GALGAS_immediatSub::objectCompare (const GALGAS_immediatSub & i
 GALGAS_immediatSub::GALGAS_immediatSub (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatSub GALGAS_immediatSub::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                            const GALGAS_immediatExpression & in_mRightExpression,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  cPtr_immediatSub * object = nullptr ;
+  macroMyNew (object, cPtr_immediatSub (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatSub result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8238,6 +8318,14 @@ GALGAS_immediatSub_2D_weak GALGAS_immediatSub_2D_weak::extractObject (const GALG
 // @immediatMul reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatMul::cPtr_immediatMul (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatMul::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -8285,6 +8373,21 @@ ComparisonResult GALGAS_immediatMul::objectCompare (const GALGAS_immediatMul & i
 GALGAS_immediatMul::GALGAS_immediatMul (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatMul GALGAS_immediatMul::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                            const GALGAS_immediatExpression & in_mRightExpression,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  cPtr_immediatMul * object = nullptr ;
+  macroMyNew (object, cPtr_immediatMul (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatMul result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8542,6 +8645,14 @@ GALGAS_immediatMul_2D_weak GALGAS_immediatMul_2D_weak::extractObject (const GALG
 // @immediatDiv reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatDiv::cPtr_immediatDiv (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatDiv::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -8589,6 +8700,21 @@ ComparisonResult GALGAS_immediatDiv::objectCompare (const GALGAS_immediatDiv & i
 GALGAS_immediatDiv::GALGAS_immediatDiv (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatDiv GALGAS_immediatDiv::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                            const GALGAS_immediatExpression & in_mRightExpression,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  cPtr_immediatDiv * object = nullptr ;
+  macroMyNew (object, cPtr_immediatDiv (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatDiv result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8846,6 +8972,14 @@ GALGAS_immediatDiv_2D_weak GALGAS_immediatDiv_2D_weak::extractObject (const GALG
 // @immediatMod reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatMod::cPtr_immediatMod (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatMod::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -8893,6 +9027,21 @@ ComparisonResult GALGAS_immediatMod::objectCompare (const GALGAS_immediatMod & i
 GALGAS_immediatMod::GALGAS_immediatMod (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatMod GALGAS_immediatMod::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                            const GALGAS_immediatExpression & in_mRightExpression,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  cPtr_immediatMod * object = nullptr ;
+  macroMyNew (object, cPtr_immediatMod (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatMod result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9150,6 +9299,14 @@ GALGAS_immediatMod_2D_weak GALGAS_immediatMod_2D_weak::extractObject (const GALG
 // @immediatOr reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatOr::cPtr_immediatOr (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatOr::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -9197,6 +9354,21 @@ ComparisonResult GALGAS_immediatOr::objectCompare (const GALGAS_immediatOr & inO
 GALGAS_immediatOr::GALGAS_immediatOr (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatOr GALGAS_immediatOr::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                          const GALGAS_immediatExpression & in_mRightExpression,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  cPtr_immediatOr * object = nullptr ;
+  macroMyNew (object, cPtr_immediatOr (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatOr result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9454,6 +9626,14 @@ GALGAS_immediatOr_2D_weak GALGAS_immediatOr_2D_weak::extractObject (const GALGAS
 // @immediatAnd reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatAnd::cPtr_immediatAnd (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatAnd::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -9501,6 +9681,21 @@ ComparisonResult GALGAS_immediatAnd::objectCompare (const GALGAS_immediatAnd & i
 GALGAS_immediatAnd::GALGAS_immediatAnd (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatAnd GALGAS_immediatAnd::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                            const GALGAS_immediatExpression & in_mRightExpression,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  cPtr_immediatAnd * object = nullptr ;
+  macroMyNew (object, cPtr_immediatAnd (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatAnd result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9758,6 +9953,14 @@ GALGAS_immediatAnd_2D_weak GALGAS_immediatAnd_2D_weak::extractObject (const GALG
 // @immediatXor reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatXor::cPtr_immediatXor (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatXor::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -9805,6 +10008,21 @@ ComparisonResult GALGAS_immediatXor::objectCompare (const GALGAS_immediatXor & i
 GALGAS_immediatXor::GALGAS_immediatXor (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatXor GALGAS_immediatXor::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                            const GALGAS_immediatExpression & in_mRightExpression,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  cPtr_immediatXor * object = nullptr ;
+  macroMyNew (object, cPtr_immediatXor (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatXor result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10062,6 +10280,14 @@ GALGAS_immediatXor_2D_weak GALGAS_immediatXor_2D_weak::extractObject (const GALG
 // @immediatLeftShift reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatLeftShift::cPtr_immediatLeftShift (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatLeftShift::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -10109,6 +10335,21 @@ ComparisonResult GALGAS_immediatLeftShift::objectCompare (const GALGAS_immediatL
 GALGAS_immediatLeftShift::GALGAS_immediatLeftShift (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatLeftShift GALGAS_immediatLeftShift::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                        const GALGAS_immediatExpression & in_mRightExpression,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
+  cPtr_immediatLeftShift * object = nullptr ;
+  macroMyNew (object, cPtr_immediatLeftShift (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatLeftShift result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10366,6 +10607,14 @@ GALGAS_immediatLeftShift_2D_weak GALGAS_immediatLeftShift_2D_weak::extractObject
 // @immediatRightShift reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatRightShift::cPtr_immediatRightShift (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatRightShift::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -10413,6 +10662,21 @@ ComparisonResult GALGAS_immediatRightShift::objectCompare (const GALGAS_immediat
 GALGAS_immediatRightShift::GALGAS_immediatRightShift (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatRightShift GALGAS_immediatRightShift::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                          const GALGAS_immediatExpression & in_mRightExpression,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  cPtr_immediatRightShift * object = nullptr ;
+  macroMyNew (object, cPtr_immediatRightShift (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatRightShift result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10670,6 +10934,14 @@ GALGAS_immediatRightShift_2D_weak GALGAS_immediatRightShift_2D_weak::extractObje
 // @immediatEqualTest reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatEqualTest::cPtr_immediatEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatEqualTest::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -10717,6 +10989,21 @@ ComparisonResult GALGAS_immediatEqualTest::objectCompare (const GALGAS_immediatE
 GALGAS_immediatEqualTest::GALGAS_immediatEqualTest (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatEqualTest GALGAS_immediatEqualTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                        const GALGAS_immediatExpression & in_mRightExpression,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
+  cPtr_immediatEqualTest * object = nullptr ;
+  macroMyNew (object, cPtr_immediatEqualTest (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatEqualTest result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10974,6 +11261,14 @@ GALGAS_immediatEqualTest_2D_weak GALGAS_immediatEqualTest_2D_weak::extractObject
 // @immediatNotEqualTest reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatNotEqualTest::cPtr_immediatNotEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatNotEqualTest::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -11021,6 +11316,21 @@ ComparisonResult GALGAS_immediatNotEqualTest::objectCompare (const GALGAS_immedi
 GALGAS_immediatNotEqualTest::GALGAS_immediatNotEqualTest (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatNotEqualTest GALGAS_immediatNotEqualTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                              const GALGAS_immediatExpression & in_mRightExpression,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) {
+  cPtr_immediatNotEqualTest * object = nullptr ;
+  macroMyNew (object, cPtr_immediatNotEqualTest (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatNotEqualTest result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11278,6 +11588,14 @@ GALGAS_immediatNotEqualTest_2D_weak GALGAS_immediatNotEqualTest_2D_weak::extract
 // @immediatGreaterTest reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatGreaterTest::cPtr_immediatGreaterTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatGreaterTest::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -11325,6 +11643,21 @@ ComparisonResult GALGAS_immediatGreaterTest::objectCompare (const GALGAS_immedia
 GALGAS_immediatGreaterTest::GALGAS_immediatGreaterTest (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatGreaterTest GALGAS_immediatGreaterTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                            const GALGAS_immediatExpression & in_mRightExpression,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) {
+  cPtr_immediatGreaterTest * object = nullptr ;
+  macroMyNew (object, cPtr_immediatGreaterTest (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatGreaterTest result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11582,6 +11915,14 @@ GALGAS_immediatGreaterTest_2D_weak GALGAS_immediatGreaterTest_2D_weak::extractOb
 // @immediatGreaterOrEqualTest reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatGreaterOrEqualTest::cPtr_immediatGreaterOrEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatGreaterOrEqualTest::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -11629,6 +11970,21 @@ ComparisonResult GALGAS_immediatGreaterOrEqualTest::objectCompare (const GALGAS_
 GALGAS_immediatGreaterOrEqualTest::GALGAS_immediatGreaterOrEqualTest (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatGreaterOrEqualTest GALGAS_immediatGreaterOrEqualTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                                          const GALGAS_immediatExpression & in_mRightExpression,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) {
+  cPtr_immediatGreaterOrEqualTest * object = nullptr ;
+  macroMyNew (object, cPtr_immediatGreaterOrEqualTest (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatGreaterOrEqualTest result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11886,6 +12242,14 @@ GALGAS_immediatGreaterOrEqualTest_2D_weak GALGAS_immediatGreaterOrEqualTest_2D_w
 // @immediatLowerTest reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatLowerTest::cPtr_immediatLowerTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatLowerTest::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -11933,6 +12297,21 @@ ComparisonResult GALGAS_immediatLowerTest::objectCompare (const GALGAS_immediatL
 GALGAS_immediatLowerTest::GALGAS_immediatLowerTest (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatLowerTest GALGAS_immediatLowerTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                        const GALGAS_immediatExpression & in_mRightExpression,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
+  cPtr_immediatLowerTest * object = nullptr ;
+  macroMyNew (object, cPtr_immediatLowerTest (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatLowerTest result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12190,6 +12569,14 @@ GALGAS_immediatLowerTest_2D_weak GALGAS_immediatLowerTest_2D_weak::extractObject
 // @immediatLowerOrEqualTest reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatLowerOrEqualTest::cPtr_immediatLowerOrEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatLowerOrEqualTest::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -12237,6 +12624,21 @@ ComparisonResult GALGAS_immediatLowerOrEqualTest::objectCompare (const GALGAS_im
 GALGAS_immediatLowerOrEqualTest::GALGAS_immediatLowerOrEqualTest (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatLowerOrEqualTest GALGAS_immediatLowerOrEqualTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                                      const GALGAS_immediatExpression & in_mRightExpression,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) {
+  cPtr_immediatLowerOrEqualTest * object = nullptr ;
+  macroMyNew (object, cPtr_immediatLowerOrEqualTest (inCompiler COMMA_THERE)) ;
+  object->mProperty_mLeftExpression = in_mLeftExpression ;
+  object->mProperty_mRightExpression = in_mRightExpression ;
+  const GALGAS_immediatLowerOrEqualTest result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12494,6 +12896,13 @@ GALGAS_immediatLowerOrEqualTest_2D_weak GALGAS_immediatLowerOrEqualTest_2D_weak:
 // @immediatNegate reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatNegate::cPtr_immediatNegate (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatNegate::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -12537,6 +12946,19 @@ ComparisonResult GALGAS_immediatNegate::objectCompare (const GALGAS_immediatNega
 GALGAS_immediatNegate::GALGAS_immediatNegate (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatNegate GALGAS_immediatNegate::init_28__29_ (const GALGAS_immediatExpression & in_mExpression,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  cPtr_immediatNegate * object = nullptr ;
+  macroMyNew (object, cPtr_immediatNegate (inCompiler COMMA_THERE)) ;
+  object->mProperty_mExpression = in_mExpression ;
+  const GALGAS_immediatNegate result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12766,6 +13188,13 @@ GALGAS_immediatNegate_2D_weak GALGAS_immediatNegate_2D_weak::extractObject (cons
 // @immediatComplement reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatComplement::cPtr_immediatComplement (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_immediatComplement::printNonNullClassInstanceProperties (void) const {
     cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
@@ -12809,6 +13238,19 @@ ComparisonResult GALGAS_immediatComplement::objectCompare (const GALGAS_immediat
 GALGAS_immediatComplement::GALGAS_immediatComplement (void) :
 GALGAS_immediatExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_immediatComplement GALGAS_immediatComplement::init_28__29_ (const GALGAS_immediatExpression & in_mExpression,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
+  cPtr_immediatComplement * object = nullptr ;
+  macroMyNew (object, cPtr_immediatComplement (inCompiler COMMA_THERE)) ;
+  object->mProperty_mExpression = in_mExpression ;
+  const GALGAS_immediatComplement result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14434,6 +14876,12 @@ GALGAS_actualConfigurationMap GALGAS_actualConfigurationMap::extractObject (cons
 // @bitNumberExpression reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_bitNumberExpression::cPtr_bitNumberExpression (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
+acStrongPtr_class (THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_bitNumberExpression::printNonNullClassInstanceProperties (void) const {
     acStrongPtr_class::printNonNullClassInstanceProperties () ;
@@ -14465,6 +14913,17 @@ ComparisonResult GALGAS_bitNumberExpression::objectCompare (const GALGAS_bitNumb
 GALGAS_bitNumberExpression::GALGAS_bitNumberExpression (void) :
 AC_GALGAS_reference_class () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_bitNumberExpression GALGAS_bitNumberExpression::init_28__29_ (Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
+  cPtr_bitNumberExpression * object = nullptr ;
+  macroMyNew (object, cPtr_bitNumberExpression (inCompiler COMMA_THERE)) ;
+  const GALGAS_bitNumberExpression result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14637,6 +15096,14 @@ GALGAS_bitNumberExpression_2D_weak GALGAS_bitNumberExpression_2D_weak::extractOb
 // @bitNumberLiteralExpression reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_bitNumberLiteralExpression::cPtr_bitNumberLiteralExpression (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_bitNumberExpression (inCompiler COMMA_THERE),
+mProperty_mBitNumberLiteralExpression (),
+mProperty_mEndOfExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_bitNumberLiteralExpression::printNonNullClassInstanceProperties (void) const {
     cPtr_bitNumberExpression::printNonNullClassInstanceProperties () ;
@@ -14684,6 +15151,21 @@ ComparisonResult GALGAS_bitNumberLiteralExpression::objectCompare (const GALGAS_
 GALGAS_bitNumberLiteralExpression::GALGAS_bitNumberLiteralExpression (void) :
 GALGAS_bitNumberExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_bitNumberLiteralExpression GALGAS_bitNumberLiteralExpression::init_28__2C__29_ (const GALGAS_immediatExpression & in_mBitNumberLiteralExpression,
+                                                                                          const GALGAS_location & in_mEndOfExpression,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) {
+  cPtr_bitNumberLiteralExpression * object = nullptr ;
+  macroMyNew (object, cPtr_bitNumberLiteralExpression (inCompiler COMMA_THERE)) ;
+  object->mProperty_mBitNumberLiteralExpression = in_mBitNumberLiteralExpression ;
+  object->mProperty_mEndOfExpression = in_mEndOfExpression ;
+  const GALGAS_bitNumberLiteralExpression result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14941,6 +15423,13 @@ GALGAS_bitNumberLiteralExpression_2D_weak GALGAS_bitNumberLiteralExpression_2D_w
 // @bitNumberLiteralValue reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_bitNumberLiteralValue::cPtr_bitNumberLiteralValue (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_bitNumberExpression (inCompiler COMMA_THERE),
+mProperty_mBitNumberLiteralValue () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_bitNumberLiteralValue::printNonNullClassInstanceProperties (void) const {
     cPtr_bitNumberExpression::printNonNullClassInstanceProperties () ;
@@ -14984,6 +15473,19 @@ ComparisonResult GALGAS_bitNumberLiteralValue::objectCompare (const GALGAS_bitNu
 GALGAS_bitNumberLiteralValue::GALGAS_bitNumberLiteralValue (void) :
 GALGAS_bitNumberExpression () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_bitNumberLiteralValue GALGAS_bitNumberLiteralValue::init_28__29_ (const GALGAS_luint & in_mBitNumberLiteralValue,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) {
+  cPtr_bitNumberLiteralValue * object = nullptr ;
+  macroMyNew (object, cPtr_bitNumberLiteralValue (inCompiler COMMA_THERE)) ;
+  object->mProperty_mBitNumberLiteralValue = in_mBitNumberLiteralValue ;
+  const GALGAS_bitNumberLiteralValue result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -17283,344 +17785,6 @@ GALGAS_configFieldMap GALGAS_configFieldMap::extractObject (const GALGAS_object 
       result = *p ;
     }else{
       inCompiler->castError ("configFieldMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cMapElement_fieldSettingMap::cMapElement_fieldSettingMap (const GALGAS_lstring & inKey,
-                                                          const GALGAS_uint & in_mValue,
-                                                          const GALGAS_uint & in_mMask
-                                                          COMMA_LOCATION_ARGS) :
-cMapElement (inKey COMMA_THERE),
-mProperty_mValue (in_mValue),
-mProperty_mMask (in_mMask) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool cMapElement_fieldSettingMap::isValid (void) const {
-  return mProperty_lkey.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cMapElement * cMapElement_fieldSettingMap::copy (void) {
-  cMapElement * result = nullptr ;
-  macroMyNew (result, cMapElement_fieldSettingMap (mProperty_lkey, mProperty_mValue, mProperty_mMask COMMA_HERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cMapElement_fieldSettingMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.appendNewLine () ;
-  ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendCString ("mValue" ":") ;
-  mProperty_mValue.description (ioString, inIndentation) ;
-  ioString.appendNewLine () ;
-  ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendCString ("mMask" ":") ;
-  mProperty_mMask.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_fieldSettingMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_fieldSettingMap * operand = (cMapElement_fieldSettingMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mValue.objectCompare (operand->mProperty_mValue) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mMask.objectCompare (operand->mProperty_mMask) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap::GALGAS_fieldSettingMap (void) :
-AC_GALGAS_map () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap::GALGAS_fieldSettingMap (const GALGAS_fieldSettingMap & inSource) :
-AC_GALGAS_map (inSource) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap & GALGAS_fieldSettingMap::operator = (const GALGAS_fieldSettingMap & inSource) {
-  * ((AC_GALGAS_map *) this) = inSource ;
-  return * this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap GALGAS_fieldSettingMap::class_func_emptyMap (LOCATION_ARGS) {
-  GALGAS_fieldSettingMap result ;
-  result.makeNewEmptyMap (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap GALGAS_fieldSettingMap::class_func_mapWithMapToOverride (const GALGAS_fieldSettingMap & inMapToOverride
-                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_fieldSettingMap result ;
-  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap GALGAS_fieldSettingMap::getter_overriddenMap (Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_fieldSettingMap result ;
-  getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_fieldSettingMap::addAssign_operation (const GALGAS_lstring & inKey,
-                                                  const GALGAS_uint & inArgument0,
-                                                  const GALGAS_uint & inArgument1,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
-  cMapElement_fieldSettingMap * p = nullptr ;
-  macroMyNew (p, cMapElement_fieldSettingMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@fieldSettingMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap GALGAS_fieldSettingMap::add_operation (const GALGAS_fieldSettingMap & inOperand,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const {
-  GALGAS_fieldSettingMap result = *this ;
-  cEnumerator_fieldSettingMap enumerator (inOperand, EnumerationOrder::up) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mValue (HERE), enumerator.current_mMask (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_fieldSettingMap::setter_insertKey (GALGAS_lstring inKey,
-                                               GALGAS_uint inArgument0,
-                                               GALGAS_uint inArgument1,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) {
-  cMapElement_fieldSettingMap * p = nullptr ;
-  macroMyNew (p, cMapElement_fieldSettingMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "the '%K' configuration register setting is already declared in %L" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const char * kSearchErrorMessage_fieldSettingMap_searchKey = "the '%K' configuration register setting is not declared" ;
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_fieldSettingMap::method_searchKey (GALGAS_lstring inKey,
-                                               GALGAS_uint & outArgument0,
-                                               GALGAS_uint & outArgument1,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) performSearch (inKey,
-                                                                                               inCompiler,
-                                                                                               kSearchErrorMessage_fieldSettingMap_searchKey
-                                                                                               COMMA_THERE) ;
-  if (nullptr == p) {
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }else{
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    outArgument0 = p->mProperty_mValue ;
-    outArgument1 = p->mProperty_mMask ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_uint GALGAS_fieldSettingMap::getter_mValueForKey (const GALGAS_string & inKey,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) attributes ;
-  GALGAS_uint result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    result = p->mProperty_mValue ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_uint GALGAS_fieldSettingMap::getter_mMaskForKey (const GALGAS_string & inKey,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) attributes ;
-  GALGAS_uint result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    result = p->mProperty_mMask ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_fieldSettingMap::setter_setMValueForKey (GALGAS_uint inAttributeValue,
-                                                     GALGAS_string inKey,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) attributes ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    p->mProperty_mValue = inAttributeValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_fieldSettingMap::setter_setMMaskForKey (GALGAS_uint inAttributeValue,
-                                                    GALGAS_string inKey,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) attributes ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    p->mProperty_mMask = inAttributeValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cMapElement_fieldSettingMap * GALGAS_fieldSettingMap::readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                         const GALGAS_string & inKey
-                                                                                         COMMA_LOCATION_ARGS) {
-  cMapElement_fieldSettingMap * result = (cMapElement_fieldSettingMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
-  macroNullOrValidSharedObject (result, cMapElement_fieldSettingMap) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cEnumerator_fieldSettingMap::cEnumerator_fieldSettingMap (const GALGAS_fieldSettingMap & inEnumeratedObject,
-                                                          const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap_2D_element cEnumerator_fieldSettingMap::current (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return GALGAS_fieldSettingMap_2D_element (p->mProperty_lkey, p->mProperty_mValue, p->mProperty_mMask) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_lstring cEnumerator_fieldSettingMap::current_lkey (LOCATION_ARGS) const {
-  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement) ;
-  return p->mProperty_lkey ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_uint cEnumerator_fieldSettingMap::current_mValue (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return p->mProperty_mValue ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_uint cEnumerator_fieldSettingMap::current_mMask (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return p->mProperty_mMask ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_fieldSettingMap::optional_searchKey (const GALGAS_string & inKey,
-                                                 GALGAS_uint & outArgument0,
-                                                 GALGAS_uint & outArgument1) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    outArgument0 = p->mProperty_mValue ;
-    outArgument1 = p->mProperty_mMask ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @fieldSettingMap generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fieldSettingMap ("fieldSettingMap",
-                                                                       nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_fieldSettingMap::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_fieldSettingMap ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_fieldSettingMap::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_fieldSettingMap (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_fieldSettingMap GALGAS_fieldSettingMap::extractObject (const GALGAS_object & inObject,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_fieldSettingMap result ;
-  const GALGAS_fieldSettingMap * p = (const GALGAS_fieldSettingMap *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_fieldSettingMap *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("fieldSettingMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

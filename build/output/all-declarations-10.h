@@ -575,12 +575,3 @@ void routine_perform_5F_baseline_5F_optimizations_26__26_ (class GALGAS_baseline
                                                            class Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------------------------------------------------------------------------
-//
-//Function 'acceptableTRISoperand'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GALGAS_stringset function_acceptableTRISoperand (class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
